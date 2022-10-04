@@ -2,14 +2,16 @@ package org.bupt.cad.fedraft.server;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+
 
 public class FedRaftServer {
 
-    private static final Logger logger = Logger.getLogger(FedRaftServer.class.getName());
+    private static final Logger logger = LogManager.getLogger(FedRaftServer.class);
 
     private final Server server;
     private final String host;
@@ -80,7 +82,8 @@ public class FedRaftServer {
 
         // 命令行中如果有参数就以命令行为准
         if (args.length == 2) {
-
+            host = args[0];
+            port = Integer.parseInt(args[1]);
         }
         FedRaftServer server = new FedRaftServer("localhost", 16778);
         server.start();

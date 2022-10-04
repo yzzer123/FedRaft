@@ -3,7 +3,6 @@ package org.bupt.cad.fedraft.rpc.service;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
- *
  */
 @javax.annotation.Generated(
         value = "by gRPC proto compiler (version 1.49.1)",
@@ -124,7 +123,6 @@ public final class FedRaftServiceGrpc {
   }
 
   /**
-   *
    */
   public static abstract class FedRaftServiceImplBase implements io.grpc.BindableService {
 
@@ -168,7 +166,6 @@ public final class FedRaftServiceGrpc {
   }
 
   /**
-   *
    */
   public static final class FedRaftServiceStub extends io.grpc.stub.AbstractAsyncStub<FedRaftServiceStub> {
     private FedRaftServiceStub(
@@ -204,7 +201,6 @@ public final class FedRaftServiceGrpc {
   }
 
   /**
-   *
    */
   public static final class FedRaftServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<FedRaftServiceBlockingStub> {
     private FedRaftServiceBlockingStub(
@@ -219,7 +215,6 @@ public final class FedRaftServiceGrpc {
     }
 
     /**
-     *
      */
     public org.bupt.cad.fedraft.rpc.message.LogResponse appendLog(org.bupt.cad.fedraft.rpc.message.LogRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -228,7 +223,6 @@ public final class FedRaftServiceGrpc {
   }
 
   /**
-   *
    */
   public static final class FedRaftServiceFutureStub extends io.grpc.stub.AbstractFutureStub<FedRaftServiceFutureStub> {
     private FedRaftServiceFutureStub(

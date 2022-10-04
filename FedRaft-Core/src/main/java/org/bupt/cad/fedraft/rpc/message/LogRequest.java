@@ -105,20 +105,19 @@ public final class LogRequest extends
 
   public static final com.google.protobuf.Descriptors.Descriptor
   getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.ModelMessage.internal_static_fedraft_LogRequest_descriptor;
+    return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
   internalGetFieldAccessorTable() {
-    return org.bupt.cad.fedraft.rpc.message.ModelMessage.internal_static_fedraft_LogRequest_fieldAccessorTable
+    return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                     org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
   }
 
   private int dataCase_ = 0;
   private java.lang.Object data_;
-
   public enum DataCase
           implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
@@ -126,11 +125,9 @@ public final class LogRequest extends
     NETWORK_DELAYS(6),
     DATA_NOT_SET(0);
     private final int value;
-
     private DataCase(int value) {
       this.value = value;
     }
-
     /**
      * @param value The number of the enum to look for.
      * @return The enum associated with the given number.
@@ -172,7 +169,6 @@ public final class LogRequest extends
 
   /**
    * <code>uint32 term = 1;</code>
-   *
    * @return The term.
    */
   @java.lang.Override
@@ -182,10 +178,8 @@ public final class LogRequest extends
 
   public static final int LEADER_ID_FIELD_NUMBER = 2;
   private int leaderId_;
-
   /**
    * <code>uint32 leader_id = 2;</code>
-   *
    * @return The leaderId.
    */
   @java.lang.Override
@@ -195,14 +189,12 @@ public final class LogRequest extends
 
   public static final int PRE_MODEL_INDEX_FIELD_NUMBER = 3;
   private int preModelIndex_;
-
   /**
    * <pre>
    * 之前发送模型的索引
    * </pre>
    *
    * <code>uint32 pre_model_index = 3;</code>
-   *
    * @return The preModelIndex.
    */
   @java.lang.Override
@@ -212,14 +204,12 @@ public final class LogRequest extends
 
   public static final int PRE_MODEL_TERM_FIELD_NUMBER = 4;
   private int preModelTerm_;
-
   /**
    * <pre>
    * 之前发送模型的任期
    * </pre>
    *
    * <code>uint32 pre_model_term = 4;</code>
-   *
    * @return The preModelTerm.
    */
   @java.lang.Override
@@ -228,28 +218,24 @@ public final class LogRequest extends
   }
 
   public static final int MODEL_CHUNK_FIELD_NUMBER = 5;
-
   /**
    * <pre>
    * 模型的序列化块
    * </pre>
    *
    * <code>bytes model_chunk = 5;</code>
-   *
    * @return Whether the modelChunk field is set.
    */
   @java.lang.Override
   public boolean hasModelChunk() {
     return dataCase_ == 5;
   }
-
   /**
    * <pre>
    * 模型的序列化块
    * </pre>
    *
    * <code>bytes model_chunk = 5;</code>
-   *
    * @return The modelChunk.
    */
   @java.lang.Override
@@ -261,28 +247,24 @@ public final class LogRequest extends
   }
 
   public static final int NETWORK_DELAYS_FIELD_NUMBER = 6;
-
   /**
    * <pre>
    * 网络时延拓扑
    * </pre>
    *
    * <code>bytes network_delays = 6;</code>
-   *
    * @return Whether the networkDelays field is set.
    */
   @java.lang.Override
   public boolean hasNetworkDelays() {
     return dataCase_ == 6;
   }
-
   /**
    * <pre>
    * 网络时延拓扑
    * </pre>
    *
    * <code>bytes network_delays = 6;</code>
-   *
    * @return The networkDelays.
    */
   @java.lang.Override
@@ -294,7 +276,6 @@ public final class LogRequest extends
   }
 
   private byte memoizedIsInitialized = -1;
-
   @java.lang.Override
   public final boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -524,11 +505,9 @@ public final class LogRequest extends
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-
   public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.LogRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
-
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -551,13 +530,13 @@ public final class LogRequest extends
           org.bupt.cad.fedraft.rpc.message.LogRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
-      return org.bupt.cad.fedraft.rpc.message.ModelMessage.internal_static_fedraft_LogRequest_descriptor;
+      return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
     internalGetFieldAccessorTable() {
-      return org.bupt.cad.fedraft.rpc.message.ModelMessage.internal_static_fedraft_LogRequest_fieldAccessorTable
+      return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_fieldAccessorTable
               .ensureFieldAccessorsInitialized(
                       org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
     }
@@ -578,7 +557,6 @@ public final class LogRequest extends
               .alwaysUseFieldBuilders) {
       }
     }
-
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -598,7 +576,7 @@ public final class LogRequest extends
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
     getDescriptorForType() {
-      return org.bupt.cad.fedraft.rpc.message.ModelMessage.internal_static_fedraft_LogRequest_descriptor;
+      return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
     }
 
     @java.lang.Override
@@ -736,7 +714,6 @@ public final class LogRequest extends
       }
       return this;
     }
-
     private int dataCase_ = 0;
     private java.lang.Object data_;
 
@@ -755,20 +732,16 @@ public final class LogRequest extends
 
 
     private int term_;
-
     /**
      * <code>uint32 term = 1;</code>
-     *
      * @return The term.
      */
     @java.lang.Override
     public int getTerm() {
       return term_;
     }
-
     /**
      * <code>uint32 term = 1;</code>
-     *
      * @param value The term to set.
      * @return This builder for chaining.
      */
@@ -778,10 +751,8 @@ public final class LogRequest extends
       onChanged();
       return this;
     }
-
     /**
      * <code>uint32 term = 1;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearTerm() {
@@ -792,20 +763,16 @@ public final class LogRequest extends
     }
 
     private int leaderId_;
-
     /**
      * <code>uint32 leader_id = 2;</code>
-     *
      * @return The leaderId.
      */
     @java.lang.Override
     public int getLeaderId() {
       return leaderId_;
     }
-
     /**
      * <code>uint32 leader_id = 2;</code>
-     *
      * @param value The leaderId to set.
      * @return This builder for chaining.
      */
@@ -815,10 +782,8 @@ public final class LogRequest extends
       onChanged();
       return this;
     }
-
     /**
      * <code>uint32 leader_id = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearLeaderId() {
@@ -829,28 +794,24 @@ public final class LogRequest extends
     }
 
     private int preModelIndex_;
-
     /**
      * <pre>
      * 之前发送模型的索引
      * </pre>
      *
      * <code>uint32 pre_model_index = 3;</code>
-     *
      * @return The preModelIndex.
      */
     @java.lang.Override
     public int getPreModelIndex() {
       return preModelIndex_;
     }
-
     /**
      * <pre>
      * 之前发送模型的索引
      * </pre>
      *
      * <code>uint32 pre_model_index = 3;</code>
-     *
      * @param value The preModelIndex to set.
      * @return This builder for chaining.
      */
@@ -860,14 +821,12 @@ public final class LogRequest extends
       onChanged();
       return this;
     }
-
     /**
      * <pre>
      * 之前发送模型的索引
      * </pre>
      *
      * <code>uint32 pre_model_index = 3;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearPreModelIndex() {
@@ -878,28 +837,24 @@ public final class LogRequest extends
     }
 
     private int preModelTerm_;
-
     /**
      * <pre>
      * 之前发送模型的任期
      * </pre>
      *
      * <code>uint32 pre_model_term = 4;</code>
-     *
      * @return The preModelTerm.
      */
     @java.lang.Override
     public int getPreModelTerm() {
       return preModelTerm_;
     }
-
     /**
      * <pre>
      * 之前发送模型的任期
      * </pre>
      *
      * <code>uint32 pre_model_term = 4;</code>
-     *
      * @param value The preModelTerm to set.
      * @return This builder for chaining.
      */
@@ -909,14 +864,12 @@ public final class LogRequest extends
       onChanged();
       return this;
     }
-
     /**
      * <pre>
      * 之前发送模型的任期
      * </pre>
      *
      * <code>uint32 pre_model_term = 4;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearPreModelTerm() {
@@ -932,20 +885,17 @@ public final class LogRequest extends
      * </pre>
      *
      * <code>bytes model_chunk = 5;</code>
-     *
      * @return Whether the modelChunk field is set.
      */
     public boolean hasModelChunk() {
       return dataCase_ == 5;
     }
-
     /**
      * <pre>
      * 模型的序列化块
      * </pre>
      *
      * <code>bytes model_chunk = 5;</code>
-     *
      * @return The modelChunk.
      */
     public com.google.protobuf.ByteString getModelChunk() {
@@ -954,14 +904,12 @@ public final class LogRequest extends
       }
       return com.google.protobuf.ByteString.EMPTY;
     }
-
     /**
      * <pre>
      * 模型的序列化块
      * </pre>
      *
      * <code>bytes model_chunk = 5;</code>
-     *
      * @param value The modelChunk to set.
      * @return This builder for chaining.
      */
@@ -974,14 +922,12 @@ public final class LogRequest extends
       onChanged();
       return this;
     }
-
     /**
      * <pre>
      * 模型的序列化块
      * </pre>
      *
      * <code>bytes model_chunk = 5;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearModelChunk() {
@@ -999,20 +945,17 @@ public final class LogRequest extends
      * </pre>
      *
      * <code>bytes network_delays = 6;</code>
-     *
      * @return Whether the networkDelays field is set.
      */
     public boolean hasNetworkDelays() {
       return dataCase_ == 6;
     }
-
     /**
      * <pre>
      * 网络时延拓扑
      * </pre>
      *
      * <code>bytes network_delays = 6;</code>
-     *
      * @return The networkDelays.
      */
     public com.google.protobuf.ByteString getNetworkDelays() {
@@ -1021,14 +964,12 @@ public final class LogRequest extends
       }
       return com.google.protobuf.ByteString.EMPTY;
     }
-
     /**
      * <pre>
      * 网络时延拓扑
      * </pre>
      *
      * <code>bytes network_delays = 6;</code>
-     *
      * @param value The networkDelays to set.
      * @return This builder for chaining.
      */
@@ -1041,14 +982,12 @@ public final class LogRequest extends
       onChanged();
       return this;
     }
-
     /**
      * <pre>
      * 网络时延拓扑
      * </pre>
      *
      * <code>bytes network_delays = 6;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearNetworkDelays() {
@@ -1078,7 +1017,6 @@ public final class LogRequest extends
 
   // @@protoc_insertion_point(class_scope:fedraft.LogRequest)
   private static final org.bupt.cad.fedraft.rpc.message.LogRequest DEFAULT_INSTANCE;
-
   static {
     DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.LogRequest();
   }

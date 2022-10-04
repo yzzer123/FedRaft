@@ -2,12 +2,13 @@ package org.bupt.cad.fedraft.server;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
 
-import java.util.logging.Logger;
-
 public class FedRaftClient {
-    private static final Logger logger = Logger.getLogger(FedRaftClient.class.getName());
+    private static final Logger logger = LogManager.getLogger(FedRaftServer.class.getName());
+
 
     private final ManagedChannel channel;
     private final FedRaftServiceGrpc.FedRaftServiceBlockingStub blockingStub;
