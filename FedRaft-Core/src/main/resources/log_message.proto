@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.cad.fedraft.rpc.message";
+option java_multiple_files = true;
+
+message LogRequest{
+  uint32 term = 1;
+  uint32 leader_id = 2;
+  uint32 pre_model_index = 3; // 之前发送模型的索引
+  uint32 pre_model_term = 4; // 之前发送模型的任期
+  oneof data {
+    bytes model_chunk = 5; // 模型的序列化块
+    bytes network_delays = 6; // 网络时延拓扑
+  }
+}
+
+
+
+message LogResponse{
+  uint32 local_index = 1; // 备用 本地模型索引
+  uint64 log_size = 2;  // 传输模型的大小
+}

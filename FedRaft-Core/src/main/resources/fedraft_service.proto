@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.cad.fedraft.rpc.service";
+option java_multiple_files = true;
+
+import "log_message.proto";
+
+
+service FedRaftService{
+  // Raft 日志追加通信
+  rpc AppendStreamLog(stream LogRequest) returns(LogResponse){};
+  rpc AppendLog(LogRequest) returns(LogResponse){};
+
+}
