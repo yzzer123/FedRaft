@@ -2,6 +2,8 @@ package org.bupt.cad.fedraft.server;
 
 
 import io.grpc.stub.StreamObserver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.rpc.message.LogRequest;
 import org.bupt.cad.fedraft.rpc.message.LogResponse;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
@@ -11,6 +13,11 @@ import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
  * RPC通信服务实现类
  */
 public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
+
+
+    private static final Logger logger = LogManager.getLogger(FedRaftServer.class.getName());
+
+
     @Override
     public void appendLog(LogRequest request, StreamObserver<LogResponse> responseObserver) {
 
