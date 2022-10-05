@@ -16,6 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private LogResponse() {
+    response_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -47,24 +48,29 @@ private static final long serialVersionUID = 0L;
         switch (tag) {
           case 0:
             done = true;
-            break;
-          case 8: {
+              break;
+            case 8: {
 
-            localIndex_ = input.readUInt32();
-            break;
-          }
-          case 16: {
-
-            logSize_ = input.readUInt64();
-            break;
-          }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
+                localIndex_ = input.readUInt32();
+                break;
             }
-            break;
-          }
+            case 16: {
+
+                logSize_ = input.readUInt64();
+                break;
+            }
+            case 26: {
+
+                response_ = input.readBytes();
+                break;
+            }
+            default: {
+                if (!parseUnknownField(
+                        input, unknownFields, extensionRegistry, tag)) {
+                    done = true;
+                }
+                break;
+            }
         }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -119,30 +125,47 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public long getLogSize() {
-    return logSize_;
+      return logSize_;
   }
 
-  private byte memoizedIsInitialized = -1;
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    public static final int RESPONSE_FIELD_NUMBER = 3;
+    private com.google.protobuf.ByteString response_;
 
-    memoizedIsInitialized = 1;
-    return true;
+    /**
+     * <code>bytes response = 3;</code>
+     *
+     * @return The response.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getResponse() {
+        return response_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+
+    @java.lang.Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
   }
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (localIndex_ != 0) {
-      output.writeUInt32(1, localIndex_);
-    }
-    if (logSize_ != 0L) {
-      output.writeUInt64(2, logSize_);
-    }
-    unknownFields.writeTo(output);
+      if (localIndex_ != 0) {
+          output.writeUInt32(1, localIndex_);
+      }
+      if (logSize_ != 0L) {
+          output.writeUInt64(2, logSize_);
+      }
+      if (!response_.isEmpty()) {
+          output.writeBytes(3, response_);
+      }
+      unknownFields.writeTo(output);
   }
 
   @java.lang.Override
@@ -150,53 +173,61 @@ private static final long serialVersionUID = 0L;
     int size = memoizedSize;
     if (size != -1) return size;
 
-    size = 0;
-    if (localIndex_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(1, localIndex_);
-    }
-    if (logSize_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(2, logSize_);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
-    return size;
+      size = 0;
+      if (localIndex_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeUInt32Size(1, localIndex_);
+      }
+      if (logSize_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeUInt64Size(2, logSize_);
+      }
+      if (!response_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeBytesSize(3, response_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
   }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+        return true;
     }
-    if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.LogResponse)) {
-      return super.equals(obj);
-    }
-    org.bupt.cad.fedraft.rpc.message.LogResponse other = (org.bupt.cad.fedraft.rpc.message.LogResponse) obj;
+      if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.LogResponse)) {
+          return super.equals(obj);
+      }
+      org.bupt.cad.fedraft.rpc.message.LogResponse other = (org.bupt.cad.fedraft.rpc.message.LogResponse) obj;
 
-    if (getLocalIndex()
-        != other.getLocalIndex()) return false;
-    if (getLogSize()
-        != other.getLogSize()) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+      if (getLocalIndex()
+              != other.getLocalIndex()) return false;
+      if (getLogSize()
+              != other.getLogSize()) return false;
+      if (!getResponse()
+              .equals(other.getResponse())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
   }
 
   @java.lang.Override
   public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + LOCAL_INDEX_FIELD_NUMBER;
-    hash = (53 * hash) + getLocalIndex();
-    hash = (37 * hash) + LOG_SIZE_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getLogSize());
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
+      if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + LOCAL_INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getLocalIndex();
+      hash = (37 * hash) + LOG_SIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getLogSize());
+      hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
+      hash = (53 * hash) + getResponse().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
   }
 
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
@@ -326,12 +357,14 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder clear() {
-      super.clear();
-      localIndex_ = 0;
+        super.clear();
+        localIndex_ = 0;
 
-      logSize_ = 0L;
+        logSize_ = 0L;
 
-      return this;
+        response_ = com.google.protobuf.ByteString.EMPTY;
+
+        return this;
     }
 
     @java.lang.Override
@@ -358,8 +391,9 @@ private static final long serialVersionUID = 0L;
     public org.bupt.cad.fedraft.rpc.message.LogResponse buildPartial() {
       org.bupt.cad.fedraft.rpc.message.LogResponse result = new org.bupt.cad.fedraft.rpc.message.LogResponse(this);
       result.localIndex_ = localIndex_;
-      result.logSize_ = logSize_;
-      onBuilt();
+        result.logSize_ = logSize_;
+        result.response_ = response_;
+        onBuilt();
       return result;
     }
 
@@ -406,16 +440,19 @@ private static final long serialVersionUID = 0L;
     }
 
     public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.LogResponse other) {
-      if (other == org.bupt.cad.fedraft.rpc.message.LogResponse.getDefaultInstance()) return this;
-      if (other.getLocalIndex() != 0) {
-        setLocalIndex(other.getLocalIndex());
-      }
-      if (other.getLogSize() != 0L) {
-        setLogSize(other.getLogSize());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
+        if (other == org.bupt.cad.fedraft.rpc.message.LogResponse.getDefaultInstance()) return this;
+        if (other.getLocalIndex() != 0) {
+            setLocalIndex(other.getLocalIndex());
+        }
+        if (other.getLogSize() != 0L) {
+            setLogSize(other.getLogSize());
+        }
+        if (other.getResponse() != com.google.protobuf.ByteString.EMPTY) {
+            setResponse(other.getResponse());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
     }
 
     @java.lang.Override
@@ -522,21 +559,62 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearLogSize() {
-      
-      logSize_ = 0L;
-      onChanged();
-      return this;
-    }
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
+
+        logSize_ = 0L;
+        onChanged();
+        return this;
     }
 
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+      private com.google.protobuf.ByteString response_ = com.google.protobuf.ByteString.EMPTY;
+
+      /**
+       * <code>bytes response = 3;</code>
+       *
+       * @return The response.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getResponse() {
+          return response_;
+      }
+
+      /**
+       * <code>bytes response = 3;</code>
+       *
+       * @param value The response to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResponse(com.google.protobuf.ByteString value) {
+          if (value == null) {
+              throw new NullPointerException();
+          }
+
+          response_ = value;
+          onChanged();
+          return this;
+      }
+
+      /**
+       * <code>bytes response = 3;</code>
+       *
+       * @return This builder for chaining.
+       */
+      public Builder clearResponse() {
+
+          response_ = getDefaultInstance().getResponse();
+          onChanged();
+          return this;
+      }
+
+      @java.lang.Override
+      public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.mergeUnknownFields(unknownFields);
     }
 
 

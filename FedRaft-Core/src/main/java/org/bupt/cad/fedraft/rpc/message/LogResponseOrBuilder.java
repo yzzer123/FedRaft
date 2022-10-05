@@ -17,13 +17,21 @@ public interface LogResponseOrBuilder extends
    */
   int getLocalIndex();
 
-  /**
-   * <pre>
-   * 传输模型的大小
-   * </pre>
-   *
-   * <code>uint64 log_size = 2;</code>
-   * @return The logSize.
-   */
-  long getLogSize();
+    /**
+     * <pre>
+     * 传输模型的大小
+     * </pre>
+     *
+     * <code>uint64 log_size = 2;</code>
+     *
+     * @return The logSize.
+     */
+    long getLogSize();
+
+    /**
+     * <code>bytes response = 3;</code>
+     *
+     * @return The response.
+     */
+    com.google.protobuf.ByteString getResponse();
 }
