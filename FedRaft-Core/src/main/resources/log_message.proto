@@ -12,9 +12,10 @@ message LogRequest{
   uint32 pre_model_term = 4; // 之前发送模型的任期
 
   enum LogType{
-    TRAINER_TO_MANAGER = 0;
-    MANAGER_TO_TRAINER = 1;
-    MANAGER_TO_MANAGER = 2;
+    TRAINER_TO_MANAGER = 0;   // 发生在模型汇总阶段
+    CLIENT_TO_LEADER = 1;     // 发生在模型汇总阶段
+    LEADER_TO_CLIENT = 2;     // 发生在模型分发阶段
+    MANAGER_TO_TRAINER = 3;   // 发生在模型分发阶段
   }
 
   LogType log_type = 5;  // 标记日志请求来源
@@ -28,4 +29,5 @@ message LogRequest{
 message LogResponse{
   uint32 local_index = 1; // 备用 本地模型索引
   uint64 log_size = 2;  // 传输模型的大小
+  bytes response = 3;
 }

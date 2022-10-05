@@ -11,6 +11,23 @@ public class FedRaftClient {
 
 
     private final ManagedChannel channel;
+
+    public ManagedChannel getChannel() {
+        return channel;
+    }
+
+    public FedRaftServiceGrpc.FedRaftServiceBlockingStub getBlockingStub() {
+        return blockingStub;
+    }
+
+    public FedRaftServiceGrpc.FedRaftServiceStub getAsyncStub() {
+        return asyncStub;
+    }
+
+    public FedRaftServiceGrpc.FedRaftServiceFutureStub getFutureStub() {
+        return futureStub;
+    }
+
     private final FedRaftServiceGrpc.FedRaftServiceBlockingStub blockingStub;
     private final FedRaftServiceGrpc.FedRaftServiceStub asyncStub;
     private final FedRaftServiceGrpc.FedRaftServiceFutureStub futureStub;
