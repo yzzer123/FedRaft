@@ -9,6 +9,8 @@ import org.bupt.cad.fedraft.rpc.message.LogRequest;
 import org.bupt.cad.fedraft.rpc.message.LogResponse;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
 
+import java.util.Arrays;
+
 
 /**
  * RPC通信服务实现类
@@ -24,9 +26,10 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
 
         //follower节点每隔一定时间接收到心跳信息
         int term = request.getTerm();
-        ByteString networkDelays = request.getNetworkDelays();
+        ByteString bytes = request.getNetworkDelays();
+        double delay = Double.parseDouble(Arrays.toString(bytes.toByteArray()));
         int leaderId = request.getLeaderId();
-        logger.info(String.format("get heartbeat from leader:%d, term:%d, delay:%s",leaderId,term,networkDelays.toString()));
+        logger.info(String.format("get heartbeat from leader:%d, term:%d, delay:%f",leaderId,term,delay));
 
         //LogResponse build = LogResponse.newBuilder().build();
         //responseObserver.onNext(build); 接收到心跳信息,存下时延信息,

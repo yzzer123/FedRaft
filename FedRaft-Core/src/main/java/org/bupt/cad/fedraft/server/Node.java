@@ -22,7 +22,8 @@ public class Node {
             executor.submit(()->{
                 String[] split = ip_port.split(":");
                 FedRaftClient fedRaftClient = new FedRaftClient(split[0], Integer.parseInt(split[1]));
-                ByteString bytes = ByteString.copyFrom("delay".getBytes());
+                double delay = 2.2;//局部函数获取
+                ByteString bytes = ByteString.copyFrom(String.valueOf(delay).getBytes());
                 while(heartbeatFlag){
                     try {
                         Thread.sleep(300);
@@ -31,7 +32,9 @@ public class Node {
                     }
                     fedRaftClient.sendHeartBeat(1,2, bytes);
                 }
-
+                //最后一次传送心跳信息,故意设置让follower节点超时
+                //Thread.sleep(1000);
+                fedRaftClient.sendHeartBeat(1,2, bytes);
             });
         }
     }
