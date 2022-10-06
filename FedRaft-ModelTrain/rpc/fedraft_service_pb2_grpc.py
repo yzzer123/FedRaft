@@ -15,15 +15,15 @@ class FedRaftServiceStub(object):
             channel: A grpc.Channel.
         """
         self.AppendStreamLog = channel.stream_unary(
-            '/fedraft.FedRaftService/AppendStreamLog',
-            request_serializer=log__message__pb2.LogRequest.SerializeToString,
-            response_deserializer=log__message__pb2.LogResponse.FromString,
-        )
+                '/fedraft.FedRaftService/AppendStreamLog',
+                request_serializer=log__message__pb2.LogRequest.SerializeToString,
+                response_deserializer=log__message__pb2.LogResponse.FromString,
+                )
         self.AppendLog = channel.unary_unary(
-            '/fedraft.FedRaftService/AppendLog',
-            request_serializer=log__message__pb2.LogRequest.SerializeToString,
-            response_deserializer=log__message__pb2.LogResponse.FromString,
-        )
+                '/fedraft.FedRaftService/AppendLog',
+                request_serializer=log__message__pb2.LogRequest.SerializeToString,
+                response_deserializer=log__message__pb2.LogResponse.FromString,
+                )
 
 
 class FedRaftServiceServicer(object):
@@ -45,57 +45,56 @@ class FedRaftServiceServicer(object):
 
 def add_FedRaftServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-        'AppendStreamLog': grpc.stream_unary_rpc_method_handler(
-            servicer.AppendStreamLog,
-            request_deserializer=log__message__pb2.LogRequest.FromString,
-            response_serializer=log__message__pb2.LogResponse.SerializeToString,
-        ),
-        'AppendLog': grpc.unary_unary_rpc_method_handler(
-            servicer.AppendLog,
-            request_deserializer=log__message__pb2.LogRequest.FromString,
-            response_serializer=log__message__pb2.LogResponse.SerializeToString,
-        ),
+            'AppendStreamLog': grpc.stream_unary_rpc_method_handler(
+                    servicer.AppendStreamLog,
+                    request_deserializer=log__message__pb2.LogRequest.FromString,
+                    response_serializer=log__message__pb2.LogResponse.SerializeToString,
+            ),
+            'AppendLog': grpc.unary_unary_rpc_method_handler(
+                    servicer.AppendLog,
+                    request_deserializer=log__message__pb2.LogRequest.FromString,
+                    response_serializer=log__message__pb2.LogResponse.SerializeToString,
+            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-        'fedraft.FedRaftService', rpc_method_handlers)
+            'fedraft.FedRaftService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
-# This class is part of an EXPERIMENTAL API.
+ # This class is part of an EXPERIMENTAL API.
 class FedRaftService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
     def AppendStreamLog(request_iterator,
-                        target,
-                        options=(),
-                        channel_credentials=None,
-                        call_credentials=None,
-                        insecure=False,
-                        compression=None,
-                        wait_for_ready=None,
-                        timeout=None,
-                        metadata=None):
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.stream_unary(request_iterator, target, '/fedraft.FedRaftService/AppendStreamLog',
-                                              log__message__pb2.LogRequest.SerializeToString,
-                                              log__message__pb2.LogResponse.FromString,
-                                              options, channel_credentials,
-                                              insecure, call_credentials, compression, wait_for_ready, timeout,
-                                              metadata)
+            log__message__pb2.LogRequest.SerializeToString,
+            log__message__pb2.LogResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def AppendLog(request,
-                  target,
-                  options=(),
-                  channel_credentials=None,
-                  call_credentials=None,
-                  insecure=False,
-                  compression=None,
-                  wait_for_ready=None,
-                  timeout=None,
-                  metadata=None):
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
         return grpc.experimental.unary_unary(request, target, '/fedraft.FedRaftService/AppendLog',
-                                             log__message__pb2.LogRequest.SerializeToString,
-                                             log__message__pb2.LogResponse.FromString,
-                                             options, channel_credentials,
-                                             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+            log__message__pb2.LogRequest.SerializeToString,
+            log__message__pb2.LogResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

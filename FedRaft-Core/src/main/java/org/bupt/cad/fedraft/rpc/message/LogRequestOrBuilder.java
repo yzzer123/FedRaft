@@ -4,88 +4,68 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public interface LogRequestOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.LogRequest)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.LogRequest)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>uint32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    int getTerm();
+  /**
+   * <code>uint32 term = 1;</code>
+   * @return The term.
+   */
+  int getTerm();
 
-    /**
-     * <code>uint32 leader_id = 2;</code>
-     *
-     * @return The leaderId.
-     */
-    int getLeaderId();
+  /**
+   * <code>uint64 leader_id = 2;</code>
+   *
+   * @return The leaderId.
+   */
+  long getLeaderId();
 
-    /**
-     * <pre>
-     * 之前发送模型的索引
-     * </pre>
-     *
-     * <code>uint32 pre_model_index = 3;</code>
-     *
-     * @return The preModelIndex.
-     */
-    int getPreModelIndex();
+  /**
+   * <pre>
+   * 之前发送模型的索引
+   * </pre>
+   *
+   * <code>uint32 pre_model_index = 3;</code>
+   * @return The preModelIndex.
+   */
+  int getPreModelIndex();
 
-    /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 pre_model_term = 4;</code>
-     *
-     * @return The preModelTerm.
-     */
-    int getPreModelTerm();
+  /**
+   * <pre>
+   * 之前发送模型的任期
+   * </pre>
+   *
+   * <code>uint32 pre_model_term = 4;</code>
+   * @return The preModelTerm.
+   */
+  int getPreModelTerm();
 
-    /**
-     * <pre>
-     * 模型的序列化块
-     * </pre>
-     *
-     * <code>bytes model_chunk = 5;</code>
-     *
-     * @return Whether the modelChunk field is set.
-     */
-    boolean hasModelChunk();
+  /**
+   * <pre>
+   * 标记日志请求来源
+   * </pre>
+   *
+   * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+   * @return The enum numeric value on the wire for logType.
+   */
+  int getLogTypeValue();
+  /**
+   * <pre>
+   * 标记日志请求来源
+   * </pre>
+   *
+   * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+   * @return The logType.
+   */
+  org.bupt.cad.fedraft.rpc.message.LogRequest.LogType getLogType();
 
-    /**
-     * <pre>
-     * 模型的序列化块
-     * </pre>
-     *
-     * <code>bytes model_chunk = 5;</code>
-     *
-     * @return The modelChunk.
-     */
-    com.google.protobuf.ByteString getModelChunk();
-
-    /**
-     * <pre>
-     * 网络时延拓扑
-     * </pre>
-     *
-     * <code>bytes network_delays = 6;</code>
-     *
-     * @return Whether the networkDelays field is set.
-     */
-    boolean hasNetworkDelays();
-
-    /**
-     * <pre>
-     * 网络时延拓扑
-     * </pre>
-     *
-     * <code>bytes network_delays = 6;</code>
-     *
-     * @return The networkDelays.
-     */
-    com.google.protobuf.ByteString getNetworkDelays();
-
-    public org.bupt.cad.fedraft.rpc.message.LogRequest.DataCase getDataCase();
+  /**
+   * <pre>
+   * 模型的序列化块
+   * </pre>
+   *
+   * <code>bytes model_chunk = 6;</code>
+   * @return The modelChunk.
+   */
+  com.google.protobuf.ByteString getModelChunk();
 }

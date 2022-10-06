@@ -7,25 +7,34 @@ option java_multiple_files = true;
 
 message LogRequest{
   uint32 term = 1;
-  uint32 leader_id = 2;
+  uint64 leader_id = 2;
   uint32 pre_model_index = 3; // 之前发送模型的索引
   uint32 pre_model_term = 4; // 之前发送模型的任期
 
   enum LogType{
-    TRAINER_TO_MANAGER = 0;
-    MANAGER_TO_TRAINER = 1;
-    MANAGER_TO_MANAGER = 2;
+    TRAINER_TO_MANAGER = 0;   // 发生在模型汇总阶段
+    CLIENT_TO_LEADER = 1;     // 发生在模型汇总阶段
+    LEADER_TO_CLIENT = 2;     // 发生在模型分发阶段
+    MANAGER_TO_TRAINER = 3;   // 发生在模型分发阶段
   }
-
   LogType log_type = 5;  // 标记日志请求来源
-
-  oneof data {
-    bytes model_chunk = 6; // 模型的序列化块
-    bytes network_delays = 7; // 网络时延拓扑
-  }
+  bytes model_chunk = 6; // 模型的序列化块
 }
+
+
 
 message LogResponse{
   uint32 local_index = 1; // 备用 本地模型索引
   uint64 log_size = 2;  // 传输模型的大小
+}
+
+message HeartbeatResponse{
+  float network_delay = 1;  // 传输模型的大小
+}
+
+message HeartbeatRequest{
+  uint32 term = 1;
+  uint64 leader_id = 2;
+  repeated int64 node_ids = 3;
+  repeated float network_delays = 4; // 网络时延拓扑
 }

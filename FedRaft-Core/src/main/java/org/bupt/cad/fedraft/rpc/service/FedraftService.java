@@ -4,43 +4,41 @@
 package org.bupt.cad.fedraft.rpc.service;
 
 public final class FedraftService {
-    private FedraftService() {
-    }
+  private FedraftService() {}
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistryLite registry) {
+  }
 
-    public static void registerAllExtensions(
-            com.google.protobuf.ExtensionRegistryLite registry) {
-    }
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
+  }
 
-    public static void registerAllExtensions(
-            com.google.protobuf.ExtensionRegistry registry) {
-        registerAllExtensions(
-                (com.google.protobuf.ExtensionRegistryLite) registry);
-    }
+  public static com.google.protobuf.Descriptors.FileDescriptor
+      getDescriptor() {
+    return descriptor;
+  }
+  private static  com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
+  static {
+    java.lang.String[] descriptorData = {
+      "\n\025fedraft_service.proto\022\007fedraft\032\021log_me" +
+              "ssage.proto2\322\001\n\016FedRaftService\022@\n\017Append" +
+              "StreamLog\022\023.fedraft.LogRequest\032\024.fedraft" +
+              ".LogResponse\"\000(\001\0228\n\tAppendLog\022\023.fedraft." +
+              "LogRequest\032\024.fedraft.LogResponse\"\000\022D\n\tHe" +
+              "artbeat\022\031.fedraft.HeartbeatRequest\032\032.fed" +
+              "raft.HeartbeatResponse\"\000B$\n org.bupt.cad" +
+              ".fedraft.rpc.serviceP\001b\006proto3"
+    };
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
+      .internalBuildGeneratedFileFrom(descriptorData,
+        new com.google.protobuf.Descriptors.FileDescriptor[] {
+          org.bupt.cad.fedraft.rpc.message.LogMessage.getDescriptor(),
+        });
+    org.bupt.cad.fedraft.rpc.message.LogMessage.getDescriptor();
+  }
 
-    public static com.google.protobuf.Descriptors.FileDescriptor
-    getDescriptor() {
-        return descriptor;
-    }
-
-    private static com.google.protobuf.Descriptors.FileDescriptor
-            descriptor;
-
-    static {
-        java.lang.String[] descriptorData = {
-                "\n\025fedraft_service.proto\022\007fedraft\032\021log_me" +
-                        "ssage.proto2\214\001\n\016FedRaftService\022@\n\017Append" +
-                        "StreamLog\022\023.fedraft.LogRequest\032\024.fedraft" +
-                        ".LogResponse\"\000(\001\0228\n\tAppendLog\022\023.fedraft." +
-                        "LogRequest\032\024.fedraft.LogResponse\"\000B$\n or" +
-                        "g.bupt.cad.fedraft.rpc.serviceP\001b\006proto3"
-        };
-        descriptor = com.google.protobuf.Descriptors.FileDescriptor
-                .internalBuildGeneratedFileFrom(descriptorData,
-                        new com.google.protobuf.Descriptors.FileDescriptor[]{
-                                org.bupt.cad.fedraft.rpc.message.LogMessage.getDescriptor(),
-                        });
-        org.bupt.cad.fedraft.rpc.message.LogMessage.getDescriptor();
-    }
-
-    // @@protoc_insertion_point(outer_class_scope)
+  // @@protoc_insertion_point(outer_class_scope)
 }
