@@ -1,10 +1,15 @@
 package org.bupt.cad.fedraft.server;
 
+import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bupt.cad.fedraft.rpc.message.LogRequest;
+import org.bupt.cad.fedraft.rpc.message.LogResponse;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
+
+import java.nio.charset.StandardCharsets;
 
 public class FedRaftClient {
     private static final Logger logger = LogManager.getLogger(FedRaftServer.class.getName());
@@ -22,5 +27,11 @@ public class FedRaftClient {
         this.futureStub = FedRaftServiceGrpc.newFutureStub(channel);
     }
 
+    //向Server发送心跳信息: term, leader_id,
+    public void sendHeartBeat(int term, int leader_id, ByteString delay){
+        //ByteString bytes = ByteString.copyFrom("sdd".getBytes());
+        LogRequest beat = LogRequest.newBuilder().setTerm(term).setLeaderId(leader_id).setNetworkDelays(delay).build();
+        blockingStub.appendLog(beat);
 
+    }
 }

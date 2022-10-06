@@ -1,6 +1,7 @@
 package org.bupt.cad.fedraft.server;
 
 
+import com.google.protobuf.ByteString;
 import io.grpc.stub.StreamObserver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,7 +22,15 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
     @Override
     public void appendLog(LogRequest request, StreamObserver<LogResponse> responseObserver) {
 
+        //follower节点每隔一定时间接收到心跳信息
+        int term = request.getTerm();
+        ByteString networkDelays = request.getNetworkDelays();
+        int leaderId = request.getLeaderId();
+        logger.info(String.format("get heartbeat from leader:%d, term:%d, delay:%s",leaderId,term,networkDelays.toString()));
 
+        //LogResponse build = LogResponse.newBuilder().build();
+        //responseObserver.onNext(build); 接收到心跳信息,存下时延信息,
+        responseObserver.onCompleted();
     }
 
 
