@@ -81,9 +81,18 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 58: {
-            data_ = input.readBytes();
-            dataCase_ = 7;
-            break;
+              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder subBuilder = null;
+              if (dataCase_ == 7) {
+                  subBuilder = ((org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_).toBuilder();
+              }
+              data_ =
+                      input.readMessage(org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                  subBuilder.mergeFrom((org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_);
+                  data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 7;
+              break;
           }
           default: {
             if (!parseUnknownField(
@@ -279,32 +288,39 @@ private static final long serialVersionUID = 0L;
 
   private int dataCase_ = 0;
   private java.lang.Object data_;
-  public enum DataCase
-      implements com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    MODEL_CHUNK(6),
-    NETWORK_DELAYS(7),
-    DATA_NOT_SET(0);
-    private final int value;
-    private DataCase(int value) {
-      this.value = value;
-    }
-    /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
+
+    public enum DataCase
+            implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+        MODEL_CHUNK(6),
+        HEART_BEAT(7),
+        DATA_NOT_SET(0);
+        private final int value;
+
+        private DataCase(int value) {
+            this.value = value;
+        }
+
+        /**
+         * @param value The number of the enum to look for.
+         * @return The enum associated with the given number.
+         * @deprecated Use {@link #forNumber(int)} instead.
+         */
     @java.lang.Deprecated
     public static DataCase valueOf(int value) {
       return forNumber(value);
     }
 
     public static DataCase forNumber(int value) {
-      switch (value) {
-        case 6: return MODEL_CHUNK;
-        case 7: return NETWORK_DELAYS;
-        case 0: return DATA_NOT_SET;
-        default: return null;
+        switch (value) {
+            case 6:
+                return MODEL_CHUNK;
+            case 7:
+                return HEART_BEAT;
+            case 0:
+                return DATA_NOT_SET;
+            default:
+                return null;
       }
     }
     public int getNumber() {
@@ -426,43 +442,63 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.ByteString.EMPTY;
   }
 
-  public static final int NETWORK_DELAYS_FIELD_NUMBER = 7;
-  /**
-   * <pre>
-   * 网络时延拓扑
-   * </pre>
-   *
-   * <code>bytes network_delays = 7;</code>
-   * @return Whether the networkDelays field is set.
-   */
-  @java.lang.Override
-  public boolean hasNetworkDelays() {
-    return dataCase_ == 7;
-  }
-  /**
-   * <pre>
-   * 网络时延拓扑
-   * </pre>
-   *
-   * <code>bytes network_delays = 7;</code>
-   * @return The networkDelays.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getNetworkDelays() {
-    if (dataCase_ == 7) {
-      return (com.google.protobuf.ByteString) data_;
+    public static final int HEART_BEAT_FIELD_NUMBER = 7;
+
+    /**
+     * <pre>
+     * 心跳信息
+     * </pre>
+     *
+     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+     *
+     * @return Whether the heartBeat field is set.
+     */
+    @java.lang.Override
+    public boolean hasHeartBeat() {
+        return dataCase_ == 7;
     }
-    return com.google.protobuf.ByteString.EMPTY;
-  }
 
-  private byte memoizedIsInitialized = -1;
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    /**
+     * <pre>
+     * 心跳信息
+     * </pre>
+     *
+     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+     *
+     * @return The heartBeat.
+     */
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.HeartBeatMessage getHeartBeat() {
+        if (dataCase_ == 7) {
+            return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
+        }
+        return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+    }
 
-    memoizedIsInitialized = 1;
+    /**
+     * <pre>
+     * 心跳信息
+     * </pre>
+     *
+     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+     */
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder getHeartBeatOrBuilder() {
+        if (dataCase_ == 7) {
+            return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
+        }
+        return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+    }
+
+    private byte memoizedIsInitialized = -1;
+
+    @java.lang.Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
     return true;
   }
 
@@ -488,9 +524,8 @@ private static final long serialVersionUID = 0L;
       output.writeBytes(
           6, (com.google.protobuf.ByteString) data_);
     }
-    if (dataCase_ == 7) {
-      output.writeBytes(
-          7, (com.google.protobuf.ByteString) data_);
+      if (dataCase_ == 7) {
+          output.writeMessage(7, (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_);
     }
     unknownFields.writeTo(output);
   }
@@ -526,10 +561,9 @@ private static final long serialVersionUID = 0L;
         .computeBytesSize(
             6, (com.google.protobuf.ByteString) data_);
     }
-    if (dataCase_ == 7) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(
-            7, (com.google.protobuf.ByteString) data_);
+      if (dataCase_ == 7) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeMessageSize(7, (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -556,14 +590,14 @@ private static final long serialVersionUID = 0L;
         != other.getPreModelTerm()) return false;
     if (logType_ != other.logType_) return false;
     if (!getDataCase().equals(other.getDataCase())) return false;
-    switch (dataCase_) {
-      case 6:
-        if (!getModelChunk()
-            .equals(other.getModelChunk())) return false;
-        break;
-      case 7:
-        if (!getNetworkDelays()
-            .equals(other.getNetworkDelays())) return false;
+      switch (dataCase_) {
+          case 6:
+              if (!getModelChunk()
+                      .equals(other.getModelChunk())) return false;
+              break;
+          case 7:
+              if (!getHeartBeat()
+                      .equals(other.getHeartBeat())) return false;
         break;
       case 0:
       default:
@@ -588,15 +622,15 @@ private static final long serialVersionUID = 0L;
     hash = (37 * hash) + PRE_MODEL_TERM_FIELD_NUMBER;
     hash = (53 * hash) + getPreModelTerm();
     hash = (37 * hash) + LOG_TYPE_FIELD_NUMBER;
-    hash = (53 * hash) + logType_;
-    switch (dataCase_) {
-      case 6:
-        hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
-        hash = (53 * hash) + getModelChunk().hashCode();
-        break;
-      case 7:
-        hash = (37 * hash) + NETWORK_DELAYS_FIELD_NUMBER;
-        hash = (53 * hash) + getNetworkDelays().hashCode();
+      hash = (53 * hash) + logType_;
+      switch (dataCase_) {
+          case 6:
+              hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
+              hash = (53 * hash) + getModelChunk().hashCode();
+              break;
+          case 7:
+              hash = (37 * hash) + HEART_BEAT_FIELD_NUMBER;
+              hash = (53 * hash) + getHeartBeat().hashCode();
         break;
       case 0:
       default:
@@ -778,10 +812,14 @@ private static final long serialVersionUID = 0L;
       result.preModelTerm_ = preModelTerm_;
       result.logType_ = logType_;
       if (dataCase_ == 6) {
-        result.data_ = data_;
+          result.data_ = data_;
       }
-      if (dataCase_ == 7) {
-        result.data_ = data_;
+        if (dataCase_ == 7) {
+            if (heartBeatBuilder_ == null) {
+                result.data_ = data_;
+            } else {
+          result.data_ = heartBeatBuilder_.build();
+        }
       }
       result.dataCase_ = dataCase_;
       onBuilt();
@@ -847,15 +885,15 @@ private static final long serialVersionUID = 0L;
       if (other.logType_ != 0) {
         setLogTypeValue(other.getLogTypeValue());
       }
-      switch (other.getDataCase()) {
-        case MODEL_CHUNK: {
-          setModelChunk(other.getModelChunk());
-          break;
-        }
-        case NETWORK_DELAYS: {
-          setNetworkDelays(other.getNetworkDelays());
-          break;
-        }
+        switch (other.getDataCase()) {
+            case MODEL_CHUNK: {
+                setModelChunk(other.getModelChunk());
+                break;
+            }
+            case HEART_BEAT: {
+                mergeHeartBeat(other.getHeartBeat());
+                break;
+            }
         case DATA_NOT_SET: {
           break;
         }
@@ -1178,82 +1216,213 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearModelChunk() {
-      if (dataCase_ == 6) {
-        dataCase_ = 0;
-        data_ = null;
-        onChanged();
-      }
-      return this;
+        if (dataCase_ == 6) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+        }
+        return this;
     }
 
-    /**
-     * <pre>
-     * 网络时延拓扑
-     * </pre>
-     *
-     * <code>bytes network_delays = 7;</code>
-     * @return Whether the networkDelays field is set.
-     */
-    public boolean hasNetworkDelays() {
-      return dataCase_ == 7;
-    }
-    /**
-     * <pre>
-     * 网络时延拓扑
-     * </pre>
-     *
-     * <code>bytes network_delays = 7;</code>
-     * @return The networkDelays.
-     */
-    public com.google.protobuf.ByteString getNetworkDelays() {
-      if (dataCase_ == 7) {
-        return (com.google.protobuf.ByteString) data_;
-      }
-      return com.google.protobuf.ByteString.EMPTY;
-    }
-    /**
-     * <pre>
-     * 网络时延拓扑
-     * </pre>
-     *
-     * <code>bytes network_delays = 7;</code>
-     * @param value The networkDelays to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNetworkDelays(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  dataCase_ = 7;
-      data_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 网络时延拓扑
-     * </pre>
-     *
-     * <code>bytes network_delays = 7;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearNetworkDelays() {
-      if (dataCase_ == 7) {
-        dataCase_ = 0;
-        data_ = null;
-        onChanged();
-      }
-      return this;
-    }
-    @java.lang.Override
-    public final Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
+      private com.google.protobuf.SingleFieldBuilderV3<
+              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage, org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder, org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder> heartBeatBuilder_;
 
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       *
+       * @return Whether the heartBeat field is set.
+       */
+      @java.lang.Override
+      public boolean hasHeartBeat() {
+          return dataCase_ == 7;
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       *
+       * @return The heartBeat.
+       */
+      @java.lang.Override
+      public org.bupt.cad.fedraft.rpc.message.HeartBeatMessage getHeartBeat() {
+          if (heartBeatBuilder_ == null) {
+              if (dataCase_ == 7) {
+                  return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
+              }
+              return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+          } else {
+              if (dataCase_ == 7) {
+                  return heartBeatBuilder_.getMessage();
+              }
+              return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+          }
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      public Builder setHeartBeat(org.bupt.cad.fedraft.rpc.message.HeartBeatMessage value) {
+          if (heartBeatBuilder_ == null) {
+              if (value == null) {
+                  throw new NullPointerException();
+              }
+              data_ = value;
+              onChanged();
+          } else {
+              heartBeatBuilder_.setMessage(value);
+          }
+          dataCase_ = 7;
+          return this;
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      public Builder setHeartBeat(
+              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder builderForValue) {
+          if (heartBeatBuilder_ == null) {
+              data_ = builderForValue.build();
+              onChanged();
+          } else {
+              heartBeatBuilder_.setMessage(builderForValue.build());
+          }
+          dataCase_ = 7;
+          return this;
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      public Builder mergeHeartBeat(org.bupt.cad.fedraft.rpc.message.HeartBeatMessage value) {
+          if (heartBeatBuilder_ == null) {
+              if (dataCase_ == 7 &&
+                      data_ != org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance()) {
+                  data_ = org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.newBuilder((org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_)
+                          .mergeFrom(value).buildPartial();
+              } else {
+                  data_ = value;
+              }
+              onChanged();
+          } else {
+              if (dataCase_ == 7) {
+                  heartBeatBuilder_.mergeFrom(value);
+              } else {
+                  heartBeatBuilder_.setMessage(value);
+              }
+          }
+          dataCase_ = 7;
+          return this;
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      public Builder clearHeartBeat() {
+          if (heartBeatBuilder_ == null) {
+              if (dataCase_ == 7) {
+                  dataCase_ = 0;
+                  data_ = null;
+                  onChanged();
+              }
+          } else {
+              if (dataCase_ == 7) {
+                  dataCase_ = 0;
+                  data_ = null;
+              }
+              heartBeatBuilder_.clear();
+          }
+          return this;
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      public org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder getHeartBeatBuilder() {
+          return getHeartBeatFieldBuilder().getBuilder();
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      @java.lang.Override
+      public org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder getHeartBeatOrBuilder() {
+          if ((dataCase_ == 7) && (heartBeatBuilder_ != null)) {
+              return heartBeatBuilder_.getMessageOrBuilder();
+          } else {
+              if (dataCase_ == 7) {
+                  return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
+              }
+              return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+          }
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage, org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder, org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder>
+      getHeartBeatFieldBuilder() {
+          if (heartBeatBuilder_ == null) {
+              if (!(dataCase_ == 7)) {
+                  data_ = org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+              }
+              heartBeatBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                      org.bupt.cad.fedraft.rpc.message.HeartBeatMessage, org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder, org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder>(
+                      (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_,
+                      getParentForChildren(),
+                      isClean());
+              data_ = null;
+          }
+          dataCase_ = 7;
+          onChanged();
+          ;
+          return heartBeatBuilder_;
+      }
+
+      @java.lang.Override
+      public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
     }
 

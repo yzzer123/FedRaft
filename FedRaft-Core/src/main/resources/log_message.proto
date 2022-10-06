@@ -22,7 +22,7 @@ message LogRequest{
 
   oneof data {
     bytes model_chunk = 6; // 模型的序列化块
-    bytes network_delays = 7; // 网络时延拓扑
+    HeartBeatMessage heart_beat = 7; // 心跳信息
   }
 }
 
@@ -30,4 +30,8 @@ message LogResponse{
   uint32 local_index = 1; // 备用 本地模型索引
   uint64 log_size = 2;  // 传输模型的大小
   bytes response = 3;
+}
+
+message HeartBeatMessage{
+  repeated double network_delays = 1; // 网络时延拓扑
 }

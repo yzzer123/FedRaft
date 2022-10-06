@@ -77,24 +77,36 @@ public interface LogRequestOrBuilder extends
    */
   com.google.protobuf.ByteString getModelChunk();
 
-  /**
-   * <pre>
-   * 网络时延拓扑
-   * </pre>
-   *
-   * <code>bytes network_delays = 7;</code>
-   * @return Whether the networkDelays field is set.
-   */
-  boolean hasNetworkDelays();
-  /**
-   * <pre>
-   * 网络时延拓扑
-   * </pre>
-   *
-   * <code>bytes network_delays = 7;</code>
-   * @return The networkDelays.
-   */
-  com.google.protobuf.ByteString getNetworkDelays();
+    /**
+     * <pre>
+     * 心跳信息
+     * </pre>
+     *
+     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+     *
+     * @return Whether the heartBeat field is set.
+     */
+    boolean hasHeartBeat();
+
+    /**
+     * <pre>
+     * 心跳信息
+     * </pre>
+     *
+     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+     *
+     * @return The heartBeat.
+     */
+    org.bupt.cad.fedraft.rpc.message.HeartBeatMessage getHeartBeat();
+
+    /**
+     * <pre>
+     * 心跳信息
+     * </pre>
+     *
+     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+     */
+    org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder getHeartBeatOrBuilder();
 
   public org.bupt.cad.fedraft.rpc.message.LogRequest.DataCase getDataCase();
 }

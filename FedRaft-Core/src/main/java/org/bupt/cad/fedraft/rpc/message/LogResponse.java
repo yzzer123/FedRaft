@@ -46,9 +46,9 @@ private static final long serialVersionUID = 0L;
       while (!done) {
         int tag = input.readTag();
         switch (tag) {
-          case 0:
-            done = true;
-              break;
+            case 0:
+                done = true;
+                break;
             case 8: {
 
                 localIndex_ = input.readUInt32();
@@ -151,27 +151,27 @@ private static final long serialVersionUID = 0L;
 
         memoizedIsInitialized = 1;
         return true;
-  }
+    }
 
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-      if (localIndex_ != 0) {
-          output.writeUInt32(1, localIndex_);
-      }
-      if (logSize_ != 0L) {
-          output.writeUInt64(2, logSize_);
-      }
-      if (!response_.isEmpty()) {
-          output.writeBytes(3, response_);
-      }
-      unknownFields.writeTo(output);
-  }
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (localIndex_ != 0) {
+            output.writeUInt32(1, localIndex_);
+        }
+        if (logSize_ != 0L) {
+            output.writeUInt64(2, logSize_);
+        }
+        if (!response_.isEmpty()) {
+            output.writeBytes(3, response_);
+        }
+        unknownFields.writeTo(output);
+    }
 
   @java.lang.Override
   public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
+      int size = memoizedSize;
+      if (size != -1) return size;
 
       size = 0;
       if (localIndex_ != 0) {
@@ -193,9 +193,9 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-        return true;
-    }
+      if (obj == this) {
+          return true;
+      }
       if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.LogResponse)) {
           return super.equals(obj);
       }
@@ -389,12 +389,12 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public org.bupt.cad.fedraft.rpc.message.LogResponse buildPartial() {
-      org.bupt.cad.fedraft.rpc.message.LogResponse result = new org.bupt.cad.fedraft.rpc.message.LogResponse(this);
-      result.localIndex_ = localIndex_;
+        org.bupt.cad.fedraft.rpc.message.LogResponse result = new org.bupt.cad.fedraft.rpc.message.LogResponse(this);
+        result.localIndex_ = localIndex_;
         result.logSize_ = logSize_;
         result.response_ = response_;
         onBuilt();
-      return result;
+        return result;
     }
 
     @java.lang.Override
@@ -615,10 +615,10 @@ private static final long serialVersionUID = 0L;
       public final Builder mergeUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.mergeUnknownFields(unknownFields);
-    }
+      }
 
 
-    // @@protoc_insertion_point(builder_scope:fedraft.LogResponse)
+      // @@protoc_insertion_point(builder_scope:fedraft.LogResponse)
   }
 
   // @@protoc_insertion_point(class_scope:fedraft.LogResponse)

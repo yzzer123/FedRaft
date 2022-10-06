@@ -7,15 +7,16 @@ public interface LogResponseOrBuilder extends
     // @@protoc_insertion_point(interface_extends:fedraft.LogResponse)
     com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <pre>
-   * 备用 本地模型索引
-   * </pre>
-   *
-   * <code>uint32 local_index = 1;</code>
-   * @return The localIndex.
-   */
-  int getLocalIndex();
+    /**
+     * <pre>
+     * 备用 本地模型索引
+     * </pre>
+     *
+     * <code>uint32 local_index = 1;</code>
+     *
+     * @return The localIndex.
+     */
+    int getLocalIndex();
 
     /**
      * <pre>
