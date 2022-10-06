@@ -7,23 +7,22 @@ package org.bupt.cad.fedraft.rpc.message;
  * Protobuf type {@code fedraft.LogRequest}
  */
 public final class LogRequest extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:fedraft.LogRequest)
-        LogRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-
+    com.google.protobuf.GeneratedMessageV3 implements
+    // @@protoc_insertion_point(message_implements:fedraft.LogRequest)
+    LogRequestOrBuilder {
+private static final long serialVersionUID = 0L;
   // Use LogRequest.newBuilder() to construct.
   private LogRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-
   private LogRequest() {
+    logType_ = 0;
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
+      UnusedPrivateParameter unused) {
     return new LogRequest();
   }
 
@@ -32,17 +31,16 @@ public final class LogRequest extends
   getUnknownFields() {
     return this.unknownFields;
   }
-
   private LogRequest(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
     this();
     if (extensionRegistry == null) {
       throw new java.lang.NullPointerException();
     }
     com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-            com.google.protobuf.UnknownFieldSet.newBuilder();
+        com.google.protobuf.UnknownFieldSet.newBuilder();
     try {
       boolean done = false;
       while (!done) {
@@ -71,9 +69,10 @@ public final class LogRequest extends
             preModelTerm_ = input.readUInt32();
             break;
           }
-          case 42: {
-            data_ = input.readBytes();
-            dataCase_ = 5;
+          case 40: {
+            int rawValue = input.readEnum();
+
+            logType_ = rawValue;
             break;
           }
           case 50: {
@@ -81,9 +80,23 @@ public final class LogRequest extends
             dataCase_ = 6;
             break;
           }
+          case 58: {
+              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder subBuilder = null;
+              if (dataCase_ == 7) {
+                  subBuilder = ((org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_).toBuilder();
+              }
+              data_ =
+                      input.readMessage(org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                  subBuilder.mergeFrom((org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_);
+                  data_ = subBuilder.buildPartial();
+              }
+              dataCase_ = 7;
+              break;
+          }
           default: {
             if (!parseUnknownField(
-                    input, unknownFields, extensionRegistry, tag)) {
+                input, unknownFields, extensionRegistry, tag)) {
               done = true;
             }
             break;
@@ -96,77 +109,233 @@ public final class LogRequest extends
       throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
       throw new com.google.protobuf.InvalidProtocolBufferException(
-              e).setUnfinishedMessage(this);
+          e).setUnfinishedMessage(this);
     } finally {
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
   }
-
   public static final com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
+      getDescriptor() {
     return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
     return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
+        .ensureFieldAccessorsInitialized(
+            org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
+  }
+
+  /**
+   * Protobuf enum {@code fedraft.LogRequest.LogType}
+   */
+  public enum LogType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <pre>
+     * 发生在模型汇总阶段
+     * </pre>
+     *
+     * <code>TRAINER_TO_MANAGER = 0;</code>
+     */
+    TRAINER_TO_MANAGER(0),
+    /**
+     * <pre>
+     * 发生在模型汇总阶段
+     * </pre>
+     *
+     * <code>CLIENT_TO_LEADER = 1;</code>
+     */
+    CLIENT_TO_LEADER(1),
+    /**
+     * <pre>
+     * 发生在模型分发阶段
+     * </pre>
+     *
+     * <code>LEADER_TO_CLIENT = 2;</code>
+     */
+    LEADER_TO_CLIENT(2),
+    /**
+     * <pre>
+     * 发生在模型分发阶段
+     * </pre>
+     *
+     * <code>MANAGER_TO_TRAINER = 3;</code>
+     */
+    MANAGER_TO_TRAINER(3),
+    UNRECOGNIZED(-1),
+    ;
+
+    /**
+     * <pre>
+     * 发生在模型汇总阶段
+     * </pre>
+     *
+     * <code>TRAINER_TO_MANAGER = 0;</code>
+     */
+    public static final int TRAINER_TO_MANAGER_VALUE = 0;
+    /**
+     * <pre>
+     * 发生在模型汇总阶段
+     * </pre>
+     *
+     * <code>CLIENT_TO_LEADER = 1;</code>
+     */
+    public static final int CLIENT_TO_LEADER_VALUE = 1;
+    /**
+     * <pre>
+     * 发生在模型分发阶段
+     * </pre>
+     *
+     * <code>LEADER_TO_CLIENT = 2;</code>
+     */
+    public static final int LEADER_TO_CLIENT_VALUE = 2;
+    /**
+     * <pre>
+     * 发生在模型分发阶段
+     * </pre>
+     *
+     * <code>MANAGER_TO_TRAINER = 3;</code>
+     */
+    public static final int MANAGER_TO_TRAINER_VALUE = 3;
+
+
+    public final int getNumber() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalArgumentException(
+            "Can't get the number of an unknown enum value.");
+      }
+      return value;
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static LogType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static LogType forNumber(int value) {
+      switch (value) {
+        case 0: return TRAINER_TO_MANAGER;
+        case 1: return CLIENT_TO_LEADER;
+        case 2: return LEADER_TO_CLIENT;
+        case 3: return MANAGER_TO_TRAINER;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<LogType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        LogType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<LogType>() {
+            public LogType findValueByNumber(int number) {
+              return LogType.forNumber(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      if (this == UNRECOGNIZED) {
+        throw new java.lang.IllegalStateException(
+            "Can't get the descriptor of an unrecognized enum value.");
+      }
+      return getDescriptor().getValues().get(ordinal());
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return org.bupt.cad.fedraft.rpc.message.LogRequest.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final LogType[] VALUES = values();
+
+    public static LogType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      if (desc.getIndex() == -1) {
+        return UNRECOGNIZED;
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int value;
+
+    private LogType(int value) {
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:fedraft.LogRequest.LogType)
   }
 
   private int dataCase_ = 0;
   private java.lang.Object data_;
-  public enum DataCase
-          implements com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-    MODEL_CHUNK(5),
-    NETWORK_DELAYS(6),
-    DATA_NOT_SET(0);
-    private final int value;
-    private DataCase(int value) {
-      this.value = value;
-    }
-    /**
-     * @param value The number of the enum to look for.
-     * @return The enum associated with the given number.
-     * @deprecated Use {@link #forNumber(int)} instead.
-     */
+
+    public enum DataCase
+            implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+        MODEL_CHUNK(6),
+        HEART_BEAT(7),
+        DATA_NOT_SET(0);
+        private final int value;
+
+        private DataCase(int value) {
+            this.value = value;
+        }
+
+        /**
+         * @param value The number of the enum to look for.
+         * @return The enum associated with the given number.
+         * @deprecated Use {@link #forNumber(int)} instead.
+         */
     @java.lang.Deprecated
     public static DataCase valueOf(int value) {
       return forNumber(value);
     }
 
     public static DataCase forNumber(int value) {
-      switch (value) {
-        case 5:
-          return MODEL_CHUNK;
-        case 6:
-          return NETWORK_DELAYS;
-        case 0:
-          return DATA_NOT_SET;
-        default:
-          return null;
+        switch (value) {
+            case 6:
+                return MODEL_CHUNK;
+            case 7:
+                return HEART_BEAT;
+            case 0:
+                return DATA_NOT_SET;
+            default:
+                return null;
       }
     }
-
     public int getNumber() {
       return this.value;
     }
-  }
-
-  ;
+  };
 
   public DataCase
   getDataCase() {
     return DataCase.forNumber(
-            dataCase_);
+        dataCase_);
   }
 
   public static final int TERM_FIELD_NUMBER = 1;
   private int term_;
-
   /**
    * <code>uint32 term = 1;</code>
    * @return The term.
@@ -217,78 +386,125 @@ public final class LogRequest extends
     return preModelTerm_;
   }
 
-  public static final int MODEL_CHUNK_FIELD_NUMBER = 5;
+  public static final int LOG_TYPE_FIELD_NUMBER = 5;
+  private int logType_;
+  /**
+   * <pre>
+   * 标记日志请求来源
+   * </pre>
+   *
+   * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+   * @return The enum numeric value on the wire for logType.
+   */
+  @java.lang.Override public int getLogTypeValue() {
+    return logType_;
+  }
+  /**
+   * <pre>
+   * 标记日志请求来源
+   * </pre>
+   *
+   * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+   * @return The logType.
+   */
+  @java.lang.Override public org.bupt.cad.fedraft.rpc.message.LogRequest.LogType getLogType() {
+    @SuppressWarnings("deprecation")
+    org.bupt.cad.fedraft.rpc.message.LogRequest.LogType result = org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.valueOf(logType_);
+    return result == null ? org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.UNRECOGNIZED : result;
+  }
+
+  public static final int MODEL_CHUNK_FIELD_NUMBER = 6;
   /**
    * <pre>
    * 模型的序列化块
    * </pre>
    *
-   * <code>bytes model_chunk = 5;</code>
+   * <code>bytes model_chunk = 6;</code>
    * @return Whether the modelChunk field is set.
    */
   @java.lang.Override
   public boolean hasModelChunk() {
-    return dataCase_ == 5;
+    return dataCase_ == 6;
   }
   /**
    * <pre>
    * 模型的序列化块
    * </pre>
    *
-   * <code>bytes model_chunk = 5;</code>
+   * <code>bytes model_chunk = 6;</code>
    * @return The modelChunk.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString getModelChunk() {
-    if (dataCase_ == 5) {
-      return (com.google.protobuf.ByteString) data_;
-    }
-    return com.google.protobuf.ByteString.EMPTY;
-  }
-
-  public static final int NETWORK_DELAYS_FIELD_NUMBER = 6;
-  /**
-   * <pre>
-   * 网络时延拓扑
-   * </pre>
-   *
-   * <code>bytes network_delays = 6;</code>
-   * @return Whether the networkDelays field is set.
-   */
-  @java.lang.Override
-  public boolean hasNetworkDelays() {
-    return dataCase_ == 6;
-  }
-  /**
-   * <pre>
-   * 网络时延拓扑
-   * </pre>
-   *
-   * <code>bytes network_delays = 6;</code>
-   * @return The networkDelays.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getNetworkDelays() {
     if (dataCase_ == 6) {
       return (com.google.protobuf.ByteString) data_;
     }
     return com.google.protobuf.ByteString.EMPTY;
   }
 
-  private byte memoizedIsInitialized = -1;
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    public static final int HEART_BEAT_FIELD_NUMBER = 7;
 
-    memoizedIsInitialized = 1;
+    /**
+     * <pre>
+     * 心跳信息
+     * </pre>
+     *
+     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+     *
+     * @return Whether the heartBeat field is set.
+     */
+    @java.lang.Override
+    public boolean hasHeartBeat() {
+        return dataCase_ == 7;
+    }
+
+    /**
+     * <pre>
+     * 心跳信息
+     * </pre>
+     *
+     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+     *
+     * @return The heartBeat.
+     */
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.HeartBeatMessage getHeartBeat() {
+        if (dataCase_ == 7) {
+            return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
+        }
+        return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+    }
+
+    /**
+     * <pre>
+     * 心跳信息
+     * </pre>
+     *
+     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+     */
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder getHeartBeatOrBuilder() {
+        if (dataCase_ == 7) {
+            return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
+        }
+        return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+    }
+
+    private byte memoizedIsInitialized = -1;
+
+    @java.lang.Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
     return true;
   }
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
+                      throws java.io.IOException {
     if (term_ != 0) {
       output.writeUInt32(1, term_);
     }
@@ -301,13 +517,15 @@ public final class LogRequest extends
     if (preModelTerm_ != 0) {
       output.writeUInt32(4, preModelTerm_);
     }
-    if (dataCase_ == 5) {
-      output.writeBytes(
-              5, (com.google.protobuf.ByteString) data_);
+    if (logType_ != org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.TRAINER_TO_MANAGER.getNumber()) {
+      output.writeEnum(5, logType_);
     }
     if (dataCase_ == 6) {
       output.writeBytes(
-              6, (com.google.protobuf.ByteString) data_);
+          6, (com.google.protobuf.ByteString) data_);
+    }
+      if (dataCase_ == 7) {
+          output.writeMessage(7, (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_);
     }
     unknownFields.writeTo(output);
   }
@@ -320,29 +538,32 @@ public final class LogRequest extends
     size = 0;
     if (term_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-              .computeUInt32Size(1, term_);
+        .computeUInt32Size(1, term_);
     }
     if (leaderId_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-              .computeUInt32Size(2, leaderId_);
+        .computeUInt32Size(2, leaderId_);
     }
     if (preModelIndex_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-              .computeUInt32Size(3, preModelIndex_);
+        .computeUInt32Size(3, preModelIndex_);
     }
     if (preModelTerm_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-              .computeUInt32Size(4, preModelTerm_);
+        .computeUInt32Size(4, preModelTerm_);
     }
-    if (dataCase_ == 5) {
+    if (logType_ != org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.TRAINER_TO_MANAGER.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-              .computeBytesSize(
-                      5, (com.google.protobuf.ByteString) data_);
+        .computeEnumSize(5, logType_);
     }
     if (dataCase_ == 6) {
       size += com.google.protobuf.CodedOutputStream
-              .computeBytesSize(
-                      6, (com.google.protobuf.ByteString) data_);
+        .computeBytesSize(
+            6, (com.google.protobuf.ByteString) data_);
+    }
+      if (dataCase_ == 7) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeMessageSize(7, (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -352,7 +573,7 @@ public final class LogRequest extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.LogRequest)) {
       return super.equals(obj);
@@ -360,22 +581,23 @@ public final class LogRequest extends
     org.bupt.cad.fedraft.rpc.message.LogRequest other = (org.bupt.cad.fedraft.rpc.message.LogRequest) obj;
 
     if (getTerm()
-            != other.getTerm()) return false;
+        != other.getTerm()) return false;
     if (getLeaderId()
-            != other.getLeaderId()) return false;
+        != other.getLeaderId()) return false;
     if (getPreModelIndex()
-            != other.getPreModelIndex()) return false;
+        != other.getPreModelIndex()) return false;
     if (getPreModelTerm()
-            != other.getPreModelTerm()) return false;
+        != other.getPreModelTerm()) return false;
+    if (logType_ != other.logType_) return false;
     if (!getDataCase().equals(other.getDataCase())) return false;
-    switch (dataCase_) {
-      case 5:
-        if (!getModelChunk()
-                .equals(other.getModelChunk())) return false;
-        break;
-      case 6:
-        if (!getNetworkDelays()
-                .equals(other.getNetworkDelays())) return false;
+      switch (dataCase_) {
+          case 6:
+              if (!getModelChunk()
+                      .equals(other.getModelChunk())) return false;
+              break;
+          case 7:
+              if (!getHeartBeat()
+                      .equals(other.getHeartBeat())) return false;
         break;
       case 0:
       default:
@@ -399,14 +621,16 @@ public final class LogRequest extends
     hash = (53 * hash) + getPreModelIndex();
     hash = (37 * hash) + PRE_MODEL_TERM_FIELD_NUMBER;
     hash = (53 * hash) + getPreModelTerm();
-    switch (dataCase_) {
-      case 5:
-        hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
-        hash = (53 * hash) + getModelChunk().hashCode();
-        break;
-      case 6:
-        hash = (37 * hash) + NETWORK_DELAYS_FIELD_NUMBER;
-        hash = (53 * hash) + getNetworkDelays().hashCode();
+    hash = (37 * hash) + LOG_TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + logType_;
+      switch (dataCase_) {
+          case 6:
+              hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
+              hash = (53 * hash) + getModelChunk().hashCode();
+              break;
+          case 7:
+              hash = (37 * hash) + HEART_BEAT_FIELD_NUMBER;
+              hash = (53 * hash) + getHeartBeat().hashCode();
         break;
       case 0:
       default:
@@ -417,91 +641,77 @@ public final class LogRequest extends
   }
 
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+      throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        .parseWithIOException(PARSER, input);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        .parseWithIOException(PARSER, input, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+        .parseDelimitedWithIOException(PARSER, input);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+        .parseWithIOException(PARSER, input);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
   @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
-
+  public Builder newBuilderForType() { return newBuilder(); }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
@@ -511,34 +721,33 @@ public final class LogRequest extends
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
+        ? new Builder() : new Builder().mergeFrom(this);
   }
 
   @java.lang.Override
   protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
-
   /**
    * Protobuf type {@code fedraft.LogRequest}
    */
   public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:fedraft.LogRequest)
-          org.bupt.cad.fedraft.rpc.message.LogRequestOrBuilder {
+      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      // @@protoc_insertion_point(builder_implements:fedraft.LogRequest)
+      org.bupt.cad.fedraft.rpc.message.LogRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
+        getDescriptor() {
       return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
+        internalGetFieldAccessorTable() {
       return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
+          .ensureFieldAccessorsInitialized(
+              org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
     }
 
     // Construct using org.bupt.cad.fedraft.rpc.message.LogRequest.newBuilder()
@@ -547,11 +756,10 @@ public final class LogRequest extends
     }
 
     private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
       maybeForceBuilderInitialization();
     }
-
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
@@ -568,6 +776,8 @@ public final class LogRequest extends
 
       preModelTerm_ = 0;
 
+      logType_ = 0;
+
       dataCase_ = 0;
       data_ = null;
       return this;
@@ -575,7 +785,7 @@ public final class LogRequest extends
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
+        getDescriptorForType() {
       return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
     }
 
@@ -600,11 +810,16 @@ public final class LogRequest extends
       result.leaderId_ = leaderId_;
       result.preModelIndex_ = preModelIndex_;
       result.preModelTerm_ = preModelTerm_;
-      if (dataCase_ == 5) {
-        result.data_ = data_;
-      }
+      result.logType_ = logType_;
       if (dataCase_ == 6) {
-        result.data_ = data_;
+          result.data_ = data_;
+      }
+        if (dataCase_ == 7) {
+            if (heartBeatBuilder_ == null) {
+                result.data_ = data_;
+            } else {
+          result.data_ = heartBeatBuilder_.build();
+        }
       }
       result.dataCase_ = dataCase_;
       onBuilt();
@@ -615,44 +830,38 @@ public final class LogRequest extends
     public Builder clone() {
       return super.clone();
     }
-
     @java.lang.Override
     public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
       return super.setField(field, value);
     }
-
     @java.lang.Override
     public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
+        com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
-
     @java.lang.Override
     public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
-
     @java.lang.Override
     public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
-
     @java.lang.Override
     public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
-
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof org.bupt.cad.fedraft.rpc.message.LogRequest) {
-        return mergeFrom((org.bupt.cad.fedraft.rpc.message.LogRequest) other);
+        return mergeFrom((org.bupt.cad.fedraft.rpc.message.LogRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -673,15 +882,18 @@ public final class LogRequest extends
       if (other.getPreModelTerm() != 0) {
         setPreModelTerm(other.getPreModelTerm());
       }
-      switch (other.getDataCase()) {
-        case MODEL_CHUNK: {
-          setModelChunk(other.getModelChunk());
-          break;
-        }
-        case NETWORK_DELAYS: {
-          setNetworkDelays(other.getNetworkDelays());
-          break;
-        }
+      if (other.logType_ != 0) {
+        setLogTypeValue(other.getLogTypeValue());
+      }
+        switch (other.getDataCase()) {
+            case MODEL_CHUNK: {
+                setModelChunk(other.getModelChunk());
+                break;
+            }
+            case HEART_BEAT: {
+                mergeHeartBeat(other.getHeartBeat());
+                break;
+            }
         case DATA_NOT_SET: {
           break;
         }
@@ -698,9 +910,9 @@ public final class LogRequest extends
 
     @java.lang.Override
     public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       org.bupt.cad.fedraft.rpc.message.LogRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -716,11 +928,10 @@ public final class LogRequest extends
     }
     private int dataCase_ = 0;
     private java.lang.Object data_;
-
     public DataCase
-    getDataCase() {
+        getDataCase() {
       return DataCase.forNumber(
-              dataCase_);
+          dataCase_);
     }
 
     public Builder clearData() {
@@ -731,7 +942,7 @@ public final class LogRequest extends
     }
 
 
-    private int term_;
+    private int term_ ;
     /**
      * <code>uint32 term = 1;</code>
      * @return The term.
@@ -746,7 +957,7 @@ public final class LogRequest extends
      * @return This builder for chaining.
      */
     public Builder setTerm(int value) {
-
+      
       term_ = value;
       onChanged();
       return this;
@@ -756,13 +967,13 @@ public final class LogRequest extends
      * @return This builder for chaining.
      */
     public Builder clearTerm() {
-
+      
       term_ = 0;
       onChanged();
       return this;
     }
 
-    private int leaderId_;
+    private int leaderId_ ;
     /**
      * <code>uint32 leader_id = 2;</code>
      * @return The leaderId.
@@ -777,7 +988,7 @@ public final class LogRequest extends
      * @return This builder for chaining.
      */
     public Builder setLeaderId(int value) {
-
+      
       leaderId_ = value;
       onChanged();
       return this;
@@ -787,13 +998,13 @@ public final class LogRequest extends
      * @return This builder for chaining.
      */
     public Builder clearLeaderId() {
-
+      
       leaderId_ = 0;
       onChanged();
       return this;
     }
 
-    private int preModelIndex_;
+    private int preModelIndex_ ;
     /**
      * <pre>
      * 之前发送模型的索引
@@ -816,7 +1027,7 @@ public final class LogRequest extends
      * @return This builder for chaining.
      */
     public Builder setPreModelIndex(int value) {
-
+      
       preModelIndex_ = value;
       onChanged();
       return this;
@@ -830,13 +1041,13 @@ public final class LogRequest extends
      * @return This builder for chaining.
      */
     public Builder clearPreModelIndex() {
-
+      
       preModelIndex_ = 0;
       onChanged();
       return this;
     }
 
-    private int preModelTerm_;
+    private int preModelTerm_ ;
     /**
      * <pre>
      * 之前发送模型的任期
@@ -859,7 +1070,7 @@ public final class LogRequest extends
      * @return This builder for chaining.
      */
     public Builder setPreModelTerm(int value) {
-
+      
       preModelTerm_ = value;
       onChanged();
       return this;
@@ -873,33 +1084,107 @@ public final class LogRequest extends
      * @return This builder for chaining.
      */
     public Builder clearPreModelTerm() {
-
+      
       preModelTerm_ = 0;
       onChanged();
       return this;
     }
 
+    private int logType_ = 0;
+    /**
+     * <pre>
+     * 标记日志请求来源
+     * </pre>
+     *
+     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+     * @return The enum numeric value on the wire for logType.
+     */
+    @java.lang.Override public int getLogTypeValue() {
+      return logType_;
+    }
+    /**
+     * <pre>
+     * 标记日志请求来源
+     * </pre>
+     *
+     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+     * @param value The enum numeric value on the wire for logType to set.
+     * @return This builder for chaining.
+     */
+    public Builder setLogTypeValue(int value) {
+      
+      logType_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 标记日志请求来源
+     * </pre>
+     *
+     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+     * @return The logType.
+     */
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.LogRequest.LogType getLogType() {
+      @SuppressWarnings("deprecation")
+      org.bupt.cad.fedraft.rpc.message.LogRequest.LogType result = org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.valueOf(logType_);
+      return result == null ? org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.UNRECOGNIZED : result;
+    }
+    /**
+     * <pre>
+     * 标记日志请求来源
+     * </pre>
+     *
+     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+     * @param value The logType to set.
+     * @return This builder for chaining.
+     */
+    public Builder setLogType(org.bupt.cad.fedraft.rpc.message.LogRequest.LogType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      
+      logType_ = value.getNumber();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 标记日志请求来源
+     * </pre>
+     *
+     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearLogType() {
+      
+      logType_ = 0;
+      onChanged();
+      return this;
+    }
+
     /**
      * <pre>
      * 模型的序列化块
      * </pre>
      *
-     * <code>bytes model_chunk = 5;</code>
+     * <code>bytes model_chunk = 6;</code>
      * @return Whether the modelChunk field is set.
      */
     public boolean hasModelChunk() {
-      return dataCase_ == 5;
+      return dataCase_ == 6;
     }
     /**
      * <pre>
      * 模型的序列化块
      * </pre>
      *
-     * <code>bytes model_chunk = 5;</code>
+     * <code>bytes model_chunk = 6;</code>
      * @return The modelChunk.
      */
     public com.google.protobuf.ByteString getModelChunk() {
-      if (dataCase_ == 5) {
+      if (dataCase_ == 6) {
         return (com.google.protobuf.ByteString) data_;
       }
       return com.google.protobuf.ByteString.EMPTY;
@@ -909,15 +1194,15 @@ public final class LogRequest extends
      * 模型的序列化块
      * </pre>
      *
-     * <code>bytes model_chunk = 5;</code>
+     * <code>bytes model_chunk = 6;</code>
      * @param value The modelChunk to set.
      * @return This builder for chaining.
      */
     public Builder setModelChunk(com.google.protobuf.ByteString value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      dataCase_ = 5;
+    throw new NullPointerException();
+  }
+  dataCase_ = 6;
       data_ = value;
       onChanged();
       return this;
@@ -927,87 +1212,217 @@ public final class LogRequest extends
      * 模型的序列化块
      * </pre>
      *
-     * <code>bytes model_chunk = 5;</code>
+     * <code>bytes model_chunk = 6;</code>
      * @return This builder for chaining.
      */
     public Builder clearModelChunk() {
-      if (dataCase_ == 5) {
-        dataCase_ = 0;
-        data_ = null;
-        onChanged();
-      }
-      return this;
+        if (dataCase_ == 6) {
+            dataCase_ = 0;
+            data_ = null;
+            onChanged();
+        }
+        return this;
     }
 
-    /**
-     * <pre>
-     * 网络时延拓扑
-     * </pre>
-     *
-     * <code>bytes network_delays = 6;</code>
-     * @return Whether the networkDelays field is set.
-     */
-    public boolean hasNetworkDelays() {
-      return dataCase_ == 6;
-    }
-    /**
-     * <pre>
-     * 网络时延拓扑
-     * </pre>
-     *
-     * <code>bytes network_delays = 6;</code>
-     * @return The networkDelays.
-     */
-    public com.google.protobuf.ByteString getNetworkDelays() {
-      if (dataCase_ == 6) {
-        return (com.google.protobuf.ByteString) data_;
-      }
-      return com.google.protobuf.ByteString.EMPTY;
-    }
-    /**
-     * <pre>
-     * 网络时延拓扑
-     * </pre>
-     *
-     * <code>bytes network_delays = 6;</code>
-     * @param value The networkDelays to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNetworkDelays(com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      dataCase_ = 6;
-      data_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 网络时延拓扑
-     * </pre>
-     *
-     * <code>bytes network_delays = 6;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearNetworkDelays() {
-      if (dataCase_ == 6) {
-        dataCase_ = 0;
-        data_ = null;
-        onChanged();
-      }
-      return this;
-    }
+      private com.google.protobuf.SingleFieldBuilderV3<
+              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage, org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder, org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder> heartBeatBuilder_;
 
-    @java.lang.Override
-    public final Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       *
+       * @return Whether the heartBeat field is set.
+       */
+      @java.lang.Override
+      public boolean hasHeartBeat() {
+          return dataCase_ == 7;
+      }
 
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       *
+       * @return The heartBeat.
+       */
+      @java.lang.Override
+      public org.bupt.cad.fedraft.rpc.message.HeartBeatMessage getHeartBeat() {
+          if (heartBeatBuilder_ == null) {
+              if (dataCase_ == 7) {
+                  return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
+              }
+              return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+          } else {
+              if (dataCase_ == 7) {
+                  return heartBeatBuilder_.getMessage();
+              }
+              return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+          }
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      public Builder setHeartBeat(org.bupt.cad.fedraft.rpc.message.HeartBeatMessage value) {
+          if (heartBeatBuilder_ == null) {
+              if (value == null) {
+                  throw new NullPointerException();
+              }
+              data_ = value;
+              onChanged();
+          } else {
+              heartBeatBuilder_.setMessage(value);
+          }
+          dataCase_ = 7;
+          return this;
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      public Builder setHeartBeat(
+              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder builderForValue) {
+          if (heartBeatBuilder_ == null) {
+              data_ = builderForValue.build();
+              onChanged();
+          } else {
+              heartBeatBuilder_.setMessage(builderForValue.build());
+          }
+          dataCase_ = 7;
+          return this;
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      public Builder mergeHeartBeat(org.bupt.cad.fedraft.rpc.message.HeartBeatMessage value) {
+          if (heartBeatBuilder_ == null) {
+              if (dataCase_ == 7 &&
+                      data_ != org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance()) {
+                  data_ = org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.newBuilder((org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_)
+                          .mergeFrom(value).buildPartial();
+              } else {
+                  data_ = value;
+              }
+              onChanged();
+          } else {
+              if (dataCase_ == 7) {
+                  heartBeatBuilder_.mergeFrom(value);
+              } else {
+                  heartBeatBuilder_.setMessage(value);
+              }
+          }
+          dataCase_ = 7;
+          return this;
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      public Builder clearHeartBeat() {
+          if (heartBeatBuilder_ == null) {
+              if (dataCase_ == 7) {
+                  dataCase_ = 0;
+                  data_ = null;
+                  onChanged();
+              }
+          } else {
+              if (dataCase_ == 7) {
+                  dataCase_ = 0;
+                  data_ = null;
+              }
+              heartBeatBuilder_.clear();
+          }
+          return this;
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      public org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder getHeartBeatBuilder() {
+          return getHeartBeatFieldBuilder().getBuilder();
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      @java.lang.Override
+      public org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder getHeartBeatOrBuilder() {
+          if ((dataCase_ == 7) && (heartBeatBuilder_ != null)) {
+              return heartBeatBuilder_.getMessageOrBuilder();
+          } else {
+              if (dataCase_ == 7) {
+                  return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
+              }
+              return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+          }
+      }
+
+      /**
+       * <pre>
+       * 心跳信息
+       * </pre>
+       *
+       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage, org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder, org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder>
+      getHeartBeatFieldBuilder() {
+          if (heartBeatBuilder_ == null) {
+              if (!(dataCase_ == 7)) {
+                  data_ = org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
+              }
+              heartBeatBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                      org.bupt.cad.fedraft.rpc.message.HeartBeatMessage, org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder, org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder>(
+                      (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_,
+                      getParentForChildren(),
+                      isClean());
+              data_ = null;
+          }
+          dataCase_ = 7;
+          onChanged();
+          ;
+          return heartBeatBuilder_;
+      }
+
+      @java.lang.Override
+      public final Builder setUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
+          return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
     }
 
@@ -1026,12 +1441,12 @@ public final class LogRequest extends
   }
 
   private static final com.google.protobuf.Parser<LogRequest>
-          PARSER = new com.google.protobuf.AbstractParser<LogRequest>() {
+      PARSER = new com.google.protobuf.AbstractParser<LogRequest>() {
     @java.lang.Override
     public LogRequest parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
       return new LogRequest(input, extensionRegistry);
     }
   };
