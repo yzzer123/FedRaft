@@ -6,6 +6,6 @@
 @File       :   ConfTest.py
 """
 
-from utils.Configuration import Properties
+from utils import Properties
 
 print(Properties.get(Properties.TRAINER_SERVER_PORT))
