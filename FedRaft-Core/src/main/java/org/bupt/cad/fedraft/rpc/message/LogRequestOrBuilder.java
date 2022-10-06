@@ -14,10 +14,11 @@ public interface LogRequestOrBuilder extends
   int getTerm();
 
   /**
-   * <code>uint32 leader_id = 2;</code>
+   * <code>uint64 leader_id = 2;</code>
+   *
    * @return The leaderId.
    */
-  int getLeaderId();
+  long getLeaderId();
 
   /**
    * <pre>
@@ -64,49 +65,7 @@ public interface LogRequestOrBuilder extends
    * </pre>
    *
    * <code>bytes model_chunk = 6;</code>
-   * @return Whether the modelChunk field is set.
-   */
-  boolean hasModelChunk();
-  /**
-   * <pre>
-   * 模型的序列化块
-   * </pre>
-   *
-   * <code>bytes model_chunk = 6;</code>
    * @return The modelChunk.
    */
   com.google.protobuf.ByteString getModelChunk();
-
-    /**
-     * <pre>
-     * 心跳信息
-     * </pre>
-     *
-     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-     *
-     * @return Whether the heartBeat field is set.
-     */
-    boolean hasHeartBeat();
-
-    /**
-     * <pre>
-     * 心跳信息
-     * </pre>
-     *
-     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-     *
-     * @return The heartBeat.
-     */
-    org.bupt.cad.fedraft.rpc.message.HeartBeatMessage getHeartBeat();
-
-    /**
-     * <pre>
-     * 心跳信息
-     * </pre>
-     *
-     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-     */
-    org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder getHeartBeatOrBuilder();
-
-  public org.bupt.cad.fedraft.rpc.message.LogRequest.DataCase getDataCase();
 }

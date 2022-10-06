@@ -16,7 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private LogResponse() {
-    response_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -57,11 +56,6 @@ private static final long serialVersionUID = 0L;
             case 16: {
 
                 logSize_ = input.readUInt64();
-                break;
-            }
-            case 26: {
-
-                response_ = input.readBytes();
                 break;
             }
             default: {
@@ -128,19 +122,6 @@ private static final long serialVersionUID = 0L;
       return logSize_;
   }
 
-    public static final int RESPONSE_FIELD_NUMBER = 3;
-    private com.google.protobuf.ByteString response_;
-
-    /**
-     * <code>bytes response = 3;</code>
-     *
-     * @return The response.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString getResponse() {
-        return response_;
-    }
-
     private byte memoizedIsInitialized = -1;
 
     @java.lang.Override
@@ -162,34 +143,27 @@ private static final long serialVersionUID = 0L;
         if (logSize_ != 0L) {
             output.writeUInt64(2, logSize_);
         }
-        if (!response_.isEmpty()) {
-            output.writeBytes(3, response_);
-        }
         unknownFields.writeTo(output);
     }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
+    @java.lang.Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
 
-      size = 0;
-      if (localIndex_ != 0) {
-          size += com.google.protobuf.CodedOutputStream
-                  .computeUInt32Size(1, localIndex_);
-      }
-      if (logSize_ != 0L) {
-          size += com.google.protobuf.CodedOutputStream
-                  .computeUInt64Size(2, logSize_);
-      }
-      if (!response_.isEmpty()) {
-          size += com.google.protobuf.CodedOutputStream
-                  .computeBytesSize(3, response_);
-      }
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-  }
+        size = 0;
+        if (localIndex_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt32Size(1, localIndex_);
+        }
+        if (logSize_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt64Size(2, logSize_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
@@ -205,8 +179,6 @@ private static final long serialVersionUID = 0L;
               != other.getLocalIndex()) return false;
       if (getLogSize()
               != other.getLogSize()) return false;
-      if (!getResponse()
-              .equals(other.getResponse())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
   }
@@ -223,8 +195,6 @@ private static final long serialVersionUID = 0L;
       hash = (37 * hash) + LOG_SIZE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
               getLogSize());
-      hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
-      hash = (53 * hash) + getResponse().hashCode();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -362,8 +332,6 @@ private static final long serialVersionUID = 0L;
 
         logSize_ = 0L;
 
-        response_ = com.google.protobuf.ByteString.EMPTY;
-
         return this;
     }
 
@@ -392,7 +360,6 @@ private static final long serialVersionUID = 0L;
         org.bupt.cad.fedraft.rpc.message.LogResponse result = new org.bupt.cad.fedraft.rpc.message.LogResponse(this);
         result.localIndex_ = localIndex_;
         result.logSize_ = logSize_;
-        result.response_ = response_;
         onBuilt();
         return result;
     }
@@ -446,9 +413,6 @@ private static final long serialVersionUID = 0L;
         }
         if (other.getLogSize() != 0L) {
             setLogSize(other.getLogSize());
-        }
-        if (other.getResponse() != com.google.protobuf.ByteString.EMPTY) {
-            setResponse(other.getResponse());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -564,46 +528,6 @@ private static final long serialVersionUID = 0L;
         onChanged();
         return this;
     }
-
-      private com.google.protobuf.ByteString response_ = com.google.protobuf.ByteString.EMPTY;
-
-      /**
-       * <code>bytes response = 3;</code>
-       *
-       * @return The response.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getResponse() {
-          return response_;
-      }
-
-      /**
-       * <code>bytes response = 3;</code>
-       *
-       * @param value The response to set.
-       * @return This builder for chaining.
-       */
-      public Builder setResponse(com.google.protobuf.ByteString value) {
-          if (value == null) {
-              throw new NullPointerException();
-          }
-
-          response_ = value;
-          onChanged();
-          return this;
-      }
-
-      /**
-       * <code>bytes response = 3;</code>
-       *
-       * @return This builder for chaining.
-       */
-      public Builder clearResponse() {
-
-          response_ = getDefaultInstance().getResponse();
-          onChanged();
-          return this;
-      }
 
       @java.lang.Override
       public final Builder setUnknownFields(

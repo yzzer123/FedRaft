@@ -12,5 +12,6 @@ service FedRaftService{
   // Raft 日志追加通信
   rpc AppendStreamLog(stream LogRequest) returns(LogResponse){};
   rpc AppendLog(LogRequest) returns(LogResponse){};
+  rpc Heartbeat(HeartbeatRequest) returns(HeartbeatResponse){};
 
 }

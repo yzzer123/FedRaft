@@ -11,8 +11,6 @@ import org.bupt.cad.fedraft.rpc.message.LogRequest;
 import org.bupt.cad.fedraft.rpc.message.LogResponse;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
 
-
-import java.util.Arrays;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -30,15 +28,17 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
     @Override
     public void appendLog(LogRequest request, StreamObserver<LogResponse> responseObserver) {
 
+
         //follower节点每隔一定时间接收到心跳信息
         int term = request.getTerm();
-        ByteString bytes = request.getNetworkDelays();
-        double delay = Double.parseDouble(Arrays.toString(bytes.toByteArray()));
-        int leaderId = request.getLeaderId();
-        logger.info(String.format("get heartbeat from leader:%d, term:%d, delay:%f",leaderId,term,delay));
+//        ByteString bytes = request.getHeartBeat().getNetworkDelays(0);
+//
+//        double delay = Double.parseDouble(Arrays.toString(bytes.toByteArray()));
+//        int leaderId = request.getLeaderId();
+//        logger.info(String.format("get heartbeat from leader:%d, term:%d, delay:%f",leaderId,term,delay));
 
-        //LogResponse build = LogResponse.newBuilder().build();
-        //responseObserver.onNext(build); 接收到心跳信息,存下时延信息,
+        LogResponse build = LogResponse.newBuilder().build();
+        responseObserver.onNext(build); //接收到心跳信息,存下时延信息,
         responseObserver.onCompleted();
     }
 

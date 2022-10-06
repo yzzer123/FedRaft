@@ -17,6 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private LogRequest() {
     logType_ = 0;
+      modelChunk_ = com.google.protobuf.ByteString.EMPTY;
   }
 
   @java.lang.Override
@@ -56,7 +57,7 @@ private static final long serialVersionUID = 0L;
           }
           case 16: {
 
-            leaderId_ = input.readUInt32();
+              leaderId_ = input.readUInt64();
             break;
           }
           case 24: {
@@ -76,22 +77,8 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 50: {
-            data_ = input.readBytes();
-            dataCase_ = 6;
-            break;
-          }
-          case 58: {
-              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder subBuilder = null;
-              if (dataCase_ == 7) {
-                  subBuilder = ((org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_).toBuilder();
-              }
-              data_ =
-                      input.readMessage(org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.parser(), extensionRegistry);
-              if (subBuilder != null) {
-                  subBuilder.mergeFrom((org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_);
-                  data_ = subBuilder.buildPartial();
-              }
-              dataCase_ = 7;
+
+              modelChunk_ = input.readBytes();
               break;
           }
           default: {
@@ -286,54 +273,6 @@ private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(enum_scope:fedraft.LogRequest.LogType)
   }
 
-  private int dataCase_ = 0;
-  private java.lang.Object data_;
-
-    public enum DataCase
-            implements com.google.protobuf.Internal.EnumLite,
-            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
-        MODEL_CHUNK(6),
-        HEART_BEAT(7),
-        DATA_NOT_SET(0);
-        private final int value;
-
-        private DataCase(int value) {
-            this.value = value;
-        }
-
-        /**
-         * @param value The number of the enum to look for.
-         * @return The enum associated with the given number.
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-    @java.lang.Deprecated
-    public static DataCase valueOf(int value) {
-      return forNumber(value);
-    }
-
-    public static DataCase forNumber(int value) {
-        switch (value) {
-            case 6:
-                return MODEL_CHUNK;
-            case 7:
-                return HEART_BEAT;
-            case 0:
-                return DATA_NOT_SET;
-            default:
-                return null;
-      }
-    }
-    public int getNumber() {
-      return this.value;
-    }
-  };
-
-  public DataCase
-  getDataCase() {
-    return DataCase.forNumber(
-        dataCase_);
-  }
-
   public static final int TERM_FIELD_NUMBER = 1;
   private int term_;
   /**
@@ -345,16 +284,18 @@ private static final long serialVersionUID = 0L;
     return term_;
   }
 
-  public static final int LEADER_ID_FIELD_NUMBER = 2;
-  private int leaderId_;
-  /**
-   * <code>uint32 leader_id = 2;</code>
-   * @return The leaderId.
-   */
-  @java.lang.Override
-  public int getLeaderId() {
-    return leaderId_;
-  }
+    public static final int LEADER_ID_FIELD_NUMBER = 2;
+    private long leaderId_;
+
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     *
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+        return leaderId_;
+    }
 
   public static final int PRE_MODEL_INDEX_FIELD_NUMBER = 3;
   private int preModelIndex_;
@@ -413,19 +354,8 @@ private static final long serialVersionUID = 0L;
     return result == null ? org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.UNRECOGNIZED : result;
   }
 
-  public static final int MODEL_CHUNK_FIELD_NUMBER = 6;
-  /**
-   * <pre>
-   * 模型的序列化块
-   * </pre>
-   *
-   * <code>bytes model_chunk = 6;</code>
-   * @return Whether the modelChunk field is set.
-   */
-  @java.lang.Override
-  public boolean hasModelChunk() {
-    return dataCase_ == 6;
-  }
+    public static final int MODEL_CHUNK_FIELD_NUMBER = 6;
+    private com.google.protobuf.ByteString modelChunk_;
   /**
    * <pre>
    * 模型的序列化块
@@ -436,59 +366,8 @@ private static final long serialVersionUID = 0L;
    */
   @java.lang.Override
   public com.google.protobuf.ByteString getModelChunk() {
-    if (dataCase_ == 6) {
-      return (com.google.protobuf.ByteString) data_;
-    }
-    return com.google.protobuf.ByteString.EMPTY;
+      return modelChunk_;
   }
-
-    public static final int HEART_BEAT_FIELD_NUMBER = 7;
-
-    /**
-     * <pre>
-     * 心跳信息
-     * </pre>
-     *
-     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-     *
-     * @return Whether the heartBeat field is set.
-     */
-    @java.lang.Override
-    public boolean hasHeartBeat() {
-        return dataCase_ == 7;
-    }
-
-    /**
-     * <pre>
-     * 心跳信息
-     * </pre>
-     *
-     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-     *
-     * @return The heartBeat.
-     */
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.HeartBeatMessage getHeartBeat() {
-        if (dataCase_ == 7) {
-            return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
-        }
-        return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
-    }
-
-    /**
-     * <pre>
-     * 心跳信息
-     * </pre>
-     *
-     * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-     */
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder getHeartBeatOrBuilder() {
-        if (dataCase_ == 7) {
-            return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
-        }
-        return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
-    }
 
     private byte memoizedIsInitialized = -1;
 
@@ -499,35 +378,31 @@ private static final long serialVersionUID = 0L;
         if (isInitialized == 0) return false;
 
         memoizedIsInitialized = 1;
-    return true;
-  }
+        return true;
+    }
 
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (term_ != 0) {
-      output.writeUInt32(1, term_);
-    }
-    if (leaderId_ != 0) {
-      output.writeUInt32(2, leaderId_);
-    }
-    if (preModelIndex_ != 0) {
-      output.writeUInt32(3, preModelIndex_);
-    }
-    if (preModelTerm_ != 0) {
-      output.writeUInt32(4, preModelTerm_);
-    }
-    if (logType_ != org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.TRAINER_TO_MANAGER.getNumber()) {
-      output.writeEnum(5, logType_);
-    }
-    if (dataCase_ == 6) {
-      output.writeBytes(
-          6, (com.google.protobuf.ByteString) data_);
-    }
-      if (dataCase_ == 7) {
-          output.writeMessage(7, (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_);
-    }
-    unknownFields.writeTo(output);
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (term_ != 0) {
+            output.writeUInt32(1, term_);
+        }
+        if (leaderId_ != 0L) {
+            output.writeUInt64(2, leaderId_);
+        }
+        if (preModelIndex_ != 0) {
+            output.writeUInt32(3, preModelIndex_);
+        }
+        if (preModelTerm_ != 0) {
+            output.writeUInt32(4, preModelTerm_);
+        }
+        if (logType_ != org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.TRAINER_TO_MANAGER.getNumber()) {
+            output.writeEnum(5, logType_);
+        }
+        if (!modelChunk_.isEmpty()) {
+            output.writeBytes(6, modelChunk_);
+        }
+        unknownFields.writeTo(output);
   }
 
   @java.lang.Override
@@ -536,34 +411,29 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (term_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(1, term_);
-    }
-    if (leaderId_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(2, leaderId_);
-    }
-    if (preModelIndex_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(3, preModelIndex_);
+      if (term_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeUInt32Size(1, term_);
+      }
+      if (leaderId_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeUInt64Size(2, leaderId_);
+      }
+      if (preModelIndex_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeUInt32Size(3, preModelIndex_);
     }
     if (preModelTerm_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeUInt32Size(4, preModelTerm_);
     }
-    if (logType_ != org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.TRAINER_TO_MANAGER.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(5, logType_);
-    }
-    if (dataCase_ == 6) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(
-            6, (com.google.protobuf.ByteString) data_);
-    }
-      if (dataCase_ == 7) {
+      if (logType_ != org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.TRAINER_TO_MANAGER.getNumber()) {
           size += com.google.protobuf.CodedOutputStream
-                  .computeMessageSize(7, (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_);
+                  .computeEnumSize(5, logType_);
+      }
+      if (!modelChunk_.isEmpty()) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeBytesSize(6, modelChunk_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -580,64 +450,44 @@ private static final long serialVersionUID = 0L;
     }
     org.bupt.cad.fedraft.rpc.message.LogRequest other = (org.bupt.cad.fedraft.rpc.message.LogRequest) obj;
 
-    if (getTerm()
-        != other.getTerm()) return false;
-    if (getLeaderId()
-        != other.getLeaderId()) return false;
-    if (getPreModelIndex()
-        != other.getPreModelIndex()) return false;
-    if (getPreModelTerm()
-        != other.getPreModelTerm()) return false;
-    if (logType_ != other.logType_) return false;
-    if (!getDataCase().equals(other.getDataCase())) return false;
-      switch (dataCase_) {
-          case 6:
-              if (!getModelChunk()
-                      .equals(other.getModelChunk())) return false;
-              break;
-          case 7:
-              if (!getHeartBeat()
-                      .equals(other.getHeartBeat())) return false;
-        break;
-      case 0:
-      default:
-    }
-    if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+      if (getTerm()
+              != other.getTerm()) return false;
+      if (getLeaderId()
+              != other.getLeaderId()) return false;
+      if (getPreModelIndex()
+              != other.getPreModelIndex()) return false;
+      if (getPreModelTerm()
+              != other.getPreModelTerm()) return false;
+      if (logType_ != other.logType_) return false;
+      if (!getModelChunk()
+              .equals(other.getModelChunk())) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
   }
 
   @java.lang.Override
   public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TERM_FIELD_NUMBER;
-    hash = (53 * hash) + getTerm();
-    hash = (37 * hash) + LEADER_ID_FIELD_NUMBER;
-    hash = (53 * hash) + getLeaderId();
-    hash = (37 * hash) + PRE_MODEL_INDEX_FIELD_NUMBER;
-    hash = (53 * hash) + getPreModelIndex();
-    hash = (37 * hash) + PRE_MODEL_TERM_FIELD_NUMBER;
-    hash = (53 * hash) + getPreModelTerm();
-    hash = (37 * hash) + LOG_TYPE_FIELD_NUMBER;
+      if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TERM_FIELD_NUMBER;
+      hash = (53 * hash) + getTerm();
+      hash = (37 * hash) + LEADER_ID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getLeaderId());
+      hash = (37 * hash) + PRE_MODEL_INDEX_FIELD_NUMBER;
+      hash = (53 * hash) + getPreModelIndex();
+      hash = (37 * hash) + PRE_MODEL_TERM_FIELD_NUMBER;
+      hash = (53 * hash) + getPreModelTerm();
+      hash = (37 * hash) + LOG_TYPE_FIELD_NUMBER;
       hash = (53 * hash) + logType_;
-      switch (dataCase_) {
-          case 6:
-              hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
-              hash = (53 * hash) + getModelChunk().hashCode();
-              break;
-          case 7:
-              hash = (37 * hash) + HEART_BEAT_FIELD_NUMBER;
-              hash = (53 * hash) + getHeartBeat().hashCode();
-        break;
-      case 0:
-      default:
-    }
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
+      hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
+      hash = (53 * hash) + getModelChunk().hashCode();
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
   }
 
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
@@ -768,19 +618,19 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      term_ = 0;
+        term_ = 0;
 
-      leaderId_ = 0;
+        leaderId_ = 0L;
 
-      preModelIndex_ = 0;
+        preModelIndex_ = 0;
 
-      preModelTerm_ = 0;
+        preModelTerm_ = 0;
 
-      logType_ = 0;
+        logType_ = 0;
 
-      dataCase_ = 0;
-      data_ = null;
-      return this;
+        modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+
+        return this;
     }
 
     @java.lang.Override
@@ -810,19 +660,9 @@ private static final long serialVersionUID = 0L;
       result.leaderId_ = leaderId_;
       result.preModelIndex_ = preModelIndex_;
       result.preModelTerm_ = preModelTerm_;
-      result.logType_ = logType_;
-      if (dataCase_ == 6) {
-          result.data_ = data_;
-      }
-        if (dataCase_ == 7) {
-            if (heartBeatBuilder_ == null) {
-                result.data_ = data_;
-            } else {
-          result.data_ = heartBeatBuilder_.build();
-        }
-      }
-      result.dataCase_ = dataCase_;
-      onBuilt();
+        result.logType_ = logType_;
+        result.modelChunk_ = modelChunk_;
+        onBuilt();
       return result;
     }
 
@@ -870,37 +710,27 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.LogRequest other) {
       if (other == org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance()) return this;
-      if (other.getTerm() != 0) {
-        setTerm(other.getTerm());
-      }
-      if (other.getLeaderId() != 0) {
-        setLeaderId(other.getLeaderId());
-      }
-      if (other.getPreModelIndex() != 0) {
-        setPreModelIndex(other.getPreModelIndex());
-      }
-      if (other.getPreModelTerm() != 0) {
-        setPreModelTerm(other.getPreModelTerm());
-      }
-      if (other.logType_ != 0) {
-        setLogTypeValue(other.getLogTypeValue());
-      }
-        switch (other.getDataCase()) {
-            case MODEL_CHUNK: {
-                setModelChunk(other.getModelChunk());
-                break;
-            }
-            case HEART_BEAT: {
-                mergeHeartBeat(other.getHeartBeat());
-                break;
-            }
-        case DATA_NOT_SET: {
-          break;
+        if (other.getTerm() != 0) {
+            setTerm(other.getTerm());
         }
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
+        if (other.getLeaderId() != 0L) {
+            setLeaderId(other.getLeaderId());
+        }
+        if (other.getPreModelIndex() != 0) {
+            setPreModelIndex(other.getPreModelIndex());
+        }
+        if (other.getPreModelTerm() != 0) {
+            setPreModelTerm(other.getPreModelTerm());
+        }
+        if (other.logType_ != 0) {
+            setLogTypeValue(other.getLogTypeValue());
+        }
+        if (other.getModelChunk() != com.google.protobuf.ByteString.EMPTY) {
+            setModelChunk(other.getModelChunk());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
     }
 
     @java.lang.Override
@@ -926,21 +756,6 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
-    private int dataCase_ = 0;
-    private java.lang.Object data_;
-    public DataCase
-        getDataCase() {
-      return DataCase.forNumber(
-          dataCase_);
-    }
-
-    public Builder clearData() {
-      dataCase_ = 0;
-      data_ = null;
-      onChanged();
-      return this;
-    }
-
 
     private int term_ ;
     /**
@@ -973,33 +788,39 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int leaderId_ ;
-    /**
-     * <code>uint32 leader_id = 2;</code>
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public int getLeaderId() {
-      return leaderId_;
-    }
-    /**
-     * <code>uint32 leader_id = 2;</code>
-     * @param value The leaderId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLeaderId(int value) {
+      private long leaderId_;
+
+      /**
+       * <code>uint64 leader_id = 2;</code>
+       *
+       * @return The leaderId.
+       */
+      @java.lang.Override
+      public long getLeaderId() {
+          return leaderId_;
+      }
+
+      /**
+       * <code>uint64 leader_id = 2;</code>
+       *
+       * @param value The leaderId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLeaderId(long value) {
+
+          leaderId_ = value;
+          onChanged();
+          return this;
+      }
+
+      /**
+       * <code>uint64 leader_id = 2;</code>
+       *
+       * @return This builder for chaining.
+       */
+      public Builder clearLeaderId() {
       
-      leaderId_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>uint32 leader_id = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearLeaderId() {
-      
-      leaderId_ = 0;
+      leaderId_ = 0L;
       onChanged();
       return this;
     }
@@ -1158,23 +979,13 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearLogType() {
-      
-      logType_ = 0;
-      onChanged();
-      return this;
+
+        logType_ = 0;
+        onChanged();
+        return this;
     }
 
-    /**
-     * <pre>
-     * 模型的序列化块
-     * </pre>
-     *
-     * <code>bytes model_chunk = 6;</code>
-     * @return Whether the modelChunk field is set.
-     */
-    public boolean hasModelChunk() {
-      return dataCase_ == 6;
-    }
+      private com.google.protobuf.ByteString modelChunk_ = com.google.protobuf.ByteString.EMPTY;
     /**
      * <pre>
      * 模型的序列化块
@@ -1183,11 +994,9 @@ private static final long serialVersionUID = 0L;
      * <code>bytes model_chunk = 6;</code>
      * @return The modelChunk.
      */
+    @java.lang.Override
     public com.google.protobuf.ByteString getModelChunk() {
-      if (dataCase_ == 6) {
-        return (com.google.protobuf.ByteString) data_;
-      }
-      return com.google.protobuf.ByteString.EMPTY;
+      return modelChunk_;
     }
     /**
      * <pre>
@@ -1199,219 +1008,29 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder setModelChunk(com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  dataCase_ = 6;
-      data_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 模型的序列化块
-     * </pre>
-     *
-     * <code>bytes model_chunk = 6;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearModelChunk() {
-        if (dataCase_ == 6) {
-            dataCase_ = 0;
-            data_ = null;
-            onChanged();
+        if (value == null) {
+            throw new NullPointerException();
         }
+
+        modelChunk_ = value;
+        onChanged();
         return this;
     }
 
-      private com.google.protobuf.SingleFieldBuilderV3<
-              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage, org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder, org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder> heartBeatBuilder_;
-
       /**
        * <pre>
-       * 心跳信息
+       * 模型的序列化块
        * </pre>
        *
-       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
+       * <code>bytes model_chunk = 6;</code>
        *
-       * @return Whether the heartBeat field is set.
+       * @return This builder for chaining.
        */
-      @java.lang.Override
-      public boolean hasHeartBeat() {
-          return dataCase_ == 7;
-      }
+      public Builder clearModelChunk() {
 
-      /**
-       * <pre>
-       * 心跳信息
-       * </pre>
-       *
-       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-       *
-       * @return The heartBeat.
-       */
-      @java.lang.Override
-      public org.bupt.cad.fedraft.rpc.message.HeartBeatMessage getHeartBeat() {
-          if (heartBeatBuilder_ == null) {
-              if (dataCase_ == 7) {
-                  return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
-              }
-              return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
-          } else {
-              if (dataCase_ == 7) {
-                  return heartBeatBuilder_.getMessage();
-              }
-              return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
-          }
-      }
-
-      /**
-       * <pre>
-       * 心跳信息
-       * </pre>
-       *
-       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-       */
-      public Builder setHeartBeat(org.bupt.cad.fedraft.rpc.message.HeartBeatMessage value) {
-          if (heartBeatBuilder_ == null) {
-              if (value == null) {
-                  throw new NullPointerException();
-              }
-              data_ = value;
-              onChanged();
-          } else {
-              heartBeatBuilder_.setMessage(value);
-          }
-          dataCase_ = 7;
-          return this;
-      }
-
-      /**
-       * <pre>
-       * 心跳信息
-       * </pre>
-       *
-       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-       */
-      public Builder setHeartBeat(
-              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder builderForValue) {
-          if (heartBeatBuilder_ == null) {
-              data_ = builderForValue.build();
-              onChanged();
-          } else {
-              heartBeatBuilder_.setMessage(builderForValue.build());
-          }
-          dataCase_ = 7;
-          return this;
-      }
-
-      /**
-       * <pre>
-       * 心跳信息
-       * </pre>
-       *
-       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-       */
-      public Builder mergeHeartBeat(org.bupt.cad.fedraft.rpc.message.HeartBeatMessage value) {
-          if (heartBeatBuilder_ == null) {
-              if (dataCase_ == 7 &&
-                      data_ != org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance()) {
-                  data_ = org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.newBuilder((org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_)
-                          .mergeFrom(value).buildPartial();
-              } else {
-                  data_ = value;
-              }
-              onChanged();
-          } else {
-              if (dataCase_ == 7) {
-                  heartBeatBuilder_.mergeFrom(value);
-              } else {
-                  heartBeatBuilder_.setMessage(value);
-              }
-          }
-          dataCase_ = 7;
-          return this;
-      }
-
-      /**
-       * <pre>
-       * 心跳信息
-       * </pre>
-       *
-       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-       */
-      public Builder clearHeartBeat() {
-          if (heartBeatBuilder_ == null) {
-              if (dataCase_ == 7) {
-                  dataCase_ = 0;
-                  data_ = null;
-                  onChanged();
-              }
-          } else {
-              if (dataCase_ == 7) {
-                  dataCase_ = 0;
-                  data_ = null;
-              }
-              heartBeatBuilder_.clear();
-          }
-          return this;
-      }
-
-      /**
-       * <pre>
-       * 心跳信息
-       * </pre>
-       *
-       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-       */
-      public org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder getHeartBeatBuilder() {
-          return getHeartBeatFieldBuilder().getBuilder();
-      }
-
-      /**
-       * <pre>
-       * 心跳信息
-       * </pre>
-       *
-       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-       */
-      @java.lang.Override
-      public org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder getHeartBeatOrBuilder() {
-          if ((dataCase_ == 7) && (heartBeatBuilder_ != null)) {
-              return heartBeatBuilder_.getMessageOrBuilder();
-          } else {
-              if (dataCase_ == 7) {
-                  return (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_;
-              }
-              return org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
-          }
-      }
-
-      /**
-       * <pre>
-       * 心跳信息
-       * </pre>
-       *
-       * <code>.fedraft.HeartBeatMessage heart_beat = 7;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilderV3<
-              org.bupt.cad.fedraft.rpc.message.HeartBeatMessage, org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder, org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder>
-      getHeartBeatFieldBuilder() {
-          if (heartBeatBuilder_ == null) {
-              if (!(dataCase_ == 7)) {
-                  data_ = org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.getDefaultInstance();
-              }
-              heartBeatBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                      org.bupt.cad.fedraft.rpc.message.HeartBeatMessage, org.bupt.cad.fedraft.rpc.message.HeartBeatMessage.Builder, org.bupt.cad.fedraft.rpc.message.HeartBeatMessageOrBuilder>(
-                      (org.bupt.cad.fedraft.rpc.message.HeartBeatMessage) data_,
-                      getParentForChildren(),
-                      isClean());
-              data_ = null;
-          }
-          dataCase_ = 7;
+          modelChunk_ = getDefaultInstance().getModelChunk();
           onChanged();
-          ;
-          return heartBeatBuilder_;
+          return this;
       }
 
       @java.lang.Override
@@ -1423,7 +1042,7 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public final Builder mergeUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+          return super.mergeUnknownFields(unknownFields);
     }
 
 

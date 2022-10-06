@@ -12,13 +12,16 @@ public class Configuration {
     public final static String RAFT_SERVER_PORT = "raft.server.port";
     public final static String TRAINER_SERVER_PORT = "trainer.server.port";
 
+    public final static String LOG_MODEL_CHUNKSIZE = "log.model.chucksize";
+
+
     private static final Logger logger = LogManager.getLogger(Configuration.class.getName());
 
     private static org.apache.commons.configuration2.Configuration conf = null;
 
     static {
         try {
-            conf = new Configurations().properties("./conf.properties");
+            conf = new Configurations().properties("../conf.properties");
         } catch (ConfigurationException e) {
             logger.error(e.getMessage(), e);
         }

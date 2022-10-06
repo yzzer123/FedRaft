@@ -24,11 +24,13 @@ public final class FedraftService {
   static {
     java.lang.String[] descriptorData = {
       "\n\025fedraft_service.proto\022\007fedraft\032\021log_me" +
-      "ssage.proto2\214\001\n\016FedRaftService\022@\n\017Append" +
-      "StreamLog\022\023.fedraft.LogRequest\032\024.fedraft" +
-      ".LogResponse\"\000(\001\0228\n\tAppendLog\022\023.fedraft." +
-      "LogRequest\032\024.fedraft.LogResponse\"\000B$\n or" +
-      "g.bupt.cad.fedraft.rpc.serviceP\001b\006proto3"
+              "ssage.proto2\322\001\n\016FedRaftService\022@\n\017Append" +
+              "StreamLog\022\023.fedraft.LogRequest\032\024.fedraft" +
+              ".LogResponse\"\000(\001\0228\n\tAppendLog\022\023.fedraft." +
+              "LogRequest\032\024.fedraft.LogResponse\"\000\022D\n\tHe" +
+              "artbeat\022\031.fedraft.HeartbeatRequest\032\032.fed" +
+              "raft.HeartbeatResponse\"\000B$\n org.bupt.cad" +
+              ".fedraft.rpc.serviceP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

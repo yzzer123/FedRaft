@@ -17,7 +17,7 @@ class Properties:
 
         if Properties._conf is None:
             # 如果配置文件还没加载，就从文件中读取配置
-            with open("./conf.properties", "r", encoding="utf-8") as conf_file:
+            with open("../conf.properties", "r", encoding="utf-8") as conf_file:
                 Properties._conf = {}
                 for line in conf_file:
                     if line.find('=') > 0:
