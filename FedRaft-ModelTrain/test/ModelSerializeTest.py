@@ -1,14 +1,12 @@
 
-
-from ctypes import sizeof
+import time
 from torchvision.models import wide_resnet101_2, Wide_ResNet101_2_Weights
 from torchvision.io import read_image
 from torch import nn
 from functools import partial
 from torchvision.models._meta import _IMAGENET_CATEGORIES
 from torchvision.transforms._presets import ImageClassification
-import torch
-import pickle
+from utils import model_to_chunks, chunks_to_model
 
 def test_model_eval(model: nn.Module):
 
@@ -33,16 +31,24 @@ def test_model_eval(model: nn.Module):
     print(f"{category_name}: {100 * score:.1f}%")
     
 
-
-def model_to_bytesString(model: nn.Module):
-    state_dict = model.state_dict()
-    state_dict_bytes = pickle.dumps(state_dict)
-    return state_dict_bytes
     
 
 
 if __name__ == "__main__":
     model = wide_resnet101_2(weights=Wide_ResNet101_2_Weights.IMAGENET1K_V1)
-    model_to_bytesString(model)
-    # test_model_eval(model)
+    
+    test_model_eval(model)
+    chunks = []
+    for chunk in model_to_chunks(model):
+        chunks.append(chunk)
+    t1 = time.time()
+    model2 = chunks_to_model(chunks)
+    t2 = time.time()
+    print(t2 - t1)
+    test_model_eval(model2)
+    
+    print(str(model2.state_dict()) == str(model.state_dict()))
+    
+    
+    
 
