@@ -4,8 +4,8 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public interface LogResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.LogResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.LogResponse)
+    com.google.protobuf.MessageOrBuilder {
 
     /**
      * <pre>
@@ -28,4 +28,11 @@ public interface LogResponseOrBuilder extends
      * @return The logSize.
      */
     long getLogSize();
+
+    /**
+     * <code>bytes response = 3;</code>
+     *
+     * @return The response.
+     */
+    com.google.protobuf.ByteString getResponse();
 }
