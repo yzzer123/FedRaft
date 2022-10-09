@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import log_message_pb2 as log__message__pb2
+import rpc.log_message_pb2 as log__message__pb2
 
 
 class FedRaftServiceStub(object):
@@ -24,6 +24,11 @@ class FedRaftServiceStub(object):
                 request_serializer=log__message__pb2.LogRequest.SerializeToString,
                 response_deserializer=log__message__pb2.LogResponse.FromString,
                 )
+        self.Heartbeat = channel.unary_unary(
+                '/fedraft.FedRaftService/Heartbeat',
+                request_serializer=log__message__pb2.HeartbeatRequest.SerializeToString,
+                response_deserializer=log__message__pb2.HeartbeatResponse.FromString,
+                )
 
 
 class FedRaftServiceServicer(object):
@@ -42,6 +47,12 @@ class FedRaftServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def Heartbeat(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_FedRaftServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -54,6 +65,11 @@ def add_FedRaftServiceServicer_to_server(servicer, server):
                     servicer.AppendLog,
                     request_deserializer=log__message__pb2.LogRequest.FromString,
                     response_serializer=log__message__pb2.LogResponse.SerializeToString,
+            ),
+            'Heartbeat': grpc.unary_unary_rpc_method_handler(
+                    servicer.Heartbeat,
+                    request_deserializer=log__message__pb2.HeartbeatRequest.FromString,
+                    response_serializer=log__message__pb2.HeartbeatResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -96,5 +112,22 @@ class FedRaftService(object):
         return grpc.experimental.unary_unary(request, target, '/fedraft.FedRaftService/AppendLog',
             log__message__pb2.LogRequest.SerializeToString,
             log__message__pb2.LogResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Heartbeat(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/fedraft.FedRaftService/Heartbeat',
+            log__message__pb2.HeartbeatRequest.SerializeToString,
+            log__message__pb2.HeartbeatResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -1,19 +1,27 @@
 # 读取Properties文件类
 import logging
 
+logging.basicConfig(format='%(asctime)s  %(name)s : %(levelname)s  %(message)s')
 
 class Properties:
+    
+    logger: logging.Logger = None
     _conf: dict = None
 
     RAFT_SERVER_HOST = "raft.server.host"
     RAFT_SERVER_PORT = "raft.server.port"
     TRAINER_SERVER_PORT = "trainer.server.port"
     LOG_MODEL_CHUNKSIZE = "log.model.chucksize"
+    TRAINER_SERVER_THREADS = "trainer.server.threads"
+    TRAINER_CLIENT_THREADS = "trainer.client.threads"
+    
+    LOGGING_LEVEL = logging.INFO
     
     @classmethod
     def init(cls):
+        Properties.logger = logging.getLogger(str(Properties.__class__))
         # 如果配置文件还没加载，就从文件中读取配置
-        logging.info("read config from conf.properties")
+        Properties.logger.info("read config from conf.properties")
         try:
             with open("../conf.properties", "r", encoding="utf-8") as conf_file:
                 Properties._conf = {}
@@ -22,8 +30,15 @@ class Properties:
                         key_value = line.replace('\n', '').split('=')
                         Properties._conf[key_value[0]] = key_value[1] 
         except Exception:
-            logging.error("the config file doesn't exist")
+            Properties.logger("the config file doesn't exist")
             exit()
+            
+    @classmethod
+    def getLogger(cls, name):
+        # 如果配置文件还没加载，就从文件中读取配置
+        logger = logging.getLogger(name)
+        logger.setLevel(Properties.LOGGING_LEVEL)
+        return logger
 
 
     @classmethod
@@ -48,7 +63,7 @@ class Properties:
         """
         value = Properties.get(key)
         if value is None:
-            logging.warning("config item doesn't exist")
+            Properties.logger.warning("config item doesn't exist")
             return 0
         
         return int(value)
