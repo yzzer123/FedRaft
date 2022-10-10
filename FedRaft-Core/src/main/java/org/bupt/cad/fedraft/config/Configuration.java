@@ -14,6 +14,9 @@ public class Configuration {
 
     public final static String LOG_MODEL_CHUCK_SIZE = "log.model.chuck-size";
 
+    public final static String ZOOKEEPER_HOSTS = "zookeeper.hosts";
+    public final static String ZOOKEEPER_SESSION_TIMEOUT = "zookeeper.session.timeout";
+
     public final static String NODE_THREADPOOL_NUMBERS = "node.threadpool.numbers";
 
     private static final Logger logger = LogManager.getLogger(Configuration.class.getName());
@@ -26,6 +29,7 @@ public class Configuration {
             conf = new Configurations().properties("./conf.properties");
         } catch (ConfigurationException e) {
             logger.error(e.getMessage(), e);
+            System.exit(1);
         }
 
     }
