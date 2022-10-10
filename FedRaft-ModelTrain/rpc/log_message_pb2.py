@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11log_message.proto\x12\x07\x66\x65\x64raft\"\xad\x02\n\nLogRequest\x12\x0c\n\x04term\x18\x01 \x01(\r\x12\x11\n\tleader_id\x18\x02 \x01(\r\x12\x17\n\x0fpre_model_index\x18\x03 \x01(\r\x12\x16\n\x0epre_model_term\x18\x04 \x01(\r\x12-\n\x08log_type\x18\x05 \x01(\x0e\x32\x1b.fedraft.LogRequest.LogType\x12\x15\n\x0bmodel_chunk\x18\x06 \x01(\x0cH\x00\x12\x18\n\x0enetwork_delays\x18\x07 \x01(\x0cH\x00\"e\n\x07LogType\x12\x16\n\x12TRAINER_TO_MANAGER\x10\x00\x12\x14\n\x10\x43LIENT_TO_LEADER\x10\x01\x12\x14\n\x10LEADER_TO_CLIENT\x10\x02\x12\x16\n\x12MANAGER_TO_TRAINER\x10\x03\x42\x06\n\x04\x64\x61ta\"F\n\x0bLogResponse\x12\x13\n\x0blocal_index\x18\x01 \x01(\r\x12\x10\n\x08log_size\x18\x02 \x01(\x04\x12\x10\n\x08response\x18\x03 \x01(\x0c\x42$\n org.bupt.cad.fedraft.rpc.messageP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11log_message.proto\x12\x07\x66\x65\x64raft\"\xd9\x01\n\nLogRequest\x12\x0c\n\x04term\x18\x01 \x01(\r\x12\x11\n\tleader_id\x18\x02 \x01(\x04\x12\x17\n\x0fpre_model_index\x18\x03 \x01(\r\x12\x16\n\x0epre_model_term\x18\x04 \x01(\r\x12-\n\x08log_type\x18\x05 \x01(\x0e\x32\x1b.fedraft.LogRequest.LogType\x12\x13\n\x0bmodel_chunk\x18\x06 \x01(\x0c\"5\n\x07LogType\x12\x14\n\x10\x43LIENT_TO_LEADER\x10\x00\x12\x14\n\x10LEADER_TO_CLIENT\x10\x01\"4\n\x0bLogResponse\x12\x13\n\x0blocal_index\x18\x01 \x01(\r\x12\x10\n\x08log_size\x18\x02 \x01(\x04\"*\n\x11HeartbeatResponse\x12\x15\n\rnetwork_delay\x18\x01 \x01(\x02\"]\n\x10HeartbeatRequest\x12\x0c\n\x04term\x18\x01 \x01(\r\x12\x11\n\tleader_id\x18\x02 \x01(\x04\x12\x10\n\x08node_ids\x18\x03 \x03(\x03\x12\x16\n\x0enetwork_delays\x18\x04 \x03(\x02\x42$\n org.bupt.cad.fedraft.rpc.messageP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'log_message_pb2', globals())
@@ -22,9 +22,13 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n org.bupt.cad.fedraft.rpc.messageP\001'
   _LOGREQUEST._serialized_start=31
-  _LOGREQUEST._serialized_end=332
-  _LOGREQUEST_LOGTYPE._serialized_start=223
-  _LOGREQUEST_LOGTYPE._serialized_end=324
-  _LOGRESPONSE._serialized_start=334
-  _LOGRESPONSE._serialized_end=404
+  _LOGREQUEST._serialized_end=248
+  _LOGREQUEST_LOGTYPE._serialized_start=195
+  _LOGREQUEST_LOGTYPE._serialized_end=248
+  _LOGRESPONSE._serialized_start=250
+  _LOGRESPONSE._serialized_end=302
+  _HEARTBEATRESPONSE._serialized_start=304
+  _HEARTBEATRESPONSE._serialized_end=346
+  _HEARTBEATREQUEST._serialized_start=348
+  _HEARTBEATREQUEST._serialized_end=441
 # @@protoc_insertion_point(module_scope)
