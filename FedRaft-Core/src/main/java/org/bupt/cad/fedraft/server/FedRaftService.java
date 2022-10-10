@@ -5,12 +5,16 @@ import com.google.protobuf.ByteString;
 import io.grpc.stub.StreamObserver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.exception.LogAppendException;
+import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
+import org.bupt.cad.fedraft.rpc.message.HeartbeatResponse;
 import org.bupt.cad.fedraft.rpc.message.LogRequest;
 import org.bupt.cad.fedraft.rpc.message.LogResponse;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
 
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -24,6 +28,28 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
 
     private static final Logger logger = LogManager.getLogger(FedRaftServer.class.getName());
 
+    //todo 建立计时器感知超时
+    @Override
+    public void heartbeat(HeartbeatRequest request, StreamObserver<HeartbeatResponse> responseObserver) {
+        int leaderTerm = request.getTerm();
+        if(Node.getTerm() + 1 < leaderTerm){
+            responseObserver.onError(new Exception("节点任期异常"));//to do
+        }
+        logger.info("get heartbeat request from " + NodeInfo.idToIp(request.getLeaderId()));
+        List<Float> networkDelaysList = request.getNetworkDelaysList();
+        List<Long> nodeIdsList = request.getNodeIdsList();
+        if(networkDelaysList.size() != nodeIdsList.size()){
+            responseObserver.onError(new Exception("数据流异常:时延数和节点数不同"));
+        }
+        for(int i = 0; i < nodeIdsList.size(); i++){
+            NodeInfo nodeInfo = new NodeInfo(nodeIdsList.get(i));
+            Node.topologies.putIfAbsent(nodeInfo, networkDelaysList.get(i));//理应已有当前nodeInfo
+        }
+        HeartbeatResponse response = HeartbeatResponse.newBuilder().setNetworkDelay(Node.getDelay()).build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+        logger.info("follower节点完成一次心跳传输");
+    }
 
     @Override
     public void appendLog(LogRequest request, StreamObserver<LogResponse> responseObserver) {
@@ -68,14 +94,14 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
                 switch (type){
                     case TRAINER_TO_MANAGER:
                         // 发起client到leader的请求
-                        sendObserver = new FedRaftClient(Configuration.getString(Configuration.RAFT_SERVER_HOST),
-                                Configuration.getInt(Configuration.RAFT_SERVER_PORT))
+                        sendObserver = new FedRaftClient(Configuration.getString(Configuration.MANAGER_SERVER_HOST),
+                                Configuration.getInt(Configuration.MANAGER_SERVER_PORT))
                                 .getAsyncStub().withDeadlineAfter(5, TimeUnit.SECONDS)
                                 .appendStreamLog(new ResponseObserver());
                     case CLIENT_TO_LEADER:
                     case LEADER_TO_CLIENT:
                     case UNRECOGNIZED:
-                        sendObserver = new FedRaftClient(Configuration.getString(Configuration.RAFT_SERVER_HOST),
+                        sendObserver = new FedRaftClient(Configuration.getString(Configuration.MANAGER_SERVER_HOST),
                                 Configuration.getInt(Configuration.TRAINER_SERVER_PORT))
                                 .getAsyncStub().withDeadlineAfter(5, TimeUnit.SECONDS)
                                 .appendStreamLog(new ResponseObserver());

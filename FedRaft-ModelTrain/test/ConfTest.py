@@ -6,6 +6,9 @@
 @File       :   ConfTest.py
 """
 
-from utils import Properties
+from  utils import Properties
+import logging
 
-print(Properties.get(Properties.TRAINER_SERVER_PORT))
+
+def test():
+    logging.info(Properties.get(Properties.TRAINER_SERVER_PORT))

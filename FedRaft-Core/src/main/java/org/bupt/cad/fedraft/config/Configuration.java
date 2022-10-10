@@ -8,12 +8,13 @@ import org.apache.logging.log4j.Logger;
 
 public class Configuration {
 
-    public final static String RAFT_SERVER_HOST = "raft.server.host";
-    public final static String RAFT_SERVER_PORT = "raft.server.port";
+    public final static String MANAGER_SERVER_HOST = "manager.server.host";
+    public final static String MANAGER_SERVER_PORT = "manager.server.port";
     public final static String TRAINER_SERVER_PORT = "trainer.server.port";
 
-    public final static String LOG_MODEL_CHUNKSIZE = "log.model.chucksize";
+    public final static String LOG_MODEL_CHUCK_SIZE = "log.model.chuck-size";
 
+    public final static String NODE_THREADPOOL_NUMBERS = "node.threadpool.numbers";
 
     private static final Logger logger = LogManager.getLogger(Configuration.class.getName());
 
@@ -21,7 +22,8 @@ public class Configuration {
 
     static {
         try {
-            conf = new Configurations().properties("../conf.properties");
+            // java working space need to be set in /path/to/FedRaft and config should be put in root dictionary in FedRaft
+            conf = new Configurations().properties("./conf.properties");
         } catch (ConfigurationException e) {
             logger.error(e.getMessage(), e);
         }

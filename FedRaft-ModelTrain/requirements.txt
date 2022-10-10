@@ -1,0 +1,5 @@
+grpcio==1.49.1
+grpcio-tools==1.49.1
+torchvision==0.13.1
+pytorch==1.12.1
+cudatoolkit==11.3.1
