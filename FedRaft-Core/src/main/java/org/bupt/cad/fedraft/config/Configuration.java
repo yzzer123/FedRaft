@@ -14,6 +14,7 @@ public class Configuration {
 
     public final static String LOG_MODEL_CHUNKSIZE = "log.model.chucksize";
 
+    public final static String NODE_THREADPOOL_NUMBERS = "node.threadpool.numbers";
 
     private static final Logger logger = LogManager.getLogger(Configuration.class.getName());
 

@@ -5,11 +5,21 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 
-public class NodeInfo {
-
+public final class NodeInfo {
+    //作为键值key, 内部属性必须是不可变的! to do
     private String ip;
     private int port;
-    private float delay;
+    //private final String ip;
+
+    public static String idToIp(long id){ //添加静态方法,避免新建对象
+        String[] fields = new String[4];
+        id >>= 16;
+        for (int i = 0; i < 4; i++) {
+            fields[3 - i] = String.valueOf(id % (1 << 8));
+            id >>= 8;
+        }
+        return StringUtils.join(fields, ".");
+    }
 
     public NodeInfo(String ip, int port) {
         setIp(ip);
@@ -39,7 +49,7 @@ public class NodeInfo {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ip, port, delay);
+        return Objects.hash(ip, port);
     }
 
     public long getNodeId() {
@@ -72,21 +82,12 @@ public class NodeInfo {
         return this;
     }
 
-    public double getDelay() {
-        return delay;
-    }
-
-    public NodeInfo setDelay(float delay) {
-        this.delay = delay;
-        return this;
-    }
 
     @Override
     public String toString() {
         return "NodeInfo{" +
                 "ip='" + ip + '\'' +
                 ", port=" + port +
-                ", delay=" + delay +
                 '}';
     }
 }
