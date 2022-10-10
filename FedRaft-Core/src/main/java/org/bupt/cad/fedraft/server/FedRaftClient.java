@@ -3,9 +3,15 @@ package org.bupt.cad.fedraft.server;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.stub.StreamObserver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bupt.cad.fedraft.beans.NodeInfo;
+import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
+import org.bupt.cad.fedraft.rpc.message.HeartbeatResponse;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
+
+import java.util.Map;
 
 public class FedRaftClient {
     private static final Logger logger = LogManager.getLogger(FedRaftServer.class.getName());
@@ -41,11 +47,33 @@ public class FedRaftClient {
     }
 
     //向Server发送心跳信息: term, leader_id,
-    public void sendHeartBeat(int term, int leader_id, ByteString delay){
-        ByteString bytes = ByteString.copyFrom("sdd".getBytes());
-//        LogRequest beat = LogRequest.newBuilder().setTerm(term).setLeaderId(leader_id).setNetworkDelays(delay).build();
-//        blockingStub.appendLog(beat);
+    public void sendHeartBeat(int term, long leaderInfo, NodeInfo clientInfo){
+        HeartbeatRequest.Builder builder = HeartbeatRequest.newBuilder().setTerm(term).setLeaderId(leaderInfo);
+        int index = 0;
+        for(Map.Entry<NodeInfo, Float> topology: Node.topologies.entrySet()){
+            builder.setNodeIds(index, topology.getKey().getNodeId());
+            builder.setNetworkDelays(index, topology.getValue());
+            index += 1;
+        }
+        HeartbeatRequest request = builder.build();
+        asyncStub.heartbeat(request, new StreamObserver<HeartbeatResponse>() {
+            @Override
+            public void onNext(HeartbeatResponse heartbeatResponse) {
+                logger.info("get heartbeat response from " + clientInfo.getIp());
+                float newDelay = heartbeatResponse.getNetworkDelay();
+                Node.topologies.put(clientInfo, newDelay);
+            }
 
+            @Override
+            public void onError(Throwable throwable) {
+                logger.error("发送意外的错误, (可能心跳信息超时或服务器宕机)" + throwable.getMessage());
+                //to do
+            }
 
+            @Override
+            public void onCompleted() {
+                logger.info("follower节点终止本轮心跳信息");
+            }
+        });
     }
 }
