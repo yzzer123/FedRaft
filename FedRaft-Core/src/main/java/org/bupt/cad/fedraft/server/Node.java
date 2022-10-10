@@ -1,11 +1,8 @@
 package org.bupt.cad.fedraft.server;
 
-import com.google.protobuf.ByteString;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -14,7 +11,7 @@ public class Node {
 
     //自身节点的信息
     private static final NodeInfo selfNodeInfo =
-            new NodeInfo(Configuration.getString(Configuration.RAFT_SERVER_HOST), Configuration.getInt(Configuration.RAFT_SERVER_PORT));
+            new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT));
     //该节点保存的时延信息
     public static final ConcurrentHashMap<NodeInfo, Float> topologies = new ConcurrentHashMap<>();
     //保存的与其他所有节点的rpc连接

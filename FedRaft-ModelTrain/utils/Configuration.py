@@ -8,15 +8,15 @@ class Properties:
     logger: logging.Logger = None
     _conf: dict = None
 
-    RAFT_SERVER_HOST = "raft.server.host"
-    RAFT_SERVER_PORT = "raft.server.port"
+    RAFT_SERVER_HOST = "manager.server.host"
+    RAFT_SERVER_PORT = "manager.server.port"
     TRAINER_SERVER_PORT = "trainer.server.port"
-    LOG_MODEL_CHUNKSIZE = "log.model.chucksize"
+    LOG_MODEL_CHUNK_SIZE = "log.model.chuck_size"
     TRAINER_SERVER_THREADS = "trainer.server.threads"
     TRAINER_CLIENT_THREADS = "trainer.client.threads"
-    
+
     LOGGING_LEVEL = logging.INFO
-    
+
     @classmethod
     def init(cls):
         Properties.logger = logging.getLogger(str(Properties.__class__))

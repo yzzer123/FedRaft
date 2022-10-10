@@ -1,12 +1,12 @@
-
-from typing import Iterator,List
-from torch import nn
-from .Configuration import Properties
 import pickle
 from math import ceil
+from torch import nn
+from typing import Iterator, List
 
+from .Configuration import Properties
 
 logger = Properties.getLogger(name=str(__name__))
+
 
 def model_to_bytes(model: nn.Module) -> bytes:
     """模型序列化
@@ -21,7 +21,9 @@ def model_to_bytes(model: nn.Module) -> bytes:
     logger.debug("model_to_chunks: model has been serialized")
     return model_bytes
 
-def model_to_chunks(model_bytes: bytes, chunk_size=Properties.getInt(Properties.LOG_MODEL_CHUNKSIZE)) -> Iterator[bytes]:
+
+def model_to_chunks(model_bytes: bytes, chunk_size=Properties.getInt(Properties.LOG_MODEL_CHUNK_SIZE)) -> Iterator[
+    bytes]:
     """字节序列切片
 
     Args:

@@ -15,7 +15,6 @@ import org.bupt.cad.fedraft.rpc.message.LogResponse;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
 
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -95,14 +94,14 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
                 switch (type){
                     case TRAINER_TO_MANAGER:
                         // 发起client到leader的请求
-                        sendObserver = new FedRaftClient(Configuration.getString(Configuration.RAFT_SERVER_HOST),
-                                Configuration.getInt(Configuration.RAFT_SERVER_PORT))
+                        sendObserver = new FedRaftClient(Configuration.getString(Configuration.MANAGER_SERVER_HOST),
+                                Configuration.getInt(Configuration.MANAGER_SERVER_PORT))
                                 .getAsyncStub().withDeadlineAfter(5, TimeUnit.SECONDS)
                                 .appendStreamLog(new ResponseObserver());
                     case CLIENT_TO_LEADER:
                     case LEADER_TO_CLIENT:
                     case UNRECOGNIZED:
-                        sendObserver = new FedRaftClient(Configuration.getString(Configuration.RAFT_SERVER_HOST),
+                        sendObserver = new FedRaftClient(Configuration.getString(Configuration.MANAGER_SERVER_HOST),
                                 Configuration.getInt(Configuration.TRAINER_SERVER_PORT))
                                 .getAsyncStub().withDeadlineAfter(5, TimeUnit.SECONDS)
                                 .appendStreamLog(new ResponseObserver());

@@ -4,10 +4,10 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bupt.cad.fedraft.config.Configuration;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import org.bupt.cad.fedraft.config.Configuration;
 
 
 public class FedRaftServer {
@@ -78,8 +78,8 @@ public class FedRaftServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         // TODO 从配置文件中读取
-        String host = Configuration.getString(Configuration.RAFT_SERVER_HOST);
-        int port = Configuration.getInt(Configuration.RAFT_SERVER_PORT);
+        String host = Configuration.getString(Configuration.MANAGER_SERVER_HOST);
+        int port = Configuration.getInt(Configuration.MANAGER_SERVER_PORT);
 
         // 命令行中如果有参数就以命令行为准
         if (args.length == 2) {
