@@ -127,6 +127,7 @@ public class FedRaftServer {
             Configuration.setConfigFile(cmd.getOptionValue("config"));
         }
 
+
         if (cmd.hasOption("p")) {
             port = Integer.parseInt(cmd.getOptionValue("p"));
             Configuration.set(Configuration.MANAGER_SERVER_PORT, port);
@@ -138,7 +139,6 @@ public class FedRaftServer {
             Configuration.set(Configuration.MANAGER_SERVER_HOST, host);
 
         }
-
 
         FedRaftServer server = new FedRaftServer(host, port);
         server.start();
