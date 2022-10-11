@@ -86,7 +86,7 @@ public class FedRaftServer {
             host = args[0];
             port = Integer.parseInt(args[1]);
         }
-        FedRaftServer server = new FedRaftServer("localhost", 16778);
+        FedRaftServer server = new FedRaftServer("127.0.0.1", 16788);
         server.start();
         server.blockUtilShutdown();
     }

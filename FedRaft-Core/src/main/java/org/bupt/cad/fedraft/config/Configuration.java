@@ -15,6 +15,7 @@ public class Configuration {
     public final static String LOG_MODEL_CHUCK_SIZE = "log.model.chuck-size";
 
     public final static String NODE_THREADPOOL_NUMBERS = "node.threadpool.numbers";
+    public final static String NODE_HEARTBEAT_MAX_TIME = "node.heartbeat.max.time";
 
     private static final Logger logger = LogManager.getLogger(Configuration.class.getName());
 

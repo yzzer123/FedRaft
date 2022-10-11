@@ -40,7 +40,7 @@ public class FedRaftClient {
     private final FedRaftServiceGrpc.FedRaftServiceFutureStub futureStub;
 
     public FedRaftClient(String host, int port) {
-        this.channel = ManagedChannelBuilder.forAddress(host, port).build();
+        this.channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build(); //usePlaintext()!
         this.blockingStub = FedRaftServiceGrpc.newBlockingStub(channel);
         this.asyncStub = FedRaftServiceGrpc.newStub(channel);
         this.futureStub = FedRaftServiceGrpc.newFutureStub(channel);
@@ -49,11 +49,10 @@ public class FedRaftClient {
     //向Server发送心跳信息: term, leader_id,
     public void sendHeartBeat(int term, long leaderInfo, NodeInfo clientInfo){
         HeartbeatRequest.Builder builder = HeartbeatRequest.newBuilder().setTerm(term).setLeaderId(leaderInfo);
-        int index = 0;
         for(Map.Entry<NodeInfo, Float> topology: Node.topologies.entrySet()){
-            builder.setNodeIds(index, topology.getKey().getNodeId());
-            builder.setNetworkDelays(index, topology.getValue());
-            index += 1;
+            //repeated type: use add not set!
+            builder.addNodeIds(topology.getKey().getNodeId());
+            builder.addNetworkDelays(topology.getValue());
         }
         HeartbeatRequest request = builder.build();
         asyncStub.heartbeat(request, new StreamObserver<HeartbeatResponse>() {
@@ -66,13 +65,13 @@ public class FedRaftClient {
 
             @Override
             public void onError(Throwable throwable) {
-                logger.error("发送意外的错误, (可能心跳信息超时或服务器宕机)" + throwable.getMessage());
-                //to do
+                logger.error("发生意外的错误, (可能心跳信息超时或宕机)" + throwable.getMessage());//todo:不同异常的处理
+                Node.clientFutures.get(clientInfo).cancel(true);//终止向该线程发送心跳信息
             }
 
             @Override
             public void onCompleted() {
-                logger.info("follower节点终止本轮心跳信息");
+                logger.info("follower节点接收到本次心跳信息");
             }
         });
     }

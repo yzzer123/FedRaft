@@ -6,9 +6,9 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
 
 public final class NodeInfo {
-    //作为键值key, 内部属性必须是不可变的! to do
-    private String ip;
-    private int port;
+    //作为键值key, 内部属性必须是不可变的!
+    private final String ip;
+    private final int port;
     //private final String ip;
 
     public static String idToIp(long id){ //添加静态方法,避免新建对象
@@ -22,8 +22,8 @@ public final class NodeInfo {
     }
 
     public NodeInfo(String ip, int port) {
-        setIp(ip);
-        setPort(port);
+        this.ip = ip;
+        this.port = port;
     }
 
     public NodeInfo(long id) {
@@ -34,8 +34,8 @@ public final class NodeInfo {
             fields[3 - i] = String.valueOf(id % (1 << 8));
             id >>= 8;
         }
-        setIp(StringUtils.join(fields, "."));
-        setPort(port);
+        this.ip = (StringUtils.join(fields, "."));
+        this.port = port;
     }
 
 
@@ -68,19 +68,11 @@ public final class NodeInfo {
         return ip;
     }
 
-    public NodeInfo setIp(String ip) {
-        this.ip = ip;
-        return this;
-    }
 
     public int getPort() {
         return port;
     }
 
-    public NodeInfo setPort(int port) {
-        this.port = port;
-        return this;
-    }
 
 
     @Override
