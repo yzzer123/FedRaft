@@ -6,12 +6,12 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
 
 public final class NodeInfo {
-    //作为键值key, 内部属性必须是不可变的!
-    private final String ip;
-    private final int port;
-    //private final String ip;
+    
+    private String ip;
+    private int port;
+    private int trainerPort;
 
-    public static String idToIp(long id){ //添加静态方法,避免新建对象
+    public static String idToIp(long id) { //添加静态方法,避免新建对象
         String[] fields = new String[4];
         id >>= 16;
         for (int i = 0; i < 4; i++) {
@@ -21,21 +21,22 @@ public final class NodeInfo {
         return StringUtils.join(fields, ".");
     }
 
-    public NodeInfo(String ip, int port) {
-        this.ip = ip;
-        this.port = port;
+
+    public NodeInfo(String ip, int port, int trainerPort) {
+        setIp(ip).setPort(port).setTrainerPort(trainerPort);
     }
 
     public NodeInfo(long id) {
         String[] fields = new String[4];
+        int trainerPort = (int) (id % (1 << 16));
+        id >>= 16;
         int port = (int) (id % (1 << 16));
         id >>= 16;
         for (int i = 0; i < 4; i++) {
             fields[3 - i] = String.valueOf(id % (1 << 8));
             id >>= 8;
         }
-        this.ip = (StringUtils.join(fields, "."));
-        this.port = port;
+        setIp(StringUtils.join(fields, ".")).setPort(port).setTrainerPort(trainerPort);
     }
 
 
@@ -44,12 +45,12 @@ public final class NodeInfo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         NodeInfo nodeInfo = (NodeInfo) o;
-        return getNodeId() == nodeInfo.getNodeId();
+        return getIp().equals(nodeInfo.getIp()) && getPort() == nodeInfo.getPort() && getTrainerPort() == nodeInfo.getTrainerPort();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ip, port);
+        return Objects.hash(ip, port, trainerPort);
     }
 
     public long getNodeId() {
@@ -59,7 +60,7 @@ public final class NodeInfo {
         for (String field : fields) {
             id = (id << 8) + Long.parseLong(field);
         }
-        id = (id << 16) + getPort();
+        id = (id << 32) + ((long) getPort() << 16) + getTrainerPort();
         return id;
     }
 
@@ -67,19 +68,33 @@ public final class NodeInfo {
     public String getIp() {
         return ip;
     }
-
+    
+    public NodeInfo setIp(String ip) {
+        this.ip = ip;
+        return this;
+    }
 
     public int getPort() {
         return port;
     }
 
-
+    public NodeInfo setPort(int port) {
+        this.port = port;
+        return this;
+    }
 
     @Override
     public String toString() {
-        return "NodeInfo{" +
-                "ip='" + ip + '\'' +
-                ", port=" + port +
-                '}';
+        return ip + ':' + port +
+                ':' + trainerPort;
+    }
+
+    public int getTrainerPort() {
+        return trainerPort;
+    }
+
+    public NodeInfo setTrainerPort(int trainerPort) {
+        this.trainerPort = trainerPort;
+        return this;
     }
 }
