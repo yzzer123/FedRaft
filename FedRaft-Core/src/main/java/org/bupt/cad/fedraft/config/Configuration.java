@@ -1,6 +1,7 @@
 package org.bupt.cad.fedraft.config;
 
 
+import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.logging.log4j.LogManager;
@@ -36,22 +37,40 @@ public class Configuration {
 
     }
 
-    public static String getString(String key){
-        if (conf == null){
+    public static void setConfigFile(String path) {
+        PropertiesConfiguration config = null;
+        try {  // 重新读取配置
+            config = new Configurations().properties(path);
+        } catch (ConfigurationException e) {
+            logger.error("config path error " + e.getMessage(), e);
+            System.exit(1);
+        }
+        // 设置配置项
+        if (config != null) {
+            conf = config;
+        }
+    }
+
+    public static void set(String key, Object value) {
+        conf.setProperty(key, value);
+    }
+
+    public static String getString(String key) {
+        if (conf == null) {
             return null;
         }
         return conf.getString(key);
     }
 
-    public static int getInt(String key){
-        if (conf == null){
+    public static int getInt(String key) {
+        if (conf == null) {
             return 0;
         }
         return conf.getInt(key);
     }
 
-    public static long getLong(String key){
-        if (conf == null){
+    public static long getLong(String key) {
+        if (conf == null) {
             return 0;
         }
         return conf.getLong(key);

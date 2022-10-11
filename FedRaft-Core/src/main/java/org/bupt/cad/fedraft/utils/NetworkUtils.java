@@ -20,7 +20,7 @@ public class NetworkUtils {
     private static final Pattern delayPattern = Pattern.compile("time=([-+]?[0-9]*\\.?[0-9]+)");
 
     /**
-     * TODO 测试端到端时延，双向时延
+     * 测试端到端时延，双向时延
      *
      * @param host 目标ip
      * @return 单次时延, 如果不可达 返回-1

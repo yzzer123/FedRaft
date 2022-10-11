@@ -233,14 +233,14 @@ public class ZkClient {
     /**
      * 集群节点变化的监听器
      */
-    interface ClusterWatcher {
+    public interface ClusterWatcher {
         void addNode(NodeInfo nodeInfo);
 
         void removeNode(NodeInfo nodeInfo);
 
     }
 
-    interface LeaderWatcher {
+    public interface LeaderWatcher {
         void takeLeadership();
     }
 }

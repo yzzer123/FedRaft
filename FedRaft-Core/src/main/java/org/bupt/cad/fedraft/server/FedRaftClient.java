@@ -1,6 +1,5 @@
 package org.bupt.cad.fedraft.server;
 
-import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -40,7 +39,7 @@ public class FedRaftClient {
     private final FedRaftServiceGrpc.FedRaftServiceFutureStub futureStub;
 
     public FedRaftClient(String host, int port) {
-        this.channel = ManagedChannelBuilder.forAddress(host, port).build();
+        this.channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
         this.blockingStub = FedRaftServiceGrpc.newBlockingStub(channel);
         this.asyncStub = FedRaftServiceGrpc.newStub(channel);
         this.futureStub = FedRaftServiceGrpc.newFutureStub(channel);

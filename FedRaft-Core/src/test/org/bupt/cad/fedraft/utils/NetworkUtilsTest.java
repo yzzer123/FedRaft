@@ -7,10 +7,6 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class NetworkUtilsTest {
     private static final Logger logger = LogManager.getLogger(FedRaftServer.class);
@@ -39,19 +35,39 @@ public class NetworkUtilsTest {
     @Test
     public void ping() throws IOException, InterruptedException {
 
-        // 定时ping
-        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    logger.info("delay=\t" + NetworkUtils.ping("114.114.114.114"));
-                } catch (UnknownHostException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }, 0, 100, TimeUnit.MILLISECONDS);
-        new CountDownLatch(1).await(1000, TimeUnit.SECONDS);
+//        new Timer().schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                try {
+//                    logger.info("delay=\t" + NetworkUtils.ping("114.114.114.114"));
+//                } catch (UnknownHostException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        }, 0, 100);
+
+
+        while (true) {
+
+            logger.info("delay=\t" + NetworkUtils.ping("114.114.114.114"));
+            Thread.sleep(100);
+        }
+
+//        // 定时ping
+//        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+//
+//
+//        executorService.scheduleAtFixedRate(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    logger.info("delay=\t" + NetworkUtils.ping("114.114.114.114"));
+//                } catch (UnknownHostException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        }, 0, 100, TimeUnit.MILLISECONDS);
+//        new CountDownLatch(1).await(1000, TimeUnit.SECONDS);
     }
 
 

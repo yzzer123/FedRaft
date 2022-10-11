@@ -2,6 +2,10 @@ package org.bupt.cad.fedraft.server;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.beans.NodeInfo;
@@ -38,14 +42,27 @@ public class FedRaftServer {
         NodeInfo localNodeInfo = new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT),
                 Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
         zkClient = new ZkClient(localNodeInfo);
-
+        zkClient.checkinTmpLeader(() -> {
+            // do something when server become leader
+        });
     }
 
     /**
      * 启动tomcat服务
      */
-    public void start() throws IOException {
-        server.start();
+    public void start() {
+        // 向zk注册本节点配置
+        initialize();
+
+        try {
+            server.start();
+
+        } catch (IOException e) {
+
+            // 服务器启动失败 可能是端口被占用
+            logger.error("server start failed:" + e.getMessage(), e);
+            System.exit(1);
+        }
         logger.info("server started on port " + port);
 
         // Java进程宕机
@@ -63,8 +80,7 @@ public class FedRaftServer {
             }
         });
 
-        // 向zk注册本节点配置
-        initialize();
+
     }
 
     /**
@@ -87,16 +103,44 @@ public class FedRaftServer {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        // TODO 从配置文件中读取
+        // TODO 读取配置文件路径
+        // 构建参数读取工具
+        DefaultParser defaultParser = new DefaultParser();
+        Options options = new Options();
+        options.addOption("p", "port", true, "port for server");
+        options.addOption("h", "host", true, "host for server");
+        options.addOption("config", "config", true, "config file for server");
+        CommandLine cmd = null;
+        try {
+            cmd = defaultParser.parse(options, args);
+        } catch (ParseException e) {
+            logger.error("参数错误" + e.getMessage(), e);
+            System.exit(1);
+        }
+
         String host = Configuration.getString(Configuration.MANAGER_SERVER_HOST);
         int port = Configuration.getInt(Configuration.MANAGER_SERVER_PORT);
 
         // 命令行中如果有参数就以命令行为准
-        if (args.length == 2) {
-            host = args[0];
-            port = Integer.parseInt(args[1]);
+
+        if (cmd.hasOption("config")) {
+            Configuration.setConfigFile(cmd.getOptionValue("config"));
         }
-        FedRaftServer server = new FedRaftServer("localhost", 16778);
+
+        if (cmd.hasOption("p")) {
+            port = Integer.parseInt(cmd.getOptionValue("p"));
+            Configuration.set(Configuration.MANAGER_SERVER_PORT, port);
+        }
+
+
+        if (cmd.hasOption("h")) {
+            host = cmd.getOptionValue("h");
+            Configuration.set(Configuration.MANAGER_SERVER_HOST, host);
+
+        }
+
+
+        FedRaftServer server = new FedRaftServer(host, port);
         server.start();
         server.blockUtilShutdown();
     }
