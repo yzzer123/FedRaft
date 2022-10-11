@@ -15,7 +15,9 @@ public class Configuration {
     public final static String LOG_MODEL_CHUCK_SIZE = "log.model.chuck-size";
 
     public final static String ZOOKEEPER_HOSTS = "zookeeper.hosts";
-    public final static String ZOOKEEPER_SESSION_TIMEOUT = "zookeeper.session.timeout";
+    public final static String ZOOKEEPER_TIMEOUT = "zookeeper.timeout";
+    public final static String ZOOKEEPER_NAMESPACE = "zookeeper.namespace";
+    public final static String ZOOKEEPER_RETRY_TIMES = "zookeeper.retry-times";
 
     public final static String NODE_THREADPOOL_NUMBERS = "node.threadpool.numbers";
 

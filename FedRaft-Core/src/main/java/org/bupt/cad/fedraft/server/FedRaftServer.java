@@ -4,7 +4,9 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
+import org.bupt.cad.fedraft.utils.ZkClient;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -18,6 +20,8 @@ public class FedRaftServer {
     private final String host;
     private final int port;
 
+    private ZkClient zkClient;
+
     public FedRaftServer(String host, int port) {
         this.host = host;
         this.port = port;
@@ -29,6 +33,11 @@ public class FedRaftServer {
      * 向zookeeper注册服务
      */
     public void initialize() {
+
+        // 生成本地节点信息的javabean 用于初始化zk
+        NodeInfo localNodeInfo = new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT),
+                Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
+        zkClient = new ZkClient(localNodeInfo);
 
     }
 
@@ -46,6 +55,7 @@ public class FedRaftServer {
                 System.err.println("shutdown gRPC server because JVM shutdown");
                 try {
                     FedRaftServer.this.stop();
+                    zkClient.closeConnection();
                 } catch (InterruptedException e) {
                     e.printStackTrace(System.err);
                 }

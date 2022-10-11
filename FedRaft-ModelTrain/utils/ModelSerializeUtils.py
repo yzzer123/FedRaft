@@ -39,7 +39,7 @@ def model_to_chunks(model_bytes: bytes, chunk_size=Properties.getInt(Properties.
     num_chunk = ceil(model_size / chunk_size)
     
     for i in range(num_chunk):
-        logger.debug(f"model_to_chunks:  {i}th chunk of model has been returned")
+        # logger.debug(f"model_to_chunks:  {i}th chunk of model has been returned")
         chunk = model_bytes[i * chunk_size: min((i + 1) * chunk_size, model_size)]
         yield chunk
     
