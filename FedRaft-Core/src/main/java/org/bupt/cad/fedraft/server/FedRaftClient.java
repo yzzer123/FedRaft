@@ -46,26 +46,26 @@ public class FedRaftClient {
     }
 
     //向Server发送心跳信息: term, leader_id,
-    public void sendHeartBeat(int term, long leaderInfo, NodeInfo clientInfo){
-        HeartbeatRequest.Builder builder = HeartbeatRequest.newBuilder().setTerm(term).setLeaderId(leaderInfo);
-        for(Map.Entry<NodeInfo, Float> topology: Node.topologies.entrySet()){
+    public void sendHeartBeat(int term, long leaderId, Long clientId){
+        HeartbeatRequest.Builder builder = HeartbeatRequest.newBuilder().setTerm(term).setLeaderId(leaderId);
+        for(Map.Entry<Long, Float> topology: Node.topologies.entrySet()){
             //repeated type: use add not set!
-            builder.addNodeIds(topology.getKey().getNodeId());
+            builder.addNodeIds(topology.getKey());
             builder.addNetworkDelays(topology.getValue());
         }
         HeartbeatRequest request = builder.build();
         getAsyncStub().heartbeat(request, new StreamObserver<HeartbeatResponse>() {
             @Override
             public void onNext(HeartbeatResponse heartbeatResponse) {
-                logger.info("get heartbeat response from " + clientInfo.getIp());
+                logger.info("get heartbeat response from " + NodeInfo.idToIp(clientId));
                 float newDelay = heartbeatResponse.getNetworkDelay();
-                Node.topologies.put(clientInfo, newDelay);
+                Node.topologies.put(clientId, newDelay);
             }
 
             @Override
             public void onError(Throwable throwable) {
                 logger.error("发生意外的错误, (可能心跳信息超时或宕机)" + throwable.getMessage());//todo:不同异常的处理
-                Node.clientFutures.get(clientInfo).cancel(true);//终止向该线程发送心跳信息
+                Node.clientFutures.get(clientId).cancel(true);//终止该线程发送心跳信息
             }
 
             @Override

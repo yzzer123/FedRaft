@@ -28,6 +28,7 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
     public void heartbeat(HeartbeatRequest request, StreamObserver<HeartbeatResponse> responseObserver) {
         if (Node.getState() != Node.NodeState.FOLLOWER) {
             responseObserver.onError(new Exception("计时器已超时"));
+            logger.info("计时器超时,节点状态已被切换");
             return;
         }
         int leaderTerm = request.getTerm();
@@ -51,8 +52,7 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
             return;
         }
         for(int i = 0; i < nodeIdsList.size(); i++){
-            NodeInfo nodeInfo = new NodeInfo(nodeIdsList.get(i));
-            Node.topologies.putIfAbsent(nodeInfo, networkDelaysList.get(i));//理应已有当前nodeInfo
+            Node.topologies.putIfAbsent(nodeIdsList.get(i), networkDelaysList.get(i));//理应已有当前nodeInfo
         }
         HeartbeatResponse response = HeartbeatResponse.newBuilder().setNetworkDelay(Node.delay).build();
         responseObserver.onNext(response);
@@ -64,6 +64,5 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
     public void appendLog(LogRequest request, StreamObserver<LogResponse> responseObserver) {
 
     }
-
 
 }
