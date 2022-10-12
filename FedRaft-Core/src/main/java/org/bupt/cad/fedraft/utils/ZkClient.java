@@ -16,11 +16,10 @@ import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.server.FedRaftServer;
 
-import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * 单例设计模式，全局只有一个实例
+ * 与zookeeper 通信的客户端
  */
 public class ZkClient {
 
@@ -70,7 +69,7 @@ public class ZkClient {
     /**
      * 在zk中注册节点
      */
-    public void registerNode() throws Exception {
+    private void registerNode() throws Exception {
 
         this.client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath("/cluster/" + nodeName);
         logger.info("node registered in /fedraft/cluster");
@@ -80,7 +79,7 @@ public class ZkClient {
     /**
      * 在zk中注销节点
      */
-    public void quitNode() {
+    private void quitNode() {
 
         try {
             this.client.delete().forPath("/cluster/" + nodeName);
@@ -139,6 +138,7 @@ public class ZkClient {
             return;
         this.leaderFinishLatch.countDown();
         this.leaderSelector.close();
+        this.deleteClusterWatcher();
         this.leaderSelector = null;
     }
 
@@ -203,7 +203,7 @@ public class ZkClient {
     /**
      * 删除集群节点监控 最好只有leader监控全局节点变化， 过多的watcher会导致zk的性能下降
      */
-    public void deleteClusterWatcher() throws IOException {
+    private void deleteClusterWatcher() {
         if (this.watcherCache == null || this.listener == null) {
             logger.warn("watcher hasn't been initialized");
             return;

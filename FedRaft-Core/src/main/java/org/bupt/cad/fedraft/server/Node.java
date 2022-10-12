@@ -6,7 +6,6 @@ import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.exception.StateChangeException;
 
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.*;
@@ -29,7 +28,7 @@ public class Node {
     public static final ScheduledExecutorService executor
             = Executors.newScheduledThreadPool(Configuration.getInt(Configuration.NODE_THREADPOOL_NUMBERS));
     public static int term = -1;//当前节点的任期
-    public static float delay = 10000.0f;//当前节点的平均时延 todo:是否要为静态
+    public static int delay = 10000;//当前节点的平均时延 todo:是否要为静态
     //    int heartbeatMaxTime = 1000;
 //    long lastHeartbeat = 0L;
 //    boolean heartbeatFlag = true;//作为leader是否持续发送心跳
@@ -41,16 +40,14 @@ public class Node {
     private static NodeState state = NodeState.SAFE_MODE;//candidate follower leader tmp_leader  safemode
 
     // 收到一次全局拓扑后，就会脱离安全模式
-    enum NodeState {
-        SAFE_MODE, TMP_LEADER, LEADER, CANDIDATE, FOLLOWER
-    }
-
 
 
     //leader节点向其他节点发送心跳信息
     public void maintainHeartbeat() {
-        for(Long nodeId: clientChannels.keySet()) {
-            ScheduledFuture<?>  scheduledFuture= executor.scheduleAtFixedRate(() -> {
+
+        // TODO 改为单一计时器
+        for (Long nodeId : clientChannels.keySet()) {
+            ScheduledFuture<?> scheduledFuture = executor.scheduleAtFixedRate(() -> {
                 FedRaftClient client = clientChannels.get(nodeId);
                 client.sendHeartBeat(term, selfNodeInfo.getNodeId(), nodeId);
             }, 0, 2000, TimeUnit.MILLISECONDS);
@@ -59,25 +56,15 @@ public class Node {
     }
 
     //初始化计时器
-    public static void heartbeatTimerInit(){
+    public static void resetHeartbeatTimer() {
+        if (timer != null) {
+            timer.cancel();
+        }
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 //超时, 当前节点切换为候选人状态
-                state = NodeState.CANDIDATE;
-                logger.info("当前节点状态改变为" + state);
-            }
-        }, heartbeatMaxTime);
-    }
-
-    public static void heartbeatTimerUpdate(){
-        timer.cancel();
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                //超时, 当前节点切换为候选人状态,
                 state = NodeState.CANDIDATE;
                 logger.info("当前节点状态改变为" + state);
             }

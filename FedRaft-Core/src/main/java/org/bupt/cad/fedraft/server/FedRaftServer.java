@@ -8,6 +8,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.bupt.cad.fedraft.algorithm.RaftAlgorithm;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.utils.ZkClient;
@@ -30,7 +31,7 @@ public class FedRaftServer {
         this.host = host;
         this.port = port;
         this.server = ServerBuilder.forPort(port)
-                .addService(new FedRaftService()).build();
+                .addService(new FedRaftService(new RaftAlgorithm())).build();
     }
 
     /**
@@ -96,7 +97,7 @@ public class FedRaftServer {
     /**
      * 服务启动后阻塞主线程直到服务停止
      */
-    private void blockUtilShutdown() throws InterruptedException {
+    public void blockUtilShutdown() throws InterruptedException {
         if (server != null) {
             server.awaitTermination();
         }
@@ -164,10 +165,6 @@ public class FedRaftServer {
                 System.err.println("server shutdown");
             }
         });
-        try {
-            blockUtilShutdown();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
     }
 }
