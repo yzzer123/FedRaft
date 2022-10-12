@@ -7,6 +7,10 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.net.URL;
+import java.util.Iterator;
+
 public class Configuration {
 
     public final static String MANAGER_SERVER_HOST = "manager.server.host";
@@ -30,25 +34,34 @@ public class Configuration {
     static {
         try {
             // java working space need to be set in /path/to/FedRaft and config should be put in root dictionary in FedRaft
-            conf = new Configurations().properties("./conf.properties");
+            // 如果路径下存在配置文件，就访问路径下的，否则访问打包好的资源文件
+            File confFile = new File("./conf.properties");
+            if (confFile.exists()) {
+                conf = new Configurations().properties(confFile);
+            } else {
+                URL resource = Configuration.class.getClassLoader().getResource("conf.properties");
+                conf = new Configurations().properties(resource);
+            }
         } catch (ConfigurationException e) {
-            logger.error(e.getMessage(), e);
-            System.exit(1);
+            logger.error("默认配置文件加载失败" + e.getMessage(), e);
+//            System.exit(1);
         }
 
     }
 
     public static void setConfigFile(String path) {
-        PropertiesConfiguration config = null;
-        try {  // 重新读取配置
-            config = new Configurations().properties(path);
+
+        try {  // 读取配置文件 并将其覆盖到原配置中
+            PropertiesConfiguration newConf = new Configurations().properties(path);
+            Iterator<String> newConfKeys = newConf.getKeys();
+            String key;
+            while (newConfKeys.hasNext()) {
+                key = newConfKeys.next();
+                Configuration.set(key, newConf.get(Object.class, key));
+            }
         } catch (ConfigurationException e) {
             logger.error("config path error " + e.getMessage(), e);
             System.exit(1);
-        }
-        // 设置配置项
-        if (config != null) {
-            conf = config;
         }
     }
 

@@ -22,21 +22,21 @@ public interface HeartbeatRequestOrBuilder extends
     long getLeaderId();
 
     /**
-     * <code>repeated int64 node_ids = 3;</code>
+     * <code>repeated uint64 node_ids = 3;</code>
      *
      * @return A list containing the nodeIds.
      */
     java.util.List<java.lang.Long> getNodeIdsList();
 
     /**
-     * <code>repeated int64 node_ids = 3;</code>
+     * <code>repeated uint64 node_ids = 3;</code>
      *
      * @return The count of nodeIds.
      */
     int getNodeIdsCount();
 
     /**
-     * <code>repeated int64 node_ids = 3;</code>
+     * <code>repeated uint64 node_ids = 3;</code>
      *
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.

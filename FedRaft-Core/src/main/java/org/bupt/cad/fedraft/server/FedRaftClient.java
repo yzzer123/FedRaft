@@ -54,7 +54,7 @@ public class FedRaftClient {
             builder.addNetworkDelays(topology.getValue());
         }
         HeartbeatRequest request = builder.build();
-        asyncStub.heartbeat(request, new StreamObserver<HeartbeatResponse>() {
+        getAsyncStub().heartbeat(request, new StreamObserver<HeartbeatResponse>() {
             @Override
             public void onNext(HeartbeatResponse heartbeatResponse) {
                 logger.info("get heartbeat response from " + clientInfo.getIp());

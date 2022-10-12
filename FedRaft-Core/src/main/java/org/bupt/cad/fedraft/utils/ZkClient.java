@@ -91,7 +91,7 @@ public class ZkClient {
     }
 
     /**
-     * TODO 集群初始化时通过抢占来确定临时节点
+     * 集群初始化时通过抢占来确定临时节点
      *
      * @param leaderWatcher 成功成为leader的回调
      */
