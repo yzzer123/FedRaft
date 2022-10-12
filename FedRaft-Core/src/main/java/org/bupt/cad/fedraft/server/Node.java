@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
+import org.bupt.cad.fedraft.exception.StateChangeException;
 
 import java.util.Random;
 import java.util.Timer;
@@ -29,14 +30,22 @@ public class Node {
             = Executors.newScheduledThreadPool(Configuration.getInt(Configuration.NODE_THREADPOOL_NUMBERS));
     public static int term = -1;//当前节点的任期
     public static float delay = 10000.0f;//当前节点的平均时延 todo:是否要为静态
-//    int heartbeatMaxTime = 1000;
+    //    int heartbeatMaxTime = 1000;
 //    long lastHeartbeat = 0L;
 //    boolean heartbeatFlag = true;//作为leader是否持续发送心跳
     private static final Long heartbeatMaxTime = Configuration.getLong(Configuration.NODE_HEARTBEAT_MAX_TIME);
 
     private static Timer timer;
 
-    public static int STATE = 1;//candidate follower leader
+    // 刚开始为安全模式
+    private static NodeState state = NodeState.SAFE_MODE;//candidate follower leader tmp_leader  safemode
+
+    // 收到一次全局拓扑后，就会脱离安全模式
+    enum NodeState {
+        SAFE_MODE, TMP_LEADER, LEADER, CANDIDATE, FOLLOWER
+    }
+
+
 
     //leader节点向其他节点发送心跳信息
     public void maintainHeartbeat() {
@@ -56,8 +65,8 @@ public class Node {
             @Override
             public void run() {
                 //超时, 当前节点切换为候选人状态
-                STATE = 2;
-                logger.info("当前节点状态改变为" + STATE);
+                state = NodeState.CANDIDATE;
+                logger.info("当前节点状态改变为" + state);
             }
         }, heartbeatMaxTime);
     }
@@ -69,8 +78,8 @@ public class Node {
             @Override
             public void run() {
                 //超时, 当前节点切换为候选人状态,
-                STATE = 2;
-                logger.info("当前节点状态改变为" + STATE);
+                state = NodeState.CANDIDATE;
+                logger.info("当前节点状态改变为" + state);
             }
         }, heartbeatMaxTime);
     }
@@ -78,15 +87,56 @@ public class Node {
 
     //对于节点建立rpc连接,建立线程,初始化拓扑
     // todo:进一步完善,目前实现仅方便测试
+
     public void buildRpc(NodeInfo nodeInfo){
         long nodeId = nodeInfo.getNodeId();
         if (!clientChannels.contains(nodeId))
             clientChannels.put(nodeId, new FedRaftClient(nodeInfo.getIp(),nodeInfo.getPort()));
         if(!topologies.contains(nodeId))
             topologies.put(nodeId, 1000.0f);
+
         System.out.println(clientChannels);
         System.out.println(topologies);
     }
 
+
+    public static NodeState getState() {
+        return state;
+    }
+
+    public static void setState(NodeState newState) {
+        switch (newState) {
+            case TMP_LEADER: // tmp leader只能从 safe mode转换来
+                if (state == NodeState.SAFE_MODE) {
+                    break;
+                }
+            case LEADER:
+                if (state == NodeState.CANDIDATE) {
+                    break;
+                }
+            case CANDIDATE:
+                if (state == NodeState.CANDIDATE || state == NodeState.FOLLOWER) {
+                    break;
+                }
+            case SAFE_MODE:  // safe mode只有初始化时才会有这种状态
+                throw new StateChangeException("invalid state change from " + state + " to " + newState);
+
+        }
+        state = newState;
+    }
+
+
+    public static void main(String[] args) {
+        Node leader = new Node();
+        leader.buildRpc(new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT), Configuration.getInt(Configuration.TRAINER_SERVER_PORT)));//传入客户端信息
+        leader.maintainHeartbeat();
+        try {
+            sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //关闭线程池
+        executor.shutdown();
+    }
 
 }

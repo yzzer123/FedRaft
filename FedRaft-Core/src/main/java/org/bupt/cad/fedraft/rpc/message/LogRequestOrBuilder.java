@@ -15,7 +15,6 @@ public interface LogRequestOrBuilder extends
 
   /**
    * <code>uint64 leader_id = 2;</code>
-   *
    * @return The leaderId.
    */
   long getLeaderId();

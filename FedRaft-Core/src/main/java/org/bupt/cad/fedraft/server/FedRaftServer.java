@@ -103,7 +103,6 @@ public class FedRaftServer {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        // TODO 读取配置文件路径
         // 构建参数读取工具
         DefaultParser defaultParser = new DefaultParser();
         Options options = new Options();
@@ -118,29 +117,25 @@ public class FedRaftServer {
             System.exit(1);
         }
 
-        String host = Configuration.getString(Configuration.MANAGER_SERVER_HOST);
-        int port = Configuration.getInt(Configuration.MANAGER_SERVER_PORT);
-
-        // 命令行中如果有参数就以命令行为准
-
+        //  读取配置文件路径
         if (cmd.hasOption("config")) {
             Configuration.setConfigFile(cmd.getOptionValue("config"));
         }
 
-
+        // 命令行中如果有参数就以命令行为准     优先级 命令行 > 自定义配置文件 > 默认配置文件
         if (cmd.hasOption("p")) {
-            port = Integer.parseInt(cmd.getOptionValue("p"));
-            Configuration.set(Configuration.MANAGER_SERVER_PORT, port);
+            // 覆盖配置项port
+            Configuration.set(Configuration.MANAGER_SERVER_PORT, Integer.parseInt(cmd.getOptionValue("p")));
         }
 
 
         if (cmd.hasOption("h")) {
-            host = cmd.getOptionValue("h");
-            Configuration.set(Configuration.MANAGER_SERVER_HOST, host);
+            // 覆盖配置项host
+            Configuration.set(Configuration.MANAGER_SERVER_HOST, cmd.getOptionValue("h"));
 
         }
 
-        FedRaftServer server = new FedRaftServer(host, port);
+        FedRaftServer server = new FedRaftServer(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT));
         server.start();
         server.blockUtilShutdown();
     }
