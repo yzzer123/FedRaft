@@ -13,12 +13,21 @@ public final class NodeInfo {
 
     public static String idToIp(long id) { //添加静态方法,避免新建对象
         String[] fields = new String[4];
-        id >>= 16;
+        id >>= 32;
         for (int i = 0; i < 4; i++) {
             fields[3 - i] = String.valueOf(id % (1 << 8));
             id >>= 8;
         }
         return StringUtils.join(fields, ".");
+    }
+
+    public static int idToPort(long id) {
+        id >>= 16;
+        return (int) (id % (1 << 16));
+    }
+
+    public static int idToTrainerPort(long id) {
+        return (int) (id % (1 << 16));
     }
 
 

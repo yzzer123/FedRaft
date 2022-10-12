@@ -144,4 +144,35 @@ public class FedRaftServer {
         server.start();
         server.blockUtilShutdown();
     }
+
+    public void startWithoutZK(){
+        try {
+            server.start();
+        } catch (IOException e) {
+            // 服务器启动失败 可能是端口被占用
+            logger.error("server start failed:" + e.getMessage(), e);
+            System.exit(1);
+        }
+        logger.info("server started on port " + port);
+
+        // Java进程宕机
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            @Override
+            public void run() {
+                System.err.println("shutdown gRPC server because JVM shutdown");
+                try {
+                    FedRaftServer.this.stop();
+                    zkClient.closeConnection();
+                } catch (InterruptedException e) {
+                    e.printStackTrace(System.err);
+                }
+                System.err.println("server shutdown");
+            }
+        });
+        try {
+            blockUtilShutdown();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
