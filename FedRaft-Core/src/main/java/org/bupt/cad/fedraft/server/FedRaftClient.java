@@ -6,6 +6,9 @@ import io.grpc.stub.StreamObserver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.beans.NodeInfo;
+import org.bupt.cad.fedraft.node.Node;
+import org.bupt.cad.fedraft.node.NodeState;
+import org.bupt.cad.fedraft.node.TmpLeader;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatResponse;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
@@ -48,7 +51,7 @@ public class FedRaftClient {
     //向Server发送心跳信息: term, leader_id,
     public void sendHeartBeat(int term, long leaderId, Long clientId){
         HeartbeatRequest.Builder builder = HeartbeatRequest.newBuilder().setTerm(term).setLeaderId(leaderId);
-        for(Map.Entry<Long, Integer> topology: Node.topologies.entrySet()){
+        for (Map.Entry<Long, Integer> topology : Node.getRuntimeNode().getTopologies().entrySet()) {
             //repeated type: use add not set!
             builder.addNodeIds(topology.getKey());
             builder.addNetworkDelays(topology.getValue());
@@ -61,9 +64,9 @@ public class FedRaftClient {
             public void onNext(HeartbeatResponse heartbeatResponse) {
                 logger.info("get heartbeat response from " + NodeInfo.idToIp(clientId));
                 int newDelay = heartbeatResponse.getNetworkDelay();
-                Node.topologies.put(clientId, newDelay);
-                if(Node.getState() == NodeState.TMP_LEADER && flag){
-                    flag = TmpLeader.count(clientId);
+                Node.getRuntimeNode().getTopologies().put(clientId, newDelay);
+                if (Node.getRuntimeNode().getState() == NodeState.TMP_LEADER && flag) {
+                    flag = Node.getRuntimeNode().<TmpLeader>getNodeMode().count(clientId);
                 }
             }
 

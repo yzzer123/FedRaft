@@ -47,27 +47,27 @@ public final class HeartbeatResponse extends
             boolean done = false;
             while (!done) {
                 int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 13: {
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 8: {
 
-            networkDelay_ = input.readFloat();
-            break;
-          }
-          default: {
-              if (!parseUnknownField(
-                      input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-              }
-            break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
+                        networkDelay_ = input.readUInt32();
+                        break;
+                    }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
+            }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
+        } catch (com.google.protobuf.UninitializedMessageException e) {
             throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
         } catch (java.io.IOException e) {
             throw new com.google.protobuf.InvalidProtocolBufferException(
@@ -91,86 +91,87 @@ public final class HeartbeatResponse extends
                         org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.class, org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.Builder.class);
     }
 
-  public static final int NETWORK_DELAY_FIELD_NUMBER = 1;
-  private float networkDelay_;
-  /**
-   * <pre>
-   * 传输模型的大小
-   * </pre>
-   *
-   * <code>float network_delay = 1;</code>
-   * @return The networkDelay.
-   */
-  @java.lang.Override
-  public float getNetworkDelay() {
-    return networkDelay_;
-  }
+    public static final int NETWORK_DELAY_FIELD_NUMBER = 1;
+    private int networkDelay_;
+
+    /**
+     * <pre>
+     * 传输模型的大小
+     * </pre>
+     *
+     * <code>uint32 network_delay = 1;</code>
+     *
+     * @return The networkDelay.
+     */
+    @java.lang.Override
+    public int getNetworkDelay() {
+        return networkDelay_;
+    }
 
   private byte memoizedIsInitialized = -1;
-  @java.lang.Override
-  public final boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
 
-    memoizedIsInitialized = 1;
-    return true;
-  }
+    @java.lang.Override
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
-        if (java.lang.Float.floatToRawIntBits(networkDelay_) != 0) {
-            output.writeFloat(1, networkDelay_);
+        if (networkDelay_ != 0) {
+            output.writeUInt32(1, networkDelay_);
         }
         unknownFields.writeTo(output);
     }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
+    @java.lang.Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
 
-    size = 0;
-    if (java.lang.Float.floatToRawIntBits(networkDelay_) != 0) {
-        size += com.google.protobuf.CodedOutputStream
-                .computeFloatSize(1, networkDelay_);
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
+        size = 0;
+        if (networkDelay_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt32Size(1, networkDelay_);
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
     return size;
   }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-        return true;
-    }
-    if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.HeartbeatResponse)) {
-      return super.equals(obj);
-    }
-    org.bupt.cad.fedraft.rpc.message.HeartbeatResponse other = (org.bupt.cad.fedraft.rpc.message.HeartbeatResponse) obj;
+      if (obj == this) {
+          return true;
+      }
+      if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.HeartbeatResponse)) {
+          return super.equals(obj);
+      }
+      org.bupt.cad.fedraft.rpc.message.HeartbeatResponse other = (org.bupt.cad.fedraft.rpc.message.HeartbeatResponse) obj;
 
-    if (java.lang.Float.floatToIntBits(getNetworkDelay())
-            != java.lang.Float.floatToIntBits(
-            other.getNetworkDelay())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+      if (getNetworkDelay()
+              != other.getNetworkDelay()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
 
   @java.lang.Override
   public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+      if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + NETWORK_DELAY_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-              getNetworkDelay());
+      hash = (53 * hash) + getNetworkDelay();
       hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
+      memoizedHashCode = hash;
+      return hash;
   }
 
     public static org.bupt.cad.fedraft.rpc.message.HeartbeatResponse parseFrom(
@@ -262,14 +263,16 @@ public final class HeartbeatResponse extends
     public static Builder newBuilder() {
         return DEFAULT_INSTANCE.toBuilder();
     }
-  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.HeartbeatResponse prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @java.lang.Override
-  public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
-  }
+
+    public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.HeartbeatResponse prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @java.lang.Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -298,10 +301,10 @@ public final class HeartbeatResponse extends
                             org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.class, org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.Builder.class);
         }
 
-    // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.newBuilder()
-    private Builder() {
-      maybeForceBuilderInitialization();
-    }
+        // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
+        }
 
         private Builder(
                 com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
@@ -314,13 +317,14 @@ public final class HeartbeatResponse extends
                     .alwaysUseFieldBuilders) {
             }
         }
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      networkDelay_ = 0F;
 
-      return this;
-    }
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
+            networkDelay_ = 0;
+
+            return this;
+        }
 
         @java.lang.Override
         public com.google.protobuf.Descriptors.Descriptor
@@ -328,27 +332,27 @@ public final class HeartbeatResponse extends
             return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_HeartbeatResponse_descriptor;
         }
 
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse getDefaultInstanceForType() {
-      return org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.getDefaultInstance();
-    }
+        @java.lang.Override
+        public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse getDefaultInstanceForType() {
+            return org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.getDefaultInstance();
+        }
 
-    @java.lang.Override
+        @java.lang.Override
     public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse build() {
       org.bupt.cad.fedraft.rpc.message.HeartbeatResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
-      return result;
-    }
+            return result;
+        }
 
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse buildPartial() {
-      org.bupt.cad.fedraft.rpc.message.HeartbeatResponse result = new org.bupt.cad.fedraft.rpc.message.HeartbeatResponse(this);
-      result.networkDelay_ = networkDelay_;
-      onBuilt();
-      return result;
-    }
+        @java.lang.Override
+        public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse buildPartial() {
+            org.bupt.cad.fedraft.rpc.message.HeartbeatResponse result = new org.bupt.cad.fedraft.rpc.message.HeartbeatResponse(this);
+            result.networkDelay_ = networkDelay_;
+            onBuilt();
+            return result;
+        }
 
         @java.lang.Override
         public Builder clone() {
@@ -396,22 +400,22 @@ public final class HeartbeatResponse extends
                 super.mergeFrom(other);
                 return this;
             }
-    }
+        }
 
-    public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.HeartbeatResponse other) {
-      if (other == org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.getDefaultInstance()) return this;
-      if (other.getNetworkDelay() != 0F) {
-        setNetworkDelay(other.getNetworkDelay());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
-      return this;
-    }
+        public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.HeartbeatResponse other) {
+            if (other == org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.getDefaultInstance()) return this;
+            if (other.getNetworkDelay() != 0) {
+                setNetworkDelay(other.getNetworkDelay());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
 
-    @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
+        @java.lang.Override
+        public final boolean isInitialized() {
+            return true;
+        }
 
         @java.lang.Override
         public Builder mergeFrom(
@@ -428,52 +432,58 @@ public final class HeartbeatResponse extends
                 if (parsedMessage != null) {
                     mergeFrom(parsedMessage);
                 }
-      }
-      return this;
-    }
+            }
+            return this;
+        }
 
-        private float networkDelay_ ;
-    /**
-     * <pre>
-     * 传输模型的大小
-     * </pre>
-     *
-     * <code>float network_delay = 1;</code>
-     * @return The networkDelay.
-     */
-    @java.lang.Override
-    public float getNetworkDelay() {
-      return networkDelay_;
-    }
-    /**
-     * <pre>
-     * 传输模型的大小
-     * </pre>
-     *
-     * <code>float network_delay = 1;</code>
-     * @param value The networkDelay to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNetworkDelay(float value) {
+        private int networkDelay_;
 
-        networkDelay_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 传输模型的大小
-     * </pre>
-     *
-     * <code>float network_delay = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearNetworkDelay() {
+        /**
+         * <pre>
+         * 传输模型的大小
+         * </pre>
+         *
+         * <code>uint32 network_delay = 1;</code>
+         *
+         * @return The networkDelay.
+         */
+        @java.lang.Override
+        public int getNetworkDelay() {
+            return networkDelay_;
+        }
 
-        networkDelay_ = 0F;
-        onChanged();
-        return this;
-    }
+        /**
+         * <pre>
+         * 传输模型的大小
+         * </pre>
+         *
+         * <code>uint32 network_delay = 1;</code>
+         *
+         * @param value The networkDelay to set.
+         * @return This builder for chaining.
+         */
+        public Builder setNetworkDelay(int value) {
+
+            networkDelay_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 传输模型的大小
+         * </pre>
+         *
+         * <code>uint32 network_delay = 1;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearNetworkDelay() {
+
+            networkDelay_ = 0;
+            onChanged();
+            return this;
+        }
 
         @java.lang.Override
         public final Builder setUnknownFields(
@@ -488,18 +498,19 @@ public final class HeartbeatResponse extends
         }
 
 
-    // @@protoc_insertion_point(builder_scope:fedraft.HeartbeatResponse)
-  }
+        // @@protoc_insertion_point(builder_scope:fedraft.HeartbeatResponse)
+    }
 
-  // @@protoc_insertion_point(class_scope:fedraft.HeartbeatResponse)
-  private static final org.bupt.cad.fedraft.rpc.message.HeartbeatResponse DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.HeartbeatResponse();
-  }
+    // @@protoc_insertion_point(class_scope:fedraft.HeartbeatResponse)
+    private static final org.bupt.cad.fedraft.rpc.message.HeartbeatResponse DEFAULT_INSTANCE;
 
-  public static org.bupt.cad.fedraft.rpc.message.HeartbeatResponse getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
+    static {
+        DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.HeartbeatResponse();
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.HeartbeatResponse getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
 
     private static final com.google.protobuf.Parser<HeartbeatResponse>
             PARSER = new com.google.protobuf.AbstractParser<HeartbeatResponse>() {
@@ -512,7 +523,7 @@ public final class HeartbeatResponse extends
         }
     };
 
-  public static com.google.protobuf.Parser<HeartbeatResponse> parser() {
+    public static com.google.protobuf.Parser<HeartbeatResponse> parser() {
     return PARSER;
   }
 

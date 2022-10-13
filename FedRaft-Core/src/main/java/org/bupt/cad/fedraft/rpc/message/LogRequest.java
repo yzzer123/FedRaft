@@ -115,55 +115,55 @@ private static final long serialVersionUID = 0L;
             org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
   }
 
-  /**
-   * Protobuf enum {@code fedraft.LogRequest.LogType}
-   */
-  public enum LogType
-          implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <pre>
-       * TRAINER_TO_MANAGER = 0;   // 发生在模型汇总阶段
-       * </pre>
-       *
-       * <code>CLIENT_TO_LEADER = 0;</code>
-       */
-      CLIENT_TO_LEADER(0),
-      /**
-       * <pre>
-       * 发生在模型分发阶段
-       * </pre>
-       *
-       * <code>LEADER_TO_CLIENT = 1;</code>
-       */
-      LEADER_TO_CLIENT(1),
-      UNRECOGNIZED(-1),
-      ;
+    /**
+     * Protobuf enum {@code fedraft.LogRequest.LogType}
+     */
+    public enum LogType
+            implements com.google.protobuf.ProtocolMessageEnum {
+        /**
+         * <pre>
+         * TRAINER_TO_MANAGER = 0;   // 发生在模型汇总阶段
+         * </pre>
+         *
+         * <code>CLIENT_TO_LEADER = 0;</code>
+         */
+        CLIENT_TO_LEADER(0),
+        /**
+         * <pre>
+         * 发生在模型分发阶段
+         * </pre>
+         *
+         * <code>LEADER_TO_CLIENT = 1;</code>
+         */
+        LEADER_TO_CLIENT(1),
+        UNRECOGNIZED(-1),
+        ;
 
-      /**
-       * <pre>
-       * TRAINER_TO_MANAGER = 0;   // 发生在模型汇总阶段
-       * </pre>
-       *
-       * <code>CLIENT_TO_LEADER = 0;</code>
-       */
-      public static final int CLIENT_TO_LEADER_VALUE = 0;
-      /**
-       * <pre>
-       * 发生在模型分发阶段
-       * </pre>
-       *
-       * <code>LEADER_TO_CLIENT = 1;</code>
-       */
-      public static final int LEADER_TO_CLIENT_VALUE = 1;
+        /**
+         * <pre>
+         * TRAINER_TO_MANAGER = 0;   // 发生在模型汇总阶段
+         * </pre>
+         *
+         * <code>CLIENT_TO_LEADER = 0;</code>
+         */
+        public static final int CLIENT_TO_LEADER_VALUE = 0;
+        /**
+         * <pre>
+         * 发生在模型分发阶段
+         * </pre>
+         *
+         * <code>LEADER_TO_CLIENT = 1;</code>
+         */
+        public static final int LEADER_TO_CLIENT_VALUE = 1;
 
 
-    public final int getNumber() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-            "Can't get the number of an unknown enum value.");
-      }
-      return value;
-    }
+        public final int getNumber() {
+            if (this == UNRECOGNIZED) {
+                throw new java.lang.IllegalArgumentException(
+                        "Can't get the number of an unknown enum value.");
+            }
+            return value;
+        }
 
     /**
      * @param value The numeric wire value of the corresponding enum entry.
@@ -183,9 +183,11 @@ private static final long serialVersionUID = 0L;
         switch (value) {
             case 0:
                 return CLIENT_TO_LEADER;
-        case 1: return LEADER_TO_CLIENT;
-        default: return null;
-      }
+            case 1:
+                return LEADER_TO_CLIENT;
+            default:
+                return null;
+        }
     }
 
     public static com.google.protobuf.Internal.EnumLiteMap<LogType>
@@ -231,14 +233,14 @@ private static final long serialVersionUID = 0L;
       return VALUES[desc.getIndex()];
     }
 
-    private final int value;
+        private final int value;
 
-    private LogType(int value) {
-      this.value = value;
+        private LogType(int value) {
+            this.value = value;
+        }
+
+        // @@protoc_insertion_point(enum_scope:fedraft.LogRequest.LogType)
     }
-
-    // @@protoc_insertion_point(enum_scope:fedraft.LogRequest.LogType)
-  }
 
     public static final int TERM_FIELD_NUMBER = 1;
     private int term_;
@@ -272,14 +274,15 @@ private static final long serialVersionUID = 0L;
     /**
      * <pre>
      * 之前发送模型的索引
-   * </pre>
-   *
-   * <code>uint32 pre_model_index = 3;</code>
-   * @return The preModelIndex.
-   */
-  @java.lang.Override
-  public int getPreModelIndex() {
-    return preModelIndex_;
+     * </pre>
+     *
+     * <code>uint32 pre_model_index = 3;</code>
+     *
+     * @return The preModelIndex.
+     */
+    @java.lang.Override
+    public int getPreModelIndex() {
+        return preModelIndex_;
   }
 
   public static final int PRE_MODEL_TERM_FIELD_NUMBER = 4;
@@ -298,19 +301,21 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int LOG_TYPE_FIELD_NUMBER = 5;
-  private int logType_;
-  /**
-   * <pre>
-   * 标记日志请求来源
-   * </pre>
-   *
-   * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-   * @return The enum numeric value on the wire for logType.
-   */
-  @java.lang.Override
-  public int getLogTypeValue() {
-      return logType_;
-  }
+    private int logType_;
+
+    /**
+     * <pre>
+     * 标记日志请求来源
+     * </pre>
+     *
+     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+     *
+     * @return The enum numeric value on the wire for logType.
+     */
+    @java.lang.Override
+    public int getLogTypeValue() {
+        return logType_;
+    }
 
     /**
      * <pre>
@@ -410,7 +415,7 @@ private static final long serialVersionUID = 0L;
         if (!modelChunk_.isEmpty()) {
             size += com.google.protobuf.CodedOutputStream
                     .computeBytesSize(6, modelChunk_);
-    }
+        }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
         return size;
@@ -436,7 +441,7 @@ private static final long serialVersionUID = 0L;
                 != other.getPreModelTerm()) return false;
         if (logType_ != other.logType_) return false;
         if (!getModelChunk()
-        .equals(other.getModelChunk())) return false;
+                .equals(other.getModelChunk())) return false;
         if (!unknownFields.equals(other.unknownFields)) return false;
         return true;
     }
@@ -460,15 +465,15 @@ private static final long serialVersionUID = 0L;
         hash = (37 * hash) + LOG_TYPE_FIELD_NUMBER;
         hash = (53 * hash) + logType_;
         hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
-    hash = (53 * hash) + getModelChunk().hashCode();
-    hash = (29 * hash) + unknownFields.hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
+        hash = (53 * hash) + getModelChunk().hashCode();
+        hash = (29 * hash) + unknownFields.hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
 
-  public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
@@ -583,23 +588,24 @@ private static final long serialVersionUID = 0L;
 
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-      maybeForceBuilderInitialization();
-    }
-    private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
+        super(parent);
+        maybeForceBuilderInitialization();
     }
 
+      private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessageV3
+                  .alwaysUseFieldBuilders) {
+          }
+      }
+
       @java.lang.Override
-    public Builder clear() {
+      public Builder clear() {
           super.clear();
           term_ = 0;
 
           leaderId_ = 0L;
 
-      preModelIndex_ = 0;
+          preModelIndex_ = 0;
 
       preModelTerm_ = 0;
 
@@ -618,17 +624,17 @@ private static final long serialVersionUID = 0L;
 
     @java.lang.Override
     public org.bupt.cad.fedraft.rpc.message.LogRequest getDefaultInstanceForType() {
-      return org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance();
+        return org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance();
     }
 
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.LogRequest build() {
-      org.bupt.cad.fedraft.rpc.message.LogRequest result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
+      @java.lang.Override
+      public org.bupt.cad.fedraft.rpc.message.LogRequest build() {
+          org.bupt.cad.fedraft.rpc.message.LogRequest result = buildPartial();
+          if (!result.isInitialized()) {
+              throw newUninitializedMessageException(result);
+          }
+          return result;
       }
-        return result;
-    }
 
       @java.lang.Override
       public org.bupt.cad.fedraft.rpc.message.LogRequest buildPartial() {
@@ -636,10 +642,10 @@ private static final long serialVersionUID = 0L;
           result.term_ = term_;
           result.leaderId_ = leaderId_;
           result.preModelIndex_ = preModelIndex_;
-      result.preModelTerm_ = preModelTerm_;
-      result.logType_ = logType_;
-      result.modelChunk_ = modelChunk_;
-      onBuilt();
+          result.preModelTerm_ = preModelTerm_;
+          result.logType_ = logType_;
+          result.modelChunk_ = modelChunk_;
+          onBuilt();
       return result;
     }
 
@@ -673,17 +679,18 @@ private static final long serialVersionUID = 0L;
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
-      return super.addRepeatedField(field, value);
+        return super.addRepeatedField(field, value);
     }
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.cad.fedraft.rpc.message.LogRequest) {
-        return mergeFrom((org.bupt.cad.fedraft.rpc.message.LogRequest)other);
-      } else {
-          super.mergeFrom(other);
-          return this;
+
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof org.bupt.cad.fedraft.rpc.message.LogRequest) {
+              return mergeFrom((org.bupt.cad.fedraft.rpc.message.LogRequest) other);
+          } else {
+              super.mergeFrom(other);
+              return this;
+          }
       }
-    }
 
       public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.LogRequest other) {
           if (other == org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance()) return this;
@@ -703,10 +710,10 @@ private static final long serialVersionUID = 0L;
               setLogTypeValue(other.getLogTypeValue());
           }
           if (other.getModelChunk() != com.google.protobuf.ByteString.EMPTY) {
-        setModelChunk(other.getModelChunk());
-      }
-      this.mergeUnknownFields(other.unknownFields);
-      onChanged();
+              setModelChunk(other.getModelChunk());
+          }
+          this.mergeUnknownFields(other.unknownFields);
+          onChanged();
       return this;
     }
 
@@ -741,19 +748,21 @@ private static final long serialVersionUID = 0L;
      */
     @java.lang.Override
     public int getTerm() {
-      return term_;
+        return term_;
     }
-    /**
-     * <code>uint32 term = 1;</code>
-     * @param value The term to set.
-     * @return This builder for chaining.
-     */
-    public Builder setTerm(int value) {
 
-        term_ = value;
-        onChanged();
-        return this;
-    }
+      /**
+       * <code>uint32 term = 1;</code>
+       *
+       * @param value The term to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTerm(int value) {
+
+          term_ = value;
+          onChanged();
+          return this;
+      }
 
       /**
        * <code>uint32 term = 1;</code>
@@ -798,9 +807,9 @@ private static final long serialVersionUID = 0L;
        * @return This builder for chaining.
        */
       public Builder clearLeaderId() {
-      
-      leaderId_ = 0L;
-      onChanged();
+
+          leaderId_ = 0L;
+          onChanged();
       return this;
     }
 
@@ -931,24 +940,6 @@ private static final long serialVersionUID = 0L;
       org.bupt.cad.fedraft.rpc.message.LogRequest.LogType result = org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.valueOf(logType_);
       return result == null ? org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.UNRECOGNIZED : result;
     }
-    /**
-     * <pre>
-     * 标记日志请求来源
-     * </pre>
-     *
-     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-     * @param value The logType to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLogType(org.bupt.cad.fedraft.rpc.message.LogRequest.LogType value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      
-      logType_ = value.getNumber();
-        onChanged();
-        return this;
-    }
 
       /**
        * <pre>
@@ -956,28 +947,50 @@ private static final long serialVersionUID = 0L;
        * </pre>
        *
        * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearLogType() {
-      
-      logType_ = 0;
-      onChanged();
-      return this;
-    }
+       *
+       * @param value The logType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLogType(org.bupt.cad.fedraft.rpc.message.LogRequest.LogType value) {
+          if (value == null) {
+              throw new NullPointerException();
+          }
 
-    private com.google.protobuf.ByteString modelChunk_ = com.google.protobuf.ByteString.EMPTY;
-    /**
-     * <pre>
-     * 模型的序列化块
-     * </pre>
-     *
-     * <code>bytes model_chunk = 6;</code>
-     * @return The modelChunk.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString getModelChunk() {
-        return modelChunk_;
-    }
+          logType_ = value.getNumber();
+          onChanged();
+          return this;
+      }
+
+      /**
+       * <pre>
+       * 标记日志请求来源
+       * </pre>
+       *
+       * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLogType() {
+
+          logType_ = 0;
+          onChanged();
+          return this;
+      }
+
+      private com.google.protobuf.ByteString modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+
+      /**
+       * <pre>
+       * 模型的序列化块
+       * </pre>
+       *
+       * <code>bytes model_chunk = 6;</code>
+       *
+       * @return The modelChunk.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getModelChunk() {
+          return modelChunk_;
+      }
 
       /**
        * <pre>
@@ -1019,9 +1032,9 @@ private static final long serialVersionUID = 0L;
       public final Builder setUnknownFields(
               final com.google.protobuf.UnknownFieldSet unknownFields) {
           return super.setUnknownFields(unknownFields);
-      }
+    }
 
-      @java.lang.Override
+    @java.lang.Override
     public final Builder mergeUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);

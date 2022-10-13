@@ -4,8 +4,8 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public final class LogMessage {
-  private LogMessage() {
-  }
+    private LogMessage() {
+    }
 
     public static void registerAllExtensions(
             com.google.protobuf.ExtensionRegistryLite registry) {
@@ -56,7 +56,7 @@ public final class LogMessage {
                         "Type\022\024\n\020CLIENT_TO_LEADER\020\000\022\024\n\020LEADER_TO_" +
                         "CLIENT\020\001\"4\n\013LogResponse\022\023\n\013local_index\030\001" +
                         " \001(\r\022\020\n\010log_size\030\002 \001(\004\"*\n\021HeartbeatRespo" +
-                        "nse\022\025\n\rnetwork_delay\030\001 \001(\002\"]\n\020HeartbeatR" +
+                        "nse\022\025\n\rnetwork_delay\030\001 \001(\r\"]\n\020HeartbeatR" +
                         "equest\022\014\n\004term\030\001 \001(\r\022\021\n\tleader_id\030\002 \001(\004\022" +
                         "\020\n\010node_ids\030\003 \003(\004\022\026\n\016network_delays\030\004 \003(" +
                         "\002B$\n org.bupt.cad.fedraft.rpc.messageP\001b" +
@@ -90,7 +90,7 @@ public final class LogMessage {
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_fedraft_HeartbeatRequest_descriptor,
                 new java.lang.String[]{"Term", "LeaderId", "NodeIds", "NetworkDelays",});
-  }
+    }
 
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

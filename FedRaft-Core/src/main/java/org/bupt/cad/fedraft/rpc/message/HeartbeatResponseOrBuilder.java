@@ -12,9 +12,9 @@ public interface HeartbeatResponseOrBuilder extends
      * 传输模型的大小
      * </pre>
      *
-     * <code>float network_delay = 1;</code>
+     * <code>uint32 network_delay = 1;</code>
      *
      * @return The networkDelay.
      */
-    float getNetworkDelay();
+    int getNetworkDelay();
 }

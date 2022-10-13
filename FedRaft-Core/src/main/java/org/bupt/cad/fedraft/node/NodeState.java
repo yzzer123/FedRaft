@@ -1,4 +1,4 @@
-package org.bupt.cad.fedraft.server;
+package org.bupt.cad.fedraft.node;
 
 public enum NodeState {
 

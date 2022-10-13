@@ -11,6 +11,8 @@ import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.algorithm.RaftAlgorithm;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
+import org.bupt.cad.fedraft.node.Node;
+import org.bupt.cad.fedraft.node.SafeModeNode;
 import org.bupt.cad.fedraft.utils.ZkClient;
 
 import java.io.IOException;
@@ -42,10 +44,8 @@ public class FedRaftServer {
         // 生成本地节点信息的javabean 用于初始化zk
         NodeInfo localNodeInfo = new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT),
                 Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
-        zkClient = new ZkClient(localNodeInfo);
-        zkClient.checkinTmpLeader(() -> {
-            // do something when server become leader
-        });
+        SafeModeNode nodeMode = Node.getRuntimeNode().getNodeMode();
+        nodeMode.checkinTmpLeader();
     }
 
     /**
