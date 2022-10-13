@@ -19,7 +19,7 @@ public final class HeartbeatRequest extends
 
     private HeartbeatRequest() {
         nodeIds_ = emptyLongList();
-        networkDelays_ = emptyFloatList();
+        networkDelays_ = emptyIntList();
     }
 
     @java.lang.Override
@@ -59,63 +59,78 @@ public final class HeartbeatRequest extends
                         term_ = input.readUInt32();
                         break;
                     }
-          case 16: {
+                    case 16: {
 
-            leaderId_ = input.readUInt64();
+                        leaderId_ = input.readUInt64();
+                        break;
+                    }
+                    case 24: {
+
+                        preModelIndex_ = input.readUInt32();
+                        break;
+                    }
+                    case 32: {
+
+                        preModelTerm_ = input.readUInt32();
+                        break;
+                    }
+                    case 40: {
+
+                        leaderModelIndex_ = input.readUInt32();
+                        break;
+                    }
+                    case 48: {
+                        if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                            nodeIds_ = newLongList();
+                            mutable_bitField0_ |= 0x00000001;
+                        }
+                        nodeIds_.addLong(input.readUInt64());
+                        break;
+                    }
+                    case 50: {
+                        int length = input.readRawVarint32();
+                        int limit = input.pushLimit(length);
+                        if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+                            nodeIds_ = newLongList();
+                            mutable_bitField0_ |= 0x00000001;
+                        }
+                        while (input.getBytesUntilLimit() > 0) {
+                            nodeIds_.addLong(input.readUInt64());
+                        }
+                        input.popLimit(limit);
+                        break;
+                    }
+                    case 56: {
+                        if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+                            networkDelays_ = newIntList();
+                            mutable_bitField0_ |= 0x00000002;
+                        }
+                        networkDelays_.addInt(input.readUInt32());
+                        break;
+                    }
+                    case 58: {
+                        int length = input.readRawVarint32();
+                        int limit = input.pushLimit(length);
+                        if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
+                            networkDelays_ = newIntList();
+                            mutable_bitField0_ |= 0x00000002;
+                        }
+                        while (input.getBytesUntilLimit() > 0) {
+                            networkDelays_.addInt(input.readUInt32());
+                        }
+                        input.popLimit(limit);
             break;
           }
-          case 24: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              nodeIds_ = newLongList();
-              mutable_bitField0_ |= 0x00000001;
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
             }
-              nodeIds_.addLong(input.readUInt64());
-            break;
-          }
-          case 26: {
-            int length = input.readRawVarint32();
-            int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-              nodeIds_ = newLongList();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            while (input.getBytesUntilLimit() > 0) {
-                nodeIds_.addLong(input.readUInt64());
-            }
-            input.popLimit(limit);
-            break;
-          }
-          case 37: {
-            if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-              networkDelays_ = newFloatList();
-              mutable_bitField0_ |= 0x00000002;
-            }
-            networkDelays_.addFloat(input.readFloat());
-            break;
-          }
-          case 34: {
-            int length = input.readRawVarint32();
-            int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
-              networkDelays_ = newFloatList();
-              mutable_bitField0_ |= 0x00000002;
-            }
-            while (input.getBytesUntilLimit() > 0) {
-              networkDelays_.addFloat(input.readFloat());
-            }
-            input.popLimit(limit);
-            break;
-          }
-          default: {
-              if (!parseUnknownField(
-                      input, unknownFields, extensionRegistry, tag)) {
-                  done = true;
-              }
-              break;
-          }
-        }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
             throw e.setUnfinishedMessage(this);
         } catch (com.google.protobuf.UninitializedMessageException e) {
             throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
@@ -158,10 +173,10 @@ public final class HeartbeatRequest extends
     @java.lang.Override
     public int getTerm() {
         return term_;
-  }
+    }
 
-  public static final int LEADER_ID_FIELD_NUMBER = 2;
-  private long leaderId_;
+    public static final int LEADER_ID_FIELD_NUMBER = 2;
+    private long leaderId_;
 
     /**
      * <code>uint64 leader_id = 2;</code>
@@ -173,11 +188,62 @@ public final class HeartbeatRequest extends
         return leaderId_;
     }
 
-    public static final int NODE_IDS_FIELD_NUMBER = 3;
+    public static final int PRE_MODEL_INDEX_FIELD_NUMBER = 3;
+    private int preModelIndex_;
+
+    /**
+     * <pre>
+     * 之前发送模型的索引
+     * </pre>
+     *
+     * <code>uint32 pre_model_index = 3;</code>
+     *
+     * @return The preModelIndex.
+     */
+    @java.lang.Override
+    public int getPreModelIndex() {
+        return preModelIndex_;
+    }
+
+    public static final int PRE_MODEL_TERM_FIELD_NUMBER = 4;
+    private int preModelTerm_;
+
+    /**
+     * <pre>
+     * 之前发送模型的任期
+     * </pre>
+     *
+     * <code>uint32 pre_model_term = 4;</code>
+     *
+     * @return The preModelTerm.
+     */
+    @java.lang.Override
+    public int getPreModelTerm() {
+        return preModelTerm_;
+    }
+
+    public static final int LEADER_MODEL_INDEX_FIELD_NUMBER = 5;
+    private int leaderModelIndex_;
+
+    /**
+     * <pre>
+     * 之前发送模型的任期
+     * </pre>
+     *
+     * <code>uint32 leader_model_index = 5;</code>
+     *
+     * @return The leaderModelIndex.
+     */
+    @java.lang.Override
+    public int getLeaderModelIndex() {
+        return leaderModelIndex_;
+    }
+
+    public static final int NODE_IDS_FIELD_NUMBER = 6;
     private com.google.protobuf.Internal.LongList nodeIds_;
 
     /**
-     * <code>repeated uint64 node_ids = 3;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return A list containing the nodeIds.
      */
@@ -188,7 +254,7 @@ public final class HeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 3;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return The count of nodeIds.
      */
@@ -197,7 +263,7 @@ public final class HeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 3;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.
@@ -208,20 +274,20 @@ public final class HeartbeatRequest extends
 
     private int nodeIdsMemoizedSerializedSize = -1;
 
-    public static final int NETWORK_DELAYS_FIELD_NUMBER = 4;
-    private com.google.protobuf.Internal.FloatList networkDelays_;
+    public static final int NETWORK_DELAYS_FIELD_NUMBER = 7;
+    private com.google.protobuf.Internal.IntList networkDelays_;
 
     /**
      * <pre>
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated float network_delays = 4;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @return A list containing the networkDelays.
      */
     @java.lang.Override
-    public java.util.List<java.lang.Float>
+    public java.util.List<java.lang.Integer>
     getNetworkDelaysList() {
         return networkDelays_;
     }
@@ -231,7 +297,7 @@ public final class HeartbeatRequest extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated float network_delays = 4;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @return The count of networkDelays.
      */
@@ -244,13 +310,14 @@ public final class HeartbeatRequest extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated float network_delays = 4;</code>
-   * @param index The index of the element to return.
-   * @return The networkDelays at the given index.
-   */
-  public float getNetworkDelays(int index) {
-    return networkDelays_.getFloat(index);
-  }
+     * <code>repeated uint32 network_delays = 7;</code>
+     *
+     * @param index The index of the element to return.
+     * @return The networkDelays at the given index.
+     */
+    public int getNetworkDelays(int index) {
+        return networkDelays_.getInt(index);
+    }
 
     private int networkDelaysMemoizedSerializedSize = -1;
 
@@ -276,19 +343,28 @@ public final class HeartbeatRequest extends
         if (leaderId_ != 0L) {
             output.writeUInt64(2, leaderId_);
         }
+        if (preModelIndex_ != 0) {
+            output.writeUInt32(3, preModelIndex_);
+        }
+        if (preModelTerm_ != 0) {
+            output.writeUInt32(4, preModelTerm_);
+        }
+        if (leaderModelIndex_ != 0) {
+            output.writeUInt32(5, leaderModelIndex_);
+        }
         if (getNodeIdsList().size() > 0) {
-            output.writeUInt32NoTag(26);
+            output.writeUInt32NoTag(50);
             output.writeUInt32NoTag(nodeIdsMemoizedSerializedSize);
         }
         for (int i = 0; i < nodeIds_.size(); i++) {
             output.writeUInt64NoTag(nodeIds_.getLong(i));
         }
         if (getNetworkDelaysList().size() > 0) {
-            output.writeUInt32NoTag(34);
+            output.writeUInt32NoTag(58);
             output.writeUInt32NoTag(networkDelaysMemoizedSerializedSize);
         }
         for (int i = 0; i < networkDelays_.size(); i++) {
-      output.writeFloatNoTag(networkDelays_.getFloat(i));
+            output.writeUInt32NoTag(networkDelays_.getInt(i));
         }
         unknownFields.writeTo(output);
     }
@@ -307,6 +383,18 @@ public final class HeartbeatRequest extends
             size += com.google.protobuf.CodedOutputStream
                     .computeUInt64Size(2, leaderId_);
         }
+        if (preModelIndex_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt32Size(3, preModelIndex_);
+        }
+        if (preModelTerm_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt32Size(4, preModelTerm_);
+        }
+        if (leaderModelIndex_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt32Size(5, leaderModelIndex_);
+        }
         {
             int dataSize = 0;
             for (int i = 0; i < nodeIds_.size(); i++) {
@@ -323,17 +411,20 @@ public final class HeartbeatRequest extends
         }
         {
             int dataSize = 0;
-            dataSize = 4 * getNetworkDelaysList().size();
+            for (int i = 0; i < networkDelays_.size(); i++) {
+                dataSize += com.google.protobuf.CodedOutputStream
+                        .computeUInt32SizeNoTag(networkDelays_.getInt(i));
+            }
             size += dataSize;
             if (!getNetworkDelaysList().isEmpty()) {
                 size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
-      }
-      networkDelaysMemoizedSerializedSize = dataSize;
-    }
-    size += unknownFields.getSerializedSize();
-    memoizedSize = size;
+                size += com.google.protobuf.CodedOutputStream
+                        .computeInt32SizeNoTag(dataSize);
+            }
+            networkDelaysMemoizedSerializedSize = dataSize;
+        }
+        size += unknownFields.getSerializedSize();
+        memoizedSize = size;
         return size;
     }
 
@@ -351,11 +442,17 @@ public final class HeartbeatRequest extends
                 != other.getTerm()) return false;
         if (getLeaderId()
                 != other.getLeaderId()) return false;
+        if (getPreModelIndex()
+                != other.getPreModelIndex()) return false;
+        if (getPreModelTerm()
+                != other.getPreModelTerm()) return false;
+        if (getLeaderModelIndex()
+                != other.getLeaderModelIndex()) return false;
         if (!getNodeIdsList()
                 .equals(other.getNodeIdsList())) return false;
         if (!getNetworkDelaysList()
                 .equals(other.getNetworkDelaysList())) return false;
-    if (!unknownFields.equals(other.unknownFields)) return false;
+        if (!unknownFields.equals(other.unknownFields)) return false;
         return true;
     }
 
@@ -371,6 +468,12 @@ public final class HeartbeatRequest extends
         hash = (37 * hash) + LEADER_ID_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
                 getLeaderId());
+        hash = (37 * hash) + PRE_MODEL_INDEX_FIELD_NUMBER;
+        hash = (53 * hash) + getPreModelIndex();
+        hash = (37 * hash) + PRE_MODEL_TERM_FIELD_NUMBER;
+        hash = (53 * hash) + getPreModelTerm();
+        hash = (37 * hash) + LEADER_MODEL_INDEX_FIELD_NUMBER;
+        hash = (53 * hash) + getLeaderModelIndex();
         if (getNodeIdsCount() > 0) {
             hash = (37 * hash) + NODE_IDS_FIELD_NUMBER;
             hash = (53 * hash) + getNodeIdsList().hashCode();
@@ -535,9 +638,15 @@ public final class HeartbeatRequest extends
 
             leaderId_ = 0L;
 
+            preModelIndex_ = 0;
+
+            preModelTerm_ = 0;
+
+            leaderModelIndex_ = 0;
+
             nodeIds_ = emptyLongList();
             bitField0_ = (bitField0_ & ~0x00000001);
-            networkDelays_ = emptyFloatList();
+            networkDelays_ = emptyIntList();
             bitField0_ = (bitField0_ & ~0x00000002);
             return this;
         }
@@ -551,36 +660,39 @@ public final class HeartbeatRequest extends
         @java.lang.Override
         public org.bupt.cad.fedraft.rpc.message.HeartbeatRequest getDefaultInstanceForType() {
             return org.bupt.cad.fedraft.rpc.message.HeartbeatRequest.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.HeartbeatRequest build() {
-      org.bupt.cad.fedraft.rpc.message.HeartbeatRequest result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.HeartbeatRequest buildPartial() {
-      org.bupt.cad.fedraft.rpc.message.HeartbeatRequest result = new org.bupt.cad.fedraft.rpc.message.HeartbeatRequest(this);
-        int from_bitField0_ = bitField0_;
-        result.term_ = term_;
-        result.leaderId_ = leaderId_;
-        if (((bitField0_ & 0x00000001) != 0)) {
-            nodeIds_.makeImmutable();
-            bitField0_ = (bitField0_ & ~0x00000001);
         }
-        result.nodeIds_ = nodeIds_;
-        if (((bitField0_ & 0x00000002) != 0)) {
-            networkDelays_.makeImmutable();
-            bitField0_ = (bitField0_ & ~0x00000002);
+
+        @java.lang.Override
+        public org.bupt.cad.fedraft.rpc.message.HeartbeatRequest build() {
+            org.bupt.cad.fedraft.rpc.message.HeartbeatRequest result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
         }
-        result.networkDelays_ = networkDelays_;
-        onBuilt();
-        return result;
-    }
+
+        @java.lang.Override
+        public org.bupt.cad.fedraft.rpc.message.HeartbeatRequest buildPartial() {
+            org.bupt.cad.fedraft.rpc.message.HeartbeatRequest result = new org.bupt.cad.fedraft.rpc.message.HeartbeatRequest(this);
+            int from_bitField0_ = bitField0_;
+            result.term_ = term_;
+            result.leaderId_ = leaderId_;
+            result.preModelIndex_ = preModelIndex_;
+            result.preModelTerm_ = preModelTerm_;
+            result.leaderModelIndex_ = leaderModelIndex_;
+            if (((bitField0_ & 0x00000001) != 0)) {
+                nodeIds_.makeImmutable();
+                bitField0_ = (bitField0_ & ~0x00000001);
+            }
+            result.nodeIds_ = nodeIds_;
+            if (((bitField0_ & 0x00000002) != 0)) {
+                networkDelays_.makeImmutable();
+                bitField0_ = (bitField0_ & ~0x00000002);
+            }
+            result.networkDelays_ = networkDelays_;
+            onBuilt();
+            return result;
+        }
 
         @java.lang.Override
         public Builder clone() {
@@ -633,31 +745,40 @@ public final class HeartbeatRequest extends
         public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest other) {
             if (other == org.bupt.cad.fedraft.rpc.message.HeartbeatRequest.getDefaultInstance()) return this;
             if (other.getTerm() != 0) {
-        setTerm(other.getTerm());
-      }
-      if (other.getLeaderId() != 0L) {
-        setLeaderId(other.getLeaderId());
-      }
-      if (!other.nodeIds_.isEmpty()) {
-        if (nodeIds_.isEmpty()) {
-          nodeIds_ = other.nodeIds_;
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          ensureNodeIdsIsMutable();
-          nodeIds_.addAll(other.nodeIds_);
-        }
-        onChanged();
-      }
-      if (!other.networkDelays_.isEmpty()) {
-        if (networkDelays_.isEmpty()) {
-          networkDelays_ = other.networkDelays_;
-          bitField0_ = (bitField0_ & ~0x00000002);
-        } else {
-          ensureNetworkDelaysIsMutable();
-            networkDelays_.addAll(other.networkDelays_);
-        }
-          onChanged();
-      }
+                setTerm(other.getTerm());
+            }
+            if (other.getLeaderId() != 0L) {
+                setLeaderId(other.getLeaderId());
+            }
+            if (other.getPreModelIndex() != 0) {
+                setPreModelIndex(other.getPreModelIndex());
+            }
+            if (other.getPreModelTerm() != 0) {
+                setPreModelTerm(other.getPreModelTerm());
+            }
+            if (other.getLeaderModelIndex() != 0) {
+                setLeaderModelIndex(other.getLeaderModelIndex());
+            }
+            if (!other.nodeIds_.isEmpty()) {
+                if (nodeIds_.isEmpty()) {
+                    nodeIds_ = other.nodeIds_;
+                    bitField0_ = (bitField0_ & ~0x00000001);
+                } else {
+                    ensureNodeIdsIsMutable();
+                    nodeIds_.addAll(other.nodeIds_);
+                }
+                onChanged();
+            }
+            if (!other.networkDelays_.isEmpty()) {
+                if (networkDelays_.isEmpty()) {
+                    networkDelays_ = other.networkDelays_;
+                    bitField0_ = (bitField0_ & ~0x00000002);
+                } else {
+                    ensureNetworkDelaysIsMutable();
+                    networkDelays_.addAll(other.networkDelays_);
+                }
+                onChanged();
+            }
             this.mergeUnknownFields(other.unknownFields);
             onChanged();
             return this;
@@ -693,9 +814,10 @@ public final class HeartbeatRequest extends
 
         /**
          * <code>uint32 term = 1;</code>
-     * @return The term.
-     */
-    @java.lang.Override
+         *
+         * @return The term.
+         */
+        @java.lang.Override
     public int getTerm() {
       return term_;
     }
@@ -721,26 +843,30 @@ public final class HeartbeatRequest extends
       return this;
     }
 
-    private long leaderId_ ;
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
-    }
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     * @param value The leaderId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLeaderId(long value) {
+        private long leaderId_;
 
-        leaderId_ = value;
-        onChanged();
-        return this;
-    }
+        /**
+         * <code>uint64 leader_id = 2;</code>
+         *
+         * @return The leaderId.
+         */
+        @java.lang.Override
+        public long getLeaderId() {
+            return leaderId_;
+        }
+
+        /**
+         * <code>uint64 leader_id = 2;</code>
+         *
+         * @param value The leaderId to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLeaderId(long value) {
+
+            leaderId_ = value;
+            onChanged();
+            return this;
+        }
 
         /**
          * <code>uint64 leader_id = 2;</code>
@@ -750,6 +876,153 @@ public final class HeartbeatRequest extends
         public Builder clearLeaderId() {
 
             leaderId_ = 0L;
+            onChanged();
+            return this;
+        }
+
+        private int preModelIndex_;
+
+        /**
+         * <pre>
+         * 之前发送模型的索引
+         * </pre>
+         *
+         * <code>uint32 pre_model_index = 3;</code>
+         *
+         * @return The preModelIndex.
+         */
+        @java.lang.Override
+        public int getPreModelIndex() {
+            return preModelIndex_;
+        }
+
+        /**
+         * <pre>
+         * 之前发送模型的索引
+         * </pre>
+         *
+         * <code>uint32 pre_model_index = 3;</code>
+         *
+         * @param value The preModelIndex to set.
+         * @return This builder for chaining.
+         */
+        public Builder setPreModelIndex(int value) {
+
+            preModelIndex_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 之前发送模型的索引
+         * </pre>
+         *
+         * <code>uint32 pre_model_index = 3;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearPreModelIndex() {
+
+            preModelIndex_ = 0;
+            onChanged();
+            return this;
+        }
+
+        private int preModelTerm_;
+
+        /**
+         * <pre>
+         * 之前发送模型的任期
+         * </pre>
+         *
+         * <code>uint32 pre_model_term = 4;</code>
+         *
+         * @return The preModelTerm.
+         */
+        @java.lang.Override
+        public int getPreModelTerm() {
+            return preModelTerm_;
+        }
+
+        /**
+         * <pre>
+         * 之前发送模型的任期
+         * </pre>
+         *
+         * <code>uint32 pre_model_term = 4;</code>
+         *
+         * @param value The preModelTerm to set.
+         * @return This builder for chaining.
+         */
+        public Builder setPreModelTerm(int value) {
+
+            preModelTerm_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 之前发送模型的任期
+         * </pre>
+         *
+         * <code>uint32 pre_model_term = 4;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearPreModelTerm() {
+
+            preModelTerm_ = 0;
+            onChanged();
+            return this;
+        }
+
+        private int leaderModelIndex_;
+
+        /**
+         * <pre>
+         * 之前发送模型的任期
+         * </pre>
+         *
+         * <code>uint32 leader_model_index = 5;</code>
+         *
+         * @return The leaderModelIndex.
+         */
+        @java.lang.Override
+        public int getLeaderModelIndex() {
+            return leaderModelIndex_;
+        }
+
+        /**
+         * <pre>
+         * 之前发送模型的任期
+         * </pre>
+         *
+         * <code>uint32 leader_model_index = 5;</code>
+         *
+         * @param value The leaderModelIndex to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLeaderModelIndex(int value) {
+
+            leaderModelIndex_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 之前发送模型的任期
+         * </pre>
+         *
+         * <code>uint32 leader_model_index = 5;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearLeaderModelIndex() {
+
+            leaderModelIndex_ = 0;
             onChanged();
             return this;
         }
@@ -764,7 +1037,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 3;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @return A list containing the nodeIds.
          */
@@ -775,7 +1048,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 3;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @return The count of nodeIds.
          */
@@ -784,7 +1057,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 3;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param index The index of the element to return.
          * @return The nodeIds at the given index.
@@ -794,7 +1067,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 3;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param index The index to set the value at.
          * @param value The nodeIds to set.
@@ -809,7 +1082,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 3;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param value The nodeIds to add.
          * @return This builder for chaining.
@@ -822,7 +1095,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 3;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param values The nodeIds to add.
          * @return This builder for chaining.
@@ -837,7 +1110,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 3;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @return This builder for chaining.
          */
@@ -848,7 +1121,7 @@ public final class HeartbeatRequest extends
             return this;
         }
 
-        private com.google.protobuf.Internal.FloatList networkDelays_ = emptyFloatList();
+        private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
 
         private void ensureNetworkDelaysIsMutable() {
             if (!((bitField0_ & 0x00000002) != 0)) {
@@ -862,11 +1135,11 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated float network_delays = 4;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @return A list containing the networkDelays.
          */
-        public java.util.List<java.lang.Float>
+        public java.util.List<java.lang.Integer>
         getNetworkDelaysList() {
             return ((bitField0_ & 0x00000002) != 0) ?
                     java.util.Collections.unmodifiableList(networkDelays_) : networkDelays_;
@@ -877,7 +1150,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated float network_delays = 4;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @return The count of networkDelays.
          */
@@ -890,13 +1163,13 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated float network_delays = 4;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @param index The index of the element to return.
          * @return The networkDelays at the given index.
          */
-        public float getNetworkDelays(int index) {
-            return networkDelays_.getFloat(index);
+        public int getNetworkDelays(int index) {
+            return networkDelays_.getInt(index);
         }
 
         /**
@@ -904,15 +1177,16 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated float network_delays = 4;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
+         *
          * @param index The index to set the value at.
          * @param value The networkDelays to set.
          * @return This builder for chaining.
          */
         public Builder setNetworkDelays(
-                int index, float value) {
+                int index, int value) {
             ensureNetworkDelaysIsMutable();
-            networkDelays_.setFloat(index, value);
+            networkDelays_.setInt(index, value);
             onChanged();
             return this;
         }
@@ -922,14 +1196,14 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated float network_delays = 4;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @param value The networkDelays to add.
          * @return This builder for chaining.
          */
-        public Builder addNetworkDelays(float value) {
+        public Builder addNetworkDelays(int value) {
             ensureNetworkDelaysIsMutable();
-            networkDelays_.addFloat(value);
+            networkDelays_.addInt(value);
             onChanged();
             return this;
         }
@@ -939,13 +1213,13 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated float network_delays = 4;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @param values The networkDelays to add.
          * @return This builder for chaining.
          */
         public Builder addAllNetworkDelays(
-                java.lang.Iterable<? extends java.lang.Float> values) {
+                java.lang.Iterable<? extends java.lang.Integer> values) {
             ensureNetworkDelaysIsMutable();
             com.google.protobuf.AbstractMessageLite.Builder.addAll(
                     values, networkDelays_);
@@ -958,12 +1232,12 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated float network_delays = 4;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @return This builder for chaining.
          */
         public Builder clearNetworkDelays() {
-            networkDelays_ = emptyFloatList();
+            networkDelays_ = emptyIntList();
             bitField0_ = (bitField0_ & ~0x00000002);
             onChanged();
             return this;
@@ -998,10 +1272,10 @@ public final class HeartbeatRequest extends
 
     private static final com.google.protobuf.Parser<HeartbeatRequest>
             PARSER = new com.google.protobuf.AbstractParser<HeartbeatRequest>() {
-    @java.lang.Override
-    public HeartbeatRequest parsePartialFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        @java.lang.Override
+        public HeartbeatRequest parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       return new HeartbeatRequest(input, extensionRegistry);
     }

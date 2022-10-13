@@ -77,7 +77,7 @@ public class RaftAlgorithm implements Algorithm {
 
         Node.getRuntimeNode().getTopologies().clear();
 
-        Node.getRuntimeNode().getTopologies().
+//        Node.getRuntimeNode().getTopologies().
 
         return 0;
 

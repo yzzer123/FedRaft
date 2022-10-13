@@ -8,10 +8,6 @@ public interface HeartbeatResponseOrBuilder extends
         com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <pre>
-     * 传输模型的大小
-     * </pre>
-     *
      * <code>uint32 network_delay = 1;</code>
      *
      * @return The networkDelay.

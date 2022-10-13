@@ -22,21 +22,54 @@ public interface HeartbeatRequestOrBuilder extends
     long getLeaderId();
 
     /**
-     * <code>repeated uint64 node_ids = 3;</code>
+     * <pre>
+     * 之前发送模型的索引
+     * </pre>
+     *
+     * <code>uint32 pre_model_index = 3;</code>
+     *
+     * @return The preModelIndex.
+     */
+    int getPreModelIndex();
+
+    /**
+     * <pre>
+     * 之前发送模型的任期
+     * </pre>
+     *
+     * <code>uint32 pre_model_term = 4;</code>
+     *
+     * @return The preModelTerm.
+     */
+    int getPreModelTerm();
+
+    /**
+     * <pre>
+     * 之前发送模型的任期
+     * </pre>
+     *
+     * <code>uint32 leader_model_index = 5;</code>
+     *
+     * @return The leaderModelIndex.
+     */
+    int getLeaderModelIndex();
+
+    /**
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return A list containing the nodeIds.
      */
     java.util.List<java.lang.Long> getNodeIdsList();
 
     /**
-     * <code>repeated uint64 node_ids = 3;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return The count of nodeIds.
      */
     int getNodeIdsCount();
 
     /**
-     * <code>repeated uint64 node_ids = 3;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.
@@ -48,18 +81,18 @@ public interface HeartbeatRequestOrBuilder extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated float network_delays = 4;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @return A list containing the networkDelays.
      */
-    java.util.List<java.lang.Float> getNetworkDelaysList();
+    java.util.List<java.lang.Integer> getNetworkDelaysList();
 
     /**
      * <pre>
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated float network_delays = 4;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @return The count of networkDelays.
      */
@@ -70,10 +103,10 @@ public interface HeartbeatRequestOrBuilder extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated float network_delays = 4;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @param index The index of the element to return.
      * @return The networkDelays at the given index.
      */
-    float getNetworkDelays(int index);
+    int getNetworkDelays(int index);
 }

@@ -95,10 +95,6 @@ public final class HeartbeatResponse extends
     private int networkDelay_;
 
     /**
-     * <pre>
-     * 传输模型的大小
-     * </pre>
-     *
      * <code>uint32 network_delay = 1;</code>
      *
      * @return The networkDelay.
@@ -108,7 +104,7 @@ public final class HeartbeatResponse extends
         return networkDelay_;
     }
 
-  private byte memoizedIsInitialized = -1;
+    private byte memoizedIsInitialized = -1;
 
     @java.lang.Override
     public final boolean isInitialized() {
@@ -141,8 +137,8 @@ public final class HeartbeatResponse extends
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
-    return size;
-  }
+        return size;
+    }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
@@ -157,7 +153,7 @@ public final class HeartbeatResponse extends
       if (getNetworkDelay()
               != other.getNetworkDelay()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
-    return true;
+      return true;
   }
 
   @java.lang.Override
@@ -338,11 +334,11 @@ public final class HeartbeatResponse extends
         }
 
         @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse build() {
-      org.bupt.cad.fedraft.rpc.message.HeartbeatResponse result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
+        public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse build() {
+            org.bupt.cad.fedraft.rpc.message.HeartbeatResponse result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
             return result;
         }
 
@@ -439,10 +435,6 @@ public final class HeartbeatResponse extends
         private int networkDelay_;
 
         /**
-         * <pre>
-         * 传输模型的大小
-         * </pre>
-         *
          * <code>uint32 network_delay = 1;</code>
          *
          * @return The networkDelay.
@@ -453,10 +445,6 @@ public final class HeartbeatResponse extends
         }
 
         /**
-         * <pre>
-         * 传输模型的大小
-         * </pre>
-         *
          * <code>uint32 network_delay = 1;</code>
          *
          * @param value The networkDelay to set.
@@ -470,10 +458,6 @@ public final class HeartbeatResponse extends
         }
 
         /**
-         * <pre>
-         * 传输模型的大小
-         * </pre>
-         *
          * <code>uint32 network_delay = 1;</code>
          *
          * @return This builder for chaining.
@@ -524,12 +508,12 @@ public final class HeartbeatResponse extends
     };
 
     public static com.google.protobuf.Parser<HeartbeatResponse> parser() {
-    return PARSER;
-  }
+        return PARSER;
+    }
 
-  @java.lang.Override
-  public com.google.protobuf.Parser<HeartbeatResponse> getParserForType() {
-    return PARSER;
+    @java.lang.Override
+    public com.google.protobuf.Parser<HeartbeatResponse> getParserForType() {
+        return PARSER;
   }
 
   @java.lang.Override

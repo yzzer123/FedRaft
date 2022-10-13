@@ -37,6 +37,16 @@ public final class LogMessage {
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_fedraft_HeartbeatRequest_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_TrainerHeartbeatRequest_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_TrainerHeartbeatRequest_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_TrainerHeartbeatResponse_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_TrainerHeartbeatResponse_fieldAccessorTable;
 
     public static com.google.protobuf.Descriptors.FileDescriptor
     getDescriptor() {
@@ -56,11 +66,21 @@ public final class LogMessage {
                         "Type\022\024\n\020CLIENT_TO_LEADER\020\000\022\024\n\020LEADER_TO_" +
                         "CLIENT\020\001\"4\n\013LogResponse\022\023\n\013local_index\030\001" +
                         " \001(\r\022\020\n\010log_size\030\002 \001(\004\"*\n\021HeartbeatRespo" +
-                        "nse\022\025\n\rnetwork_delay\030\001 \001(\r\"]\n\020HeartbeatR" +
-                        "equest\022\014\n\004term\030\001 \001(\r\022\021\n\tleader_id\030\002 \001(\004\022" +
-                        "\020\n\010node_ids\030\003 \003(\004\022\026\n\016network_delays\030\004 \003(" +
-                        "\002B$\n org.bupt.cad.fedraft.rpc.messageP\001b" +
-                        "\006proto3"
+                        "nse\022\025\n\rnetwork_delay\030\001 \001(\r\"\252\001\n\020Heartbeat" +
+                        "Request\022\014\n\004term\030\001 \001(\r\022\021\n\tleader_id\030\002 \001(\004" +
+                        "\022\027\n\017pre_model_index\030\003 \001(\r\022\026\n\016pre_model_t" +
+                        "erm\030\004 \001(\r\022\032\n\022leader_model_index\030\005 \001(\r\022\020\n" +
+                        "\010node_ids\030\006 \003(\004\022\026\n\016network_delays\030\007 \003(\r\"" +
+                        "\302\001\n\027TrainerHeartbeatRequest\022\014\n\004term\030\001 \001(" +
+                        "\r\022\021\n\tleader_id\030\002 \001(\004\022\027\n\017pre_model_index\030" +
+                        "\003 \001(\r\022\026\n\016pre_model_term\030\004 \001(\r\022\033\n\023current" +
+                        "_model_index\030\005 \001(\r\022&\n\nnode_state\030\006 \001(\0162\022" +
+                        ".fedraft.NodeState\022\020\n\010node_ids\030\007 \003(\004\"7\n\030" +
+                        "TrainerHeartbeatResponse\022\033\n\023current_mode" +
+                        "l_index\030\001 \001(\r*S\n\tNodeState\022\r\n\tSAFE_MODE\020" +
+                        "\000\022\016\n\nTMP_LEADER\020\001\022\n\n\006LEADER\020\002\022\r\n\tCANDIDA" +
+                        "TE\020\003\022\014\n\010FOLLOWER\020\004B$\n org.bupt.cad.fedra" +
+                        "ft.rpc.messageP\001b\006proto3"
         };
         descriptor = com.google.protobuf.Descriptors.FileDescriptor
                 .internalBuildGeneratedFileFrom(descriptorData,
@@ -89,7 +109,19 @@ public final class LogMessage {
         internal_static_fedraft_HeartbeatRequest_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_fedraft_HeartbeatRequest_descriptor,
-                new java.lang.String[]{"Term", "LeaderId", "NodeIds", "NetworkDelays",});
+                new java.lang.String[]{"Term", "LeaderId", "PreModelIndex", "PreModelTerm", "LeaderModelIndex", "NodeIds", "NetworkDelays",});
+        internal_static_fedraft_TrainerHeartbeatRequest_descriptor =
+                getDescriptor().getMessageTypes().get(4);
+        internal_static_fedraft_TrainerHeartbeatRequest_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_TrainerHeartbeatRequest_descriptor,
+                new java.lang.String[]{"Term", "LeaderId", "PreModelIndex", "PreModelTerm", "CurrentModelIndex", "NodeState", "NodeIds",});
+        internal_static_fedraft_TrainerHeartbeatResponse_descriptor =
+                getDescriptor().getMessageTypes().get(5);
+        internal_static_fedraft_TrainerHeartbeatResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_TrainerHeartbeatResponse_descriptor,
+                new java.lang.String[]{"CurrentModelIndex",});
     }
 
     // @@protoc_insertion_point(outer_class_scope)
