@@ -161,6 +161,14 @@
             <scope>test</scope>
         </dependency>
 
+
+        <!-- timer -->
+        <dependency>
+            <groupId>com.github.ifesdjeen</groupId>
+            <artifactId>hashed-wheel-timer-core</artifactId>
+            <version>1.0.0-RC1</version>
+        </dependency>
+
     </dependencies>
 
 
