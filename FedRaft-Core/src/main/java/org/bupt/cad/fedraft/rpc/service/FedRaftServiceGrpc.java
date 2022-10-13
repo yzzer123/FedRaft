@@ -137,20 +137,20 @@ public final class FedRaftServiceGrpc {
         return FedRaftServiceBlockingStub.newStub(factory, channel);
     }
 
-  /**
-   * Creates a new ListenableFuture-style stub that supports unary calls on the service
-   */
-  public static FedRaftServiceFutureStub newFutureStub(
-      io.grpc.Channel channel) {
-    io.grpc.stub.AbstractStub.StubFactory<FedRaftServiceFutureStub> factory =
-      new io.grpc.stub.AbstractStub.StubFactory<FedRaftServiceFutureStub>() {
-        @java.lang.Override
-        public FedRaftServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new FedRaftServiceFutureStub(channel, callOptions);
-        }
-      };
-    return FedRaftServiceFutureStub.newStub(factory, channel);
-  }
+    /**
+     * Creates a new ListenableFuture-style stub that supports unary calls on the service
+     */
+    public static FedRaftServiceFutureStub newFutureStub(
+            io.grpc.Channel channel) {
+        io.grpc.stub.AbstractStub.StubFactory<FedRaftServiceFutureStub> factory =
+                new io.grpc.stub.AbstractStub.StubFactory<FedRaftServiceFutureStub>() {
+                    @java.lang.Override
+                    public FedRaftServiceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+                        return new FedRaftServiceFutureStub(channel, callOptions);
+                    }
+                };
+        return FedRaftServiceFutureStub.newStub(factory, channel);
+    }
 
     /**
      *
@@ -168,6 +168,7 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
+         *
          */
         public void appendLog(org.bupt.cad.fedraft.rpc.message.LogRequest request,
                               io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse> responseObserver) {
@@ -175,6 +176,7 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
+         *
          */
         public void heartbeat(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest request,
                               io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> responseObserver) {
@@ -207,51 +209,52 @@ public final class FedRaftServiceGrpc {
                                             this, METHODID_HEARTBEAT)))
                     .build();
         }
-  }
-
-  /**
-   */
-  public static final class FedRaftServiceStub extends io.grpc.stub.AbstractAsyncStub<FedRaftServiceStub> {
-    private FedRaftServiceStub(
-            io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-        super(channel, callOptions);
     }
 
-      @java.lang.Override
-      protected FedRaftServiceStub build(
-              io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new FedRaftServiceStub(channel, callOptions);
-      }
+    /**
+     *
+     */
+    public static final class FedRaftServiceStub extends io.grpc.stub.AbstractAsyncStub<FedRaftServiceStub> {
+        private FedRaftServiceStub(
+                io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+            super(channel, callOptions);
+        }
 
-      /**
-       * <pre>
-       * Raft 日志追加通信
-       * </pre>
-       */
-      public io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogRequest> appendStreamLog(
-              io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse> responseObserver) {
-          return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
-                  getChannel().newCall(getAppendStreamLogMethod(), getCallOptions()), responseObserver);
-      }
+        @java.lang.Override
+        protected FedRaftServiceStub build(
+                io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+            return new FedRaftServiceStub(channel, callOptions);
+        }
 
-      /**
-       *
-       */
-      public void appendLog(org.bupt.cad.fedraft.rpc.message.LogRequest request,
-                            io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse> responseObserver) {
-          io.grpc.stub.ClientCalls.asyncUnaryCall(
-                  getChannel().newCall(getAppendLogMethod(), getCallOptions()), request, responseObserver);
-      }
+        /**
+         * <pre>
+         * Raft 日志追加通信
+         * </pre>
+         */
+        public io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogRequest> appendStreamLog(
+                io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse> responseObserver) {
+            return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
+                    getChannel().newCall(getAppendStreamLogMethod(), getCallOptions()), responseObserver);
+        }
 
-      /**
-       *
-       */
-      public void heartbeat(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest request,
-                            io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> responseObserver) {
-          io.grpc.stub.ClientCalls.asyncUnaryCall(
-                  getChannel().newCall(getHeartbeatMethod(), getCallOptions()), request, responseObserver);
-      }
-  }
+        /**
+         *
+         */
+        public void appendLog(org.bupt.cad.fedraft.rpc.message.LogRequest request,
+                              io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse> responseObserver) {
+            io.grpc.stub.ClientCalls.asyncUnaryCall(
+                    getChannel().newCall(getAppendLogMethod(), getCallOptions()), request, responseObserver);
+        }
+
+        /**
+         *
+         */
+        public void heartbeat(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest request,
+                              io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> responseObserver) {
+            io.grpc.stub.ClientCalls.asyncUnaryCall(
+                    getChannel().newCall(getHeartbeatMethod(), getCallOptions()), request, responseObserver);
+        }
+    }
 
     /**
      *
@@ -269,6 +272,7 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
+         *
          */
         public org.bupt.cad.fedraft.rpc.message.LogResponse appendLog(org.bupt.cad.fedraft.rpc.message.LogRequest request) {
             return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -276,6 +280,7 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
+         *
          */
         public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse heartbeat(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest request) {
             return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -354,12 +359,12 @@ public final class FedRaftServiceGrpc {
         @java.lang.Override
         @java.lang.SuppressWarnings("unchecked")
         public io.grpc.stub.StreamObserver<Req> invoke(
-        io.grpc.stub.StreamObserver<Resp> responseObserver) {
-      switch (methodId) {
-        case METHODID_APPEND_STREAM_LOG:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.appendStreamLog(
-              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse>) responseObserver);
-        default:
+                io.grpc.stub.StreamObserver<Resp> responseObserver) {
+            switch (methodId) {
+                case METHODID_APPEND_STREAM_LOG:
+                    return (io.grpc.stub.StreamObserver<Req>) serviceImpl.appendStreamLog(
+                            (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse>) responseObserver);
+                default:
           throw new AssertionError();
       }
     }
@@ -387,20 +392,20 @@ public final class FedRaftServiceGrpc {
 
   private static final class FedRaftServiceMethodDescriptorSupplier
       extends FedRaftServiceBaseDescriptorSupplier
-      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
+          implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+      private final String methodName;
 
-    FedRaftServiceMethodDescriptorSupplier(String methodName) {
-      this.methodName = methodName;
-    }
+      FedRaftServiceMethodDescriptorSupplier(String methodName) {
+          this.methodName = methodName;
+      }
 
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
-      return getServiceDescriptor().findMethodByName(methodName);
-    }
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+          return getServiceDescriptor().findMethodByName(methodName);
+      }
   }
 
-  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
+    private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
     public static io.grpc.ServiceDescriptor getServiceDescriptor() {
         io.grpc.ServiceDescriptor result = serviceDescriptor;
@@ -411,8 +416,8 @@ public final class FedRaftServiceGrpc {
                     serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
                             .setSchemaDescriptor(new FedRaftServiceFileDescriptorSupplier())
                             .addMethod(getAppendStreamLogMethod())
-                            .addMethod(getAppendLogMethod())
-                            .addMethod(getHeartbeatMethod())
+              .addMethod(getAppendLogMethod())
+              .addMethod(getHeartbeatMethod())
               .build();
         }
       }

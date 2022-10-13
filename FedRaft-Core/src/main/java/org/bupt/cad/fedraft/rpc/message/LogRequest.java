@@ -98,14 +98,15 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
     }
   }
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
-  }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
+    }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -175,20 +176,20 @@ private static final long serialVersionUID = 0L;
             return forNumber(value);
         }
 
-    /**
-     * @param value The numeric wire value of the corresponding enum entry.
-     * @return The enum associated with the given numeric wire value.
-     */
-    public static LogType forNumber(int value) {
-        switch (value) {
-            case 0:
-                return CLIENT_TO_LEADER;
-            case 1:
-                return LEADER_TO_CLIENT;
-            default:
-                return null;
+        /**
+         * @param value The numeric wire value of the corresponding enum entry.
+         * @return The enum associated with the given numeric wire value.
+         */
+        public static LogType forNumber(int value) {
+            switch (value) {
+                case 0:
+                    return CLIENT_TO_LEADER;
+                case 1:
+                    return LEADER_TO_CLIENT;
+                default:
+                    return null;
+            }
         }
-    }
 
     public static com.google.protobuf.Internal.EnumLiteMap<LogType>
         internalGetValueMap() {
@@ -223,10 +224,10 @@ private static final long serialVersionUID = 0L;
 
     public static LogType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-      if (desc.getType() != getDescriptor()) {
-        throw new java.lang.IllegalArgumentException(
-                "EnumValueDescriptor is not for this type.");
-      }
+        if (desc.getType() != getDescriptor()) {
+            throw new java.lang.IllegalArgumentException(
+                    "EnumValueDescriptor is not for this type.");
+        }
         if (desc.getIndex() == -1) {
             return UNRECOGNIZED;
         }
@@ -488,16 +489,18 @@ private static final long serialVersionUID = 0L;
 
     public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
             com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
@@ -573,17 +576,17 @@ private static final long serialVersionUID = 0L;
       // @@protoc_insertion_point(builder_implements:fedraft.LogRequest)
       org.bupt.cad.fedraft.rpc.message.LogRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
+    getDescriptor() {
+        return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-                  org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
-    }
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+          return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_fieldAccessorTable
+                  .ensureFieldAccessorsInitialized(
+                          org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
+      }
 
       // Construct using org.bupt.cad.fedraft.rpc.message.LogRequest.newBuilder()
       private Builder() {
@@ -609,9 +612,9 @@ private static final long serialVersionUID = 0L;
 
           leaderId_ = 0L;
 
-      preModelIndex_ = 0;
+          preModelIndex_ = 0;
 
-      preModelTerm_ = 0;
+          preModelTerm_ = 0;
 
           logType_ = 0;
 
@@ -656,23 +659,26 @@ private static final long serialVersionUID = 0L;
       @java.lang.Override
       public Builder clone() {
           return super.clone();
-    }
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return super.clearOneof(oneof);
-    }
+      }
+
+      @java.lang.Override
+      public Builder setField(
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
+          return super.setField(field, value);
+      }
+
+      @java.lang.Override
+      public Builder clearField(
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
+          return super.clearField(field);
+      }
+
+      @java.lang.Override
+      public Builder clearOneof(
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+          return super.clearOneof(oneof);
+      }
 
       @java.lang.Override
       public Builder setRepeatedField(
@@ -724,12 +730,12 @@ private static final long serialVersionUID = 0L;
       }
 
       @java.lang.Override
-    public final boolean isInitialized() {
-      return true;
-    }
+      public final boolean isInitialized() {
+          return true;
+      }
 
-    @java.lang.Override
-    public Builder mergeFrom(
+      @java.lang.Override
+      public Builder mergeFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
@@ -737,15 +743,15 @@ private static final long serialVersionUID = 0L;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (org.bupt.cad.fedraft.rpc.message.LogRequest) e.getUnfinishedMessage();
-        throw e.unwrapIOException();
+          parsedMessage = (org.bupt.cad.fedraft.rpc.message.LogRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
       } finally {
           if (parsedMessage != null) {
               mergeFrom(parsedMessage);
           }
       }
-        return this;
-    }
+          return this;
+      }
 
       private int term_;
 
@@ -821,9 +827,10 @@ private static final long serialVersionUID = 0L;
           return this;
       }
 
-      private int preModelIndex_ ;
-    /**
-     * <pre>
+      private int preModelIndex_;
+
+      /**
+       * <pre>
      * 之前发送模型的索引
      * </pre>
      *
@@ -916,24 +923,27 @@ private static final long serialVersionUID = 0L;
      * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
      * @return The enum numeric value on the wire for logType.
      */
-    @java.lang.Override public int getLogTypeValue() {
-      return logType_;
+    @java.lang.Override
+    public int getLogTypeValue() {
+        return logType_;
     }
-    /**
-     * <pre>
-     * 标记日志请求来源
-     * </pre>
-     *
-     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-     * @param value The enum numeric value on the wire for logType to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLogTypeValue(int value) {
 
-        logType_ = value;
-        onChanged();
-        return this;
-    }
+      /**
+       * <pre>
+       * 标记日志请求来源
+       * </pre>
+       *
+       * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+       *
+       * @param value The enum numeric value on the wire for logType to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLogTypeValue(int value) {
+
+          logType_ = value;
+          onChanged();
+          return this;
+      }
 
       /**
        * <pre>

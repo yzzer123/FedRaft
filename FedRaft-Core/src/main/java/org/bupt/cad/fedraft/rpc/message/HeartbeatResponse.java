@@ -514,11 +514,11 @@ public final class HeartbeatResponse extends
     @java.lang.Override
     public com.google.protobuf.Parser<HeartbeatResponse> getParserForType() {
         return PARSER;
-  }
+    }
 
-  @java.lang.Override
-  public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
   }
 
 }
