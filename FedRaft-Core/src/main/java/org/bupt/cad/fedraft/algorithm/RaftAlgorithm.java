@@ -6,6 +6,8 @@ import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.server.FedRaftServer;
 import org.bupt.cad.fedraft.server.Node;
+import org.bupt.cad.fedraft.server.NodeState;
+import org.bupt.cad.fedraft.server.SafeModeNode;
 
 import java.util.List;
 
@@ -16,25 +18,30 @@ public class RaftAlgorithm implements Algorithm {
     @Override
     public int heartbeat(HeartbeatRequest request) {
 
-
         int leaderTerm = request.getTerm();
-        leaderTerm = 0;//手动测试
-
-        if (Node.term < leaderTerm) { //初次建立心跳连接时,修改follower任期,并初始化计时器
-            Node.term = leaderTerm;
+        if(Node.getState() == NodeState.SAFE_MODE){ //-1, 0
             Node.resetHeartbeatTimer();
-        } else { //重置计时器
-            return -1;
+            if(Node.term <= leaderTerm){
+                Node.term = leaderTerm;
+                if(SafeModeNode.checkLegal())
+                    Node.setState(NodeState.FOLLOWER);
+            }else {
+                return -1;
+            }
+        }else {
+            //follower
+            Node.resetHeartbeatTimer();
         }
+
         logger.info("get heartbeat request from " + NodeInfo.idToIp(request.getLeaderId()));
-        List<Float> networkDelaysList = request.getNetworkDelaysList();
+        List<Integer> networkDelaysList = request.getNetworkDelaysList();
         List<Long> nodeIdsList = request.getNodeIdsList();
         logger.info("收到的数据长度:" + networkDelaysList.size());
         if (networkDelaysList.size() != nodeIdsList.size()) {
             return -1;
         }
         for (int i = 0; i < nodeIdsList.size(); i++) {
-            Node.topologies.putIfAbsent(nodeIdsList.get(i), networkDelaysList.get(i));//理应已有当前nodeInfo
+            Node.topologies.putIfAbsent(nodeIdsList.get(i), networkDelaysList.get(i));
         }
 
         return Node.delay;

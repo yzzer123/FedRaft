@@ -29,12 +29,12 @@ message LogResponse{
 }
 
 message HeartbeatResponse{
-  uint32 network_delay = 1;  // 传输模型的大小
+  uint32 network_delay = 1;
 }
 
 message HeartbeatRequest{
   uint32 term = 1;
   uint64 leader_id = 2;
   repeated uint64 node_ids = 3;
-  repeated float network_delays = 4; // 网络时延拓扑
+  repeated uint32 network_delays = 4; // 网络时延拓扑
 }

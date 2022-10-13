@@ -19,9 +19,9 @@ public class HeartbeatLeaderTest {
 
     @Test
     public void testHeartBeat() {
-        Node leader = new Node();
-        leader.buildRpc(new NodeInfo("127.0.0.1", 16788, 1));//传入Follower信息
-        leader.maintainHeartbeat();
+//        Node leader = new Node();
+//        leader.buildRpc(new NodeInfo("127.0.0.1", 16788, 1));//传入Follower信息
+//        leader.maintainHeartbeat();
 //        try {
 //            sleep(10000);
 //        } catch (InterruptedException e) {
