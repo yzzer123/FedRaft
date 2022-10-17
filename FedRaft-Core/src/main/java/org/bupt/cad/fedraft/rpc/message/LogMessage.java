@@ -4,19 +4,6 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public final class LogMessage {
-    private LogMessage() {
-    }
-
-    public static void registerAllExtensions(
-            com.google.protobuf.ExtensionRegistryLite registry) {
-    }
-
-    public static void registerAllExtensions(
-            com.google.protobuf.ExtensionRegistry registry) {
-        registerAllExtensions(
-                (com.google.protobuf.ExtensionRegistryLite) registry);
-    }
-
     static final com.google.protobuf.Descriptors.Descriptor
             internal_static_fedraft_LogRequest_descriptor;
     static final
@@ -47,12 +34,6 @@ public final class LogMessage {
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_fedraft_TrainerHeartbeatResponse_fieldAccessorTable;
-
-    public static com.google.protobuf.Descriptors.FileDescriptor
-    getDescriptor() {
-        return descriptor;
-    }
-
     private static com.google.protobuf.Descriptors.FileDescriptor
             descriptor;
 
@@ -65,8 +46,9 @@ public final class LogMessage {
                         "uest.LogType\022\023\n\013model_chunk\030\006 \001(\014\"5\n\007Log" +
                         "Type\022\024\n\020CLIENT_TO_LEADER\020\000\022\024\n\020LEADER_TO_" +
                         "CLIENT\020\001\"4\n\013LogResponse\022\023\n\013local_index\030\001" +
-                        " \001(\r\022\020\n\010log_size\030\002 \001(\004\"*\n\021HeartbeatRespo" +
-                        "nse\022\025\n\rnetwork_delay\030\001 \001(\r\"\252\001\n\020Heartbeat" +
+                        " \001(\r\022\020\n\010log_size\030\002 \001(\004\"R\n\021HeartbeatRespo" +
+                        "nse\022\025\n\rnetwork_delay\030\001 \001(\r\022&\n\nnode_state" +
+                        "\030\002 \001(\0162\022.fedraft.NodeState\"\252\001\n\020Heartbeat" +
                         "Request\022\014\n\004term\030\001 \001(\r\022\021\n\tleader_id\030\002 \001(\004" +
                         "\022\027\n\017pre_model_index\030\003 \001(\r\022\026\n\016pre_model_t" +
                         "erm\030\004 \001(\r\022\032\n\022leader_model_index\030\005 \001(\r\022\020\n" +
@@ -103,7 +85,7 @@ public final class LogMessage {
         internal_static_fedraft_HeartbeatResponse_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_fedraft_HeartbeatResponse_descriptor,
-                new java.lang.String[]{"NetworkDelay",});
+                new java.lang.String[]{"NetworkDelay", "NodeState",});
         internal_static_fedraft_HeartbeatRequest_descriptor =
                 getDescriptor().getMessageTypes().get(3);
         internal_static_fedraft_HeartbeatRequest_fieldAccessorTable = new
@@ -122,6 +104,24 @@ public final class LogMessage {
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_fedraft_TrainerHeartbeatResponse_descriptor,
                 new java.lang.String[]{"CurrentModelIndex",});
+    }
+
+    private LogMessage() {
+    }
+
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
+    }
+
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
+    }
+
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
     }
 
     // @@protoc_insertion_point(outer_class_scope)

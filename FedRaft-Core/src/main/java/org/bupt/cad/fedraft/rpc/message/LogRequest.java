@@ -7,50 +7,61 @@ package org.bupt.cad.fedraft.rpc.message;
  * Protobuf type {@code fedraft.LogRequest}
  */
 public final class LogRequest extends
-    com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:fedraft.LogRequest)
-    LogRequestOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use LogRequest.newBuilder() to construct.
-  private LogRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private LogRequest() {
-    logType_ = 0;
-      modelChunk_ = com.google.protobuf.ByteString.EMPTY;
-  }
+        com.google.protobuf.GeneratedMessageV3 implements
+        // @@protoc_insertion_point(message_implements:fedraft.LogRequest)
+        LogRequestOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new LogRequest();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private LogRequest(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
+    // Use LogRequest.newBuilder() to construct.
+    private LogRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-          case 0:
-            done = true;
-            break;
-          case 8: {
+
+    public static final int TERM_FIELD_NUMBER = 1;
+    public static final int LEADER_ID_FIELD_NUMBER = 2;
+    public static final int PRE_MODEL_INDEX_FIELD_NUMBER = 3;
+    public static final int PRE_MODEL_TERM_FIELD_NUMBER = 4;
+    public static final int LOG_TYPE_FIELD_NUMBER = 5;
+    public static final int MODEL_CHUNK_FIELD_NUMBER = 6;
+    // @@protoc_insertion_point(class_scope:fedraft.LogRequest)
+    private static final org.bupt.cad.fedraft.rpc.message.LogRequest DEFAULT_INSTANCE;
+
+    static {
+        DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.LogRequest();
+    }
+
+    private int term_;
+    private long leaderId_;
+    private int preModelIndex_;
+    private int preModelTerm_;
+    private int logType_;
+    private com.google.protobuf.ByteString modelChunk_;
+    private byte memoizedIsInitialized = -1;
+
+    private LogRequest() {
+        logType_ = 0;
+        modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+    }
+
+    private LogRequest(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+        }
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 8: {
 
             term_ = input.readUInt32();
             break;
@@ -93,19 +104,50 @@ private static final long serialVersionUID = 0L;
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
     } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
     } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
     }
-  }
 
     public static final com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
         return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
     }
 
     @java.lang.Override
@@ -117,136 +159,6 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
-     * Protobuf enum {@code fedraft.LogRequest.LogType}
-     */
-    public enum LogType
-            implements com.google.protobuf.ProtocolMessageEnum {
-        /**
-         * <pre>
-         * TRAINER_TO_MANAGER = 0;   // 发生在模型汇总阶段
-         * </pre>
-         *
-         * <code>CLIENT_TO_LEADER = 0;</code>
-         */
-        CLIENT_TO_LEADER(0),
-        /**
-         * <pre>
-         * 发生在模型分发阶段
-         * </pre>
-         *
-         * <code>LEADER_TO_CLIENT = 1;</code>
-         */
-        LEADER_TO_CLIENT(1),
-        UNRECOGNIZED(-1),
-        ;
-
-        /**
-         * <pre>
-         * TRAINER_TO_MANAGER = 0;   // 发生在模型汇总阶段
-         * </pre>
-         *
-         * <code>CLIENT_TO_LEADER = 0;</code>
-         */
-        public static final int CLIENT_TO_LEADER_VALUE = 0;
-        /**
-         * <pre>
-         * 发生在模型分发阶段
-         * </pre>
-         *
-         * <code>LEADER_TO_CLIENT = 1;</code>
-         */
-        public static final int LEADER_TO_CLIENT_VALUE = 1;
-
-
-        public final int getNumber() {
-            if (this == UNRECOGNIZED) {
-                throw new java.lang.IllegalArgumentException(
-                        "Can't get the number of an unknown enum value.");
-            }
-            return value;
-        }
-
-        /**
-         * @param value The numeric wire value of the corresponding enum entry.
-         * @return The enum associated with the given numeric wire value.
-         * @deprecated Use {@link #forNumber(int)} instead.
-         */
-        @java.lang.Deprecated
-        public static LogType valueOf(int value) {
-            return forNumber(value);
-        }
-
-        /**
-         * @param value The numeric wire value of the corresponding enum entry.
-         * @return The enum associated with the given numeric wire value.
-         */
-        public static LogType forNumber(int value) {
-            switch (value) {
-                case 0:
-                    return CLIENT_TO_LEADER;
-                case 1:
-                    return LEADER_TO_CLIENT;
-                default:
-                    return null;
-            }
-        }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<LogType>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static final com.google.protobuf.Internal.EnumLiteMap<
-        LogType> internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<LogType>() {
-            public LogType findValueByNumber(int number) {
-              return LogType.forNumber(number);
-            }
-          };
-
-    public final com.google.protobuf.Descriptors.EnumValueDescriptor
-        getValueDescriptor() {
-      if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalStateException(
-            "Can't get the descriptor of an unrecognized enum value.");
-      }
-      return getDescriptor().getValues().get(ordinal());
-    }
-    public final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptorForType() {
-      return getDescriptor();
-    }
-    public static final com.google.protobuf.Descriptors.EnumDescriptor
-        getDescriptor() {
-      return org.bupt.cad.fedraft.rpc.message.LogRequest.getDescriptor().getEnumTypes().get(0);
-    }
-
-    private static final LogType[] VALUES = values();
-
-    public static LogType valueOf(
-        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-            throw new java.lang.IllegalArgumentException(
-                    "EnumValueDescriptor is not for this type.");
-        }
-        if (desc.getIndex() == -1) {
-            return UNRECOGNIZED;
-        }
-        return VALUES[desc.getIndex()];
-    }
-
-        private final int value;
-
-        private LogType(int value) {
-            this.value = value;
-        }
-
-        // @@protoc_insertion_point(enum_scope:fedraft.LogRequest.LogType)
-    }
-
-    public static final int TERM_FIELD_NUMBER = 1;
-    private int term_;
-
-    /**
      * <code>uint32 term = 1;</code>
      *
      * @return The term.
@@ -255,9 +167,6 @@ private static final long serialVersionUID = 0L;
     public int getTerm() {
         return term_;
     }
-
-    public static final int LEADER_ID_FIELD_NUMBER = 2;
-    private long leaderId_;
 
     /**
      * <code>uint64 leader_id = 2;</code>
@@ -268,9 +177,6 @@ private static final long serialVersionUID = 0L;
     public long getLeaderId() {
         return leaderId_;
     }
-
-    public static final int PRE_MODEL_INDEX_FIELD_NUMBER = 3;
-    private int preModelIndex_;
 
     /**
      * <pre>
@@ -286,9 +192,6 @@ private static final long serialVersionUID = 0L;
         return preModelIndex_;
     }
 
-    public static final int PRE_MODEL_TERM_FIELD_NUMBER = 4;
-    private int preModelTerm_;
-
     /**
      * <pre>
      * 之前发送模型的任期
@@ -302,9 +205,6 @@ private static final long serialVersionUID = 0L;
     public int getPreModelTerm() {
         return preModelTerm_;
     }
-
-    public static final int LOG_TYPE_FIELD_NUMBER = 5;
-    private int logType_;
 
     /**
      * <pre>
@@ -336,9 +236,6 @@ private static final long serialVersionUID = 0L;
         return result == null ? org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.UNRECOGNIZED : result;
     }
 
-    public static final int MODEL_CHUNK_FIELD_NUMBER = 6;
-    private com.google.protobuf.ByteString modelChunk_;
-
     /**
      * <pre>
      * 模型的序列化块
@@ -352,8 +249,6 @@ private static final long serialVersionUID = 0L;
     public com.google.protobuf.ByteString getModelChunk() {
         return modelChunk_;
     }
-
-    private byte memoizedIsInitialized = -1;
 
     @java.lang.Override
     public final boolean isInitialized() {
@@ -474,45 +369,20 @@ private static final long serialVersionUID = 0L;
         return hash;
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-            java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest getDefaultInstance() {
+        return DEFAULT_INSTANCE;
     }
 
     public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-            java.nio.ByteBuffer data,
+            byte[] data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-            com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-  public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
   public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
@@ -548,310 +418,431 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.LogRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-  /**
-   * Protobuf type {@code fedraft.LogRequest}
-   */
-  public static final class Builder extends
-      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:fedraft.LogRequest)
-      org.bupt.cad.fedraft.rpc.message.LogRequestOrBuilder {
-    public static final com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-        return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
-    }
-
-      @java.lang.Override
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-          return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_fieldAccessorTable
-                  .ensureFieldAccessorsInitialized(
-                          org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
-      }
-
-      // Construct using org.bupt.cad.fedraft.rpc.message.LogRequest.newBuilder()
-      private Builder() {
-          maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-          super(parent);
-          maybeForceBuilderInitialization();
-      }
-
-      private void maybeForceBuilderInitialization() {
-          if (com.google.protobuf.GeneratedMessageV3
-                  .alwaysUseFieldBuilders) {
-          }
-      }
-
-      @java.lang.Override
-      public Builder clear() {
-          super.clear();
-          term_ = 0;
-
-          leaderId_ = 0L;
-
-          preModelIndex_ = 0;
-
-          preModelTerm_ = 0;
-
-          logType_ = 0;
-
-          modelChunk_ = com.google.protobuf.ByteString.EMPTY;
-
-          return this;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.Descriptor
-      getDescriptorForType() {
-          return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
-      }
-
-      @java.lang.Override
-      public org.bupt.cad.fedraft.rpc.message.LogRequest getDefaultInstanceForType() {
-          return org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance();
-      }
-
-      @java.lang.Override
-      public org.bupt.cad.fedraft.rpc.message.LogRequest build() {
-          org.bupt.cad.fedraft.rpc.message.LogRequest result = buildPartial();
-          if (!result.isInitialized()) {
-              throw newUninitializedMessageException(result);
-          }
-          return result;
-      }
-
-      @java.lang.Override
-      public org.bupt.cad.fedraft.rpc.message.LogRequest buildPartial() {
-          org.bupt.cad.fedraft.rpc.message.LogRequest result = new org.bupt.cad.fedraft.rpc.message.LogRequest(this);
-          result.term_ = term_;
-          result.leaderId_ = leaderId_;
-          result.preModelIndex_ = preModelIndex_;
-          result.preModelTerm_ = preModelTerm_;
-          result.logType_ = logType_;
-          result.modelChunk_ = modelChunk_;
-          onBuilt();
-          return result;
-      }
-
-      @java.lang.Override
-      public Builder clone() {
-          return super.clone();
-      }
-
-      @java.lang.Override
-      public Builder setField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              java.lang.Object value) {
-          return super.setField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder clearField(
-              com.google.protobuf.Descriptors.FieldDescriptor field) {
-          return super.clearField(field);
-      }
-
-      @java.lang.Override
-      public Builder clearOneof(
-              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-          return super.clearOneof(oneof);
-      }
-
-      @java.lang.Override
-      public Builder setRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              int index, java.lang.Object value) {
-          return super.setRepeatedField(field, index, value);
-      }
-
-      @java.lang.Override
-      public Builder addRepeatedField(
-              com.google.protobuf.Descriptors.FieldDescriptor field,
-              java.lang.Object value) {
-          return super.addRepeatedField(field, value);
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-          if (other instanceof org.bupt.cad.fedraft.rpc.message.LogRequest) {
-              return mergeFrom((org.bupt.cad.fedraft.rpc.message.LogRequest) other);
-          } else {
-              super.mergeFrom(other);
-              return this;
-          }
-      }
-
-      public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.LogRequest other) {
-          if (other == org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance()) return this;
-          if (other.getTerm() != 0) {
-              setTerm(other.getTerm());
-          }
-          if (other.getLeaderId() != 0L) {
-              setLeaderId(other.getLeaderId());
-          }
-          if (other.getPreModelIndex() != 0) {
-              setPreModelIndex(other.getPreModelIndex());
-          }
-          if (other.getPreModelTerm() != 0) {
-              setPreModelTerm(other.getPreModelTerm());
-          }
-          if (other.logType_ != 0) {
-              setLogTypeValue(other.getLogTypeValue());
-          }
-          if (other.getModelChunk() != com.google.protobuf.ByteString.EMPTY) {
-              setModelChunk(other.getModelChunk());
-          }
-          this.mergeUnknownFields(other.unknownFields);
-          onChanged();
-          return this;
-      }
-
-      @java.lang.Override
-      public final boolean isInitialized() {
-          return true;
-      }
-
-      @java.lang.Override
-      public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      org.bupt.cad.fedraft.rpc.message.LogRequest parsedMessage = null;
-      try {
-        parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (org.bupt.cad.fedraft.rpc.message.LogRequest) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-      } finally {
-          if (parsedMessage != null) {
-              mergeFrom(parsedMessage);
-          }
-      }
-          return this;
-      }
-
-      private int term_;
-
-      /**
-       * <code>uint32 term = 1;</code>
-       *
-       * @return The term.
-       */
-      @java.lang.Override
-      public int getTerm() {
-          return term_;
-      }
-
-      /**
-       * <code>uint32 term = 1;</code>
-       *
-       * @param value The term to set.
-       * @return This builder for chaining.
-       */
-      public Builder setTerm(int value) {
-
-          term_ = value;
-          onChanged();
-          return this;
-      }
-
-      /**
-       * <code>uint32 term = 1;</code>
-       *
-       * @return This builder for chaining.
-       */
-      public Builder clearTerm() {
-
-          term_ = 0;
-          onChanged();
-          return this;
-      }
-
-      private long leaderId_;
-
-      /**
-       * <code>uint64 leader_id = 2;</code>
-       *
-       * @return The leaderId.
-       */
-      @java.lang.Override
-      public long getLeaderId() {
-          return leaderId_;
-      }
-
-      /**
-       * <code>uint64 leader_id = 2;</code>
-       *
-       * @param value The leaderId to set.
-       * @return This builder for chaining.
-       */
-      public Builder setLeaderId(long value) {
-
-          leaderId_ = value;
-          onChanged();
-          return this;
-      }
-
-      /**
-       * <code>uint64 leader_id = 2;</code>
-       *
-       * @return This builder for chaining.
-       */
-      public Builder clearLeaderId() {
-
-          leaderId_ = 0L;
-          onChanged();
-          return this;
-      }
-
-      private int preModelIndex_;
-
-      /**
-       * <pre>
-     * 之前发送模型的索引
-     * </pre>
-     *
-     * <code>uint32 pre_model_index = 3;</code>
-     * @return The preModelIndex.
-     */
     @java.lang.Override
-    public int getPreModelIndex() {
-      return preModelIndex_;
+    public Builder newBuilderForType() {
+        return newBuilder();
     }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.LogRequest prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+        return new LogRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
+    @java.lang.Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
+
     /**
-     * <pre>
-     * 之前发送模型的索引
-     * </pre>
-     *
+     * Protobuf enum {@code fedraft.LogRequest.LogType}
+     */
+    public enum LogType
+            implements com.google.protobuf.ProtocolMessageEnum {
+        /**
+         * <pre>
+         * TRAINER_TO_MANAGER = 0;   // 发生在模型汇总阶段
+         * </pre>
+         *
+         * <code>CLIENT_TO_LEADER = 0;</code>
+         */
+        CLIENT_TO_LEADER(0),
+        /**
+         * <pre>
+         * 发生在模型分发阶段
+         * </pre>
+         *
+         * <code>LEADER_TO_CLIENT = 1;</code>
+         */
+        LEADER_TO_CLIENT(1),
+        UNRECOGNIZED(-1),
+        ;
+
+        /**
+         * <pre>
+         * TRAINER_TO_MANAGER = 0;   // 发生在模型汇总阶段
+         * </pre>
+         *
+         * <code>CLIENT_TO_LEADER = 0;</code>
+         */
+        public static final int CLIENT_TO_LEADER_VALUE = 0;
+        /**
+         * <pre>
+         * 发生在模型分发阶段
+         * </pre>
+         *
+         * <code>LEADER_TO_CLIENT = 1;</code>
+         */
+        public static final int LEADER_TO_CLIENT_VALUE = 1;
+        private static final com.google.protobuf.Internal.EnumLiteMap<
+                LogType> internalValueMap =
+                new com.google.protobuf.Internal.EnumLiteMap<LogType>() {
+                    public LogType findValueByNumber(int number) {
+                        return LogType.forNumber(number);
+                    }
+                };
+        private static final LogType[] VALUES = values();
+        private final int value;
+
+        private LogType(int value) {
+            this.value = value;
+        }
+
+        /**
+         * @param value The numeric wire value of the corresponding enum entry.
+         * @return The enum associated with the given numeric wire value.
+         * @deprecated Use {@link #forNumber(int)} instead.
+         */
+        @java.lang.Deprecated
+        public static LogType valueOf(int value) {
+            return forNumber(value);
+        }
+
+        public static com.google.protobuf.Internal.EnumLiteMap<LogType>
+        internalGetValueMap() {
+            return internalValueMap;
+        }
+
+        public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+            return org.bupt.cad.fedraft.rpc.message.LogRequest.getDescriptor().getEnumTypes().get(0);
+        }
+
+        /**
+         * @param value The numeric wire value of the corresponding enum entry.
+         * @return The enum associated with the given numeric wire value.
+         */
+        public static LogType forNumber(int value) {
+            switch (value) {
+                case 0:
+                    return CLIENT_TO_LEADER;
+                case 1:
+                    return LEADER_TO_CLIENT;
+                default:
+                    return null;
+            }
+        }
+
+        public static LogType valueOf(
+                com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+            if (desc.getType() != getDescriptor()) {
+                throw new java.lang.IllegalArgumentException(
+                        "EnumValueDescriptor is not for this type.");
+            }
+            if (desc.getIndex() == -1) {
+                return UNRECOGNIZED;
+            }
+            return VALUES[desc.getIndex()];
+        }
+
+        public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+            if (this == UNRECOGNIZED) {
+                throw new java.lang.IllegalStateException(
+                        "Can't get the descriptor of an unrecognized enum value.");
+            }
+            return getDescriptor().getValues().get(ordinal());
+        }
+
+        public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+            return getDescriptor();
+        }
+
+        public final int getNumber() {
+            if (this == UNRECOGNIZED) {
+                throw new java.lang.IllegalArgumentException(
+                        "Can't get the number of an unknown enum value.");
+            }
+            return value;
+        }
+
+        // @@protoc_insertion_point(enum_scope:fedraft.LogRequest.LogType)
+    }
+
+    /**
+     * Protobuf type {@code fedraft.LogRequest}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:fedraft.LogRequest)
+            org.bupt.cad.fedraft.rpc.message.LogRequestOrBuilder {
+        private int term_;
+        private long leaderId_;
+        private int preModelIndex_;
+        private com.google.protobuf.ByteString modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+        private int logType_ = 0;
+
+        // Construct using org.bupt.cad.fedraft.rpc.message.LogRequest.newBuilder()
+        private Builder() {
+            maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
+            maybeForceBuilderInitialization();
+        }
+
+        public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.cad.fedraft.rpc.message.LogRequest.class, org.bupt.cad.fedraft.rpc.message.LogRequest.Builder.class);
+        }
+
+        private void maybeForceBuilderInitialization() {
+            if (com.google.protobuf.GeneratedMessageV3
+                    .alwaysUseFieldBuilders) {
+            }
+        }
+
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
+            term_ = 0;
+
+            leaderId_ = 0L;
+
+            preModelIndex_ = 0;
+
+            preModelTerm_ = 0;
+
+            logType_ = 0;
+
+            modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+
+            return this;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogRequest_descriptor;
+        }
+
+        @java.lang.Override
+        public org.bupt.cad.fedraft.rpc.message.LogRequest getDefaultInstanceForType() {
+            return org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.cad.fedraft.rpc.message.LogRequest build() {
+            org.bupt.cad.fedraft.rpc.message.LogRequest result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @java.lang.Override
+        public org.bupt.cad.fedraft.rpc.message.LogRequest buildPartial() {
+            org.bupt.cad.fedraft.rpc.message.LogRequest result = new org.bupt.cad.fedraft.rpc.message.LogRequest(this);
+            result.term_ = term_;
+            result.leaderId_ = leaderId_;
+            result.preModelIndex_ = preModelIndex_;
+            result.preModelTerm_ = preModelTerm_;
+            result.logType_ = logType_;
+            result.modelChunk_ = modelChunk_;
+            onBuilt();
+            return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @java.lang.Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.setField(field, value);
+        }
+
+        @java.lang.Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @java.lang.Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        @java.lang.Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, java.lang.Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @java.lang.Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof org.bupt.cad.fedraft.rpc.message.LogRequest) {
+                return mergeFrom((org.bupt.cad.fedraft.rpc.message.LogRequest) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.LogRequest other) {
+            if (other == org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance()) return this;
+            if (other.getTerm() != 0) {
+                setTerm(other.getTerm());
+            }
+            if (other.getLeaderId() != 0L) {
+                setLeaderId(other.getLeaderId());
+            }
+            if (other.getPreModelIndex() != 0) {
+                setPreModelIndex(other.getPreModelIndex());
+            }
+            if (other.getPreModelTerm() != 0) {
+                setPreModelTerm(other.getPreModelTerm());
+            }
+            if (other.logType_ != 0) {
+                setLogTypeValue(other.getLogTypeValue());
+            }
+            if (other.getModelChunk() != com.google.protobuf.ByteString.EMPTY) {
+                setModelChunk(other.getModelChunk());
+            }
+            this.mergeUnknownFields(other.unknownFields);
+            onChanged();
+            return this;
+        }
+
+        @java.lang.Override
+        public final boolean isInitialized() {
+            return true;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            org.bupt.cad.fedraft.rpc.message.LogRequest parsedMessage = null;
+            try {
+                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                parsedMessage = (org.bupt.cad.fedraft.rpc.message.LogRequest) e.getUnfinishedMessage();
+                throw e.unwrapIOException();
+            } finally {
+                if (parsedMessage != null) {
+                    mergeFrom(parsedMessage);
+                }
+            }
+            return this;
+        }
+
+        /**
+         * <code>uint32 term = 1;</code>
+         *
+         * @return The term.
+         */
+        @java.lang.Override
+        public int getTerm() {
+            return term_;
+        }
+
+        /**
+         * <code>uint32 term = 1;</code>
+         *
+         * @param value The term to set.
+         * @return This builder for chaining.
+         */
+        public Builder setTerm(int value) {
+
+            term_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>uint32 term = 1;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearTerm() {
+
+            term_ = 0;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>uint64 leader_id = 2;</code>
+         *
+         * @return The leaderId.
+         */
+        @java.lang.Override
+        public long getLeaderId() {
+            return leaderId_;
+        }
+
+        /**
+         * <code>uint64 leader_id = 2;</code>
+         *
+         * @param value The leaderId to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLeaderId(long value) {
+
+            leaderId_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 之前发送模型的索引
+         * </pre>
+         *
      * <code>uint32 pre_model_index = 3;</code>
      * @param value The preModelIndex to set.
      * @return This builder for chaining.
      */
     public Builder setPreModelIndex(int value) {
-      
+
       preModelIndex_ = value;
       onChanged();
       return this;
@@ -865,217 +856,237 @@ private static final long serialVersionUID = 0L;
      * @return This builder for chaining.
      */
     public Builder clearPreModelIndex() {
-      
+
       preModelIndex_ = 0;
       onChanged();
       return this;
     }
 
-    private int preModelTerm_ ;
-    /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 pre_model_term = 4;</code>
-     * @return The preModelTerm.
-     */
-    @java.lang.Override
-    public int getPreModelTerm() {
-      return preModelTerm_;
+        private int preModelTerm_;
+
+        /**
+         * <pre>
+         * 之前发送模型的任期
+         * </pre>
+         *
+         * <code>uint32 pre_model_term = 4;</code>
+         *
+         * @return The preModelTerm.
+         */
+        @java.lang.Override
+        public int getPreModelTerm() {
+            return preModelTerm_;
+        }
+
+        /**
+         * <code>uint64 leader_id = 2;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearLeaderId() {
+
+            leaderId_ = 0L;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 之前发送模型的任期
+         * </pre>
+         *
+         * <code>uint32 pre_model_term = 4;</code>
+         *
+         * @param value The preModelTerm to set.
+         * @return This builder for chaining.
+         */
+        public Builder setPreModelTerm(int value) {
+
+            preModelTerm_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 之前发送模型的任期
+         * </pre>
+         *
+         * <code>uint32 pre_model_term = 4;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearPreModelTerm() {
+
+            preModelTerm_ = 0;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 之前发送模型的索引
+         * </pre>
+         *
+         * <code>uint32 pre_model_index = 3;</code>
+         *
+         * @return The preModelIndex.
+         */
+        @java.lang.Override
+        public int getPreModelIndex() {
+            return preModelIndex_;
+        }
+
+        /**
+         * <pre>
+         * 标记日志请求来源
+         * </pre>
+         *
+         * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+         *
+         * @return The enum numeric value on the wire for logType.
+         */
+        @java.lang.Override
+        public int getLogTypeValue() {
+            return logType_;
+        }
+
+        /**
+         * <pre>
+         * 标记日志请求来源
+         * </pre>
+         *
+         * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+         *
+         * @param value The enum numeric value on the wire for logType to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLogTypeValue(int value) {
+
+            logType_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 标记日志请求来源
+         * </pre>
+         *
+         * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+         *
+         * @return The logType.
+         */
+        @java.lang.Override
+        public org.bupt.cad.fedraft.rpc.message.LogRequest.LogType getLogType() {
+            @SuppressWarnings("deprecation")
+            org.bupt.cad.fedraft.rpc.message.LogRequest.LogType result = org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.valueOf(logType_);
+            return result == null ? org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.UNRECOGNIZED : result;
+        }
+
+        /**
+         * <pre>
+         * 标记日志请求来源
+         * </pre>
+         *
+         * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+         *
+         * @param value The logType to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLogType(org.bupt.cad.fedraft.rpc.message.LogRequest.LogType value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            logType_ = value.getNumber();
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 标记日志请求来源
+         * </pre>
+         *
+         * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearLogType() {
+
+            logType_ = 0;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 模型的序列化块
+         * </pre>
+         *
+         * <code>bytes model_chunk = 6;</code>
+         *
+         * @return The modelChunk.
+         */
+        @java.lang.Override
+        public com.google.protobuf.ByteString getModelChunk() {
+            return modelChunk_;
+        }
+
+        /**
+         * <pre>
+         * 模型的序列化块
+         * </pre>
+         *
+         * <code>bytes model_chunk = 6;</code>
+         *
+         * @param value The modelChunk to set.
+         * @return This builder for chaining.
+         */
+        public Builder setModelChunk(com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            modelChunk_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 模型的序列化块
+         * </pre>
+         *
+         * <code>bytes model_chunk = 6;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearModelChunk() {
+
+            modelChunk_ = getDefaultInstance().getModelChunk();
+            onChanged();
+            return this;
+        }
+
+        @java.lang.Override
+        public final Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
+
+        @java.lang.Override
+        public final Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:fedraft.LogRequest)
     }
-    /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 pre_model_term = 4;</code>
-     * @param value The preModelTerm to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPreModelTerm(int value) {
-      
-      preModelTerm_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 pre_model_term = 4;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearPreModelTerm() {
-      
-      preModelTerm_ = 0;
-      onChanged();
-      return this;
-    }
 
-    private int logType_ = 0;
-    /**
-     * <pre>
-     * 标记日志请求来源
-     * </pre>
-     *
-     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-     * @return The enum numeric value on the wire for logType.
-     */
-    @java.lang.Override
-    public int getLogTypeValue() {
-        return logType_;
-    }
-
-      /**
-       * <pre>
-       * 标记日志请求来源
-       * </pre>
-       *
-       * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-       *
-       * @param value The enum numeric value on the wire for logType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setLogTypeValue(int value) {
-
-          logType_ = value;
-          onChanged();
-          return this;
-      }
-
-      /**
-       * <pre>
-       * 标记日志请求来源
-       * </pre>
-       *
-       * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-       *
-       * @return The logType.
-       */
-      @java.lang.Override
-      public org.bupt.cad.fedraft.rpc.message.LogRequest.LogType getLogType() {
-          @SuppressWarnings("deprecation")
-          org.bupt.cad.fedraft.rpc.message.LogRequest.LogType result = org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.valueOf(logType_);
-          return result == null ? org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.UNRECOGNIZED : result;
-      }
-
-      /**
-       * <pre>
-       * 标记日志请求来源
-       * </pre>
-       *
-       * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-       *
-       * @param value The logType to set.
-       * @return This builder for chaining.
-       */
-      public Builder setLogType(org.bupt.cad.fedraft.rpc.message.LogRequest.LogType value) {
-          if (value == null) {
-              throw new NullPointerException();
-          }
-
-          logType_ = value.getNumber();
-          onChanged();
-          return this;
-      }
-
-      /**
-       * <pre>
-       * 标记日志请求来源
-       * </pre>
-       *
-       * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-       *
-       * @return This builder for chaining.
-       */
-      public Builder clearLogType() {
-
-          logType_ = 0;
-          onChanged();
-          return this;
-      }
-
-      private com.google.protobuf.ByteString modelChunk_ = com.google.protobuf.ByteString.EMPTY;
-
-      /**
-       * <pre>
-       * 模型的序列化块
-       * </pre>
-       *
-       * <code>bytes model_chunk = 6;</code>
-       *
-       * @return The modelChunk.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getModelChunk() {
-          return modelChunk_;
-      }
-
-      /**
-       * <pre>
-       * 模型的序列化块
-       * </pre>
-       *
-       * <code>bytes model_chunk = 6;</code>
-       *
-       * @param value The modelChunk to set.
-       * @return This builder for chaining.
-       */
-      public Builder setModelChunk(com.google.protobuf.ByteString value) {
-          if (value == null) {
-              throw new NullPointerException();
-          }
-
-          modelChunk_ = value;
-          onChanged();
-          return this;
-      }
-
-      /**
-       * <pre>
-       * 模型的序列化块
-       * </pre>
-       *
-       * <code>bytes model_chunk = 6;</code>
-       *
-       * @return This builder for chaining.
-       */
-      public Builder clearModelChunk() {
-
-          modelChunk_ = getDefaultInstance().getModelChunk();
-          onChanged();
-          return this;
-      }
-
-      @java.lang.Override
-      public final Builder setUnknownFields(
-              final com.google.protobuf.UnknownFieldSet unknownFields) {
-          return super.setUnknownFields(unknownFields);
-    }
-
-    @java.lang.Override
-    public final Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
-
-    // @@protoc_insertion_point(builder_scope:fedraft.LogRequest)
-  }
-
-  // @@protoc_insertion_point(class_scope:fedraft.LogRequest)
-  private static final org.bupt.cad.fedraft.rpc.message.LogRequest DEFAULT_INSTANCE;
-  static {
-    DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.LogRequest();
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.LogRequest getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  private static final com.google.protobuf.Parser<LogRequest>
+    private static final com.google.protobuf.Parser<LogRequest>
       PARSER = new com.google.protobuf.AbstractParser<LogRequest>() {
     @java.lang.Override
     public LogRequest parsePartialFrom(

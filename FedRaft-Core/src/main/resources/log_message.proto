@@ -30,6 +30,7 @@ message LogResponse{
 
 message HeartbeatResponse{
   uint32 network_delay = 1;
+  NodeState node_state = 2;
 }
 
 message HeartbeatRequest{

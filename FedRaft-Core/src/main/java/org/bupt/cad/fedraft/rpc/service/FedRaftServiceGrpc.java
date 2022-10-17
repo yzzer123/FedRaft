@@ -10,75 +10,79 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class FedRaftServiceGrpc {
 
-  private FedRaftServiceGrpc() {}
-
-  public static final String SERVICE_NAME = "fedraft.FedRaftService";
-
-  // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
-      org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "AppendStreamLog",
-      requestType = org.bupt.cad.fedraft.rpc.message.LogRequest.class,
-      responseType = org.bupt.cad.fedraft.rpc.message.LogResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-  public static io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
-      org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod() {
-    io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod;
-    if ((getAppendStreamLogMethod = FedRaftServiceGrpc.getAppendStreamLogMethod) == null) {
-      synchronized (FedRaftServiceGrpc.class) {
-        if ((getAppendStreamLogMethod = FedRaftServiceGrpc.getAppendStreamLogMethod) == null) {
-          FedRaftServiceGrpc.getAppendStreamLogMethod = getAppendStreamLogMethod =
-              io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AppendStreamLog"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.bupt.cad.fedraft.rpc.message.LogResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("AppendStreamLog"))
-              .build();
-        }
-      }
+    private FedRaftServiceGrpc() {
     }
-    return getAppendStreamLogMethod;
-  }
 
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
-      org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
+    public static final String SERVICE_NAME = "fedraft.FedRaftService";
 
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "AppendLog",
-      requestType = org.bupt.cad.fedraft.rpc.message.LogRequest.class,
-      responseType = org.bupt.cad.fedraft.rpc.message.LogResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
-      org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod() {
-    io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
-    if ((getAppendLogMethod = FedRaftServiceGrpc.getAppendLogMethod) == null) {
-      synchronized (FedRaftServiceGrpc.class) {
-        if ((getAppendLogMethod = FedRaftServiceGrpc.getAppendLogMethod) == null) {
-          FedRaftServiceGrpc.getAppendLogMethod = getAppendLogMethod =
-                  io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse>newBuilder()
-                          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-                          .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AppendLog"))
-                          .setSampledToLocalTracing(true)
-                          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                  org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance()))
-                          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                  org.bupt.cad.fedraft.rpc.message.LogResponse.getDefaultInstance()))
-                          .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("AppendLog"))
-                          .build();
-        }
-      }
-    }
-      return getAppendLogMethod;
-  }
+    // Static method descriptors that strictly reflect the proto.
+    private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
+            org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod;
 
+    private static final int METHODID_APPEND_LOG = 0;
+    private static final int METHODID_HEARTBEAT = 1;
+    private static final int METHODID_APPEND_STREAM_LOG = 2;
+    private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
+            org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
     private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.HeartbeatRequest,
             org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> getHeartbeatMethod;
+    private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
+
+    @io.grpc.stub.annotations.RpcMethod(
+            fullMethodName = SERVICE_NAME + '/' + "AppendStreamLog",
+            requestType = org.bupt.cad.fedraft.rpc.message.LogRequest.class,
+            responseType = org.bupt.cad.fedraft.rpc.message.LogResponse.class,
+            methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+    public static io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
+            org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod() {
+        io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod;
+        if ((getAppendStreamLogMethod = FedRaftServiceGrpc.getAppendStreamLogMethod) == null) {
+      synchronized (FedRaftServiceGrpc.class) {
+        if ((getAppendStreamLogMethod = FedRaftServiceGrpc.getAppendStreamLogMethod) == null) {
+            FedRaftServiceGrpc.getAppendStreamLogMethod = getAppendStreamLogMethod =
+                    io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse>newBuilder()
+                            .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+                            .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AppendStreamLog"))
+                            .setSampledToLocalTracing(true)
+                            .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                    org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance()))
+                            .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                    org.bupt.cad.fedraft.rpc.message.LogResponse.getDefaultInstance()))
+                            .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("AppendStreamLog"))
+                            .build();
+        }
+      }
+        }
+        return getAppendStreamLogMethod;
+    }
+
+    @io.grpc.stub.annotations.RpcMethod(
+            fullMethodName = SERVICE_NAME + '/' + "AppendLog",
+            requestType = org.bupt.cad.fedraft.rpc.message.LogRequest.class,
+            responseType = org.bupt.cad.fedraft.rpc.message.LogResponse.class,
+            methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+    public static io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
+            org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod() {
+        io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
+        if ((getAppendLogMethod = FedRaftServiceGrpc.getAppendLogMethod) == null) {
+            synchronized (FedRaftServiceGrpc.class) {
+                if ((getAppendLogMethod = FedRaftServiceGrpc.getAppendLogMethod) == null) {
+                    FedRaftServiceGrpc.getAppendLogMethod = getAppendLogMethod =
+                            io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse>newBuilder()
+                                    .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                                    .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AppendLog"))
+                                    .setSampledToLocalTracing(true)
+                                    .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance()))
+                                    .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            org.bupt.cad.fedraft.rpc.message.LogResponse.getDefaultInstance()))
+                                    .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("AppendLog"))
+                                    .build();
+                }
+            }
+        }
+        return getAppendLogMethod;
+    }
 
     @io.grpc.stub.annotations.RpcMethod(
             fullMethodName = SERVICE_NAME + '/' + "Heartbeat",
@@ -150,6 +154,24 @@ public final class FedRaftServiceGrpc {
                     }
                 };
         return FedRaftServiceFutureStub.newStub(factory, channel);
+    }
+
+    public static io.grpc.ServiceDescriptor getServiceDescriptor() {
+        io.grpc.ServiceDescriptor result = serviceDescriptor;
+        if (result == null) {
+            synchronized (FedRaftServiceGrpc.class) {
+                result = serviceDescriptor;
+                if (result == null) {
+                    serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
+                            .setSchemaDescriptor(new FedRaftServiceFileDescriptorSupplier())
+                            .addMethod(getAppendStreamLogMethod())
+                            .addMethod(getAppendLogMethod())
+                            .addMethod(getHeartbeatMethod())
+                            .build();
+                }
+            }
+        }
+        return result;
     }
 
     /**
@@ -288,6 +310,28 @@ public final class FedRaftServiceGrpc {
         }
     }
 
+    private static abstract class FedRaftServiceBaseDescriptorSupplier
+            implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+        FedRaftServiceBaseDescriptorSupplier() {
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
+            return org.bupt.cad.fedraft.rpc.service.FedraftService.getDescriptor();
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+            return getFileDescriptor().findServiceByName("FedRaftService");
+        }
+    }
+
+    private static final class FedRaftServiceFileDescriptorSupplier
+            extends FedRaftServiceBaseDescriptorSupplier {
+        FedRaftServiceFileDescriptorSupplier() {
+        }
+    }
+
     /**
      *
      */
@@ -321,10 +365,6 @@ public final class FedRaftServiceGrpc {
                     getChannel().newCall(getHeartbeatMethod(), getCallOptions()), request);
         }
     }
-
-    private static final int METHODID_APPEND_LOG = 0;
-    private static final int METHODID_HEARTBEAT = 1;
-    private static final int METHODID_APPEND_STREAM_LOG = 2;
 
     private static final class MethodHandlers<Req, Resp> implements
             io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -365,63 +405,23 @@ public final class FedRaftServiceGrpc {
                     return (io.grpc.stub.StreamObserver<Req>) serviceImpl.appendStreamLog(
                             (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse>) responseObserver);
                 default:
-          throw new AssertionError();
-      }
-    }
-  }
-
-  private static abstract class FedRaftServiceBaseDescriptorSupplier
-      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    FedRaftServiceBaseDescriptorSupplier() {}
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return org.bupt.cad.fedraft.rpc.service.FedraftService.getDescriptor();
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("FedRaftService");
-    }
-  }
-
-  private static final class FedRaftServiceFileDescriptorSupplier
-      extends FedRaftServiceBaseDescriptorSupplier {
-    FedRaftServiceFileDescriptorSupplier() {}
-  }
-
-  private static final class FedRaftServiceMethodDescriptorSupplier
-      extends FedRaftServiceBaseDescriptorSupplier
-          implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-      private final String methodName;
-
-      FedRaftServiceMethodDescriptorSupplier(String methodName) {
-          this.methodName = methodName;
-      }
-
-      @java.lang.Override
-      public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
-          return getServiceDescriptor().findMethodByName(methodName);
-      }
-  }
-
-    private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
-
-    public static io.grpc.ServiceDescriptor getServiceDescriptor() {
-        io.grpc.ServiceDescriptor result = serviceDescriptor;
-        if (result == null) {
-            synchronized (FedRaftServiceGrpc.class) {
-                result = serviceDescriptor;
-                if (result == null) {
-                    serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-                            .setSchemaDescriptor(new FedRaftServiceFileDescriptorSupplier())
-                            .addMethod(getAppendStreamLogMethod())
-              .addMethod(getAppendLogMethod())
-              .addMethod(getHeartbeatMethod())
-              .build();
+                    throw new AssertionError();
+            }
         }
-      }
     }
-    return result;
-  }
+
+    private static final class FedRaftServiceMethodDescriptorSupplier
+            extends FedRaftServiceBaseDescriptorSupplier
+            implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+        private final String methodName;
+
+        FedRaftServiceMethodDescriptorSupplier(String methodName) {
+            this.methodName = methodName;
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+            return getServiceDescriptor().findMethodByName(methodName);
+        }
+    }
 }

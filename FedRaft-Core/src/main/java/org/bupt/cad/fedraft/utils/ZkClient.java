@@ -2,6 +2,7 @@ package org.bupt.cad.fedraft.utils;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.recipes.cache.ChildData;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 import org.apache.curator.framework.recipes.leader.LeaderSelector;
@@ -15,6 +16,7 @@ import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.server.FedRaftServer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
@@ -78,11 +80,10 @@ public class ZkClient {
     private void registerNode() throws Exception {
 
         // 节点未注册过 就要先加入注册中的集群，由leader审核通过才算注册成功
-//        if (this.client.checkExists().creatingParentsIfNeeded().forPath(REGISTERED_CLUSTER + nodeName) == null){
-//            this.client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(REGISTERING_CLUSTER + nodeName);
-//        }
+        if (this.client.checkExists().creatingParentsIfNeeded().forPath(REGISTERED_CLUSTER + nodeName) == null) {
+            this.client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(REGISTERED_CLUSTER + nodeName);
+        }
         // 注册过的节点才能建立alive状态
-        this.client.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(ALIVE_CLUSTER + nodeName);
         logger.info("node registered in /fedraft/cluster");
     }
 
@@ -93,7 +94,7 @@ public class ZkClient {
     private void quitNode() {
 
         try {
-            this.client.delete().forPath("/cluster/" + nodeName);
+            this.client.delete().forPath(ALIVE_CLUSTER + nodeName);
             logger.info("node deleted in /fedraft/cluster");
         } catch (Exception e) {
             logger.error("delete register node failed:\n" + e.getMessage(), e);
@@ -152,37 +153,56 @@ public class ZkClient {
 
         // 构造curator监听器
         if (this.watcherCache == null) {
-            this.watcherCache = new PathChildrenCache(this.client, "/cluster", true);
+            this.watcherCache = new PathChildrenCache(this.client, REGISTERED_CLUSTER, true);
         }
+
 
         this.listener = (client, event) -> {
             String nodePath;
-            String[] fields;
             switch (event.getType()) {
 
                 // 添加节点
                 case CHILD_ADDED:
-                    logger.info("cluster node added\t" + event.getData());
+                    logger.debug("cluster node added\t" + event.getData());
                     nodePath = event.getData().getPath();
-                    fields = nodePath.substring(9).split(":");
-                    // /cluster/ip:port1:port2
-                    watcher.addNode(new NodeInfo(fields[0], Integer.parseInt(fields[1]), Integer.parseInt(fields[2])));
+                    watcher.addNode(new NodeInfo(nodePath.substring(REGISTERED_CLUSTER.length())));
                     break;
                 // 减少节点
                 case CHILD_REMOVED:
-                    logger.info("cluster node removed\t" + event.getData());
+                    logger.debug("cluster node removed\t" + event.getData());
                     nodePath = event.getData().getPath();
-                    fields = nodePath.substring(9).split(":");
-                    // /cluster/ip:port1:port2
-                    watcher.removeNode(new NodeInfo(fields[0], Integer.parseInt(fields[1]), Integer.parseInt(fields[2])));
+                    watcher.removeNode(new NodeInfo(nodePath.substring(REGISTERED_CLUSTER.length())));
                     break;
+                case INITIALIZED:
+                    logger.debug("cluster node removed\t" + event.getData());
+                    List<NodeInfo> nodes = new ArrayList<>(event.getInitialData().size());
+                    for (ChildData node : event.getInitialData()) {
+                        nodes.add(new NodeInfo(node.getPath().substring(REGISTERED_CLUSTER.length())));
+                    }
+                    watcher.initNodes(nodes);
             }
         };
 
         this.watcherCache.getListenable().addListener(this.listener);
-        this.watcherCache.start();
+        this.watcherCache.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);
 
         logger.info("cluster watcher has been set");
+    }
+
+    /**
+     * 直接获取集群节点
+     *
+     * @return 集群节点
+     * @throws Exception 通信失败
+     */
+    public List<NodeInfo> getCluster() throws Exception {
+        List<String> nodes = client.getChildren().forPath(REGISTERED_CLUSTER);
+
+        ArrayList<NodeInfo> nodeInfos = new ArrayList<>(nodes.size());
+        for (String node : nodes) {
+            nodeInfos.add(new NodeInfo(node));
+        }
+        return nodeInfos;
     }
 
     /**

@@ -3,6 +3,7 @@ package org.bupt.cad.fedraft.node;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
+import org.bupt.cad.fedraft.rpc.message.NodeState;
 import org.bupt.cad.fedraft.server.FedRaftServer;
 
 import java.util.Map;
@@ -25,7 +26,7 @@ public class SafeMode implements NodeMode {
         });
     }
 
-    //检查拓扑是否更新为全局拓扑 更新为全局拓扑后就可以进入follower
+    //检查拓扑是否具有所有节点的时延
     public void checkTopologyDelay() {
 
         boolean isAllUpdated = true;
@@ -47,40 +48,43 @@ public class SafeMode implements NodeMode {
         Node runtimeNode = Node.getRuntimeNode();
 
         // 同一时间只能有一个线程在修改节点状态
-        synchronized (Node.getRuntimeNode()) {
-            // Safemode收到的心跳信息可能来自 tmp_leader 和 leader,
-            if (request.getTerm() > runtimeNode.getTerm()) {
-                // 跟随该leader 将任期提升
-                runtimeNode.setTerm(request.getTerm())
-                        .setLeader(request.getLeaderId());
 
-            } else if (request.getTerm() < runtimeNode.getTerm()) {
-                // 任期比自己小就为错误
-                return -1;
-            }
+        // Safemode收到的心跳信息可能来自 tmp_leader 和 leader,
+        if (request.getTerm() > runtimeNode.getTerm()) {
+            // 跟随该leader 将任期提升
+            runtimeNode.setTerm(request.getTerm())
+                    .setLeader(request.getLeaderId());
 
-            // 更新自己的时延拓扑
-            Map<Long, Integer> topology = Node.getRuntimeNode().getTopology();
-
-            // 批量插入只能一个线程执行 ConcurrentHashMap只能保证单个操作原子
-            synchronized (Node.getRuntimeNode().getTopology()) {
-                int topologySize = request.getNodeIdsCount();
-                topology.clear();
-                for (int i = 0; i < topologySize; i++) {
-                    topology.put(request.getNodeIds(i), request.getNetworkDelays(i));
-                }
-
-                // 检查拓扑是否全部更新
-                if (request.getTerm() > 0) {
-                    // 如果接收到的是leader的消息 直接变为follower
-                    runtimeNode.setState(NodeState.FOLLOWER);
-                } else {
-                    checkTopologyDelay();
-                }
-            }
-
-
+        } else if (request.getTerm() < runtimeNode.getTerm()) {
+            // 任期比自己小就为错误
+            return -1;
         }
+
+        // 更新自己的时延拓扑
+        Map<Long, Integer> topology = Node.getRuntimeNode().getTopology();
+
+        // 批量插入只能一个线程执行 ConcurrentHashMap只能保证单个操作原子
+        synchronized (Node.getRuntimeNode().getTopology()) {
+            int topologySize = request.getNodeIdsCount();
+            topology.clear();
+            for (int i = 0; i < topologySize; i++) {
+                topology.put(request.getNodeIds(i), request.getNetworkDelays(i));
+            }
+
+            // 检查拓扑是否全部更新
+            if (request.getTerm() > 0) {
+                // 如果接收到的是leader的消息 直接变为follower
+                runtimeNode.setState(NodeState.FOLLOWER);
+            } else {
+                checkTopologyDelay();
+            }
+        }
+
         return Node.getRuntimeNode().getDelay().get();
+    }
+
+    @Override
+    public void close() {
+        Node.getRuntimeNode().getZkClient().giveUpCheckinLeader();
     }
 }

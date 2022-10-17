@@ -1,10 +1,12 @@
 package org.bupt.cad.fedraft.server;
 
 
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.algorithm.Algorithm;
+import org.bupt.cad.fedraft.node.Node;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatResponse;
 import org.bupt.cad.fedraft.rpc.message.LogRequest;
@@ -28,15 +30,24 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
     //todo 建立计时器感知超时
     @Override
     public void heartbeat(HeartbeatRequest request, StreamObserver<HeartbeatResponse> responseObserver) {
-
-        int delay = algorithm.heartbeat(request);
-        if (delay > 0) {
-            HeartbeatResponse response = HeartbeatResponse.newBuilder().setNetworkDelay(delay).build();
-            responseObserver.onNext(response);
-            logger.info("follower节点完成一次心跳传输");
+        HeartbeatResponse response = null;
+        synchronized (Node.getRuntimeNode()) {
+            int delay = algorithm.heartbeat(request);
+            if (delay > 0) {
+                response = HeartbeatResponse.newBuilder()
+                        .setNetworkDelay(delay)
+                        .setNodeState(Node.getRuntimeNode().getState())
+                        .build();
+                logger.info("follower节点完成一次心跳传输");
+            }
+            logger.info("delay=" + delay);
         }
-        logger.info("delay=" + delay);
-        responseObserver.onCompleted();
+        if (response != null) {
+            responseObserver.onNext(response);
+            responseObserver.onCompleted();
+        } else {
+            responseObserver.onError(Status.INVALID_ARGUMENT.asException());
+        }
     }
 
     @Override

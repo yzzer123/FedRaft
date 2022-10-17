@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.exception.StateChangeException;
+import org.bupt.cad.fedraft.rpc.message.NodeState;
 import org.bupt.cad.fedraft.server.FedRaftClient;
 import org.bupt.cad.fedraft.server.FedRaftServer;
 import org.bupt.cad.fedraft.utils.ClientPool;
@@ -59,6 +60,7 @@ public class Node {
     private NodeMode nodeMode = new SafeMode();
 
     private void setNodeMode(NodeMode nodeMode) {
+        this.nodeMode.close();
         this.nodeMode = nodeMode;
     }
 
@@ -136,7 +138,9 @@ public class Node {
     }
 
     public NodeState getState() {
-        return state;
+        synchronized (this) {
+            return state;
+        }
     }
 
     public Node setState(NodeState newState) throws StateChangeException {

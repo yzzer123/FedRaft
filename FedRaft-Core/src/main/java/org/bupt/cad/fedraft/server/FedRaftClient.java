@@ -5,16 +5,9 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bupt.cad.fedraft.beans.NodeInfo;
-import org.bupt.cad.fedraft.node.Node;
-import org.bupt.cad.fedraft.node.NodeState;
-import org.bupt.cad.fedraft.node.TmpLeader;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatResponse;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class FedRaftClient {
     private static final Logger logger = LogManager.getLogger(FedRaftServer.class.getName());
@@ -53,37 +46,18 @@ public class FedRaftClient {
         this.futureStub = FedRaftServiceGrpc.newFutureStub(channel);
     }
 
-    //向Server发送心跳信息: term, leader_id,
-    public void sendHeartBeat(int term, long leaderId, Long clientId) {
-        HeartbeatRequest.Builder builder = HeartbeatRequest.newBuilder().setTerm(term).setLeaderId(leaderId);
-
-
-        for (Map.Entry<Long, Integer> nodeEntry : Node.getRuntimeNode().getTopology().entrySet()) {
-            builder.addNodeIds(nodeEntry.getKey());
-            builder.addNetworkDelays(nodeEntry.getValue());
-        }
-
-        HeartbeatRequest request = builder.build();
+    //向client发送心跳信息 并处理返回值
+    public void sendHeartBeat(HeartbeatRequest request, HeartbeatResponseHandler responseHandler) {
 
         getAsyncStub().heartbeat(request, new StreamObserver<>() {
-            boolean flag = true;
-
             @Override
             public void onNext(HeartbeatResponse heartbeatResponse) {
-                logger.info("get heartbeat response from " + NodeInfo.idToIp(clientId));
-                int newDelay = heartbeatResponse.getNetworkDelay();
-                ConcurrentHashMap<Long, Integer> runtimeTopology = Node.getRuntimeNode().getTopology();
-
-                runtimeTopology.computeIfPresent(clientId, (aLong, integer) -> newDelay);
-
-                if (Node.getRuntimeNode().getState() == NodeState.TMP_LEADER && flag) {
-                    flag = Node.getRuntimeNode().<TmpLeader>getNodeMode().count(clientId);
-                }
+                responseHandler.handleResponse(heartbeatResponse);
             }
 
             @Override
             public void onError(Throwable throwable) {
-                logger.error("发生意外的错误, (可能心跳信息超时或宕机)" + throwable.getMessage());
+                logger.error("heartbeat invalid: " + throwable.getMessage(), throwable);
             }
 
             @Override
@@ -92,4 +66,8 @@ public class FedRaftClient {
         });
     }
 
+
+    public interface HeartbeatResponseHandler {
+        void handleResponse(HeartbeatResponse response);
+    }
 }

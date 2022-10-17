@@ -14,9 +14,11 @@ import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.node.Node;
 import org.bupt.cad.fedraft.node.SafeMode;
 import org.bupt.cad.fedraft.utils.NetworkUtils;
+import org.bupt.cad.fedraft.utils.TimerUtils;
 import org.bupt.cad.fedraft.utils.ZkClient;
 
 import java.io.IOException;
+import java.util.Random;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -47,7 +49,14 @@ public class FedRaftServer {
         NodeInfo localNodeInfo = new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT),
                 Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
         SafeMode nodeMode = Node.getRuntimeNode().getNodeMode();
-        nodeMode.checkinTmpLeader();
+
+        // 随机倒计时启动，给集群一定时间注册节点
+        TimerUtils.getTimer().schedule(new Runnable() {
+            @Override
+            public void run() {
+                nodeMode.checkinTmpLeader();
+            }
+        }, Configuration.getInt(Configuration.MANAGER_CANDIDATE_TIMEOUT) + new Random().nextInt(100), TimeUnit.MILLISECONDS);
     }
 
     /**

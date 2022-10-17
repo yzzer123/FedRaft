@@ -8,121 +8,127 @@ package org.bupt.cad.fedraft.rpc.message;
  */
 public final class LogResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:fedraft.LogResponse)
-    LogResponseOrBuilder {
-private static final long serialVersionUID = 0L;
-  // Use LogResponse.newBuilder() to construct.
-  private LogResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private LogResponse() {
-  }
+        // @@protoc_insertion_point(message_implements:fedraft.LogResponse)
+        LogResponseOrBuilder {
+    private static final long serialVersionUID = 0L;
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new LogResponse();
-  }
-
-  @java.lang.Override
-  public final com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-  private LogResponse(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    this();
-    if (extensionRegistry == null) {
-      throw new java.lang.NullPointerException();
+    // Use LogResponse.newBuilder() to construct.
+    private LogResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
-    com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-        com.google.protobuf.UnknownFieldSet.newBuilder();
-    try {
-      boolean done = false;
-      while (!done) {
-        int tag = input.readTag();
-        switch (tag) {
-            case 0:
-                done = true;
-                break;
-            case 8: {
 
-                localIndex_ = input.readUInt32();
-                break;
-            }
-            case 16: {
+    private LogResponse() {
+    }
 
-                logSize_ = input.readUInt64();
-                break;
-            }
-            default: {
-                if (!parseUnknownField(
-                        input, unknownFields, extensionRegistry, tag)) {
-                    done = true;
-                }
-                break;
-            }
+    public static final int LOCAL_INDEX_FIELD_NUMBER = 1;
+    public static final int LOG_SIZE_FIELD_NUMBER = 2;
+    private byte memoizedIsInitialized = -1;
+    private int localIndex_;
+    private long logSize_;
+
+    private LogResponse(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        this();
+        if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
         }
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+                com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+            boolean done = false;
+            while (!done) {
+                int tag = input.readTag();
+                switch (tag) {
+                    case 0:
+                        done = true;
+                        break;
+                    case 8: {
+
+                        localIndex_ = input.readUInt32();
+                        break;
+                    }
+                    case 16: {
+
+                        logSize_ = input.readUInt64();
+                        break;
+                    }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
+                }
       }
     } catch (com.google.protobuf.InvalidProtocolBufferException e) {
       throw e.setUnfinishedMessage(this);
-    } catch (com.google.protobuf.UninitializedMessageException e) {
-      throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-    } catch (java.io.IOException e) {
-      throw new com.google.protobuf.InvalidProtocolBufferException(
-          e).setUnfinishedMessage(this);
-    } finally {
-      this.unknownFields = unknownFields.build();
-      makeExtensionsImmutable();
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+            throw new com.google.protobuf.InvalidProtocolBufferException(
+                    e).setUnfinishedMessage(this);
+        } finally {
+            this.unknownFields = unknownFields.build();
+            makeExtensionsImmutable();
+        }
     }
-  }
-  public static final com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_descriptor;
-  }
 
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            org.bupt.cad.fedraft.rpc.message.LogResponse.class, org.bupt.cad.fedraft.rpc.message.LogResponse.Builder.class);
-  }
+    public static final com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_descriptor;
+    }
 
-  public static final int LOCAL_INDEX_FIELD_NUMBER = 1;
-  private int localIndex_;
-  /**
-   * <pre>
-   * 备用 本地模型索引
-   * </pre>
-   *
-   * <code>uint32 local_index = 1;</code>
-   * @return The localIndex.
-   */
-  @java.lang.Override
-  public int getLocalIndex() {
-    return localIndex_;
-  }
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+        return new LogResponse();
+    }
 
-  public static final int LOG_SIZE_FIELD_NUMBER = 2;
-  private long logSize_;
-  /**
-   * <pre>
-   * 传输模型的大小
-   * </pre>
-   *
-   * <code>uint64 log_size = 2;</code>
-   * @return The logSize.
-   */
-  @java.lang.Override
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+        return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        org.bupt.cad.fedraft.rpc.message.LogResponse.class, org.bupt.cad.fedraft.rpc.message.LogResponse.Builder.class);
+    }
+
+    /**
+     * <pre>
+     * 备用 本地模型索引
+     * </pre>
+     *
+     * <code>uint32 local_index = 1;</code>
+     *
+     * @return The localIndex.
+     */
+    @java.lang.Override
+    public int getLocalIndex() {
+        return localIndex_;
+    }
+
+    /**
+     * <pre>
+     * 传输模型的大小
+     * </pre>
+     *
+     * <code>uint64 log_size = 2;</code>
+     *
+     * @return The logSize.
+     */
+    @java.lang.Override
   public long getLogSize() {
       return logSize_;
   }
-
-    private byte memoizedIsInitialized = -1;
 
     @java.lang.Override
     public final boolean isInitialized() {
@@ -162,8 +168,8 @@ private static final long serialVersionUID = 0L;
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
-        return size;
-    }
+    return size;
+  }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
@@ -180,7 +186,7 @@ private static final long serialVersionUID = 0L;
       if (getLogSize()
               != other.getLogSize()) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
-      return true;
+    return true;
   }
 
   @java.lang.Override
@@ -197,7 +203,7 @@ private static final long serialVersionUID = 0L;
               getLogSize());
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
-      return hash;
+    return hash;
   }
 
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(

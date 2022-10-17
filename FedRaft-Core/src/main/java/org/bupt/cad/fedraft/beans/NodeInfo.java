@@ -38,6 +38,11 @@ public final class NodeInfo {
         setIp(ip).setPort(port).setTrainerPort(trainerPort);
     }
 
+    public NodeInfo(String zkNodeName) {
+        String[] fields = zkNodeName.split(":");
+        setIp(fields[0]).setPort(Integer.parseInt(fields[1])).setTrainerPort(Integer.parseInt(fields[2]));
+    }
+
     public NodeInfo(long id) {
         String[] fields = new String[4];
         int trainerPort = (int) (id % E16);

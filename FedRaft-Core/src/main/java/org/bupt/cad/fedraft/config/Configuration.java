@@ -16,6 +16,7 @@ public class Configuration {
     public final static String MANAGER_SERVER_HOST = "manager.server.host";
     public final static String MANAGER_SERVER_PORT = "manager.server.port";
     public final static String TRAINER_SERVER_PORT = "trainer.server.port";
+    public final static String MANAGER_CANDIDATE_TIMEOUT = "manager.candidate.timeout";
 
 //    public final static String LOG_MODEL_CHUCK_SIZE = "log.model.chuck-size";
 

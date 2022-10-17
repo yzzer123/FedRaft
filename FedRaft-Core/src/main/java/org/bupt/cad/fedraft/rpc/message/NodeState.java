@@ -51,6 +51,8 @@ public enum NodeState
    * <code>FOLLOWER = 4;</code>
    */
   public static final int FOLLOWER_VALUE = 4;
+
+
   private static final com.google.protobuf.Internal.EnumLiteMap<
           NodeState> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<NodeState>() {
@@ -58,12 +60,6 @@ public enum NodeState
               return NodeState.forNumber(number);
             }
           };
-  private static final NodeState[] VALUES = values();
-  private final int value;
-
-  private NodeState(int value) {
-    this.value = value;
-  }
 
   /**
    * @param value The numeric wire value of the corresponding enum entry.
@@ -73,6 +69,13 @@ public enum NodeState
   @java.lang.Deprecated
   public static NodeState valueOf(int value) {
     return forNumber(value);
+  }
+
+  private static final NodeState[] VALUES = values();
+  private final int value;
+
+  private NodeState(int value) {
+    this.value = value;
   }
 
   /**
