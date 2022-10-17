@@ -19,7 +19,7 @@ public class RaftAlgorithm implements Algorithm {
 //            Node.resetHeartbeatTimer();
 //            if(Node.term <= leaderTerm){
 //                Node.term = leaderTerm;
-//                if(SafeModeNode.checkLegal())
+//                if(SafeMode.checkLegal())
 //                    Node.setState(NodeState.FOLLOWER);
 //            }else {
 //                return -1;
@@ -39,47 +39,7 @@ public class RaftAlgorithm implements Algorithm {
 //        for (int i = 0; i < nodeIdsList.size(); i++) {
 //            Node.topologies.putIfAbsent(nodeIdsList.get(i), networkDelaysList.get(i));
 //        }
-        switch (Node.getRuntimeNode().getState()) {
-            case SAFE_MODE:
-                return safeModeHeartbeat(request);
-            case FOLLOWER:
-                return followerHeartbeat(request);
-            case TMP_LEADER:
-                return tmpLeaderHeartbeat(request);
-            case LEADER:
-                return leaderHeartbeat(request);
-            case CANDIDATE:
-                return candidateHeartbeat(request);
-        }
-        return -1;
+        return Node.getRuntimeNode().getNodeMode().receiveHeartbeat(request);
     }
 
-    private int candidateHeartbeat(HeartbeatRequest request) {
-        return 0;
-    }
-
-    private int leaderHeartbeat(HeartbeatRequest request) {
-        return 0;
-    }
-
-    private int tmpLeaderHeartbeat(HeartbeatRequest request) {
-        return 0;
-
-    }
-
-    private int followerHeartbeat(HeartbeatRequest request) {
-        return 0;
-
-    }
-
-    private int safeModeHeartbeat(HeartbeatRequest request) {
-
-
-        Node.getRuntimeNode().getTopologies().clear();
-
-//        Node.getRuntimeNode().getTopologies().
-
-        return 0;
-
-    }
 }

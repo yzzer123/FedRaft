@@ -1,4 +1,7 @@
 package org.bupt.cad.fedraft.node;
 
-public abstract class NodeMode {
+import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
+
+public interface NodeMode {
+    int receiveHeartbeat(HeartbeatRequest request);
 }

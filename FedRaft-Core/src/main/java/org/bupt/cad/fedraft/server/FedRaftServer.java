@@ -12,10 +12,12 @@ import org.bupt.cad.fedraft.algorithm.RaftAlgorithm;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.node.Node;
-import org.bupt.cad.fedraft.node.SafeModeNode;
+import org.bupt.cad.fedraft.node.SafeMode;
+import org.bupt.cad.fedraft.utils.NetworkUtils;
 import org.bupt.cad.fedraft.utils.ZkClient;
 
 import java.io.IOException;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 
@@ -44,7 +46,7 @@ public class FedRaftServer {
         // 生成本地节点信息的javabean 用于初始化zk
         NodeInfo localNodeInfo = new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT),
                 Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
-        SafeModeNode nodeMode = Node.getRuntimeNode().getNodeMode();
+        SafeMode nodeMode = Node.getRuntimeNode().getNodeMode();
         nodeMode.checkinTmpLeader();
     }
 
@@ -54,10 +56,8 @@ public class FedRaftServer {
     public void start() {
         // 向zk注册本节点配置
         initialize();
-
         try {
             server.start();
-
         } catch (IOException e) {
 
             // 服务器启动失败 可能是端口被占用
@@ -66,12 +66,16 @@ public class FedRaftServer {
         }
         logger.info("server started on port " + port);
 
+        ScheduledFuture<?> scheduledFuture = NetworkUtils.startScheduledPingTask();
+        logger.info("server started ping other nodes ");
+
         // Java进程宕机
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
                 System.err.println("shutdown gRPC server because JVM shutdown");
                 try {
+                    scheduledFuture.cancel(true);
                     FedRaftServer.this.stop();
                     zkClient.closeConnection();
                 } catch (InterruptedException e) {
@@ -80,8 +84,6 @@ public class FedRaftServer {
                 System.err.println("server shutdown");
             }
         });
-
-
     }
 
     /**
@@ -139,32 +141,5 @@ public class FedRaftServer {
         FedRaftServer server = new FedRaftServer(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT));
         server.start();
         server.blockUtilShutdown();
-    }
-
-    public void startWithoutZK(){
-        try {
-            server.start();
-        } catch (IOException e) {
-            // 服务器启动失败 可能是端口被占用
-            logger.error("server start failed:" + e.getMessage(), e);
-            System.exit(1);
-        }
-        logger.info("server started on port " + port);
-
-        // Java进程宕机
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                System.err.println("shutdown gRPC server because JVM shutdown");
-                try {
-                    FedRaftServer.this.stop();
-                    zkClient.closeConnection();
-                } catch (InterruptedException e) {
-                    e.printStackTrace(System.err);
-                }
-                System.err.println("server shutdown");
-            }
-        });
-
     }
 }

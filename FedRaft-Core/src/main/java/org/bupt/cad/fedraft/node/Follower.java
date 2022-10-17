@@ -1,4 +1,10 @@
 package org.bupt.cad.fedraft.node;
 
-public class Follower extends NodeMode {
+import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
+
+public class Follower implements NodeMode {
+    @Override
+    public int receiveHeartbeat(HeartbeatRequest request) {
+        return 0;
+    }
 }

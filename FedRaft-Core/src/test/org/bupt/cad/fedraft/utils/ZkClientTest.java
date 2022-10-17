@@ -101,6 +101,11 @@ public class ZkClientTest {
                 nodeInfos.remove(nodeInfo);
                 System.out.println(nodeInfo);
             }
+
+            @Override
+            public void initNodes(List<NodeInfo> nodeInfos) {
+
+            }
         });
         waitForShutdown();
     }

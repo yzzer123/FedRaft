@@ -17,7 +17,10 @@ public class Configuration {
     public final static String MANAGER_SERVER_PORT = "manager.server.port";
     public final static String TRAINER_SERVER_PORT = "trainer.server.port";
 
-    public final static String LOG_MODEL_CHUCK_SIZE = "log.model.chuck-size";
+//    public final static String LOG_MODEL_CHUCK_SIZE = "log.model.chuck-size";
+
+    public final static String MANAGER_TIMER_THREADPOOL_NUM = "manager.timer.threadpool-num";
+    public final static String MANAGER_TIMER_TICK_TIME = "manager.timer.tick-time";
 
     public final static String ZOOKEEPER_HOSTS = "zookeeper.hosts";
     public final static String ZOOKEEPER_TIMEOUT = "zookeeper.timeout";
@@ -26,6 +29,7 @@ public class Configuration {
 
     public final static String NODE_THREADPOOL_NUMBERS = "node.threadpool.numbers";
     public final static String NODE_HEARTBEAT_MAX_TIME = "node.heartbeat.max.time";
+    public final static String NODE_HEARTBEAT_TIME_INTERVAL = "node.heartbeat.time-interval";
 
     private static final Logger logger = LogManager.getLogger(Configuration.class.getName());
 
