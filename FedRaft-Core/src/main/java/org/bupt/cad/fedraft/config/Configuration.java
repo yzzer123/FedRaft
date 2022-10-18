@@ -4,8 +4,8 @@ package org.bupt.cad.fedraft.config;
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.net.URL;
@@ -32,8 +32,7 @@ public class Configuration {
     public final static String NODE_HEARTBEAT_MAX_TIME = "node.heartbeat.max.time";
     public final static String NODE_HEARTBEAT_TIME_INTERVAL = "node.heartbeat.time-interval";
 
-    private static final Logger logger = LogManager.getLogger(Configuration.class.getName());
-
+    private static final Logger logger = LoggerFactory.getLogger(Configuration.class);
     private static org.apache.commons.configuration2.Configuration conf = null;
 
     static {
@@ -48,6 +47,7 @@ public class Configuration {
                 conf = new Configurations().properties(resource);
             }
         } catch (ConfigurationException e) {
+
             logger.error("默认配置文件加载失败" + e.getMessage(), e);
 //            System.exit(1);
         }

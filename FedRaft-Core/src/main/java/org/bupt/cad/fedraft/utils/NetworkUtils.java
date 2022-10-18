@@ -1,11 +1,10 @@
 package org.bupt.cad.fedraft.utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
-import org.bupt.cad.fedraft.node.Node;
-import org.bupt.cad.fedraft.server.FedRaftServer;
+import org.bupt.cad.fedraft.node.Runtime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +29,7 @@ import java.util.regex.Pattern;
  */
 public class NetworkUtils {
 
-    private static final Logger logger = LogManager.getLogger(FedRaftServer.class);
+    private static final Logger logger = LoggerFactory.getLogger(NetworkUtils.class);
     private static final Pattern delayPattern = Pattern.compile("time=([-+]?[0-9]*\\.?[0-9]+)");
     private static final int INVALID_DELAY = 2000000;
 
@@ -39,7 +38,7 @@ public class NetworkUtils {
      */
     public static ScheduledFuture<?> startScheduledPingTask() {
 
-        AtomicInteger delay = Node.getRuntimeNode().getDelay();
+        AtomicInteger delay = Runtime.getRuntime().getDelay();
         int heartbeatInterval = Configuration.getInt(Configuration.NODE_HEARTBEAT_TIME_INTERVAL);
         return TimerUtils.getTimer().scheduleAtFixedRate(new Runnable() {
             @Override
@@ -57,12 +56,12 @@ public class NetworkUtils {
      * 测试平均时延
      */
     public static int pingTopology() {
-        Map<Long, Integer> topology = Node.getRuntimeNode().getTopology();
-        ExecutorService threadPool = Node.getRuntimeNode().getThreadPool();
+        Map<Long, Integer> topology = Runtime.getRuntime().getTopology();
+        ExecutorService threadPool = Runtime.getRuntime().getThreadPool();
         List<Long> keyList;
         AtomicInteger sumOfDelay = new AtomicInteger(0);
         // 需要对拓扑加锁
-        synchronized (Node.getRuntimeNode().getTopology()) {
+        synchronized (Runtime.getRuntime().getTopology()) {
 
             // 内存中没有拓扑，就将时延设置为-1
             if (topology.size() < 1) {
@@ -123,7 +122,7 @@ public class NetworkUtils {
         String command = "ping " + host + (isWindows ? " -n 1 -w 1" : " -c 1 -w 1");
         BufferedReader in = null;
         try {
-            Process process = Runtime.getRuntime().exec(command);
+            Process process = java.lang.Runtime.getRuntime().exec(command);
             in = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line = null;
             int delay = -1;

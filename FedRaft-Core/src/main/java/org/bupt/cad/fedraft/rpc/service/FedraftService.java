@@ -24,20 +24,30 @@ public final class FedraftService {
   static {
     java.lang.String[] descriptorData = {
       "\n\025fedraft_service.proto\022\007fedraft\032\021log_me" +
-              "ssage.proto2\322\001\n\016FedRaftService\022@\n\017Append" +
-              "StreamLog\022\023.fedraft.LogRequest\032\024.fedraft" +
-              ".LogResponse\"\000(\001\0228\n\tAppendLog\022\023.fedraft." +
-              "LogRequest\032\024.fedraft.LogResponse\"\000\022D\n\tHe" +
-              "artbeat\022\031.fedraft.HeartbeatRequest\032\032.fed" +
-              "raft.HeartbeatResponse\"\000B$\n org.bupt.cad" +
-              ".fedraft.rpc.serviceP\001b\006proto3"
+              "ssage.proto\032\027heartbeat_message.proto\032\022vo" +
+              "te_massage.proto2\205\003\n\016FedRaftService\022@\n\017A" +
+              "ppendStreamLog\022\023.fedraft.LogRequest\032\024.fe" +
+              "draft.LogResponse\"\000(\001\0228\n\tAppendLog\022\023.fed" +
+              "raft.LogRequest\032\024.fedraft.LogResponse\"\000\022" +
+              "D\n\tHeartbeat\022\031.fedraft.HeartbeatRequest\032" +
+              "\032.fedraft.HeartbeatResponse\"\000\022Y\n\020Trainer" +
+              "Heartbeat\022 .fedraft.TrainerHeartbeatRequ" +
+              "est\032!.fedraft.TrainerHeartbeatResponse\"\000" +
+              "\022V\n\017TriggerElection\022\037.fedraft.TriggerEle" +
+              "ctionRequest\032 .fedraft.TriggerElectionRe" +
+              "sponse\"\000B$\n org.bupt.cad.fedraft.rpc.ser" +
+              "viceP\001b\006proto3"
     };
-    descriptor = com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-          org.bupt.cad.fedraft.rpc.message.LogMessage.getDescriptor(),
-        });
-    org.bupt.cad.fedraft.rpc.message.LogMessage.getDescriptor();
+      descriptor = com.google.protobuf.Descriptors.FileDescriptor
+              .internalBuildGeneratedFileFrom(descriptorData,
+                      new com.google.protobuf.Descriptors.FileDescriptor[]{
+                              org.bupt.cad.fedraft.rpc.message.LogMessage.getDescriptor(),
+                              org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.getDescriptor(),
+                              org.bupt.cad.fedraft.rpc.message.VoteMassage.getDescriptor(),
+                      });
+      org.bupt.cad.fedraft.rpc.message.LogMessage.getDescriptor();
+      org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.getDescriptor();
+      org.bupt.cad.fedraft.rpc.message.VoteMassage.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

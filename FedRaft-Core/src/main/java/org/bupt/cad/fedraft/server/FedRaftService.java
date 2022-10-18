@@ -3,15 +3,13 @@ package org.bupt.cad.fedraft.server;
 
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.algorithm.Algorithm;
 import org.bupt.cad.fedraft.node.Node;
-import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
-import org.bupt.cad.fedraft.rpc.message.HeartbeatResponse;
-import org.bupt.cad.fedraft.rpc.message.LogRequest;
-import org.bupt.cad.fedraft.rpc.message.LogResponse;
+import org.bupt.cad.fedraft.node.Runtime;
+import org.bupt.cad.fedraft.rpc.message.*;
 import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -20,7 +18,8 @@ import org.bupt.cad.fedraft.rpc.service.FedRaftServiceGrpc;
 public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
 
 
-    private static final Logger logger = LogManager.getLogger(FedRaftServer.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(FedRaftService.class);
+
     private final Algorithm algorithm;
 
     public FedRaftService(Algorithm algorithm) {
@@ -31,12 +30,12 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
     @Override
     public void heartbeat(HeartbeatRequest request, StreamObserver<HeartbeatResponse> responseObserver) {
         HeartbeatResponse response = null;
-        synchronized (Node.getRuntimeNode()) {
+        synchronized (Runtime.getRuntime()) {
             int delay = algorithm.heartbeat(request);
             if (delay > 0) {
                 response = HeartbeatResponse.newBuilder()
                         .setNetworkDelay(delay)
-                        .setNodeState(Node.getRuntimeNode().getState())
+                        .setNodeState(Runtime.getRuntime().getState())
                         .build();
                 logger.info("follower节点完成一次心跳传输");
             }
@@ -55,4 +54,13 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
 
     }
 
+    @Override
+    public void triggerElection(TriggerElectionRequest request, StreamObserver<TriggerElectionResponse> responseObserver) {
+        synchronized (Runtime.getRuntime()) {
+            Node.triggerElection(request);
+        }
+        // 回复默认值即可
+        responseObserver.onNext(TriggerElectionResponse.getDefaultInstance());
+        responseObserver.onCompleted();
+    }
 }

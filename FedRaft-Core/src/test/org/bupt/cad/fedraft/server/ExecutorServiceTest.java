@@ -2,11 +2,9 @@ package org.bupt.cad.fedraft.server;
 
 
 import org.bupt.cad.fedraft.config.Configuration;
-import org.bupt.cad.fedraft.utils.NetworkUtils;
 import org.junit.Test;
 
 import java.util.HashMap;
-import java.util.Random;
 import java.util.concurrent.*;
 
 public class ExecutorServiceTest {
@@ -77,7 +75,7 @@ public class ExecutorServiceTest {
 //        scheduledExecutorService.shutdown();
 //        HashMap<Integer, Future<?>> hashMap = new HashMap<>();
 //        for(int i = 0; i < 3; i++) {
-//            Future<?> future = Node.executor.submit(new Heartbeat2(i));
+//            Future<?> future = Runtime.executor.submit(new Heartbeat2(i));
 //            hashMap.putIfAbsent(i, future);
 //        }
 //        try {
@@ -98,7 +96,7 @@ public class ExecutorServiceTest {
 //            hashMap2.get(i).shutdown();
 //            System.out.println("??????222");//关闭外线程已经没有用了
 //        }
-//        Node.executor.shutdown();
+//        Runtime.executor.shutdown();
     }
 
 }

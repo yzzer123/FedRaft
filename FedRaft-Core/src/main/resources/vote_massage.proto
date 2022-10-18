@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.cad.fedraft.rpc.message";
+option java_multiple_files = true;
+
+
+message TriggerElectionRequest{
+  uint32 term = 1;
+  uint64 leader_id = 2;
+  uint32 leader_model_index = 5;
+}
+
+message TriggerElectionResponse{
+
+}

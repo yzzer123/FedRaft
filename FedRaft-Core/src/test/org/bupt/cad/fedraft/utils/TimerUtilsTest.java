@@ -3,12 +3,11 @@ package org.bupt.cad.fedraft.utils;
 
 import com.ifesdjeen.timer.HashedWheelTimer;
 import com.ifesdjeen.timer.WaitStrategy;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.bupt.cad.fedraft.server.FedRaftServer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
@@ -18,8 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 public class TimerUtilsTest {
 
-
-    private static final Logger logger = LogManager.getLogger(FedRaftServer.class);
+    private static final Logger logger = LoggerFactory.getLogger(TimerUtilsTest.class);
 
     private HashedWheelTimer timer;
     private final CountDownLatch finished = new CountDownLatch(1);

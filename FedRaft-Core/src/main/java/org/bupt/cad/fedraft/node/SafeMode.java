@@ -1,43 +1,45 @@
 package org.bupt.cad.fedraft.node;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
-import org.bupt.cad.fedraft.server.FedRaftServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.Map;
+/**
+ * 安全模式的作用:
+ * 1. 维护自身的全局拓扑状态直至最新
+ * 2. 不参与选举过程，只接受来自leader或tmp_leader的心跳信息来维护全局拓扑
+ * 3. 当tmp_leader发生宕机时，接替其工作
+ * 4. 当时机适合时成为follower
+ */
+public class SafeMode extends Node {
 
-//SAFE_MODE
-public class SafeMode implements NodeMode {
-
-    private static final Logger logger = LogManager.getLogger(FedRaftServer.class.getName());
-
+    private static final Logger logger = LoggerFactory.getLogger(SafeMode.class);
 
     public void checkinTmpLeader() {
 
-        Node runtimeNode = Node.getRuntimeNode();
-        runtimeNode.getZkClient().checkinTmpLeader(() -> {
+        Runtime runtime = Runtime.getRuntime();
+        runtime.getZkClient().checkinTmpLeader(() -> {
             //争抢成功, 切换节点状态, 并唤醒tmp_leader
-            runtimeNode.setState(NodeState.TMP_LEADER);
-            runtimeNode.addTerm();
-            logger.info("tmp leader is" + runtimeNode.getZkClient().getNodeName());
-            runtimeNode.setState(NodeState.TMP_LEADER);
+            runtime.setState(NodeState.TMP_LEADER);
+            logger.info("tmp leader is {}", runtime.getZkClient().getNodeName());
         });
     }
 
     //检查拓扑是否具有所有节点的时延
     public void checkTopologyDelay() {
-
         boolean isAllUpdated = true;
-        for (Integer value : Node.getRuntimeNode().getTopology().values()) {
-            if (value < 0) {
-                isAllUpdated = false;
-                break;
+        synchronized (Runtime.getRuntime().getTopology()) {
+            for (Integer value : Runtime.getRuntime().getTopology().values()) {
+                if (value < 0) {
+                    isAllUpdated = false;
+                    break;
+                }
             }
         }
         if (isAllUpdated) {
-            Node.getRuntimeNode().setState(NodeState.FOLLOWER);
+            Runtime.getRuntime().setState(NodeState.FOLLOWER);
         }
     }
 
@@ -45,46 +47,42 @@ public class SafeMode implements NodeMode {
     public int receiveHeartbeat(HeartbeatRequest request) {
 
         // 获取运行时状态
-        Node runtimeNode = Node.getRuntimeNode();
+        Runtime runtime = Runtime.getRuntime();
 
-        // 同一时间只能有一个线程在修改节点状态
 
         // Safemode收到的心跳信息可能来自 tmp_leader 和 leader,
-        if (request.getTerm() > runtimeNode.getTerm()) {
+        if (request.getTerm() > runtime.getTerm()) {
             // 跟随该leader 将任期提升
-            runtimeNode.setTerm(request.getTerm())
+            runtime.setTerm(request.getTerm())
                     .setLeader(request.getLeaderId());
 
-        } else if (request.getTerm() < runtimeNode.getTerm()) {
+        } else if (request.getTerm() < runtime.getTerm()) {
             // 任期比自己小就为错误
             return -1;
         }
 
         // 更新自己的时延拓扑
-        Map<Long, Integer> topology = Node.getRuntimeNode().getTopology();
+        super.receiveHeartbeat(request);
 
-        // 批量插入只能一个线程执行 ConcurrentHashMap只能保证单个操作原子
-        synchronized (Node.getRuntimeNode().getTopology()) {
-            int topologySize = request.getNodeIdsCount();
-            topology.clear();
-            for (int i = 0; i < topologySize; i++) {
-                topology.put(request.getNodeIds(i), request.getNetworkDelays(i));
-            }
-
-            // 检查拓扑是否全部更新
-            if (request.getTerm() > 0) {
-                // 如果接收到的是leader的消息 直接变为follower
-                runtimeNode.setState(NodeState.FOLLOWER);
-            } else {
-                checkTopologyDelay();
-            }
+        // 检查拓扑是否全部更新
+        if (request.getTerm() > 0) {
+            // 如果接收到的是leader的消息 直接变为follower
+            runtime.setState(NodeState.FOLLOWER);
+        } else {
+            checkTopologyDelay();
         }
 
-        return Node.getRuntimeNode().getDelay().get();
+        return Runtime.getRuntime().getDelay().get();
     }
 
     @Override
     public void close() {
-        Node.getRuntimeNode().getZkClient().giveUpCheckinLeader();
+        if (isClosed()) {
+            return;
+        }
+        if (Runtime.getRuntime().getState() == NodeState.FOLLOWER) {
+            Runtime.getRuntime().getZkClient().giveUpCheckinLeader();
+        }
+        setClosed();
     }
 }

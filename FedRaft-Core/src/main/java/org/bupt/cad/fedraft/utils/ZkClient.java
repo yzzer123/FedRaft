@@ -9,12 +9,11 @@ import org.apache.curator.framework.recipes.leader.LeaderSelector;
 import org.apache.curator.framework.recipes.leader.LeaderSelectorListenerAdapter;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.curator.utils.CloseableUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.apache.zookeeper.CreateMode;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
-import org.bupt.cad.fedraft.server.FedRaftServer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +24,7 @@ import java.util.concurrent.CountDownLatch;
  */
 public class ZkClient {
 
-    private static final Logger logger = LogManager.getLogger(FedRaftServer.class.getName());
-
+    private static final Logger logger = LoggerFactory.getLogger(ZkClient.class);
     private final CuratorFramework client;
 
     // 监听器缓存
@@ -84,7 +82,7 @@ public class ZkClient {
             this.client.create().creatingParentsIfNeeded().withMode(CreateMode.PERSISTENT).forPath(REGISTERED_CLUSTER + nodeName);
         }
         // 注册过的节点才能建立alive状态
-        logger.info("node registered in /fedraft/cluster");
+        logger.info("node registered in /fedraft" + REGISTERED_CLUSTER);
     }
 
 
@@ -134,7 +132,6 @@ public class ZkClient {
             return;
         this.leaderFinishLatch.countDown();
         this.leaderSelector.close();
-        this.deleteClusterWatcher();
         this.leaderSelector = null;
     }
 
@@ -208,7 +205,7 @@ public class ZkClient {
     /**
      * 删除集群节点监控 最好只有leader监控全局节点变化， 过多的watcher会导致zk的性能下降
      */
-    private void deleteClusterWatcher() {
+    public void deleteClusterWatcher() {
         if (this.watcherCache == null || this.listener == null) {
             logger.warn("watcher hasn't been initialized");
             return;

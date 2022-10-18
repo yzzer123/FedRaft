@@ -7,10 +7,15 @@ package org.bupt.cad.fedraft.rpc.message;
  * Protobuf type {@code fedraft.LogResponse}
  */
 public final class LogResponse extends
-    com.google.protobuf.GeneratedMessageV3 implements
+        com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:fedraft.LogResponse)
         LogResponseOrBuilder {
+    public static final int LOCAL_INDEX_FIELD_NUMBER = 1;
+    public static final int LOG_SIZE_FIELD_NUMBER = 2;
     private static final long serialVersionUID = 0L;
+    private int localIndex_;
+    private long logSize_;
+    private byte memoizedIsInitialized = -1;
 
     // Use LogResponse.newBuilder() to construct.
     private LogResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
@@ -19,12 +24,6 @@ public final class LogResponse extends
 
     private LogResponse() {
     }
-
-    public static final int LOCAL_INDEX_FIELD_NUMBER = 1;
-    public static final int LOG_SIZE_FIELD_NUMBER = 2;
-    private byte memoizedIsInitialized = -1;
-    private int localIndex_;
-    private long logSize_;
 
     private LogResponse(
             com.google.protobuf.CodedInputStream input,
@@ -62,9 +61,9 @@ public final class LogResponse extends
                         break;
                     }
                 }
-      }
-    } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-      throw e.setUnfinishedMessage(this);
+            }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw e.setUnfinishedMessage(this);
         } catch (com.google.protobuf.UninitializedMessageException e) {
             throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
         } catch (java.io.IOException e) {
@@ -126,9 +125,9 @@ public final class LogResponse extends
      * @return The logSize.
      */
     @java.lang.Override
-  public long getLogSize() {
-      return logSize_;
-  }
+    public long getLogSize() {
+        return logSize_;
+    }
 
     @java.lang.Override
     public final boolean isInitialized() {
@@ -168,8 +167,8 @@ public final class LogResponse extends
         }
         size += unknownFields.getSerializedSize();
         memoizedSize = size;
-    return size;
-  }
+        return size;
+    }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
@@ -338,7 +337,7 @@ public final class LogResponse extends
 
         logSize_ = 0L;
 
-        return this;
+      return this;
     }
 
     @java.lang.Override
@@ -367,7 +366,7 @@ public final class LogResponse extends
         result.localIndex_ = localIndex_;
         result.logSize_ = logSize_;
         onBuilt();
-        return result;
+      return result;
     }
 
     @java.lang.Override
@@ -422,7 +421,7 @@ public final class LogResponse extends
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
-        return this;
+      return this;
     }
 
     @java.lang.Override

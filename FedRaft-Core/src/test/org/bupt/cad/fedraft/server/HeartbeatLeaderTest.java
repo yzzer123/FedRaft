@@ -1,6 +1,5 @@
 package org.bupt.cad.fedraft.server;
 
-import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +18,7 @@ public class HeartbeatLeaderTest {
 
     @Test
     public void testHeartBeat() {
-//        Node leader = new Node();
+//        Runtime leader = new Runtime();
 //        leader.buildRpc(new NodeInfo("127.0.0.1", 16788, 1));//传入Follower信息
 //        leader.maintainHeartbeat();
 //        try {
@@ -28,7 +27,7 @@ public class HeartbeatLeaderTest {
 //            e.printStackTrace();
 //        }
         //关闭线程池
-        //Node.executor.shutdown();
+        //Runtime.executor.shutdown();
     }
 
     @After

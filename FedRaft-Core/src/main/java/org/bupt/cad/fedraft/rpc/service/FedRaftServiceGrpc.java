@@ -3,30 +3,35 @@ package org.bupt.cad.fedraft.rpc.service;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
+ *
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.49.1)",
-    comments = "Source: fedraft_service.proto")
+        value = "by gRPC proto compiler (version 1.49.1)",
+        comments = "Source: fedraft_service.proto")
 @io.grpc.stub.annotations.GrpcGenerated
 public final class FedRaftServiceGrpc {
 
-    private FedRaftServiceGrpc() {
-    }
-
     public static final String SERVICE_NAME = "fedraft.FedRaftService";
-
+    private static final int METHODID_APPEND_LOG = 0;
+    private static final int METHODID_HEARTBEAT = 1;
+    private static final int METHODID_TRAINER_HEARTBEAT = 2;
+    private static final int METHODID_TRIGGER_ELECTION = 3;
+    private static final int METHODID_APPEND_STREAM_LOG = 4;
     // Static method descriptors that strictly reflect the proto.
     private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
             org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod;
-
-    private static final int METHODID_APPEND_LOG = 0;
-    private static final int METHODID_HEARTBEAT = 1;
-    private static final int METHODID_APPEND_STREAM_LOG = 2;
     private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
             org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
     private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.HeartbeatRequest,
             org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> getHeartbeatMethod;
+    private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest,
+            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> getTrainerHeartbeatMethod;
+    private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
+            org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod;
     private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
+
+    private FedRaftServiceGrpc() {
+    }
 
     @io.grpc.stub.annotations.RpcMethod(
             fullMethodName = SERVICE_NAME + '/' + "AppendStreamLog",
@@ -37,21 +42,21 @@ public final class FedRaftServiceGrpc {
             org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod() {
         io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod;
         if ((getAppendStreamLogMethod = FedRaftServiceGrpc.getAppendStreamLogMethod) == null) {
-      synchronized (FedRaftServiceGrpc.class) {
-        if ((getAppendStreamLogMethod = FedRaftServiceGrpc.getAppendStreamLogMethod) == null) {
-            FedRaftServiceGrpc.getAppendStreamLogMethod = getAppendStreamLogMethod =
-                    io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse>newBuilder()
-                            .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-                            .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AppendStreamLog"))
-                            .setSampledToLocalTracing(true)
-                            .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                    org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance()))
-                            .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                    org.bupt.cad.fedraft.rpc.message.LogResponse.getDefaultInstance()))
-                            .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("AppendStreamLog"))
-                            .build();
-        }
-      }
+            synchronized (FedRaftServiceGrpc.class) {
+                if ((getAppendStreamLogMethod = FedRaftServiceGrpc.getAppendStreamLogMethod) == null) {
+                    FedRaftServiceGrpc.getAppendStreamLogMethod = getAppendStreamLogMethod =
+                            io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.LogRequest, org.bupt.cad.fedraft.rpc.message.LogResponse>newBuilder()
+                                    .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
+                                    .setFullMethodName(generateFullMethodName(SERVICE_NAME, "AppendStreamLog"))
+                                    .setSampledToLocalTracing(true)
+                                    .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            org.bupt.cad.fedraft.rpc.message.LogRequest.getDefaultInstance()))
+                                    .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            org.bupt.cad.fedraft.rpc.message.LogResponse.getDefaultInstance()))
+                                    .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("AppendStreamLog"))
+                                    .build();
+                }
+            }
         }
         return getAppendStreamLogMethod;
     }
@@ -112,6 +117,62 @@ public final class FedRaftServiceGrpc {
         return getHeartbeatMethod;
     }
 
+    @io.grpc.stub.annotations.RpcMethod(
+            fullMethodName = SERVICE_NAME + '/' + "TrainerHeartbeat",
+            requestType = org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.class,
+            responseType = org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.class,
+            methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+    public static io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest,
+            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> getTrainerHeartbeatMethod() {
+        io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest, org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> getTrainerHeartbeatMethod;
+        if ((getTrainerHeartbeatMethod = FedRaftServiceGrpc.getTrainerHeartbeatMethod) == null) {
+            synchronized (FedRaftServiceGrpc.class) {
+                if ((getTrainerHeartbeatMethod = FedRaftServiceGrpc.getTrainerHeartbeatMethod) == null) {
+                    FedRaftServiceGrpc.getTrainerHeartbeatMethod = getTrainerHeartbeatMethod =
+                            io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest, org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse>newBuilder()
+                                    .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                                    .setFullMethodName(generateFullMethodName(SERVICE_NAME, "TrainerHeartbeat"))
+                                    .setSampledToLocalTracing(true)
+                                    .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.getDefaultInstance()))
+                                    .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.getDefaultInstance()))
+                                    .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("TrainerHeartbeat"))
+                                    .build();
+                }
+            }
+        }
+        return getTrainerHeartbeatMethod;
+    }
+
+    @io.grpc.stub.annotations.RpcMethod(
+            fullMethodName = SERVICE_NAME + '/' + "TriggerElection",
+            requestType = org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest.class,
+            responseType = org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.class,
+            methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+    public static io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
+            org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod() {
+        io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest, org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod;
+        if ((getTriggerElectionMethod = FedRaftServiceGrpc.getTriggerElectionMethod) == null) {
+            synchronized (FedRaftServiceGrpc.class) {
+                if ((getTriggerElectionMethod = FedRaftServiceGrpc.getTriggerElectionMethod) == null) {
+                    FedRaftServiceGrpc.getTriggerElectionMethod = getTriggerElectionMethod =
+                            io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest, org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse>newBuilder()
+                                    .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                                    .setFullMethodName(generateFullMethodName(SERVICE_NAME, "TriggerElection"))
+                                    .setSampledToLocalTracing(true)
+                                    .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest.getDefaultInstance()))
+                                    .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.getDefaultInstance()))
+                                    .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("TriggerElection"))
+                                    .build();
+                }
+            }
+        }
+        return getTriggerElectionMethod;
+    }
+
     /**
      * Creates a new async stub that supports all call types for the service
      */
@@ -167,6 +228,8 @@ public final class FedRaftServiceGrpc {
                             .addMethod(getAppendStreamLogMethod())
                             .addMethod(getAppendLogMethod())
                             .addMethod(getHeartbeatMethod())
+                            .addMethod(getTrainerHeartbeatMethod())
+                            .addMethod(getTriggerElectionMethod())
                             .build();
                 }
             }
@@ -175,7 +238,6 @@ public final class FedRaftServiceGrpc {
     }
 
     /**
-     *
      */
     public static abstract class FedRaftServiceImplBase implements io.grpc.BindableService {
 
@@ -190,7 +252,6 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
-         *
          */
         public void appendLog(org.bupt.cad.fedraft.rpc.message.LogRequest request,
                               io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse> responseObserver) {
@@ -198,11 +259,30 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
-         *
+         * <pre>
+         * 心跳通信
+         * </pre>
          */
         public void heartbeat(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest request,
                               io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> responseObserver) {
             io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getHeartbeatMethod(), responseObserver);
+        }
+
+        /**
+         */
+        public void trainerHeartbeat(org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest request,
+                                     io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> responseObserver) {
+            io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTrainerHeartbeatMethod(), responseObserver);
+        }
+
+        /**
+         * <pre>
+         * 触发所有节点超时重新选举
+         * </pre>
+         */
+        public void triggerElection(org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest request,
+                                    io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> responseObserver) {
+            io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTriggerElectionMethod(), responseObserver);
         }
 
         @java.lang.Override
@@ -229,12 +309,25 @@ public final class FedRaftServiceGrpc {
                                             org.bupt.cad.fedraft.rpc.message.HeartbeatRequest,
                                             org.bupt.cad.fedraft.rpc.message.HeartbeatResponse>(
                                             this, METHODID_HEARTBEAT)))
+                    .addMethod(
+                            getTrainerHeartbeatMethod(),
+                            io.grpc.stub.ServerCalls.asyncUnaryCall(
+                                    new MethodHandlers<
+                                            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest,
+                                            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse>(
+                                            this, METHODID_TRAINER_HEARTBEAT)))
+                    .addMethod(
+                            getTriggerElectionMethod(),
+                            io.grpc.stub.ServerCalls.asyncUnaryCall(
+                                    new MethodHandlers<
+                                            org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
+                                            org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse>(
+                                            this, METHODID_TRIGGER_ELECTION)))
                     .build();
         }
     }
 
     /**
-     *
      */
     public static final class FedRaftServiceStub extends io.grpc.stub.AbstractAsyncStub<FedRaftServiceStub> {
         private FedRaftServiceStub(
@@ -260,7 +353,6 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
-         *
          */
         public void appendLog(org.bupt.cad.fedraft.rpc.message.LogRequest request,
                               io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse> responseObserver) {
@@ -269,17 +361,37 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
-         *
+         * <pre>
+         * 心跳通信
+         * </pre>
          */
         public void heartbeat(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest request,
                               io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> responseObserver) {
             io.grpc.stub.ClientCalls.asyncUnaryCall(
                     getChannel().newCall(getHeartbeatMethod(), getCallOptions()), request, responseObserver);
         }
+
+        /**
+         */
+        public void trainerHeartbeat(org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest request,
+                                     io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> responseObserver) {
+            io.grpc.stub.ClientCalls.asyncUnaryCall(
+                    getChannel().newCall(getTrainerHeartbeatMethod(), getCallOptions()), request, responseObserver);
+        }
+
+        /**
+         * <pre>
+         * 触发所有节点超时重新选举
+         * </pre>
+         */
+        public void triggerElection(org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest request,
+                                    io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> responseObserver) {
+            io.grpc.stub.ClientCalls.asyncUnaryCall(
+                    getChannel().newCall(getTriggerElectionMethod(), getCallOptions()), request, responseObserver);
+        }
     }
 
     /**
-     *
      */
     public static final class FedRaftServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<FedRaftServiceBlockingStub> {
         private FedRaftServiceBlockingStub(
@@ -294,7 +406,6 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
-         *
          */
         public org.bupt.cad.fedraft.rpc.message.LogResponse appendLog(org.bupt.cad.fedraft.rpc.message.LogRequest request) {
             return io.grpc.stub.ClientCalls.blockingUnaryCall(
@@ -302,38 +413,34 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
-         *
+         * <pre>
+         * 心跳通信
+         * </pre>
          */
         public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse heartbeat(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest request) {
             return io.grpc.stub.ClientCalls.blockingUnaryCall(
                     getChannel(), getHeartbeatMethod(), getCallOptions(), request);
         }
-    }
 
-    private static abstract class FedRaftServiceBaseDescriptorSupplier
-            implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-        FedRaftServiceBaseDescriptorSupplier() {
+        /**
+         */
+        public org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse trainerHeartbeat(org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest request) {
+            return io.grpc.stub.ClientCalls.blockingUnaryCall(
+                    getChannel(), getTrainerHeartbeatMethod(), getCallOptions(), request);
         }
 
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-            return org.bupt.cad.fedraft.rpc.service.FedraftService.getDescriptor();
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-            return getFileDescriptor().findServiceByName("FedRaftService");
-        }
-    }
-
-    private static final class FedRaftServiceFileDescriptorSupplier
-            extends FedRaftServiceBaseDescriptorSupplier {
-        FedRaftServiceFileDescriptorSupplier() {
+        /**
+         * <pre>
+         * 触发所有节点超时重新选举
+         * </pre>
+         */
+        public org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse triggerElection(org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest request) {
+            return io.grpc.stub.ClientCalls.blockingUnaryCall(
+                    getChannel(), getTriggerElectionMethod(), getCallOptions(), request);
         }
     }
 
     /**
-     *
      */
     public static final class FedRaftServiceFutureStub extends io.grpc.stub.AbstractFutureStub<FedRaftServiceFutureStub> {
         private FedRaftServiceFutureStub(
@@ -348,7 +455,6 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
-         *
          */
         public com.google.common.util.concurrent.ListenableFuture<org.bupt.cad.fedraft.rpc.message.LogResponse> appendLog(
                 org.bupt.cad.fedraft.rpc.message.LogRequest request) {
@@ -357,12 +463,33 @@ public final class FedRaftServiceGrpc {
         }
 
         /**
-         *
+         * <pre>
+         * 心跳通信
+         * </pre>
          */
         public com.google.common.util.concurrent.ListenableFuture<org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> heartbeat(
                 org.bupt.cad.fedraft.rpc.message.HeartbeatRequest request) {
             return io.grpc.stub.ClientCalls.futureUnaryCall(
                     getChannel().newCall(getHeartbeatMethod(), getCallOptions()), request);
+        }
+
+        /**
+         */
+        public com.google.common.util.concurrent.ListenableFuture<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> trainerHeartbeat(
+                org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest request) {
+            return io.grpc.stub.ClientCalls.futureUnaryCall(
+                    getChannel().newCall(getTrainerHeartbeatMethod(), getCallOptions()), request);
+        }
+
+        /**
+         * <pre>
+         * 触发所有节点超时重新选举
+         * </pre>
+         */
+        public com.google.common.util.concurrent.ListenableFuture<org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> triggerElection(
+                org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest request) {
+            return io.grpc.stub.ClientCalls.futureUnaryCall(
+                    getChannel().newCall(getTriggerElectionMethod(), getCallOptions()), request);
         }
     }
 
@@ -391,6 +518,14 @@ public final class FedRaftServiceGrpc {
                     serviceImpl.heartbeat((org.bupt.cad.fedraft.rpc.message.HeartbeatRequest) request,
                             (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.HeartbeatResponse>) responseObserver);
                     break;
+                case METHODID_TRAINER_HEARTBEAT:
+                    serviceImpl.trainerHeartbeat((org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest) request,
+                            (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse>) responseObserver);
+                    break;
+                case METHODID_TRIGGER_ELECTION:
+                    serviceImpl.triggerElection((org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest) request,
+                            (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse>) responseObserver);
+                    break;
                 default:
                     throw new AssertionError();
             }
@@ -407,6 +542,28 @@ public final class FedRaftServiceGrpc {
                 default:
                     throw new AssertionError();
             }
+        }
+    }
+
+    private static abstract class FedRaftServiceBaseDescriptorSupplier
+            implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+        FedRaftServiceBaseDescriptorSupplier() {
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
+            return org.bupt.cad.fedraft.rpc.service.FedraftService.getDescriptor();
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+            return getFileDescriptor().findServiceByName("FedRaftService");
+        }
+    }
+
+    private static final class FedRaftServiceFileDescriptorSupplier
+            extends FedRaftServiceBaseDescriptorSupplier {
+        FedRaftServiceFileDescriptorSupplier() {
         }
     }
 

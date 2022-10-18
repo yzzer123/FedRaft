@@ -2,7 +2,7 @@ package org.bupt.cad.fedraft.server;
 
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
-import org.bupt.cad.fedraft.node.Node;
+import org.bupt.cad.fedraft.node.Runtime;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,9 +19,9 @@ public class FedRaftServerTest {
 
     @Test
     public void testScheduledPing() {
-        Map<Long, Integer> topology = Node.getRuntimeNode().getTopology();
+        Map<Long, Integer> topology = Runtime.getRuntime().getTopology();
         // 10.128.167.92
-        synchronized (Node.getRuntimeNode().getTopology()) {
+        synchronized (Runtime.getRuntime().getTopology()) {
             topology.put(new NodeInfo("10.128.167.92", 16777, 16888).getNodeId(), -1);
             topology.put(new NodeInfo("10.112.195.22", 16777, 16888).getNodeId(), -1);
             topology.put(new NodeInfo("10.28.221.81", 16777, 16888).getNodeId(), -1);

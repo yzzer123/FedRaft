@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.net.UnknownHostException;
 
-public class NodeInfoTest {
+public class RuntimeInfoTest {
 
     @Test
     public void modTest() throws UnknownHostException {

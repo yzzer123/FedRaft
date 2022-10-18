@@ -6,16 +6,16 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.bupt.cad.fedraft.algorithm.RaftAlgorithm;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
-import org.bupt.cad.fedraft.node.Node;
+import org.bupt.cad.fedraft.node.Runtime;
 import org.bupt.cad.fedraft.node.SafeMode;
 import org.bupt.cad.fedraft.utils.NetworkUtils;
 import org.bupt.cad.fedraft.utils.TimerUtils;
 import org.bupt.cad.fedraft.utils.ZkClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Random;
@@ -25,8 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 public class FedRaftServer {
 
-    private static final Logger logger = LogManager.getLogger(FedRaftServer.class);
-
+    private static final Logger logger = LoggerFactory.getLogger(FedRaftServer.class);
     private final Server server;
     private final String host;
     private final int port;
@@ -48,7 +47,7 @@ public class FedRaftServer {
         // 生成本地节点信息的javabean 用于初始化zk
         NodeInfo localNodeInfo = new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT),
                 Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
-        SafeMode nodeMode = Node.getRuntimeNode().getNodeMode();
+        SafeMode nodeMode = Runtime.getRuntime().getNodeMode();
 
         // 随机倒计时启动，给集群一定时间注册节点
         TimerUtils.getTimer().schedule(new Runnable() {
@@ -79,7 +78,7 @@ public class FedRaftServer {
         logger.info("server started ping other nodes ");
 
         // Java进程宕机
-        Runtime.getRuntime().addShutdownHook(new Thread() {
+        java.lang.Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
                 System.err.println("shutdown gRPC server because JVM shutdown");

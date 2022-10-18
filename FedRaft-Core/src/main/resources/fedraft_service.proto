@@ -6,12 +6,20 @@ option java_package = "org.bupt.cad.fedraft.rpc.service";
 option java_multiple_files = true;
 
 import "log_message.proto";
+import "heartbeat_message.proto";
+import "vote_massage.proto";
 
 
 service FedRaftService{
   // Raft 日志追加通信
   rpc AppendStreamLog(stream LogRequest) returns(LogResponse){};
   rpc AppendLog(LogRequest) returns(LogResponse){};
+
+  // 心跳通信
   rpc Heartbeat(HeartbeatRequest) returns(HeartbeatResponse){};
+  rpc TrainerHeartbeat(TrainerHeartbeatRequest) returns(TrainerHeartbeatResponse){};
+
+  // 触发所有节点超时重新选举
+  rpc TriggerElection(TriggerElectionRequest) returns(TriggerElectionResponse){};
 
 }
