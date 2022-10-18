@@ -82,15 +82,15 @@ public final class LogRequest extends
                     }
                     case 24: {
 
-            preModelIndex_ = input.readUInt32();
-            break;
-          }
-          case 32: {
+                        preModelIndex_ = input.readUInt32();
+                        break;
+                    }
+                    case 32: {
 
-            preModelTerm_ = input.readUInt32();
-            break;
-          }
-          case 40: {
+                        preModelTerm_ = input.readUInt32();
+                        break;
+                    }
+                    case 40: {
             int rawValue = input.readEnum();
 
             logType_ = rawValue;
@@ -101,13 +101,13 @@ public final class LogRequest extends
               modelChunk_ = input.readBytes();
               break;
           }
-          default: {
-            if (!parseUnknownField(
-                input, unknownFields, extensionRegistry, tag)) {
-              done = true;
-            }
-              break;
-          }
+                    default: {
+                        if (!parseUnknownField(
+                                input, unknownFields, extensionRegistry, tag)) {
+                            done = true;
+                        }
+                        break;
+                    }
                 }
             }
         } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -172,6 +172,43 @@ public final class LogRequest extends
                 .parseWithIOException(PARSER, input);
     }
 
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
     public static Builder newBuilder() {
         return DEFAULT_INSTANCE.toBuilder();
     }
@@ -182,6 +219,10 @@ public final class LogRequest extends
 
     public static org.bupt.cad.fedraft.rpc.message.LogRequest getDefaultInstance() {
         return DEFAULT_INSTANCE;
+    }
+
+    public static com.google.protobuf.Parser<LogRequest> parser() {
+        return PARSER;
     }
 
     @java.lang.Override
@@ -295,43 +336,6 @@ public final class LogRequest extends
     @java.lang.Override
     public com.google.protobuf.ByteString getModelChunk() {
         return modelChunk_;
-    }
-
-    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseDelimitedFrom(java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseDelimitedFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-            com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.cad.fedraft.rpc.message.LogRequest parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
@@ -469,6 +473,16 @@ public final class LogRequest extends
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LogRequest> getParserForType() {
+        return PARSER;
+    }
+
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.LogRequest getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
     }
 
     /**
@@ -791,6 +805,7 @@ public final class LogRequest extends
 
         /**
          * <code>uint32 term = 1;</code>
+         *
          * @return The term.
          */
         @java.lang.Override
@@ -800,6 +815,7 @@ public final class LogRequest extends
 
         /**
          * <code>uint32 term = 1;</code>
+         *
          * @param value The term to set.
          * @return This builder for chaining.
          */
@@ -812,6 +828,7 @@ public final class LogRequest extends
 
         /**
          * <code>uint32 term = 1;</code>
+         *
          * @return This builder for chaining.
          */
         public Builder clearTerm() {
@@ -823,6 +840,7 @@ public final class LogRequest extends
 
         /**
          * <code>uint64 leader_id = 2;</code>
+         *
          * @return The leaderId.
          */
         @java.lang.Override
@@ -832,6 +850,7 @@ public final class LogRequest extends
 
         /**
          * <code>uint64 leader_id = 2;</code>
+         *
          * @param value The leaderId to set.
          * @return This builder for chaining.
          */
@@ -844,6 +863,7 @@ public final class LogRequest extends
 
         /**
          * <code>uint64 leader_id = 2;</code>
+         *
          * @return This builder for chaining.
          */
         public Builder clearLeaderId() {
@@ -859,6 +879,7 @@ public final class LogRequest extends
          * </pre>
          *
          * <code>uint32 pre_model_index = 3;</code>
+         *
          * @return The preModelIndex.
          */
         @java.lang.Override
@@ -872,6 +893,7 @@ public final class LogRequest extends
          * </pre>
          *
          * <code>uint32 pre_model_index = 3;</code>
+         *
          * @param value The preModelIndex to set.
          * @return This builder for chaining.
          */
@@ -1092,20 +1114,6 @@ public final class LogRequest extends
 
 
         // @@protoc_insertion_point(builder_scope:fedraft.LogRequest)
-    }
-
-    public static com.google.protobuf.Parser<LogRequest> parser() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<LogRequest> getParserForType() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.LogRequest getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
     }
 
 }

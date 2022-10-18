@@ -2,18 +2,22 @@ package org.bupt.cad.fedraft.utils;
 
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.server.FedRaftClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ClientPool {
 
+    private static final Logger logger = LoggerFactory.getLogger(ClientPool.class);
     private final ConcurrentHashMap<Long, FedRaftClient> clientChannels = new ConcurrentHashMap<>();
 
 
     public FedRaftClient getChannel(Long nodeId) {
         FedRaftClient client = clientChannels.get(nodeId);
         if (client == null) {
+            logger.info("created new channel with {}:{}", NodeInfo.idToIp(nodeId), NodeInfo.idToPort(nodeId));
             client = new FedRaftClient(NodeInfo.idToIp(nodeId), NodeInfo.idToPort(nodeId));
             clientChannels.put(nodeId, client);
         }

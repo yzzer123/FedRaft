@@ -59,6 +59,7 @@ public class ZkClient {
                 .retryPolicy(new ExponentialBackoffRetry(1000, Configuration.getInt(Configuration.ZOOKEEPER_RETRY_TIMES)))
                 .sessionTimeoutMs(Configuration.getInt(Configuration.ZOOKEEPER_TIMEOUT))
                 .namespace(Configuration.getString(Configuration.ZOOKEEPER_NAMESPACE))
+                .connectionTimeoutMs(Configuration.getInt(Configuration.ZOOKEEPER_TIMEOUT))
                 .build();
 
         // 建立连接
@@ -193,7 +194,7 @@ public class ZkClient {
      * @throws Exception 通信失败
      */
     public List<NodeInfo> getCluster() throws Exception {
-        List<String> nodes = client.getChildren().forPath(REGISTERED_CLUSTER);
+        List<String> nodes = client.getChildren().forPath(REGISTERED_CLUSTER.substring(0, REGISTERED_CLUSTER.length() - 1));
 
         ArrayList<NodeInfo> nodeInfos = new ArrayList<>(nodes.size());
         for (String node : nodes) {

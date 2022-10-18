@@ -47,6 +47,13 @@ public class TmpLeader extends Node {
         try {
 
             List<NodeInfo> cluster = Runtime.getRuntime().getZkClient().getCluster();
+
+            if (cluster.size() < 3) {
+                logger.error("初始化集群失败");
+                Runtime.getRuntime().getZkClient().giveUpCheckinLeader();
+                System.exit(1);
+            }
+
             synchronized (Runtime.getRuntime().getTopology()) {
                 for (NodeInfo nodeInfo : cluster) {
                     topology.put(nodeInfo.getNodeId(), -1);
@@ -55,6 +62,7 @@ public class TmpLeader extends Node {
         } catch (Exception e) {
             // 监听器设置失败就直接退出
             logger.error("初始化集群失败" + e.getMessage(), e);
+            Runtime.getRuntime().getZkClient().giveUpCheckinLeader();
             System.exit(1);
         }
     }
@@ -63,40 +71,52 @@ public class TmpLeader extends Node {
     private void maintainHeartbeat() {
 
         int heartbeatInterval = Configuration.getInt(Configuration.NODE_HEARTBEAT_TIME_INTERVAL);
-        heartbeatTask = TimerUtils.getTimer().scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                // 计算存活follower数量
-                followerSet.values().removeIf(timestamp -> timestamp + heartbeatInterval * 3L < System.currentTimeMillis());
-                if (followerSet.size() > topology.size() / 2) {
-                    triggerElection();
-                }
+        logger.info("tmp leader begin maintainHeartbeat");
 
-                heartbeatOnce();
-            }// end runnable method
+        // end runnable method
+        heartbeatTask = TimerUtils.getTimer().scheduleAtFixedRate(() -> {
+            // 计算存活follower数量
+            followerSet.values().removeIf(timestamp -> timestamp + heartbeatInterval * 3L < System.currentTimeMillis());
+            // 集群节点达到2以上才能正常运行
+            if (topology.size() > 2 && followerSet.size() > topology.size() / 2) {
+                logger.info("tmp leader trigger election");
+                triggerElection();
+            }
+
+            heartbeatOnce();
         }, 10, heartbeatInterval, TimeUnit.MILLISECONDS);
     }
 
 
     private void heartbeatOnce() {
+
         HeartbeatRequest.Builder builder = HeartbeatRequest.newBuilder();
         builder = builder.setLeaderModelIndex(0)
                 .setTerm(Runtime.getRuntime().getTerm())
                 .setLeaderId(Runtime.getRuntime().getSelfNodeInfo().getNodeId());
 
         // 构造请求中的时延列表
+        long selfId = Runtime.getRuntime().getSelfNodeInfo().getNodeId();
         synchronized (Runtime.getRuntime().getTopology()) {
+
+            logger.info("send topology = {}", topology);
             for (Map.Entry<Long, Integer> entry : topology.entrySet()) {
                 builder.addNodeIds(entry.getKey());
                 builder.addNetworkDelays(entry.getValue());
             }
         }
-        HeartbeatRequest request = builder.build();
 
+        HeartbeatRequest request = builder.build();
 
         // 发送的客户端
         List<Long> clientList = request.getNodeIdsList();
+
         for (Long clientId : clientList) {
+
+            // 将自己排除掉
+            if (clientId.equals(selfId)) {
+                continue;
+            }
 
             // 获取通信通道并发送心跳
             clientPool.getChannel(clientId).sendHeartBeat(request, response -> {
@@ -138,6 +158,7 @@ public class TmpLeader extends Node {
                 clientPool.getChannel(follower).triggerElection(request);
             }
             // 触发自己
+            heartbeatTask.cancel(true);
             Node.triggerElection(request);
         }
     }
@@ -171,7 +192,8 @@ public class TmpLeader extends Node {
             runtime.setState(NodeState.FOLLOWER);  // 直接转变为follower
 
             // 更新拓扑
-            return super.receiveHeartbeat(request);
+            updateTopology(request.getNodeIdsList(), request.getNetworkDelaysList());
+            return runtime.getDelay().get();
         } else {
             // 任期比自己小就为错误 不更新拓扑
             return -1;

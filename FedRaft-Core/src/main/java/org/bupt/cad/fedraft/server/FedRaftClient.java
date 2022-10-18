@@ -3,6 +3,7 @@ package org.bupt.cad.fedraft.server;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
+import org.bupt.cad.fedraft.node.Runtime;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatResponse;
 import org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest;
@@ -16,6 +17,8 @@ public class FedRaftClient {
     private static final Logger logger = LoggerFactory.getLogger(FedRaftClient.class);
 
     private final ManagedChannel channel;
+    private final int port;
+    private final String host;
 
     public ManagedChannel getChannel() {
         return channel;
@@ -42,24 +45,30 @@ public class FedRaftClient {
     private final FedRaftServiceGrpc.FedRaftServiceFutureStub futureStub;
 
     public FedRaftClient(String host, int port) {
-        this.channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build(); //usePlaintext()!
+        this.channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().enableRetry().build(); //usePlaintext()!
         this.blockingStub = FedRaftServiceGrpc.newBlockingStub(channel);
         this.asyncStub = FedRaftServiceGrpc.newStub(channel);
         this.futureStub = FedRaftServiceGrpc.newFutureStub(channel);
+        this.host = host;
+        this.port = port;
     }
 
     //向client发送心跳信息 并处理返回值
     public void sendHeartBeat(HeartbeatRequest request, HeartbeatResponseHandler responseHandler) {
 
+        logger.info("send heartbeat to {} {}", host, port);
+
         getAsyncStub().heartbeat(request, new StreamObserver<>() {
             @Override
             public void onNext(HeartbeatResponse heartbeatResponse) {
+                logger.info("received heartbeat response from {} {}", host, port);
                 responseHandler.handleResponse(heartbeatResponse);
+                logger.info("updated topology = {}", Runtime.getRuntime().getTopology());
             }
 
             @Override
             public void onError(Throwable throwable) {
-                logger.error("heartbeat invalid: " + throwable.getMessage(), throwable);
+                logger.error("heartbeat invalid: " + throwable.getMessage());
             }
 
             @Override
@@ -86,6 +95,9 @@ public class FedRaftClient {
             }
         });
     }
+
+//    // 和trainer保持同步
+//    public void
 
     public interface HeartbeatResponseHandler {
         void handleResponse(HeartbeatResponse response);

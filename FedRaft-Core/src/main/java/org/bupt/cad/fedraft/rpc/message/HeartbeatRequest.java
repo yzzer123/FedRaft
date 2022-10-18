@@ -87,15 +87,15 @@ public final class HeartbeatRequest extends
                     }
                     case 24: {
 
-            preModelIndex_ = input.readUInt32();
-            break;
-          }
-          case 32: {
+                        preModelIndex_ = input.readUInt32();
+                        break;
+                    }
+                    case 32: {
 
-            preModelTerm_ = input.readUInt32();
-            break;
-          }
-          case 40: {
+                        preModelTerm_ = input.readUInt32();
+                        break;
+                    }
+                    case 40: {
 
             leaderModelIndex_ = input.readUInt32();
             break;
@@ -130,8 +130,8 @@ public final class HeartbeatRequest extends
             break;
           }
           case 58: {
-            int length = input.readRawVarint32();
-            int limit = input.pushLimit(length);
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
                   networkDelays_ = newIntList();
                   mutable_bitField0_ |= 0x00000002;
@@ -266,6 +266,10 @@ public final class HeartbeatRequest extends
 
     public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest getDefaultInstance() {
         return DEFAULT_INSTANCE;
+    }
+
+    public static com.google.protobuf.Parser<HeartbeatRequest> parser() {
+        return PARSER;
     }
 
     @java.lang.Override
@@ -603,6 +607,16 @@ public final class HeartbeatRequest extends
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<HeartbeatRequest> getParserForType() {
+        return PARSER;
+    }
+
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.HeartbeatRequest getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
     }
 
     /**
@@ -960,12 +974,13 @@ public final class HeartbeatRequest extends
         }
 
         /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 pre_model_term = 4;</code>
-     * @param value The preModelTerm to set.
+         * <pre>
+         * 之前发送模型的任期
+         * </pre>
+         *
+         * <code>uint32 pre_model_term = 4;</code>
+         *
+         * @param value The preModelTerm to set.
          * @return This builder for chaining.
          */
         public Builder setPreModelTerm(int value) {
@@ -1264,20 +1279,6 @@ public final class HeartbeatRequest extends
 
 
         // @@protoc_insertion_point(builder_scope:fedraft.HeartbeatRequest)
-    }
-
-    public static com.google.protobuf.Parser<HeartbeatRequest> parser() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<HeartbeatRequest> getParserForType() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.HeartbeatRequest getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
     }
 
 }

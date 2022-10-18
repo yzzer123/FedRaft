@@ -113,7 +113,7 @@ public class FedRaftServer {
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         // 构建参数读取工具
         DefaultParser defaultParser = new DefaultParser();
         Options options = new Options();

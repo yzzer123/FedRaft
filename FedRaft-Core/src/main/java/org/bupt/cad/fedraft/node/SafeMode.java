@@ -62,7 +62,7 @@ public class SafeMode extends Node {
         }
 
         // 更新自己的时延拓扑
-        super.receiveHeartbeat(request);
+        updateTopology(request.getNodeIdsList(), request.getNetworkDelaysList());
 
         // 检查拓扑是否全部更新
         if (request.getTerm() > 0) {

@@ -3,6 +3,7 @@ package org.bupt.cad.fedraft.utils;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.node.Runtime;
+import org.bupt.cad.fedraft.rpc.message.NodeState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,14 +41,19 @@ public class NetworkUtils {
 
         AtomicInteger delay = Runtime.getRuntime().getDelay();
         int heartbeatInterval = Configuration.getInt(Configuration.NODE_HEARTBEAT_TIME_INTERVAL);
-        return TimerUtils.getTimer().scheduleAtFixedRate(new Runnable() {
-            @Override
-            public void run() {
-                logger.debug("begin scheduled ping");
-                int avgDelay = pingTopology();
-                delay.set(avgDelay);
-                logger.debug("set delay = " + avgDelay);
+        return TimerUtils.getTimer().scheduleAtFixedRate(() -> {
+            logger.debug("begin scheduled ping");
+            int avgDelay = pingTopology();
+            delay.set(avgDelay);
+            Runtime runtime = Runtime.getRuntime();
+            NodeState runtimeState = runtime.getState();
+
+            // 需要将自己的时延信息放到拓扑里
+            if (runtimeState == NodeState.LEADER || runtimeState == NodeState.TMP_LEADER || runtimeState == NodeState.CANDIDATE) {
+                runtime.getTopology().put(runtime.getSelfNodeInfo().getNodeId(), avgDelay);
             }
+
+            logger.debug("set delay = {}", avgDelay);
         }, heartbeatInterval, heartbeatInterval, TimeUnit.MILLISECONDS);
     }
 
@@ -69,6 +75,13 @@ public class NetworkUtils {
             }
             // 在锁中读取拓扑集合
             keyList = new ArrayList<>(topology.keySet());
+        }
+
+        // 排除自己
+        keyList.remove(Runtime.getRuntime().getSelfNodeInfo().getNodeId());
+
+        if (keyList.size() == 0) {
+            return INVALID_DELAY;
         }
 
         final CountDownLatch countDownLatch = new CountDownLatch(keyList.size());

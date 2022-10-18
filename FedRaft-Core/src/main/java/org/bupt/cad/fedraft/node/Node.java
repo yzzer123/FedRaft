@@ -6,6 +6,7 @@ import org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -42,20 +43,20 @@ public abstract class Node {
     /**
      * 收到心跳信息 更新节点拓扑
      */
-    public int receiveHeartbeat(HeartbeatRequest request) {
-        // 更新拓扑
+    public abstract int receiveHeartbeat(HeartbeatRequest request);
+
+    public void updateTopology(List<Long> nodeIds, List<Integer> delays) {
         // 更新自己的时延拓扑
         Map<Long, Integer> topology = Runtime.getRuntime().getTopology();
 
         // 批量插入只能一个线程执行 ConcurrentHashMap只能保证单个操作原子
         synchronized (Runtime.getRuntime().getTopology()) {
-            int topologySize = request.getNodeIdsCount();
             topology.clear();
-            for (int i = 0; i < topologySize; i++) {
-                topology.put(request.getNodeIds(i), request.getNetworkDelays(i));
+            for (int i = 0; i < nodeIds.size(); i++) {
+                topology.put(nodeIds.get(i), delays.get(i));
             }
+            logger.info("topology = {}", topology);
         }
-        return -1;
     }
 
     /**

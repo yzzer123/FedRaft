@@ -18,16 +18,16 @@ public enum NodeState
     TMP_LEADER(1),
     /**
      * <code>LEADER = 2;</code>
-   */
-  LEADER(2),
-  /**
-   * <code>CANDIDATE = 3;</code>
-   */
-  CANDIDATE(3),
-  /**
-   * <code>FOLLOWER = 4;</code>
-   */
-  FOLLOWER(4),
+     */
+    LEADER(2),
+    /**
+     * <code>CANDIDATE = 3;</code>
+     */
+    CANDIDATE(3),
+    /**
+     * <code>FOLLOWER = 4;</code>
+     */
+    FOLLOWER(4),
   UNRECOGNIZED(-1),
   ;
 
@@ -43,14 +43,14 @@ public enum NodeState
    * <code>LEADER = 2;</code>
    */
   public static final int LEADER_VALUE = 2;
-  /**
-   * <code>CANDIDATE = 3;</code>
-   */
-  public static final int CANDIDATE_VALUE = 3;
-  /**
-   * <code>FOLLOWER = 4;</code>
-   */
-  public static final int FOLLOWER_VALUE = 4;
+    /**
+     * <code>CANDIDATE = 3;</code>
+     */
+    public static final int CANDIDATE_VALUE = 3;
+    /**
+     * <code>FOLLOWER = 4;</code>
+     */
+    public static final int FOLLOWER_VALUE = 4;
 
 
     private static final com.google.protobuf.Internal.EnumLiteMap<
@@ -61,14 +61,14 @@ public enum NodeState
                 }
             };
 
-  /**
-   * @param value The numeric wire value of the corresponding enum entry.
-   * @return The enum associated with the given numeric wire value.
-   * @deprecated Use {@link #forNumber(int)} instead.
-   */
-  @java.lang.Deprecated
-  public static NodeState valueOf(int value) {
-    return forNumber(value);
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static NodeState valueOf(int value) {
+        return forNumber(value);
   }
   private static final NodeState[] VALUES = values();
   private final int value;
@@ -81,20 +81,20 @@ public enum NodeState
    * @return The enum associated with the given numeric wire value.
    */
   public static NodeState forNumber(int value) {
-    switch (value) {
-        case 0:
-            return SAFE_MODE;
-        case 1:
-            return TMP_LEADER;
-        case 2:
-            return LEADER;
-        case 3:
-            return CANDIDATE;
-        case 4:
-            return FOLLOWER;
-        default:
-            return null;
-    }
+      switch (value) {
+          case 0:
+              return SAFE_MODE;
+          case 1:
+              return TMP_LEADER;
+          case 2:
+              return LEADER;
+          case 3:
+              return CANDIDATE;
+          case 4:
+              return FOLLOWER;
+          default:
+              return null;
+      }
   }
 
     public static com.google.protobuf.Internal.EnumLiteMap<NodeState>
@@ -117,15 +117,15 @@ public enum NodeState
             return UNRECOGNIZED;
         }
         return VALUES[desc.getIndex()];
-  }
-
-  public final int getNumber() {
-    if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-                "Can't get the number of an unknown enum value.");
     }
-    return value;
-  }
+
+    public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+            throw new java.lang.IllegalArgumentException(
+                    "Can't get the number of an unknown enum value.");
+        }
+        return value;
+    }
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
     getValueDescriptor() {
@@ -139,8 +139,8 @@ public enum NodeState
     public final com.google.protobuf.Descriptors.EnumDescriptor
     getDescriptorForType() {
         return getDescriptor();
-  }
+    }
 
-  // @@protoc_insertion_point(enum_scope:fedraft.NodeState)
+    // @@protoc_insertion_point(enum_scope:fedraft.NodeState)
 }
 
