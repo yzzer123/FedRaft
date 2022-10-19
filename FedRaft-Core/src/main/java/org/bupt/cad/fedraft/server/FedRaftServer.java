@@ -10,7 +10,6 @@ import org.bupt.cad.fedraft.algorithm.RaftAlgorithm;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.node.Runtime;
 import org.bupt.cad.fedraft.utils.PingUtils;
-import org.bupt.cad.fedraft.utils.TimerUtils;
 import org.bupt.cad.fedraft.utils.ZkClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +42,7 @@ public class FedRaftServer {
     public void initialize() {
 
         Runtime runtime = Runtime.getRuntime();
-
+        zkClient = runtime.getZkClient();
         // 随机倒计时启动，给集群一定时间注册节点
         try {
             Thread.sleep(5000 + new Random().nextInt(5000));
@@ -75,26 +74,23 @@ public class FedRaftServer {
         ScheduledFuture<?> scheduledPingFuture = PingUtils.startScheduledPingTask();
         // 设置定时和trainer同步
 
-        ScheduledFuture<?> syncFuture = TimerUtils.getTimer().scheduleAtFixedRate(() -> {
-            Runtime.getRuntime().getTrainerClient().syncWithTrainer();
-        }, 10, Configuration.getInt(Configuration.NODE_SYNC_TIME_INTERVAL), TimeUnit.MILLISECONDS);
 
-        logger.info("server started ping other nodes ");
+        logger.info("server began to ping other nodes ");
 
         // Java进程宕机
         java.lang.Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                System.err.println("shutdown gRPC server because JVM shutdown");
+                logger.error("trying to shutdown gRPC server because JVM shutdown");
                 try {
                     scheduledPingFuture.cancel(true);
-                    syncFuture.cancel(true);
+
                     FedRaftServer.this.stop();
                     zkClient.closeConnection();
                 } catch (InterruptedException e) {
                     e.printStackTrace(System.err);
                 }
-                System.err.println("server shutdown");
+                logger.error("server has shutdown");
             }
         });
     }

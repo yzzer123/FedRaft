@@ -21,5 +21,7 @@ service FedRaftService{
 
   // 触发所有节点超时重新选举
   rpc TriggerElection(TriggerElectionRequest) returns(TriggerElectionResponse){};
+  // 请求投票
+  rpc RequestVote(VoteRequest) returns(VoteResponse){};
 
 }

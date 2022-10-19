@@ -29,11 +29,12 @@ public class SafeMode extends Node {
 
     public SafeMode() {
         zkClient = Runtime.getRuntime().getZkClient();
-        // 启动时抢占leader
-        checkinTmpLeader();
+        // 启动时主动触发超时事件抢占leader
+        heartbeatTimeout();
     }
 
-    private void checkinTmpLeader() {
+    @Override
+    public void heartbeatTimeout() {
         Runtime runtime = Runtime.getRuntime();
 
         zkClient.checkinTmpLeader(() -> {
@@ -45,11 +46,12 @@ public class SafeMode extends Node {
         });
     }
 
+
     /**
      * 超时抢占节点，监测到tmp leader心跳超时，自动抢占
      */
     private void setupTimeoutTask() {
-        timeoutTask = TimerUtils.getTimer().schedule(this::checkinTmpLeader,
+        timeoutTask = TimerUtils.getTimer().schedule(this::heartbeatTimeout,
                 Configuration.getInt(Configuration.NODE_HEARTBEAT_TIME_INTERVAL) * 3L,
                 TimeUnit.MILLISECONDS);
     }
@@ -121,10 +123,6 @@ public class SafeMode extends Node {
 
     @Override
     public void close() {
-        if (isClosed()) {
-            return;
-        }
         cancelTimeoutTask();
-        setClosed();
     }
 }

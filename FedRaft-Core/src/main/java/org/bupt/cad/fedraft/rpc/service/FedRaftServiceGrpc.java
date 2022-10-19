@@ -16,7 +16,8 @@ public final class FedRaftServiceGrpc {
     private static final int METHODID_HEARTBEAT = 1;
     private static final int METHODID_SYNC_WITH_TRAINER = 2;
     private static final int METHODID_TRIGGER_ELECTION = 3;
-    private static final int METHODID_APPEND_STREAM_LOG = 4;
+    private static final int METHODID_REQUEST_VOTE = 4;
+    private static final int METHODID_APPEND_STREAM_LOG = 5;
     // Static method descriptors that strictly reflect the proto.
     private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
             org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod;
@@ -28,6 +29,8 @@ public final class FedRaftServiceGrpc {
             org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> getSyncWithTrainerMethod;
     private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
             org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod;
+    private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.VoteRequest,
+            org.bupt.cad.fedraft.rpc.message.VoteResponse> getRequestVoteMethod;
     private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
     private FedRaftServiceGrpc() {
@@ -173,6 +176,34 @@ public final class FedRaftServiceGrpc {
         return getTriggerElectionMethod;
     }
 
+    @io.grpc.stub.annotations.RpcMethod(
+            fullMethodName = SERVICE_NAME + '/' + "RequestVote",
+            requestType = org.bupt.cad.fedraft.rpc.message.VoteRequest.class,
+            responseType = org.bupt.cad.fedraft.rpc.message.VoteResponse.class,
+            methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+    public static io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.VoteRequest,
+            org.bupt.cad.fedraft.rpc.message.VoteResponse> getRequestVoteMethod() {
+        io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.VoteRequest, org.bupt.cad.fedraft.rpc.message.VoteResponse> getRequestVoteMethod;
+        if ((getRequestVoteMethod = FedRaftServiceGrpc.getRequestVoteMethod) == null) {
+            synchronized (FedRaftServiceGrpc.class) {
+                if ((getRequestVoteMethod = FedRaftServiceGrpc.getRequestVoteMethod) == null) {
+                    FedRaftServiceGrpc.getRequestVoteMethod = getRequestVoteMethod =
+                            io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.VoteRequest, org.bupt.cad.fedraft.rpc.message.VoteResponse>newBuilder()
+                                    .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                                    .setFullMethodName(generateFullMethodName(SERVICE_NAME, "RequestVote"))
+                                    .setSampledToLocalTracing(true)
+                                    .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            org.bupt.cad.fedraft.rpc.message.VoteRequest.getDefaultInstance()))
+                                    .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                            org.bupt.cad.fedraft.rpc.message.VoteResponse.getDefaultInstance()))
+                                    .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("RequestVote"))
+                                    .build();
+                }
+            }
+        }
+        return getRequestVoteMethod;
+    }
+
     /**
      * Creates a new async stub that supports all call types for the service
      */
@@ -230,6 +261,7 @@ public final class FedRaftServiceGrpc {
                             .addMethod(getHeartbeatMethod())
                             .addMethod(getSyncWithTrainerMethod())
                             .addMethod(getTriggerElectionMethod())
+                            .addMethod(getRequestVoteMethod())
                             .build();
                 }
             }
@@ -285,6 +317,16 @@ public final class FedRaftServiceGrpc {
             io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTriggerElectionMethod(), responseObserver);
         }
 
+        /**
+         * <pre>
+         * 请求投票
+         * </pre>
+         */
+        public void requestVote(org.bupt.cad.fedraft.rpc.message.VoteRequest request,
+                                io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.VoteResponse> responseObserver) {
+            io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRequestVoteMethod(), responseObserver);
+        }
+
         @java.lang.Override
         public final io.grpc.ServerServiceDefinition bindService() {
             return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
@@ -323,6 +365,13 @@ public final class FedRaftServiceGrpc {
                                             org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
                                             org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse>(
                                             this, METHODID_TRIGGER_ELECTION)))
+                    .addMethod(
+                            getRequestVoteMethod(),
+                            io.grpc.stub.ServerCalls.asyncUnaryCall(
+                                    new MethodHandlers<
+                                            org.bupt.cad.fedraft.rpc.message.VoteRequest,
+                                            org.bupt.cad.fedraft.rpc.message.VoteResponse>(
+                                            this, METHODID_REQUEST_VOTE)))
                     .build();
         }
     }
@@ -389,6 +438,17 @@ public final class FedRaftServiceGrpc {
             io.grpc.stub.ClientCalls.asyncUnaryCall(
                     getChannel().newCall(getTriggerElectionMethod(), getCallOptions()), request, responseObserver);
         }
+
+        /**
+         * <pre>
+         * 请求投票
+         * </pre>
+         */
+        public void requestVote(org.bupt.cad.fedraft.rpc.message.VoteRequest request,
+                                io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.VoteResponse> responseObserver) {
+            io.grpc.stub.ClientCalls.asyncUnaryCall(
+                    getChannel().newCall(getRequestVoteMethod(), getCallOptions()), request, responseObserver);
+        }
     }
 
     /**
@@ -437,6 +497,16 @@ public final class FedRaftServiceGrpc {
         public org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse triggerElection(org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest request) {
             return io.grpc.stub.ClientCalls.blockingUnaryCall(
                     getChannel(), getTriggerElectionMethod(), getCallOptions(), request);
+        }
+
+        /**
+         * <pre>
+         * 请求投票
+         * </pre>
+         */
+        public org.bupt.cad.fedraft.rpc.message.VoteResponse requestVote(org.bupt.cad.fedraft.rpc.message.VoteRequest request) {
+            return io.grpc.stub.ClientCalls.blockingUnaryCall(
+                    getChannel(), getRequestVoteMethod(), getCallOptions(), request);
         }
     }
 
@@ -491,6 +561,17 @@ public final class FedRaftServiceGrpc {
             return io.grpc.stub.ClientCalls.futureUnaryCall(
                     getChannel().newCall(getTriggerElectionMethod(), getCallOptions()), request);
         }
+
+        /**
+         * <pre>
+         * 请求投票
+         * </pre>
+         */
+        public com.google.common.util.concurrent.ListenableFuture<org.bupt.cad.fedraft.rpc.message.VoteResponse> requestVote(
+                org.bupt.cad.fedraft.rpc.message.VoteRequest request) {
+            return io.grpc.stub.ClientCalls.futureUnaryCall(
+                    getChannel().newCall(getRequestVoteMethod(), getCallOptions()), request);
+        }
     }
 
     private static final class MethodHandlers<Req, Resp> implements
@@ -525,6 +606,10 @@ public final class FedRaftServiceGrpc {
                 case METHODID_TRIGGER_ELECTION:
                     serviceImpl.triggerElection((org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest) request,
                             (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse>) responseObserver);
+                    break;
+                case METHODID_REQUEST_VOTE:
+                    serviceImpl.requestVote((org.bupt.cad.fedraft.rpc.message.VoteRequest) request,
+                            (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.VoteResponse>) responseObserver);
                     break;
                 default:
                     throw new AssertionError();

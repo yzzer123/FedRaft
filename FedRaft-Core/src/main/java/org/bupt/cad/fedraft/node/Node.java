@@ -63,6 +63,7 @@ public abstract class Node {
         }
     }
 
+
     /**
      * 心跳超时的处理
      */
@@ -75,11 +76,4 @@ public abstract class Node {
      */
     abstract void close();
 
-    public boolean isClosed() {
-        return isClosed;
-    }
-
-    public void setClosed() {
-        isClosed = true;
-    }
 }

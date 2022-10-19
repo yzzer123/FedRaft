@@ -165,7 +165,7 @@ public class Runtime {
             case CANDIDATE:
                 if (state == NodeState.CANDIDATE || state == NodeState.FOLLOWER) {
                     state = newState;
-                    setNodeMode(new Candidate());
+                    setNodeMode(new Candidate(((Follower) nodeMode).getElectionExecutor()));
                     break;
                 }
                 throw new StateChangeException("invalid state change from " + state + " to " + newState);

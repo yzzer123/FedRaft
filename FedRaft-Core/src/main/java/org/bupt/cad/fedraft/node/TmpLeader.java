@@ -186,16 +186,16 @@ public class TmpLeader extends Node {
     @Override
     public void close() {
         // 停止心跳的发送
-        if (!isClosed() && heartbeatTask != null) {
+        if (heartbeatTask != null) {
             heartbeatTask.cancel(true);
             // 放弃leader主权
             Runtime.getRuntime().getZkClient().giveUpCheckinLeader();
-            setClosed();
+
         }
     }
 
     /**
-     * 接收到来自leader的心跳后就直接转换为follower
+     * 接收到来自更高任期的leader的心跳后就直接转换为follower
      *
      * @param request 心跳请求
      * @return 返回时延

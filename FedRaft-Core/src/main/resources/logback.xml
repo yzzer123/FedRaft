@@ -3,15 +3,15 @@
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%green(%date{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%-5level) %red([%thread]) \t
-                %boldMagenta(%logger{50}) \t %cyan(%msg%n)
+            <pattern>%green(%d{HH:mm:ss.SSS}) %highlight(%-5level) %red(%-26.-26([%thread]))
+                %boldMagenta(%-32.-32(%logger{32})) %cyan(%msg%n)
             </pattern>
         </encoder>
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %-26.-26([%thread]) %-32.-32(%logger{32}) %msg%n</pattern>
             <charset>utf-8</charset>
         </encoder>
         <file>log/output.log</file>
@@ -30,6 +30,6 @@
 
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
-        <!--        <appender-ref ref="FILE"/>-->
+        <appender-ref ref="FILE"/>
     </root>
 </configuration>
