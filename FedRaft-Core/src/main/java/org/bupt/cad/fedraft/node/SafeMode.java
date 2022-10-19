@@ -5,10 +5,10 @@ import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
 import org.bupt.cad.fedraft.utils.TimerUtils;
-import org.bupt.cad.fedraft.utils.ZkClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Random;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -24,25 +24,24 @@ public class SafeMode extends Node {
 
     private static final Logger logger = LoggerFactory.getLogger(SafeMode.class);
 
-    private final ZkClient zkClient;
     private ScheduledFuture<?> timeoutTask;
 
     public SafeMode() {
-        zkClient = Runtime.getRuntime().getZkClient();
-        // 启动时主动触发超时事件抢占leader
-        heartbeatTimeout();
+        // 随机倒计时启动，给集群一定时间注册节点
+        // 倒计时结束后主动触发超时事件抢占leader
+        TimerUtils.getTimer().schedule(this::heartbeatTimeout,
+                5000 + new Random().nextInt(5000), TimeUnit.MILLISECONDS);
     }
 
     @Override
     public void heartbeatTimeout() {
         Runtime runtime = Runtime.getRuntime();
-
-        zkClient.checkinTmpLeader(() -> {
+        runtime.getZkClient().checkinTmpLeader(() -> {
             //争抢成功, 切换节点状态, 并唤醒tmp_leader
             synchronized (Runtime.getRuntime()) {
                 runtime.setState(NodeState.TMP_LEADER);
             }
-            logger.info("tmp leader is {}", zkClient.getNodeName());
+            logger.info("tmp leader is {}", runtime.getSelfNodeInfo());
         });
     }
 
@@ -65,7 +64,7 @@ public class SafeMode extends Node {
             timeoutTask = null;
         }
         // 如果原来在抢占，就要放弃
-        zkClient.giveUpCheckinLeader();
+        Runtime.getRuntime().getZkClient().giveUpCheckinLeader();
     }
 
     private void resetTimeoutTask() {

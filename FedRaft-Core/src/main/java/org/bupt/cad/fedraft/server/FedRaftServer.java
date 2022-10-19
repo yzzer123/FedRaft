@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.Random;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -43,13 +42,6 @@ public class FedRaftServer {
 
         Runtime runtime = Runtime.getRuntime();
         zkClient = runtime.getZkClient();
-        // 随机倒计时启动，给集群一定时间注册节点
-        try {
-            Thread.sleep(5000 + new Random().nextInt(5000));
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        runtime.initNodeMode();
     }
 
     /**

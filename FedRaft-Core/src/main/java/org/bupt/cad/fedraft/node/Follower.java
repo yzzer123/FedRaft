@@ -29,7 +29,7 @@ public class Follower extends Node {
     private ScheduledFuture<?> timeoutTask;
 
     public Follower() {
-
+        setupTimeoutTask();
     }
 
 

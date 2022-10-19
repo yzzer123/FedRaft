@@ -58,18 +58,15 @@ public class Runtime {
                 Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
         threadPool = Executors.newFixedThreadPool(Configuration.getInt(Configuration.NODE_THREADPOOL_NUMBERS));
         delay = new AtomicInteger(-1);
+
+        nodeMode = new SafeMode();
+        state = NodeState.SAFE_MODE;
     }
 
     public static Runtime getRuntime() {
         return (instance == null ? instance = new Runtime() : instance);
     }
 
-    // 为了server 灵活控制节点初始化时间
-    public void initNodeMode() {
-        if (nodeMode != null) return;
-        nodeMode = new SafeMode();
-        state = NodeState.SAFE_MODE;
-    }
 
     public <T extends Node> T getNodeMode() {
         return (T) nodeMode;
