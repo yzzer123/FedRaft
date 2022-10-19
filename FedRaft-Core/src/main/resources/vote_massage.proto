@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.cad.fedraft.rpc.message";
+option java_multiple_files = true;
+
+
+message TriggerElectionRequest{
+  uint32 term = 1;
+  uint64 leader_id = 2;
+  uint32 leader_model_index = 5;
+}
+
+message TriggerElectionResponse{
+
+}
+
+message VoteRequest{
+  uint32 term = 1;
+  uint64 candidate_id = 2;
+  uint32 model_index = 3;
+  repeated uint64 node_ids = 5; // 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
+  repeated uint32 network_delays = 6;
+}
+
+message VoteResponse{
+  uint32 term = 1;
+  uint32 delay = 2;  // 回复自己的时延
+}

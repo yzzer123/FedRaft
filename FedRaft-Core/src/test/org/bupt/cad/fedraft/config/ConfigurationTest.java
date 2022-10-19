@@ -6,9 +6,10 @@ public class ConfigurationTest {
 
     @Test
     public void testGetConf() {
-        String trainer_port = Configuration.getString(Configuration.TRAINER_SERVER_PORT);
+        int anInt = Configuration.getInt(Configuration.NODE_HEARTBEAT_TIMEOUT);
 
-        System.out.println(trainer_port);
+        System.out.println(anInt);
     }
+
 
 }

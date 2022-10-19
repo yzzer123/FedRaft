@@ -6,19 +6,31 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
 
 public final class NodeInfo {
-    
+
     private String ip;
     private int port;
     private int trainerPort;
 
+    final private static long E16 = 1 << 16;
+    final private static long E8 = 1 << 8;
+
     public static String idToIp(long id) { //添加静态方法,避免新建对象
         String[] fields = new String[4];
-        id >>= 16;
+        id >>= 32;
         for (int i = 0; i < 4; i++) {
-            fields[3 - i] = String.valueOf(id % (1 << 8));
+            fields[3 - i] = String.valueOf(id % E8);
             id >>= 8;
         }
         return StringUtils.join(fields, ".");
+    }
+
+    public static int idToPort(long id) {
+        id >>= 16;
+        return (int) (id % E16);
+    }
+
+    public static int idToTrainerPort(long id) {
+        return (int) (id % E16);
     }
 
 
@@ -26,19 +38,23 @@ public final class NodeInfo {
         setIp(ip).setPort(port).setTrainerPort(trainerPort);
     }
 
+    public NodeInfo(String zkNodeName) {
+        String[] fields = zkNodeName.split(":");
+        setIp(fields[0]).setPort(Integer.parseInt(fields[1])).setTrainerPort(Integer.parseInt(fields[2]));
+    }
+
     public NodeInfo(long id) {
         String[] fields = new String[4];
-        int trainerPort = (int) (id % (1 << 16));
+        int trainerPort = (int) (id % E16);
         id >>= 16;
-        int port = (int) (id % (1 << 16));
+        int port = (int) (id % E16);
         id >>= 16;
         for (int i = 0; i < 4; i++) {
-            fields[3 - i] = String.valueOf(id % (1 << 8));
+            fields[3 - i] = String.valueOf(id % E8);
             id >>= 8;
         }
         setIp(StringUtils.join(fields, ".")).setPort(port).setTrainerPort(trainerPort);
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -68,8 +84,8 @@ public final class NodeInfo {
     public String getIp() {
         return ip;
     }
-    
-    public NodeInfo setIp(String ip) {
+
+    private NodeInfo setIp(String ip) {
         this.ip = ip;
         return this;
     }
@@ -78,7 +94,7 @@ public final class NodeInfo {
         return port;
     }
 
-    public NodeInfo setPort(int port) {
+    private NodeInfo setPort(int port) {
         this.port = port;
         return this;
     }
@@ -93,7 +109,7 @@ public final class NodeInfo {
         return trainerPort;
     }
 
-    public NodeInfo setTrainerPort(int trainerPort) {
+    private NodeInfo setTrainerPort(int trainerPort) {
         this.trainerPort = trainerPort;
         return this;
     }

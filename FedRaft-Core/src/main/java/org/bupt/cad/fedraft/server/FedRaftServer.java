@@ -6,20 +6,23 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.bupt.cad.fedraft.beans.NodeInfo;
+import org.bupt.cad.fedraft.algorithm.RaftAlgorithm;
 import org.bupt.cad.fedraft.config.Configuration;
+import org.bupt.cad.fedraft.node.Runtime;
+import org.bupt.cad.fedraft.utils.PingUtils;
 import org.bupt.cad.fedraft.utils.ZkClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Random;
+import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 
 public class FedRaftServer {
 
-    private static final Logger logger = LogManager.getLogger(FedRaftServer.class);
-
+    private static final Logger logger = LoggerFactory.getLogger(FedRaftServer.class);
     private final Server server;
     private final String host;
     private final int port;
@@ -30,7 +33,7 @@ public class FedRaftServer {
         this.host = host;
         this.port = port;
         this.server = ServerBuilder.forPort(port)
-                .addService(new FedRaftService()).build();
+                .addService(new FedRaftService(new RaftAlgorithm())).build();
     }
 
     /**
@@ -38,49 +41,58 @@ public class FedRaftServer {
      */
     public void initialize() {
 
-        // 生成本地节点信息的javabean 用于初始化zk
-        NodeInfo localNodeInfo = new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT),
-                Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
-        zkClient = new ZkClient(localNodeInfo);
-        zkClient.checkinTmpLeader(() -> {
-            // do something when server become leader
-        });
+        Runtime runtime = Runtime.getRuntime();
+        zkClient = runtime.getZkClient();
+        // 随机倒计时启动，给集群一定时间注册节点
+        try {
+            Thread.sleep(5000 + new Random().nextInt(5000));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        runtime.initNodeMode();
     }
 
     /**
      * 启动tomcat服务
      */
     public void start() {
-        // 向zk注册本节点配置
-        initialize();
 
         try {
             server.start();
-
         } catch (IOException e) {
 
             // 服务器启动失败 可能是端口被占用
             logger.error("server start failed:" + e.getMessage(), e);
             System.exit(1);
         }
-        logger.info("server started on port " + port);
+        logger.info("server started on {}:{} ", host, port);
+
+        // 向zk注册本节点配置 并初始化内存中的节点状态
+        initialize();
+
+        // 设置定时计算时延
+        ScheduledFuture<?> scheduledPingFuture = PingUtils.startScheduledPingTask();
+        // 设置定时和trainer同步
+
+
+        logger.info("server began to ping other nodes ");
 
         // Java进程宕机
-        Runtime.getRuntime().addShutdownHook(new Thread() {
+        java.lang.Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                System.err.println("shutdown gRPC server because JVM shutdown");
+                logger.error("trying to shutdown gRPC server because JVM shutdown");
                 try {
+                    scheduledPingFuture.cancel(true);
+
                     FedRaftServer.this.stop();
                     zkClient.closeConnection();
                 } catch (InterruptedException e) {
                     e.printStackTrace(System.err);
                 }
-                System.err.println("server shutdown");
+                logger.error("server has shutdown");
             }
         });
-
-
     }
 
     /**
@@ -96,14 +108,13 @@ public class FedRaftServer {
     /**
      * 服务启动后阻塞主线程直到服务停止
      */
-    private void blockUtilShutdown() throws InterruptedException {
+    public void blockUtilShutdown() throws InterruptedException {
         if (server != null) {
             server.awaitTermination();
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        // TODO 读取配置文件路径
+    public static void main(String[] args) throws InterruptedException {
         // 构建参数读取工具
         DefaultParser defaultParser = new DefaultParser();
         Options options = new Options();
@@ -118,29 +129,25 @@ public class FedRaftServer {
             System.exit(1);
         }
 
-        String host = Configuration.getString(Configuration.MANAGER_SERVER_HOST);
-        int port = Configuration.getInt(Configuration.MANAGER_SERVER_PORT);
-
-        // 命令行中如果有参数就以命令行为准
-
+        //  读取配置文件路径
         if (cmd.hasOption("config")) {
             Configuration.setConfigFile(cmd.getOptionValue("config"));
         }
 
-
+        // 命令行中如果有参数就以命令行为准     优先级 命令行 > 自定义配置文件 > 默认配置文件
         if (cmd.hasOption("p")) {
-            port = Integer.parseInt(cmd.getOptionValue("p"));
-            Configuration.set(Configuration.MANAGER_SERVER_PORT, port);
+            // 覆盖配置项port
+            Configuration.set(Configuration.MANAGER_SERVER_PORT, Integer.parseInt(cmd.getOptionValue("p")));
         }
 
 
         if (cmd.hasOption("h")) {
-            host = cmd.getOptionValue("h");
-            Configuration.set(Configuration.MANAGER_SERVER_HOST, host);
+            // 覆盖配置项host
+            Configuration.set(Configuration.MANAGER_SERVER_HOST, cmd.getOptionValue("h"));
 
         }
 
-        FedRaftServer server = new FedRaftServer(host, port);
+        FedRaftServer server = new FedRaftServer(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT));
         server.start();
         server.blockUtilShutdown();
     }

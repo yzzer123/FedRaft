@@ -1,6 +1,8 @@
 package org.bupt.cad.fedraft.exception;
 
-public class LogAppendException extends Exception{
+import java.io.IOException;
+
+public class LogAppendException extends IOException {
     public LogAppendException(String msg) {
         super(msg);
     }
