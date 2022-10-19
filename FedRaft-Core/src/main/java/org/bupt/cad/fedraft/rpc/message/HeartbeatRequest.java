@@ -12,11 +12,10 @@ public final class HeartbeatRequest extends
         HeartbeatRequestOrBuilder {
     public static final int TERM_FIELD_NUMBER = 1;
     public static final int LEADER_ID_FIELD_NUMBER = 2;
-    public static final int PRE_MODEL_INDEX_FIELD_NUMBER = 3;
-    public static final int PRE_MODEL_TERM_FIELD_NUMBER = 4;
-    public static final int LEADER_MODEL_INDEX_FIELD_NUMBER = 5;
-    public static final int NODE_IDS_FIELD_NUMBER = 6;
-    public static final int NETWORK_DELAYS_FIELD_NUMBER = 7;
+    public static final int LEADER_STATE_FIELD_NUMBER = 3;
+    public static final int LEADER_MODEL_INDEX_FIELD_NUMBER = 4;
+    public static final int NODE_IDS_FIELD_NUMBER = 5;
+    public static final int NETWORK_DELAYS_FIELD_NUMBER = 6;
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.HeartbeatRequest)
     private static final org.bupt.cad.fedraft.rpc.message.HeartbeatRequest DEFAULT_INSTANCE;
@@ -37,8 +36,7 @@ public final class HeartbeatRequest extends
 
     private int term_;
     private long leaderId_;
-    private int preModelIndex_;
-    private int preModelTerm_;
+    private int leaderState_;
     private int leaderModelIndex_;
     private com.google.protobuf.Internal.LongList nodeIds_;
     private int nodeIdsMemoizedSerializedSize = -1;
@@ -52,6 +50,7 @@ public final class HeartbeatRequest extends
     }
 
     private HeartbeatRequest() {
+        leaderState_ = 0;
         nodeIds_ = emptyLongList();
         networkDelays_ = emptyIntList();
     }
@@ -86,62 +85,58 @@ public final class HeartbeatRequest extends
                         break;
                     }
                     case 24: {
+                        int rawValue = input.readEnum();
 
-                        preModelIndex_ = input.readUInt32();
+                        leaderState_ = rawValue;
                         break;
                     }
                     case 32: {
 
-                        preModelTerm_ = input.readUInt32();
+                        leaderModelIndex_ = input.readUInt32();
                         break;
                     }
                     case 40: {
-
-            leaderModelIndex_ = input.readUInt32();
-            break;
-          }
-          case 48: {
-            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-              nodeIds_ = newLongList();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            nodeIds_.addLong(input.readUInt64());
-            break;
-          }
-          case 50: {
-            int length = input.readRawVarint32();
-            int limit = input.pushLimit(length);
-            if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-              nodeIds_ = newLongList();
-              mutable_bitField0_ |= 0x00000001;
-            }
-            while (input.getBytesUntilLimit() > 0) {
-              nodeIds_.addLong(input.readUInt64());
-            }
-            input.popLimit(limit);
-            break;
-          }
-          case 56: {
-            if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-              networkDelays_ = newIntList();
-              mutable_bitField0_ |= 0x00000002;
-            }
-            networkDelays_.addInt(input.readUInt32());
-            break;
-          }
-          case 58: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
-                  networkDelays_ = newIntList();
-                  mutable_bitField0_ |= 0x00000002;
-              }
-              while (input.getBytesUntilLimit() > 0) {
-                  networkDelays_.addInt(input.readUInt32());
-              }
-              input.popLimit(limit);
-              break;
-          }
+                        if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+                            nodeIds_ = newLongList();
+                            mutable_bitField0_ |= 0x00000001;
+                        }
+                        nodeIds_.addLong(input.readUInt64());
+                        break;
+                    }
+                    case 42: {
+                        int length = input.readRawVarint32();
+                        int limit = input.pushLimit(length);
+                        if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
+                            nodeIds_ = newLongList();
+                            mutable_bitField0_ |= 0x00000001;
+                        }
+                        while (input.getBytesUntilLimit() > 0) {
+                            nodeIds_.addLong(input.readUInt64());
+                        }
+                        input.popLimit(limit);
+                        break;
+                    }
+                    case 48: {
+                        if (!((mutable_bitField0_ & 0x00000002) != 0)) {
+                            networkDelays_ = newIntList();
+                            mutable_bitField0_ |= 0x00000002;
+                        }
+                        networkDelays_.addInt(input.readUInt32());
+                        break;
+                    }
+                    case 50: {
+                        int length = input.readRawVarint32();
+                        int limit = input.pushLimit(length);
+                        if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
+                            networkDelays_ = newIntList();
+                            mutable_bitField0_ |= 0x00000002;
+                        }
+                        while (input.getBytesUntilLimit() > 0) {
+                            networkDelays_.addInt(input.readUInt32());
+                        }
+                        input.popLimit(limit);
+                        break;
+                    }
                     default: {
                         if (!parseUnknownField(
                                 input, unknownFields, extensionRegistry, tag)) {
@@ -314,17 +309,25 @@ public final class HeartbeatRequest extends
     }
 
     /**
-     * <pre>
-     * 之前发送模型的索引
-     * </pre>
+     * <code>.fedraft.NodeState leader_state = 3;</code>
      *
-     * <code>uint32 pre_model_index = 3;</code>
-     *
-     * @return The preModelIndex.
+     * @return The enum numeric value on the wire for leaderState.
      */
     @java.lang.Override
-    public int getPreModelIndex() {
-        return preModelIndex_;
+    public int getLeaderStateValue() {
+        return leaderState_;
+    }
+
+    /**
+     * <code>.fedraft.NodeState leader_state = 3;</code>
+     *
+     * @return The leaderState.
+     */
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.NodeState getLeaderState() {
+        @SuppressWarnings("deprecation")
+        org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(leaderState_);
+        return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
     }
 
     /**
@@ -332,21 +335,7 @@ public final class HeartbeatRequest extends
      * 之前发送模型的任期
      * </pre>
      *
-     * <code>uint32 pre_model_term = 4;</code>
-     *
-     * @return The preModelTerm.
-     */
-    @java.lang.Override
-    public int getPreModelTerm() {
-        return preModelTerm_;
-    }
-
-    /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 leader_model_index = 5;</code>
+     * <code>uint32 leader_model_index = 4;</code>
      *
      * @return The leaderModelIndex.
      */
@@ -356,7 +345,7 @@ public final class HeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 6;</code>
+     * <code>repeated uint64 node_ids = 5;</code>
      *
      * @return A list containing the nodeIds.
      */
@@ -367,7 +356,7 @@ public final class HeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 6;</code>
+     * <code>repeated uint64 node_ids = 5;</code>
      *
      * @return The count of nodeIds.
      */
@@ -376,7 +365,7 @@ public final class HeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 6;</code>
+     * <code>repeated uint64 node_ids = 5;</code>
      *
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.
@@ -390,7 +379,7 @@ public final class HeartbeatRequest extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 7;</code>
+     * <code>repeated uint32 network_delays = 6;</code>
      *
      * @return A list containing the networkDelays.
      */
@@ -405,7 +394,7 @@ public final class HeartbeatRequest extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 7;</code>
+     * <code>repeated uint32 network_delays = 6;</code>
      *
      * @return The count of networkDelays.
      */
@@ -418,7 +407,7 @@ public final class HeartbeatRequest extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 7;</code>
+     * <code>repeated uint32 network_delays = 6;</code>
      *
      * @param index The index of the element to return.
      * @return The networkDelays at the given index.
@@ -447,24 +436,21 @@ public final class HeartbeatRequest extends
         if (leaderId_ != 0L) {
             output.writeUInt64(2, leaderId_);
         }
-        if (preModelIndex_ != 0) {
-            output.writeUInt32(3, preModelIndex_);
-        }
-        if (preModelTerm_ != 0) {
-            output.writeUInt32(4, preModelTerm_);
+        if (leaderState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
+            output.writeEnum(3, leaderState_);
         }
         if (leaderModelIndex_ != 0) {
-            output.writeUInt32(5, leaderModelIndex_);
+            output.writeUInt32(4, leaderModelIndex_);
         }
         if (getNodeIdsList().size() > 0) {
-            output.writeUInt32NoTag(50);
+            output.writeUInt32NoTag(42);
             output.writeUInt32NoTag(nodeIdsMemoizedSerializedSize);
         }
         for (int i = 0; i < nodeIds_.size(); i++) {
             output.writeUInt64NoTag(nodeIds_.getLong(i));
         }
         if (getNetworkDelaysList().size() > 0) {
-            output.writeUInt32NoTag(58);
+            output.writeUInt32NoTag(50);
             output.writeUInt32NoTag(networkDelaysMemoizedSerializedSize);
         }
         for (int i = 0; i < networkDelays_.size(); i++) {
@@ -487,17 +473,13 @@ public final class HeartbeatRequest extends
             size += com.google.protobuf.CodedOutputStream
                     .computeUInt64Size(2, leaderId_);
         }
-        if (preModelIndex_ != 0) {
+        if (leaderState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
             size += com.google.protobuf.CodedOutputStream
-                    .computeUInt32Size(3, preModelIndex_);
-        }
-        if (preModelTerm_ != 0) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt32Size(4, preModelTerm_);
+                    .computeEnumSize(3, leaderState_);
         }
         if (leaderModelIndex_ != 0) {
             size += com.google.protobuf.CodedOutputStream
-                    .computeUInt32Size(5, leaderModelIndex_);
+                    .computeUInt32Size(4, leaderModelIndex_);
         }
         {
             int dataSize = 0;
@@ -546,10 +528,7 @@ public final class HeartbeatRequest extends
                 != other.getTerm()) return false;
         if (getLeaderId()
                 != other.getLeaderId()) return false;
-        if (getPreModelIndex()
-                != other.getPreModelIndex()) return false;
-        if (getPreModelTerm()
-                != other.getPreModelTerm()) return false;
+        if (leaderState_ != other.leaderState_) return false;
         if (getLeaderModelIndex()
                 != other.getLeaderModelIndex()) return false;
         if (!getNodeIdsList()
@@ -572,10 +551,8 @@ public final class HeartbeatRequest extends
         hash = (37 * hash) + LEADER_ID_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
                 getLeaderId());
-        hash = (37 * hash) + PRE_MODEL_INDEX_FIELD_NUMBER;
-        hash = (53 * hash) + getPreModelIndex();
-        hash = (37 * hash) + PRE_MODEL_TERM_FIELD_NUMBER;
-        hash = (53 * hash) + getPreModelTerm();
+        hash = (37 * hash) + LEADER_STATE_FIELD_NUMBER;
+        hash = (53 * hash) + leaderState_;
         hash = (37 * hash) + LEADER_MODEL_INDEX_FIELD_NUMBER;
         hash = (53 * hash) + getLeaderModelIndex();
         if (getNodeIdsCount() > 0) {
@@ -629,8 +606,7 @@ public final class HeartbeatRequest extends
         private int bitField0_;
         private int term_;
         private long leaderId_;
-        private int preModelIndex_;
-        private int preModelTerm_;
+        private int leaderState_ = 0;
         private int leaderModelIndex_;
         private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
         private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
@@ -672,9 +648,7 @@ public final class HeartbeatRequest extends
 
             leaderId_ = 0L;
 
-            preModelIndex_ = 0;
-
-            preModelTerm_ = 0;
+            leaderState_ = 0;
 
             leaderModelIndex_ = 0;
 
@@ -711,8 +685,7 @@ public final class HeartbeatRequest extends
             int from_bitField0_ = bitField0_;
             result.term_ = term_;
             result.leaderId_ = leaderId_;
-            result.preModelIndex_ = preModelIndex_;
-            result.preModelTerm_ = preModelTerm_;
+            result.leaderState_ = leaderState_;
             result.leaderModelIndex_ = leaderModelIndex_;
             if (((bitField0_ & 0x00000001) != 0)) {
                 nodeIds_.makeImmutable();
@@ -784,11 +757,8 @@ public final class HeartbeatRequest extends
             if (other.getLeaderId() != 0L) {
                 setLeaderId(other.getLeaderId());
             }
-            if (other.getPreModelIndex() != 0) {
-                setPreModelIndex(other.getPreModelIndex());
-            }
-            if (other.getPreModelTerm() != 0) {
-                setPreModelTerm(other.getPreModelTerm());
+            if (other.leaderState_ != 0) {
+                setLeaderStateValue(other.getLeaderStateValue());
             }
             if (other.getLeaderModelIndex() != 0) {
                 setLeaderModelIndex(other.getLeaderModelIndex());
@@ -913,79 +883,64 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <pre>
-         * 之前发送模型的索引
-         * </pre>
+         * <code>.fedraft.NodeState leader_state = 3;</code>
          *
-         * <code>uint32 pre_model_index = 3;</code>
-         *
-         * @return The preModelIndex.
+         * @return The enum numeric value on the wire for leaderState.
          */
         @java.lang.Override
-        public int getPreModelIndex() {
-            return preModelIndex_;
+        public int getLeaderStateValue() {
+            return leaderState_;
         }
 
         /**
-         * <pre>
-         * 之前发送模型的索引
-         * </pre>
+         * <code>.fedraft.NodeState leader_state = 3;</code>
          *
-         * <code>uint32 pre_model_index = 3;</code>
-         *
-         * @param value The preModelIndex to set.
+         * @param value The enum numeric value on the wire for leaderState to set.
          * @return This builder for chaining.
          */
-        public Builder setPreModelIndex(int value) {
+        public Builder setLeaderStateValue(int value) {
 
-            preModelIndex_ = value;
+            leaderState_ = value;
             onChanged();
             return this;
         }
 
         /**
-         * <pre>
-         * 之前发送模型的索引
-         * </pre>
+         * <code>.fedraft.NodeState leader_state = 3;</code>
          *
-         * <code>uint32 pre_model_index = 3;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearPreModelIndex() {
-
-            preModelIndex_ = 0;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 之前发送模型的任期
-         * </pre>
-         *
-         * <code>uint32 pre_model_term = 4;</code>
-         *
-         * @return The preModelTerm.
+         * @return The leaderState.
          */
         @java.lang.Override
-        public int getPreModelTerm() {
-            return preModelTerm_;
+        public org.bupt.cad.fedraft.rpc.message.NodeState getLeaderState() {
+            @SuppressWarnings("deprecation")
+            org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(leaderState_);
+            return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
         }
 
         /**
-         * <pre>
-         * 之前发送模型的任期
-         * </pre>
+         * <code>.fedraft.NodeState leader_state = 3;</code>
          *
-         * <code>uint32 pre_model_term = 4;</code>
-         *
-         * @param value The preModelTerm to set.
+         * @param value The leaderState to set.
          * @return This builder for chaining.
          */
-        public Builder setPreModelTerm(int value) {
+        public Builder setLeaderState(org.bupt.cad.fedraft.rpc.message.NodeState value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
 
-            preModelTerm_ = value;
+            leaderState_ = value.getNumber();
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>.fedraft.NodeState leader_state = 3;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearLeaderState() {
+
+            leaderState_ = 0;
             onChanged();
             return this;
         }
@@ -995,23 +950,7 @@ public final class HeartbeatRequest extends
          * 之前发送模型的任期
          * </pre>
          *
-         * <code>uint32 pre_model_term = 4;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearPreModelTerm() {
-
-            preModelTerm_ = 0;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 之前发送模型的任期
-         * </pre>
-         *
-         * <code>uint32 leader_model_index = 5;</code>
+         * <code>uint32 leader_model_index = 4;</code>
          *
          * @return The leaderModelIndex.
          */
@@ -1025,7 +964,7 @@ public final class HeartbeatRequest extends
          * 之前发送模型的任期
          * </pre>
          *
-         * <code>uint32 leader_model_index = 5;</code>
+         * <code>uint32 leader_model_index = 4;</code>
          *
          * @param value The leaderModelIndex to set.
          * @return This builder for chaining.
@@ -1042,7 +981,7 @@ public final class HeartbeatRequest extends
          * 之前发送模型的任期
          * </pre>
          *
-         * <code>uint32 leader_model_index = 5;</code>
+         * <code>uint32 leader_model_index = 4;</code>
          *
          * @return This builder for chaining.
          */
@@ -1061,7 +1000,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 6;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @return A list containing the nodeIds.
          */
@@ -1072,7 +1011,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 6;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @return The count of nodeIds.
          */
@@ -1081,7 +1020,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 6;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @param index The index of the element to return.
          * @return The nodeIds at the given index.
@@ -1091,7 +1030,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 6;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @param index The index to set the value at.
          * @param value The nodeIds to set.
@@ -1106,7 +1045,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 6;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @param value The nodeIds to add.
          * @return This builder for chaining.
@@ -1119,7 +1058,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 6;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @param values The nodeIds to add.
          * @return This builder for chaining.
@@ -1134,7 +1073,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 6;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @return This builder for chaining.
          */
@@ -1157,7 +1096,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 7;</code>
+         * <code>repeated uint32 network_delays = 6;</code>
          *
          * @return A list containing the networkDelays.
          */
@@ -1172,7 +1111,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 7;</code>
+         * <code>repeated uint32 network_delays = 6;</code>
          *
          * @return The count of networkDelays.
          */
@@ -1185,7 +1124,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 7;</code>
+         * <code>repeated uint32 network_delays = 6;</code>
          *
          * @param index The index of the element to return.
          * @return The networkDelays at the given index.
@@ -1199,7 +1138,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 7;</code>
+         * <code>repeated uint32 network_delays = 6;</code>
          *
          * @param index The index to set the value at.
          * @param value The networkDelays to set.
@@ -1218,7 +1157,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 7;</code>
+         * <code>repeated uint32 network_delays = 6;</code>
          *
          * @param value The networkDelays to add.
          * @return This builder for chaining.
@@ -1235,7 +1174,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 7;</code>
+         * <code>repeated uint32 network_delays = 6;</code>
          *
          * @param values The networkDelays to add.
          * @return This builder for chaining.
@@ -1254,7 +1193,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 7;</code>
+         * <code>repeated uint32 network_delays = 6;</code>
          *
          * @return This builder for chaining.
          */

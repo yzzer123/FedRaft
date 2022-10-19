@@ -4,43 +4,43 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 /**
- * Protobuf type {@code fedraft.TrainerHeartbeatResponse}
+ * Protobuf type {@code fedraft.SyncWithTrainerResponse}
  */
-public final class TrainerHeartbeatResponse extends
+public final class SyncWithTrainerResponse extends
         com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:fedraft.TrainerHeartbeatResponse)
-        TrainerHeartbeatResponseOrBuilder {
+        // @@protoc_insertion_point(message_implements:fedraft.SyncWithTrainerResponse)
+        SyncWithTrainerResponseOrBuilder {
     public static final int CURRENT_MODEL_INDEX_FIELD_NUMBER = 1;
     private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:fedraft.TrainerHeartbeatResponse)
-    private static final org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<TrainerHeartbeatResponse>
-            PARSER = new com.google.protobuf.AbstractParser<TrainerHeartbeatResponse>() {
+    // @@protoc_insertion_point(class_scope:fedraft.SyncWithTrainerResponse)
+    private static final org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse DEFAULT_INSTANCE;
+    private static final com.google.protobuf.Parser<SyncWithTrainerResponse>
+            PARSER = new com.google.protobuf.AbstractParser<SyncWithTrainerResponse>() {
         @java.lang.Override
-        public TrainerHeartbeatResponse parsePartialFrom(
+        public SyncWithTrainerResponse parsePartialFrom(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
-            return new TrainerHeartbeatResponse(input, extensionRegistry);
+            return new SyncWithTrainerResponse(input, extensionRegistry);
         }
     };
 
     static {
-        DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse();
+        DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse();
     }
 
     private int currentModelIndex_;
     private byte memoizedIsInitialized = -1;
 
-    // Use TrainerHeartbeatResponse.newBuilder() to construct.
-    private TrainerHeartbeatResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use SyncWithTrainerResponse.newBuilder() to construct.
+    private SyncWithTrainerResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
     }
 
-    private TrainerHeartbeatResponse() {
+    private SyncWithTrainerResponse() {
     }
 
-    private TrainerHeartbeatResponse(
+    private SyncWithTrainerResponse(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
@@ -87,54 +87,54 @@ public final class TrainerHeartbeatResponse extends
 
     public static final com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
-        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_TrainerHeartbeatResponse_descriptor;
+        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerResponse_descriptor;
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
             java.nio.ByteBuffer data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
             java.nio.ByteBuffer data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
             com.google.protobuf.ByteString data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
             com.google.protobuf.ByteString data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseFrom(byte[] data)
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(byte[] data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
             byte[] data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseFrom(java.io.InputStream input)
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(java.io.InputStream input)
             throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
                 .parseWithIOException(PARSER, input);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
@@ -142,13 +142,13 @@ public final class TrainerHeartbeatResponse extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseDelimitedFrom(java.io.InputStream input)
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseDelimitedFrom(java.io.InputStream input)
             throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
                 .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseDelimitedFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseDelimitedFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
@@ -156,14 +156,14 @@ public final class TrainerHeartbeatResponse extends
                 .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
             com.google.protobuf.CodedInputStream input)
             throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
                 .parseWithIOException(PARSER, input);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
@@ -175,15 +175,15 @@ public final class TrainerHeartbeatResponse extends
         return DEFAULT_INSTANCE.toBuilder();
     }
 
-    public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse prototype) {
+    public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse prototype) {
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse getDefaultInstance() {
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse getDefaultInstance() {
         return DEFAULT_INSTANCE;
     }
 
-    public static com.google.protobuf.Parser<TrainerHeartbeatResponse> parser() {
+    public static com.google.protobuf.Parser<SyncWithTrainerResponse> parser() {
         return PARSER;
     }
 
@@ -191,7 +191,7 @@ public final class TrainerHeartbeatResponse extends
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
             UnusedPrivateParameter unused) {
-        return new TrainerHeartbeatResponse();
+        return new SyncWithTrainerResponse();
     }
 
     @java.lang.Override
@@ -203,9 +203,9 @@ public final class TrainerHeartbeatResponse extends
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
     internalGetFieldAccessorTable() {
-        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_TrainerHeartbeatResponse_fieldAccessorTable
+        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
-                        org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.class, org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.Builder.class);
+                        org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.class, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.Builder.class);
     }
 
     /**
@@ -257,10 +257,10 @@ public final class TrainerHeartbeatResponse extends
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse)) {
+        if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse)) {
             return super.equals(obj);
         }
-        org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse other = (org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse) obj;
+        org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse other = (org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse) obj;
 
         if (getCurrentModelIndex()
                 != other.getCurrentModelIndex()) return false;
@@ -301,25 +301,25 @@ public final class TrainerHeartbeatResponse extends
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<TrainerHeartbeatResponse> getParserForType() {
+    public com.google.protobuf.Parser<SyncWithTrainerResponse> getParserForType() {
         return PARSER;
     }
 
     @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse getDefaultInstanceForType() {
+    public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse getDefaultInstanceForType() {
         return DEFAULT_INSTANCE;
     }
 
     /**
-     * Protobuf type {@code fedraft.TrainerHeartbeatResponse}
+     * Protobuf type {@code fedraft.SyncWithTrainerResponse}
      */
     public static final class Builder extends
             com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:fedraft.TrainerHeartbeatResponse)
-            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponseOrBuilder {
+            // @@protoc_insertion_point(builder_implements:fedraft.SyncWithTrainerResponse)
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponseOrBuilder {
         private int currentModelIndex_;
 
-        // Construct using org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.newBuilder()
+        // Construct using org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.newBuilder()
         private Builder() {
             maybeForceBuilderInitialization();
         }
@@ -332,15 +332,15 @@ public final class TrainerHeartbeatResponse extends
 
         public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_TrainerHeartbeatResponse_descriptor;
+            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerResponse_descriptor;
         }
 
         @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_TrainerHeartbeatResponse_fieldAccessorTable
+            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable
                     .ensureFieldAccessorsInitialized(
-                            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.class, org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.Builder.class);
+                            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.class, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.Builder.class);
         }
 
         private void maybeForceBuilderInitialization() {
@@ -360,17 +360,17 @@ public final class TrainerHeartbeatResponse extends
         @java.lang.Override
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_TrainerHeartbeatResponse_descriptor;
+            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerResponse_descriptor;
         }
 
         @java.lang.Override
-        public org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse getDefaultInstanceForType() {
-            return org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.getDefaultInstance();
+        public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse getDefaultInstanceForType() {
+            return org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.getDefaultInstance();
         }
 
         @java.lang.Override
-        public org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse build() {
-            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse result = buildPartial();
+        public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse build() {
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse result = buildPartial();
             if (!result.isInitialized()) {
                 throw newUninitializedMessageException(result);
             }
@@ -378,8 +378,8 @@ public final class TrainerHeartbeatResponse extends
         }
 
         @java.lang.Override
-        public org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse buildPartial() {
-            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse result = new org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse(this);
+        public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse buildPartial() {
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse result = new org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse(this);
             result.currentModelIndex_ = currentModelIndex_;
             onBuilt();
             return result;
@@ -425,16 +425,16 @@ public final class TrainerHeartbeatResponse extends
 
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
-            if (other instanceof org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse) {
-                return mergeFrom((org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse) other);
+            if (other instanceof org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse) {
+                return mergeFrom((org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse) other);
             } else {
                 super.mergeFrom(other);
                 return this;
             }
         }
 
-        public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse other) {
-            if (other == org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.getDefaultInstance()) return this;
+        public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse other) {
+            if (other == org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.getDefaultInstance()) return this;
             if (other.getCurrentModelIndex() != 0) {
                 setCurrentModelIndex(other.getCurrentModelIndex());
             }
@@ -453,11 +453,11 @@ public final class TrainerHeartbeatResponse extends
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException {
-            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse parsedMessage = null;
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                parsedMessage = (org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse) e.getUnfinishedMessage();
+                parsedMessage = (org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
                 if (parsedMessage != null) {
@@ -515,7 +515,7 @@ public final class TrainerHeartbeatResponse extends
         }
 
 
-        // @@protoc_insertion_point(builder_scope:fedraft.TrainerHeartbeatResponse)
+        // @@protoc_insertion_point(builder_scope:fedraft.SyncWithTrainerResponse)
     }
 
 }

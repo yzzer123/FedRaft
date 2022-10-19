@@ -1,9 +1,9 @@
 package org.bupt.cad.fedraft.server;
 
 
-import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.bupt.cad.fedraft.algorithm.Algorithm;
+import org.bupt.cad.fedraft.exception.InvalidHeartbeatException;
 import org.bupt.cad.fedraft.node.Node;
 import org.bupt.cad.fedraft.node.Runtime;
 import org.bupt.cad.fedraft.rpc.message.*;
@@ -26,7 +26,7 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
         this.algorithm = algorithm;
     }
 
-    //todo 建立计时器感知超时
+    // 回复心跳信息
     @Override
     public void heartbeat(HeartbeatRequest request, StreamObserver<HeartbeatResponse> responseObserver) {
         HeartbeatResponse response = null;
@@ -44,8 +44,9 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } else {
-            responseObserver.onError(Status.INVALID_ARGUMENT.asException());
+            responseObserver.onError(new InvalidHeartbeatException("from " + Runtime.getRuntime().getSelfNodeInfo()));
         }
+
     }
 
     @Override

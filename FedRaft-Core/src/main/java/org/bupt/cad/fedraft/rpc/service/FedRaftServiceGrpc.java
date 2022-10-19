@@ -14,7 +14,7 @@ public final class FedRaftServiceGrpc {
     public static final String SERVICE_NAME = "fedraft.FedRaftService";
     private static final int METHODID_APPEND_LOG = 0;
     private static final int METHODID_HEARTBEAT = 1;
-    private static final int METHODID_TRAINER_HEARTBEAT = 2;
+    private static final int METHODID_SYNC_WITH_TRAINER = 2;
     private static final int METHODID_TRIGGER_ELECTION = 3;
     private static final int METHODID_APPEND_STREAM_LOG = 4;
     // Static method descriptors that strictly reflect the proto.
@@ -24,8 +24,8 @@ public final class FedRaftServiceGrpc {
             org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
     private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.HeartbeatRequest,
             org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> getHeartbeatMethod;
-    private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest,
-            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> getTrainerHeartbeatMethod;
+    private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest,
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> getSyncWithTrainerMethod;
     private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
             org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod;
     private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
@@ -118,31 +118,31 @@ public final class FedRaftServiceGrpc {
     }
 
     @io.grpc.stub.annotations.RpcMethod(
-            fullMethodName = SERVICE_NAME + '/' + "TrainerHeartbeat",
-            requestType = org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.class,
-            responseType = org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.class,
+            fullMethodName = SERVICE_NAME + '/' + "SyncWithTrainer",
+            requestType = org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.class,
+            responseType = org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.class,
             methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-    public static io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest,
-            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> getTrainerHeartbeatMethod() {
-        io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest, org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> getTrainerHeartbeatMethod;
-        if ((getTrainerHeartbeatMethod = FedRaftServiceGrpc.getTrainerHeartbeatMethod) == null) {
+    public static io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest,
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> getSyncWithTrainerMethod() {
+        io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> getSyncWithTrainerMethod;
+        if ((getSyncWithTrainerMethod = FedRaftServiceGrpc.getSyncWithTrainerMethod) == null) {
             synchronized (FedRaftServiceGrpc.class) {
-                if ((getTrainerHeartbeatMethod = FedRaftServiceGrpc.getTrainerHeartbeatMethod) == null) {
-                    FedRaftServiceGrpc.getTrainerHeartbeatMethod = getTrainerHeartbeatMethod =
-                            io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest, org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse>newBuilder()
+                if ((getSyncWithTrainerMethod = FedRaftServiceGrpc.getSyncWithTrainerMethod) == null) {
+                    FedRaftServiceGrpc.getSyncWithTrainerMethod = getSyncWithTrainerMethod =
+                            io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse>newBuilder()
                                     .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-                                    .setFullMethodName(generateFullMethodName(SERVICE_NAME, "TrainerHeartbeat"))
+                                    .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SyncWithTrainer"))
                                     .setSampledToLocalTracing(true)
                                     .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.getDefaultInstance()))
+                                            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.getDefaultInstance()))
                                     .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                                            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse.getDefaultInstance()))
-                                    .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("TrainerHeartbeat"))
+                                            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.getDefaultInstance()))
+                                    .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("SyncWithTrainer"))
                                     .build();
                 }
             }
         }
-        return getTrainerHeartbeatMethod;
+        return getSyncWithTrainerMethod;
     }
 
     @io.grpc.stub.annotations.RpcMethod(
@@ -228,7 +228,7 @@ public final class FedRaftServiceGrpc {
                             .addMethod(getAppendStreamLogMethod())
                             .addMethod(getAppendLogMethod())
                             .addMethod(getHeartbeatMethod())
-                            .addMethod(getTrainerHeartbeatMethod())
+                            .addMethod(getSyncWithTrainerMethod())
                             .addMethod(getTriggerElectionMethod())
                             .build();
                 }
@@ -270,9 +270,9 @@ public final class FedRaftServiceGrpc {
 
         /**
          */
-        public void trainerHeartbeat(org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest request,
-                                     io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> responseObserver) {
-            io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTrainerHeartbeatMethod(), responseObserver);
+        public void syncWithTrainer(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest request,
+                                    io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> responseObserver) {
+            io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSyncWithTrainerMethod(), responseObserver);
         }
 
         /**
@@ -310,12 +310,12 @@ public final class FedRaftServiceGrpc {
                                             org.bupt.cad.fedraft.rpc.message.HeartbeatResponse>(
                                             this, METHODID_HEARTBEAT)))
                     .addMethod(
-                            getTrainerHeartbeatMethod(),
+                            getSyncWithTrainerMethod(),
                             io.grpc.stub.ServerCalls.asyncUnaryCall(
                                     new MethodHandlers<
-                                            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest,
-                                            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse>(
-                                            this, METHODID_TRAINER_HEARTBEAT)))
+                                            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest,
+                                            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse>(
+                                            this, METHODID_SYNC_WITH_TRAINER)))
                     .addMethod(
                             getTriggerElectionMethod(),
                             io.grpc.stub.ServerCalls.asyncUnaryCall(
@@ -373,10 +373,10 @@ public final class FedRaftServiceGrpc {
 
         /**
          */
-        public void trainerHeartbeat(org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest request,
-                                     io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> responseObserver) {
+        public void syncWithTrainer(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest request,
+                                    io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> responseObserver) {
             io.grpc.stub.ClientCalls.asyncUnaryCall(
-                    getChannel().newCall(getTrainerHeartbeatMethod(), getCallOptions()), request, responseObserver);
+                    getChannel().newCall(getSyncWithTrainerMethod(), getCallOptions()), request, responseObserver);
         }
 
         /**
@@ -424,9 +424,9 @@ public final class FedRaftServiceGrpc {
 
         /**
          */
-        public org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse trainerHeartbeat(org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest request) {
+        public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse syncWithTrainer(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest request) {
             return io.grpc.stub.ClientCalls.blockingUnaryCall(
-                    getChannel(), getTrainerHeartbeatMethod(), getCallOptions(), request);
+                    getChannel(), getSyncWithTrainerMethod(), getCallOptions(), request);
         }
 
         /**
@@ -475,10 +475,10 @@ public final class FedRaftServiceGrpc {
 
         /**
          */
-        public com.google.common.util.concurrent.ListenableFuture<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse> trainerHeartbeat(
-                org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest request) {
+        public com.google.common.util.concurrent.ListenableFuture<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> syncWithTrainer(
+                org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest request) {
             return io.grpc.stub.ClientCalls.futureUnaryCall(
-                    getChannel().newCall(getTrainerHeartbeatMethod(), getCallOptions()), request);
+                    getChannel().newCall(getSyncWithTrainerMethod(), getCallOptions()), request);
         }
 
         /**
@@ -518,9 +518,9 @@ public final class FedRaftServiceGrpc {
                     serviceImpl.heartbeat((org.bupt.cad.fedraft.rpc.message.HeartbeatRequest) request,
                             (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.HeartbeatResponse>) responseObserver);
                     break;
-                case METHODID_TRAINER_HEARTBEAT:
-                    serviceImpl.trainerHeartbeat((org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest) request,
-                            (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatResponse>) responseObserver);
+                case METHODID_SYNC_WITH_TRAINER:
+                    serviceImpl.syncWithTrainer((org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest) request,
+                            (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse>) responseObserver);
                     break;
                 case METHODID_TRIGGER_ELECTION:
                     serviceImpl.triggerElection((org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest) request,

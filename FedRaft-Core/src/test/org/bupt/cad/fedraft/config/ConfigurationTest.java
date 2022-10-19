@@ -6,9 +6,10 @@ public class ConfigurationTest {
 
     @Test
     public void testGetConf() {
-        int anInt = Configuration.getInt(Configuration.NODE_THREADPOOL_NUMBERS);
+        int anInt = Configuration.getInt(Configuration.NODE_HEARTBEAT_TIMEOUT);
 
         System.out.println(anInt);
     }
+
 
 }

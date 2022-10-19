@@ -22,50 +22,62 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Runtime {
 
     private static final Logger logger = LoggerFactory.getLogger(Runtime.class);
-    private static final Runtime instance;
-
-    static {
-        instance = new Runtime();
-    }
+    private static Runtime instance;
 
     //自身节点的信息
-    private final NodeInfo selfNodeInfo =
-            new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT), Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
-    //该节点保存的时延信息
-    private final ConcurrentHashMap<Long, Integer> topology = new ConcurrentHashMap<>();
+    private final NodeInfo selfNodeInfo;  //该节点保存的时延信息
+    private final ConcurrentHashMap<Long, Integer> topology;
     //保存的与其他所有节点的rpc连接
-    private final ClientPool clientPool = new ClientPool();
-    private final FedRaftClient trainerClient = new FedRaftClient(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
+    private final ClientPool clientPool;
+    private final FedRaftClient trainerClient;
     //定时线程池
-    private final ExecutorService threadPool
-            = Executors.newFixedThreadPool(Configuration.getInt(Configuration.NODE_THREADPOOL_NUMBERS));
-    private final AtomicInteger delay = new AtomicInteger(-1);//当前节点的平均时延 todo:开启计时器定时获取delay值
-    private final Long heartbeatMaxTime = Configuration.getLong(Configuration.NODE_HEARTBEAT_MAX_TIME);
-    private final ZkClient zkClient = new ZkClient(selfNodeInfo);
+    private final ExecutorService threadPool;
+    private final AtomicInteger delay;//当前节点的平均时延
+    private final ZkClient zkClient;
     private NodeInfo leaderInfo;
     private int term = -1;//当前节点的任期
     // 刚开始为安全模式 收到一次全局拓扑后，就会脱离安全模式
-    private NodeState state = NodeState.SAFE_MODE;//candidate follower leader tmp_leader  safemode
-    private Node node = new SafeMode();
+    private NodeState state;//candidate follower leader tmp_leader  safemode
+    private Node nodeMode;
     // 模型索引
     private int modelIndex = -1;
 
 
     private Runtime() {
+        // 注册zk
+        selfNodeInfo = new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST),
+                Configuration.getInt(Configuration.MANAGER_SERVER_PORT),
+                Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
+        zkClient = new ZkClient(selfNodeInfo);
 
+        // 初始化节点状态
+        topology = new ConcurrentHashMap<>();
+        clientPool = new ClientPool();
+
+        trainerClient = new FedRaftClient(Configuration.getString(Configuration.MANAGER_SERVER_HOST),
+                Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
+        threadPool = Executors.newFixedThreadPool(Configuration.getInt(Configuration.NODE_THREADPOOL_NUMBERS));
+        delay = new AtomicInteger(-1);
     }
 
     public static Runtime getRuntime() {
-        return instance;
+        return (instance == null ? instance = new Runtime() : instance);
+    }
+
+    // 为了server 灵活控制节点初始化时间
+    public void initNodeMode() {
+        if (nodeMode != null) return;
+        nodeMode = new SafeMode();
+        state = NodeState.SAFE_MODE;
     }
 
     public <T extends Node> T getNodeMode() {
-        return (T) node;
+        return (T) nodeMode;
     }
 
     private void setNodeMode(Node node) {
-        this.node.close();
-        this.node = node;
+        this.nodeMode.close();
+        this.nodeMode = node;
     }
 
     public NodeInfo getSelfNodeInfo() {
@@ -86,9 +98,7 @@ public class Runtime {
     }
 
     public NodeInfo getLeaderInfo() {
-        synchronized (this) {
-            return leaderInfo;
-        }
+        return leaderInfo;
     }
 
     public void setLeader(Long nodeId) {
@@ -133,9 +143,7 @@ public class Runtime {
     }
 
     public NodeState getState() {
-        synchronized (this) {
-            return state;
-        }
+        return state;
     }
 
     public void setState(NodeState newState) throws StateChangeException {
@@ -171,15 +179,10 @@ public class Runtime {
     }
 
     public int getModelIndex() {
-        synchronized (this) {
-            return modelIndex;
-        }
+        return modelIndex;
     }
 
-    public Runtime setModelIndex(int modelIndex) {
-        synchronized (this) {
-            this.modelIndex = modelIndex;
-        }
-        return this;
+    public void setModelIndex(int modelIndex) {
+        this.modelIndex = modelIndex;
     }
 }

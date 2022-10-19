@@ -91,16 +91,16 @@ public final class LogRequest extends
                         break;
                     }
                     case 40: {
-            int rawValue = input.readEnum();
+                        int rawValue = input.readEnum();
 
-            logType_ = rawValue;
-            break;
-          }
-          case 50: {
+                        logType_ = rawValue;
+                        break;
+                    }
+                    case 50: {
 
-              modelChunk_ = input.readBytes();
-              break;
-          }
+                        modelChunk_ = input.readBytes();
+                        break;
+                    }
                     default: {
                         if (!parseUnknownField(
                                 input, unknownFields, extensionRegistry, tag)) {

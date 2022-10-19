@@ -4,58 +4,54 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 /**
- * Protobuf type {@code fedraft.TrainerHeartbeatRequest}
+ * Protobuf type {@code fedraft.SyncWithTrainerRequest}
  */
-public final class TrainerHeartbeatRequest extends
+public final class SyncWithTrainerRequest extends
         com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:fedraft.TrainerHeartbeatRequest)
-        TrainerHeartbeatRequestOrBuilder {
+        // @@protoc_insertion_point(message_implements:fedraft.SyncWithTrainerRequest)
+        SyncWithTrainerRequestOrBuilder {
     public static final int TERM_FIELD_NUMBER = 1;
     public static final int LEADER_ID_FIELD_NUMBER = 2;
-    public static final int PRE_MODEL_INDEX_FIELD_NUMBER = 3;
-    public static final int PRE_MODEL_TERM_FIELD_NUMBER = 4;
-    public static final int CURRENT_MODEL_INDEX_FIELD_NUMBER = 5;
-    public static final int NODE_STATE_FIELD_NUMBER = 6;
-    public static final int NODE_IDS_FIELD_NUMBER = 7;
+    public static final int CURRENT_MODEL_INDEX_FIELD_NUMBER = 3;
+    public static final int NODE_STATE_FIELD_NUMBER = 4;
+    public static final int NODE_IDS_FIELD_NUMBER = 5;
     private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:fedraft.TrainerHeartbeatRequest)
-    private static final org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<TrainerHeartbeatRequest>
-            PARSER = new com.google.protobuf.AbstractParser<TrainerHeartbeatRequest>() {
+    // @@protoc_insertion_point(class_scope:fedraft.SyncWithTrainerRequest)
+    private static final org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest DEFAULT_INSTANCE;
+    private static final com.google.protobuf.Parser<SyncWithTrainerRequest>
+            PARSER = new com.google.protobuf.AbstractParser<SyncWithTrainerRequest>() {
         @java.lang.Override
-        public TrainerHeartbeatRequest parsePartialFrom(
+        public SyncWithTrainerRequest parsePartialFrom(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
-            return new TrainerHeartbeatRequest(input, extensionRegistry);
+            return new SyncWithTrainerRequest(input, extensionRegistry);
         }
     };
 
     static {
-        DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest();
+        DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest();
     }
 
     private int term_;
     private long leaderId_;
-    private int preModelIndex_;
-    private int preModelTerm_;
     private int currentModelIndex_;
     private int nodeState_;
     private com.google.protobuf.Internal.LongList nodeIds_;
     private int nodeIdsMemoizedSerializedSize = -1;
     private byte memoizedIsInitialized = -1;
 
-    // Use TrainerHeartbeatRequest.newBuilder() to construct.
-    private TrainerHeartbeatRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use SyncWithTrainerRequest.newBuilder() to construct.
+    private SyncWithTrainerRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
     }
 
-    private TrainerHeartbeatRequest() {
+    private SyncWithTrainerRequest() {
         nodeState_ = 0;
         nodeIds_ = emptyLongList();
     }
 
-    private TrainerHeartbeatRequest(
+    private SyncWithTrainerRequest(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
@@ -86,26 +82,16 @@ public final class TrainerHeartbeatRequest extends
                     }
                     case 24: {
 
-                        preModelIndex_ = input.readUInt32();
-                        break;
-                    }
-                    case 32: {
-
-                        preModelTerm_ = input.readUInt32();
-                        break;
-                    }
-                    case 40: {
-
                         currentModelIndex_ = input.readUInt32();
                         break;
                     }
-                    case 48: {
+                    case 32: {
                         int rawValue = input.readEnum();
 
                         nodeState_ = rawValue;
                         break;
                     }
-                    case 56: {
+                    case 40: {
                         if (!((mutable_bitField0_ & 0x00000001) != 0)) {
                             nodeIds_ = newLongList();
                             mutable_bitField0_ |= 0x00000001;
@@ -113,7 +99,7 @@ public final class TrainerHeartbeatRequest extends
                         nodeIds_.addLong(input.readUInt64());
                         break;
                     }
-                    case 58: {
+                    case 42: {
                         int length = input.readRawVarint32();
                         int limit = input.pushLimit(length);
                         if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
@@ -153,54 +139,54 @@ public final class TrainerHeartbeatRequest extends
 
     public static final com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
-        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_TrainerHeartbeatRequest_descriptor;
+        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerRequest_descriptor;
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
             java.nio.ByteBuffer data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
             java.nio.ByteBuffer data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
             com.google.protobuf.ByteString data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
             com.google.protobuf.ByteString data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseFrom(byte[] data)
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(byte[] data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
             byte[] data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseFrom(java.io.InputStream input)
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(java.io.InputStream input)
             throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
                 .parseWithIOException(PARSER, input);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
@@ -208,13 +194,13 @@ public final class TrainerHeartbeatRequest extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseDelimitedFrom(java.io.InputStream input)
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseDelimitedFrom(java.io.InputStream input)
             throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
                 .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseDelimitedFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseDelimitedFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
@@ -222,14 +208,14 @@ public final class TrainerHeartbeatRequest extends
                 .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
             com.google.protobuf.CodedInputStream input)
             throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
                 .parseWithIOException(PARSER, input);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
@@ -241,15 +227,15 @@ public final class TrainerHeartbeatRequest extends
         return DEFAULT_INSTANCE.toBuilder();
     }
 
-    public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest prototype) {
+    public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest prototype) {
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest getDefaultInstance() {
+    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest getDefaultInstance() {
         return DEFAULT_INSTANCE;
     }
 
-    public static com.google.protobuf.Parser<TrainerHeartbeatRequest> parser() {
+    public static com.google.protobuf.Parser<SyncWithTrainerRequest> parser() {
         return PARSER;
     }
 
@@ -257,7 +243,7 @@ public final class TrainerHeartbeatRequest extends
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
             UnusedPrivateParameter unused) {
-        return new TrainerHeartbeatRequest();
+        return new SyncWithTrainerRequest();
     }
 
     @java.lang.Override
@@ -269,9 +255,9 @@ public final class TrainerHeartbeatRequest extends
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
     internalGetFieldAccessorTable() {
-        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_TrainerHeartbeatRequest_fieldAccessorTable
+        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
-                        org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.class, org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.Builder.class);
+                        org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.class, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.Builder.class);
     }
 
     /**
@@ -296,38 +282,10 @@ public final class TrainerHeartbeatRequest extends
 
     /**
      * <pre>
-     * 之前发送模型的索引
-     * </pre>
-     *
-     * <code>uint32 pre_model_index = 3;</code>
-     *
-     * @return The preModelIndex.
-     */
-    @java.lang.Override
-    public int getPreModelIndex() {
-        return preModelIndex_;
-    }
-
-    /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 pre_model_term = 4;</code>
-     *
-     * @return The preModelTerm.
-     */
-    @java.lang.Override
-    public int getPreModelTerm() {
-        return preModelTerm_;
-    }
-
-    /**
-     * <pre>
      * 当前节点模型的索引
      * </pre>
      *
-     * <code>uint32 current_model_index = 5;</code>
+     * <code>uint32 current_model_index = 3;</code>
      *
      * @return The currentModelIndex.
      */
@@ -337,7 +295,7 @@ public final class TrainerHeartbeatRequest extends
     }
 
     /**
-     * <code>.fedraft.NodeState node_state = 6;</code>
+     * <code>.fedraft.NodeState node_state = 4;</code>
      *
      * @return The enum numeric value on the wire for nodeState.
      */
@@ -347,7 +305,7 @@ public final class TrainerHeartbeatRequest extends
     }
 
     /**
-     * <code>.fedraft.NodeState node_state = 6;</code>
+     * <code>.fedraft.NodeState node_state = 4;</code>
      *
      * @return The nodeState.
      */
@@ -359,7 +317,7 @@ public final class TrainerHeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 7;</code>
+     * <code>repeated uint64 node_ids = 5;</code>
      *
      * @return A list containing the nodeIds.
      */
@@ -370,7 +328,7 @@ public final class TrainerHeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 7;</code>
+     * <code>repeated uint64 node_ids = 5;</code>
      *
      * @return The count of nodeIds.
      */
@@ -379,7 +337,7 @@ public final class TrainerHeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 7;</code>
+     * <code>repeated uint64 node_ids = 5;</code>
      *
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.
@@ -408,20 +366,14 @@ public final class TrainerHeartbeatRequest extends
         if (leaderId_ != 0L) {
             output.writeUInt64(2, leaderId_);
         }
-        if (preModelIndex_ != 0) {
-            output.writeUInt32(3, preModelIndex_);
-        }
-        if (preModelTerm_ != 0) {
-            output.writeUInt32(4, preModelTerm_);
-        }
         if (currentModelIndex_ != 0) {
-            output.writeUInt32(5, currentModelIndex_);
+            output.writeUInt32(3, currentModelIndex_);
         }
         if (nodeState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
-            output.writeEnum(6, nodeState_);
+            output.writeEnum(4, nodeState_);
         }
         if (getNodeIdsList().size() > 0) {
-            output.writeUInt32NoTag(58);
+            output.writeUInt32NoTag(42);
             output.writeUInt32NoTag(nodeIdsMemoizedSerializedSize);
         }
         for (int i = 0; i < nodeIds_.size(); i++) {
@@ -444,21 +396,13 @@ public final class TrainerHeartbeatRequest extends
             size += com.google.protobuf.CodedOutputStream
                     .computeUInt64Size(2, leaderId_);
         }
-        if (preModelIndex_ != 0) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt32Size(3, preModelIndex_);
-        }
-        if (preModelTerm_ != 0) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt32Size(4, preModelTerm_);
-        }
         if (currentModelIndex_ != 0) {
             size += com.google.protobuf.CodedOutputStream
-                    .computeUInt32Size(5, currentModelIndex_);
+                    .computeUInt32Size(3, currentModelIndex_);
         }
         if (nodeState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
             size += com.google.protobuf.CodedOutputStream
-                    .computeEnumSize(6, nodeState_);
+                    .computeEnumSize(4, nodeState_);
         }
         {
             int dataSize = 0;
@@ -484,19 +428,15 @@ public final class TrainerHeartbeatRequest extends
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest)) {
+        if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest)) {
             return super.equals(obj);
         }
-        org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest other = (org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest) obj;
+        org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest other = (org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest) obj;
 
         if (getTerm()
                 != other.getTerm()) return false;
         if (getLeaderId()
                 != other.getLeaderId()) return false;
-        if (getPreModelIndex()
-                != other.getPreModelIndex()) return false;
-        if (getPreModelTerm()
-                != other.getPreModelTerm()) return false;
         if (getCurrentModelIndex()
                 != other.getCurrentModelIndex()) return false;
         if (nodeState_ != other.nodeState_) return false;
@@ -518,10 +458,6 @@ public final class TrainerHeartbeatRequest extends
         hash = (37 * hash) + LEADER_ID_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
                 getLeaderId());
-        hash = (37 * hash) + PRE_MODEL_INDEX_FIELD_NUMBER;
-        hash = (53 * hash) + getPreModelIndex();
-        hash = (37 * hash) + PRE_MODEL_TERM_FIELD_NUMBER;
-        hash = (53 * hash) + getPreModelTerm();
         hash = (37 * hash) + CURRENT_MODEL_INDEX_FIELD_NUMBER;
         hash = (53 * hash) + getCurrentModelIndex();
         hash = (37 * hash) + NODE_STATE_FIELD_NUMBER;
@@ -554,32 +490,30 @@ public final class TrainerHeartbeatRequest extends
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<TrainerHeartbeatRequest> getParserForType() {
+    public com.google.protobuf.Parser<SyncWithTrainerRequest> getParserForType() {
         return PARSER;
     }
 
     @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest getDefaultInstanceForType() {
+    public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest getDefaultInstanceForType() {
         return DEFAULT_INSTANCE;
     }
 
     /**
-     * Protobuf type {@code fedraft.TrainerHeartbeatRequest}
+     * Protobuf type {@code fedraft.SyncWithTrainerRequest}
      */
     public static final class Builder extends
             com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:fedraft.TrainerHeartbeatRequest)
-            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequestOrBuilder {
+            // @@protoc_insertion_point(builder_implements:fedraft.SyncWithTrainerRequest)
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequestOrBuilder {
         private int bitField0_;
         private int term_;
         private long leaderId_;
-        private int preModelIndex_;
-        private int preModelTerm_;
         private int currentModelIndex_;
         private int nodeState_ = 0;
         private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
 
-        // Construct using org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.newBuilder()
+        // Construct using org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.newBuilder()
         private Builder() {
             maybeForceBuilderInitialization();
         }
@@ -592,15 +526,15 @@ public final class TrainerHeartbeatRequest extends
 
         public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_TrainerHeartbeatRequest_descriptor;
+            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerRequest_descriptor;
         }
 
         @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_TrainerHeartbeatRequest_fieldAccessorTable
+            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable
                     .ensureFieldAccessorsInitialized(
-                            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.class, org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.Builder.class);
+                            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.class, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.Builder.class);
         }
 
         private void maybeForceBuilderInitialization() {
@@ -616,10 +550,6 @@ public final class TrainerHeartbeatRequest extends
 
             leaderId_ = 0L;
 
-            preModelIndex_ = 0;
-
-            preModelTerm_ = 0;
-
             currentModelIndex_ = 0;
 
             nodeState_ = 0;
@@ -632,17 +562,17 @@ public final class TrainerHeartbeatRequest extends
         @java.lang.Override
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_TrainerHeartbeatRequest_descriptor;
+            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerRequest_descriptor;
         }
 
         @java.lang.Override
-        public org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest getDefaultInstanceForType() {
-            return org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.getDefaultInstance();
+        public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest getDefaultInstanceForType() {
+            return org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.getDefaultInstance();
         }
 
         @java.lang.Override
-        public org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest build() {
-            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest result = buildPartial();
+        public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest build() {
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest result = buildPartial();
             if (!result.isInitialized()) {
                 throw newUninitializedMessageException(result);
             }
@@ -650,13 +580,11 @@ public final class TrainerHeartbeatRequest extends
         }
 
         @java.lang.Override
-        public org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest buildPartial() {
-            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest result = new org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest(this);
+        public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest buildPartial() {
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest result = new org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest(this);
             int from_bitField0_ = bitField0_;
             result.term_ = term_;
             result.leaderId_ = leaderId_;
-            result.preModelIndex_ = preModelIndex_;
-            result.preModelTerm_ = preModelTerm_;
             result.currentModelIndex_ = currentModelIndex_;
             result.nodeState_ = nodeState_;
             if (((bitField0_ & 0x00000001) != 0)) {
@@ -708,27 +636,21 @@ public final class TrainerHeartbeatRequest extends
 
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
-            if (other instanceof org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest) {
-                return mergeFrom((org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest) other);
+            if (other instanceof org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest) {
+                return mergeFrom((org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest) other);
             } else {
                 super.mergeFrom(other);
                 return this;
             }
         }
 
-        public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest other) {
-            if (other == org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest.getDefaultInstance()) return this;
+        public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest other) {
+            if (other == org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.getDefaultInstance()) return this;
             if (other.getTerm() != 0) {
                 setTerm(other.getTerm());
             }
             if (other.getLeaderId() != 0L) {
                 setLeaderId(other.getLeaderId());
-            }
-            if (other.getPreModelIndex() != 0) {
-                setPreModelIndex(other.getPreModelIndex());
-            }
-            if (other.getPreModelTerm() != 0) {
-                setPreModelTerm(other.getPreModelTerm());
             }
             if (other.getCurrentModelIndex() != 0) {
                 setCurrentModelIndex(other.getCurrentModelIndex());
@@ -761,11 +683,11 @@ public final class TrainerHeartbeatRequest extends
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException {
-            org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest parsedMessage = null;
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parsedMessage = null;
             try {
                 parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                parsedMessage = (org.bupt.cad.fedraft.rpc.message.TrainerHeartbeatRequest) e.getUnfinishedMessage();
+                parsedMessage = (org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
                 if (parsedMessage != null) {
@@ -847,104 +769,10 @@ public final class TrainerHeartbeatRequest extends
 
         /**
          * <pre>
-         * 之前发送模型的索引
-         * </pre>
-         *
-         * <code>uint32 pre_model_index = 3;</code>
-         *
-         * @return The preModelIndex.
-         */
-        @java.lang.Override
-        public int getPreModelIndex() {
-            return preModelIndex_;
-        }
-
-        /**
-         * <pre>
-         * 之前发送模型的索引
-         * </pre>
-         *
-         * <code>uint32 pre_model_index = 3;</code>
-         *
-         * @param value The preModelIndex to set.
-         * @return This builder for chaining.
-         */
-        public Builder setPreModelIndex(int value) {
-
-            preModelIndex_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 之前发送模型的索引
-         * </pre>
-         *
-         * <code>uint32 pre_model_index = 3;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearPreModelIndex() {
-
-            preModelIndex_ = 0;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 之前发送模型的任期
-         * </pre>
-         *
-         * <code>uint32 pre_model_term = 4;</code>
-         *
-         * @return The preModelTerm.
-         */
-        @java.lang.Override
-        public int getPreModelTerm() {
-            return preModelTerm_;
-        }
-
-        /**
-         * <pre>
-         * 之前发送模型的任期
-         * </pre>
-         *
-         * <code>uint32 pre_model_term = 4;</code>
-         *
-         * @param value The preModelTerm to set.
-         * @return This builder for chaining.
-         */
-        public Builder setPreModelTerm(int value) {
-
-            preModelTerm_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 之前发送模型的任期
-         * </pre>
-         *
-         * <code>uint32 pre_model_term = 4;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearPreModelTerm() {
-
-            preModelTerm_ = 0;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
          * 当前节点模型的索引
          * </pre>
          *
-         * <code>uint32 current_model_index = 5;</code>
+         * <code>uint32 current_model_index = 3;</code>
          *
          * @return The currentModelIndex.
          */
@@ -958,7 +786,7 @@ public final class TrainerHeartbeatRequest extends
          * 当前节点模型的索引
          * </pre>
          *
-         * <code>uint32 current_model_index = 5;</code>
+         * <code>uint32 current_model_index = 3;</code>
          *
          * @param value The currentModelIndex to set.
          * @return This builder for chaining.
@@ -975,7 +803,7 @@ public final class TrainerHeartbeatRequest extends
          * 当前节点模型的索引
          * </pre>
          *
-         * <code>uint32 current_model_index = 5;</code>
+         * <code>uint32 current_model_index = 3;</code>
          *
          * @return This builder for chaining.
          */
@@ -987,7 +815,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 6;</code>
+         * <code>.fedraft.NodeState node_state = 4;</code>
          *
          * @return The enum numeric value on the wire for nodeState.
          */
@@ -997,7 +825,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 6;</code>
+         * <code>.fedraft.NodeState node_state = 4;</code>
          *
          * @param value The enum numeric value on the wire for nodeState to set.
          * @return This builder for chaining.
@@ -1010,7 +838,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 6;</code>
+         * <code>.fedraft.NodeState node_state = 4;</code>
          *
          * @return The nodeState.
          */
@@ -1022,7 +850,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 6;</code>
+         * <code>.fedraft.NodeState node_state = 4;</code>
          *
          * @param value The nodeState to set.
          * @return This builder for chaining.
@@ -1038,7 +866,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 6;</code>
+         * <code>.fedraft.NodeState node_state = 4;</code>
          *
          * @return This builder for chaining.
          */
@@ -1057,7 +885,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 7;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @return A list containing the nodeIds.
          */
@@ -1068,7 +896,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 7;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @return The count of nodeIds.
          */
@@ -1077,7 +905,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 7;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @param index The index of the element to return.
          * @return The nodeIds at the given index.
@@ -1087,7 +915,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 7;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @param index The index to set the value at.
          * @param value The nodeIds to set.
@@ -1102,7 +930,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 7;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @param value The nodeIds to add.
          * @return This builder for chaining.
@@ -1115,7 +943,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 7;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @param values The nodeIds to add.
          * @return This builder for chaining.
@@ -1130,7 +958,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 7;</code>
+         * <code>repeated uint64 node_ids = 5;</code>
          *
          * @return This builder for chaining.
          */
@@ -1154,7 +982,7 @@ public final class TrainerHeartbeatRequest extends
         }
 
 
-        // @@protoc_insertion_point(builder_scope:fedraft.TrainerHeartbeatRequest)
+        // @@protoc_insertion_point(builder_scope:fedraft.SyncWithTrainerRequest)
     }
 
 }

@@ -2,6 +2,7 @@ package org.bupt.cad.fedraft.node;
 
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
+import org.bupt.cad.fedraft.rpc.message.NodeState;
 import org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +22,10 @@ public abstract class Node {
 
     public static void triggerElection(TriggerElectionRequest request) {
 
+        Runtime runtime = Runtime.getRuntime();
+
         // 当任期小的节点请求重新选举就忽略请求
-        if (request.getTerm() < Runtime.getRuntime().getTerm()) {
+        if (runtime.getState() != NodeState.FOLLOWER || request.getTerm() < Runtime.getRuntime().getTerm()) {
             return;
         }
 
@@ -39,6 +42,7 @@ public abstract class Node {
     public static void election() {
         logger.info("enter election mode");
     }
+
 
     /**
      * 收到心跳信息 更新节点拓扑

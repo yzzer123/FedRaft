@@ -17,7 +17,7 @@ service FedRaftService{
 
   // 心跳通信
   rpc Heartbeat(HeartbeatRequest) returns(HeartbeatResponse){};
-  rpc TrainerHeartbeat(TrainerHeartbeatRequest) returns(TrainerHeartbeatResponse){};
+  rpc SyncWithTrainer(SyncWithTrainerRequest) returns(SyncWithTrainerResponse){};
 
   // 触发所有节点超时重新选举
   rpc TriggerElection(TriggerElectionRequest) returns(TriggerElectionResponse){};

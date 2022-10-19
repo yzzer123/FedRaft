@@ -3,8 +3,8 @@
 
 package org.bupt.cad.fedraft.rpc.message;
 
-public interface TrainerHeartbeatResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.TrainerHeartbeatResponse)
+public interface SyncWithTrainerResponseOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:fedraft.SyncWithTrainerResponse)
         com.google.protobuf.MessageOrBuilder {
 
     /**

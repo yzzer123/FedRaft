@@ -3,8 +3,8 @@
 
 package org.bupt.cad.fedraft.rpc.message;
 
-public interface TrainerHeartbeatRequestOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.TrainerHeartbeatRequest)
+public interface SyncWithTrainerRequestOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:fedraft.SyncWithTrainerRequest)
         com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -23,67 +23,45 @@ public interface TrainerHeartbeatRequestOrBuilder extends
 
     /**
      * <pre>
-     * 之前发送模型的索引
-     * </pre>
-     *
-     * <code>uint32 pre_model_index = 3;</code>
-     *
-     * @return The preModelIndex.
-     */
-    int getPreModelIndex();
-
-    /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 pre_model_term = 4;</code>
-     *
-     * @return The preModelTerm.
-     */
-    int getPreModelTerm();
-
-    /**
-     * <pre>
      * 当前节点模型的索引
      * </pre>
      *
-     * <code>uint32 current_model_index = 5;</code>
+     * <code>uint32 current_model_index = 3;</code>
      *
      * @return The currentModelIndex.
      */
     int getCurrentModelIndex();
 
     /**
-     * <code>.fedraft.NodeState node_state = 6;</code>
+     * <code>.fedraft.NodeState node_state = 4;</code>
      *
      * @return The enum numeric value on the wire for nodeState.
      */
     int getNodeStateValue();
 
     /**
-     * <code>.fedraft.NodeState node_state = 6;</code>
+     * <code>.fedraft.NodeState node_state = 4;</code>
      *
      * @return The nodeState.
      */
     org.bupt.cad.fedraft.rpc.message.NodeState getNodeState();
 
     /**
-     * <code>repeated uint64 node_ids = 7;</code>
+     * <code>repeated uint64 node_ids = 5;</code>
      *
      * @return A list containing the nodeIds.
      */
     java.util.List<java.lang.Long> getNodeIdsList();
 
     /**
-     * <code>repeated uint64 node_ids = 7;</code>
+     * <code>repeated uint64 node_ids = 5;</code>
      *
      * @return The count of nodeIds.
      */
     int getNodeIdsCount();
 
     /**
-     * <code>repeated uint64 node_ids = 7;</code>
+     * <code>repeated uint64 node_ids = 5;</code>
      *
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.

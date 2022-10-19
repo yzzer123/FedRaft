@@ -28,9 +28,9 @@ import java.util.regex.Pattern;
 /**
  * 获取时延指标工具
  */
-public class NetworkUtils {
+public class PingUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(NetworkUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(PingUtils.class);
     private static final Pattern delayPattern = Pattern.compile("time=([-+]?[0-9]*\\.?[0-9]+)");
     private static final int INVALID_DELAY = 2000000;
 

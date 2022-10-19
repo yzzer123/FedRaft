@@ -15,15 +15,15 @@ public final class HeartbeatMessage {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_fedraft_HeartbeatRequest_fieldAccessorTable;
     static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_fedraft_TrainerHeartbeatRequest_descriptor;
+            internal_static_fedraft_SyncWithTrainerRequest_descriptor;
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internal_static_fedraft_TrainerHeartbeatRequest_fieldAccessorTable;
+            internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable;
     static final com.google.protobuf.Descriptors.Descriptor
-            internal_static_fedraft_TrainerHeartbeatResponse_descriptor;
+            internal_static_fedraft_SyncWithTrainerResponse_descriptor;
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-            internal_static_fedraft_TrainerHeartbeatResponse_fieldAccessorTable;
+            internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable;
     private static com.google.protobuf.Descriptors.FileDescriptor
             descriptor;
 
@@ -31,21 +31,20 @@ public final class HeartbeatMessage {
         java.lang.String[] descriptorData = {
                 "\n\027heartbeat_message.proto\022\007fedraft\"R\n\021He" +
                         "artbeatResponse\022\025\n\rnetwork_delay\030\001 \001(\r\022&" +
-                        "\n\nnode_state\030\002 \001(\0162\022.fedraft.NodeState\"\252" +
+                        "\n\nnode_state\030\002 \001(\0162\022.fedraft.NodeState\"\243" +
                         "\001\n\020HeartbeatRequest\022\014\n\004term\030\001 \001(\r\022\021\n\tlea" +
-                        "der_id\030\002 \001(\004\022\027\n\017pre_model_index\030\003 \001(\r\022\026\n" +
-                        "\016pre_model_term\030\004 \001(\r\022\032\n\022leader_model_in" +
-                        "dex\030\005 \001(\r\022\020\n\010node_ids\030\006 \003(\004\022\026\n\016network_d" +
-                        "elays\030\007 \003(\r\"\302\001\n\027TrainerHeartbeatRequest\022" +
-                        "\014\n\004term\030\001 \001(\r\022\021\n\tleader_id\030\002 \001(\004\022\027\n\017pre_" +
-                        "model_index\030\003 \001(\r\022\026\n\016pre_model_term\030\004 \001(" +
-                        "\r\022\033\n\023current_model_index\030\005 \001(\r\022&\n\nnode_s" +
-                        "tate\030\006 \001(\0162\022.fedraft.NodeState\022\020\n\010node_i" +
-                        "ds\030\007 \003(\004\"7\n\030TrainerHeartbeatResponse\022\033\n\023" +
-                        "current_model_index\030\001 \001(\r*S\n\tNodeState\022\r" +
-                        "\n\tSAFE_MODE\020\000\022\016\n\nTMP_LEADER\020\001\022\n\n\006LEADER\020" +
-                        "\002\022\r\n\tCANDIDATE\020\003\022\014\n\010FOLLOWER\020\004B$\n org.bu" +
-                        "pt.cad.fedraft.rpc.messageP\001b\006proto3"
+                        "der_id\030\002 \001(\004\022(\n\014leader_state\030\003 \001(\0162\022.fed" +
+                        "raft.NodeState\022\032\n\022leader_model_index\030\004 \001" +
+                        "(\r\022\020\n\010node_ids\030\005 \003(\004\022\026\n\016network_delays\030\006" +
+                        " \003(\r\"\220\001\n\026SyncWithTrainerRequest\022\014\n\004term\030" +
+                        "\001 \001(\r\022\021\n\tleader_id\030\002 \001(\004\022\033\n\023current_mode" +
+                        "l_index\030\003 \001(\r\022&\n\nnode_state\030\004 \001(\0162\022.fedr" +
+                        "aft.NodeState\022\020\n\010node_ids\030\005 \003(\004\"6\n\027SyncW" +
+                        "ithTrainerResponse\022\033\n\023current_model_inde" +
+                        "x\030\001 \001(\r*S\n\tNodeState\022\r\n\tSAFE_MODE\020\000\022\016\n\nT" +
+                        "MP_LEADER\020\001\022\n\n\006LEADER\020\002\022\r\n\tCANDIDATE\020\003\022\014" +
+                        "\n\010FOLLOWER\020\004B$\n org.bupt.cad.fedraft.rpc" +
+                        ".messageP\001b\006proto3"
         };
         descriptor = com.google.protobuf.Descriptors.FileDescriptor
                 .internalBuildGeneratedFileFrom(descriptorData,
@@ -62,18 +61,18 @@ public final class HeartbeatMessage {
         internal_static_fedraft_HeartbeatRequest_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_fedraft_HeartbeatRequest_descriptor,
-                new java.lang.String[]{"Term", "LeaderId", "PreModelIndex", "PreModelTerm", "LeaderModelIndex", "NodeIds", "NetworkDelays",});
-        internal_static_fedraft_TrainerHeartbeatRequest_descriptor =
+                new java.lang.String[]{"Term", "LeaderId", "LeaderState", "LeaderModelIndex", "NodeIds", "NetworkDelays",});
+        internal_static_fedraft_SyncWithTrainerRequest_descriptor =
                 getDescriptor().getMessageTypes().get(2);
-        internal_static_fedraft_TrainerHeartbeatRequest_fieldAccessorTable = new
+        internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-                internal_static_fedraft_TrainerHeartbeatRequest_descriptor,
-                new java.lang.String[]{"Term", "LeaderId", "PreModelIndex", "PreModelTerm", "CurrentModelIndex", "NodeState", "NodeIds",});
-        internal_static_fedraft_TrainerHeartbeatResponse_descriptor =
+                internal_static_fedraft_SyncWithTrainerRequest_descriptor,
+                new java.lang.String[]{"Term", "LeaderId", "CurrentModelIndex", "NodeState", "NodeIds",});
+        internal_static_fedraft_SyncWithTrainerResponse_descriptor =
                 getDescriptor().getMessageTypes().get(3);
-        internal_static_fedraft_TrainerHeartbeatResponse_fieldAccessorTable = new
+        internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-                internal_static_fedraft_TrainerHeartbeatResponse_descriptor,
+                internal_static_fedraft_SyncWithTrainerResponse_descriptor,
                 new java.lang.String[]{"CurrentModelIndex",});
     }
 

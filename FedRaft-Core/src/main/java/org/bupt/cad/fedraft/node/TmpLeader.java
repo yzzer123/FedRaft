@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * 1. 临时维护集群的时延信息，保障集群从安全模式过度到工作模式
  * 2. 监控集群follower的数量，当follower >= num of cluster/2 时触发leader的选举
  * 3. 临时从zk中监控集群，但不负责维护集群的节点改变，集群节点变更需要通过leader维护
- * 4. 触发选举后，自己变为follower或candidate状态
+ * 4. 触发选举后，自己变为follower
  */
 public class TmpLeader extends Node {
 
@@ -91,12 +91,24 @@ public class TmpLeader extends Node {
     private void heartbeatOnce() {
 
         HeartbeatRequest.Builder builder = HeartbeatRequest.newBuilder();
-        builder = builder.setLeaderModelIndex(0)
-                .setTerm(Runtime.getRuntime().getTerm())
-                .setLeaderId(Runtime.getRuntime().getSelfNodeInfo().getNodeId());
 
-        // 构造请求中的时延列表
+        Runtime runtime = Runtime.getRuntime();
+        synchronized (Runtime.getRuntime()) {
+
+            // 如果角色变化 就不能再发心跳
+            if (runtime.getNodeMode() != this) {
+                return;
+            }
+
+            builder = builder.setLeaderModelIndex(0)
+                    .setTerm(runtime.getTerm())
+                    .setLeaderId(runtime.getSelfNodeInfo().getNodeId());
+
+            // 构造请求中的时延列表
+        }
+
         long selfId = Runtime.getRuntime().getSelfNodeInfo().getNodeId();
+
         synchronized (Runtime.getRuntime().getTopology()) {
 
             logger.info("send topology = {}", topology);
@@ -141,26 +153,34 @@ public class TmpLeader extends Node {
     private void triggerElection() {
         // 选举前再发送一次心跳，保持时延拓扑最新
         Runtime runtime = Runtime.getRuntime();
+        TriggerElectionRequest request;
         synchronized (Runtime.getRuntime()) {
+
+            // 如果节点已经不是tmp leader 就不要触发选举
             if (runtime.getNodeMode() != this) {
                 return;
             }
+
             heartbeatOnce();
+
             // 构造请求
-            TriggerElectionRequest request = TriggerElectionRequest.newBuilder()
+            request = TriggerElectionRequest.newBuilder()
                     .setTerm(runtime.getTerm())
                     .setLeaderId(runtime.getLeaderInfo().getNodeId())
                     .setLeaderModelIndex(runtime.getModelIndex())
                     .build();
-
-            // 触发
-            for (Long follower : followerSet.keySet()) {
-                clientPool.getChannel(follower).triggerElection(request);
-            }
-            // 触发自己
-            heartbeatTask.cancel(true);
-            Node.triggerElection(request);
+            // 变换状态为follower
+            runtime.setState(NodeState.FOLLOWER);
         }
+
+        // 触发follower选举
+        for (Long follower : followerSet.keySet()) {
+            clientPool.getChannel(follower).triggerElection(request);
+        }
+
+        // 触发自己选举
+        Node.triggerElection(request);
+
     }
 
     @Override

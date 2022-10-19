@@ -31,6 +31,9 @@ public class Configuration {
     public final static String NODE_THREADPOOL_NUMBERS = "node.threadpool.numbers";
     public final static String NODE_HEARTBEAT_MAX_TIME = "node.heartbeat.max.time";
     public final static String NODE_HEARTBEAT_TIME_INTERVAL = "node.heartbeat.time-interval";
+    public final static String NODE_SYNC_TIME_INTERVAL = "node.sync.time-interval";
+    public final static String NODE_SYNC_TIMEOUT = "node.sync.timeout";
+    public final static String NODE_HEARTBEAT_TIMEOUT = "node.heartbeat.timeout";
 
     private static final Logger logger = LoggerFactory.getLogger(Configuration.class);
     private static org.apache.commons.configuration2.Configuration conf = null;

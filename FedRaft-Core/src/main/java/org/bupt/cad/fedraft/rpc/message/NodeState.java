@@ -28,21 +28,21 @@ public enum NodeState
      * <code>FOLLOWER = 4;</code>
      */
     FOLLOWER(4),
-  UNRECOGNIZED(-1),
-  ;
+    UNRECOGNIZED(-1),
+    ;
 
-  /**
-   * <code>SAFE_MODE = 0;</code>
-   */
-  public static final int SAFE_MODE_VALUE = 0;
-  /**
-   * <code>TMP_LEADER = 1;</code>
-   */
-  public static final int TMP_LEADER_VALUE = 1;
-  /**
-   * <code>LEADER = 2;</code>
-   */
-  public static final int LEADER_VALUE = 2;
+    /**
+     * <code>SAFE_MODE = 0;</code>
+     */
+    public static final int SAFE_MODE_VALUE = 0;
+    /**
+     * <code>TMP_LEADER = 1;</code>
+     */
+    public static final int TMP_LEADER_VALUE = 1;
+    /**
+     * <code>LEADER = 2;</code>
+     */
+    public static final int LEADER_VALUE = 2;
     /**
      * <code>CANDIDATE = 3;</code>
      */
@@ -51,8 +51,6 @@ public enum NodeState
      * <code>FOLLOWER = 4;</code>
      */
     public static final int FOLLOWER_VALUE = 4;
-
-
     private static final com.google.protobuf.Internal.EnumLiteMap<
             NodeState> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<NodeState>() {
@@ -60,6 +58,12 @@ public enum NodeState
                     return NodeState.forNumber(number);
                 }
             };
+    private static final NodeState[] VALUES = values();
+    private final int value;
+
+    private NodeState(int value) {
+        this.value = value;
+    }
 
     /**
      * @param value The numeric wire value of the corresponding enum entry.
@@ -69,33 +73,28 @@ public enum NodeState
     @java.lang.Deprecated
     public static NodeState valueOf(int value) {
         return forNumber(value);
-  }
-  private static final NodeState[] VALUES = values();
-  private final int value;
-  private NodeState(int value) {
-    this.value = value;
-  }
+    }
 
-  /**
-   * @param value The numeric wire value of the corresponding enum entry.
-   * @return The enum associated with the given numeric wire value.
-   */
-  public static NodeState forNumber(int value) {
-      switch (value) {
-          case 0:
-              return SAFE_MODE;
-          case 1:
-              return TMP_LEADER;
-          case 2:
-              return LEADER;
-          case 3:
-              return CANDIDATE;
-          case 4:
-              return FOLLOWER;
-          default:
-              return null;
-      }
-  }
+    /**
+     * @param value The numeric wire value of the corresponding enum entry.
+     * @return The enum associated with the given numeric wire value.
+     */
+    public static NodeState forNumber(int value) {
+        switch (value) {
+            case 0:
+                return SAFE_MODE;
+            case 1:
+                return TMP_LEADER;
+            case 2:
+                return LEADER;
+            case 3:
+                return CANDIDATE;
+            case 4:
+                return FOLLOWER;
+            default:
+                return null;
+        }
+    }
 
     public static com.google.protobuf.Internal.EnumLiteMap<NodeState>
     internalGetValueMap() {
