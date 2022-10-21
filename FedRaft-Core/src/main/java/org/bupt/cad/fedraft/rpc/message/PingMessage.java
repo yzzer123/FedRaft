@@ -11,6 +11,13 @@ public final class PingMessage extends
     // @@protoc_insertion_point(message_implements:fedraft.PingMessage)
     PingMessageOrBuilder {
 private static final long serialVersionUID = 0L;
+  // Use PingMessage.newBuilder() to construct.
+  private PingMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+  private PingMessage() {
+  }
+
   // @@protoc_insertion_point(class_scope:fedraft.PingMessage)
   private static final org.bupt.cad.fedraft.rpc.message.PingMessage DEFAULT_INSTANCE;
   private static final com.google.protobuf.Parser<PingMessage>
@@ -34,113 +41,16 @@ private static final long serialVersionUID = 0L;
       return builder.buildPartial();
     }
   };
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_PingMessage_descriptor;
+  }
 
   static {
     DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.PingMessage();
   }
 
   private byte memoizedIsInitialized = -1;
-  // Use PingMessage.newBuilder() to construct.
-  private PingMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
-  private PingMessage() {
-  }
-
-  public static com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_PingMessage_descriptor;
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.PingMessage prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
 
   public static org.bupt.cad.fedraft.rpc.message.PingMessage getDefaultInstance() {
     return DEFAULT_INSTANCE;
@@ -171,6 +81,76 @@ private static final long serialVersionUID = 0L;
             org.bupt.cad.fedraft.rpc.message.PingMessage.class, org.bupt.cad.fedraft.rpc.message.PingMessage.Builder.class);
   }
 
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
   @java.lang.Override
   public boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -179,6 +159,24 @@ private static final long serialVersionUID = 0L;
 
     memoizedIsInitialized = 1;
     return true;
+  }
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.PingMessage prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
+  }
+
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
   }
 
   @java.lang.Override
@@ -227,19 +225,6 @@ private static final long serialVersionUID = 0L;
   public Builder newBuilderForType() { return newBuilder(); }
 
   @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
   public com.google.protobuf.Parser<PingMessage> getParserForType() {
     return PARSER;
   }
@@ -256,17 +241,6 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:fedraft.PingMessage)
       org.bupt.cad.fedraft.rpc.message.PingMessageOrBuilder {
-    // Construct using org.bupt.cad.fedraft.rpc.message.PingMessage.newBuilder()
-    private Builder() {
-
-    }
-
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
-    }
-
     public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_PingMessage_descriptor;
@@ -280,6 +254,16 @@ private static final long serialVersionUID = 0L;
               org.bupt.cad.fedraft.rpc.message.PingMessage.class, org.bupt.cad.fedraft.rpc.message.PingMessage.Builder.class);
     }
 
+    // Construct using org.bupt.cad.fedraft.rpc.message.PingMessage.newBuilder()
+    private Builder() {
+
+    }
+
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
+    }
     @java.lang.Override
     public Builder clear() {
       super.clear();

@@ -10,12 +10,57 @@ public final class VoteRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:fedraft.VoteRequest)
     VoteRequestOrBuilder {
+private static final long serialVersionUID = 0L;
+  // Use VoteRequest.newBuilder() to construct.
+  private VoteRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+  private VoteRequest() {
+    nodeIds_ = emptyLongList();
+    networkDelays_ = emptyIntList();
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new VoteRequest();
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
   public static final int TERM_FIELD_NUMBER = 1;
+
+  @java.lang.Override
+  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_VoteRequest_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(
+            org.bupt.cad.fedraft.rpc.message.VoteRequest.class, org.bupt.cad.fedraft.rpc.message.VoteRequest.Builder.class);
+  }
   public static final int CANDIDATE_ID_FIELD_NUMBER = 2;
   public static final int MODEL_INDEX_FIELD_NUMBER = 3;
+  /**
+   * <code>uint32 term = 1;</code>
+   * @return The term.
+   */
+  @java.lang.Override
+  public int getTerm() {
+    return term_;
+  }
   public static final int NODE_IDS_FIELD_NUMBER = 5;
   public static final int NETWORK_DELAYS_FIELD_NUMBER = 6;
-private static final long serialVersionUID = 0L;
+  /**
+   * <code>uint64 candidate_id = 2;</code>
+   * @return The candidateId.
+   */
+  @java.lang.Override
+  public long getCandidateId() {
+    return candidateId_;
+  }
   // @@protoc_insertion_point(class_scope:fedraft.VoteRequest)
   private static final org.bupt.cad.fedraft.rpc.message.VoteRequest DEFAULT_INSTANCE;
   private static final com.google.protobuf.Parser<VoteRequest>
@@ -39,169 +84,6 @@ private static final long serialVersionUID = 0L;
       return builder.buildPartial();
     }
   };
-
-  static {
-    DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.VoteRequest();
-  }
-
-  private int term_;
-  private long candidateId_;
-  private int modelIndex_;
-  private com.google.protobuf.Internal.LongList nodeIds_;
-  private int nodeIdsMemoizedSerializedSize = -1;
-  private com.google.protobuf.Internal.IntList networkDelays_;
-  private int networkDelaysMemoizedSerializedSize = -1;
-  private byte memoizedIsInitialized = -1;
-  // Use VoteRequest.newBuilder() to construct.
-  private VoteRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-  private VoteRequest() {
-    nodeIds_ = emptyLongList();
-    networkDelays_ = emptyIntList();
-  }
-
-  public static com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_VoteRequest_descriptor;
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.VoteRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteRequest getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<VoteRequest> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new VoteRequest();
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_VoteRequest_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            org.bupt.cad.fedraft.rpc.message.VoteRequest.class, org.bupt.cad.fedraft.rpc.message.VoteRequest.Builder.class);
-  }
-
-  /**
-   * <code>uint32 term = 1;</code>
-   * @return The term.
-   */
-  @java.lang.Override
-  public int getTerm() {
-    return term_;
-  }
-
-  /**
-   * <code>uint64 candidate_id = 2;</code>
-   * @return The candidateId.
-   */
-  @java.lang.Override
-  public long getCandidateId() {
-    return candidateId_;
-  }
-
   /**
    * <code>uint32 model_index = 3;</code>
    * @return The modelIndex.
@@ -211,6 +93,11 @@ private static final long serialVersionUID = 0L;
     return modelIndex_;
   }
 
+  static {
+    DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.VoteRequest();
+  }
+
+  private int term_;
   /**
    * <pre>
    * 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
@@ -224,7 +111,6 @@ private static final long serialVersionUID = 0L;
       getNodeIdsList() {
     return nodeIds_;
   }
-
   /**
    * <pre>
    * 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
@@ -236,7 +122,6 @@ private static final long serialVersionUID = 0L;
   public int getNodeIdsCount() {
     return nodeIds_.size();
   }
-
   /**
    * <pre>
    * 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
@@ -249,7 +134,9 @@ private static final long serialVersionUID = 0L;
   public long getNodeIds(int index) {
     return nodeIds_.getLong(index);
   }
-
+  private long candidateId_;
+  private int modelIndex_;
+  private com.google.protobuf.Internal.LongList nodeIds_;
   /**
    * <code>repeated uint32 network_delays = 6;</code>
    * @return A list containing the networkDelays.
@@ -259,7 +146,6 @@ private static final long serialVersionUID = 0L;
       getNetworkDelaysList() {
     return networkDelays_;
   }
-
   /**
    * <code>repeated uint32 network_delays = 6;</code>
    * @return The count of networkDelays.
@@ -267,7 +153,6 @@ private static final long serialVersionUID = 0L;
   public int getNetworkDelaysCount() {
     return networkDelays_.size();
   }
-
   /**
    * <code>repeated uint32 network_delays = 6;</code>
    * @param index The index of the element to return.
@@ -276,7 +161,8 @@ private static final long serialVersionUID = 0L;
   public int getNetworkDelays(int index) {
     return networkDelays_.getInt(index);
   }
-
+  private int nodeIdsMemoizedSerializedSize = -1;
+  private com.google.protobuf.Internal.IntList networkDelays_;
   @java.lang.Override
   public boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -417,10 +303,89 @@ private static final long serialVersionUID = 0L;
     memoizedHashCode = hash;
     return hash;
   }
+  private int networkDelaysMemoizedSerializedSize = -1;
+  private byte memoizedIsInitialized = -1;
+
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_VoteRequest_descriptor;
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
 
   @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
 
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -432,6 +397,30 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.VoteRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteRequest getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<VoteRequest> parser() {
+    return PARSER;
   }
 
   @java.lang.Override
@@ -451,24 +440,6 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:fedraft.VoteRequest)
       org.bupt.cad.fedraft.rpc.message.VoteRequestOrBuilder {
-    private int bitField0_;
-    private int term_ ;
-    private long candidateId_ ;
-    private int modelIndex_ ;
-    private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
-    private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
-
-    // Construct using org.bupt.cad.fedraft.rpc.message.VoteRequest.newBuilder()
-    private Builder() {
-
-    }
-
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
-    }
-
     public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_VoteRequest_descriptor;
@@ -482,6 +453,8 @@ private static final long serialVersionUID = 0L;
               org.bupt.cad.fedraft.rpc.message.VoteRequest.class, org.bupt.cad.fedraft.rpc.message.VoteRequest.Builder.class);
     }
 
+    private int bitField0_;
+    private int term_ ;
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -543,40 +516,34 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
-
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
-
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
-
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
-
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
-
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
-
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof org.bupt.cad.fedraft.rpc.message.VoteRequest) {
@@ -706,7 +673,8 @@ private static final long serialVersionUID = 0L;
       } // finally
       return this;
     }
-
+    private long candidateId_ ;
+    private int modelIndex_ ;
     /**
      * <code>uint32 term = 1;</code>
      * @return The term.
@@ -714,6 +682,26 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public int getTerm() {
       return term_;
+    }
+    private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
+    private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
+
+    // Construct using org.bupt.cad.fedraft.rpc.message.VoteRequest.newBuilder()
+    private Builder() {
+
+    }
+    /**
+     * <code>uint64 candidate_id = 2;</code>
+     * @return The candidateId.
+     */
+    @java.lang.Override
+    public long getCandidateId() {
+      return candidateId_;
+    }
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
     }
 
     /**
@@ -738,14 +726,13 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
-     * <code>uint64 candidate_id = 2;</code>
-     * @return The candidateId.
+     * <code>uint32 model_index = 3;</code>
+     * @return The modelIndex.
      */
     @java.lang.Override
-    public long getCandidateId() {
-      return candidateId_;
+    public int getModelIndex() {
+      return modelIndex_;
     }
 
     /**
@@ -773,15 +760,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint32 model_index = 3;</code>
-     * @return The modelIndex.
-     */
-    @java.lang.Override
-    public int getModelIndex() {
-      return modelIndex_;
-    }
-
-    /**
-     * <code>uint32 model_index = 3;</code>
      * @param value The modelIndex to set.
      * @return This builder for chaining.
      */
@@ -791,25 +769,12 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
-    /**
-     * <code>uint32 model_index = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearModelIndex() {
-
-      modelIndex_ = 0;
-      onChanged();
-      return this;
-    }
-
     private void ensureNodeIdsIsMutable() {
       if ((bitField0_ & 0x00000001) == 0) {
         nodeIds_ = mutableCopy(nodeIds_);
         bitField0_ |= 0x00000001;
        }
     }
-
     /**
      * <pre>
      * 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
@@ -823,7 +788,6 @@ private static final long serialVersionUID = 0L;
       return ((bitField0_ & 0x00000001) != 0) ?
                java.util.Collections.unmodifiableList(nodeIds_) : nodeIds_;
     }
-
     /**
      * <pre>
      * 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
@@ -835,7 +799,6 @@ private static final long serialVersionUID = 0L;
     public int getNodeIdsCount() {
       return nodeIds_.size();
     }
-
     /**
      * <pre>
      * 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
@@ -848,7 +811,6 @@ private static final long serialVersionUID = 0L;
     public long getNodeIds(int index) {
       return nodeIds_.getLong(index);
     }
-
     /**
      * <pre>
      * 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
@@ -866,7 +828,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
      * <pre>
      * 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
@@ -882,7 +843,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
      * <pre>
      * 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
@@ -900,7 +860,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
      * <pre>
      * 请求投票时顺便发送时延投票，防止投票失败，时延拓扑过旧
@@ -916,6 +875,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    /**
+     * <code>uint32 model_index = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearModelIndex() {
+
+      modelIndex_ = 0;
+      onChanged();
+      return this;
+    }
     private void ensureNetworkDelaysIsMutable() {
       if ((bitField0_ & 0x00000002) == 0) {
         networkDelays_ = mutableCopy(networkDelays_);

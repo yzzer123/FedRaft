@@ -11,6 +11,13 @@ public final class TriggerElectionResponse extends
     // @@protoc_insertion_point(message_implements:fedraft.TriggerElectionResponse)
     TriggerElectionResponseOrBuilder {
 private static final long serialVersionUID = 0L;
+  // Use TriggerElectionResponse.newBuilder() to construct.
+  private TriggerElectionResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+  private TriggerElectionResponse() {
+  }
+
   // @@protoc_insertion_point(class_scope:fedraft.TriggerElectionResponse)
   private static final org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse DEFAULT_INSTANCE;
   private static final com.google.protobuf.Parser<TriggerElectionResponse>
@@ -34,113 +41,16 @@ private static final long serialVersionUID = 0L;
       return builder.buildPartial();
     }
   };
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_TriggerElectionResponse_descriptor;
+  }
 
   static {
     DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse();
   }
 
   private byte memoizedIsInitialized = -1;
-  // Use TriggerElectionResponse.newBuilder() to construct.
-  private TriggerElectionResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
-  private TriggerElectionResponse() {
-  }
-
-  public static com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_TriggerElectionResponse_descriptor;
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
 
   public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
@@ -171,6 +81,76 @@ private static final long serialVersionUID = 0L;
             org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.class, org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.Builder.class);
   }
 
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
   @java.lang.Override
   public boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -179,6 +159,24 @@ private static final long serialVersionUID = 0L;
 
     memoizedIsInitialized = 1;
     return true;
+  }
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
+  }
+
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
   }
 
   @java.lang.Override
@@ -227,19 +225,6 @@ private static final long serialVersionUID = 0L;
   public Builder newBuilderForType() { return newBuilder(); }
 
   @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
   public com.google.protobuf.Parser<TriggerElectionResponse> getParserForType() {
     return PARSER;
   }
@@ -256,17 +241,6 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:fedraft.TriggerElectionResponse)
       org.bupt.cad.fedraft.rpc.message.TriggerElectionResponseOrBuilder {
-    // Construct using org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.newBuilder()
-    private Builder() {
-
-    }
-
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
-    }
-
     public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_TriggerElectionResponse_descriptor;
@@ -280,6 +254,16 @@ private static final long serialVersionUID = 0L;
               org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.class, org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.Builder.class);
     }
 
+    // Construct using org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.newBuilder()
+    private Builder() {
+
+    }
+
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
+    }
     @java.lang.Override
     public Builder clear() {
       super.clear();

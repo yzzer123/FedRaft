@@ -10,15 +10,72 @@ public final class SyncWithTrainerRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
     // @@protoc_insertion_point(message_implements:fedraft.SyncWithTrainerRequest)
     SyncWithTrainerRequestOrBuilder {
+private static final long serialVersionUID = 0L;
+  // Use SyncWithTrainerRequest.newBuilder() to construct.
+  private SyncWithTrainerRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+  private SyncWithTrainerRequest() {
+    nodeState_ = 0;
+    nodeIds_ = emptyLongList();
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new SyncWithTrainerRequest();
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
   public static final int TERM_FIELD_NUMBER = 1;
+
+  @java.lang.Override
+  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(
+            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.class, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.Builder.class);
+  }
   public static final int LEADER_ID_FIELD_NUMBER = 2;
   public static final int CURRENT_MODEL_INDEX_FIELD_NUMBER = 3;
+  /**
+   * <code>uint32 term = 1;</code>
+   * @return The term.
+   */
+  @java.lang.Override
+  public int getTerm() {
+    return term_;
+  }
   public static final int TIMESTAMP_FIELD_NUMBER = 4;
   public static final int NODE_STATE_FIELD_NUMBER = 5;
+  /**
+   * <code>uint64 leader_id = 2;</code>
+   * @return The leaderId.
+   */
+  @java.lang.Override
+  public long getLeaderId() {
+    return leaderId_;
+  }
   public static final int NODE_IDS_FIELD_NUMBER = 6;
-private static final long serialVersionUID = 0L;
   // @@protoc_insertion_point(class_scope:fedraft.SyncWithTrainerRequest)
   private static final org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest DEFAULT_INSTANCE;
+  /**
+   * <pre>
+   * 当前节点模型的索引
+   * </pre>
+   *
+   * <code>uint32 current_model_index = 3;</code>
+   * @return The currentModelIndex.
+   */
+  @java.lang.Override
+  public int getCurrentModelIndex() {
+    return currentModelIndex_;
+  }
   private static final com.google.protobuf.Parser<SyncWithTrainerRequest>
       PARSER = new com.google.protobuf.AbstractParser<SyncWithTrainerRequest>() {
     @java.lang.Override
@@ -44,179 +101,6 @@ private static final long serialVersionUID = 0L;
   static {
     DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest();
   }
-
-  private int term_;
-  private long leaderId_;
-  private int currentModelIndex_;
-  private long timestamp_;
-  private int nodeState_;
-  private com.google.protobuf.Internal.LongList nodeIds_;
-  private int nodeIdsMemoizedSerializedSize = -1;
-  private byte memoizedIsInitialized = -1;
-  // Use SyncWithTrainerRequest.newBuilder() to construct.
-  private SyncWithTrainerRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
-  private SyncWithTrainerRequest() {
-    nodeState_ = 0;
-    nodeIds_ = emptyLongList();
-  }
-
-  public static com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerRequest_descriptor;
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
-      com.google.protobuf.ByteString data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
-      com.google.protobuf.ByteString data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(byte[] data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
-      byte[] data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseDelimitedFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
-      com.google.protobuf.CodedInputStream input)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<SyncWithTrainerRequest> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new SyncWithTrainerRequest();
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.class, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.Builder.class);
-  }
-
-  /**
-   * <code>uint32 term = 1;</code>
-   * @return The term.
-   */
-  @java.lang.Override
-  public int getTerm() {
-    return term_;
-  }
-
-  /**
-   * <code>uint64 leader_id = 2;</code>
-   * @return The leaderId.
-   */
-  @java.lang.Override
-  public long getLeaderId() {
-    return leaderId_;
-  }
-
-  /**
-   * <pre>
-   * 当前节点模型的索引
-   * </pre>
-   *
-   * <code>uint32 current_model_index = 3;</code>
-   * @return The currentModelIndex.
-   */
-  @java.lang.Override
-  public int getCurrentModelIndex() {
-    return currentModelIndex_;
-  }
-
   /**
    * <code>uint64 timestamp = 4;</code>
    * @return The timestamp.
@@ -226,6 +110,8 @@ private static final long serialVersionUID = 0L;
     return timestamp_;
   }
 
+  private int term_;
+  private long leaderId_;
   /**
    * <code>.fedraft.NodeState node_state = 5;</code>
    * @return The enum numeric value on the wire for nodeState.
@@ -233,7 +119,6 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override public int getNodeStateValue() {
     return nodeState_;
   }
-
   /**
    * <code>.fedraft.NodeState node_state = 5;</code>
    * @return The nodeState.
@@ -243,7 +128,8 @@ private static final long serialVersionUID = 0L;
     org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(nodeState_);
     return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
   }
-
+  private int currentModelIndex_;
+  private long timestamp_;
   /**
    * <code>repeated uint64 node_ids = 6;</code>
    * @return A list containing the nodeIds.
@@ -253,7 +139,6 @@ private static final long serialVersionUID = 0L;
       getNodeIdsList() {
     return nodeIds_;
   }
-
   /**
    * <code>repeated uint64 node_ids = 6;</code>
    * @return The count of nodeIds.
@@ -261,7 +146,6 @@ private static final long serialVersionUID = 0L;
   public int getNodeIdsCount() {
     return nodeIds_.size();
   }
-
   /**
    * <code>repeated uint64 node_ids = 6;</code>
    * @param index The index of the element to return.
@@ -270,7 +154,8 @@ private static final long serialVersionUID = 0L;
   public long getNodeIds(int index) {
     return nodeIds_.getLong(index);
   }
-
+  private int nodeState_;
+  private com.google.protobuf.Internal.LongList nodeIds_;
   @java.lang.Override
   public boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -406,10 +291,89 @@ private static final long serialVersionUID = 0L;
     memoizedHashCode = hash;
     return hash;
   }
+  private int nodeIdsMemoizedSerializedSize = -1;
+  private byte memoizedIsInitialized = -1;
+
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerRequest_descriptor;
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
 
   @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
 
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -421,6 +385,30 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<SyncWithTrainerRequest> parser() {
+    return PARSER;
   }
 
   @java.lang.Override
@@ -440,25 +428,6 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
       // @@protoc_insertion_point(builder_implements:fedraft.SyncWithTrainerRequest)
       org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequestOrBuilder {
-    private int bitField0_;
-    private int term_ ;
-    private long leaderId_ ;
-    private int currentModelIndex_ ;
-    private long timestamp_ ;
-    private int nodeState_ = 0;
-    private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
-
-    // Construct using org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.newBuilder()
-    private Builder() {
-
-    }
-
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
-    }
-
     public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerRequest_descriptor;
@@ -472,6 +441,8 @@ private static final long serialVersionUID = 0L;
               org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.class, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.Builder.class);
     }
 
+    private int bitField0_;
+    private int term_ ;
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -532,40 +503,34 @@ private static final long serialVersionUID = 0L;
     public Builder clone() {
       return super.clone();
     }
-
     @java.lang.Override
     public Builder setField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.setField(field, value);
     }
-
     @java.lang.Override
     public Builder clearField(
         com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
-
     @java.lang.Override
     public Builder clearOneof(
         com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
-
     @java.lang.Override
     public Builder setRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
-
     @java.lang.Override
     public Builder addRepeatedField(
         com.google.protobuf.Descriptors.FieldDescriptor field,
         java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
-
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest) {
@@ -685,7 +650,8 @@ private static final long serialVersionUID = 0L;
       } // finally
       return this;
     }
-
+    private long leaderId_ ;
+    private int currentModelIndex_ ;
     /**
      * <code>uint32 term = 1;</code>
      * @return The term.
@@ -693,6 +659,26 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public int getTerm() {
       return term_;
+    }
+    private long timestamp_ ;
+    private int nodeState_ = 0;
+    private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+      return leaderId_;
+    }
+    // Construct using org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.newBuilder()
+    private Builder() {
+
+    }
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
     }
 
     /**
@@ -706,6 +692,18 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+    /**
+     * <pre>
+     * 当前节点模型的索引
+     * </pre>
+     *
+     * <code>uint32 current_model_index = 3;</code>
+     * @return The currentModelIndex.
+     */
+    @java.lang.Override
+    public int getCurrentModelIndex() {
+      return currentModelIndex_;
+    }
 
     /**
      * <code>uint32 term = 1;</code>
@@ -716,15 +714,6 @@ private static final long serialVersionUID = 0L;
       term_ = 0;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
     }
 
     /**
@@ -749,18 +738,13 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
-     * <pre>
-     * 当前节点模型的索引
-     * </pre>
-     *
-     * <code>uint32 current_model_index = 3;</code>
-     * @return The currentModelIndex.
+     * <code>uint64 timestamp = 4;</code>
+     * @return The timestamp.
      */
     @java.lang.Override
-    public int getCurrentModelIndex() {
-      return currentModelIndex_;
+    public long getTimestamp() {
+      return timestamp_;
     }
 
     /**
@@ -796,15 +780,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint64 timestamp = 4;</code>
-     * @return The timestamp.
-     */
-    @java.lang.Override
-    public long getTimestamp() {
-      return timestamp_;
-    }
-
-    /**
-     * <code>uint64 timestamp = 4;</code>
      * @param value The timestamp to set.
      * @return This builder for chaining.
      */
@@ -813,6 +788,13 @@ private static final long serialVersionUID = 0L;
       timestamp_ = value;
       onChanged();
       return this;
+    }
+    /**
+     * <code>.fedraft.NodeState node_state = 5;</code>
+     * @return The enum numeric value on the wire for nodeState.
+     */
+    @java.lang.Override public int getNodeStateValue() {
+      return nodeState_;
     }
 
     /**
@@ -825,13 +807,15 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
      * <code>.fedraft.NodeState node_state = 5;</code>
-     * @return The enum numeric value on the wire for nodeState.
+     * @return The nodeState.
      */
-    @java.lang.Override public int getNodeStateValue() {
-      return nodeState_;
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.NodeState getNodeState() {
+      @SuppressWarnings("deprecation")
+      org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(nodeState_);
+      return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
     }
 
     /**
@@ -844,17 +828,6 @@ private static final long serialVersionUID = 0L;
       nodeState_ = value;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>.fedraft.NodeState node_state = 5;</code>
-     * @return The nodeState.
-     */
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.NodeState getNodeState() {
-      @SuppressWarnings("deprecation")
-      org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(nodeState_);
-      return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
     }
 
     /**
@@ -882,7 +855,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     private void ensureNodeIdsIsMutable() {
       if ((bitField0_ & 0x00000001) == 0) {
         nodeIds_ = mutableCopy(nodeIds_);

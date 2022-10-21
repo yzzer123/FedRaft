@@ -51,6 +51,8 @@ public enum NodeState
    * <code>FOLLOWER = 4;</code>
    */
   public static final int FOLLOWER_VALUE = 4;
+
+
   private static final com.google.protobuf.Internal.EnumLiteMap<
       NodeState> internalValueMap =
         new com.google.protobuf.Internal.EnumLiteMap<NodeState>() {
@@ -58,12 +60,6 @@ public enum NodeState
             return NodeState.forNumber(number);
           }
         };
-  private static final NodeState[] VALUES = values();
-  private final int value;
-
-  NodeState(int value) {
-    this.value = value;
-  }
 
   /**
    * @param value The numeric wire value of the corresponding enum entry.
@@ -94,10 +90,22 @@ public enum NodeState
       internalGetValueMap() {
     return internalValueMap;
   }
-
+  private static final NodeState[] VALUES = values();
+  private final int value;
+  NodeState(int value) {
+    this.value = value;
+  }
   public static final com.google.protobuf.Descriptors.EnumDescriptor
       getDescriptor() {
     return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.getDescriptor().getEnumTypes().get(0);
+  }
+
+  public final int getNumber() {
+    if (this == UNRECOGNIZED) {
+      throw new java.lang.IllegalArgumentException(
+          "Can't get the number of an unknown enum value.");
+    }
+    return value;
   }
 
   public static NodeState valueOf(
@@ -110,14 +118,6 @@ public enum NodeState
       return UNRECOGNIZED;
     }
     return VALUES[desc.getIndex()];
-  }
-
-  public final int getNumber() {
-    if (this == UNRECOGNIZED) {
-      throw new java.lang.IllegalArgumentException(
-          "Can't get the number of an unknown enum value.");
-    }
-    return value;
   }
 
   public final com.google.protobuf.Descriptors.EnumValueDescriptor

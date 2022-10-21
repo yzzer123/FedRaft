@@ -4,19 +4,35 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public final class LogMessage {
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_LogRequest_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_fedraft_LogRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_LogResponse_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_fedraft_LogResponse_fieldAccessorTable;
+
+  private LogMessage() {}
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_fedraft_LogRequest_descriptor;
+
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistryLite registry) {
+  }
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_fedraft_LogResponse_descriptor;
+
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
+  }
+
+  public static com.google.protobuf.Descriptors.FileDescriptor
+      getDescriptor() {
+    return descriptor;
+  }
   private static final com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
-
   static {
     java.lang.String[] descriptorData = {
       "\n\021log_message.proto\022\007fedraft\"\331\001\n\nLogRequ" +
@@ -45,22 +61,6 @@ public final class LogMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_fedraft_LogResponse_descriptor,
         new java.lang.String[] { "LocalIndex", "LogSize", });
-  }
-  private LogMessage() {}
-
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
   }
 
   // @@protoc_insertion_point(outer_class_scope)

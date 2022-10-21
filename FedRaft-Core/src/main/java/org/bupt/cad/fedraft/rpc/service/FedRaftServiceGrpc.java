@@ -10,32 +10,13 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class FedRaftServiceGrpc {
 
-  public static final String SERVICE_NAME = "fedraft.FedRaftService";
   private static final int METHODID_APPEND_LOG = 0;
-  private static final int METHODID_HEARTBEAT = 1;
-  private static final int METHODID_SYNC_WITH_TRAINER = 2;
-  private static final int METHODID_TRIGGER_ELECTION = 3;
-  private static final int METHODID_REQUEST_VOTE = 4;
-  private static final int METHODID_PING_TEST = 5;
-  private static final int METHODID_APPEND_STREAM_LOG = 6;
+
+  public static final String SERVICE_NAME = "fedraft.FedRaftService";
+
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
       org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
-      org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.HeartbeatRequest,
-      org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> getHeartbeatMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest,
-      org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> getSyncWithTrainerMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
-      org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.VoteRequest,
-      org.bupt.cad.fedraft.rpc.message.VoteResponse> getRequestVoteMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.PingMessage,
-      org.bupt.cad.fedraft.rpc.message.PingMessage> getPingTestMethod;
-  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
-
-  private FedRaftServiceGrpc() {}
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AppendStreamLog",
@@ -64,6 +45,7 @@ public final class FedRaftServiceGrpc {
     }
     return getAppendStreamLogMethod;
   }
+  private static final int METHODID_HEARTBEAT = 1;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AppendLog",
@@ -92,6 +74,7 @@ public final class FedRaftServiceGrpc {
     }
     return getAppendLogMethod;
   }
+  private static final int METHODID_SYNC_WITH_TRAINER = 2;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Heartbeat",
@@ -120,6 +103,7 @@ public final class FedRaftServiceGrpc {
     }
     return getHeartbeatMethod;
   }
+  private static final int METHODID_TRIGGER_ELECTION = 3;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "SyncWithTrainer",
@@ -148,6 +132,7 @@ public final class FedRaftServiceGrpc {
     }
     return getSyncWithTrainerMethod;
   }
+  private static final int METHODID_REQUEST_VOTE = 4;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "TriggerElection",
@@ -176,6 +161,7 @@ public final class FedRaftServiceGrpc {
     }
     return getTriggerElectionMethod;
   }
+  private static final int METHODID_PING_TEST = 5;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "RequestVote",
@@ -204,6 +190,7 @@ public final class FedRaftServiceGrpc {
     }
     return getRequestVoteMethod;
   }
+  private static final int METHODID_APPEND_STREAM_LOG = 6;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "PingTest",
@@ -275,28 +262,6 @@ public final class FedRaftServiceGrpc {
         }
       };
     return FedRaftServiceFutureStub.newStub(factory, channel);
-  }
-
-  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
-    io.grpc.ServiceDescriptor result = serviceDescriptor;
-    if (result == null) {
-      synchronized (FedRaftServiceGrpc.class) {
-        result = serviceDescriptor;
-        if (result == null) {
-          serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new FedRaftServiceFileDescriptorSupplier())
-              .addMethod(getAppendStreamLogMethod())
-              .addMethod(getAppendLogMethod())
-              .addMethod(getHeartbeatMethod())
-              .addMethod(getSyncWithTrainerMethod())
-              .addMethod(getTriggerElectionMethod())
-              .addMethod(getRequestVoteMethod())
-              .addMethod(getPingTestMethod())
-              .build();
-        }
-      }
-    }
-    return result;
   }
 
   /**
@@ -651,6 +616,19 @@ public final class FedRaftServiceGrpc {
           getChannel().newCall(getPingTestMethod(), getCallOptions()), request);
     }
   }
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
+      org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.HeartbeatRequest,
+      org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> getHeartbeatMethod;
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest,
+      org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> getSyncWithTrainerMethod;
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
+      org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod;
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.VoteRequest,
+      org.bupt.cad.fedraft.rpc.message.VoteResponse> getRequestVoteMethod;
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.PingMessage,
+      org.bupt.cad.fedraft.rpc.message.PingMessage> getPingTestMethod;
+  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -745,5 +723,29 @@ public final class FedRaftServiceGrpc {
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }
+  }
+
+  private FedRaftServiceGrpc() {}
+
+  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
+    io.grpc.ServiceDescriptor result = serviceDescriptor;
+    if (result == null) {
+      synchronized (FedRaftServiceGrpc.class) {
+        result = serviceDescriptor;
+        if (result == null) {
+          serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
+              .setSchemaDescriptor(new FedRaftServiceFileDescriptorSupplier())
+              .addMethod(getAppendStreamLogMethod())
+              .addMethod(getAppendLogMethod())
+              .addMethod(getHeartbeatMethod())
+              .addMethod(getSyncWithTrainerMethod())
+              .addMethod(getTriggerElectionMethod())
+              .addMethod(getRequestVoteMethod())
+              .addMethod(getPingTestMethod())
+              .build();
+        }
+      }
+    }
+    return result;
   }
 }

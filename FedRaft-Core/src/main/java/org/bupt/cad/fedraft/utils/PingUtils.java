@@ -15,8 +15,6 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
@@ -47,7 +45,7 @@ public class PingUtils {
     }
 
     public static void pingTopology(){
-        int avgDelay = pingTopologyByRPC();
+        int avgDelay = pingTopologyByCMD();
         Runtime.getRuntime().getDelay().set(avgDelay);
         Runtime runtime = Runtime.getRuntime();
         NodeState runtimeState = runtime.getState();
@@ -107,44 +105,33 @@ public class PingUtils {
         return sumOfDelay.get() / size;
     }
 
-    /**
-     * 测试平均时延
-     */
-    private static int pingTopologyByCmd() {
+    private static int pingTopologyByCMD(){
         Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
         ExecutorService threadPool = Runtime.getRuntime().getThreadPool();
-        List<Long> keyList;
+        long selfId = Runtime.getRuntime().getSelfNodeInfo().getNodeId();
         AtomicInteger sumOfDelay = new AtomicInteger(0);
+        ClientPool clientPool = Runtime.getRuntime().getClientPool();
+        final CountDownLatch countDownLatch;
+        int size;
+
         // 需要对拓扑加锁
         synchronized (Runtime.getRuntime().getTopology()) {
-
             // 内存中没有拓扑，就将时延设置为-1
             if (topology.size() < 1) {
                 return INVALID_DELAY;
             }
-            // 在锁中读取拓扑集合
-            keyList = new ArrayList<>(topology.keySet());
-        }
+            size = topology.size() - 1;
+            countDownLatch = new CountDownLatch(size);
 
-        // 排除自己
-        keyList.remove(Runtime.getRuntime().getSelfNodeInfo().getNodeId());
-
-        if (keyList.size() == 0) {
-            return INVALID_DELAY;
-        }
-
-        final CountDownLatch countDownLatch = new CountDownLatch(keyList.size());
-
-        // 内存中有拓扑
-        for (Long key : keyList) {
-            String nodeIp = NodeInfo.idToIp(key);
-            threadPool.submit(new Runnable() {
-                @Override
-                public void run() {
+            for (Long clientId : topology.keySet()) {
+                if (clientId == selfId){
+                    continue;
+                }
+                threadPool.submit(()->{
                     // 对于未知的ip或者ping不通的都加上一个惩罚时延
                     int delay = INVALID_DELAY;
                     try {
-                        delay = ping(nodeIp);
+                        delay = ping(NodeInfo.idToIp(clientId));
                     } catch (IOException e) {
                         delay = INVALID_DELAY;
                         logger.warn(e.getMessage());
@@ -152,10 +139,10 @@ public class PingUtils {
                         sumOfDelay.addAndGet(delay);
                         countDownLatch.countDown();
                     }
-                }
-            });// end method call
+                });
+            }
 
-        }// end for
+        }
 
         // 等待线程都结束
         try {
@@ -165,8 +152,10 @@ public class PingUtils {
         }
 
         // 计算平均时延
-        return sumOfDelay.get() / keyList.size();
+        return sumOfDelay.get() / size;
     }
+
+
 
 
     /**
