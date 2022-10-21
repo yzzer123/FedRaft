@@ -38,7 +38,7 @@ public class Follower extends Node {
      */
     private void setupTimeoutTask() {
         timeoutTask = TimerUtils.getTimer().schedule(this::heartbeatTimeout,
-                Configuration.getInt(Configuration.NODE_HEARTBEAT_TIME_INTERVAL) * 2L + Runtime.getRuntime().getDelay().get() / 1000 * 3,
+                Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIME_INTERVAL) * 2L + Runtime.getRuntime().getDelay().get() / 1000 * 3,
                 TimeUnit.MILLISECONDS);
     }
 
@@ -56,7 +56,9 @@ public class Follower extends Node {
      * 重置超时器
      */
     private void resetTimeoutTask() {
-        logger.info("reset timout task");
+        if (logger.isDebugEnabled()) {
+            logger.debug("reset timout task");
+        }
         cancelTimeoutTask();
         setupTimeoutTask();
     }

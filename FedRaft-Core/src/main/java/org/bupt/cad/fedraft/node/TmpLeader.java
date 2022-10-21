@@ -7,6 +7,7 @@ import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
 import org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest;
 import org.bupt.cad.fedraft.utils.ClientPool;
+import org.bupt.cad.fedraft.utils.PingUtils;
 import org.bupt.cad.fedraft.utils.TimerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,6 @@ import java.util.concurrent.TimeUnit;
  * 4. 触发选举后，自己变为follower
  */
 public class TmpLeader extends Node {
-
     private static final Logger logger = LoggerFactory.getLogger(TmpLeader.class);
 
     private final Map<Long, Integer> topology = Runtime.getRuntime().getTopology();
@@ -50,19 +50,19 @@ public class TmpLeader extends Node {
 
             if (cluster.size() < 3) {
                 logger.error("初始化集群失败");
-                Runtime.getRuntime().getZkClient().giveUpCheckinLeader();
+                Runtime.getRuntime().getZkClient().giveUpCheckinLeader(true);
                 System.exit(1);
             }
 
             synchronized (Runtime.getRuntime().getTopology()) {
                 for (NodeInfo nodeInfo : cluster) {
-                    topology.put(nodeInfo.getNodeId(), -1);
+                    topology.put(nodeInfo.getNodeId(), PingUtils.INVALID_DELAY);
                 }
             }
         } catch (Exception e) {
             // 监听器设置失败就直接退出
             logger.error("初始化集群失败" + e.getMessage(), e);
-            Runtime.getRuntime().getZkClient().giveUpCheckinLeader();
+            Runtime.getRuntime().getZkClient().giveUpCheckinLeader(true);
             System.exit(1);
         }
     }
@@ -70,8 +70,9 @@ public class TmpLeader extends Node {
     // 开启定时发送心跳任务
     private void maintainHeartbeat() {
 
-        int heartbeatInterval = Configuration.getInt(Configuration.NODE_HEARTBEAT_TIME_INTERVAL);
-        logger.info("tmp leader begin maintainHeartbeat");
+        int heartbeatInterval = Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIME_INTERVAL);
+        if (logger.isDebugEnabled())
+            logger.debug("tmp leader begin maintainHeartbeat");
 
         // end runnable method
         heartbeatTask = TimerUtils.getTimer().scheduleAtFixedRate(() -> {
@@ -79,7 +80,8 @@ public class TmpLeader extends Node {
             followerSet.values().removeIf(timestamp -> timestamp + heartbeatInterval * 3L < System.currentTimeMillis());
             // 集群节点达到2以上才能正常运行
             if (topology.size() > 2 && followerSet.size() > topology.size() / 2) {
-                logger.info("tmp leader trigger election");
+                if (logger.isDebugEnabled())
+                    logger.debug("tmp leader trigger election");
                 triggerElection();
             }
 
@@ -102,6 +104,7 @@ public class TmpLeader extends Node {
 
             builder = builder.setLeaderModelIndex(0)
                     .setTerm(runtime.getTerm())
+                    .setLeaderState(NodeState.TMP_LEADER)
                     .setLeaderId(runtime.getSelfNodeInfo().getNodeId());
 
             // 构造请求中的时延列表
@@ -111,7 +114,9 @@ public class TmpLeader extends Node {
 
         synchronized (Runtime.getRuntime().getTopology()) {
 
-            logger.info("send topology = {}", topology);
+            if (logger.isDebugEnabled()) {
+                logger.debug("send topology = {}", topology);
+            }
             for (Map.Entry<Long, Integer> entry : topology.entrySet()) {
                 builder.addNodeIds(entry.getKey());
                 builder.addNetworkDelays(entry.getValue());
@@ -132,12 +137,15 @@ public class TmpLeader extends Node {
 
             // 获取通信通道并发送心跳
             clientPool.getChannel(clientId).sendHeartBeat(request, response -> {
-                int networkDelay = response.getNetworkDelay();
+
+                int newDelay = response.getNetworkDelay();
 
                 // 更新心跳信息
-                if (networkDelay > 0) {
-                    topology.computeIfPresent(clientId, (k, v) -> networkDelay);
-
+                if (newDelay > 0) {
+                    // 加权更新
+                    topology.computeIfPresent(clientId, (id, oldDelay) ->
+                            (7 * newDelay + 3 * (oldDelay == PingUtils.INVALID_DELAY ? newDelay : oldDelay)) / 10
+                    );
                     // 统计存活follower数量
                     if (response.getNodeState() == NodeState.FOLLOWER) {
                         followerSet.put(clientId, System.currentTimeMillis());
@@ -189,7 +197,7 @@ public class TmpLeader extends Node {
         if (heartbeatTask != null) {
             heartbeatTask.cancel(true);
             // 放弃leader主权
-            Runtime.getRuntime().getZkClient().giveUpCheckinLeader();
+            Runtime.getRuntime().getZkClient().giveUpCheckinLeader(true);
 
         }
     }

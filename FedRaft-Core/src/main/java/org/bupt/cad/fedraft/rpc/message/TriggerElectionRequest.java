@@ -23,7 +23,18 @@ public final class TriggerElectionRequest extends
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
-            return new TriggerElectionRequest(input, extensionRegistry);
+            Builder builder = newBuilder();
+            try {
+                builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                        .setUnfinishedMessage(builder.buildPartial());
+            }
+            return builder.buildPartial();
         }
     };
 
@@ -42,61 +53,6 @@ public final class TriggerElectionRequest extends
     }
 
     private TriggerElectionRequest() {
-    }
-
-    private TriggerElectionRequest(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-        }
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-            boolean done = false;
-            while (!done) {
-                int tag = input.readTag();
-                switch (tag) {
-                    case 0:
-                        done = true;
-                        break;
-                    case 8: {
-
-                        term_ = input.readUInt32();
-                        break;
-                    }
-                    case 16: {
-
-                        leaderId_ = input.readUInt64();
-                        break;
-                    }
-                    case 40: {
-
-                        leaderModelIndex_ = input.readUInt32();
-                        break;
-                    }
-                    default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
-                            done = true;
-                        }
-                        break;
-                    }
-                }
-            }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw e.setUnfinishedMessage(this);
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
-        } finally {
-            this.unknownFields = unknownFields.build();
-            makeExtensionsImmutable();
-        }
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -274,7 +230,7 @@ public final class TriggerElectionRequest extends
         if (leaderModelIndex_ != 0) {
             output.writeUInt32(5, leaderModelIndex_);
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -295,7 +251,7 @@ public final class TriggerElectionRequest extends
             size += com.google.protobuf.CodedOutputStream
                     .computeUInt32Size(5, leaderModelIndex_);
         }
-        size += unknownFields.getSerializedSize();
+        size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
     }
@@ -316,7 +272,7 @@ public final class TriggerElectionRequest extends
                 != other.getLeaderId()) return false;
         if (getLeaderModelIndex()
                 != other.getLeaderModelIndex()) return false;
-        if (!unknownFields.equals(other.unknownFields)) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
     }
 
@@ -334,7 +290,7 @@ public final class TriggerElectionRequest extends
                 getLeaderId());
         hash = (37 * hash) + LEADER_MODEL_INDEX_FIELD_NUMBER;
         hash = (53 * hash) + getLeaderModelIndex();
-        hash = (29 * hash) + unknownFields.hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
     }
@@ -380,13 +336,13 @@ public final class TriggerElectionRequest extends
 
         // Construct using org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest.newBuilder()
         private Builder() {
-            maybeForceBuilderInitialization();
+
         }
 
         private Builder(
                 com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
             super(parent);
-            maybeForceBuilderInitialization();
+
         }
 
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -400,12 +356,6 @@ public final class TriggerElectionRequest extends
             return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_TriggerElectionRequest_fieldAccessorTable
                     .ensureFieldAccessorsInitialized(
                             org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest.class, org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest.Builder.class);
-        }
-
-        private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
-            }
         }
 
         @java.lang.Override
@@ -509,7 +459,7 @@ public final class TriggerElectionRequest extends
             if (other.getLeaderModelIndex() != 0) {
                 setLeaderModelIndex(other.getLeaderModelIndex());
             }
-            this.mergeUnknownFields(other.unknownFields);
+            this.mergeUnknownFields(other.getUnknownFields());
             onChanged();
             return this;
         }
@@ -524,17 +474,45 @@ public final class TriggerElectionRequest extends
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException {
-            org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest parsedMessage = null;
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
             try {
-                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 8: {
+                            term_ = input.readUInt32();
+
+                            break;
+                        } // case 8
+                        case 16: {
+                            leaderId_ = input.readUInt64();
+
+                            break;
+                        } // case 16
+                        case 40: {
+                            leaderModelIndex_ = input.readUInt32();
+
+                            break;
+                        } // case 40
+                        default: {
+                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                                done = true; // was an endgroup tag
+                            }
+                            break;
+                        } // default:
+                    } // switch (tag)
+                } // while (!done)
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                parsedMessage = (org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
-                if (parsedMessage != null) {
-                    mergeFrom(parsedMessage);
-                }
-            }
+                onChanged();
+            } // finally
             return this;
         }
 

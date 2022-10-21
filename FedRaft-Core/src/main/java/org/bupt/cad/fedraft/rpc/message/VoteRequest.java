@@ -25,7 +25,18 @@ public final class VoteRequest extends
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
-            return new VoteRequest(input, extensionRegistry);
+            Builder builder = newBuilder();
+            try {
+                builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                        .setUnfinishedMessage(builder.buildPartial());
+            }
+            return builder.buildPartial();
         }
     };
 
@@ -50,110 +61,6 @@ public final class VoteRequest extends
     private VoteRequest() {
         nodeIds_ = emptyLongList();
         networkDelays_ = emptyIntList();
-    }
-
-    private VoteRequest(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-        }
-        int mutable_bitField0_ = 0;
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-            boolean done = false;
-            while (!done) {
-                int tag = input.readTag();
-                switch (tag) {
-                    case 0:
-                        done = true;
-                        break;
-                    case 8: {
-
-                        term_ = input.readUInt32();
-                        break;
-                    }
-                    case 16: {
-
-                        candidateId_ = input.readUInt64();
-                        break;
-                    }
-                    case 24: {
-
-                        modelIndex_ = input.readUInt32();
-                        break;
-                    }
-                    case 40: {
-                        if (!((mutable_bitField0_ & 0x00000001) != 0)) {
-                            nodeIds_ = newLongList();
-                            mutable_bitField0_ |= 0x00000001;
-                        }
-                        nodeIds_.addLong(input.readUInt64());
-                        break;
-                    }
-                    case 42: {
-                        int length = input.readRawVarint32();
-                        int limit = input.pushLimit(length);
-                        if (!((mutable_bitField0_ & 0x00000001) != 0) && input.getBytesUntilLimit() > 0) {
-                            nodeIds_ = newLongList();
-                            mutable_bitField0_ |= 0x00000001;
-                        }
-                        while (input.getBytesUntilLimit() > 0) {
-                            nodeIds_.addLong(input.readUInt64());
-                        }
-                        input.popLimit(limit);
-                        break;
-                    }
-                    case 48: {
-                        if (!((mutable_bitField0_ & 0x00000002) != 0)) {
-                            networkDelays_ = newIntList();
-                            mutable_bitField0_ |= 0x00000002;
-                        }
-                        networkDelays_.addInt(input.readUInt32());
-                        break;
-                    }
-                    case 50: {
-                        int length = input.readRawVarint32();
-                        int limit = input.pushLimit(length);
-                        if (!((mutable_bitField0_ & 0x00000002) != 0) && input.getBytesUntilLimit() > 0) {
-                            networkDelays_ = newIntList();
-                            mutable_bitField0_ |= 0x00000002;
-                        }
-                        while (input.getBytesUntilLimit() > 0) {
-                            networkDelays_.addInt(input.readUInt32());
-                        }
-                        input.popLimit(limit);
-                        break;
-                    }
-                    default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
-                            done = true;
-                        }
-                        break;
-                    }
-                }
-            }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw e.setUnfinishedMessage(this);
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
-        } finally {
-            if (((mutable_bitField0_ & 0x00000001) != 0)) {
-                nodeIds_.makeImmutable(); // C
-            }
-            if (((mutable_bitField0_ & 0x00000002) != 0)) {
-                networkDelays_.makeImmutable(); // C
-            }
-            this.unknownFields = unknownFields.build();
-            makeExtensionsImmutable();
-        }
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -418,7 +325,7 @@ public final class VoteRequest extends
         for (int i = 0; i < networkDelays_.size(); i++) {
             output.writeUInt32NoTag(networkDelays_.getInt(i));
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -467,7 +374,7 @@ public final class VoteRequest extends
             }
             networkDelaysMemoizedSerializedSize = dataSize;
         }
-        size += unknownFields.getSerializedSize();
+        size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
     }
@@ -492,7 +399,7 @@ public final class VoteRequest extends
                 .equals(other.getNodeIdsList())) return false;
         if (!getNetworkDelaysList()
                 .equals(other.getNetworkDelaysList())) return false;
-        if (!unknownFields.equals(other.unknownFields)) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
     }
 
@@ -518,7 +425,7 @@ public final class VoteRequest extends
             hash = (37 * hash) + NETWORK_DELAYS_FIELD_NUMBER;
             hash = (53 * hash) + getNetworkDelaysList().hashCode();
         }
-        hash = (29 * hash) + unknownFields.hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
     }
@@ -567,13 +474,13 @@ public final class VoteRequest extends
 
         // Construct using org.bupt.cad.fedraft.rpc.message.VoteRequest.newBuilder()
         private Builder() {
-            maybeForceBuilderInitialization();
+
         }
 
         private Builder(
                 com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
             super(parent);
-            maybeForceBuilderInitialization();
+
         }
 
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -587,12 +494,6 @@ public final class VoteRequest extends
             return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_VoteRequest_fieldAccessorTable
                     .ensureFieldAccessorsInitialized(
                             org.bupt.cad.fedraft.rpc.message.VoteRequest.class, org.bupt.cad.fedraft.rpc.message.VoteRequest.Builder.class);
-        }
-
-        private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
-            }
         }
 
         @java.lang.Override
@@ -731,7 +632,7 @@ public final class VoteRequest extends
                 }
                 onChanged();
             }
-            this.mergeUnknownFields(other.unknownFields);
+            this.mergeUnknownFields(other.getUnknownFields());
             onChanged();
             return this;
         }
@@ -746,17 +647,77 @@ public final class VoteRequest extends
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException {
-            org.bupt.cad.fedraft.rpc.message.VoteRequest parsedMessage = null;
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
             try {
-                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 8: {
+                            term_ = input.readUInt32();
+
+                            break;
+                        } // case 8
+                        case 16: {
+                            candidateId_ = input.readUInt64();
+
+                            break;
+                        } // case 16
+                        case 24: {
+                            modelIndex_ = input.readUInt32();
+
+                            break;
+                        } // case 24
+                        case 40: {
+                            long v = input.readUInt64();
+                            ensureNodeIdsIsMutable();
+                            nodeIds_.addLong(v);
+                            break;
+                        } // case 40
+                        case 42: {
+                            int length = input.readRawVarint32();
+                            int limit = input.pushLimit(length);
+                            ensureNodeIdsIsMutable();
+                            while (input.getBytesUntilLimit() > 0) {
+                                nodeIds_.addLong(input.readUInt64());
+                            }
+                            input.popLimit(limit);
+                            break;
+                        } // case 42
+                        case 48: {
+                            int v = input.readUInt32();
+                            ensureNetworkDelaysIsMutable();
+                            networkDelays_.addInt(v);
+                            break;
+                        } // case 48
+                        case 50: {
+                            int length = input.readRawVarint32();
+                            int limit = input.pushLimit(length);
+                            ensureNetworkDelaysIsMutable();
+                            while (input.getBytesUntilLimit() > 0) {
+                                networkDelays_.addInt(input.readUInt32());
+                            }
+                            input.popLimit(limit);
+                            break;
+                        } // case 50
+                        default: {
+                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                                done = true; // was an endgroup tag
+                            }
+                            break;
+                        } // default:
+                    } // switch (tag)
+                } // while (!done)
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                parsedMessage = (org.bupt.cad.fedraft.rpc.message.VoteRequest) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
-                if (parsedMessage != null) {
-                    mergeFrom(parsedMessage);
-                }
-            }
+                onChanged();
+            } // finally
             return this;
         }
 

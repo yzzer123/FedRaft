@@ -22,7 +22,18 @@ public final class VoteResponse extends
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
-            return new VoteResponse(input, extensionRegistry);
+            Builder builder = newBuilder();
+            try {
+                builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                        .setUnfinishedMessage(builder.buildPartial());
+            }
+            return builder.buildPartial();
         }
     };
 
@@ -40,56 +51,6 @@ public final class VoteResponse extends
     }
 
     private VoteResponse() {
-    }
-
-    private VoteResponse(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        this();
-        if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-        }
-        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-                com.google.protobuf.UnknownFieldSet.newBuilder();
-        try {
-            boolean done = false;
-            while (!done) {
-                int tag = input.readTag();
-                switch (tag) {
-                    case 0:
-                        done = true;
-                        break;
-                    case 8: {
-
-                        term_ = input.readUInt32();
-                        break;
-                    }
-                    case 16: {
-
-                        delay_ = input.readUInt32();
-                        break;
-                    }
-                    default: {
-                        if (!parseUnknownField(
-                                input, unknownFields, extensionRegistry, tag)) {
-                            done = true;
-                        }
-                        break;
-                    }
-                }
-            }
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw e.setUnfinishedMessage(this);
-        } catch (com.google.protobuf.UninitializedMessageException e) {
-            throw e.asInvalidProtocolBufferException().setUnfinishedMessage(this);
-        } catch (java.io.IOException e) {
-            throw new com.google.protobuf.InvalidProtocolBufferException(
-                    e).setUnfinishedMessage(this);
-        } finally {
-            this.unknownFields = unknownFields.build();
-            makeExtensionsImmutable();
-        }
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
@@ -258,7 +219,7 @@ public final class VoteResponse extends
         if (delay_ != 0) {
             output.writeUInt32(2, delay_);
         }
-        unknownFields.writeTo(output);
+        getUnknownFields().writeTo(output);
     }
 
     @java.lang.Override
@@ -275,7 +236,7 @@ public final class VoteResponse extends
             size += com.google.protobuf.CodedOutputStream
                     .computeUInt32Size(2, delay_);
         }
-        size += unknownFields.getSerializedSize();
+        size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
     }
@@ -294,7 +255,7 @@ public final class VoteResponse extends
                 != other.getTerm()) return false;
         if (getDelay()
                 != other.getDelay()) return false;
-        if (!unknownFields.equals(other.unknownFields)) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
     }
 
@@ -309,7 +270,7 @@ public final class VoteResponse extends
         hash = (53 * hash) + getTerm();
         hash = (37 * hash) + DELAY_FIELD_NUMBER;
         hash = (53 * hash) + getDelay();
-        hash = (29 * hash) + unknownFields.hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
     }
@@ -354,13 +315,13 @@ public final class VoteResponse extends
 
         // Construct using org.bupt.cad.fedraft.rpc.message.VoteResponse.newBuilder()
         private Builder() {
-            maybeForceBuilderInitialization();
+
         }
 
         private Builder(
                 com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
             super(parent);
-            maybeForceBuilderInitialization();
+
         }
 
         public static final com.google.protobuf.Descriptors.Descriptor
@@ -374,12 +335,6 @@ public final class VoteResponse extends
             return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_VoteResponse_fieldAccessorTable
                     .ensureFieldAccessorsInitialized(
                             org.bupt.cad.fedraft.rpc.message.VoteResponse.class, org.bupt.cad.fedraft.rpc.message.VoteResponse.Builder.class);
-        }
-
-        private void maybeForceBuilderInitialization() {
-            if (com.google.protobuf.GeneratedMessageV3
-                    .alwaysUseFieldBuilders) {
-            }
         }
 
         @java.lang.Override
@@ -477,7 +432,7 @@ public final class VoteResponse extends
             if (other.getDelay() != 0) {
                 setDelay(other.getDelay());
             }
-            this.mergeUnknownFields(other.unknownFields);
+            this.mergeUnknownFields(other.getUnknownFields());
             onChanged();
             return this;
         }
@@ -492,17 +447,40 @@ public final class VoteResponse extends
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws java.io.IOException {
-            org.bupt.cad.fedraft.rpc.message.VoteResponse parsedMessage = null;
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
             try {
-                parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 8: {
+                            term_ = input.readUInt32();
+
+                            break;
+                        } // case 8
+                        case 16: {
+                            delay_ = input.readUInt32();
+
+                            break;
+                        } // case 16
+                        default: {
+                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                                done = true; // was an endgroup tag
+                            }
+                            break;
+                        } // default:
+                    } // switch (tag)
+                } // while (!done)
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                parsedMessage = (org.bupt.cad.fedraft.rpc.message.VoteResponse) e.getUnfinishedMessage();
                 throw e.unwrapIOException();
             } finally {
-                if (parsedMessage != null) {
-                    mergeFrom(parsedMessage);
-                }
-            }
+                onChanged();
+            } // finally
             return this;
         }
 

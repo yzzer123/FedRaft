@@ -37,7 +37,8 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
                         .setNetworkDelay(delay)
                         .setNodeState(Runtime.getRuntime().getState())
                         .build();
-                logger.info("follower has returned a response with delay={}", delay);
+                if (logger.isDebugEnabled())
+                    logger.debug("follower has returned a response with delay={}", delay);
             }
         }
         if (response != null) {

@@ -10,12 +10,15 @@ import org.bupt.cad.fedraft.algorithm.RaftAlgorithm;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.node.Runtime;
 import org.bupt.cad.fedraft.utils.PingUtils;
+import org.bupt.cad.fedraft.utils.TimerUtils;
 import org.bupt.cad.fedraft.utils.ZkClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 
@@ -32,6 +35,11 @@ public class FedRaftServer {
         this.host = host;
         this.port = port;
         this.server = ServerBuilder.forPort(port)
+                .executor(new ThreadPoolExecutor(
+                        Configuration.getInt(Configuration.MANAGER_SERVER_MIN_THREAD_NUM),
+                        Configuration.getInt(Configuration.MANAGER_SERVER_MAX_THREAD_NUM),
+                        3, TimeUnit.SECONDS, new LinkedBlockingDeque<>()
+                ))
                 .addService(new FedRaftService(new RaftAlgorithm())).build();
     }
 
@@ -39,9 +47,9 @@ public class FedRaftServer {
      * 向zookeeper注册服务
      */
     public void initialize() {
-
         Runtime runtime = Runtime.getRuntime();
         zkClient = runtime.getZkClient();
+
     }
 
     /**
@@ -66,25 +74,26 @@ public class FedRaftServer {
         ScheduledFuture<?> scheduledPingFuture = PingUtils.startScheduledPingTask();
         // 设置定时和trainer同步
 
+        ScheduledFuture<?> syncFuture = TimerUtils.getTimer().scheduleAtFixedRate(() -> {
+            Runtime.getRuntime().getTrainerClient().syncWithTrainer();
+        }, 10, Configuration.getInt(Configuration.MANAGER_SYNC_TIME_INTERVAL), TimeUnit.MILLISECONDS);
 
-        logger.info("server began to ping other nodes ");
+        logger.info("server started ping other nodes ");
 
         // Java进程宕机
-        java.lang.Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                logger.error("trying to shutdown gRPC server because JVM shutdown");
-                try {
-                    scheduledPingFuture.cancel(true);
-
-                    FedRaftServer.this.stop();
-                    zkClient.closeConnection();
-                } catch (InterruptedException e) {
-                    e.printStackTrace(System.err);
-                }
-                logger.error("server has shutdown");
+        java.lang.Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            logger.warn("shutdown gRPC server because JVM shutdown");
+            try {
+                scheduledPingFuture.cancel(true);
+                syncFuture.cancel(true);
+                FedRaftServer.this.stop();
+                Runtime.getRuntime().getThreadPool().shutdown();
+                zkClient.closeConnection();
+            } catch (InterruptedException e) {
+                e.printStackTrace(System.err);
             }
-        });
+            logger.warn("server shutdown");
+        }));
     }
 
     /**

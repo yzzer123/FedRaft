@@ -97,14 +97,18 @@ public class ElectionExecutor {
             Runtime runtime = Runtime.getRuntime();
             for (int i = 0; i < admittedIndex; i++) {
                 if (delayPriorityQueue.get(i).getKey().equals(runtime.getSelfNodeInfo().getNodeId())) {
-                    logger.info("node itself can be a candidate!");
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("node itself can be a candidate!");
+                    }
                     voted = true;
                     addVote();  // 将票投给自己
                     return true;
                 }
             }
         }
-        logger.warn("node itself is not qualified to be a candidate!");
+        if (logger.isDebugEnabled()) {
+            logger.debug("node itself is not qualified to be a candidate!");
+        }
         return false;
     }
 

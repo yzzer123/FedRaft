@@ -2,7 +2,9 @@ package org.bupt.cad.fedraft.node;
 
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
+import org.bupt.cad.fedraft.rpc.message.NodeState;
 import org.bupt.cad.fedraft.utils.ClientPool;
+import org.bupt.cad.fedraft.utils.PingUtils;
 import org.bupt.cad.fedraft.utils.TimerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +28,9 @@ public class Leader extends Node {
     }
 
     public Leader() {
-        logger.info("{} became leader", Runtime.getRuntime().getSelfNodeInfo().getNodeId());
+        if (logger.isDebugEnabled()) {
+            logger.debug("{} became leader", Runtime.getRuntime().getSelfNodeInfo().getNodeId());
+        }
         Runtime.getRuntime().setLeader(Runtime.getRuntime().getSelfNodeInfo().getNodeId());
         maintainHeartbeat();
 
@@ -34,8 +38,10 @@ public class Leader extends Node {
 
     private void maintainHeartbeat() {
 
-        int heartbeatInterval = Configuration.getInt(Configuration.NODE_HEARTBEAT_TIME_INTERVAL);
-        logger.info("tmp leader begin maintainHeartbeat");
+        int heartbeatInterval = Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIME_INTERVAL);
+
+        if (logger.isDebugEnabled())
+            logger.debug("leader begin maintainHeartbeat");
 
         // end runnable method
         heartbeatTask = TimerUtils.getTimer().scheduleAtFixedRate(this::heartbeatOnce, 10, heartbeatInterval, TimeUnit.MILLISECONDS);
@@ -55,6 +61,7 @@ public class Leader extends Node {
             }
 
             builder = builder.setLeaderModelIndex(runtime.getModelIndex())
+                    .setLeaderState(NodeState.LEADER)
                     .setTerm(runtime.getTerm())
                     .setLeaderId(runtime.getSelfNodeInfo().getNodeId());
 
@@ -63,8 +70,9 @@ public class Leader extends Node {
         // 构造请求中的时延列表
         long selfId = runtime.getSelfNodeInfo().getNodeId();
         synchronized (Runtime.getRuntime().getTopology()) {
-
-            logger.info("send topology = {}", topology);
+            if (logger.isDebugEnabled()) {
+                logger.debug("send topology = {}", topology);
+            }
             for (Map.Entry<Long, Integer> entry : topology.entrySet()) {
                 builder.addNodeIds(entry.getKey());
                 builder.addNetworkDelays(entry.getValue());
@@ -85,11 +93,14 @@ public class Leader extends Node {
 
             // 获取通信通道并发送心跳
             clientPool.getChannel(clientId).sendHeartBeat(request, response -> {
-                int networkDelay = response.getNetworkDelay();
+                int newDelay = response.getNetworkDelay();
 
                 // 更新心跳信息
-                if (networkDelay > 0) {
-                    topology.computeIfPresent(clientId, (k, v) -> networkDelay);
+                if (newDelay > 0) {
+                    // 加权更新
+                    topology.computeIfPresent(clientId, (id, oldDelay) ->
+                            (7 * newDelay + 3 * (oldDelay == PingUtils.INVALID_DELAY ? newDelay : oldDelay)) / 10
+                    );
                 }
             });// end method call
         }

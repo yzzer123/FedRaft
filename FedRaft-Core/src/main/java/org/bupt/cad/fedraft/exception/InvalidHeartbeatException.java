@@ -1,8 +1,9 @@
 package org.bupt.cad.fedraft.exception;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class InvalidHeartbeatException extends IOException {
+public class InvalidHeartbeatException extends IOException implements Serializable {
 
     public InvalidHeartbeatException(String msg) {
         super(msg);

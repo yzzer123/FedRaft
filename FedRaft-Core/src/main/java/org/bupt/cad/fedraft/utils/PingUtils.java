@@ -32,7 +32,7 @@ public class PingUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(PingUtils.class);
     private static final Pattern delayPattern = Pattern.compile("time=([-+]?[0-9]*\\.?[0-9]+)");
-    private static final int INVALID_DELAY = 2000000;
+    public static final int INVALID_DELAY = 2000000;
 
     /**
      * 负责定时测试点到点延时 并计算出节点的平均时延
@@ -40,9 +40,8 @@ public class PingUtils {
     public static ScheduledFuture<?> startScheduledPingTask() {
 
         AtomicInteger delay = Runtime.getRuntime().getDelay();
-        int heartbeatInterval = Configuration.getInt(Configuration.NODE_HEARTBEAT_TIME_INTERVAL);
+        int heartbeatInterval = Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIME_INTERVAL);
         return TimerUtils.getTimer().scheduleAtFixedRate(() -> {
-            logger.debug("begin scheduled ping");
             int avgDelay = pingTopology();
             delay.set(avgDelay);
             Runtime runtime = Runtime.getRuntime();
@@ -50,10 +49,14 @@ public class PingUtils {
 
             // 需要将自己的时延信息放到拓扑里
             if (runtimeState == NodeState.LEADER || runtimeState == NodeState.TMP_LEADER || runtimeState == NodeState.CANDIDATE) {
+                runtime.getTopology().computeIfPresent(runtime.getSelfNodeInfo().getNodeId(), (id, oldDelay) ->
+                        (7 * avgDelay + 3 * (oldDelay == INVALID_DELAY ? avgDelay : oldDelay)) / 10
+                );
                 runtime.getTopology().put(runtime.getSelfNodeInfo().getNodeId(), avgDelay);
             }
 
-            logger.debug("set delay = {}", avgDelay);
+            if (logger.isDebugEnabled())
+                logger.debug("after ping, set delay = {}", avgDelay);
         }, heartbeatInterval, heartbeatInterval, TimeUnit.MILLISECONDS);
     }
 
@@ -115,7 +118,6 @@ public class PingUtils {
             return INVALID_DELAY;
         }
 
-        logger.debug("total delay = " + sumOfDelay.get());
         // 计算平均时延
         return sumOfDelay.get() / keyList.size();
     }
@@ -140,7 +142,8 @@ public class PingUtils {
             String line = null;
             int delay = -1;
             while ((line = in.readLine()) != null) {
-                logger.debug("get output from ping shell:\t" + line);
+                if (logger.isDebugEnabled())
+                    logger.debug("get output from ping shell:\t" + line);
                 delay = getDelayFromPing(line);
                 if (delay != -1) {
                     return delay;

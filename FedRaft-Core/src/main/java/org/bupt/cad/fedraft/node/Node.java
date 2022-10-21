@@ -18,7 +18,7 @@ public abstract class Node {
 
 
     private static final Logger logger = LoggerFactory.getLogger(Node.class);
-    private boolean isClosed = false;
+
 
     public static void triggerElection(TriggerElectionRequest request) {
 
@@ -32,7 +32,7 @@ public abstract class Node {
         // 取消倒计时任务
 
         // 激活选举流程
-        logger.info("{} trigger timeout to re-election", NodeInfo.idToIp(request.getLeaderId()));
+        logger.info("{} trigger timeout to re-election", new NodeInfo(request.getLeaderId()));
         election();
     }
 
@@ -59,7 +59,9 @@ public abstract class Node {
             for (int i = 0; i < nodeIds.size(); i++) {
                 topology.put(nodeIds.get(i), delays.get(i));
             }
-            logger.info("topology = {}", topology);
+            if (logger.isDebugEnabled()) {
+                logger.debug("topology = {}", topology);
+            }
         }
     }
 

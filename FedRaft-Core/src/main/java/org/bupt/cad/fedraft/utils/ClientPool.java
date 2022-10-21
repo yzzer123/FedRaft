@@ -17,7 +17,9 @@ public class ClientPool {
     public FedRaftClient getChannel(Long nodeId) {
         FedRaftClient client = clientChannels.get(nodeId);
         if (client == null) {
-            logger.info("created new channel with {}:{}", NodeInfo.idToIp(nodeId), NodeInfo.idToPort(nodeId));
+            if (logger.isDebugEnabled()) {
+                logger.debug("created new channel with {}", new NodeInfo(nodeId));
+            }
             client = new FedRaftClient(NodeInfo.idToIp(nodeId), NodeInfo.idToPort(nodeId));
             clientChannels.put(nodeId, client);
         }

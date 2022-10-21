@@ -14,7 +14,7 @@ public class FedRaftServerTest {
 
     @Before
     public void setUp() throws Exception {
-        server = new FedRaftServer(Configuration.getString(Configuration.MANAGER_SERVER_HOST), Configuration.getInt(Configuration.MANAGER_SERVER_PORT));
+        server = new FedRaftServer(Configuration.getString(Configuration.MANAGER_SERVER_MAX_THREAD_NUM), Configuration.getInt(Configuration.MANAGER_SERVER_PORT));
     }
 
     @Test

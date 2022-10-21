@@ -14,13 +14,17 @@ import java.util.Iterator;
 public class Configuration {
 
     public final static String MANAGER_SERVER_HOST = "manager.server.host";
+    public final static String MANAGER_SERVER_MAX_THREAD_NUM = "manager.server.max-thread-num";
+    public final static String MANAGER_SERVER_MIN_THREAD_NUM = "manager.server.min-thread-num";
     public final static String MANAGER_SERVER_PORT = "manager.server.port";
     public final static String TRAINER_SERVER_PORT = "trainer.server.port";
-    public final static String MANAGER_CANDIDATE_TIMEOUT = "manager.candidate.timeout";
+    public final static String ELECTION_CANDIDATE_TIMEOUT = "election.candidate.timeout";
+    public final static String ELECTION_CANDIDATE_QUALIFY_INDEX = "election.candidate.qualify-index";
 
 //    public final static String LOG_MODEL_CHUCK_SIZE = "log.model.chuck-size";
 
     public final static String MANAGER_TIMER_THREADPOOL_NUM = "manager.timer.threadpool-num";
+    public final static String ELECTION_TMP_LEADER_START_TIME = "election.tmp-leader.start-time";
     public final static String MANAGER_TIMER_TICK_TIME = "manager.timer.tick-time";
 
     public final static String ZOOKEEPER_HOSTS = "zookeeper.hosts";
@@ -28,12 +32,12 @@ public class Configuration {
     public final static String ZOOKEEPER_NAMESPACE = "zookeeper.namespace";
     public final static String ZOOKEEPER_RETRY_TIMES = "zookeeper.retry-times";
 
-    public final static String NODE_THREADPOOL_NUMBERS = "node.threadpool.numbers";
-    public final static String NODE_HEARTBEAT_MAX_TIME = "node.heartbeat.max.time";
-    public final static String NODE_HEARTBEAT_TIME_INTERVAL = "node.heartbeat.time-interval";
-    public final static String NODE_SYNC_TIME_INTERVAL = "node.sync.time-interval";
-    public final static String NODE_SYNC_TIMEOUT = "node.sync.timeout";
-    public final static String NODE_HEARTBEAT_TIMEOUT = "node.heartbeat.timeout";
+    public final static String MANAGER_THREADPOOL_NUMBERS = "manager.threadpool.numbers";
+    public final static String MANAGER_HEARTBEAT_MAX_TIME = "manager.heartbeat.max.time";
+    public final static String MANAGER_HEARTBEAT_TIME_INTERVAL = "manager.heartbeat.time-interval";
+    public final static String MANAGER_SYNC_TIME_INTERVAL = "manager.sync.time-interval";
+    public final static String MANAGER_SYNC_TIMEOUT = "manager.sync.timeout";
+    public final static String MANAGER_HEARTBEAT_TIMEOUT = "manager.heartbeat.timeout";
 
     private static final Logger logger = LoggerFactory.getLogger(Configuration.class);
     private static org.apache.commons.configuration2.Configuration conf = null;

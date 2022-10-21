@@ -119,7 +119,6 @@ public class ZkClient {
         this.leaderSelector.setId(nodeName);
         this.leaderFinishLatch = new CountDownLatch(1);
         this.leaderSelector.start();
-
     }
 
 
@@ -128,12 +127,14 @@ public class ZkClient {
     /**
      * 放弃leader
      */
-    public void giveUpCheckinLeader() {
+    public void giveUpCheckinLeader(boolean isForce) {
         if (this.leaderSelector == null)
             return;
-        this.leaderFinishLatch.countDown();
-        this.leaderSelector.close();
-        this.leaderSelector = null;
+        if (isForce || !this.leaderSelector.hasLeadership()) {
+            this.leaderFinishLatch.countDown();
+            this.leaderSelector.close();
+            this.leaderSelector = null;
+        }
     }
 
 
@@ -161,18 +162,21 @@ public class ZkClient {
 
                 // 添加节点
                 case CHILD_ADDED:
-                    logger.debug("cluster node added\t" + event.getData());
+                    if (logger.isDebugEnabled())
+                        logger.debug("cluster node added\t" + event.getData());
                     nodePath = event.getData().getPath();
                     watcher.addNode(new NodeInfo(nodePath.substring(REGISTERED_CLUSTER.length())));
                     break;
                 // 减少节点
                 case CHILD_REMOVED:
-                    logger.debug("cluster node removed\t" + event.getData());
+                    if (logger.isDebugEnabled())
+                        logger.debug("cluster node removed\t" + event.getData());
                     nodePath = event.getData().getPath();
                     watcher.removeNode(new NodeInfo(nodePath.substring(REGISTERED_CLUSTER.length())));
                     break;
                 case INITIALIZED:
-                    logger.debug("cluster node removed\t" + event.getData());
+                    if (logger.isDebugEnabled())
+                        logger.debug("cluster node removed\t" + event.getData());
                     List<NodeInfo> nodes = new ArrayList<>(event.getInitialData().size());
                     for (ChildData node : event.getInitialData()) {
                         nodes.add(new NodeInfo(node.getPath().substring(REGISTERED_CLUSTER.length())));
@@ -222,7 +226,7 @@ public class ZkClient {
             return;
         }
         // 如果是leader就要放弃主权
-        giveUpCheckinLeader();
+        giveUpCheckinLeader(true);
         CloseableUtils.closeQuietly(client);
         logger.info("zookeeper connection closed");
     }

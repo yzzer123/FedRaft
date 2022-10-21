@@ -6,7 +6,7 @@ public class ConfigurationTest {
 
     @Test
     public void testGetConf() {
-        int anInt = Configuration.getInt(Configuration.NODE_HEARTBEAT_TIMEOUT);
+        int anInt = Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIMEOUT);
 
         System.out.println(anInt);
     }

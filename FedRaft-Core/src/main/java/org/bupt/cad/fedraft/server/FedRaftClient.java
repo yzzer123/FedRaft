@@ -55,19 +55,23 @@ public class FedRaftClient {
     //向client发送心跳信息 并处理返回值
     public void sendHeartBeat(HeartbeatRequest request, HeartbeatResponseHandler responseHandler) {
 
-        logger.info("send heartbeat to {} {}", host, port);
+        if (logger.isDebugEnabled())
+            logger.debug("send heartbeat to {} {}", host, port);
 
         getAsyncStub().heartbeat(request, new StreamObserver<>() {
             @Override
             public void onNext(HeartbeatResponse heartbeatResponse) {
-                logger.info("received heartbeat response from {} {}", host, port);
+                if (logger.isDebugEnabled())
+                    logger.debug("received heartbeat response from {} {}", host, port);
                 responseHandler.handleResponse(heartbeatResponse);
-                logger.info("updated topology = {}", Runtime.getRuntime().getTopology());
+                if (logger.isDebugEnabled())
+                    logger.debug("updated topology = {}", Runtime.getRuntime().getTopology());
             }
 
             @Override
             public void onError(Throwable throwable) {
-                logger.warn("heartbeat invalid: " + throwable.getMessage());
+                if (logger.isDebugEnabled())
+                    logger.debug("heartbeat invalid: " + throwable.getMessage(), throwable);
             }
 
             @Override
@@ -116,12 +120,14 @@ public class FedRaftClient {
             public void onNext(SyncWithTrainerResponse response) {
                 // 更新本地模型索引
                 Runtime.getRuntime().setModelIndex(response.getCurrentModelIndex());
-                logger.info("updated local model index = {}", response.getCurrentModelIndex());
+                if (logger.isDebugEnabled())
+                    logger.debug("sync succeed and updated local model index = {}", response.getCurrentModelIndex());
             }
 
             @Override
             public void onError(Throwable t) {
-                logger.warn("sync with trainer failed");
+                if (logger.isDebugEnabled())
+                    logger.debug("sync with trainer failed: {}", t.getMessage(), t);
             }
 
             @Override

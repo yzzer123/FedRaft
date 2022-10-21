@@ -51,7 +51,7 @@ public class ExecutorServiceTest {
     @Test
     public static void main(String[] args) {
         ScheduledExecutorService scheduledExecutorService
-                = Executors.newScheduledThreadPool(Configuration.getInt(Configuration.NODE_THREADPOOL_NUMBERS));
+                = Executors.newScheduledThreadPool(Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS));
         for (int i = 0; i < 3; i++) {
             ScheduledFuture<?> scheduledFuture =
                     scheduledExecutorService.scheduleAtFixedRate(()->{

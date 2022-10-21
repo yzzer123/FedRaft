@@ -11,9 +11,7 @@ import org.bupt.cad.fedraft.utils.ZkClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -56,11 +54,12 @@ public class Runtime {
 
         trainerClient = new FedRaftClient(Configuration.getString(Configuration.MANAGER_SERVER_HOST),
                 Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
-        threadPool = Executors.newFixedThreadPool(Configuration.getInt(Configuration.NODE_THREADPOOL_NUMBERS));
+        threadPool = new ThreadPoolExecutor(Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS),
+                2 * Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS), 3, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
         delay = new AtomicInteger(-1);
 
-        nodeMode = new SafeMode();
         state = NodeState.SAFE_MODE;
+        nodeMode = new SafeMode();
     }
 
     public static Runtime getRuntime() {
