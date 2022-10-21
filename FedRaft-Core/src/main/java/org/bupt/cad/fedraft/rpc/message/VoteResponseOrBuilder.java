@@ -4,24 +4,22 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public interface VoteResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.VoteResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.VoteResponse)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>uint32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    int getTerm();
+  /**
+   * <code>uint32 term = 1;</code>
+   * @return The term.
+   */
+  int getTerm();
 
-    /**
-     * <pre>
-     * 回复自己的时延
-     * </pre>
-     *
-     * <code>uint32 delay = 2;</code>
-     *
-     * @return The delay.
-     */
-    int getDelay();
+  /**
+   * <pre>
+   * 回复自己的时延
+   * </pre>
+   *
+   * <code>uint32 delay = 2;</code>
+   * @return The delay.
+   */
+  int getDelay();
 }

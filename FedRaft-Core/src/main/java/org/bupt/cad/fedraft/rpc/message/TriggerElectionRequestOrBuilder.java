@@ -4,27 +4,24 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public interface TriggerElectionRequestOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.TriggerElectionRequest)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.TriggerElectionRequest)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>uint32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    int getTerm();
+  /**
+   * <code>uint32 term = 1;</code>
+   * @return The term.
+   */
+  int getTerm();
 
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     *
-     * @return The leaderId.
-     */
-    long getLeaderId();
+  /**
+   * <code>uint64 leader_id = 2;</code>
+   * @return The leaderId.
+   */
+  long getLeaderId();
 
-    /**
-     * <code>uint32 leader_model_index = 5;</code>
-     *
-     * @return The leaderModelIndex.
-     */
-    int getLeaderModelIndex();
+  /**
+   * <code>uint32 leader_model_index = 5;</code>
+   * @return The leaderModelIndex.
+   */
+  int getLeaderModelIndex();
 }

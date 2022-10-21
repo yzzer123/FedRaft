@@ -5,6 +5,7 @@ import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
+import org.bupt.cad.fedraft.utils.PingUtils;
 import org.bupt.cad.fedraft.utils.TimerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,8 @@ public class SafeMode extends Node {
     private static final Logger logger = LoggerFactory.getLogger(SafeMode.class);
 
     private ScheduledFuture<?> timeoutTask;
+
+    private boolean hasReceivedHeartbeat = false;
 
     public SafeMode() {
         // 随机倒计时启动，给集群一定时间注册节点
@@ -98,10 +101,6 @@ public class SafeMode extends Node {
         // 获取运行时状态
         Runtime runtime = Runtime.getRuntime();
 
-        if (request.getTimestamp() < getTimestamp()) {
-            return -1;
-        }
-
         // Safemode收到的心跳信息可能来自 tmp_leader 和 leader,
         if (request.getTerm() > runtime.getTerm()) {
             // 跟随该leader 将任期提升
@@ -112,7 +111,6 @@ public class SafeMode extends Node {
             // 任期比自己小就为错误
             return -1;
         }
-
         // 更新自己的时延拓扑
         updateTopology(request.getNodeIdsList(), request.getNetworkDelaysList(), request.getTimestamp());
 
@@ -123,6 +121,12 @@ public class SafeMode extends Node {
         } else {
             resetTimeoutTask();
             checkTopologyDelay();
+        }
+
+        // 第一次回复心跳需要根据拓扑ping一下，否则第一次回复了无效的时延信息
+        if (!hasReceivedHeartbeat){
+            hasReceivedHeartbeat = true;
+            PingUtils.pingTopology();
         }
 
         return Runtime.getRuntime().getDelay().get();

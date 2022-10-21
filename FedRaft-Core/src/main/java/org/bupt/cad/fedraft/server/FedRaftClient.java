@@ -72,28 +72,30 @@ public class FedRaftClient {
                     @Override
                     public void onNext(HeartbeatResponse heartbeatResponse) {
                         if (logger.isDebugEnabled())
-                            logger.debug("received heartbeat response from {}", clientInfo);
+                            logger.debug("received heartbeat response from {} with delay={}", clientInfo, heartbeatResponse.getNetworkDelay());
                         responseHandler.handleResponse(heartbeatResponse);
                         if (logger.isDebugEnabled())
                             logger.debug("updated topology = {}", Runtime.getRuntime().getTopology());
                     }
 
                     @Override
-            public void onError(Throwable throwable) {
+                    public void onError(Throwable throwable) {
                         if (logger.isDebugEnabled())
                             logger.debug("heartbeat failed: " + throwable.getMessage());
-                        synchronized (Runtime.getRuntime().getTopology()) {
-                            Runtime.getRuntime().getTopology().computeIfPresent(clientInfo.getNodeId(), (k, oldDelay) -> {
+
+                        Runtime.getRuntime().getTopology().computeIfPresent(clientInfo.getNodeId(), (k, oldDelay) -> {
+                            if (oldDelay.getRight() < request.getTimestamp()) {
                                 oldDelay.setTuple(PingUtils.INVALID_DELAY, System.currentTimeMillis());
-                                return oldDelay;
-                            });
-                        }
+                            }
+                            return oldDelay;
+                        });
+
                     }
 
-            @Override
-            public void onCompleted() {
-            }
-        });
+                    @Override
+                    public void onCompleted() {
+                    }
+                });
     }
 
     public void triggerElection(TriggerElectionRequest request) {
@@ -144,11 +146,23 @@ public class FedRaftClient {
 //                    logger.debug("sync with trainer failed: {}", t.getMessage());
                     }
 
-            @Override
-            public void onCompleted() {
+                    @Override
+                    public void onCompleted() {
 
-            }
-        });
+                    }
+                });
+    }
+
+    // 用于时延测试
+    public int pingHost(){
+        try {
+            long beginTime = System.nanoTime();
+            getBlockingStub().withDeadline(Deadline.after(1, TimeUnit.SECONDS))
+                .pingTest(PingMessage.getDefaultInstance());
+            return (int)(System.nanoTime() - beginTime)/1000;
+        }catch (Exception e) {
+            return PingUtils.INVALID_DELAY;
+        }
     }
 
     public interface HeartbeatResponseHandler {

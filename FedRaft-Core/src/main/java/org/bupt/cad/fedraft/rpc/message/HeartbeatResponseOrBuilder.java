@@ -4,34 +4,29 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public interface HeartbeatResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.HeartbeatResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.HeartbeatResponse)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>uint32 network_delay = 1;</code>
-     *
-     * @return The networkDelay.
-     */
-    int getNetworkDelay();
+  /**
+   * <code>uint32 network_delay = 1;</code>
+   * @return The networkDelay.
+   */
+  int getNetworkDelay();
 
-    /**
-     * <code>uint64 timestamp = 2;</code>
-     *
-     * @return The timestamp.
-     */
-    long getTimestamp();
+  /**
+   * <code>uint64 timestamp = 2;</code>
+   * @return The timestamp.
+   */
+  long getTimestamp();
 
-    /**
-     * <code>.fedraft.NodeState node_state = 3;</code>
-     *
-     * @return The enum numeric value on the wire for nodeState.
-     */
-    int getNodeStateValue();
-
-    /**
-     * <code>.fedraft.NodeState node_state = 3;</code>
-     *
-     * @return The nodeState.
-     */
-    org.bupt.cad.fedraft.rpc.message.NodeState getNodeState();
+  /**
+   * <code>.fedraft.NodeState node_state = 3;</code>
+   * @return The enum numeric value on the wire for nodeState.
+   */
+  int getNodeStateValue();
+  /**
+   * <code>.fedraft.NodeState node_state = 3;</code>
+   * @return The nodeState.
+   */
+  org.bupt.cad.fedraft.rpc.message.NodeState getNodeState();
 }

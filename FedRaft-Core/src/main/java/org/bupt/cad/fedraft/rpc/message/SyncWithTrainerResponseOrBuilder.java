@@ -4,20 +4,18 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public interface SyncWithTrainerResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.SyncWithTrainerResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.SyncWithTrainerResponse)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>uint32 current_model_index = 1;</code>
-     *
-     * @return The currentModelIndex.
-     */
-    int getCurrentModelIndex();
+  /**
+   * <code>uint32 current_model_index = 1;</code>
+   * @return The currentModelIndex.
+   */
+  int getCurrentModelIndex();
 
-    /**
-     * <code>uint64 timestamp = 2;</code>
-     *
-     * @return The timestamp.
-     */
-    long getTimestamp();
+  /**
+   * <code>uint64 timestamp = 2;</code>
+   * @return The timestamp.
+   */
+  long getTimestamp();
 }

@@ -145,10 +145,13 @@ public class TmpLeader extends Node {
                     if (newDelay > 0) {
                         // 加权更新
                         topology.computeIfPresent(clientId, (id, oldDelay) -> {
-                            if (response.getTimestamp() > oldDelay.getRight() && oldDelay.getLeft() != PingUtils.INVALID_DELAY) {
+                            if (response.getTimestamp() < oldDelay.getRight() || oldDelay.getLeft() == PingUtils.INVALID_DELAY || oldDelay.getLeft() == -1) {
+                                oldDelay.setLeft(newDelay);
+                            }else{
                                 // 对时延进行平滑处理 避免摆动过大
                                 oldDelay.setLeft((7 * newDelay + 3 * oldDelay.getLeft()) / 10);
                             }
+                            oldDelay.setRight(response.getTimestamp());
                             return oldDelay;
                         });
                         // 统计存活follower数量
@@ -184,7 +187,7 @@ public class TmpLeader extends Node {
                     .setLeaderModelIndex(runtime.getModelIndex())
                     .build();
             // 变换状态为follower
-//            runtime.setState(NodeState.FOLLOWER);
+            runtime.setState(NodeState.FOLLOWER);
         }
 
         // 触发follower选举
@@ -218,9 +221,7 @@ public class TmpLeader extends Node {
      */
     @Override
     public int receiveHeartbeat(HeartbeatRequest request) {
-        if (request.getTimestamp() < getTimestamp()) {
-            return -1;
-        }
+
         Runtime runtime = Runtime.getRuntime();
         // 判断任期是否比自己大
         // tmp leader 可能收到来自 leader的心跳信息,

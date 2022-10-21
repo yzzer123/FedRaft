@@ -66,5 +66,11 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
         responseObserver.onCompleted();
     }
 
+    // 时延测试
 
+    @Override
+    public void pingTest(PingMessage request, StreamObserver<PingMessage> responseObserver) {
+        responseObserver.onNext(PingMessage.getDefaultInstance());
+        responseObserver.onCompleted();
+    }
 }

@@ -69,9 +69,6 @@ public class Follower extends Node {
         // 获取运行时状态
         Runtime runtime = Runtime.getRuntime();
 
-        if (request.getTimestamp() < getTimestamp()) {
-            return -1;
-        }
 
         // 在选举期间收到tmp leader心跳 直接忽略
         if (electionExecutor != null && request.getLeaderState() == NodeState.TMP_LEADER) {

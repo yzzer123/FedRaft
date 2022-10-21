@@ -4,6 +4,6 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public interface PingMessageOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.PingMessage)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.PingMessage)
+    com.google.protobuf.MessageOrBuilder {
 }

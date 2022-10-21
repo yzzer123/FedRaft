@@ -100,10 +100,13 @@ public class Leader extends Node {
                     if (newDelay > 0) {
                         // 加权更新
                         topology.computeIfPresent(clientId, (id, oldDelay) -> {
-                            if (response.getTimestamp() > oldDelay.getRight() && oldDelay.getLeft() != PingUtils.INVALID_DELAY) {
+                            if (response.getTimestamp() < oldDelay.getRight() || oldDelay.getLeft() == PingUtils.INVALID_DELAY || oldDelay.getLeft() == -1) {
+                                oldDelay.setLeft(newDelay);
+                            }else{
                                 // 对时延进行平滑处理 避免摆动过大
                                 oldDelay.setLeft((7 * newDelay + 3 * oldDelay.getLeft()) / 10);
                             }
+                            oldDelay.setRight(response.getTimestamp());
                             return oldDelay;
                         });
                     }

@@ -40,32 +40,77 @@ public class PingUtils {
      */
     public static ScheduledFuture<?> startScheduledPingTask() {
 
-        AtomicInteger delay = Runtime.getRuntime().getDelay();
         int heartbeatInterval = Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIME_INTERVAL);
-        return TimerUtils.getTimer().scheduleAtFixedRate(() -> {
-            int avgDelay = pingTopology();
-            delay.set(avgDelay);
-            Runtime runtime = Runtime.getRuntime();
-            NodeState runtimeState = runtime.getState();
-
-            // leader tmp leader candidate 需要将自己的时延信息放到拓扑里
-            switch (runtimeState) {
-                case LEADER:
-                case TMP_LEADER:
-                case CANDIDATE:
-                    runtime.getTopology().computeIfPresent(runtime.getSelfNodeInfo().getNodeId(), (id, oldDelay) -> {
-                        oldDelay.setTuple((7 * avgDelay + 3 * (oldDelay.getLeft() == INVALID_DELAY ? avgDelay : oldDelay.getLeft())) / 10, System.currentTimeMillis());
-                        return oldDelay;
-                    });
-            }
-        }, 0, heartbeatInterval / 2, TimeUnit.MILLISECONDS);
+        return TimerUtils.getTimer().scheduleAtFixedRate(
+                PingUtils::pingTopology
+                , 0, heartbeatInterval / 3 * 2, TimeUnit.MILLISECONDS);
     }
 
+    public static void pingTopology(){
+        int avgDelay = pingTopologyByRPC();
+        Runtime.getRuntime().getDelay().set(avgDelay);
+        Runtime runtime = Runtime.getRuntime();
+        NodeState runtimeState = runtime.getState();
+
+        // leader tmp leader candidate 需要将自己的时延信息放到拓扑里
+        switch (runtimeState) {
+            case LEADER:
+            case TMP_LEADER:
+            case CANDIDATE:
+                runtime.getTopology().computeIfPresent(runtime.getSelfNodeInfo().getNodeId(), (id, oldDelay) -> {
+                    oldDelay.setTuple((7 * avgDelay + 3 * (oldDelay.getLeft() == INVALID_DELAY ? avgDelay : oldDelay.getLeft())) / 10, System.currentTimeMillis());
+                    return oldDelay;
+                });
+        }
+    }
+
+    private static int pingTopologyByRPC(){
+        Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
+        ExecutorService threadPool = Runtime.getRuntime().getThreadPool();
+        long selfId = Runtime.getRuntime().getSelfNodeInfo().getNodeId();
+        AtomicInteger sumOfDelay = new AtomicInteger(0);
+        ClientPool clientPool = Runtime.getRuntime().getClientPool();
+        final CountDownLatch countDownLatch;
+        int size;
+
+        // 需要对拓扑加锁
+        synchronized (Runtime.getRuntime().getTopology()) {
+            // 内存中没有拓扑，就将时延设置为-1
+            if (topology.size() < 1) {
+                return INVALID_DELAY;
+            }
+            size = topology.size() - 1;
+            countDownLatch = new CountDownLatch(size);
+
+            for (Long clientId : topology.keySet()) {
+                if (clientId == selfId){
+                    continue;
+                }
+                threadPool.submit(()->{
+                    // 对于未知的ip或者ping不通的都加上一个惩罚时延
+                    int delay = clientPool.getChannel(clientId).pingHost();
+                    sumOfDelay.addAndGet(delay);
+                    countDownLatch.countDown();
+                });
+            }
+
+        }
+
+        // 等待线程都结束
+        try {
+            countDownLatch.await();
+        } catch (Exception e) {
+            return INVALID_DELAY;
+        }
+
+        // 计算平均时延
+        return sumOfDelay.get() / size;
+    }
 
     /**
      * 测试平均时延
      */
-    public static int pingTopology() {
+    private static int pingTopologyByCmd() {
         Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
         ExecutorService threadPool = Runtime.getRuntime().getThreadPool();
         List<Long> keyList;

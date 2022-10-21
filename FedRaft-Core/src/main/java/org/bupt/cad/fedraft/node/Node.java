@@ -22,14 +22,6 @@ public abstract class Node {
 
     private long heartbeatTimestamp = System.currentTimeMillis();
 
-    protected long getTimestamp() {
-        return heartbeatTimestamp;
-    }
-
-    public void setTimestamp(long heartbeatTimestamp) {
-        this.heartbeatTimestamp = heartbeatTimestamp;
-
-    }
 
     public static void triggerElection(TriggerElectionRequest request) {
 
@@ -64,7 +56,12 @@ public abstract class Node {
 
         // 更新自己的时延拓扑
         Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
-        setTimestamp(heartbeatTimestamp);
+
+        if (heartbeatTimestamp > this.heartbeatTimestamp){
+            this.heartbeatTimestamp = heartbeatTimestamp;
+        }else {
+            return;
+        }
 
 
         // 批量插入只能一个线程执行 ConcurrentHashMap只能保证单个操作原子
@@ -74,7 +71,11 @@ public abstract class Node {
             for (int i = 0; i < nodeIds.size(); i++) {
                 int delay = delays.get(i);
                 topology.compute(nodeIds.get(i), (k, oldPair) -> {
-                    oldPair.setTuple(delay, heartbeatTimestamp);
+                    if (oldPair == null){
+                        oldPair = new Tuple<>(delay, heartbeatTimestamp);
+                    }else{
+                        oldPair.setTuple(delay, heartbeatTimestamp);
+                    }
                     return oldPair;
                 });
             }
