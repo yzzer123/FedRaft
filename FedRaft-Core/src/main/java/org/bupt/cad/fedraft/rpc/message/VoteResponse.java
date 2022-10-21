@@ -129,23 +129,7 @@ private static final long serialVersionUID = 0L;
     memoizedSize = size;
     return size;
   }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.VoteResponse)) {
-      return super.equals(obj);
-    }
-    org.bupt.cad.fedraft.rpc.message.VoteResponse other = (org.bupt.cad.fedraft.rpc.message.VoteResponse) obj;
-
-    if (getTerm()
-        != other.getTerm()) return false;
-    if (getDelay()
-        != other.getDelay()) return false;
-      return getUnknownFields().equals(other.getUnknownFields());
-  }
+  private int delay_;
 
   @java.lang.Override
   public int hashCode() {
@@ -162,58 +146,44 @@ private static final long serialVersionUID = 0L;
     memoizedHashCode = hash;
     return hash;
   }
-  private int delay_;
-  private byte memoizedIsInitialized = -1;
-
-  public static com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_VoteResponse_descriptor;
-  }
 
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -221,16 +191,11 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -238,13 +203,60 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
+  public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  private byte memoizedIsInitialized = -1;
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.VoteResponse prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_VoteResponse_descriptor;
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.VoteResponse getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<VoteResponse> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public boolean equals(final java.lang.Object obj) {
+    if (obj == this) {
+     return true;
+    }
+    if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.VoteResponse)) {
+      return super.equals(obj);
+    }
+    org.bupt.cad.fedraft.rpc.message.VoteResponse other = (org.bupt.cad.fedraft.rpc.message.VoteResponse) obj;
+
+    if (getTerm()
+        != other.getTerm()) return false;
+    if (getDelay()
+        != other.getDelay()) return false;
+    return getUnknownFields().equals(other.getUnknownFields());
+  }
+
+  @java.lang.Override
+  public Builder newBuilderForType() { return newBuilder(); }
+
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -256,30 +268,6 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteResponse parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.VoteResponse prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.VoteResponse getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<VoteResponse> parser() {
-    return PARSER;
   }
 
   @java.lang.Override

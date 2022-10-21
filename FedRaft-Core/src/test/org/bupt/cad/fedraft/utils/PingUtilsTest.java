@@ -1,6 +1,8 @@
 package org.bupt.cad.fedraft.utils;
 
 
+import org.bupt.cad.fedraft.beans.NodeInfo;
+import org.bupt.cad.fedraft.server.FedRaftClient;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +36,17 @@ public class PingUtilsTest {
     @Test
     public void ping() throws IOException, InterruptedException {
 
+        FedRaftClient client = new FedRaftClient(new NodeInfo("10.112.195.22", 16999, 16999));
+
+        for (int i = 0; i < 10; i++) {
+            logger.info("ping = {}",client.pingHost());
+        }
+
+        logger.info("=======================");
+        for (int i = 0; i < 10; i++) {
+            logger.info("ping = {}", PingUtils.ping("www.baidu.com"));
+        }
+
 //        new Timer().schedule(new TimerTask() {
 //            @Override
 //            public void run() {
@@ -46,11 +59,6 @@ public class PingUtilsTest {
 //        }, 0, 100);
 
 
-        while (true) {
-
-            logger.info("delay=\t" + PingUtils.ping("114.114.114.114"));
-            Thread.sleep(100);
-        }
 
 //        // 定时ping
 //        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();

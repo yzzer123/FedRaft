@@ -24,6 +24,5 @@ service FedRaftService{
   // 请求投票
   rpc RequestVote(VoteRequest) returns(VoteResponse){};
 
-  // ping 功能
-  rpc PingTest(PingMessage) returns(PingMessage){};
+
 }

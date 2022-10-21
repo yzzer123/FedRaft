@@ -154,16 +154,7 @@ public class FedRaftClient {
     }
 
     // 用于时延测试
-    public int pingHost(){
-        try {
-            long beginTime = System.nanoTime();
-            getBlockingStub().withDeadline(Deadline.after(1, TimeUnit.SECONDS))
-                .pingTest(PingMessage.getDefaultInstance());
-            return (int)(System.nanoTime() - beginTime)/1000;
-        }catch (Exception e) {
-            return PingUtils.INVALID_DELAY;
-        }
-    }
+
 
     public interface HeartbeatResponseHandler {
         void handleResponse(HeartbeatResponse response);

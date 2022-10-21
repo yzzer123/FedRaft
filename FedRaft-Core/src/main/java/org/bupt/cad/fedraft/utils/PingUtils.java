@@ -62,48 +62,7 @@ public class PingUtils {
         }
     }
 
-    private static int pingTopologyByRPC(){
-        Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
-        ExecutorService threadPool = Runtime.getRuntime().getThreadPool();
-        long selfId = Runtime.getRuntime().getSelfNodeInfo().getNodeId();
-        AtomicInteger sumOfDelay = new AtomicInteger(0);
-        ClientPool clientPool = Runtime.getRuntime().getClientPool();
-        final CountDownLatch countDownLatch;
-        int size;
 
-        // 需要对拓扑加锁
-        synchronized (Runtime.getRuntime().getTopology()) {
-            // 内存中没有拓扑，就将时延设置为-1
-            if (topology.size() < 1) {
-                return INVALID_DELAY;
-            }
-            size = topology.size() - 1;
-            countDownLatch = new CountDownLatch(size);
-
-            for (Long clientId : topology.keySet()) {
-                if (clientId == selfId){
-                    continue;
-                }
-                threadPool.submit(()->{
-                    // 对于未知的ip或者ping不通的都加上一个惩罚时延
-                    int delay = clientPool.getChannel(clientId).pingHost();
-                    sumOfDelay.addAndGet(delay);
-                    countDownLatch.countDown();
-                });
-            }
-
-        }
-
-        // 等待线程都结束
-        try {
-            countDownLatch.await();
-        } catch (Exception e) {
-            return INVALID_DELAY;
-        }
-
-        // 计算平均时延
-        return sumOfDelay.get() / size;
-    }
 
     private static int pingTopologyByCMD(){
         Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
@@ -177,7 +136,6 @@ public class PingUtils {
             String line = null;
             int delay = -1;
             while ((line = in.readLine()) != null) {
-
                 delay = getDelayFromPing(line);
                 if (delay != -1) {
                     return delay;

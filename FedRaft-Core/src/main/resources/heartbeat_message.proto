@@ -43,6 +43,3 @@ message SyncWithTrainerResponse{
   uint32 current_model_index = 1;
   uint64 timestamp = 2;
 }
-
-message PingMessage{
-}

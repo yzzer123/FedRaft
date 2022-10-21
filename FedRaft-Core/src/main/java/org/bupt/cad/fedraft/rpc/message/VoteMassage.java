@@ -4,31 +4,31 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public final class VoteMassage {
-  static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_fedraft_TriggerElectionRequest_fieldAccessorTable;
-  static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_fedraft_TriggerElectionResponse_fieldAccessorTable;
-  static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_fedraft_VoteRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_fedraft_TriggerElectionRequest_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_fedraft_VoteResponse_fieldAccessorTable;
+      internal_static_fedraft_TriggerElectionRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_fedraft_TriggerElectionResponse_descriptor;
-  private VoteMassage() {}
+  static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_fedraft_TriggerElectionResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_fedraft_VoteRequest_descriptor;
+  static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_fedraft_VoteRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_fedraft_VoteResponse_descriptor;
+  static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_fedraft_VoteResponse_fieldAccessorTable;
+  private VoteMassage() {}
 
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_VoteResponse_descriptor;
 
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {

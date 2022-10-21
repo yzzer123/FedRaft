@@ -133,23 +133,7 @@ private static final long serialVersionUID = 0L;
     memoizedSize = size;
     return size;
   }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.LogResponse)) {
-      return super.equals(obj);
-    }
-    org.bupt.cad.fedraft.rpc.message.LogResponse other = (org.bupt.cad.fedraft.rpc.message.LogResponse) obj;
-
-    if (getLocalIndex()
-        != other.getLocalIndex()) return false;
-    if (getLogSize()
-        != other.getLogSize()) return false;
-      return getUnknownFields().equals(other.getUnknownFields());
-  }
+  private long logSize_;
 
   @java.lang.Override
   public int hashCode() {
@@ -167,58 +151,44 @@ private static final long serialVersionUID = 0L;
     memoizedHashCode = hash;
     return hash;
   }
-  private long logSize_;
-  private byte memoizedIsInitialized = -1;
-
-  public static com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_descriptor;
-  }
 
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -226,13 +196,11 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -240,20 +208,28 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  private byte memoizedIsInitialized = -1;
+
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_descriptor;
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
   }
   @java.lang.Override
   public Builder toBuilder() {
@@ -268,10 +244,6 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
 
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
   public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.LogResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
@@ -282,6 +254,23 @@ private static final long serialVersionUID = 0L;
 
   public static com.google.protobuf.Parser<LogResponse> parser() {
     return PARSER;
+  }
+
+  @java.lang.Override
+  public boolean equals(final java.lang.Object obj) {
+    if (obj == this) {
+     return true;
+    }
+    if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.LogResponse)) {
+      return super.equals(obj);
+    }
+    org.bupt.cad.fedraft.rpc.message.LogResponse other = (org.bupt.cad.fedraft.rpc.message.LogResponse) obj;
+
+    if (getLocalIndex()
+        != other.getLocalIndex()) return false;
+    if (getLogSize()
+        != other.getLogSize()) return false;
+    return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override

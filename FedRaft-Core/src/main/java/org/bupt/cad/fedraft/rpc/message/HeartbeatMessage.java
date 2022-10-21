@@ -4,49 +4,27 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public final class HeartbeatMessage {
-  static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_fedraft_HeartbeatResponse_fieldAccessorTable;
-  static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_fedraft_HeartbeatRequest_fieldAccessorTable;
-  static final
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_fedraft_HeartbeatResponse_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable;
+      internal_static_fedraft_HeartbeatResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_fedraft_HeartbeatRequest_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_fedraft_PingMessage_fieldAccessorTable;
+      internal_static_fedraft_HeartbeatRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_fedraft_SyncWithTrainerRequest_descriptor;
-  private HeartbeatMessage() {}
+  static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_fedraft_SyncWithTrainerResponse_descriptor;
+  static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable;
 
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_PingMessage_descriptor;
-
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
   static {
     java.lang.String[] descriptorData = {
       "\n\027heartbeat_message.proto\022\007fedraft\"e\n\021He" +
@@ -63,10 +41,10 @@ public final class HeartbeatMessage {
       "tate\030\005 \001(\0162\022.fedraft.NodeState\022\020\n\010node_i" +
       "ds\030\006 \003(\004\"I\n\027SyncWithTrainerResponse\022\033\n\023c" +
       "urrent_model_index\030\001 \001(\r\022\021\n\ttimestamp\030\002 " +
-      "\001(\004\"\r\n\013PingMessage*S\n\tNodeState\022\r\n\tSAFE_" +
-      "MODE\020\000\022\016\n\nTMP_LEADER\020\001\022\n\n\006LEADER\020\002\022\r\n\tCA" +
-      "NDIDATE\020\003\022\014\n\010FOLLOWER\020\004B$\n org.bupt.cad." +
-      "fedraft.rpc.messageP\001b\006proto3"
+      "\001(\004*S\n\tNodeState\022\r\n\tSAFE_MODE\020\000\022\016\n\nTMP_L" +
+      "EADER\020\001\022\n\n\006LEADER\020\002\022\r\n\tCANDIDATE\020\003\022\014\n\010FO" +
+      "LLOWER\020\004B$\n org.bupt.cad.fedraft.rpc.mes" +
+      "sageP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -96,12 +74,24 @@ public final class HeartbeatMessage {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_fedraft_SyncWithTrainerResponse_descriptor,
         new java.lang.String[] { "CurrentModelIndex", "Timestamp", });
-    internal_static_fedraft_PingMessage_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_fedraft_PingMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_fedraft_PingMessage_descriptor,
-        new java.lang.String[] { });
+  }
+  private HeartbeatMessage() {}
+
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistryLite registry) {
+  }
+
+  public static com.google.protobuf.Descriptors.FileDescriptor
+      getDescriptor() {
+    return descriptor;
+  }
+  private static final com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
+
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
 
   // @@protoc_insertion_point(outer_class_scope)

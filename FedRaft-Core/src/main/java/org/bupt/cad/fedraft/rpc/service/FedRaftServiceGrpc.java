@@ -161,7 +161,7 @@ public final class FedRaftServiceGrpc {
     }
     return getTriggerElectionMethod;
   }
-  private static final int METHODID_PING_TEST = 5;
+  private static final int METHODID_APPEND_STREAM_LOG = 5;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "RequestVote",
@@ -189,35 +189,6 @@ public final class FedRaftServiceGrpc {
       }
     }
     return getRequestVoteMethod;
-  }
-  private static final int METHODID_APPEND_STREAM_LOG = 6;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "PingTest",
-      requestType = org.bupt.cad.fedraft.rpc.message.PingMessage.class,
-      responseType = org.bupt.cad.fedraft.rpc.message.PingMessage.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.PingMessage,
-      org.bupt.cad.fedraft.rpc.message.PingMessage> getPingTestMethod() {
-    io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.PingMessage, org.bupt.cad.fedraft.rpc.message.PingMessage> getPingTestMethod;
-    if ((getPingTestMethod = FedRaftServiceGrpc.getPingTestMethod) == null) {
-      synchronized (FedRaftServiceGrpc.class) {
-        if ((getPingTestMethod = FedRaftServiceGrpc.getPingTestMethod) == null) {
-          FedRaftServiceGrpc.getPingTestMethod = getPingTestMethod =
-              io.grpc.MethodDescriptor.<org.bupt.cad.fedraft.rpc.message.PingMessage, org.bupt.cad.fedraft.rpc.message.PingMessage>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "PingTest"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.bupt.cad.fedraft.rpc.message.PingMessage.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  org.bupt.cad.fedraft.rpc.message.PingMessage.getDefaultInstance()))
-              .setSchemaDescriptor(new FedRaftServiceMethodDescriptorSupplier("PingTest"))
-              .build();
-        }
-      }
-    }
-    return getPingTestMethod;
   }
 
   /**
@@ -322,16 +293,6 @@ public final class FedRaftServiceGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getRequestVoteMethod(), responseObserver);
     }
 
-    /**
-     * <pre>
-     * ping 功能
-     * </pre>
-     */
-    public void pingTest(org.bupt.cad.fedraft.rpc.message.PingMessage request,
-        io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.PingMessage> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getPingTestMethod(), responseObserver);
-    }
-
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -376,13 +337,6 @@ public final class FedRaftServiceGrpc {
                 org.bupt.cad.fedraft.rpc.message.VoteRequest,
                 org.bupt.cad.fedraft.rpc.message.VoteResponse>(
                   this, METHODID_REQUEST_VOTE)))
-          .addMethod(
-            getPingTestMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                org.bupt.cad.fedraft.rpc.message.PingMessage,
-                org.bupt.cad.fedraft.rpc.message.PingMessage>(
-                  this, METHODID_PING_TEST)))
           .build();
     }
   }
@@ -460,17 +414,6 @@ public final class FedRaftServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getRequestVoteMethod(), getCallOptions()), request, responseObserver);
     }
-
-    /**
-     * <pre>
-     * ping 功能
-     * </pre>
-     */
-    public void pingTest(org.bupt.cad.fedraft.rpc.message.PingMessage request,
-        io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.PingMessage> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getPingTestMethod(), getCallOptions()), request, responseObserver);
-    }
   }
 
   /**
@@ -530,15 +473,108 @@ public final class FedRaftServiceGrpc {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getRequestVoteMethod(), getCallOptions(), request);
     }
+  }
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
+      org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.HeartbeatRequest,
+      org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> getHeartbeatMethod;
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest,
+      org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> getSyncWithTrainerMethod;
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
+      org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod;
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.VoteRequest,
+      org.bupt.cad.fedraft.rpc.message.VoteResponse> getRequestVoteMethod;
+  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
+  private FedRaftServiceGrpc() {}
 
-    /**
-     * <pre>
-     * ping 功能
-     * </pre>
-     */
-    public org.bupt.cad.fedraft.rpc.message.PingMessage pingTest(org.bupt.cad.fedraft.rpc.message.PingMessage request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getPingTestMethod(), getCallOptions(), request);
+  private static final class MethodHandlers<Req, Resp> implements
+      io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
+      io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
+      io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
+      io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
+    private final FedRaftServiceImplBase serviceImpl;
+    private final int methodId;
+
+    MethodHandlers(FedRaftServiceImplBase serviceImpl, int methodId) {
+      this.serviceImpl = serviceImpl;
+      this.methodId = methodId;
+    }
+
+    @java.lang.Override
+    @java.lang.SuppressWarnings("unchecked")
+    public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
+      switch (methodId) {
+        case METHODID_APPEND_LOG:
+          serviceImpl.appendLog((org.bupt.cad.fedraft.rpc.message.LogRequest) request,
+              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse>) responseObserver);
+          break;
+        case METHODID_HEARTBEAT:
+          serviceImpl.heartbeat((org.bupt.cad.fedraft.rpc.message.HeartbeatRequest) request,
+              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.HeartbeatResponse>) responseObserver);
+          break;
+        case METHODID_SYNC_WITH_TRAINER:
+          serviceImpl.syncWithTrainer((org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest) request,
+              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse>) responseObserver);
+          break;
+        case METHODID_TRIGGER_ELECTION:
+          serviceImpl.triggerElection((org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest) request,
+              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse>) responseObserver);
+          break;
+        case METHODID_REQUEST_VOTE:
+          serviceImpl.requestVote((org.bupt.cad.fedraft.rpc.message.VoteRequest) request,
+              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.VoteResponse>) responseObserver);
+          break;
+        default:
+          throw new AssertionError();
+      }
+    }
+
+    @java.lang.Override
+    @java.lang.SuppressWarnings("unchecked")
+    public io.grpc.stub.StreamObserver<Req> invoke(
+        io.grpc.stub.StreamObserver<Resp> responseObserver) {
+      switch (methodId) {
+        case METHODID_APPEND_STREAM_LOG:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.appendStreamLog(
+              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse>) responseObserver);
+        default:
+          throw new AssertionError();
+      }
+    }
+  }
+
+  private static abstract class FedRaftServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+    FedRaftServiceBaseDescriptorSupplier() {}
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
+      return org.bupt.cad.fedraft.rpc.service.FedraftService.getDescriptor();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
+      return getFileDescriptor().findServiceByName("FedRaftService");
+    }
+  }
+
+  private static final class FedRaftServiceFileDescriptorSupplier
+      extends FedRaftServiceBaseDescriptorSupplier {
+    FedRaftServiceFileDescriptorSupplier() {}
+  }
+
+  private static final class FedRaftServiceMethodDescriptorSupplier
+      extends FedRaftServiceBaseDescriptorSupplier
+      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+    private final String methodName;
+
+    FedRaftServiceMethodDescriptorSupplier(String methodName) {
+      this.methodName = methodName;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
+      return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 
@@ -604,128 +640,7 @@ public final class FedRaftServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getRequestVoteMethod(), getCallOptions()), request);
     }
-
-    /**
-     * <pre>
-     * ping 功能
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<org.bupt.cad.fedraft.rpc.message.PingMessage> pingTest(
-        org.bupt.cad.fedraft.rpc.message.PingMessage request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getPingTestMethod(), getCallOptions()), request);
-    }
   }
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
-      org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.HeartbeatRequest,
-      org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> getHeartbeatMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest,
-      org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> getSyncWithTrainerMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
-      org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.VoteRequest,
-      org.bupt.cad.fedraft.rpc.message.VoteResponse> getRequestVoteMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.PingMessage,
-      org.bupt.cad.fedraft.rpc.message.PingMessage> getPingTestMethod;
-  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
-
-  private static final class MethodHandlers<Req, Resp> implements
-      io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
-      io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
-      io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
-      io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final FedRaftServiceImplBase serviceImpl;
-    private final int methodId;
-
-    MethodHandlers(FedRaftServiceImplBase serviceImpl, int methodId) {
-      this.serviceImpl = serviceImpl;
-      this.methodId = methodId;
-    }
-
-    @java.lang.Override
-    @java.lang.SuppressWarnings("unchecked")
-    public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
-      switch (methodId) {
-        case METHODID_APPEND_LOG:
-          serviceImpl.appendLog((org.bupt.cad.fedraft.rpc.message.LogRequest) request,
-              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse>) responseObserver);
-          break;
-        case METHODID_HEARTBEAT:
-          serviceImpl.heartbeat((org.bupt.cad.fedraft.rpc.message.HeartbeatRequest) request,
-              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.HeartbeatResponse>) responseObserver);
-          break;
-        case METHODID_SYNC_WITH_TRAINER:
-          serviceImpl.syncWithTrainer((org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest) request,
-              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse>) responseObserver);
-          break;
-        case METHODID_TRIGGER_ELECTION:
-          serviceImpl.triggerElection((org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest) request,
-              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse>) responseObserver);
-          break;
-        case METHODID_REQUEST_VOTE:
-          serviceImpl.requestVote((org.bupt.cad.fedraft.rpc.message.VoteRequest) request,
-              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.VoteResponse>) responseObserver);
-          break;
-        case METHODID_PING_TEST:
-          serviceImpl.pingTest((org.bupt.cad.fedraft.rpc.message.PingMessage) request,
-              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.PingMessage>) responseObserver);
-          break;
-        default:
-          throw new AssertionError();
-      }
-    }
-
-    @java.lang.Override
-    @java.lang.SuppressWarnings("unchecked")
-    public io.grpc.stub.StreamObserver<Req> invoke(
-        io.grpc.stub.StreamObserver<Resp> responseObserver) {
-      switch (methodId) {
-        case METHODID_APPEND_STREAM_LOG:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.appendStreamLog(
-              (io.grpc.stub.StreamObserver<org.bupt.cad.fedraft.rpc.message.LogResponse>) responseObserver);
-        default:
-          throw new AssertionError();
-      }
-    }
-  }
-
-  private static abstract class FedRaftServiceBaseDescriptorSupplier
-      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
-    FedRaftServiceBaseDescriptorSupplier() {}
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return org.bupt.cad.fedraft.rpc.service.FedraftService.getDescriptor();
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
-      return getFileDescriptor().findServiceByName("FedRaftService");
-    }
-  }
-
-  private static final class FedRaftServiceFileDescriptorSupplier
-      extends FedRaftServiceBaseDescriptorSupplier {
-    FedRaftServiceFileDescriptorSupplier() {}
-  }
-
-  private static final class FedRaftServiceMethodDescriptorSupplier
-      extends FedRaftServiceBaseDescriptorSupplier
-      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
-    private final String methodName;
-
-    FedRaftServiceMethodDescriptorSupplier(String methodName) {
-      this.methodName = methodName;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
-      return getServiceDescriptor().findMethodByName(methodName);
-    }
-  }
-
-  private FedRaftServiceGrpc() {}
 
   public static io.grpc.ServiceDescriptor getServiceDescriptor() {
     io.grpc.ServiceDescriptor result = serviceDescriptor;
@@ -741,7 +656,6 @@ public final class FedRaftServiceGrpc {
               .addMethod(getSyncWithTrainerMethod())
               .addMethod(getTriggerElectionMethod())
               .addMethod(getRequestVoteMethod())
-              .addMethod(getPingTestMethod())
               .build();
         }
       }

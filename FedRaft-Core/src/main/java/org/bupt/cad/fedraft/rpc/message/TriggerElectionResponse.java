@@ -18,8 +18,28 @@ private static final long serialVersionUID = 0L;
   private TriggerElectionResponse() {
   }
 
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new TriggerElectionResponse();
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
   // @@protoc_insertion_point(class_scope:fedraft.TriggerElectionResponse)
   private static final org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse DEFAULT_INSTANCE;
+
+  @java.lang.Override
+  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_TriggerElectionResponse_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(
+            org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.class, org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.Builder.class);
+  }
   private static final com.google.protobuf.Parser<TriggerElectionResponse>
       PARSER = new com.google.protobuf.AbstractParser<TriggerElectionResponse>() {
     @java.lang.Override
@@ -41,10 +61,6 @@ private static final long serialVersionUID = 0L;
       return builder.buildPartial();
     }
   };
-  public static com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_TriggerElectionResponse_descriptor;
-  }
 
   static {
     DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse();
@@ -52,33 +68,17 @@ private static final long serialVersionUID = 0L;
 
   private byte memoizedIsInitialized = -1;
 
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_TriggerElectionResponse_descriptor;
+  }
+
   public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
   public static com.google.protobuf.Parser<TriggerElectionResponse> parser() {
     return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-      UnusedPrivateParameter unused) {
-    return new TriggerElectionResponse();
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internalGetFieldAccessorTable() {
-    return org.bupt.cad.fedraft.rpc.message.VoteMassage.internal_static_fedraft_TriggerElectionResponse_fieldAccessorTable
-        .ensureFieldAccessorsInitialized(
-            org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.class, org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.Builder.class);
   }
 
   public static org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse parseFrom(
@@ -206,7 +206,7 @@ private static final long serialVersionUID = 0L;
     }
     org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse other = (org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse) obj;
 
-      return getUnknownFields().equals(other.getUnknownFields());
+    return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override
@@ -363,14 +363,14 @@ private static final long serialVersionUID = 0L;
         boolean done = false;
         while (!done) {
           int tag = input.readTag();
-            // default:
-            if (tag == 0) {
-                done = true;
-            } else {
-                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                    done = true; // was an endgroup tag
-                }
-            } // switch (tag)
+          // default:
+          if (tag == 0) {
+            done = true;
+          } else {
+            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+              done = true; // was an endgroup tag
+            }
+          } // switch (tag)
         } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
         throw e.unwrapIOException();

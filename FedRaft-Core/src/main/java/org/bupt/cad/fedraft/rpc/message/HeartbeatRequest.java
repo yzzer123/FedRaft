@@ -300,32 +300,7 @@ private static final long serialVersionUID = 0L;
     memoizedSize = size;
     return size;
   }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.HeartbeatRequest)) {
-      return super.equals(obj);
-    }
-    org.bupt.cad.fedraft.rpc.message.HeartbeatRequest other = (org.bupt.cad.fedraft.rpc.message.HeartbeatRequest) obj;
-
-    if (getTerm()
-        != other.getTerm()) return false;
-    if (getLeaderId()
-        != other.getLeaderId()) return false;
-    if (leaderState_ != other.leaderState_) return false;
-    if (getLeaderModelIndex()
-        != other.getLeaderModelIndex()) return false;
-    if (getTimestamp()
-        != other.getTimestamp()) return false;
-    if (!getNodeIdsList()
-        .equals(other.getNodeIdsList())) return false;
-    if (!getNetworkDelaysList()
-        .equals(other.getNetworkDelaysList())) return false;
-      return getUnknownFields().equals(other.getUnknownFields());
-  }
+  private int networkDelaysMemoizedSerializedSize = -1;
 
   @java.lang.Override
   public int hashCode() {
@@ -358,58 +333,44 @@ private static final long serialVersionUID = 0L;
     memoizedHashCode = hash;
     return hash;
   }
-  private int networkDelaysMemoizedSerializedSize = -1;
-  private byte memoizedIsInitialized = -1;
-
-  public static com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_HeartbeatRequest_descriptor;
-  }
 
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -417,16 +378,11 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -434,13 +390,69 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
+  public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  private byte memoizedIsInitialized = -1;
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_HeartbeatRequest_descriptor;
+  }
+
+  public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  public static com.google.protobuf.Parser<HeartbeatRequest> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public boolean equals(final java.lang.Object obj) {
+    if (obj == this) {
+     return true;
+    }
+    if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.HeartbeatRequest)) {
+      return super.equals(obj);
+    }
+    org.bupt.cad.fedraft.rpc.message.HeartbeatRequest other = (org.bupt.cad.fedraft.rpc.message.HeartbeatRequest) obj;
+
+    if (getTerm()
+        != other.getTerm()) return false;
+    if (getLeaderId()
+        != other.getLeaderId()) return false;
+    if (leaderState_ != other.leaderState_) return false;
+    if (getLeaderModelIndex()
+        != other.getLeaderModelIndex()) return false;
+    if (getTimestamp()
+        != other.getTimestamp()) return false;
+    if (!getNodeIdsList()
+        .equals(other.getNodeIdsList())) return false;
+    if (!getNetworkDelaysList()
+        .equals(other.getNetworkDelaysList())) return false;
+    return getUnknownFields().equals(other.getUnknownFields());
+  }
+
+  @java.lang.Override
+  public Builder newBuilderForType() { return newBuilder(); }
+
   @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
@@ -452,30 +464,6 @@ private static final long serialVersionUID = 0L;
       com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
-      com.google.protobuf.CodedInputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
-  public static com.google.protobuf.Parser<HeartbeatRequest> parser() {
-    return PARSER;
   }
 
   @java.lang.Override
@@ -763,31 +751,15 @@ private static final long serialVersionUID = 0L;
     private int leaderModelIndex_ ;
     private long timestamp_ ;
     private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
-    }
     private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
     // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatRequest.newBuilder()
     private Builder() {
 
     }
-
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
 
-    }
-    /**
-     * <code>.fedraft.NodeState leader_state = 3;</code>
-     * @return The enum numeric value on the wire for leaderState.
-     */
-    @java.lang.Override public int getLeaderStateValue() {
-      return leaderState_;
     }
 
     /**
@@ -801,16 +773,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-    /**
-     * <code>.fedraft.NodeState leader_state = 3;</code>
-     * @return The leaderState.
-     */
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.NodeState getLeaderState() {
-      @SuppressWarnings("deprecation")
-      org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(leaderState_);
-      return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
-    }
 
     /**
      * <code>uint32 term = 1;</code>
@@ -821,6 +783,15 @@ private static final long serialVersionUID = 0L;
       term_ = 0;
       onChanged();
       return this;
+    }
+
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+      return leaderId_;
     }
 
     /**
@@ -845,17 +816,13 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 leader_model_index = 4;</code>
-     * @return The leaderModelIndex.
+     * <code>.fedraft.NodeState leader_state = 3;</code>
+     * @return The enum numeric value on the wire for leaderState.
      */
-    @java.lang.Override
-    public int getLeaderModelIndex() {
-      return leaderModelIndex_;
+    @java.lang.Override public int getLeaderStateValue() {
+      return leaderState_;
     }
 
     /**
@@ -868,6 +835,17 @@ private static final long serialVersionUID = 0L;
       leaderState_ = value;
       onChanged();
       return this;
+    }
+
+    /**
+     * <code>.fedraft.NodeState leader_state = 3;</code>
+     * @return The leaderState.
+     */
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.NodeState getLeaderState() {
+      @SuppressWarnings("deprecation")
+      org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(leaderState_);
+      return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
     }
 
     /**
@@ -895,13 +873,18 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
-     * <code>uint64 timestamp = 5;</code>
-     * @return The timestamp.
+     * <pre>
+     * 之前发送模型的任期
+     * </pre>
+     *
+     * <code>uint32 leader_model_index = 4;</code>
+     * @return The leaderModelIndex.
      */
     @java.lang.Override
-    public long getTimestamp() {
-      return timestamp_;
+    public int getLeaderModelIndex() {
+      return leaderModelIndex_;
     }
 
     /**
@@ -933,6 +916,15 @@ private static final long serialVersionUID = 0L;
       leaderModelIndex_ = 0;
       onChanged();
       return this;
+    }
+
+    /**
+     * <code>uint64 timestamp = 5;</code>
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+      return timestamp_;
     }
 
     /**
