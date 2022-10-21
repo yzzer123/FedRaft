@@ -47,21 +47,28 @@ public interface HeartbeatRequestOrBuilder extends
     int getLeaderModelIndex();
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>uint64 timestamp = 5;</code>
+     *
+     * @return The timestamp.
+     */
+    long getTimestamp();
+
+    /**
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return A list containing the nodeIds.
      */
     java.util.List<java.lang.Long> getNodeIdsList();
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return The count of nodeIds.
      */
     int getNodeIdsCount();
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.
@@ -73,7 +80,7 @@ public interface HeartbeatRequestOrBuilder extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 6;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @return A list containing the networkDelays.
      */
@@ -84,7 +91,7 @@ public interface HeartbeatRequestOrBuilder extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 6;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @return The count of networkDelays.
      */
@@ -95,7 +102,7 @@ public interface HeartbeatRequestOrBuilder extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 6;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @param index The index of the element to return.
      * @return The networkDelays at the given index.

@@ -20,7 +20,7 @@ public class ClientPool {
             if (logger.isDebugEnabled()) {
                 logger.debug("created new channel with {}", new NodeInfo(nodeId));
             }
-            client = new FedRaftClient(NodeInfo.idToIp(nodeId), NodeInfo.idToPort(nodeId));
+            client = new FedRaftClient(new NodeInfo(nodeId));
             clientChannels.put(nodeId, client);
         }
         return client;

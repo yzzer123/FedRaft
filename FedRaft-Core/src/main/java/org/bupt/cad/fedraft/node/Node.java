@@ -1,6 +1,7 @@
 package org.bupt.cad.fedraft.node;
 
 import org.bupt.cad.fedraft.beans.NodeInfo;
+import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
 import org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest;
@@ -19,6 +20,16 @@ public abstract class Node {
 
     private static final Logger logger = LoggerFactory.getLogger(Node.class);
 
+    private long heartbeatTimestamp = System.currentTimeMillis();
+
+    protected long getTimestamp() {
+        return heartbeatTimestamp;
+    }
+
+    public void setTimestamp(long heartbeatTimestamp) {
+        this.heartbeatTimestamp = heartbeatTimestamp;
+
+    }
 
     public static void triggerElection(TriggerElectionRequest request) {
 
@@ -49,18 +60,26 @@ public abstract class Node {
      */
     public abstract int receiveHeartbeat(HeartbeatRequest request);
 
-    public void updateTopology(List<Long> nodeIds, List<Integer> delays) {
+    public void updateTopology(List<Long> nodeIds, List<Integer> delays, long heartbeatTimestamp) {
+
         // 更新自己的时延拓扑
-        Map<Long, Integer> topology = Runtime.getRuntime().getTopology();
+        Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
+        setTimestamp(heartbeatTimestamp);
+
 
         // 批量插入只能一个线程执行 ConcurrentHashMap只能保证单个操作原子
+
+        // 对于集群变更，只能增加不能减少
         synchronized (Runtime.getRuntime().getTopology()) {
-            topology.clear();
             for (int i = 0; i < nodeIds.size(); i++) {
-                topology.put(nodeIds.get(i), delays.get(i));
+                int delay = delays.get(i);
+                topology.compute(nodeIds.get(i), (k, oldPair) -> {
+                    oldPair.setTuple(delay, heartbeatTimestamp);
+                    return oldPair;
+                });
             }
             if (logger.isDebugEnabled()) {
-                logger.debug("topology = {}", topology);
+                logger.debug("updated local topology = {}", topology);
             }
         }
     }

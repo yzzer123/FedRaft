@@ -15,14 +15,21 @@ public interface HeartbeatResponseOrBuilder extends
     int getNetworkDelay();
 
     /**
-     * <code>.fedraft.NodeState node_state = 2;</code>
+     * <code>uint64 timestamp = 2;</code>
+     *
+     * @return The timestamp.
+     */
+    long getTimestamp();
+
+    /**
+     * <code>.fedraft.NodeState node_state = 3;</code>
      *
      * @return The enum numeric value on the wire for nodeState.
      */
     int getNodeStateValue();
 
     /**
-     * <code>.fedraft.NodeState node_state = 2;</code>
+     * <code>.fedraft.NodeState node_state = 3;</code>
      *
      * @return The nodeState.
      */

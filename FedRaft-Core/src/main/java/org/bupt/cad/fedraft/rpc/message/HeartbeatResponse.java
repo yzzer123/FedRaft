@@ -11,7 +11,8 @@ public final class HeartbeatResponse extends
         // @@protoc_insertion_point(message_implements:fedraft.HeartbeatResponse)
         HeartbeatResponseOrBuilder {
     public static final int NETWORK_DELAY_FIELD_NUMBER = 1;
-    public static final int NODE_STATE_FIELD_NUMBER = 2;
+    public static final int TIMESTAMP_FIELD_NUMBER = 2;
+    public static final int NODE_STATE_FIELD_NUMBER = 3;
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.HeartbeatResponse)
     private static final org.bupt.cad.fedraft.rpc.message.HeartbeatResponse DEFAULT_INSTANCE;
@@ -42,6 +43,7 @@ public final class HeartbeatResponse extends
     }
 
     private int networkDelay_;
+    private long timestamp_;
     private int nodeState_;
     private byte memoizedIsInitialized = -1;
 
@@ -188,7 +190,17 @@ public final class HeartbeatResponse extends
     }
 
     /**
-     * <code>.fedraft.NodeState node_state = 2;</code>
+     * <code>uint64 timestamp = 2;</code>
+     *
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+        return timestamp_;
+    }
+
+    /**
+     * <code>.fedraft.NodeState node_state = 3;</code>
      *
      * @return The enum numeric value on the wire for nodeState.
      */
@@ -198,7 +210,7 @@ public final class HeartbeatResponse extends
     }
 
     /**
-     * <code>.fedraft.NodeState node_state = 2;</code>
+     * <code>.fedraft.NodeState node_state = 3;</code>
      *
      * @return The nodeState.
      */
@@ -225,8 +237,11 @@ public final class HeartbeatResponse extends
         if (networkDelay_ != 0) {
             output.writeUInt32(1, networkDelay_);
         }
+        if (timestamp_ != 0L) {
+            output.writeUInt64(2, timestamp_);
+        }
         if (nodeState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
-            output.writeEnum(2, nodeState_);
+            output.writeEnum(3, nodeState_);
         }
         getUnknownFields().writeTo(output);
     }
@@ -241,9 +256,13 @@ public final class HeartbeatResponse extends
             size += com.google.protobuf.CodedOutputStream
                     .computeUInt32Size(1, networkDelay_);
         }
+        if (timestamp_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt64Size(2, timestamp_);
+        }
         if (nodeState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
             size += com.google.protobuf.CodedOutputStream
-                    .computeEnumSize(2, nodeState_);
+                    .computeEnumSize(3, nodeState_);
         }
         size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
@@ -262,6 +281,8 @@ public final class HeartbeatResponse extends
 
         if (getNetworkDelay()
                 != other.getNetworkDelay()) return false;
+        if (getTimestamp()
+                != other.getTimestamp()) return false;
         if (nodeState_ != other.nodeState_) return false;
         if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
@@ -276,6 +297,9 @@ public final class HeartbeatResponse extends
         hash = (19 * hash) + getDescriptor().hashCode();
         hash = (37 * hash) + NETWORK_DELAY_FIELD_NUMBER;
         hash = (53 * hash) + getNetworkDelay();
+        hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                getTimestamp());
         hash = (37 * hash) + NODE_STATE_FIELD_NUMBER;
         hash = (53 * hash) + nodeState_;
         hash = (29 * hash) + getUnknownFields().hashCode();
@@ -319,6 +343,7 @@ public final class HeartbeatResponse extends
             // @@protoc_insertion_point(builder_implements:fedraft.HeartbeatResponse)
             org.bupt.cad.fedraft.rpc.message.HeartbeatResponseOrBuilder {
         private int networkDelay_;
+        private long timestamp_;
         private int nodeState_ = 0;
 
         // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.newBuilder()
@@ -350,6 +375,8 @@ public final class HeartbeatResponse extends
             super.clear();
             networkDelay_ = 0;
 
+            timestamp_ = 0L;
+
             nodeState_ = 0;
 
             return this;
@@ -379,6 +406,7 @@ public final class HeartbeatResponse extends
         public org.bupt.cad.fedraft.rpc.message.HeartbeatResponse buildPartial() {
             org.bupt.cad.fedraft.rpc.message.HeartbeatResponse result = new org.bupt.cad.fedraft.rpc.message.HeartbeatResponse(this);
             result.networkDelay_ = networkDelay_;
+            result.timestamp_ = timestamp_;
             result.nodeState_ = nodeState_;
             onBuilt();
             return result;
@@ -437,6 +465,9 @@ public final class HeartbeatResponse extends
             if (other.getNetworkDelay() != 0) {
                 setNetworkDelay(other.getNetworkDelay());
             }
+            if (other.getTimestamp() != 0L) {
+                setTimestamp(other.getTimestamp());
+            }
             if (other.nodeState_ != 0) {
                 setNodeStateValue(other.getNodeStateValue());
             }
@@ -472,10 +503,15 @@ public final class HeartbeatResponse extends
                             break;
                         } // case 8
                         case 16: {
-                            nodeState_ = input.readEnum();
+                            timestamp_ = input.readUInt64();
 
                             break;
                         } // case 16
+                        case 24: {
+                            nodeState_ = input.readEnum();
+
+                            break;
+                        } // case 24
                         default: {
                             if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                                 done = true; // was an endgroup tag
@@ -528,7 +564,42 @@ public final class HeartbeatResponse extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 2;</code>
+         * <code>uint64 timestamp = 2;</code>
+         *
+         * @return The timestamp.
+         */
+        @java.lang.Override
+        public long getTimestamp() {
+            return timestamp_;
+        }
+
+        /**
+         * <code>uint64 timestamp = 2;</code>
+         *
+         * @param value The timestamp to set.
+         * @return This builder for chaining.
+         */
+        public Builder setTimestamp(long value) {
+
+            timestamp_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>uint64 timestamp = 2;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearTimestamp() {
+
+            timestamp_ = 0L;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>.fedraft.NodeState node_state = 3;</code>
          *
          * @return The enum numeric value on the wire for nodeState.
          */
@@ -538,7 +609,7 @@ public final class HeartbeatResponse extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 2;</code>
+         * <code>.fedraft.NodeState node_state = 3;</code>
          *
          * @param value The enum numeric value on the wire for nodeState to set.
          * @return This builder for chaining.
@@ -551,7 +622,7 @@ public final class HeartbeatResponse extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 2;</code>
+         * <code>.fedraft.NodeState node_state = 3;</code>
          *
          * @return The nodeState.
          */
@@ -563,7 +634,7 @@ public final class HeartbeatResponse extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 2;</code>
+         * <code>.fedraft.NodeState node_state = 3;</code>
          *
          * @param value The nodeState to set.
          * @return This builder for chaining.
@@ -579,7 +650,7 @@ public final class HeartbeatResponse extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 2;</code>
+         * <code>.fedraft.NodeState node_state = 3;</code>
          *
          * @return This builder for chaining.
          */

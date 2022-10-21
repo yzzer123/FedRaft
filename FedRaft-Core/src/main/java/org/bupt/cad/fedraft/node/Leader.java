@@ -1,5 +1,6 @@
 package org.bupt.cad.fedraft.node;
 
+import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
@@ -18,7 +19,7 @@ public class Leader extends Node {
 
     private static final Logger logger = LoggerFactory.getLogger(Leader.class);
 
-    private final Map<Long, Integer> topology = Runtime.getRuntime().getTopology();
+    private final Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
     private final ClientPool clientPool = Runtime.getRuntime().getClientPool();
     private ScheduledFuture<?> heartbeatTask;
 
@@ -65,19 +66,19 @@ public class Leader extends Node {
                     .setTerm(runtime.getTerm())
                     .setLeaderId(runtime.getSelfNodeInfo().getNodeId());
 
+            // 构造请求中的时延列表
+            synchronized (Runtime.getRuntime().getTopology()) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("send topology = {}", topology);
+                }
+                for (Map.Entry<Long, Tuple<Integer, Long>> entry : topology.entrySet()) {
+                    builder.addNodeIds(entry.getKey());
+                    builder.addNetworkDelays(entry.getValue().getLeft());
+                }
+            }
         }
-
-        // 构造请求中的时延列表
         long selfId = runtime.getSelfNodeInfo().getNodeId();
-        synchronized (Runtime.getRuntime().getTopology()) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("send topology = {}", topology);
-            }
-            for (Map.Entry<Long, Integer> entry : topology.entrySet()) {
-                builder.addNodeIds(entry.getKey());
-                builder.addNetworkDelays(entry.getValue());
-            }
-        }
+        builder.setTimestamp(System.currentTimeMillis());
 
         HeartbeatRequest request = builder.build();
 
@@ -91,18 +92,24 @@ public class Leader extends Node {
                 continue;
             }
 
-            // 获取通信通道并发送心跳
-            clientPool.getChannel(clientId).sendHeartBeat(request, response -> {
-                int newDelay = response.getNetworkDelay();
+            Runtime.getRuntime().getThreadPool().submit(() -> {
+                // 获取通信通道并发送心跳
+                clientPool.getChannel(clientId).sendHeartBeat(request, response -> {
+                    int newDelay = response.getNetworkDelay();
+                    // 更新心跳信息
+                    if (newDelay > 0) {
+                        // 加权更新
+                        topology.computeIfPresent(clientId, (id, oldDelay) -> {
+                            if (response.getTimestamp() > oldDelay.getRight() && oldDelay.getLeft() != PingUtils.INVALID_DELAY) {
+                                // 对时延进行平滑处理 避免摆动过大
+                                oldDelay.setLeft((7 * newDelay + 3 * oldDelay.getLeft()) / 10);
+                            }
+                            return oldDelay;
+                        });
+                    }
+                });// end method call
+            });
 
-                // 更新心跳信息
-                if (newDelay > 0) {
-                    // 加权更新
-                    topology.computeIfPresent(clientId, (id, oldDelay) ->
-                            (7 * newDelay + 3 * (oldDelay == PingUtils.INVALID_DELAY ? newDelay : oldDelay)) / 10
-                    );
-                }
-            });// end method call
         }
     }
 

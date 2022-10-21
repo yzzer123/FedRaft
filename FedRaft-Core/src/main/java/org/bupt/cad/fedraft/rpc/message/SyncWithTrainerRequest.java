@@ -13,8 +13,9 @@ public final class SyncWithTrainerRequest extends
     public static final int TERM_FIELD_NUMBER = 1;
     public static final int LEADER_ID_FIELD_NUMBER = 2;
     public static final int CURRENT_MODEL_INDEX_FIELD_NUMBER = 3;
-    public static final int NODE_STATE_FIELD_NUMBER = 4;
-    public static final int NODE_IDS_FIELD_NUMBER = 5;
+    public static final int TIMESTAMP_FIELD_NUMBER = 4;
+    public static final int NODE_STATE_FIELD_NUMBER = 5;
+    public static final int NODE_IDS_FIELD_NUMBER = 6;
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.SyncWithTrainerRequest)
     private static final org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest DEFAULT_INSTANCE;
@@ -47,6 +48,7 @@ public final class SyncWithTrainerRequest extends
     private int term_;
     private long leaderId_;
     private int currentModelIndex_;
+    private long timestamp_;
     private int nodeState_;
     private com.google.protobuf.Internal.LongList nodeIds_;
     private int nodeIdsMemoizedSerializedSize = -1;
@@ -220,7 +222,17 @@ public final class SyncWithTrainerRequest extends
     }
 
     /**
-     * <code>.fedraft.NodeState node_state = 4;</code>
+     * <code>uint64 timestamp = 4;</code>
+     *
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+        return timestamp_;
+    }
+
+    /**
+     * <code>.fedraft.NodeState node_state = 5;</code>
      *
      * @return The enum numeric value on the wire for nodeState.
      */
@@ -230,7 +242,7 @@ public final class SyncWithTrainerRequest extends
     }
 
     /**
-     * <code>.fedraft.NodeState node_state = 4;</code>
+     * <code>.fedraft.NodeState node_state = 5;</code>
      *
      * @return The nodeState.
      */
@@ -242,7 +254,7 @@ public final class SyncWithTrainerRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return A list containing the nodeIds.
      */
@@ -253,7 +265,7 @@ public final class SyncWithTrainerRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return The count of nodeIds.
      */
@@ -262,7 +274,7 @@ public final class SyncWithTrainerRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.
@@ -294,11 +306,14 @@ public final class SyncWithTrainerRequest extends
         if (currentModelIndex_ != 0) {
             output.writeUInt32(3, currentModelIndex_);
         }
+        if (timestamp_ != 0L) {
+            output.writeUInt64(4, timestamp_);
+        }
         if (nodeState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
-            output.writeEnum(4, nodeState_);
+            output.writeEnum(5, nodeState_);
         }
         if (getNodeIdsList().size() > 0) {
-            output.writeUInt32NoTag(42);
+            output.writeUInt32NoTag(50);
             output.writeUInt32NoTag(nodeIdsMemoizedSerializedSize);
         }
         for (int i = 0; i < nodeIds_.size(); i++) {
@@ -325,9 +340,13 @@ public final class SyncWithTrainerRequest extends
             size += com.google.protobuf.CodedOutputStream
                     .computeUInt32Size(3, currentModelIndex_);
         }
+        if (timestamp_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt64Size(4, timestamp_);
+        }
         if (nodeState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
             size += com.google.protobuf.CodedOutputStream
-                    .computeEnumSize(4, nodeState_);
+                    .computeEnumSize(5, nodeState_);
         }
         {
             int dataSize = 0;
@@ -364,6 +383,8 @@ public final class SyncWithTrainerRequest extends
                 != other.getLeaderId()) return false;
         if (getCurrentModelIndex()
                 != other.getCurrentModelIndex()) return false;
+        if (getTimestamp()
+                != other.getTimestamp()) return false;
         if (nodeState_ != other.nodeState_) return false;
         if (!getNodeIdsList()
                 .equals(other.getNodeIdsList())) return false;
@@ -385,6 +406,9 @@ public final class SyncWithTrainerRequest extends
                 getLeaderId());
         hash = (37 * hash) + CURRENT_MODEL_INDEX_FIELD_NUMBER;
         hash = (53 * hash) + getCurrentModelIndex();
+        hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                getTimestamp());
         hash = (37 * hash) + NODE_STATE_FIELD_NUMBER;
         hash = (53 * hash) + nodeState_;
         if (getNodeIdsCount() > 0) {
@@ -435,6 +459,7 @@ public final class SyncWithTrainerRequest extends
         private int term_;
         private long leaderId_;
         private int currentModelIndex_;
+        private long timestamp_;
         private int nodeState_ = 0;
         private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
 
@@ -471,6 +496,8 @@ public final class SyncWithTrainerRequest extends
 
             currentModelIndex_ = 0;
 
+            timestamp_ = 0L;
+
             nodeState_ = 0;
 
             nodeIds_ = emptyLongList();
@@ -505,6 +532,7 @@ public final class SyncWithTrainerRequest extends
             result.term_ = term_;
             result.leaderId_ = leaderId_;
             result.currentModelIndex_ = currentModelIndex_;
+            result.timestamp_ = timestamp_;
             result.nodeState_ = nodeState_;
             if (((bitField0_ & 0x00000001) != 0)) {
                 nodeIds_.makeImmutable();
@@ -574,6 +602,9 @@ public final class SyncWithTrainerRequest extends
             if (other.getCurrentModelIndex() != 0) {
                 setCurrentModelIndex(other.getCurrentModelIndex());
             }
+            if (other.getTimestamp() != 0L) {
+                setTimestamp(other.getTimestamp());
+            }
             if (other.nodeState_ != 0) {
                 setNodeStateValue(other.getNodeStateValue());
             }
@@ -629,17 +660,22 @@ public final class SyncWithTrainerRequest extends
                             break;
                         } // case 24
                         case 32: {
-                            nodeState_ = input.readEnum();
+                            timestamp_ = input.readUInt64();
 
                             break;
                         } // case 32
                         case 40: {
+                            nodeState_ = input.readEnum();
+
+                            break;
+                        } // case 40
+                        case 48: {
                             long v = input.readUInt64();
                             ensureNodeIdsIsMutable();
                             nodeIds_.addLong(v);
                             break;
-                        } // case 40
-                        case 42: {
+                        } // case 48
+                        case 50: {
                             int length = input.readRawVarint32();
                             int limit = input.pushLimit(length);
                             ensureNodeIdsIsMutable();
@@ -648,7 +684,7 @@ public final class SyncWithTrainerRequest extends
                             }
                             input.popLimit(limit);
                             break;
-                        } // case 42
+                        } // case 50
                         default: {
                             if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                                 done = true; // was an endgroup tag
@@ -783,7 +819,42 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 4;</code>
+         * <code>uint64 timestamp = 4;</code>
+         *
+         * @return The timestamp.
+         */
+        @java.lang.Override
+        public long getTimestamp() {
+            return timestamp_;
+        }
+
+        /**
+         * <code>uint64 timestamp = 4;</code>
+         *
+         * @param value The timestamp to set.
+         * @return This builder for chaining.
+         */
+        public Builder setTimestamp(long value) {
+
+            timestamp_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>uint64 timestamp = 4;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearTimestamp() {
+
+            timestamp_ = 0L;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>.fedraft.NodeState node_state = 5;</code>
          *
          * @return The enum numeric value on the wire for nodeState.
          */
@@ -793,7 +864,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 4;</code>
+         * <code>.fedraft.NodeState node_state = 5;</code>
          *
          * @param value The enum numeric value on the wire for nodeState to set.
          * @return This builder for chaining.
@@ -806,7 +877,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 4;</code>
+         * <code>.fedraft.NodeState node_state = 5;</code>
          *
          * @return The nodeState.
          */
@@ -818,7 +889,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 4;</code>
+         * <code>.fedraft.NodeState node_state = 5;</code>
          *
          * @param value The nodeState to set.
          * @return This builder for chaining.
@@ -834,7 +905,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>.fedraft.NodeState node_state = 4;</code>
+         * <code>.fedraft.NodeState node_state = 5;</code>
          *
          * @return This builder for chaining.
          */
@@ -853,7 +924,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @return A list containing the nodeIds.
          */
@@ -864,7 +935,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @return The count of nodeIds.
          */
@@ -873,7 +944,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param index The index of the element to return.
          * @return The nodeIds at the given index.
@@ -883,7 +954,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param index The index to set the value at.
          * @param value The nodeIds to set.
@@ -898,7 +969,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param value The nodeIds to add.
          * @return This builder for chaining.
@@ -911,7 +982,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param values The nodeIds to add.
          * @return This builder for chaining.
@@ -926,7 +997,7 @@ public final class SyncWithTrainerRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @return This builder for chaining.
          */

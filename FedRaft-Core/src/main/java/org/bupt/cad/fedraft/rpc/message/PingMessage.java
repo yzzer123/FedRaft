@@ -4,21 +4,19 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 /**
- * Protobuf type {@code fedraft.SyncWithTrainerResponse}
+ * Protobuf type {@code fedraft.PingMessage}
  */
-public final class SyncWithTrainerResponse extends
+public final class PingMessage extends
         com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:fedraft.SyncWithTrainerResponse)
-        SyncWithTrainerResponseOrBuilder {
-    public static final int CURRENT_MODEL_INDEX_FIELD_NUMBER = 1;
-    public static final int TIMESTAMP_FIELD_NUMBER = 2;
+        // @@protoc_insertion_point(message_implements:fedraft.PingMessage)
+        PingMessageOrBuilder {
     private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:fedraft.SyncWithTrainerResponse)
-    private static final org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<SyncWithTrainerResponse>
-            PARSER = new com.google.protobuf.AbstractParser<SyncWithTrainerResponse>() {
+    // @@protoc_insertion_point(class_scope:fedraft.PingMessage)
+    private static final org.bupt.cad.fedraft.rpc.message.PingMessage DEFAULT_INSTANCE;
+    private static final com.google.protobuf.Parser<PingMessage>
+            PARSER = new com.google.protobuf.AbstractParser<PingMessage>() {
         @java.lang.Override
-        public SyncWithTrainerResponse parsePartialFrom(
+        public PingMessage parsePartialFrom(
                 com.google.protobuf.CodedInputStream input,
                 com.google.protobuf.ExtensionRegistryLite extensionRegistry)
                 throws com.google.protobuf.InvalidProtocolBufferException {
@@ -38,71 +36,69 @@ public final class SyncWithTrainerResponse extends
     };
 
     static {
-        DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse();
+        DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.PingMessage();
     }
 
-    private int currentModelIndex_;
-    private long timestamp_;
     private byte memoizedIsInitialized = -1;
 
-    // Use SyncWithTrainerResponse.newBuilder() to construct.
-    private SyncWithTrainerResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    // Use PingMessage.newBuilder() to construct.
+    private PingMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
     }
 
-    private SyncWithTrainerResponse() {
+    private PingMessage() {
     }
 
     public static final com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
-        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerResponse_descriptor;
+        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_PingMessage_descriptor;
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
             java.nio.ByteBuffer data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
             java.nio.ByteBuffer data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
             com.google.protobuf.ByteString data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
             com.google.protobuf.ByteString data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(byte[] data)
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(byte[] data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
             byte[] data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(java.io.InputStream input)
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(java.io.InputStream input)
             throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
                 .parseWithIOException(PARSER, input);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
@@ -110,13 +106,13 @@ public final class SyncWithTrainerResponse extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseDelimitedFrom(java.io.InputStream input)
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseDelimitedFrom(java.io.InputStream input)
             throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
                 .parseDelimitedWithIOException(PARSER, input);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseDelimitedFrom(
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseDelimitedFrom(
             java.io.InputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
@@ -124,14 +120,14 @@ public final class SyncWithTrainerResponse extends
                 .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
             com.google.protobuf.CodedInputStream input)
             throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
                 .parseWithIOException(PARSER, input);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse parseFrom(
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage parseFrom(
             com.google.protobuf.CodedInputStream input,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws java.io.IOException {
@@ -143,15 +139,15 @@ public final class SyncWithTrainerResponse extends
         return DEFAULT_INSTANCE.toBuilder();
     }
 
-    public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse prototype) {
+    public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.PingMessage prototype) {
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse getDefaultInstance() {
+    public static org.bupt.cad.fedraft.rpc.message.PingMessage getDefaultInstance() {
         return DEFAULT_INSTANCE;
     }
 
-    public static com.google.protobuf.Parser<SyncWithTrainerResponse> parser() {
+    public static com.google.protobuf.Parser<PingMessage> parser() {
         return PARSER;
     }
 
@@ -159,7 +155,7 @@ public final class SyncWithTrainerResponse extends
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
             UnusedPrivateParameter unused) {
-        return new SyncWithTrainerResponse();
+        return new PingMessage();
     }
 
     @java.lang.Override
@@ -171,29 +167,9 @@ public final class SyncWithTrainerResponse extends
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
     internalGetFieldAccessorTable() {
-        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable
+        return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_PingMessage_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
-                        org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.class, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.Builder.class);
-    }
-
-    /**
-     * <code>uint32 current_model_index = 1;</code>
-     *
-     * @return The currentModelIndex.
-     */
-    @java.lang.Override
-    public int getCurrentModelIndex() {
-        return currentModelIndex_;
-    }
-
-    /**
-     * <code>uint64 timestamp = 2;</code>
-     *
-     * @return The timestamp.
-     */
-    @java.lang.Override
-    public long getTimestamp() {
-        return timestamp_;
+                        org.bupt.cad.fedraft.rpc.message.PingMessage.class, org.bupt.cad.fedraft.rpc.message.PingMessage.Builder.class);
     }
 
     @java.lang.Override
@@ -209,12 +185,6 @@ public final class SyncWithTrainerResponse extends
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
-        if (currentModelIndex_ != 0) {
-            output.writeUInt32(1, currentModelIndex_);
-        }
-        if (timestamp_ != 0L) {
-            output.writeUInt64(2, timestamp_);
-        }
         getUnknownFields().writeTo(output);
     }
 
@@ -224,14 +194,6 @@ public final class SyncWithTrainerResponse extends
         if (size != -1) return size;
 
         size = 0;
-        if (currentModelIndex_ != 0) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt32Size(1, currentModelIndex_);
-        }
-        if (timestamp_ != 0L) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt64Size(2, timestamp_);
-        }
         size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
@@ -242,15 +204,11 @@ public final class SyncWithTrainerResponse extends
         if (obj == this) {
             return true;
         }
-        if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse)) {
+        if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.PingMessage)) {
             return super.equals(obj);
         }
-        org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse other = (org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse) obj;
+        org.bupt.cad.fedraft.rpc.message.PingMessage other = (org.bupt.cad.fedraft.rpc.message.PingMessage) obj;
 
-        if (getCurrentModelIndex()
-                != other.getCurrentModelIndex()) return false;
-        if (getTimestamp()
-                != other.getTimestamp()) return false;
         if (!getUnknownFields().equals(other.getUnknownFields())) return false;
         return true;
     }
@@ -262,11 +220,6 @@ public final class SyncWithTrainerResponse extends
         }
         int hash = 41;
         hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + CURRENT_MODEL_INDEX_FIELD_NUMBER;
-        hash = (53 * hash) + getCurrentModelIndex();
-        hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getTimestamp());
         hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
         return hash;
@@ -291,26 +244,23 @@ public final class SyncWithTrainerResponse extends
     }
 
     @java.lang.Override
-    public com.google.protobuf.Parser<SyncWithTrainerResponse> getParserForType() {
+    public com.google.protobuf.Parser<PingMessage> getParserForType() {
         return PARSER;
     }
 
     @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse getDefaultInstanceForType() {
+    public org.bupt.cad.fedraft.rpc.message.PingMessage getDefaultInstanceForType() {
         return DEFAULT_INSTANCE;
     }
 
     /**
-     * Protobuf type {@code fedraft.SyncWithTrainerResponse}
+     * Protobuf type {@code fedraft.PingMessage}
      */
     public static final class Builder extends
             com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:fedraft.SyncWithTrainerResponse)
-            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponseOrBuilder {
-        private int currentModelIndex_;
-        private long timestamp_;
-
-        // Construct using org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.newBuilder()
+            // @@protoc_insertion_point(builder_implements:fedraft.PingMessage)
+            org.bupt.cad.fedraft.rpc.message.PingMessageOrBuilder {
+        // Construct using org.bupt.cad.fedraft.rpc.message.PingMessage.newBuilder()
         private Builder() {
 
         }
@@ -323,41 +273,37 @@ public final class SyncWithTrainerResponse extends
 
         public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerResponse_descriptor;
+            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_PingMessage_descriptor;
         }
 
         @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable
+            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_PingMessage_fieldAccessorTable
                     .ensureFieldAccessorsInitialized(
-                            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.class, org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.Builder.class);
+                            org.bupt.cad.fedraft.rpc.message.PingMessage.class, org.bupt.cad.fedraft.rpc.message.PingMessage.Builder.class);
         }
 
         @java.lang.Override
         public Builder clear() {
             super.clear();
-            currentModelIndex_ = 0;
-
-            timestamp_ = 0L;
-
             return this;
         }
 
         @java.lang.Override
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_SyncWithTrainerResponse_descriptor;
+            return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_PingMessage_descriptor;
         }
 
         @java.lang.Override
-        public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse getDefaultInstanceForType() {
-            return org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.getDefaultInstance();
+        public org.bupt.cad.fedraft.rpc.message.PingMessage getDefaultInstanceForType() {
+            return org.bupt.cad.fedraft.rpc.message.PingMessage.getDefaultInstance();
         }
 
         @java.lang.Override
-        public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse build() {
-            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse result = buildPartial();
+        public org.bupt.cad.fedraft.rpc.message.PingMessage build() {
+            org.bupt.cad.fedraft.rpc.message.PingMessage result = buildPartial();
             if (!result.isInitialized()) {
                 throw newUninitializedMessageException(result);
             }
@@ -365,10 +311,8 @@ public final class SyncWithTrainerResponse extends
         }
 
         @java.lang.Override
-        public org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse buildPartial() {
-            org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse result = new org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse(this);
-            result.currentModelIndex_ = currentModelIndex_;
-            result.timestamp_ = timestamp_;
+        public org.bupt.cad.fedraft.rpc.message.PingMessage buildPartial() {
+            org.bupt.cad.fedraft.rpc.message.PingMessage result = new org.bupt.cad.fedraft.rpc.message.PingMessage(this);
             onBuilt();
             return result;
         }
@@ -413,22 +357,16 @@ public final class SyncWithTrainerResponse extends
 
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
-            if (other instanceof org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse) {
-                return mergeFrom((org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse) other);
+            if (other instanceof org.bupt.cad.fedraft.rpc.message.PingMessage) {
+                return mergeFrom((org.bupt.cad.fedraft.rpc.message.PingMessage) other);
             } else {
                 super.mergeFrom(other);
                 return this;
             }
         }
 
-        public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse other) {
-            if (other == org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse.getDefaultInstance()) return this;
-            if (other.getCurrentModelIndex() != 0) {
-                setCurrentModelIndex(other.getCurrentModelIndex());
-            }
-            if (other.getTimestamp() != 0L) {
-                setTimestamp(other.getTimestamp());
-            }
+        public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.PingMessage other) {
+            if (other == org.bupt.cad.fedraft.rpc.message.PingMessage.getDefaultInstance()) return this;
             this.mergeUnknownFields(other.getUnknownFields());
             onChanged();
             return this;
@@ -455,16 +393,6 @@ public final class SyncWithTrainerResponse extends
                         case 0:
                             done = true;
                             break;
-                        case 8: {
-                            currentModelIndex_ = input.readUInt32();
-
-                            break;
-                        } // case 8
-                        case 16: {
-                            timestamp_ = input.readUInt64();
-
-                            break;
-                        } // case 16
                         default: {
                             if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                                 done = true; // was an endgroup tag
@@ -481,76 +409,6 @@ public final class SyncWithTrainerResponse extends
             return this;
         }
 
-        /**
-         * <code>uint32 current_model_index = 1;</code>
-         *
-         * @return The currentModelIndex.
-         */
-        @java.lang.Override
-        public int getCurrentModelIndex() {
-            return currentModelIndex_;
-        }
-
-        /**
-         * <code>uint32 current_model_index = 1;</code>
-         *
-         * @param value The currentModelIndex to set.
-         * @return This builder for chaining.
-         */
-        public Builder setCurrentModelIndex(int value) {
-
-            currentModelIndex_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>uint32 current_model_index = 1;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearCurrentModelIndex() {
-
-            currentModelIndex_ = 0;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>uint64 timestamp = 2;</code>
-         *
-         * @return The timestamp.
-         */
-        @java.lang.Override
-        public long getTimestamp() {
-            return timestamp_;
-        }
-
-        /**
-         * <code>uint64 timestamp = 2;</code>
-         *
-         * @param value The timestamp to set.
-         * @return This builder for chaining.
-         */
-        public Builder setTimestamp(long value) {
-
-            timestamp_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>uint64 timestamp = 2;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearTimestamp() {
-
-            timestamp_ = 0L;
-            onChanged();
-            return this;
-        }
-
         @java.lang.Override
         public final Builder setUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -564,7 +422,7 @@ public final class SyncWithTrainerResponse extends
         }
 
 
-        // @@protoc_insertion_point(builder_scope:fedraft.SyncWithTrainerResponse)
+        // @@protoc_insertion_point(builder_scope:fedraft.PingMessage)
     }
 
 }

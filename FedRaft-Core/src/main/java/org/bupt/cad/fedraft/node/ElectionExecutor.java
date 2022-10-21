@@ -2,6 +2,7 @@ package org.bupt.cad.fedraft.node;
 
 
 import org.bupt.cad.fedraft.beans.NodeInfo;
+import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.rpc.message.VoteRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +20,8 @@ public class ElectionExecutor {
     private static final Logger logger = LoggerFactory.getLogger(ElectionExecutor.class);
     private final AtomicInteger votesNum = new AtomicInteger(0);
     // 维护时延排行榜
-    private List<Map.Entry<Long, Integer>> delayPriorityQueue;
-    private Map<Long, Integer> topology;
+    private List<Tuple<Long, Integer>> delayPriorityQueue;
+    private Map<Long, Tuple<Integer, Long>> topology;
     private Node nodeMode;
     // 允许投票的排名 时延名次<admittedIndex 可投票
     private int admittedIndex = 1;
@@ -40,10 +41,12 @@ public class ElectionExecutor {
             synchronized (Runtime.getRuntime()) {
                 nodeMode = Runtime.getRuntime().getNodeMode();
                 synchronized (Runtime.getRuntime().getTopology()) {
-                    delayPriorityQueue.addAll(topology.entrySet());
+                    for (Map.Entry<Long, Tuple<Integer, Long>> entry : topology.entrySet()) {
+                        delayPriorityQueue.add(new Tuple<>(entry.getKey(), entry.getValue().getLeft()));
+                    }
                 }
             }
-            delayPriorityQueue.sort(Comparator.comparingInt(Map.Entry::getValue));
+            delayPriorityQueue.sort(Comparator.comparingInt(Tuple::getRight));
             voted = false;
             admittedIndex++;
             votesNum.set(0);
@@ -69,11 +72,11 @@ public class ElectionExecutor {
 
 
                 for (int i = 0; i < admittedIndex; i++) {
-                    if (delayPriorityQueue.get(i).getKey().equals(request.getCandidateId())) {
+                    if (delayPriorityQueue.get(i).getLeft().equals(request.getCandidateId())) {
                         logger.info("vote for {}", new NodeInfo(request.getCandidateId()));
                         voted = true;
                         // 更新时延 表示支持这个candidate， 即使投票失败了，下一次也更有可能投给他
-                        nodeMode.updateTopology(request.getNodeIdsList(), request.getNetworkDelaysList());
+                        nodeMode.updateTopology(request.getNodeIdsList(), request.getNetworkDelaysList(), System.currentTimeMillis());
                         // 提升任期 但不更新模型索引
                         runtime.setTerm(request.getTerm());
                         return true;
@@ -96,7 +99,7 @@ public class ElectionExecutor {
             }
             Runtime runtime = Runtime.getRuntime();
             for (int i = 0; i < admittedIndex; i++) {
-                if (delayPriorityQueue.get(i).getKey().equals(runtime.getSelfNodeInfo().getNodeId())) {
+                if (delayPriorityQueue.get(i).getLeft().equals(runtime.getSelfNodeInfo().getNodeId())) {
                     if (logger.isDebugEnabled()) {
                         logger.debug("node itself can be a candidate!");
                     }

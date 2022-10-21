@@ -13,6 +13,8 @@ public final class LogResponse extends
     public static final int LOCAL_INDEX_FIELD_NUMBER = 1;
     public static final int LOG_SIZE_FIELD_NUMBER = 2;
     private static final long serialVersionUID = 0L;
+    // @@protoc_insertion_point(class_scope:fedraft.LogResponse)
+    private static final org.bupt.cad.fedraft.rpc.message.LogResponse DEFAULT_INSTANCE;
     private static final com.google.protobuf.Parser<LogResponse>
             PARSER = new com.google.protobuf.AbstractParser<LogResponse>() {
         @java.lang.Override
@@ -34,6 +36,11 @@ public final class LogResponse extends
             return builder.buildPartial();
         }
     };
+
+    static {
+        DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.LogResponse();
+    }
+
     private int localIndex_;
     private long logSize_;
     private byte memoizedIsInitialized = -1;
@@ -49,6 +56,14 @@ public final class LogResponse extends
     public static final com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
         return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_descriptor;
+    }
+
+    public static org.bupt.cad.fedraft.rpc.message.LogResponse getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static com.google.protobuf.Parser<LogResponse> parser() {
+        return PARSER;
     }
 
     @java.lang.Override
@@ -100,74 +115,16 @@ public final class LogResponse extends
         return logSize_;
     }
 
-    @java.lang.Override
-    public final boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
+    public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
     }
 
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        if (localIndex_ != 0) {
-            output.writeUInt32(1, localIndex_);
-        }
-        if (logSize_ != 0L) {
-            output.writeUInt64(2, logSize_);
-        }
-        getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (localIndex_ != 0) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt32Size(1, localIndex_);
-        }
-        if (logSize_ != 0L) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeUInt64Size(2, logSize_);
-        }
-        size += getUnknownFields().getSerializedSize();
-        memoizedSize = size;
-        return size;
-    }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-          return true;
-      }
-      if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.LogResponse)) {
-          return super.equals(obj);
-      }
-      org.bupt.cad.fedraft.rpc.message.LogResponse other = (org.bupt.cad.fedraft.rpc.message.LogResponse) obj;
-
-      if (getLocalIndex()
-              != other.getLocalIndex()) return false;
-      if (getLogSize()
-              != other.getLogSize()) return false;
-      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
-    return true;
-  }
-
-  public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
-      java.nio.ByteBuffer data)
-      throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-  public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
-      java.nio.ByteBuffer data,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws com.google.protobuf.InvalidProtocolBufferException {
+    public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
   public static org.bupt.cad.fedraft.rpc.message.LogResponse parseFrom(
@@ -237,17 +194,64 @@ public final class LogResponse extends
   public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.LogResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
-  @java.lang.Override
-  public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
-  }
 
     @java.lang.Override
-    protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
+    public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (localIndex_ != 0) {
+            output.writeUInt32(1, localIndex_);
+        }
+        if (logSize_ != 0L) {
+            output.writeUInt64(2, logSize_);
+        }
+        getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (localIndex_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt32Size(1, localIndex_);
+        }
+        if (logSize_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt64Size(2, logSize_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.LogResponse)) {
+            return super.equals(obj);
+        }
+        org.bupt.cad.fedraft.rpc.message.LogResponse other = (org.bupt.cad.fedraft.rpc.message.LogResponse) obj;
+
+        if (getLocalIndex()
+                != other.getLocalIndex()) return false;
+        if (getLogSize()
+                != other.getLogSize()) return false;
+        if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+        return true;
     }
 
     @java.lang.Override
@@ -267,15 +271,17 @@ public final class LogResponse extends
         return hash;
     }
 
-    // @@protoc_insertion_point(class_scope:fedraft.LogResponse)
-    private static final org.bupt.cad.fedraft.rpc.message.LogResponse DEFAULT_INSTANCE;
-
-    static {
-        DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.LogResponse();
+    @java.lang.Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    public static org.bupt.cad.fedraft.rpc.message.LogResponse getDefaultInstance() {
-        return DEFAULT_INSTANCE;
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
     }
 
     /**
@@ -287,15 +293,15 @@ public final class LogResponse extends
             org.bupt.cad.fedraft.rpc.message.LogResponseOrBuilder {
         public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_descriptor;
-    }
+            return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_descriptor;
+        }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              org.bupt.cad.fedraft.rpc.message.LogResponse.class, org.bupt.cad.fedraft.rpc.message.LogResponse.Builder.class);
+            return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.cad.fedraft.rpc.message.LogResponse.class, org.bupt.cad.fedraft.rpc.message.LogResponse.Builder.class);
     }
 
     // Construct using org.bupt.cad.fedraft.rpc.message.LogResponse.newBuilder()
@@ -404,48 +410,48 @@ public final class LogResponse extends
 
     @java.lang.Override
     public final boolean isInitialized() {
-      return true;
+        return true;
     }
 
-    @java.lang.Override
-    public Builder mergeFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        if (extensionRegistry == null) {
-            throw new java.lang.NullPointerException();
-        }
-        try {
-            boolean done = false;
-            while (!done) {
-                int tag = input.readTag();
-                switch (tag) {
-                    case 0:
-                        done = true;
-                        break;
-                    case 8: {
-                        localIndex_ = input.readUInt32();
+        @java.lang.Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 8: {
+                            localIndex_ = input.readUInt32();
 
-                        break;
-                    } // case 8
-                    case 16: {
-                        logSize_ = input.readUInt64();
+                            break;
+                        } // case 8
+                        case 16: {
+                            logSize_ = input.readUInt64();
 
-                        break;
-                    } // case 16
-                    default: {
-                        if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                            done = true; // was an endgroup tag
-                        }
-                        break;
-                    } // default:
-                } // switch (tag)
-            } // while (!done)
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-            throw e.unwrapIOException();
-        } finally {
-            onChanged();
-        } // finally
+                            break;
+                        } // case 16
+                        default: {
+                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                                done = true; // was an endgroup tag
+                            }
+                            break;
+                        } // default:
+                    } // switch (tag)
+                } // while (!done)
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.unwrapIOException();
+            } finally {
+        onChanged();
+      } // finally
       return this;
     }
 
@@ -516,9 +522,9 @@ public final class LogResponse extends
      */
     public Builder setLogSize(long value) {
 
-      logSize_ = value;
-      onChanged();
-      return this;
+        logSize_ = value;
+        onChanged();
+        return this;
     }
 
         /**
@@ -553,11 +559,7 @@ public final class LogResponse extends
         // @@protoc_insertion_point(builder_scope:fedraft.LogResponse)
     }
 
-    public static com.google.protobuf.Parser<LogResponse> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
+    @java.lang.Override
   public com.google.protobuf.Parser<LogResponse> getParserForType() {
     return PARSER;
   }

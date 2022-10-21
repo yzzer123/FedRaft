@@ -86,7 +86,7 @@ public final class NodeInfo {
     }
 
     private NodeInfo setIp(String ip) {
-        this.ip = ip;
+        this.ip = !ip.equals("localhost") ? ip : "127.0.0.1";
         return this;
     }
 

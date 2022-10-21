@@ -36,6 +36,7 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
                 response = HeartbeatResponse.newBuilder()
                         .setNetworkDelay(delay)
                         .setNodeState(Runtime.getRuntime().getState())
+                        .setTimestamp(System.currentTimeMillis())
                         .build();
                 if (logger.isDebugEnabled())
                     logger.debug("follower has returned a response with delay={}", delay);
@@ -64,4 +65,6 @@ public class FedRaftService extends FedRaftServiceGrpc.FedRaftServiceImplBase {
         responseObserver.onNext(TriggerElectionResponse.getDefaultInstance());
         responseObserver.onCompleted();
     }
+
+
 }

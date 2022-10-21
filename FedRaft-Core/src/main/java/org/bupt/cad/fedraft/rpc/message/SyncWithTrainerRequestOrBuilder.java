@@ -33,35 +33,42 @@ public interface SyncWithTrainerRequestOrBuilder extends
     int getCurrentModelIndex();
 
     /**
-     * <code>.fedraft.NodeState node_state = 4;</code>
+     * <code>uint64 timestamp = 4;</code>
+     *
+     * @return The timestamp.
+     */
+    long getTimestamp();
+
+    /**
+     * <code>.fedraft.NodeState node_state = 5;</code>
      *
      * @return The enum numeric value on the wire for nodeState.
      */
     int getNodeStateValue();
 
     /**
-     * <code>.fedraft.NodeState node_state = 4;</code>
+     * <code>.fedraft.NodeState node_state = 5;</code>
      *
      * @return The nodeState.
      */
     org.bupt.cad.fedraft.rpc.message.NodeState getNodeState();
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return A list containing the nodeIds.
      */
     java.util.List<java.lang.Long> getNodeIdsList();
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return The count of nodeIds.
      */
     int getNodeIdsCount();
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.

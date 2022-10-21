@@ -13,4 +13,11 @@ public interface SyncWithTrainerResponseOrBuilder extends
      * @return The currentModelIndex.
      */
     int getCurrentModelIndex();
+
+    /**
+     * <code>uint64 timestamp = 2;</code>
+     *
+     * @return The timestamp.
+     */
+    long getTimestamp();
 }

@@ -1,6 +1,7 @@
 package org.bupt.cad.fedraft.node;
 
 
+import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
@@ -79,8 +80,8 @@ public class SafeMode extends Node {
     public void checkTopologyDelay() {
         boolean isAllUpdated = true;
         synchronized (Runtime.getRuntime().getTopology()) {
-            for (Integer value : Runtime.getRuntime().getTopology().values()) {
-                if (value < 0) {
+            for (Tuple<Integer, Long> delayTuple : Runtime.getRuntime().getTopology().values()) {
+                if (delayTuple.getLeft() < 0) {
                     isAllUpdated = false;
                     break;
                 }
@@ -97,6 +98,10 @@ public class SafeMode extends Node {
         // 获取运行时状态
         Runtime runtime = Runtime.getRuntime();
 
+        if (request.getTimestamp() < getTimestamp()) {
+            return -1;
+        }
+
         // Safemode收到的心跳信息可能来自 tmp_leader 和 leader,
         if (request.getTerm() > runtime.getTerm()) {
             // 跟随该leader 将任期提升
@@ -109,7 +114,7 @@ public class SafeMode extends Node {
         }
 
         // 更新自己的时延拓扑
-        updateTopology(request.getNodeIdsList(), request.getNetworkDelaysList());
+        updateTopology(request.getNodeIdsList(), request.getNetworkDelaysList(), request.getTimestamp());
 
         // 检查拓扑是否全部更新
         if (request.getLeaderState() == NodeState.LEADER) {

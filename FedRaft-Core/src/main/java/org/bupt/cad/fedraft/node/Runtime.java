@@ -2,6 +2,7 @@ package org.bupt.cad.fedraft.node;
 
 
 import org.bupt.cad.fedraft.beans.NodeInfo;
+import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.exception.StateChangeException;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
@@ -24,7 +25,7 @@ public class Runtime {
 
     //自身节点的信息
     private final NodeInfo selfNodeInfo;  //该节点保存的时延信息
-    private final ConcurrentHashMap<Long, Integer> topology;
+    private final ConcurrentHashMap<Long, Tuple<Integer, Long>> topology;
     //保存的与其他所有节点的rpc连接
     private final ClientPool clientPool;
     private final FedRaftClient trainerClient;
@@ -52,8 +53,7 @@ public class Runtime {
         topology = new ConcurrentHashMap<>();
         clientPool = new ClientPool();
 
-        trainerClient = new FedRaftClient(Configuration.getString(Configuration.MANAGER_SERVER_HOST),
-                Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
+        trainerClient = new FedRaftClient(selfNodeInfo, true);
         threadPool = new ThreadPoolExecutor(Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS),
                 2 * Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS), 3, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
         delay = new AtomicInteger(-1);
@@ -80,7 +80,7 @@ public class Runtime {
         return selfNodeInfo;
     }
 
-    public ConcurrentHashMap<Long, Integer> getTopology() {
+    public ConcurrentHashMap<Long, Tuple<Integer, Long>> getTopology() {
         return topology;
     }
 

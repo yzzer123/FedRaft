@@ -24,27 +24,34 @@ public final class HeartbeatMessage {
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_PingMessage_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_PingMessage_fieldAccessorTable;
     private static com.google.protobuf.Descriptors.FileDescriptor
             descriptor;
 
     static {
         java.lang.String[] descriptorData = {
-                "\n\027heartbeat_message.proto\022\007fedraft\"R\n\021He" +
-                        "artbeatResponse\022\025\n\rnetwork_delay\030\001 \001(\r\022&" +
-                        "\n\nnode_state\030\002 \001(\0162\022.fedraft.NodeState\"\243" +
-                        "\001\n\020HeartbeatRequest\022\014\n\004term\030\001 \001(\r\022\021\n\tlea" +
-                        "der_id\030\002 \001(\004\022(\n\014leader_state\030\003 \001(\0162\022.fed" +
-                        "raft.NodeState\022\032\n\022leader_model_index\030\004 \001" +
-                        "(\r\022\020\n\010node_ids\030\005 \003(\004\022\026\n\016network_delays\030\006" +
-                        " \003(\r\"\220\001\n\026SyncWithTrainerRequest\022\014\n\004term\030" +
-                        "\001 \001(\r\022\021\n\tleader_id\030\002 \001(\004\022\033\n\023current_mode" +
-                        "l_index\030\003 \001(\r\022&\n\nnode_state\030\004 \001(\0162\022.fedr" +
-                        "aft.NodeState\022\020\n\010node_ids\030\005 \003(\004\"6\n\027SyncW" +
-                        "ithTrainerResponse\022\033\n\023current_model_inde" +
-                        "x\030\001 \001(\r*S\n\tNodeState\022\r\n\tSAFE_MODE\020\000\022\016\n\nT" +
-                        "MP_LEADER\020\001\022\n\n\006LEADER\020\002\022\r\n\tCANDIDATE\020\003\022\014" +
-                        "\n\010FOLLOWER\020\004B$\n org.bupt.cad.fedraft.rpc" +
-                        ".messageP\001b\006proto3"
+                "\n\027heartbeat_message.proto\022\007fedraft\"e\n\021He" +
+                        "artbeatResponse\022\025\n\rnetwork_delay\030\001 \001(\r\022\021" +
+                        "\n\ttimestamp\030\002 \001(\004\022&\n\nnode_state\030\003 \001(\0162\022." +
+                        "fedraft.NodeState\"\266\001\n\020HeartbeatRequest\022\014" +
+                        "\n\004term\030\001 \001(\r\022\021\n\tleader_id\030\002 \001(\004\022(\n\014leade" +
+                        "r_state\030\003 \001(\0162\022.fedraft.NodeState\022\032\n\022lea" +
+                        "der_model_index\030\004 \001(\r\022\021\n\ttimestamp\030\005 \001(\004" +
+                        "\022\020\n\010node_ids\030\006 \003(\004\022\026\n\016network_delays\030\007 \003" +
+                        "(\r\"\243\001\n\026SyncWithTrainerRequest\022\014\n\004term\030\001 " +
+                        "\001(\r\022\021\n\tleader_id\030\002 \001(\004\022\033\n\023current_model_" +
+                        "index\030\003 \001(\r\022\021\n\ttimestamp\030\004 \001(\004\022&\n\nnode_s" +
+                        "tate\030\005 \001(\0162\022.fedraft.NodeState\022\020\n\010node_i" +
+                        "ds\030\006 \003(\004\"I\n\027SyncWithTrainerResponse\022\033\n\023c" +
+                        "urrent_model_index\030\001 \001(\r\022\021\n\ttimestamp\030\002 " +
+                        "\001(\004\"\r\n\013PingMessage*S\n\tNodeState\022\r\n\tSAFE_" +
+                        "MODE\020\000\022\016\n\nTMP_LEADER\020\001\022\n\n\006LEADER\020\002\022\r\n\tCA" +
+                        "NDIDATE\020\003\022\014\n\010FOLLOWER\020\004B$\n org.bupt.cad." +
+                        "fedraft.rpc.messageP\001b\006proto3"
         };
         descriptor = com.google.protobuf.Descriptors.FileDescriptor
                 .internalBuildGeneratedFileFrom(descriptorData,
@@ -55,25 +62,31 @@ public final class HeartbeatMessage {
         internal_static_fedraft_HeartbeatResponse_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_fedraft_HeartbeatResponse_descriptor,
-                new java.lang.String[]{"NetworkDelay", "NodeState",});
+                new java.lang.String[]{"NetworkDelay", "Timestamp", "NodeState",});
         internal_static_fedraft_HeartbeatRequest_descriptor =
                 getDescriptor().getMessageTypes().get(1);
         internal_static_fedraft_HeartbeatRequest_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_fedraft_HeartbeatRequest_descriptor,
-                new java.lang.String[]{"Term", "LeaderId", "LeaderState", "LeaderModelIndex", "NodeIds", "NetworkDelays",});
+                new java.lang.String[]{"Term", "LeaderId", "LeaderState", "LeaderModelIndex", "Timestamp", "NodeIds", "NetworkDelays",});
         internal_static_fedraft_SyncWithTrainerRequest_descriptor =
                 getDescriptor().getMessageTypes().get(2);
         internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_fedraft_SyncWithTrainerRequest_descriptor,
-                new java.lang.String[]{"Term", "LeaderId", "CurrentModelIndex", "NodeState", "NodeIds",});
+                new java.lang.String[]{"Term", "LeaderId", "CurrentModelIndex", "Timestamp", "NodeState", "NodeIds",});
         internal_static_fedraft_SyncWithTrainerResponse_descriptor =
                 getDescriptor().getMessageTypes().get(3);
         internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable = new
                 com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
                 internal_static_fedraft_SyncWithTrainerResponse_descriptor,
-                new java.lang.String[]{"CurrentModelIndex",});
+                new java.lang.String[]{"CurrentModelIndex", "Timestamp",});
+        internal_static_fedraft_PingMessage_descriptor =
+                getDescriptor().getMessageTypes().get(4);
+        internal_static_fedraft_PingMessage_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_PingMessage_descriptor,
+                new java.lang.String[]{});
     }
 
     private HeartbeatMessage() {

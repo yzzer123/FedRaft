@@ -25,7 +25,7 @@ public final class FedraftService {
     java.lang.String[] descriptorData = {
       "\n\025fedraft_service.proto\022\007fedraft\032\021log_me" +
               "ssage.proto\032\027heartbeat_message.proto\032\022vo" +
-              "te_massage.proto2\300\003\n\016FedRaftService\022@\n\017A" +
+              "te_massage.proto2\372\003\n\016FedRaftService\022@\n\017A" +
               "ppendStreamLog\022\023.fedraft.LogRequest\032\024.fe" +
               "draft.LogResponse\"\000(\001\0228\n\tAppendLog\022\023.fed" +
               "raft.LogRequest\032\024.fedraft.LogResponse\"\000\022" +
@@ -36,8 +36,10 @@ public final class FedraftService {
               "\017TriggerElection\022\037.fedraft.TriggerElecti" +
               "onRequest\032 .fedraft.TriggerElectionRespo" +
               "nse\"\000\022<\n\013RequestVote\022\024.fedraft.VoteReque" +
-              "st\032\025.fedraft.VoteResponse\"\000B$\n org.bupt." +
-              "cad.fedraft.rpc.serviceP\001b\006proto3"
+              "st\032\025.fedraft.VoteResponse\"\000\0228\n\010PingTest\022" +
+              "\024.fedraft.PingMessage\032\024.fedraft.PingMess" +
+              "age\"\000B$\n org.bupt.cad.fedraft.rpc.servic" +
+              "eP\001b\006proto3"
     };
       descriptor = com.google.protobuf.Descriptors.FileDescriptor
               .internalBuildGeneratedFileFrom(descriptorData,

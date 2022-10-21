@@ -2,6 +2,7 @@ package org.bupt.cad.fedraft.node;
 
 
 import org.bupt.cad.fedraft.beans.NodeInfo;
+import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
@@ -28,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 public class TmpLeader extends Node {
     private static final Logger logger = LoggerFactory.getLogger(TmpLeader.class);
 
-    private final Map<Long, Integer> topology = Runtime.getRuntime().getTopology();
+    private final Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
     private final ClientPool clientPool = Runtime.getRuntime().getClientPool();
     private ScheduledFuture<?> heartbeatTask;
 
@@ -56,7 +57,7 @@ public class TmpLeader extends Node {
 
             synchronized (Runtime.getRuntime().getTopology()) {
                 for (NodeInfo nodeInfo : cluster) {
-                    topology.put(nodeInfo.getNodeId(), PingUtils.INVALID_DELAY);
+                    topology.put(nodeInfo.getNodeId(), new Tuple<>(-1, 0L));
                 }
             }
         } catch (Exception e) {
@@ -108,23 +109,22 @@ public class TmpLeader extends Node {
                     .setLeaderId(runtime.getSelfNodeInfo().getNodeId());
 
             // 构造请求中的时延列表
-        }
+            synchronized (Runtime.getRuntime().getTopology()) {
 
-        long selfId = Runtime.getRuntime().getSelfNodeInfo().getNodeId();
-
-        synchronized (Runtime.getRuntime().getTopology()) {
-
-            if (logger.isDebugEnabled()) {
-                logger.debug("send topology = {}", topology);
-            }
-            for (Map.Entry<Long, Integer> entry : topology.entrySet()) {
-                builder.addNodeIds(entry.getKey());
-                builder.addNetworkDelays(entry.getValue());
+                if (logger.isDebugEnabled()) {
+                    logger.debug("send topology = {}", topology);
+                }
+                for (Map.Entry<Long, Tuple<Integer, Long>> entry : topology.entrySet()) {
+                    builder.addNodeIds(entry.getKey());
+                    builder.addNetworkDelays(entry.getValue().getLeft());
+                }
             }
         }
 
+        builder.setTimestamp(System.currentTimeMillis());
         HeartbeatRequest request = builder.build();
 
+        long selfId = Runtime.getRuntime().getSelfNodeInfo().getNodeId();
         // 发送的客户端
         List<Long> clientList = request.getNodeIdsList();
 
@@ -135,23 +135,29 @@ public class TmpLeader extends Node {
                 continue;
             }
 
-            // 获取通信通道并发送心跳
-            clientPool.getChannel(clientId).sendHeartBeat(request, response -> {
+            Runtime.getRuntime().getThreadPool().submit(() -> {
+                // 获取通信通道并发送心跳
+                clientPool.getChannel(clientId).sendHeartBeat(request, response -> {
 
-                int newDelay = response.getNetworkDelay();
+                    int newDelay = response.getNetworkDelay();
 
-                // 更新心跳信息
-                if (newDelay > 0) {
-                    // 加权更新
-                    topology.computeIfPresent(clientId, (id, oldDelay) ->
-                            (7 * newDelay + 3 * (oldDelay == PingUtils.INVALID_DELAY ? newDelay : oldDelay)) / 10
-                    );
-                    // 统计存活follower数量
-                    if (response.getNodeState() == NodeState.FOLLOWER) {
-                        followerSet.put(clientId, System.currentTimeMillis());
+                    // 更新心跳信息
+                    if (newDelay > 0) {
+                        // 加权更新
+                        topology.computeIfPresent(clientId, (id, oldDelay) -> {
+                            if (response.getTimestamp() > oldDelay.getRight() && oldDelay.getLeft() != PingUtils.INVALID_DELAY) {
+                                // 对时延进行平滑处理 避免摆动过大
+                                oldDelay.setLeft((7 * newDelay + 3 * oldDelay.getLeft()) / 10);
+                            }
+                            return oldDelay;
+                        });
+                        // 统计存活follower数量
+                        if (response.getNodeState() == NodeState.FOLLOWER) {
+                            followerSet.put(clientId, System.currentTimeMillis());
+                        }
                     }
-                }
-            });// end method call
+                });// end method call
+            });
         }
     }
 
@@ -178,12 +184,14 @@ public class TmpLeader extends Node {
                     .setLeaderModelIndex(runtime.getModelIndex())
                     .build();
             // 变换状态为follower
-            runtime.setState(NodeState.FOLLOWER);
+//            runtime.setState(NodeState.FOLLOWER);
         }
 
         // 触发follower选举
         for (Long follower : followerSet.keySet()) {
-            clientPool.getChannel(follower).triggerElection(request);
+            Runtime.getRuntime().getThreadPool().submit(() -> {
+                clientPool.getChannel(follower).triggerElection(request);
+            });
         }
 
         // 触发自己选举
@@ -210,6 +218,9 @@ public class TmpLeader extends Node {
      */
     @Override
     public int receiveHeartbeat(HeartbeatRequest request) {
+        if (request.getTimestamp() < getTimestamp()) {
+            return -1;
+        }
         Runtime runtime = Runtime.getRuntime();
         // 判断任期是否比自己大
         // tmp leader 可能收到来自 leader的心跳信息,
@@ -220,7 +231,7 @@ public class TmpLeader extends Node {
             runtime.setState(NodeState.FOLLOWER);  // 直接转变为follower
 
             // 更新拓扑
-            updateTopology(request.getNodeIdsList(), request.getNetworkDelaysList());
+            updateTopology(request.getNodeIdsList(), request.getNetworkDelaysList(), request.getTimestamp());
             return runtime.getDelay().get();
         } else {
             // 任期比自己小就为错误 不更新拓扑

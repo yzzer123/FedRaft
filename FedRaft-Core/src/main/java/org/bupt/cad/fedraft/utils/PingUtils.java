@@ -1,6 +1,7 @@
 package org.bupt.cad.fedraft.utils;
 
 import org.bupt.cad.fedraft.beans.NodeInfo;
+import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.node.Runtime;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
@@ -47,17 +48,17 @@ public class PingUtils {
             Runtime runtime = Runtime.getRuntime();
             NodeState runtimeState = runtime.getState();
 
-            // 需要将自己的时延信息放到拓扑里
-            if (runtimeState == NodeState.LEADER || runtimeState == NodeState.TMP_LEADER || runtimeState == NodeState.CANDIDATE) {
-                runtime.getTopology().computeIfPresent(runtime.getSelfNodeInfo().getNodeId(), (id, oldDelay) ->
-                        (7 * avgDelay + 3 * (oldDelay == INVALID_DELAY ? avgDelay : oldDelay)) / 10
-                );
-                runtime.getTopology().put(runtime.getSelfNodeInfo().getNodeId(), avgDelay);
+            // leader tmp leader candidate 需要将自己的时延信息放到拓扑里
+            switch (runtimeState) {
+                case LEADER:
+                case TMP_LEADER:
+                case CANDIDATE:
+                    runtime.getTopology().computeIfPresent(runtime.getSelfNodeInfo().getNodeId(), (id, oldDelay) -> {
+                        oldDelay.setTuple((7 * avgDelay + 3 * (oldDelay.getLeft() == INVALID_DELAY ? avgDelay : oldDelay.getLeft())) / 10, System.currentTimeMillis());
+                        return oldDelay;
+                    });
             }
-
-            if (logger.isDebugEnabled())
-                logger.debug("after ping, set delay = {}", avgDelay);
-        }, heartbeatInterval, heartbeatInterval, TimeUnit.MILLISECONDS);
+        }, 0, heartbeatInterval / 2, TimeUnit.MILLISECONDS);
     }
 
 
@@ -65,7 +66,7 @@ public class PingUtils {
      * 测试平均时延
      */
     public static int pingTopology() {
-        Map<Long, Integer> topology = Runtime.getRuntime().getTopology();
+        Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
         ExecutorService threadPool = Runtime.getRuntime().getThreadPool();
         List<Long> keyList;
         AtomicInteger sumOfDelay = new AtomicInteger(0);
@@ -142,8 +143,7 @@ public class PingUtils {
             String line = null;
             int delay = -1;
             while ((line = in.readLine()) != null) {
-                if (logger.isDebugEnabled())
-                    logger.debug("get output from ping shell:\t" + line);
+
                 delay = getDelayFromPing(line);
                 if (delay != -1) {
                     return delay;

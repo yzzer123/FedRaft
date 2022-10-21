@@ -26,6 +26,7 @@
     <logger name="org.apache.zookeeper" level="error"/>
     <logger name="ch.qos" level="error"/>
     <logger name="org.apache.curator" level="error"/>
+    <logger name="io.grpc" level="error"/>
 
 
     <root level="DEBUG">

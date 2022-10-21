@@ -14,8 +14,9 @@ public final class HeartbeatRequest extends
     public static final int LEADER_ID_FIELD_NUMBER = 2;
     public static final int LEADER_STATE_FIELD_NUMBER = 3;
     public static final int LEADER_MODEL_INDEX_FIELD_NUMBER = 4;
-    public static final int NODE_IDS_FIELD_NUMBER = 5;
-    public static final int NETWORK_DELAYS_FIELD_NUMBER = 6;
+    public static final int TIMESTAMP_FIELD_NUMBER = 5;
+    public static final int NODE_IDS_FIELD_NUMBER = 6;
+    public static final int NETWORK_DELAYS_FIELD_NUMBER = 7;
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.HeartbeatRequest)
     private static final org.bupt.cad.fedraft.rpc.message.HeartbeatRequest DEFAULT_INSTANCE;
@@ -49,6 +50,7 @@ public final class HeartbeatRequest extends
     private long leaderId_;
     private int leaderState_;
     private int leaderModelIndex_;
+    private long timestamp_;
     private com.google.protobuf.Internal.LongList nodeIds_;
     private int nodeIdsMemoizedSerializedSize = -1;
     private com.google.protobuf.Internal.IntList networkDelays_;
@@ -246,7 +248,17 @@ public final class HeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>uint64 timestamp = 5;</code>
+     *
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+        return timestamp_;
+    }
+
+    /**
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return A list containing the nodeIds.
      */
@@ -257,7 +269,7 @@ public final class HeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @return The count of nodeIds.
      */
@@ -266,7 +278,7 @@ public final class HeartbeatRequest extends
     }
 
     /**
-     * <code>repeated uint64 node_ids = 5;</code>
+     * <code>repeated uint64 node_ids = 6;</code>
      *
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.
@@ -280,7 +292,7 @@ public final class HeartbeatRequest extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 6;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @return A list containing the networkDelays.
      */
@@ -295,7 +307,7 @@ public final class HeartbeatRequest extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 6;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @return The count of networkDelays.
      */
@@ -308,7 +320,7 @@ public final class HeartbeatRequest extends
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 6;</code>
+     * <code>repeated uint32 network_delays = 7;</code>
      *
      * @param index The index of the element to return.
      * @return The networkDelays at the given index.
@@ -343,15 +355,18 @@ public final class HeartbeatRequest extends
         if (leaderModelIndex_ != 0) {
             output.writeUInt32(4, leaderModelIndex_);
         }
+        if (timestamp_ != 0L) {
+            output.writeUInt64(5, timestamp_);
+        }
         if (getNodeIdsList().size() > 0) {
-            output.writeUInt32NoTag(42);
+            output.writeUInt32NoTag(50);
             output.writeUInt32NoTag(nodeIdsMemoizedSerializedSize);
         }
         for (int i = 0; i < nodeIds_.size(); i++) {
             output.writeUInt64NoTag(nodeIds_.getLong(i));
         }
         if (getNetworkDelaysList().size() > 0) {
-            output.writeUInt32NoTag(50);
+            output.writeUInt32NoTag(58);
             output.writeUInt32NoTag(networkDelaysMemoizedSerializedSize);
         }
         for (int i = 0; i < networkDelays_.size(); i++) {
@@ -381,6 +396,10 @@ public final class HeartbeatRequest extends
         if (leaderModelIndex_ != 0) {
             size += com.google.protobuf.CodedOutputStream
                     .computeUInt32Size(4, leaderModelIndex_);
+        }
+        if (timestamp_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt64Size(5, timestamp_);
         }
         {
             int dataSize = 0;
@@ -432,6 +451,8 @@ public final class HeartbeatRequest extends
         if (leaderState_ != other.leaderState_) return false;
         if (getLeaderModelIndex()
                 != other.getLeaderModelIndex()) return false;
+        if (getTimestamp()
+                != other.getTimestamp()) return false;
         if (!getNodeIdsList()
                 .equals(other.getNodeIdsList())) return false;
         if (!getNetworkDelaysList()
@@ -456,6 +477,9 @@ public final class HeartbeatRequest extends
         hash = (53 * hash) + leaderState_;
         hash = (37 * hash) + LEADER_MODEL_INDEX_FIELD_NUMBER;
         hash = (53 * hash) + getLeaderModelIndex();
+        hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                getTimestamp());
         if (getNodeIdsCount() > 0) {
             hash = (37 * hash) + NODE_IDS_FIELD_NUMBER;
             hash = (53 * hash) + getNodeIdsList().hashCode();
@@ -509,6 +533,7 @@ public final class HeartbeatRequest extends
         private long leaderId_;
         private int leaderState_ = 0;
         private int leaderModelIndex_;
+        private long timestamp_;
         private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
         private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
 
@@ -547,6 +572,8 @@ public final class HeartbeatRequest extends
 
             leaderModelIndex_ = 0;
 
+            timestamp_ = 0L;
+
             nodeIds_ = emptyLongList();
             bitField0_ = (bitField0_ & ~0x00000001);
             networkDelays_ = emptyIntList();
@@ -582,6 +609,7 @@ public final class HeartbeatRequest extends
             result.leaderId_ = leaderId_;
             result.leaderState_ = leaderState_;
             result.leaderModelIndex_ = leaderModelIndex_;
+            result.timestamp_ = timestamp_;
             if (((bitField0_ & 0x00000001) != 0)) {
                 nodeIds_.makeImmutable();
                 bitField0_ = (bitField0_ & ~0x00000001);
@@ -658,6 +686,9 @@ public final class HeartbeatRequest extends
             if (other.getLeaderModelIndex() != 0) {
                 setLeaderModelIndex(other.getLeaderModelIndex());
             }
+            if (other.getTimestamp() != 0L) {
+                setTimestamp(other.getTimestamp());
+            }
             if (!other.nodeIds_.isEmpty()) {
                 if (nodeIds_.isEmpty()) {
                     nodeIds_ = other.nodeIds_;
@@ -725,12 +756,17 @@ public final class HeartbeatRequest extends
                             break;
                         } // case 32
                         case 40: {
+                            timestamp_ = input.readUInt64();
+
+                            break;
+                        } // case 40
+                        case 48: {
                             long v = input.readUInt64();
                             ensureNodeIdsIsMutable();
                             nodeIds_.addLong(v);
                             break;
-                        } // case 40
-                        case 42: {
+                        } // case 48
+                        case 50: {
                             int length = input.readRawVarint32();
                             int limit = input.pushLimit(length);
                             ensureNodeIdsIsMutable();
@@ -739,14 +775,14 @@ public final class HeartbeatRequest extends
                             }
                             input.popLimit(limit);
                             break;
-                        } // case 42
-                        case 48: {
+                        } // case 50
+                        case 56: {
                             int v = input.readUInt32();
                             ensureNetworkDelaysIsMutable();
                             networkDelays_.addInt(v);
                             break;
-                        } // case 48
-                        case 50: {
+                        } // case 56
+                        case 58: {
                             int length = input.readRawVarint32();
                             int limit = input.pushLimit(length);
                             ensureNetworkDelaysIsMutable();
@@ -755,7 +791,7 @@ public final class HeartbeatRequest extends
                             }
                             input.popLimit(limit);
                             break;
-                        } // case 50
+                        } // case 58
                         default: {
                             if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                                 done = true; // was an endgroup tag
@@ -952,6 +988,41 @@ public final class HeartbeatRequest extends
             return this;
         }
 
+        /**
+         * <code>uint64 timestamp = 5;</code>
+         *
+         * @return The timestamp.
+         */
+        @java.lang.Override
+        public long getTimestamp() {
+            return timestamp_;
+        }
+
+        /**
+         * <code>uint64 timestamp = 5;</code>
+         *
+         * @param value The timestamp to set.
+         * @return This builder for chaining.
+         */
+        public Builder setTimestamp(long value) {
+
+            timestamp_ = value;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>uint64 timestamp = 5;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearTimestamp() {
+
+            timestamp_ = 0L;
+            onChanged();
+            return this;
+        }
+
         private void ensureNodeIdsIsMutable() {
             if (!((bitField0_ & 0x00000001) != 0)) {
                 nodeIds_ = mutableCopy(nodeIds_);
@@ -960,7 +1031,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @return A list containing the nodeIds.
          */
@@ -971,7 +1042,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @return The count of nodeIds.
          */
@@ -980,7 +1051,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param index The index of the element to return.
          * @return The nodeIds at the given index.
@@ -990,7 +1061,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param index The index to set the value at.
          * @param value The nodeIds to set.
@@ -1005,7 +1076,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param value The nodeIds to add.
          * @return This builder for chaining.
@@ -1018,7 +1089,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @param values The nodeIds to add.
          * @return This builder for chaining.
@@ -1033,7 +1104,7 @@ public final class HeartbeatRequest extends
         }
 
         /**
-         * <code>repeated uint64 node_ids = 5;</code>
+         * <code>repeated uint64 node_ids = 6;</code>
          *
          * @return This builder for chaining.
          */
@@ -1056,7 +1127,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 6;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @return A list containing the networkDelays.
          */
@@ -1071,7 +1142,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 6;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @return The count of networkDelays.
          */
@@ -1084,7 +1155,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 6;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @param index The index of the element to return.
          * @return The networkDelays at the given index.
@@ -1098,7 +1169,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 6;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @param index The index to set the value at.
          * @param value The networkDelays to set.
@@ -1117,7 +1188,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 6;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @param value The networkDelays to add.
          * @return This builder for chaining.
@@ -1134,7 +1205,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 6;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @param values The networkDelays to add.
          * @return This builder for chaining.
@@ -1153,7 +1224,7 @@ public final class HeartbeatRequest extends
          * 网络时延拓扑
          * </pre>
          *
-         * <code>repeated uint32 network_delays = 6;</code>
+         * <code>repeated uint32 network_delays = 7;</code>
          *
          * @return This builder for chaining.
          */
