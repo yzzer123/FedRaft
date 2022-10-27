@@ -1,6 +1,6 @@
 package org.bupt.cad.fedraft.node;
 
-import org.bupt.cad.fedraft.server.FedRaftServer;
+import org.bupt.cad.fedraft.server.ManagerServer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,19 +12,19 @@ public class TmpLeaderTest {
     private static final Logger logger = LoggerFactory.getLogger(TmpLeaderTest.class);
 
     private final String[] args;
-    private FedRaftServer server;
+    private ManagerServer server;
 
     public TmpLeaderTest(String[] args) {
         this.args = args;
     }
 
     public static void main(String[] args) throws InterruptedException {
-        FedRaftServer.main(args);
+        ManagerServer.main(args);
     }
 
     @Before
     public void setup() {
-        server = new FedRaftServer(args[0], Integer.parseInt(args[1]));
+        server = new ManagerServer(args[0], Integer.parseInt(args[1]));
         server.start();
     }
 

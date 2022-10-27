@@ -68,7 +68,7 @@ public interface HeartbeatRequestOrBuilder extends
    * 网络时延拓扑
    * </pre>
    *
-   * <code>repeated uint32 network_delays = 7;</code>
+   * <code>repeated int32 network_delays = 7;</code>
    * @return A list containing the networkDelays.
    */
   java.util.List<java.lang.Integer> getNetworkDelaysList();
@@ -77,7 +77,7 @@ public interface HeartbeatRequestOrBuilder extends
    * 网络时延拓扑
    * </pre>
    *
-   * <code>repeated uint32 network_delays = 7;</code>
+   * <code>repeated int32 network_delays = 7;</code>
    * @return The count of networkDelays.
    */
   int getNetworkDelaysCount();
@@ -86,7 +86,7 @@ public interface HeartbeatRequestOrBuilder extends
    * 网络时延拓扑
    * </pre>
    *
-   * <code>repeated uint32 network_delays = 7;</code>
+   * <code>repeated int32 network_delays = 7;</code>
    * @param index The index of the element to return.
    * @return The networkDelays at the given index.
    */

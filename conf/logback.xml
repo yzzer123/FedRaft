@@ -2,9 +2,12 @@
 <configuration>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- @formatter:off -->
         <encoder>
             <pattern>%green(%d{HH:mm:ss.SSS}) %highlight(%-5level) %red(%-26.-26([%thread])) %boldMagenta(%-32.-32(%logger{32})) %cyan(%msg%n)</pattern>
         </encoder>
+        <!-- @formatter:on -->
+
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">

@@ -105,7 +105,7 @@ public class ZkClient {
      *
      * @param leaderWatcher 成功成为leader的回调
      */
-    public void checkinTmpLeader(LeaderWatcher leaderWatcher) {
+    public void checkinTmpLeader(ElectionListener leaderWatcher) {
 
         this.leaderSelector = new LeaderSelector(this.client, TMP_LEADER, new LeaderSelectorListenerAdapter() {
             @Override
@@ -249,7 +249,5 @@ public class ZkClient {
 
     }
 
-    public interface LeaderWatcher {
-        void takeLeadership();
-    }
+
 }

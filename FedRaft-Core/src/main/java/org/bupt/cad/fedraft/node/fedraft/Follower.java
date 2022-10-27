@@ -1,8 +1,10 @@
-package org.bupt.cad.fedraft.node;
+package org.bupt.cad.fedraft.node.fedraft;
 
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
+import org.bupt.cad.fedraft.rpc.message.VoteRequest;
+import org.bupt.cad.fedraft.utils.TimeoutKeeper;
 import org.bupt.cad.fedraft.utils.TimerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * 5. (在ElectionExecutor中实现)当收到投票请求时，检查请求者是否合法(任期，时延大小2th，模型索引)，提升自己的任期， 记录投票状态，一个任期内只能投给其中一个leader
  * 6. 维护一个选举状态，当收到新leader的心跳之后就可以删除选举状态
  */
-public class Follower extends Node {
+public class Follower extends Node implements TimeoutKeeper {
 
     private static final Logger logger = LoggerFactory.getLogger(Follower.class);
 
@@ -28,7 +30,8 @@ public class Follower extends Node {
 
     private ScheduledFuture<?> timeoutTask;
 
-    public Follower() {
+    public Follower(Runtime runtime) {
+        super(runtime);
         setupTimeoutTask();
     }
 
@@ -36,16 +39,19 @@ public class Follower extends Node {
     /**
      * 超时触发选举
      */
-    private void setupTimeoutTask() {
+    @Override
+    public void setupTimeoutTask() {
         timeoutTask = TimerUtils.getTimer().schedule(this::heartbeatTimeout,
-                Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIME_INTERVAL) * 2L + Runtime.getRuntime().getDelay().get() / 1000 * 3,
+                Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIME_INTERVAL) * 2L +
+                        getRuntime().getDelay() / 1000 * 3,
                 TimeUnit.MILLISECONDS);
     }
 
     /**
      * 删除超时器
      */
-    private void cancelTimeoutTask() {
+    @Override
+    public void cancelTimeoutTask() {
         if (timeoutTask != null) {
             timeoutTask.cancel(true);
             timeoutTask = null;
@@ -55,7 +61,8 @@ public class Follower extends Node {
     /**
      * 重置超时器
      */
-    private void resetTimeoutTask() {
+    @Override
+    public void resetTimeoutTask() {
         if (logger.isDebugEnabled()) {
             logger.debug("reset timout task");
         }
@@ -67,7 +74,7 @@ public class Follower extends Node {
     public int receiveHeartbeat(HeartbeatRequest request) {
 
         // 获取运行时状态
-        Runtime runtime = Runtime.getRuntime();
+        Runtime runtime = getRuntime();
 
 
         // 在选举期间收到tmp leader心跳 直接忽略
@@ -98,7 +105,7 @@ public class Follower extends Node {
         // 如果在选举状态中，就删除之前的选举状态
         electionExecutor = null;
 
-        return Runtime.getRuntime().getDelay().get();
+        return getRuntime().getDelay();
     }
 
     /**
@@ -106,21 +113,42 @@ public class Follower extends Node {
      */
     @Override
     public void heartbeatTimeout() {
+
+
         // 如果之前没有出现选举失败 就开启新的选举状态
         if (electionExecutor == null) {
-            electionExecutor = new ElectionExecutor();
+            electionExecutor = new ElectionExecutor(getRuntime());
+        }else {
+            // 有选举状态，就说明之前成为candidate失败, 即投票太过分散 需要将投票门槛设高，使得投票更加集中
+            electionExecutor.reset();
         }
 
 
         if (electionExecutor.isQualifiedCandidate()) {
-            Runtime.getRuntime().setState(NodeState.CANDIDATE);
-            Candidate candidate = Runtime.getRuntime().getNodeMode();
+            getRuntime().lockRuntime(true);
+            getRuntime().setState(NodeState.CANDIDATE);
+            getRuntime().unlockRuntime(true);
+        }else{
+            // 否则重置选举超时任务
+            resetTimeoutTask();
         }
+    }
+
+    @Override
+    public boolean voteFor(VoteRequest request) {
+        if (electionExecutor == null){
+            electionExecutor = new ElectionExecutor(getRuntime());
+        }
+        return electionExecutor.voteFor(request);
     }
 
 
     public ElectionExecutor getElectionExecutor() {
         return electionExecutor;
+    }
+
+    public void setElectionExecutor(ElectionExecutor electionState){
+        electionExecutor = electionState;
     }
 
 

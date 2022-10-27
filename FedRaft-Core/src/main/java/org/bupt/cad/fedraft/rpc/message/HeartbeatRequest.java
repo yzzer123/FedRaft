@@ -158,44 +158,15 @@ private static final long serialVersionUID = 0L;
   private int leaderModelIndex_;
   private long timestamp_;
   private com.google.protobuf.Internal.LongList nodeIds_;
-  /**
-   * <pre>
-   * 网络时延拓扑
-   * </pre>
-   *
-   * <code>repeated uint32 network_delays = 7;</code>
-   * @return A list containing the networkDelays.
-   */
-  @java.lang.Override
-  public java.util.List<java.lang.Integer>
-      getNetworkDelaysList() {
-    return networkDelays_;
-  }
-  /**
-   * <pre>
-   * 网络时延拓扑
-   * </pre>
-   *
-   * <code>repeated uint32 network_delays = 7;</code>
-   * @return The count of networkDelays.
-   */
-  public int getNetworkDelaysCount() {
-    return networkDelays_.size();
-  }
-  /**
-   * <pre>
-   * 网络时延拓扑
-   * </pre>
-   *
-   * <code>repeated uint32 network_delays = 7;</code>
-   * @param index The index of the element to return.
-   * @return The networkDelays at the given index.
-   */
-  public int getNetworkDelays(int index) {
-    return networkDelays_.getInt(index);
-  }
   private int nodeIdsMemoizedSerializedSize = -1;
   private com.google.protobuf.Internal.IntList networkDelays_;
+  private int networkDelaysMemoizedSerializedSize = -1;
+  private byte memoizedIsInitialized = -1;
+
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_HeartbeatRequest_descriptor;
+  }
   @java.lang.Override
   public boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -206,101 +177,27 @@ private static final long serialVersionUID = 0L;
     return true;
   }
 
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    getSerializedSize();
-    if (term_ != 0) {
-      output.writeUInt32(1, term_);
-    }
-    if (leaderId_ != 0L) {
-      output.writeUInt64(2, leaderId_);
-    }
-    if (leaderState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
-      output.writeEnum(3, leaderState_);
-    }
-    if (leaderModelIndex_ != 0) {
-      output.writeUInt32(4, leaderModelIndex_);
-    }
-    if (timestamp_ != 0L) {
-      output.writeUInt64(5, timestamp_);
-    }
-    if (getNodeIdsList().size() > 0) {
-      output.writeUInt32NoTag(50);
-      output.writeUInt32NoTag(nodeIdsMemoizedSerializedSize);
-    }
-    for (int i = 0; i < nodeIds_.size(); i++) {
-      output.writeUInt64NoTag(nodeIds_.getLong(i));
-    }
-    if (getNetworkDelaysList().size() > 0) {
-      output.writeUInt32NoTag(58);
-      output.writeUInt32NoTag(networkDelaysMemoizedSerializedSize);
-    }
-    for (int i = 0; i < networkDelays_.size(); i++) {
-      output.writeUInt32NoTag(networkDelays_.getInt(i));
-    }
-    getUnknownFields().writeTo(output);
+  public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest getDefaultInstance() {
+    return DEFAULT_INSTANCE;
   }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (term_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(1, term_);
-    }
-    if (leaderId_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(2, leaderId_);
-    }
-    if (leaderState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(3, leaderState_);
-    }
-    if (leaderModelIndex_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(4, leaderModelIndex_);
-    }
-    if (timestamp_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(5, timestamp_);
-    }
-    {
-      int dataSize = 0;
-      for (int i = 0; i < nodeIds_.size(); i++) {
-        dataSize += com.google.protobuf.CodedOutputStream
-          .computeUInt64SizeNoTag(nodeIds_.getLong(i));
-      }
-      size += dataSize;
-      if (!getNodeIdsList().isEmpty()) {
-        size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
-      }
-      nodeIdsMemoizedSerializedSize = dataSize;
-    }
-    {
-      int dataSize = 0;
-      for (int i = 0; i < networkDelays_.size(); i++) {
-        dataSize += com.google.protobuf.CodedOutputStream
-          .computeUInt32SizeNoTag(networkDelays_.getInt(i));
-      }
-      size += dataSize;
-      if (!getNetworkDelaysList().isEmpty()) {
-        size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
-      }
-      networkDelaysMemoizedSerializedSize = dataSize;
-    }
-    size += getUnknownFields().getSerializedSize();
-    memoizedSize = size;
-    return size;
+  public static com.google.protobuf.Parser<HeartbeatRequest> parser() {
+    return PARSER;
   }
-  private int networkDelaysMemoizedSerializedSize = -1;
+
+  /**
+   * <pre>
+   * 网络时延拓扑
+   * </pre>
+   *
+   * <code>repeated int32 network_delays = 7;</code>
+   * @return A list containing the networkDelays.
+   */
+  @java.lang.Override
+  public java.util.List<java.lang.Integer>
+      getNetworkDelaysList() {
+    return networkDelays_;
+  }
 
   @java.lang.Override
   public int hashCode() {
@@ -403,25 +300,143 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  private byte memoizedIsInitialized = -1;
+
+  /**
+   * <pre>
+   * 网络时延拓扑
+   * </pre>
+   *
+   * <code>repeated int32 network_delays = 7;</code>
+   * @return The count of networkDelays.
+   */
+  public int getNetworkDelaysCount() {
+    return networkDelays_.size();
+  }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
   public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.HeartbeatRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
-
-  public static com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_HeartbeatRequest_descriptor;
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest getDefaultInstance() {
-    return DEFAULT_INSTANCE;
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
   }
 
-  public static com.google.protobuf.Parser<HeartbeatRequest> parser() {
-    return PARSER;
+  /**
+   * <pre>
+   * 网络时延拓扑
+   * </pre>
+   *
+   * <code>repeated int32 network_delays = 7;</code>
+   * @param index The index of the element to return.
+   * @return The networkDelays at the given index.
+   */
+  public int getNetworkDelays(int index) {
+    return networkDelays_.getInt(index);
+  }
+
+  @java.lang.Override
+  public void writeTo(com.google.protobuf.CodedOutputStream output)
+                      throws java.io.IOException {
+    getSerializedSize();
+    if (term_ != 0) {
+      output.writeUInt32(1, term_);
+    }
+    if (leaderId_ != 0L) {
+      output.writeUInt64(2, leaderId_);
+    }
+    if (leaderState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
+      output.writeEnum(3, leaderState_);
+    }
+    if (leaderModelIndex_ != 0) {
+      output.writeUInt32(4, leaderModelIndex_);
+    }
+    if (timestamp_ != 0L) {
+      output.writeUInt64(5, timestamp_);
+    }
+    if (getNodeIdsList().size() > 0) {
+      output.writeUInt32NoTag(50);
+      output.writeUInt32NoTag(nodeIdsMemoizedSerializedSize);
+    }
+    for (int i = 0; i < nodeIds_.size(); i++) {
+      output.writeUInt64NoTag(nodeIds_.getLong(i));
+    }
+    if (getNetworkDelaysList().size() > 0) {
+      output.writeUInt32NoTag(58);
+      output.writeUInt32NoTag(networkDelaysMemoizedSerializedSize);
+    }
+    for (int i = 0; i < networkDelays_.size(); i++) {
+      output.writeInt32NoTag(networkDelays_.getInt(i));
+    }
+    getUnknownFields().writeTo(output);
+  }
+
+  @java.lang.Override
+  public int getSerializedSize() {
+    int size = memoizedSize;
+    if (size != -1) return size;
+
+    size = 0;
+    if (term_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt32Size(1, term_);
+    }
+    if (leaderId_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt64Size(2, leaderId_);
+    }
+    if (leaderState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(3, leaderState_);
+    }
+    if (leaderModelIndex_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt32Size(4, leaderModelIndex_);
+    }
+    if (timestamp_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt64Size(5, timestamp_);
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < nodeIds_.size(); i++) {
+        dataSize += com.google.protobuf.CodedOutputStream
+          .computeUInt64SizeNoTag(nodeIds_.getLong(i));
+      }
+      size += dataSize;
+      if (!getNodeIdsList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      nodeIdsMemoizedSerializedSize = dataSize;
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < networkDelays_.size(); i++) {
+        dataSize += com.google.protobuf.CodedOutputStream
+          .computeInt32SizeNoTag(networkDelays_.getInt(i));
+      }
+      size += dataSize;
+      if (!getNetworkDelaysList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      networkDelaysMemoizedSerializedSize = dataSize;
+    }
+    size += getUnknownFields().getSerializedSize();
+    memoizedSize = size;
+    return size;
   }
 
   @java.lang.Override
@@ -452,19 +467,6 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
 
   @java.lang.Override
   public com.google.protobuf.Parser<HeartbeatRequest> getParserForType() {
@@ -649,6 +651,37 @@ private static final long serialVersionUID = 0L;
     public boolean isInitialized() {
       return true;
     }
+    private long leaderId_ ;
+    private int leaderState_ = 0;
+    private int leaderModelIndex_ ;
+    /**
+     * <code>uint32 term = 1;</code>
+     * @return The term.
+     */
+    @java.lang.Override
+    public int getTerm() {
+      return term_;
+    }
+    private long timestamp_ ;
+    private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
+    private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+      return leaderId_;
+    }
+    // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatRequest.newBuilder()
+    private Builder() {
+
+    }
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
+    }
 
     @java.lang.Override
     public Builder mergeFrom(
@@ -708,7 +741,7 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 50
             case 56: {
-              int v = input.readUInt32();
+              int v = input.readInt32();
               ensureNetworkDelaysIsMutable();
               networkDelays_.addInt(v);
               break;
@@ -718,7 +751,7 @@ private static final long serialVersionUID = 0L;
               int limit = input.pushLimit(length);
               ensureNetworkDelaysIsMutable();
               while (input.getBytesUntilLimit() > 0) {
-                networkDelays_.addInt(input.readUInt32());
+                networkDelays_.addInt(input.readInt32());
               }
               input.popLimit(limit);
               break;
@@ -738,28 +771,12 @@ private static final long serialVersionUID = 0L;
       } // finally
       return this;
     }
-    private long leaderId_ ;
-    private int leaderState_ = 0;
     /**
-     * <code>uint32 term = 1;</code>
-     * @return The term.
+     * <code>.fedraft.NodeState leader_state = 3;</code>
+     * @return The enum numeric value on the wire for leaderState.
      */
-    @java.lang.Override
-    public int getTerm() {
-      return term_;
-    }
-    private int leaderModelIndex_ ;
-    private long timestamp_ ;
-    private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
-    private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
-    // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatRequest.newBuilder()
-    private Builder() {
-
-    }
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
+    @java.lang.Override public int getLeaderStateValue() {
+      return leaderState_;
     }
 
     /**
@@ -773,6 +790,16 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+    /**
+     * <code>.fedraft.NodeState leader_state = 3;</code>
+     * @return The leaderState.
+     */
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.NodeState getLeaderState() {
+      @SuppressWarnings("deprecation")
+      org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(leaderState_);
+      return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
+    }
 
     /**
      * <code>uint32 term = 1;</code>
@@ -783,15 +810,6 @@ private static final long serialVersionUID = 0L;
       term_ = 0;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
     }
 
     /**
@@ -816,13 +834,17 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
-     * <code>.fedraft.NodeState leader_state = 3;</code>
-     * @return The enum numeric value on the wire for leaderState.
+     * <pre>
+     * 之前发送模型的任期
+     * </pre>
+     *
+     * <code>uint32 leader_model_index = 4;</code>
+     * @return The leaderModelIndex.
      */
-    @java.lang.Override public int getLeaderStateValue() {
-      return leaderState_;
+    @java.lang.Override
+    public int getLeaderModelIndex() {
+      return leaderModelIndex_;
     }
 
     /**
@@ -835,17 +857,6 @@ private static final long serialVersionUID = 0L;
       leaderState_ = value;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>.fedraft.NodeState leader_state = 3;</code>
-     * @return The leaderState.
-     */
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.NodeState getLeaderState() {
-      @SuppressWarnings("deprecation")
-      org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(leaderState_);
-      return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
     }
 
     /**
@@ -873,18 +884,13 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 leader_model_index = 4;</code>
-     * @return The leaderModelIndex.
+     * <code>uint64 timestamp = 5;</code>
+     * @return The timestamp.
      */
     @java.lang.Override
-    public int getLeaderModelIndex() {
-      return leaderModelIndex_;
+    public long getTimestamp() {
+      return timestamp_;
     }
 
     /**
@@ -916,15 +922,6 @@ private static final long serialVersionUID = 0L;
       leaderModelIndex_ = 0;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>uint64 timestamp = 5;</code>
-     * @return The timestamp.
-     */
-    @java.lang.Override
-    public long getTimestamp() {
-      return timestamp_;
     }
 
     /**
@@ -1032,12 +1029,13 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000002;
        }
     }
+
     /**
      * <pre>
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 7;</code>
+     * <code>repeated int32 network_delays = 7;</code>
      * @return A list containing the networkDelays.
      */
     public java.util.List<java.lang.Integer>
@@ -1050,7 +1048,7 @@ private static final long serialVersionUID = 0L;
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 7;</code>
+     * <code>repeated int32 network_delays = 7;</code>
      * @return The count of networkDelays.
      */
     public int getNetworkDelaysCount() {
@@ -1061,7 +1059,7 @@ private static final long serialVersionUID = 0L;
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 7;</code>
+     * <code>repeated int32 network_delays = 7;</code>
      * @param index The index of the element to return.
      * @return The networkDelays at the given index.
      */
@@ -1073,7 +1071,7 @@ private static final long serialVersionUID = 0L;
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 7;</code>
+     * <code>repeated int32 network_delays = 7;</code>
      * @param index The index to set the value at.
      * @param value The networkDelays to set.
      * @return This builder for chaining.
@@ -1090,7 +1088,7 @@ private static final long serialVersionUID = 0L;
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 7;</code>
+     * <code>repeated int32 network_delays = 7;</code>
      * @param value The networkDelays to add.
      * @return This builder for chaining.
      */
@@ -1105,7 +1103,7 @@ private static final long serialVersionUID = 0L;
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 7;</code>
+     * <code>repeated int32 network_delays = 7;</code>
      * @param values The networkDelays to add.
      * @return This builder for chaining.
      */
@@ -1122,7 +1120,7 @@ private static final long serialVersionUID = 0L;
      * 网络时延拓扑
      * </pre>
      *
-     * <code>repeated uint32 network_delays = 7;</code>
+     * <code>repeated int32 network_delays = 7;</code>
      * @return This builder for chaining.
      */
     public Builder clearNetworkDelays() {

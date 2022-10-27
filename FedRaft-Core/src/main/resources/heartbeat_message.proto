@@ -7,7 +7,7 @@ option java_multiple_files = true;
 
 
 message HeartbeatResponse{
-  uint32 network_delay = 1;
+  int32 network_delay = 1;
   uint64 timestamp = 2;
   NodeState node_state = 3;
 }
@@ -19,7 +19,7 @@ message HeartbeatRequest{
   uint32 leader_model_index = 4; // 之前发送模型的任期
   uint64 timestamp = 5;
   repeated uint64 node_ids = 6;
-  repeated uint32 network_delays = 7; // 网络时延拓扑
+  repeated int32 network_delays = 7; // 网络时延拓扑
 }
 
 enum NodeState{

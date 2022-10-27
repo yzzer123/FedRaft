@@ -195,6 +195,7 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
@@ -231,13 +232,14 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
-                                        <Main-Class>org.bupt.cad.fedraft.server.FedRaftServer</Main-Class>
+                                        <Main-Class>org.bupt.cad.fedraft.server.ManagerServer</Main-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>

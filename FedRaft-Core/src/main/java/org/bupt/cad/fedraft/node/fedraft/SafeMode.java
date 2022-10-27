@@ -1,11 +1,13 @@
-package org.bupt.cad.fedraft.node;
+package org.bupt.cad.fedraft.node.fedraft;
 
 
 import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.rpc.message.HeartbeatRequest;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
+import org.bupt.cad.fedraft.rpc.message.VoteRequest;
 import org.bupt.cad.fedraft.utils.PingUtils;
+import org.bupt.cad.fedraft.utils.TimeoutKeeper;
 import org.bupt.cad.fedraft.utils.TimerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * 4. 当时机适合时成为follower
  * 5. 设定超时器，超时抢占tmp leader, 接收到心跳时
  */
-public class SafeMode extends Node {
+public class SafeMode extends Node implements TimeoutKeeper {
 
     private static final Logger logger = LoggerFactory.getLogger(SafeMode.class);
 
@@ -30,7 +32,8 @@ public class SafeMode extends Node {
 
     private boolean hasReceivedHeartbeat = false;
 
-    public SafeMode() {
+    public SafeMode(Runtime runtime) {
+        super(runtime);
         // 随机倒计时启动，给集群一定时间注册节点
         // 倒计时结束后主动触发超时事件抢占leader
         timeoutTask = TimerUtils.getTimer().schedule(this::heartbeatTimeout,
@@ -39,24 +42,31 @@ public class SafeMode extends Node {
 
     @Override
     public void heartbeatTimeout() {
-        Runtime runtime = Runtime.getRuntime();
+        Runtime runtime = getRuntime();
         if (runtime.getState() != NodeState.SAFE_MODE) {
             return;
         }
         runtime.getZkClient().checkinTmpLeader(() -> {
             //争抢成功, 切换节点状态, 并唤醒tmp_leader
-            synchronized (Runtime.getRuntime()) {
-                runtime.setState(NodeState.TMP_LEADER);
-            }
+            runtime.lockRuntime(true);
+            runtime.setState(NodeState.TMP_LEADER);
+            runtime.unlockRuntime(true);
             logger.info("tmp leader is {}", runtime.getSelfNodeInfo());
         });
+    }
+
+    // SafeMode的节点无法投票
+    @Override
+    public boolean voteFor(VoteRequest request) {
+        return false;
     }
 
 
     /**
      * 超时抢占节点，监测到tmp leader心跳超时，自动抢占
      */
-    private void setupTimeoutTask() {
+    @Override
+    public void setupTimeoutTask() {
         timeoutTask = TimerUtils.getTimer().schedule(this::heartbeatTimeout,
                 Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIME_INTERVAL) * 3L,
                 TimeUnit.MILLISECONDS);
@@ -65,16 +75,18 @@ public class SafeMode extends Node {
     /**
      * 取消超时器
      */
-    private void cancelTimeoutTask() {
+    @Override
+    public void cancelTimeoutTask() {
         if (timeoutTask != null) {
             timeoutTask.cancel(true);
             timeoutTask = null;
         }
         // 如果原来在抢占，就要放弃
-        Runtime.getRuntime().getZkClient().giveUpCheckinLeader(false);
+        getRuntime().getZkClient().giveUpCheckinLeader(false);
     }
 
-    private void resetTimeoutTask() {
+    @Override
+    public void resetTimeoutTask() {
         cancelTimeoutTask();
         setupTimeoutTask();
     }
@@ -82,16 +94,16 @@ public class SafeMode extends Node {
     //检查拓扑是否具有所有节点的时延
     public void checkTopologyDelay() {
         boolean isAllUpdated = true;
-        synchronized (Runtime.getRuntime().getTopology()) {
-            for (Tuple<Integer, Long> delayTuple : Runtime.getRuntime().getTopology().values()) {
-                if (delayTuple.getLeft() < 0) {
-                    isAllUpdated = false;
-                    break;
-                }
+        getRuntime().lockTopology(false);
+        for (Tuple<Integer, Long> delayTuple : getRuntime().getTopology().values()) {
+            if (delayTuple.getLeft() < 0) {
+                isAllUpdated = false;
+                break;
             }
         }
+        getRuntime().unlockTopology(false);
         if (isAllUpdated) {
-            Runtime.getRuntime().setState(NodeState.FOLLOWER);
+            getRuntime().setState(NodeState.FOLLOWER);
         }
     }
 
@@ -99,7 +111,7 @@ public class SafeMode extends Node {
     public int receiveHeartbeat(HeartbeatRequest request) {
 
         // 获取运行时状态
-        Runtime runtime = Runtime.getRuntime();
+        Runtime runtime = getRuntime();
 
         // Safemode收到的心跳信息可能来自 tmp_leader 和 leader,
         if (request.getTerm() > runtime.getTerm()) {
@@ -124,13 +136,14 @@ public class SafeMode extends Node {
         }
 
         // 第一次回复心跳需要根据拓扑ping一下，否则第一次回复了无效的时延信息
-        if (!hasReceivedHeartbeat){
+        if (!hasReceivedHeartbeat) {
             hasReceivedHeartbeat = true;
-            PingUtils.pingTopology();
+            PingUtils.pingTopology(runtime);
         }
 
-        return Runtime.getRuntime().getDelay().get();
+        return getRuntime().getDelay();
     }
+
 
     @Override
     public void close() {

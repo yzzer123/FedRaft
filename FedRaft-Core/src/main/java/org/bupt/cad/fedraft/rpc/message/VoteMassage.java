@@ -4,44 +4,23 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public final class VoteMassage {
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_TriggerElectionRequest_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_fedraft_TriggerElectionRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_TriggerElectionResponse_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_fedraft_TriggerElectionResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_VoteRequest_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_fedraft_VoteRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_VoteResponse_descriptor;
+    internal_static_fedraft_TriggerElectionRequest_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_fedraft_VoteResponse_fieldAccessorTable;
-  private VoteMassage() {}
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_fedraft_TriggerElectionResponse_descriptor;
 
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
-  }
-
-  public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
-
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
   static {
     java.lang.String[] descriptorData = {
       "\n\022vote_massage.proto\022\007fedraft\"U\n\026Trigger" +
@@ -50,9 +29,10 @@ public final class VoteMassage {
       "TriggerElectionResponse\"p\n\013VoteRequest\022\014" +
       "\n\004term\030\001 \001(\r\022\024\n\014candidate_id\030\002 \001(\004\022\023\n\013mo" +
       "del_index\030\003 \001(\r\022\020\n\010node_ids\030\005 \003(\004\022\026\n\016net" +
-      "work_delays\030\006 \003(\r\"+\n\014VoteResponse\022\014\n\004ter" +
-      "m\030\001 \001(\r\022\r\n\005delay\030\002 \001(\rB$\n org.bupt.cad.f" +
-      "edraft.rpc.messageP\001b\006proto3"
+      "work_delays\030\006 \003(\r\"@\n\014VoteResponse\022\014\n\004ter" +
+      "m\030\001 \001(\r\022\r\n\005delay\030\002 \001(\005\022\023\n\013voteGranted\030\003 " +
+      "\001(\010B$\n org.bupt.cad.fedraft.rpc.messageP" +
+      "\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -81,7 +61,29 @@ public final class VoteMassage {
     internal_static_fedraft_VoteResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_fedraft_VoteResponse_descriptor,
-        new java.lang.String[] { "Term", "Delay", });
+        new java.lang.String[] { "Term", "Delay", "VoteGranted", });
+  }
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_fedraft_VoteRequest_descriptor;
+  private VoteMassage() {}
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_fedraft_VoteResponse_descriptor;
+
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistryLite registry) {
+  }
+
+  public static com.google.protobuf.Descriptors.FileDescriptor
+      getDescriptor() {
+    return descriptor;
+  }
+  private static final com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
+
+  public static void registerAllExtensions(
+      com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+        (com.google.protobuf.ExtensionRegistryLite) registry);
   }
 
   // @@protoc_insertion_point(outer_class_scope)

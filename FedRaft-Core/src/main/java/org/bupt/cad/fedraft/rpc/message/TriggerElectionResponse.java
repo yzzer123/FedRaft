@@ -40,6 +40,8 @@ private static final long serialVersionUID = 0L;
         .ensureFieldAccessorsInitialized(
             org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.class, org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse.Builder.class);
   }
+
+  private byte memoizedIsInitialized = -1;
   private static final com.google.protobuf.Parser<TriggerElectionResponse>
       PARSER = new com.google.protobuf.AbstractParser<TriggerElectionResponse>() {
     @java.lang.Override
@@ -65,8 +67,6 @@ private static final long serialVersionUID = 0L;
   static {
     DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse();
   }
-
-  private byte memoizedIsInitialized = -1;
 
   public static com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
@@ -178,62 +178,6 @@ private static final long serialVersionUID = 0L;
     Builder builder = new Builder(parent);
     return builder;
   }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    getUnknownFields().writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    size += getUnknownFields().getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse)) {
-      return super.equals(obj);
-    }
-    org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse other = (org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse) obj;
-
-    return getUnknownFields().equals(other.getUnknownFields());
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<TriggerElectionResponse> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
   /**
    * Protobuf type {@code fedraft.TriggerElectionResponse}
    */
@@ -393,6 +337,61 @@ private static final long serialVersionUID = 0L;
 
 
     // @@protoc_insertion_point(builder_scope:fedraft.TriggerElectionResponse)
+  }
+
+  @java.lang.Override
+  public void writeTo(com.google.protobuf.CodedOutputStream output)
+                      throws java.io.IOException {
+    getUnknownFields().writeTo(output);
+  }
+
+  @java.lang.Override
+  public int getSerializedSize() {
+    int size = memoizedSize;
+    if (size != -1) return size;
+
+    size = 0;
+    size += getUnknownFields().getSerializedSize();
+    memoizedSize = size;
+    return size;
+  }
+
+  @java.lang.Override
+  public boolean equals(final java.lang.Object obj) {
+    if (obj == this) {
+     return true;
+    }
+    if (!(obj instanceof org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse)) {
+      return super.equals(obj);
+    }
+    org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse other = (org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse) obj;
+
+    return getUnknownFields().equals(other.getUnknownFields());
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
+    memoizedHashCode = hash;
+    return hash;
+  }
+
+  @java.lang.Override
+  public Builder newBuilderForType() { return newBuilder(); }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<TriggerElectionResponse> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
   }
 
 }

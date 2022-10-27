@@ -358,6 +358,18 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.VoteRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
+  }
+
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
+  }
 
   public static com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
@@ -397,19 +409,6 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
 
   @java.lang.Override
   public com.google.protobuf.Parser<VoteRequest> getParserForType() {
@@ -678,6 +677,14 @@ private static final long serialVersionUID = 0L;
     private Builder() {
 
     }
+    /**
+     * <code>uint64 candidate_id = 2;</code>
+     * @return The candidateId.
+     */
+    @java.lang.Override
+    public long getCandidateId() {
+      return candidateId_;
+    }
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
@@ -706,14 +713,13 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
-     * <code>uint64 candidate_id = 2;</code>
-     * @return The candidateId.
+     * <code>uint32 model_index = 3;</code>
+     * @return The modelIndex.
      */
     @java.lang.Override
-    public long getCandidateId() {
-      return candidateId_;
+    public int getModelIndex() {
+      return modelIndex_;
     }
 
     /**
@@ -737,15 +743,6 @@ private static final long serialVersionUID = 0L;
       candidateId_ = 0L;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>uint32 model_index = 3;</code>
-     * @return The modelIndex.
-     */
-    @java.lang.Override
-    public int getModelIndex() {
-      return modelIndex_;
     }
 
     /**

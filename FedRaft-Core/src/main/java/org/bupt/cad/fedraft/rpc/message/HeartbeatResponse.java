@@ -42,14 +42,6 @@ private static final long serialVersionUID = 0L;
   }
   public static final int TIMESTAMP_FIELD_NUMBER = 2;
   public static final int NODE_STATE_FIELD_NUMBER = 3;
-  /**
-   * <code>uint32 network_delay = 1;</code>
-   * @return The networkDelay.
-   */
-  @java.lang.Override
-  public int getNetworkDelay() {
-    return networkDelay_;
-  }
   // @@protoc_insertion_point(class_scope:fedraft.HeartbeatResponse)
   private static final org.bupt.cad.fedraft.rpc.message.HeartbeatResponse DEFAULT_INSTANCE;
   private static final com.google.protobuf.Parser<HeartbeatResponse>
@@ -73,6 +65,10 @@ private static final long serialVersionUID = 0L;
       return builder.buildPartial();
     }
   };
+
+  static {
+    DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.HeartbeatResponse();
+  }
   /**
    * <code>uint64 timestamp = 2;</code>
    * @return The timestamp.
@@ -82,11 +78,8 @@ private static final long serialVersionUID = 0L;
     return timestamp_;
   }
 
-  static {
-    DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.HeartbeatResponse();
-  }
-
   private int networkDelay_;
+  private long timestamp_;
   /**
    * <code>.fedraft.NodeState node_state = 3;</code>
    * @return The enum numeric value on the wire for nodeState.
@@ -103,7 +96,7 @@ private static final long serialVersionUID = 0L;
     org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(nodeState_);
     return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
   }
-  private long timestamp_;
+  private int nodeState_;
   @java.lang.Override
   public boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -113,45 +106,16 @@ private static final long serialVersionUID = 0L;
     memoizedIsInitialized = 1;
     return true;
   }
+  private byte memoizedIsInitialized = -1;
 
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-    if (networkDelay_ != 0) {
-      output.writeUInt32(1, networkDelay_);
-    }
-    if (timestamp_ != 0L) {
-      output.writeUInt64(2, timestamp_);
-    }
-    if (nodeState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
-      output.writeEnum(3, nodeState_);
-    }
-    getUnknownFields().writeTo(output);
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_HeartbeatResponse_descriptor;
   }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (networkDelay_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt32Size(1, networkDelay_);
-    }
-    if (timestamp_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(2, timestamp_);
-    }
-    if (nodeState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(3, nodeState_);
-    }
-    size += getUnknownFields().getSerializedSize();
-    memoizedSize = size;
-    return size;
+  public static org.bupt.cad.fedraft.rpc.message.HeartbeatResponse getDefaultInstance() {
+    return DEFAULT_INSTANCE;
   }
-  private int nodeState_;
 
   @java.lang.Override
   public int hashCode() {
@@ -241,25 +205,74 @@ private static final long serialVersionUID = 0L;
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  private byte memoizedIsInitialized = -1;
+
+  public static com.google.protobuf.Parser<HeartbeatResponse> parser() {
+    return PARSER;
+  }
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
   public static Builder newBuilder(org.bupt.cad.fedraft.rpc.message.HeartbeatResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
-
-  public static com.google.protobuf.Descriptors.Descriptor
-      getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_HeartbeatResponse_descriptor;
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  public static org.bupt.cad.fedraft.rpc.message.HeartbeatResponse getDefaultInstance() {
-    return DEFAULT_INSTANCE;
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
   }
 
-  public static com.google.protobuf.Parser<HeartbeatResponse> parser() {
-    return PARSER;
+  /**
+   * <code>int32 network_delay = 1;</code>
+   * @return The networkDelay.
+   */
+  @java.lang.Override
+  public int getNetworkDelay() {
+    return networkDelay_;
+  }
+
+  @java.lang.Override
+  public void writeTo(com.google.protobuf.CodedOutputStream output)
+                      throws java.io.IOException {
+    if (networkDelay_ != 0) {
+      output.writeInt32(1, networkDelay_);
+    }
+    if (timestamp_ != 0L) {
+      output.writeUInt64(2, timestamp_);
+    }
+    if (nodeState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
+      output.writeEnum(3, nodeState_);
+    }
+    getUnknownFields().writeTo(output);
+  }
+
+  @java.lang.Override
+  public int getSerializedSize() {
+    int size = memoizedSize;
+    if (size != -1) return size;
+
+    size = 0;
+    if (networkDelay_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, networkDelay_);
+    }
+    if (timestamp_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeUInt64Size(2, timestamp_);
+    }
+    if (nodeState_ != org.bupt.cad.fedraft.rpc.message.NodeState.SAFE_MODE.getNumber()) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeEnumSize(3, nodeState_);
+    }
+    size += getUnknownFields().getSerializedSize();
+    memoizedSize = size;
+    return size;
   }
 
   @java.lang.Override
@@ -282,19 +295,6 @@ private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public Builder newBuilderForType() { return newBuilder(); }
-
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-        ? new Builder() : new Builder().mergeFrom(this);
-  }
-
-  @java.lang.Override
-  protected Builder newBuilderForType(
-      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
 
   @java.lang.Override
   public com.google.protobuf.Parser<HeartbeatResponse> getParserForType() {
@@ -432,6 +432,17 @@ private static final long serialVersionUID = 0L;
     public boolean isInitialized() {
       return true;
     }
+    private int nodeState_ = 0;
+
+    // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.newBuilder()
+    private Builder() {
+
+    }
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
+    }
 
     @java.lang.Override
     public Builder mergeFrom(
@@ -450,7 +461,7 @@ private static final long serialVersionUID = 0L;
               done = true;
               break;
             case 8: {
-              networkDelay_ = input.readUInt32();
+              networkDelay_ = input.readInt32();
 
               break;
             } // case 8
@@ -479,27 +490,18 @@ private static final long serialVersionUID = 0L;
       } // finally
       return this;
     }
-    private int nodeState_ = 0;
+
     /**
-     * <code>uint32 network_delay = 1;</code>
+     * <code>int32 network_delay = 1;</code>
      * @return The networkDelay.
      */
     @java.lang.Override
     public int getNetworkDelay() {
       return networkDelay_;
     }
-    // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.newBuilder()
-    private Builder() {
-
-    }
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
-    }
 
     /**
-     * <code>uint32 network_delay = 1;</code>
+     * <code>int32 network_delay = 1;</code>
      * @param value The networkDelay to set.
      * @return This builder for chaining.
      */
@@ -509,18 +511,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
-    /**
-     * <code>uint32 network_delay = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearNetworkDelay() {
-
-      networkDelay_ = 0;
-      onChanged();
-      return this;
-    }
-
     /**
      * <code>uint64 timestamp = 2;</code>
      * @return The timestamp.
@@ -528,6 +518,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public long getTimestamp() {
       return timestamp_;
+    }
+
+    /**
+     * <code>int32 network_delay = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearNetworkDelay() {
+
+      networkDelay_ = 0;
+      onChanged();
+      return this;
     }
 
     /**

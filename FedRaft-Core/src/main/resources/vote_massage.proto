@@ -26,5 +26,6 @@ message VoteRequest{
 
 message VoteResponse{
   uint32 term = 1;
-  uint32 delay = 2;  // 回复自己的时延
+  int32 delay = 2;  // 回复自己的时延
+  bool voteGranted = 3;
 }

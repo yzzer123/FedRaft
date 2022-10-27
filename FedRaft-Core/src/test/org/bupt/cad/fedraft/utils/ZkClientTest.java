@@ -15,9 +15,9 @@ import java.util.concurrent.TimeUnit;
 public class ZkClientTest {
 
     private ZkClient zkClient;
-    private List<NodeInfo> nodeInfos = new ArrayList<>();
-    private CountDownLatch finishLathch = new CountDownLatch(1);
-    private HashMap<Long, ZkClient> clients = new HashMap<>();
+    private final List<NodeInfo> nodeInfos = new ArrayList<>();
+    private final CountDownLatch finishLathch = new CountDownLatch(1);
+    private final HashMap<Long, ZkClient> clients = new HashMap<>();
 
 
     @Before
@@ -32,12 +32,7 @@ public class ZkClientTest {
         clients.put(nodeInfo.getNodeId(), new ZkClient(nodeInfo));
 
         for (ZkClient client : clients.values()) {
-            client.checkinTmpLeader(new ZkClient.LeaderWatcher() {
-                @Override
-                public void takeLeadership() {
-                    System.out.println("leader is" + client.getNodeName());
-                }
-            });
+            client.checkinTmpLeader(() -> System.out.println("leader is" + client.getNodeName()));
         }
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -61,12 +56,7 @@ public class ZkClientTest {
                 NodeInfo nodeInfo = new NodeInfo(scanner.next(), scanner.nextInt(), scanner.nextInt());
                 ZkClient newClient = new ZkClient(nodeInfo);
                 clients.put(nodeInfo.getNodeId(), newClient);
-                newClient.checkinTmpLeader(new ZkClient.LeaderWatcher() {
-                    @Override
-                    public void takeLeadership() {
-                        System.out.println("leader is" + newClient.getNodeName());
-                    }
-                });
+                newClient.checkinTmpLeader(() -> System.out.println("leader is" + newClient.getNodeName()));
             }
             for (ZkClient client : clients.values()) {
                 System.out.print(client.getNodeName() + ", ");

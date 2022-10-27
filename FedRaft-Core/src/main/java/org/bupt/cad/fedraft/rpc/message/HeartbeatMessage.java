@@ -4,38 +4,38 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public final class HeartbeatMessage {
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_HeartbeatResponse_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_fedraft_HeartbeatResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_HeartbeatRequest_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_fedraft_HeartbeatRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_SyncWithTrainerRequest_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_fedraft_SyncWithTrainerResponse_descriptor;
+    internal_static_fedraft_HeartbeatResponse_descriptor;
   static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_fedraft_HeartbeatRequest_descriptor;
+  private static final com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_fedraft_SyncWithTrainerRequest_descriptor;
 
   static {
     java.lang.String[] descriptorData = {
       "\n\027heartbeat_message.proto\022\007fedraft\"e\n\021He" +
-      "artbeatResponse\022\025\n\rnetwork_delay\030\001 \001(\r\022\021" +
+      "artbeatResponse\022\025\n\rnetwork_delay\030\001 \001(\005\022\021" +
       "\n\ttimestamp\030\002 \001(\004\022&\n\nnode_state\030\003 \001(\0162\022." +
       "fedraft.NodeState\"\266\001\n\020HeartbeatRequest\022\014" +
       "\n\004term\030\001 \001(\r\022\021\n\tleader_id\030\002 \001(\004\022(\n\014leade" +
       "r_state\030\003 \001(\0162\022.fedraft.NodeState\022\032\n\022lea" +
       "der_model_index\030\004 \001(\r\022\021\n\ttimestamp\030\005 \001(\004" +
       "\022\020\n\010node_ids\030\006 \003(\004\022\026\n\016network_delays\030\007 \003" +
-      "(\r\"\243\001\n\026SyncWithTrainerRequest\022\014\n\004term\030\001 " +
+      "(\005\"\243\001\n\026SyncWithTrainerRequest\022\014\n\004term\030\001 " +
       "\001(\r\022\021\n\tleader_id\030\002 \001(\004\022\033\n\023current_model_" +
       "index\030\003 \001(\r\022\021\n\ttimestamp\030\004 \001(\004\022&\n\nnode_s" +
       "tate\030\005 \001(\0162\022.fedraft.NodeState\022\020\n\010node_i" +
@@ -75,23 +75,23 @@ public final class HeartbeatMessage {
         internal_static_fedraft_SyncWithTrainerResponse_descriptor,
         new java.lang.String[] { "CurrentModelIndex", "Timestamp", });
   }
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_fedraft_SyncWithTrainerResponse_descriptor;
   private HeartbeatMessage() {}
 
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
-    return descriptor;
-  }
-  private static final com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
-
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
+  }
+
+  public static com.google.protobuf.Descriptors.FileDescriptor
+      getDescriptor() {
+    return descriptor;
   }
 
   // @@protoc_insertion_point(outer_class_scope)

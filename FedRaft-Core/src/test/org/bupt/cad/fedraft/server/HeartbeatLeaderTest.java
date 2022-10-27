@@ -7,11 +7,11 @@ import org.junit.Test;
 public class HeartbeatLeaderTest {
 
 
-    private FedRaftServer server;
+    private ManagerServer server;
 
     @Before
     public void setup() throws InterruptedException {
-        server = new FedRaftServer("127.0.0.1", 16788);
+        server = new ManagerServer("127.0.0.1", 16788);
         server.start();
     }
 

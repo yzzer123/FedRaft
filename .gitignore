@@ -4,3 +4,4 @@ FedRaft-ModelTrain/FedRaft-ModelTrain.iml
 FedRaft-Core/target/
 *.pyc
 FedRaft-Core/log/
+./log

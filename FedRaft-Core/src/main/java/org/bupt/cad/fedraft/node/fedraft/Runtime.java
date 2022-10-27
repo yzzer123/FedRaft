@@ -1,4 +1,4 @@
-package org.bupt.cad.fedraft.node;
+package org.bupt.cad.fedraft.node.fedraft;
 
 
 import org.bupt.cad.fedraft.beans.NodeInfo;
@@ -6,32 +6,42 @@ import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.exception.StateChangeException;
 import org.bupt.cad.fedraft.rpc.message.NodeState;
-import org.bupt.cad.fedraft.server.FedRaftClient;
+import org.bupt.cad.fedraft.server.ManagerClient;
 import org.bupt.cad.fedraft.utils.ClientPool;
 import org.bupt.cad.fedraft.utils.ZkClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * manager 运行时状态 做批量改变时需要对对象加锁 非完全的线程安全
+ * manager 运行时状态 做批量改变时需要对对象加锁 非线程安全，需要提前获取线程锁
  */
 public class Runtime {
 
     private static final Logger logger = LoggerFactory.getLogger(Runtime.class);
-    private static Runtime instance;
+
+    // 节点状态读写锁
+    private final ReentrantReadWriteLock runtimeLock;
+    // 拓扑读写锁
+    private final ReentrantReadWriteLock topologyLock;
+
 
     //自身节点的信息
     private final NodeInfo selfNodeInfo;  //该节点保存的时延信息
-    private final ConcurrentHashMap<Long, Tuple<Integer, Long>> topology;
+    private final HashMap<Long, Tuple<Integer, Long>> topology;
     //保存的与其他所有节点的rpc连接
     private final ClientPool clientPool;
-    private final FedRaftClient trainerClient;
+    private final ManagerClient trainerClient;
     //定时线程池
     private final ExecutorService threadPool;
-    private final AtomicInteger delay;//当前节点的平均时延
+    private int delay;//当前节点的平均时延
     private final ZkClient zkClient;
     private NodeInfo leaderInfo;
     private int term = -1;//当前节点的任期
@@ -41,8 +51,11 @@ public class Runtime {
     // 模型索引
     private int modelIndex = -1;
 
+    public Runtime() {
+        // 建立读写锁
+        runtimeLock = new ReentrantReadWriteLock(true);
+        topologyLock = new ReentrantReadWriteLock(true);
 
-    private Runtime() {
         // 注册zk
         selfNodeInfo = new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST),
                 Configuration.getInt(Configuration.MANAGER_SERVER_PORT),
@@ -50,20 +63,49 @@ public class Runtime {
         zkClient = new ZkClient(selfNodeInfo);
 
         // 初始化节点状态
-        topology = new ConcurrentHashMap<>();
-        clientPool = new ClientPool();
+        topology = new HashMap<>();
+        clientPool = new ClientPool(this);
 
-        trainerClient = new FedRaftClient(selfNodeInfo, true);
+        trainerClient = new ManagerClient(this, selfNodeInfo, true);
         threadPool = new ThreadPoolExecutor(Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS),
                 2 * Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS), 3, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
-        delay = new AtomicInteger(-1);
+        delay = -1;
 
         state = NodeState.SAFE_MODE;
-        nodeMode = new SafeMode();
+        nodeMode = new SafeMode(this);
     }
 
-    public static Runtime getRuntime() {
-        return (instance == null ? instance = new Runtime() : instance);
+
+    public void lockRuntime(boolean isWrite) {
+        if (isWrite){
+            runtimeLock.writeLock().lock();
+        }else {
+            runtimeLock.readLock().lock();
+        }
+    }
+
+    public void unlockRuntime(boolean isWrite) {
+        if (isWrite){
+            runtimeLock.writeLock().unlock();
+        }else {
+            runtimeLock.readLock().unlock();
+        }
+    }
+
+    public void lockTopology(boolean isWrite) {
+        if (isWrite){
+            topologyLock.writeLock().lock();
+        }else {
+            topologyLock.readLock().lock();
+        }
+    }
+
+    public void unlockTopology(boolean isWrite) {
+        if (isWrite){
+            topologyLock.writeLock().lock();
+        }else {
+            topologyLock.readLock().lock();
+        }
     }
 
 
@@ -80,7 +122,7 @@ public class Runtime {
         return selfNodeInfo;
     }
 
-    public ConcurrentHashMap<Long, Tuple<Integer, Long>> getTopology() {
+    public Map<Long, Tuple<Integer, Long>> getTopology() {
         return topology;
     }
 
@@ -89,7 +131,7 @@ public class Runtime {
         return clientPool;
     }
 
-    public FedRaftClient getTrainerClient() {
+    public ManagerClient getTrainerClient() {
         return trainerClient;
     }
 
@@ -98,9 +140,7 @@ public class Runtime {
     }
 
     public void setLeader(Long nodeId) {
-        synchronized (this) {
-            leaderInfo = new NodeInfo(nodeId);
-        }
+        leaderInfo = new NodeInfo(nodeId);
     }
 
     public ExecutorService getThreadPool() {
@@ -108,30 +148,28 @@ public class Runtime {
     }
 
     public int getTerm() {
-        synchronized (this) {
-            return term;
-        }
+        return term;
     }
 
     public Runtime setTerm(int term) {
-        synchronized (this) {
-            if (term < this.term) {
-                logger.error("term can't be reduced");
-                throw new RuntimeException("term can't be reduced");
-            }
-            this.term = term;
-            return this;
+        if (term < this.term) {
+            logger.error("term can't be reduced");
+            throw new RuntimeException("term can't be reduced");
         }
+        this.term = term;
+        return this;
     }
 
     public void addTerm() {
-        synchronized (this) {
-            this.term++;
-        }
+        this.term++;
     }
 
-    public AtomicInteger getDelay() {
+    public int getDelay() {
         return delay;
+    }
+
+    public void setDelay(int delay) {
+        this.delay = delay;
     }
 
     public ZkClient getZkClient() {
@@ -147,27 +185,28 @@ public class Runtime {
             case TMP_LEADER: // tmp leader只能从 safe mode转换来
                 if (state == NodeState.SAFE_MODE) {
                     state = newState;
-                    setNodeMode(new TmpLeader());
+                    setNodeMode(new TmpLeader(this));
                     break;
                 }
                 throw new StateChangeException("invalid state change from " + state + " to " + newState);
             case LEADER:
                 if (state == NodeState.CANDIDATE) {
                     state = newState;
-                    setNodeMode(new Leader());
+                    setNodeMode(new Leader(this));
                     break;
                 }
                 throw new StateChangeException("invalid state change from " + state + " to " + newState);
             case CANDIDATE:
                 if (state == NodeState.CANDIDATE || state == NodeState.FOLLOWER) {
                     state = newState;
-                    setNodeMode(new Candidate(((Follower) nodeMode).getElectionExecutor()));
+                    // 传递选举状态
+                    setNodeMode(new Candidate(this, ((Follower) nodeMode).getElectionExecutor()));
                     break;
                 }
                 throw new StateChangeException("invalid state change from " + state + " to " + newState);
             case FOLLOWER:
                 state = newState;
-                setNodeMode(new Follower());
+                setNodeMode(new Follower(this));
                 break;
             case SAFE_MODE:  // safe mode只有初始化时才会有这种状态
                 throw new StateChangeException("invalid state change from " + state + " to " + newState);

@@ -25,19 +25,20 @@ public final class FedraftService {
     java.lang.String[] descriptorData = {
       "\n\025fedraft_service.proto\022\007fedraft\032\021log_me" +
       "ssage.proto\032\027heartbeat_message.proto\032\022vo" +
-      "te_massage.proto2\300\003\n\016FedRaftService\022@\n\017A" +
-      "ppendStreamLog\022\023.fedraft.LogRequest\032\024.fe" +
-      "draft.LogResponse\"\000(\001\0228\n\tAppendLog\022\023.fed" +
-      "raft.LogRequest\032\024.fedraft.LogResponse\"\000\022" +
-      "D\n\tHeartbeat\022\031.fedraft.HeartbeatRequest\032" +
-      "\032.fedraft.HeartbeatResponse\"\000\022V\n\017SyncWit" +
-      "hTrainer\022\037.fedraft.SyncWithTrainerReques" +
-      "t\032 .fedraft.SyncWithTrainerResponse\"\000\022V\n" +
-      "\017TriggerElection\022\037.fedraft.TriggerElecti" +
-      "onRequest\032 .fedraft.TriggerElectionRespo" +
-      "nse\"\000\022<\n\013RequestVote\022\024.fedraft.VoteReque" +
-      "st\032\025.fedraft.VoteResponse\"\000B$\n org.bupt." +
-      "cad.fedraft.rpc.serviceP\001b\006proto3"
+      "te_massage.proto2\354\001\n\016ManagerService\022D\n\tH" +
+      "eartbeat\022\031.fedraft.HeartbeatRequest\032\032.fe" +
+      "draft.HeartbeatResponse\"\000\022V\n\017TriggerElec" +
+      "tion\022\037.fedraft.TriggerElectionRequest\032 ." +
+      "fedraft.TriggerElectionResponse\"\000\022<\n\013Req" +
+      "uestVote\022\024.fedraft.VoteRequest\032\025.fedraft" +
+      ".VoteResponse\"\0002\214\001\n\016TrainerService\022@\n\017Ap" +
+      "pendStreamLog\022\023.fedraft.LogRequest\032\024.fed" +
+      "raft.LogResponse\"\000(\001\0228\n\tAppendLog\022\023.fedr" +
+      "aft.LogRequest\032\024.fedraft.LogResponse\"\0002q" +
+      "\n\027NodeInnerContactService\022V\n\017SyncWithTra" +
+      "iner\022\037.fedraft.SyncWithTrainerRequest\032 ." +
+      "fedraft.SyncWithTrainerResponse\"\000B$\n org" +
+      ".bupt.cad.fedraft.rpc.serviceP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

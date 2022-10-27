@@ -8,7 +8,7 @@ public interface HeartbeatResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>uint32 network_delay = 1;</code>
+   * <code>int32 network_delay = 1;</code>
    * @return The networkDelay.
    */
   int getNetworkDelay();

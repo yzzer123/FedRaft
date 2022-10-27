@@ -1,7 +1,8 @@
 package org.bupt.cad.fedraft.utils;
 
 import org.bupt.cad.fedraft.beans.NodeInfo;
-import org.bupt.cad.fedraft.server.FedRaftClient;
+import org.bupt.cad.fedraft.node.fedraft.Runtime;
+import org.bupt.cad.fedraft.server.ManagerClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,22 +12,27 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ClientPool {
 
     private static final Logger logger = LoggerFactory.getLogger(ClientPool.class);
-    private final ConcurrentHashMap<Long, FedRaftClient> clientChannels = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<Long, ManagerClient> clientChannels = new ConcurrentHashMap<>();
 
+    private final Runtime runtime;
 
-    public FedRaftClient getChannel(Long nodeId) {
-        FedRaftClient client = clientChannels.get(nodeId);
+    public ClientPool(Runtime runtime){
+        this.runtime = runtime;
+    }
+
+    public ManagerClient getChannel(Long nodeId) {
+        ManagerClient client = clientChannels.get(nodeId);
         if (client == null) {
             if (logger.isDebugEnabled()) {
                 logger.debug("created new channel with {}", new NodeInfo(nodeId));
             }
-            client = new FedRaftClient(new NodeInfo(nodeId));
+            client = new ManagerClient(runtime, new NodeInfo(nodeId));
             clientChannels.put(nodeId, client);
         }
         return client;
     }
 
-    public FedRaftClient removeChannel(Long nodeId) {
+    public ManagerClient removeChannel(Long nodeId) {
         return clientChannels.remove(nodeId);
     }
 
@@ -42,6 +48,4 @@ public class ClientPool {
     public void clear() {
         clientChannels.clear();
     }
-
-
 }

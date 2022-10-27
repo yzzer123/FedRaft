@@ -222,14 +222,13 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
   private byte memoizedIsInitialized = -1;
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
 
   public static com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
     return org.bupt.cad.fedraft.rpc.message.LogMessage.internal_static_fedraft_LogResponse_descriptor;
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
   }
   @java.lang.Override
   public Builder toBuilder() {

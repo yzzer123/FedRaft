@@ -3,8 +3,7 @@ package org.bupt.cad.fedraft.utils;
 import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.beans.Tuple;
 import org.bupt.cad.fedraft.config.Configuration;
-import org.bupt.cad.fedraft.node.Runtime;
-import org.bupt.cad.fedraft.rpc.message.NodeState;
+import org.bupt.cad.fedraft.node.fedraft.Runtime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,72 +35,72 @@ public class PingUtils {
     /**
      * 负责定时测试点到点延时 并计算出节点的平均时延
      */
-    public static ScheduledFuture<?> startScheduledPingTask() {
+    public static ScheduledFuture<?> startScheduledPingTask(Runtime runtime) {
 
         int heartbeatInterval = Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIME_INTERVAL);
-        return TimerUtils.getTimer().scheduleAtFixedRate(
-                PingUtils::pingTopology
-                , 0, heartbeatInterval / 3 * 2, TimeUnit.MILLISECONDS);
+        return TimerUtils.getTimer().scheduleAtFixedRate(() -> PingUtils.pingTopology(runtime),
+                0, heartbeatInterval / 3 * 2, TimeUnit.MILLISECONDS);
     }
 
-    public static void pingTopology(){
-        int avgDelay = pingTopologyByCMD();
-        Runtime.getRuntime().getDelay().set(avgDelay);
-        Runtime runtime = Runtime.getRuntime();
-        NodeState runtimeState = runtime.getState();
+    public static void pingTopology(Runtime runtime) {
+        int avgDelay = pingTopologyByCMD(runtime);
+        runtime.lockRuntime(true);
+        runtime.setDelay(avgDelay);
+        runtime.unlockRuntime(true);
 
         // leader tmp leader candidate 需要将自己的时延信息放到拓扑里
-        switch (runtimeState) {
+        switch (runtime.getState()) {
             case LEADER:
             case TMP_LEADER:
             case CANDIDATE:
+                runtime.lockTopology(true);
                 runtime.getTopology().computeIfPresent(runtime.getSelfNodeInfo().getNodeId(), (id, oldDelay) -> {
                     oldDelay.setTuple((7 * avgDelay + 3 * (oldDelay.getLeft() == INVALID_DELAY ? avgDelay : oldDelay.getLeft())) / 10, System.currentTimeMillis());
                     return oldDelay;
                 });
+                runtime.unlockTopology(true);
         }
     }
 
 
-
-    private static int pingTopologyByCMD(){
-        Map<Long, Tuple<Integer, Long>> topology = Runtime.getRuntime().getTopology();
-        ExecutorService threadPool = Runtime.getRuntime().getThreadPool();
-        long selfId = Runtime.getRuntime().getSelfNodeInfo().getNodeId();
+    private static int pingTopologyByCMD(Runtime runtime) {
+        Map<Long, Tuple<Integer, Long>> topology = runtime.getTopology();
+        ExecutorService threadPool = runtime.getThreadPool();
+        long selfId = runtime.getSelfNodeInfo().getNodeId();
         AtomicInteger sumOfDelay = new AtomicInteger(0);
-        ClientPool clientPool = Runtime.getRuntime().getClientPool();
         final CountDownLatch countDownLatch;
         int size;
 
         // 需要对拓扑加锁
-        synchronized (Runtime.getRuntime().getTopology()) {
-            // 内存中没有拓扑，就将时延设置为-1
-            if (topology.size() < 1) {
-                return INVALID_DELAY;
-            }
-            size = topology.size() - 1;
-            countDownLatch = new CountDownLatch(size);
+        runtime.lockRuntime(false);
 
-            for (Long clientId : topology.keySet()) {
-                if (clientId == selfId){
-                    continue;
-                }
-                threadPool.submit(()->{
-                    // 对于未知的ip或者ping不通的都加上一个惩罚时延
-                    int delay = INVALID_DELAY;
-                    try {
-                        delay = ping(NodeInfo.idToIp(clientId));
-                    } catch (IOException e) {
-                        delay = INVALID_DELAY;
-                        logger.warn(e.getMessage());
-                    } finally {
-                        sumOfDelay.addAndGet(delay);
-                        countDownLatch.countDown();
-                    }
-                });
-            }
-
+        // 内存中没有拓扑，就将时延设置为-1
+        if (topology.size() < 1) {
+            return INVALID_DELAY;
         }
+        size = topology.size() - 1;
+        countDownLatch = new CountDownLatch(size);
+
+        for (Long clientId : topology.keySet()) {
+            if (clientId == selfId) {
+                continue;
+            }
+            threadPool.submit(() -> {
+                // 对于未知的ip或者ping不通的都加上一个惩罚时延
+                int delay = INVALID_DELAY;
+                try {
+                    delay = ping(NodeInfo.idToIp(clientId));
+                } catch (IOException e) {
+                    delay = INVALID_DELAY;
+                    logger.warn(e.getMessage());
+                } finally {
+                    sumOfDelay.addAndGet(delay);
+                    countDownLatch.countDown();
+                }
+            });
+        }
+
+        runtime.unlockRuntime(false);
 
         // 等待线程都结束
         try {
@@ -113,8 +112,6 @@ public class PingUtils {
         // 计算平均时延
         return sumOfDelay.get() / size;
     }
-
-
 
 
     /**
@@ -133,8 +130,8 @@ public class PingUtils {
         try {
             Process process = java.lang.Runtime.getRuntime().exec(command);
             in = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            String line = null;
-            int delay = -1;
+            String line;
+            int delay;
             while ((line = in.readLine()) != null) {
                 delay = getDelayFromPing(line);
                 if (delay != -1) {

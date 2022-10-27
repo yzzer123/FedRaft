@@ -18,8 +18,14 @@ public interface VoteResponseOrBuilder extends
    * 回复自己的时延
    * </pre>
    *
-   * <code>uint32 delay = 2;</code>
+   * <code>int32 delay = 2;</code>
    * @return The delay.
    */
   int getDelay();
+
+  /**
+   * <code>bool voteGranted = 3;</code>
+   * @return The voteGranted.
+   */
+  boolean getVoteGranted();
 }
