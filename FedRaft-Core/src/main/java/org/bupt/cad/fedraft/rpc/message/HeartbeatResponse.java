@@ -511,7 +511,18 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
+     * <code>uint64 timestamp = 2;</code>
+     *
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+      return timestamp_;
+    }
+
+    /**
      * <code>int32 network_delay = 1;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearNetworkDelay() {
@@ -519,15 +530,6 @@ private static final long serialVersionUID = 0L;
       networkDelay_ = 0;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>uint64 timestamp = 2;</code>
-     * @return The timestamp.
-     */
-    @java.lang.Override
-    public long getTimestamp() {
-      return timestamp_;
     }
 
     /**

@@ -163,8 +163,7 @@ public class ManagerClient {
             public void onNext(VoteResponse voteResponse) {
                 // check node state, only candidate can receive a vote
                 if (logger.isDebugEnabled()){
-                    logger.debug("received vote response from {} with msg: {}", clientInfo,
-                            voteResponse.toString().replace("\n", "\t"));
+                    logger.debug("received vote response from {} with granted: {}", clientInfo, voteResponse.getVoteGranted());
                 }
 
                 runtime.lockRuntime(false);

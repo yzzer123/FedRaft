@@ -670,6 +670,7 @@ private static final long serialVersionUID = 0L;
     public int getTerm() {
       return term_;
     }
+
     private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
     private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
 
@@ -677,14 +678,26 @@ private static final long serialVersionUID = 0L;
     private Builder() {
 
     }
+
     private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
 
     }
 
     /**
+     * <code>uint64 candidate_id = 2;</code>
+     *
+     * @return The candidateId.
+     */
+    @java.lang.Override
+    public long getCandidateId() {
+      return candidateId_;
+    }
+
+    /**
      * <code>uint32 term = 1;</code>
+     *
      * @param value The term to set.
      * @return This builder for chaining.
      */
@@ -707,12 +720,13 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
-     * <code>uint64 candidate_id = 2;</code>
-     * @return The candidateId.
+     * <code>uint32 model_index = 3;</code>
+     *
+     * @return The modelIndex.
      */
     @java.lang.Override
-    public long getCandidateId() {
-      return candidateId_;
+    public int getModelIndex() {
+      return modelIndex_;
     }
 
     /**
@@ -736,15 +750,6 @@ private static final long serialVersionUID = 0L;
       candidateId_ = 0L;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>uint32 model_index = 3;</code>
-     * @return The modelIndex.
-     */
-    @java.lang.Override
-    public int getModelIndex() {
-      return modelIndex_;
     }
 
     /**

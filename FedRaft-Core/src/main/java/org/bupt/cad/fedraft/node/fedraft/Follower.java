@@ -141,7 +141,7 @@ public class Follower extends Node implements TimeoutKeeper {
         if (electionExecutor == null){
             electionExecutor = new ElectionExecutor(getRuntime());
         }
-        resetTimeoutTask();
+        this.resetTimeoutTask();
         return electionExecutor.voteFor(request);
     }
 

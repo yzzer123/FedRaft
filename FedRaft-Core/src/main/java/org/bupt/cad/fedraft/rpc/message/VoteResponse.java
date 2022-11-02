@@ -269,7 +269,7 @@ private static final long serialVersionUID = 0L;
         != other.getDelay()) return false;
     if (getVoteGranted()
         != other.getVoteGranted()) return false;
-      return getUnknownFields().equals(other.getUnknownFields());
+    return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override
@@ -476,6 +476,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    /**
+     * <code>uint32 term = 1;</code>
+     *
+     * @return The term.
+     */
+    @java.lang.Override
+    public int getTerm() {
+      return term_;
+    }
+
     @java.lang.Override
     public org.bupt.cad.fedraft.rpc.message.VoteResponse buildPartial() {
       org.bupt.cad.fedraft.rpc.message.VoteResponse result = new org.bupt.cad.fedraft.rpc.message.VoteResponse(this);
@@ -493,15 +503,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint32 term = 1;</code>
-     * @return The term.
-     */
-    @java.lang.Override
-    public int getTerm() {
-      return term_;
-    }
-
-    /**
-     * <code>uint32 term = 1;</code>
+     *
      * @param value The term to set.
      * @return This builder for chaining.
      */
@@ -511,21 +513,10 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-    /**
-     * <pre>
-     * 回复自己的时延
-     * </pre>
-     *
-     * <code>int32 delay = 2;</code>
-     * @return The delay.
-     */
-    @java.lang.Override
-    public int getDelay() {
-      return delay_;
-    }
 
     /**
      * <code>uint32 term = 1;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearTerm() {
@@ -533,6 +524,20 @@ private static final long serialVersionUID = 0L;
       term_ = 0;
       onChanged();
       return this;
+    }
+
+    /**
+     * <pre>
+     * 回复自己的时延
+     * </pre>
+     *
+     * <code>int32 delay = 2;</code>
+     *
+     * @return The delay.
+     */
+    @java.lang.Override
+    public int getDelay() {
+      return delay_;
     }
 
     /**

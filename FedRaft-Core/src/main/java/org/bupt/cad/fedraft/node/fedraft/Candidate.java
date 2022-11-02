@@ -46,7 +46,7 @@ public class Candidate extends Node implements TimeoutKeeper {
 //        getRuntime().addTerm();
 //        getRuntime().unlockRuntime(true);
 
-        requestFotVote();
+        requestForVote();
         setupTimeoutTask();
 
         if (logger.isDebugEnabled()){
@@ -80,7 +80,7 @@ public class Candidate extends Node implements TimeoutKeeper {
         electionState.reset();
         if (electionState.isQualifiedCandidate()) {
             // 发生投票
-            requestFotVote();
+            requestForVote();
             resetTimeoutTask();
         } else {
 
@@ -108,7 +108,7 @@ public class Candidate extends Node implements TimeoutKeeper {
     /**
      * 请求投票
      */
-    public void requestFotVote() {
+    public void requestForVote() {
 
         if (logger.isDebugEnabled()) {
             logger.debug("candidate request for vote!");

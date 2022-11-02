@@ -39,20 +39,19 @@ public abstract class Node {
         // 当任期小的节点请求重新选举就忽略请求
         if (runtime.getState() != NodeState.FOLLOWER || request.getTerm() < runtime.getTerm()) {
             runtime.unlockRuntime(true);
-
             return;
         }
 
         // 激活选举流程
         logger.info("{} trigger timeout to re-election", new NodeInfo(request.getLeaderId()));
 
-        // 取消倒计时任务
-        runtime.getNodeMode().close();
-
         // 只有follower才能被激活进入选举，leader必须放弃主权
         if (runtime.getState() != NodeState.FOLLOWER) {
             runtime.setState(NodeState.FOLLOWER);
         }
+
+        // 取消倒计时任务
+        runtime.getNodeMode().close();
 
         runtime.unlockRuntime(true);
         runtime.getNodeMode().heartbeatTimeout();

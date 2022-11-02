@@ -81,7 +81,7 @@ public class TmpLeader extends Node {
             // 计算存活follower数量
             followerSet.values().removeIf(timestamp -> timestamp + heartbeatInterval * 3L < System.currentTimeMillis());
             // 集群节点达到2以上才能正常运行
-            if (topology.size() > 2 && followerSet.size() > topology.size() / 2) {
+            if (topology.size() > 2 && followerSet.size() + 1 > topology.size() / 2) {
                 if (logger.isDebugEnabled())
                     logger.debug("tmp leader trigger election");
                 triggerElection();

@@ -30,7 +30,7 @@ public class ElectionExecutor {
     private final Runtime runtime;
     // 允许投票的排名 时延名次<admittedIndex 可投票
     private int admittedIndex = Configuration.getInt(Configuration.ELECTION_CANDIDATE_QUALIFY_INDEX) + 1;
-    private boolean voted = false;
+    private boolean voted = true;
 
     private ElectionListener listener;
 
@@ -51,27 +51,29 @@ public class ElectionExecutor {
             logger.info("reset election state");
             delayPriorityQueue.clear();
 
-            runtime.lockRuntime(true);
-            // 重置会增加任期
-            runtime.addTerm();
-            runtime.unlockRuntime(true);
-
-
             runtime.lockTopology(false);
-
             for (Map.Entry<Long, Tuple<Integer, Long>> entry : runtime.getTopology().entrySet()) {
                 delayPriorityQueue.add(new Tuple<>(entry.getKey(), entry.getValue().getLeft()));
             }
             runtime.unlockTopology(false);
 
-
             // 对时延进行排序
             delayPriorityQueue.sort(Comparator.comparingInt(Tuple::getRight));
-            voted = false;
 
+            votesNum.set(0);
+
+            //  如果上一次任期没投票，follower不能主动提升自己的任期
+            if (voted) {
+                runtime.lockRuntime(true);
+                // 重置会增加任期
+                runtime.addTerm();
+                runtime.unlockRuntime(true);
+                voted = false;
+            } else {
+                return;
+            }
             // 最小减少到1
             admittedIndex = max(admittedIndex - 1, 1);
-            votesNum.set(0);
         }
     }
 
@@ -83,22 +85,21 @@ public class ElectionExecutor {
     public boolean voteFor(VoteRequest request) {
         synchronized (this) {
 
-            // 检查任期/模型索引
+            if (logger.isDebugEnabled()) {
+                logger.debug("get vote request from {}", new NodeInfo(request.getCandidateId()));
+            }
 
-            runtime.lockRuntime(true);
-
-            // 请求投票者的任期和模型索引不比自己高
+            // 请求投票者的任期和模型索引不比自己高 并且本轮没有投票过
             if (runtime.getTerm() > request.getTerm() || runtime.getModelIndex() > request.getModelIndex() ||
                     (voted && runtime.getTerm() == request.getTerm())) {
-                runtime.unlockRuntime(true);
                 return false;
             }
 
             // 如果当前任期还没投票，或者出现更高任期，就开始检查资格
             for (int i = 0; i < admittedIndex; i++) {
                 if (delayPriorityQueue.get(i).getLeft().equals(request.getCandidateId())) {
-                    logger.info("vote for {}", new NodeInfo(request.getCandidateId()));
                     voted = true;
+
                     // 更新时延 表示支持这个candidate， 即使投票失败了，下一次也更有可能投给他
                     runtime.getNodeMode().updateTopology(request.getNodeIdsList(),
                             request.getNetworkDelaysList(),
@@ -107,12 +108,9 @@ public class ElectionExecutor {
                     // 提升任期 但不更新模型索引
                     runtime.setTerm(request.getTerm());
                     votesNum.set(0);
-                    runtime.unlockRuntime(true);
                     return true;
                 }
             }
-
-            runtime.unlockRuntime(true);
         }
         return false;
     }

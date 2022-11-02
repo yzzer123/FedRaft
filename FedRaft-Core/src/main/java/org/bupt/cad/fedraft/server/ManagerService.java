@@ -3,6 +3,7 @@ package org.bupt.cad.fedraft.server;
 
 import io.grpc.stub.StreamObserver;
 import org.bupt.cad.fedraft.algorithm.Algorithm;
+import org.bupt.cad.fedraft.beans.NodeInfo;
 import org.bupt.cad.fedraft.exception.InvalidHeartbeatException;
 import org.bupt.cad.fedraft.rpc.message.*;
 import org.bupt.cad.fedraft.rpc.service.ManagerServiceGrpc;
@@ -54,11 +55,9 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
 
     @Override
     public void triggerElection(TriggerElectionRequest request, StreamObserver<TriggerElectionResponse> responseObserver) {
-        algorithm.getRuntime().lockRuntime(true);
 
         algorithm.getRuntime().getNodeMode().triggerElection(request);
 
-        algorithm.getRuntime().unlockRuntime(true);
 
         // 回复默认值即可
         responseObserver.onNext(TriggerElectionResponse.getDefaultInstance());
@@ -77,7 +76,11 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
 
         algorithm.getRuntime().unlockRuntime(true);
 
-        responseObserver.onNext(responseBuilder.build());
+        VoteResponse voteResponse = responseBuilder.build();
+
+        logger.info("vote for {} with {}", new NodeInfo(request.getCandidateId()), voteResponse.getVoteGranted());
+
+        responseObserver.onNext(voteResponse);
         responseObserver.onCompleted();
     }
 }
