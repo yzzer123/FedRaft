@@ -42,12 +42,16 @@ public class Candidate extends Node implements TimeoutKeeper {
         });
 
         // 请求投票
-        getRuntime().lockRuntime(true);
-        getRuntime().addTerm();
-        getRuntime().unlockRuntime(true);
+//        getRuntime().lockRuntime(true);
+//        getRuntime().addTerm();
+//        getRuntime().unlockRuntime(true);
 
         requestFotVote();
         setupTimeoutTask();
+
+        if (logger.isDebugEnabled()){
+            logger.debug("change to candidate!!");
+        }
     }
 
     @Override
@@ -105,6 +109,10 @@ public class Candidate extends Node implements TimeoutKeeper {
      * 请求投票
      */
     public void requestFotVote() {
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("candidate request for vote!");
+        }
         Map<Long, Tuple<Integer, Long>> topology = getRuntime().getTopology();
 
         // 构造请求
@@ -130,7 +138,11 @@ public class Candidate extends Node implements TimeoutKeeper {
         ClientPool clientPool = getRuntime().getClientPool();
         ExecutorService threadPool = getRuntime().getThreadPool();
 
+        long selfId = getRuntime().getSelfNodeInfo().getNodeId();
         for (Long clientId : voteRequest.getNodeIdsList()) {
+            if (clientId.equals(selfId)){
+                continue;
+            }
             threadPool.submit(() -> clientPool.getChannel(clientId).requestForVote(voteRequest, electionState));
         }
     }

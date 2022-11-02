@@ -37,15 +37,25 @@ public class SafeMode extends Node implements TimeoutKeeper {
         // 随机倒计时启动，给集群一定时间注册节点
         // 倒计时结束后主动触发超时事件抢占leader
         timeoutTask = TimerUtils.getTimer().schedule(this::heartbeatTimeout,
-                Configuration.getInt(Configuration.ELECTION_TMP_LEADER_START_TIME) + new Random().nextInt(5000), TimeUnit.MILLISECONDS);
+                Configuration.getInt(Configuration.ELECTION_TMP_LEADER_START_TIME) + new Random().nextInt(1000), TimeUnit.MILLISECONDS);
+
+        if (logger.isDebugEnabled()){
+            logger.debug("safemode initialized!!!");
+        }
     }
 
     @Override
     public void heartbeatTimeout() {
         Runtime runtime = getRuntime();
+
+        if (logger.isDebugEnabled()){
+            logger.debug("trying to checkin tmp-leader");
+        }
+
         if (runtime.getState() != NodeState.SAFE_MODE) {
             return;
         }
+
         runtime.getZkClient().checkinTmpLeader(() -> {
             //争抢成功, 切换节点状态, 并唤醒tmp_leader
             runtime.lockRuntime(true);
@@ -60,7 +70,6 @@ public class SafeMode extends Node implements TimeoutKeeper {
     public boolean voteFor(VoteRequest request) {
         return false;
     }
-
 
     /**
      * 超时抢占节点，监测到tmp leader心跳超时，自动抢占
@@ -78,6 +87,11 @@ public class SafeMode extends Node implements TimeoutKeeper {
     @Override
     public void cancelTimeoutTask() {
         if (timeoutTask != null) {
+
+            if (logger.isDebugEnabled()){
+                logger.debug("safemode 's timeout task canceled");
+            }
+
             timeoutTask.cancel(true);
             timeoutTask = null;
         }

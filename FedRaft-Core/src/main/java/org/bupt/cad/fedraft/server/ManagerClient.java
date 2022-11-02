@@ -29,7 +29,6 @@ public class ManagerClient {
     public ManagedChannel getChannel() {
         return channel;
     }
-    private final ManagerServiceGrpc.ManagerServiceBlockingStub blockingStub;
     private final ManagerServiceGrpc.ManagerServiceStub asyncStub;
 
     public void close() {
@@ -44,15 +43,17 @@ public class ManagerClient {
     public ManagerClient(Runtime runtime, NodeInfo nodeInfo, boolean isForTrainer) {
         this.channel = ManagedChannelBuilder.forAddress(nodeInfo.getIp(), isForTrainer ? nodeInfo.getTrainerPort() : nodeInfo.getPort())
                 .usePlaintext().enableRetry().build();
-        this.blockingStub = ManagerServiceGrpc.newBlockingStub(channel);
-        this.asyncStub = ManagerServiceGrpc.newStub(channel);
-        this.clientAsyncStub = NodeInnerContactServiceGrpc.newStub(channel);
+
+        if (isForTrainer){
+            this.clientAsyncStub = NodeInnerContactServiceGrpc.newStub(channel);
+            this.asyncStub = null;
+        }else {
+            this.asyncStub = ManagerServiceGrpc.newStub(channel);
+            this.clientAsyncStub = null;
+        }
+
         this.clientInfo = nodeInfo;
         this.runtime = runtime;
-    }
-
-    public ManagerServiceGrpc.ManagerServiceBlockingStub getBlockingStub() {
-        return blockingStub;
     }
 
     public ManagerServiceGrpc.ManagerServiceStub getAsyncStub() {
@@ -60,7 +61,7 @@ public class ManagerClient {
     }
 
     //向client发送心跳信息 并处理返回值
-    public void sendHeartBeat(HeartbeatRequest request, HeartbeatResponseHandler responseHandler) {
+    public void sendHeartBeat(HeartbeatRequest request, HeartbeatResponseHandler responseHandler)  {
 
         if (logger.isDebugEnabled())
             logger.debug("send heartbeat to {}", clientInfo);
@@ -79,7 +80,7 @@ public class ManagerClient {
                     @Override
                     public void onError(Throwable throwable) {
                         if (logger.isDebugEnabled())
-                            logger.debug("heartbeat failed: " + throwable.getMessage());
+                            logger.debug("[{}] heartbeat failed: " + throwable.getMessage(), clientInfo);
 
                         runtime.getTopology().computeIfPresent(clientInfo.getNodeId(), (k, oldDelay) -> {
                             if (oldDelay.getRight() < request.getTimestamp()) {
@@ -117,10 +118,14 @@ public class ManagerClient {
 
         Map<Long, Tuple<Integer, Long>> topology = runtime.getTopology();
         SyncWithTrainerRequest.Builder requestBuilder = SyncWithTrainerRequest.newBuilder();
+
         runtime.lockRuntime(false);
+
+
         requestBuilder.setTerm(runtime.getTerm())
-                .setLeaderId(runtime.getLeaderInfo().getNodeId())
+                .setLeaderId(runtime.getLeaderInfo() == null ? 0L: runtime.getLeaderInfo().getNodeId())
                 .setNodeState(runtime.getState());
+
         runtime.unlockRuntime(false);
 
         runtime.lockTopology(false);
@@ -132,15 +137,16 @@ public class ManagerClient {
                     @Override
                     public void onNext(SyncWithTrainerResponse response) {
                         // 更新本地模型索引
+                        runtime.lockRuntime(true);
                         runtime.setModelIndex(response.getCurrentModelIndex());
+                        runtime.unlockRuntime(true);
                         if (logger.isDebugEnabled())
                             logger.debug("sync succeed and updated local model index = {}", response.getCurrentModelIndex());
                     }
 
                     @Override
                     public void onError(Throwable t) {
-//                if (logger.isDebugEnabled())
-//                    logger.debug("sync with trainer failed: {}", t.getMessage());
+
                     }
 
                     @Override
@@ -156,20 +162,17 @@ public class ManagerClient {
             @Override
             public void onNext(VoteResponse voteResponse) {
                 // check node state, only candidate can receive a vote
+                if (logger.isDebugEnabled()){
+                    logger.debug("received vote response from {} with msg: {}", clientInfo,
+                            voteResponse.toString().replace("\n", "\t"));
+                }
+
                 runtime.lockRuntime(false);
                     if (runtime.getState() != NodeState.CANDIDATE){
                         runtime.unlockRuntime(false);
                         return;
                     }
                 runtime.unlockRuntime(false);
-
-                // receive a vote
-                if (voteResponse.getVoteGranted()){
-                    electionExecutor.addVote();
-                    if (logger.isDebugEnabled()){
-                        logger.debug("received a vote from {}", clientInfo);
-                    }
-                }
 
                 // update local topology
                 runtime.getTopology().computeIfPresent(clientInfo.getNodeId(),
@@ -183,6 +186,11 @@ public class ManagerClient {
                             oldDelay.setRight(System.currentTimeMillis());
                             return oldDelay;
                         });
+
+                // receive a vote
+                if (voteResponse.getVoteGranted()){
+                    electionExecutor.addVote();
+                }
             }
 
             @Override

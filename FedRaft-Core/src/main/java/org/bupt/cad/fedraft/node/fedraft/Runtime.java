@@ -12,12 +12,8 @@ import org.bupt.cad.fedraft.utils.ZkClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
@@ -35,7 +31,7 @@ public class Runtime {
 
     //自身节点的信息
     private final NodeInfo selfNodeInfo;  //该节点保存的时延信息
-    private final HashMap<Long, Tuple<Integer, Long>> topology;
+    private final ConcurrentHashMap<Long, Tuple<Integer, Long>> topology;
     //保存的与其他所有节点的rpc连接
     private final ClientPool clientPool;
     private final ManagerClient trainerClient;
@@ -51,10 +47,14 @@ public class Runtime {
     // 模型索引
     private int modelIndex = -1;
 
+
     public Runtime() {
         // 建立读写锁
         runtimeLock = new ReentrantReadWriteLock(true);
         topologyLock = new ReentrantReadWriteLock(true);
+
+        threadPool = new ThreadPoolExecutor(Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS),
+                2 * Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS), 3, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
 
         // 注册zk
         selfNodeInfo = new NodeInfo(Configuration.getString(Configuration.MANAGER_SERVER_HOST),
@@ -62,17 +62,23 @@ public class Runtime {
                 Configuration.getInt(Configuration.TRAINER_SERVER_PORT));
         zkClient = new ZkClient(selfNodeInfo);
 
+        leaderInfo = null;
+
+
         // 初始化节点状态
-        topology = new HashMap<>();
+        topology = new ConcurrentHashMap<>();
         clientPool = new ClientPool(this);
 
         trainerClient = new ManagerClient(this, selfNodeInfo, true);
-        threadPool = new ThreadPoolExecutor(Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS),
-                2 * Configuration.getInt(Configuration.MANAGER_THREADPOOL_NUMBERS), 3, TimeUnit.SECONDS, new LinkedBlockingDeque<>());
+
         delay = -1;
 
         state = NodeState.SAFE_MODE;
         nodeMode = new SafeMode(this);
+
+        if (logger.isDebugEnabled()){
+            logger.debug("manager runtime initialized successfully!");
+        }
     }
 
 
@@ -102,9 +108,9 @@ public class Runtime {
 
     public void unlockTopology(boolean isWrite) {
         if (isWrite){
-            topologyLock.writeLock().lock();
+            topologyLock.writeLock().unlock();
         }else {
-            topologyLock.readLock().lock();
+            topologyLock.readLock().unlock();
         }
     }
 

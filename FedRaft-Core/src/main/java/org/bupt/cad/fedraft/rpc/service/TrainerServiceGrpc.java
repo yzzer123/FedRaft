@@ -13,17 +13,13 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class TrainerServiceGrpc {
 
-  public static final String SERVICE_NAME = "fedraft.TrainerService";
   private static final int METHODID_APPEND_LOG = 0;
-  private static final int METHODID_APPEND_STREAM_LOG = 1;
+
+  public static final String SERVICE_NAME = "fedraft.TrainerService";
+
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
       org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendStreamLogMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
-      org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
-  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
-
-  private TrainerServiceGrpc() {}
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AppendStreamLog",
@@ -52,6 +48,7 @@ public final class TrainerServiceGrpc {
     }
     return getAppendStreamLogMethod;
   }
+  private static final int METHODID_APPEND_STREAM_LOG = 1;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "AppendLog",
@@ -123,23 +120,6 @@ public final class TrainerServiceGrpc {
         }
       };
     return TrainerServiceFutureStub.newStub(factory, channel);
-  }
-
-  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
-    io.grpc.ServiceDescriptor result = serviceDescriptor;
-    if (result == null) {
-      synchronized (TrainerServiceGrpc.class) {
-        result = serviceDescriptor;
-        if (result == null) {
-          serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new TrainerServiceFileDescriptorSupplier())
-              .addMethod(getAppendStreamLogMethod())
-              .addMethod(getAppendLogMethod())
-              .build();
-        }
-      }
-    }
-    return result;
   }
 
   /**
@@ -273,6 +253,9 @@ public final class TrainerServiceGrpc {
           getChannel().newCall(getAppendLogMethod(), getCallOptions()), request);
     }
   }
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.LogRequest,
+      org.bupt.cad.fedraft.rpc.message.LogResponse> getAppendLogMethod;
+  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -347,5 +330,24 @@ public final class TrainerServiceGrpc {
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }
+  }
+
+  private TrainerServiceGrpc() {}
+
+  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
+    io.grpc.ServiceDescriptor result = serviceDescriptor;
+    if (result == null) {
+      synchronized (TrainerServiceGrpc.class) {
+        result = serviceDescriptor;
+        if (result == null) {
+          serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
+              .setSchemaDescriptor(new TrainerServiceFileDescriptorSupplier())
+              .addMethod(getAppendStreamLogMethod())
+              .addMethod(getAppendLogMethod())
+              .build();
+        }
+      }
+    }
+    return result;
   }
 }

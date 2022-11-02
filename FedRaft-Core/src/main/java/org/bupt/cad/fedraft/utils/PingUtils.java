@@ -44,22 +44,22 @@ public class PingUtils {
 
     public static void pingTopology(Runtime runtime) {
         int avgDelay = pingTopologyByCMD(runtime);
+
         runtime.lockRuntime(true);
         runtime.setDelay(avgDelay);
-        runtime.unlockRuntime(true);
 
         // leader tmp leader candidate 需要将自己的时延信息放到拓扑里
         switch (runtime.getState()) {
             case LEADER:
             case TMP_LEADER:
             case CANDIDATE:
-                runtime.lockTopology(true);
                 runtime.getTopology().computeIfPresent(runtime.getSelfNodeInfo().getNodeId(), (id, oldDelay) -> {
                     oldDelay.setTuple((7 * avgDelay + 3 * (oldDelay.getLeft() == INVALID_DELAY ? avgDelay : oldDelay.getLeft())) / 10, System.currentTimeMillis());
                     return oldDelay;
                 });
-                runtime.unlockTopology(true);
         }
+        runtime.unlockRuntime(true);
+
     }
 
 
@@ -73,9 +73,12 @@ public class PingUtils {
 
         // 需要对拓扑加锁
         runtime.lockRuntime(false);
+        runtime.lockTopology(false);
 
         // 内存中没有拓扑，就将时延设置为-1
         if (topology.size() < 1) {
+            runtime.unlockTopology(false);
+            runtime.unlockRuntime(false);
             return INVALID_DELAY;
         }
         size = topology.size() - 1;
@@ -99,7 +102,7 @@ public class PingUtils {
                 }
             });
         }
-
+        runtime.unlockTopology(false);
         runtime.unlockRuntime(false);
 
         // 等待线程都结束

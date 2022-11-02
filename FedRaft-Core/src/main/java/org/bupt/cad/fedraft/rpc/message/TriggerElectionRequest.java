@@ -500,14 +500,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
-    }
 
     /**
      * <code>uint32 term = 1;</code>
@@ -518,6 +510,15 @@ private static final long serialVersionUID = 0L;
       term_ = 0;
       onChanged();
       return this;
+    }
+
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+      return leaderId_;
     }
 
     /**

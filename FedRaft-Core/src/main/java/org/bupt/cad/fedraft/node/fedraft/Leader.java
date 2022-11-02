@@ -76,7 +76,7 @@ public class Leader extends Node {
             logger.debug("leader begin maintainHeartbeat");
 
         // end runnable method
-        heartbeatTask = TimerUtils.getTimer().scheduleAtFixedRate(this::heartbeatOnce, 10, heartbeatInterval, TimeUnit.MILLISECONDS);
+        heartbeatTask = TimerUtils.getTimer().scheduleAtFixedRate(this::heartbeatOnce, 0, heartbeatInterval, TimeUnit.MILLISECONDS);
     }
 
     private void heartbeatOnce() {

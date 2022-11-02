@@ -269,7 +269,7 @@ private static final long serialVersionUID = 0L;
         != other.getLocalIndex()) return false;
     if (getLogSize()
         != other.getLogSize()) return false;
-    return getUnknownFields().equals(other.getUnknownFields());
+      return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override

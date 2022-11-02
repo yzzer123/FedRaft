@@ -51,6 +51,7 @@ private static final long serialVersionUID = 0L;
   }
   // @@protoc_insertion_point(class_scope:fedraft.VoteResponse)
   private static final org.bupt.cad.fedraft.rpc.message.VoteResponse DEFAULT_INSTANCE;
+  private int delay_;
   private static final com.google.protobuf.Parser<VoteResponse>
       PARSER = new com.google.protobuf.AbstractParser<VoteResponse>() {
     @java.lang.Override
@@ -76,10 +77,10 @@ private static final long serialVersionUID = 0L;
   static {
     DEFAULT_INSTANCE = new org.bupt.cad.fedraft.rpc.message.VoteResponse();
   }
+  private boolean voteGranted_;
 
   private int term_;
-  private int delay_;
-  private boolean voteGranted_;
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public boolean isInitialized() {
@@ -268,7 +269,7 @@ private static final long serialVersionUID = 0L;
         != other.getDelay()) return false;
     if (getVoteGranted()
         != other.getVoteGranted()) return false;
-    return getUnknownFields().equals(other.getUnknownFields());
+      return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override
@@ -394,47 +395,6 @@ private static final long serialVersionUID = 0L;
       }
     }
 
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
-    }
-
-    @java.lang.Override
-    public boolean isInitialized() {
-      return true;
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      term_ = 0;
-
-      delay_ = 0;
-
-      voteGranted_ = false;
-
-      return this;
-    }
-
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.VoteResponse buildPartial() {
-      org.bupt.cad.fedraft.rpc.message.VoteResponse result = new org.bupt.cad.fedraft.rpc.message.VoteResponse(this);
-      result.term_ = term_;
-      result.delay_ = delay_;
-      result.voteGranted_ = voteGranted_;
-      onBuilt();
-      return result;
-    }
-    /**
-     * <code>uint32 term = 1;</code>
-     * @return The term.
-     */
-    @java.lang.Override
-    public int getTerm() {
-      return term_;
-    }
-
     public Builder mergeFrom(org.bupt.cad.fedraft.rpc.message.VoteResponse other) {
       if (other == org.bupt.cad.fedraft.rpc.message.VoteResponse.getDefaultInstance()) return this;
       if (other.getTerm() != 0) {
@@ -449,6 +409,12 @@ private static final long serialVersionUID = 0L;
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
+    }
+
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
     }
 
     @java.lang.Override
@@ -498,6 +464,42 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    @java.lang.Override
+    public Builder clear() {
+      super.clear();
+      term_ = 0;
+
+      delay_ = 0;
+
+      voteGranted_ = false;
+
+      return this;
+    }
+
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.VoteResponse buildPartial() {
+      org.bupt.cad.fedraft.rpc.message.VoteResponse result = new org.bupt.cad.fedraft.rpc.message.VoteResponse(this);
+      result.term_ = term_;
+      result.delay_ = delay_;
+      result.voteGranted_ = voteGranted_;
+      onBuilt();
+      return result;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+      return true;
+    }
+
+    /**
+     * <code>uint32 term = 1;</code>
+     * @return The term.
+     */
+    @java.lang.Override
+    public int getTerm() {
+      return term_;
+    }
+
     /**
      * <code>uint32 term = 1;</code>
      * @param value The term to set.
@@ -509,18 +511,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
-    /**
-     * <code>uint32 term = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearTerm() {
-
-      term_ = 0;
-      onChanged();
-      return this;
-    }
-
     /**
      * <pre>
      * 回复自己的时延
@@ -532,6 +522,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public int getDelay() {
       return delay_;
+    }
+
+    /**
+     * <code>uint32 term = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearTerm() {
+
+      term_ = 0;
+      onChanged();
+      return this;
     }
 
     /**
@@ -564,7 +565,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
      * <code>bool voteGranted = 3;</code>
      * @return The voteGranted.
@@ -573,6 +573,7 @@ private static final long serialVersionUID = 0L;
     public boolean getVoteGranted() {
       return voteGranted_;
     }
+
     /**
      * <code>bool voteGranted = 3;</code>
      * @param value The voteGranted to set.

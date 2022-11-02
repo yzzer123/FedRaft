@@ -13,14 +13,13 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class NodeInnerContactServiceGrpc {
 
-  public static final String SERVICE_NAME = "fedraft.NodeInnerContactService";
   private static final int METHODID_SYNC_WITH_TRAINER = 0;
+
+  public static final String SERVICE_NAME = "fedraft.NodeInnerContactService";
+
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest,
       org.bupt.cad.fedraft.rpc.message.SyncWithTrainerResponse> getSyncWithTrainerMethod;
-  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
-
-  private NodeInnerContactServiceGrpc() {}
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "SyncWithTrainer",
@@ -92,22 +91,6 @@ public final class NodeInnerContactServiceGrpc {
         }
       };
     return NodeInnerContactServiceFutureStub.newStub(factory, channel);
-  }
-
-  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
-    io.grpc.ServiceDescriptor result = serviceDescriptor;
-    if (result == null) {
-      synchronized (NodeInnerContactServiceGrpc.class) {
-        result = serviceDescriptor;
-        if (result == null) {
-          serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new NodeInnerContactServiceFileDescriptorSupplier())
-              .addMethod(getSyncWithTrainerMethod())
-              .build();
-        }
-      }
-    }
-    return result;
   }
 
   /**
@@ -213,6 +196,7 @@ public final class NodeInnerContactServiceGrpc {
           getChannel().newCall(getSyncWithTrainerMethod(), getCallOptions()), request);
     }
   }
+  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -284,5 +268,23 @@ public final class NodeInnerContactServiceGrpc {
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }
+  }
+
+  private NodeInnerContactServiceGrpc() {}
+
+  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
+    io.grpc.ServiceDescriptor result = serviceDescriptor;
+    if (result == null) {
+      synchronized (NodeInnerContactServiceGrpc.class) {
+        result = serviceDescriptor;
+        if (result == null) {
+          serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
+              .setSchemaDescriptor(new NodeInnerContactServiceFileDescriptorSupplier())
+              .addMethod(getSyncWithTrainerMethod())
+              .build();
+        }
+      }
+    }
+    return result;
   }
 }

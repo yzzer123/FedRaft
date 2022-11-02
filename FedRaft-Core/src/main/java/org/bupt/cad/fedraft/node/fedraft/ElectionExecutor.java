@@ -62,8 +62,8 @@ public class ElectionExecutor {
             for (Map.Entry<Long, Tuple<Integer, Long>> entry : runtime.getTopology().entrySet()) {
                 delayPriorityQueue.add(new Tuple<>(entry.getKey(), entry.getValue().getLeft()));
             }
+            runtime.unlockTopology(false);
 
-            runtime.unlockRuntime(false);
 
             // 对时延进行排序
             delayPriorityQueue.sort(Comparator.comparingInt(Tuple::getRight));
@@ -72,7 +72,6 @@ public class ElectionExecutor {
             // 最小减少到1
             admittedIndex = max(admittedIndex - 1, 1);
             votesNum.set(0);
-
         }
     }
 
@@ -108,6 +107,7 @@ public class ElectionExecutor {
                     // 提升任期 但不更新模型索引
                     runtime.setTerm(request.getTerm());
                     votesNum.set(0);
+                    runtime.unlockRuntime(true);
                     return true;
                 }
             }
@@ -139,7 +139,6 @@ public class ElectionExecutor {
             }
         }
 
-        // 可以成为一个leader
         if (logger.isDebugEnabled()) {
             logger.debug("node itself is not qualified to be a candidate!");
         }
@@ -151,16 +150,21 @@ public class ElectionExecutor {
      * 增加后的票数
      */
     public void addVote() {
+
         int votes = votesNum.incrementAndGet();
-        if (listener != null) {
-            runtime.lockTopology(false);
 
-            if (votes > runtime.getTopology().size() / 2) {
-                listener.takeLeadership();
-            }
+        synchronized (this){
+            if (listener != null) {
+                runtime.lockTopology(false);
 
-            runtime.unlockTopology(false);
-        }// end if
+                if (votes > runtime.getTopology().size() / 2) {
+                    listener.takeLeadership();
+                    listener = null;
+                }
+
+                runtime.unlockTopology(false);
+            }// end if
+        }
     }
 
     /**

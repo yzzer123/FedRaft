@@ -432,17 +432,6 @@ private static final long serialVersionUID = 0L;
     public boolean isInitialized() {
       return true;
     }
-    private int nodeState_ = 0;
-
-    // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.newBuilder()
-    private Builder() {
-
-    }
-    private Builder(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
-    }
 
     @java.lang.Override
     public Builder mergeFrom(
@@ -490,7 +479,7 @@ private static final long serialVersionUID = 0L;
       } // finally
       return this;
     }
-
+    private int nodeState_ = 0;
     /**
      * <code>int32 network_delay = 1;</code>
      * @return The networkDelay.
@@ -498,6 +487,15 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public int getNetworkDelay() {
       return networkDelay_;
+    }
+    // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatResponse.newBuilder()
+    private Builder() {
+
+    }
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
     }
 
     /**
@@ -511,14 +509,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-    /**
-     * <code>uint64 timestamp = 2;</code>
-     * @return The timestamp.
-     */
-    @java.lang.Override
-    public long getTimestamp() {
-      return timestamp_;
-    }
 
     /**
      * <code>int32 network_delay = 1;</code>
@@ -529,6 +519,15 @@ private static final long serialVersionUID = 0L;
       networkDelay_ = 0;
       onChanged();
       return this;
+    }
+
+    /**
+     * <code>uint64 timestamp = 2;</code>
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+      return timestamp_;
     }
 
     /**

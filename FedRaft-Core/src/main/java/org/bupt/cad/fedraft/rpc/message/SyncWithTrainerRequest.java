@@ -650,14 +650,6 @@ private static final long serialVersionUID = 0L;
     private long timestamp_ ;
     private int nodeState_ = 0;
     private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
-    }
     // Construct using org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.newBuilder()
     private Builder() {
 
@@ -679,18 +671,6 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-    /**
-     * <pre>
-     * 当前节点模型的索引
-     * </pre>
-     *
-     * <code>uint32 current_model_index = 3;</code>
-     * @return The currentModelIndex.
-     */
-    @java.lang.Override
-    public int getCurrentModelIndex() {
-      return currentModelIndex_;
-    }
 
     /**
      * <code>uint32 term = 1;</code>
@@ -701,6 +681,15 @@ private static final long serialVersionUID = 0L;
       term_ = 0;
       onChanged();
       return this;
+    }
+
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+      return leaderId_;
     }
 
     /**
@@ -725,13 +714,18 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
-     * <code>uint64 timestamp = 4;</code>
-     * @return The timestamp.
+     * <pre>
+     * 当前节点模型的索引
+     * </pre>
+     *
+     * <code>uint32 current_model_index = 3;</code>
+     * @return The currentModelIndex.
      */
     @java.lang.Override
-    public long getTimestamp() {
-      return timestamp_;
+    public int getCurrentModelIndex() {
+      return currentModelIndex_;
     }
 
     /**
@@ -767,6 +761,15 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint64 timestamp = 4;</code>
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+      return timestamp_;
+    }
+
+    /**
+     * <code>uint64 timestamp = 4;</code>
      * @param value The timestamp to set.
      * @return This builder for chaining.
      */
@@ -775,6 +778,13 @@ private static final long serialVersionUID = 0L;
       timestamp_ = value;
       onChanged();
       return this;
+    }
+    /**
+     * <code>.fedraft.NodeState node_state = 5;</code>
+     * @return The enum numeric value on the wire for nodeState.
+     */
+    @java.lang.Override public int getNodeStateValue() {
+      return nodeState_;
     }
 
     /**
@@ -787,13 +797,15 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
-
     /**
      * <code>.fedraft.NodeState node_state = 5;</code>
-     * @return The enum numeric value on the wire for nodeState.
+     * @return The nodeState.
      */
-    @java.lang.Override public int getNodeStateValue() {
-      return nodeState_;
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.NodeState getNodeState() {
+      @SuppressWarnings("deprecation")
+      org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(nodeState_);
+      return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
     }
 
     /**
@@ -806,17 +818,6 @@ private static final long serialVersionUID = 0L;
       nodeState_ = value;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>.fedraft.NodeState node_state = 5;</code>
-     * @return The nodeState.
-     */
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.NodeState getNodeState() {
-      @SuppressWarnings("deprecation")
-      org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(nodeState_);
-      return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
     }
 
     /**

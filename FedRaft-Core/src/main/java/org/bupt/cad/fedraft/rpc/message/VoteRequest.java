@@ -677,14 +677,6 @@ private static final long serialVersionUID = 0L;
     private Builder() {
 
     }
-    /**
-     * <code>uint64 candidate_id = 2;</code>
-     * @return The candidateId.
-     */
-    @java.lang.Override
-    public long getCandidateId() {
-      return candidateId_;
-    }
     private Builder(
         com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
@@ -713,13 +705,14 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
     /**
-     * <code>uint32 model_index = 3;</code>
-     * @return The modelIndex.
+     * <code>uint64 candidate_id = 2;</code>
+     * @return The candidateId.
      */
     @java.lang.Override
-    public int getModelIndex() {
-      return modelIndex_;
+    public long getCandidateId() {
+      return candidateId_;
     }
 
     /**
@@ -743,6 +736,15 @@ private static final long serialVersionUID = 0L;
       candidateId_ = 0L;
       onChanged();
       return this;
+    }
+
+    /**
+     * <code>uint32 model_index = 3;</code>
+     * @return The modelIndex.
+     */
+    @java.lang.Override
+    public int getModelIndex() {
+      return modelIndex_;
     }
 
     /**

@@ -64,7 +64,7 @@ public class Follower extends Node implements TimeoutKeeper {
     @Override
     public void resetTimeoutTask() {
         if (logger.isDebugEnabled()) {
-            logger.debug("reset timout task");
+            logger.debug("follower reset timout task");
         }
         cancelTimeoutTask();
         setupTimeoutTask();
@@ -114,6 +114,9 @@ public class Follower extends Node implements TimeoutKeeper {
     @Override
     public void heartbeatTimeout() {
 
+        if (logger.isDebugEnabled()){
+            logger.debug("follower trigger heartbeat timeout task");
+        }
 
         // 如果之前没有出现选举失败 就开启新的选举状态
         if (electionExecutor == null) {
@@ -122,7 +125,6 @@ public class Follower extends Node implements TimeoutKeeper {
             // 有选举状态，就说明之前成为candidate失败, 即投票太过分散 需要将投票门槛设高，使得投票更加集中
             electionExecutor.reset();
         }
-
 
         if (electionExecutor.isQualifiedCandidate()) {
             getRuntime().lockRuntime(true);
@@ -139,6 +141,7 @@ public class Follower extends Node implements TimeoutKeeper {
         if (electionExecutor == null){
             electionExecutor = new ElectionExecutor(getRuntime());
         }
+        resetTimeoutTask();
         return electionExecutor.voteFor(request);
     }
 

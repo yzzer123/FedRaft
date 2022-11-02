@@ -260,7 +260,7 @@ private static final long serialVersionUID = 0L;
         != other.getCurrentModelIndex()) return false;
     if (getTimestamp()
         != other.getTimestamp()) return false;
-    return getUnknownFields().equals(other.getUnknownFields());
+      return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override

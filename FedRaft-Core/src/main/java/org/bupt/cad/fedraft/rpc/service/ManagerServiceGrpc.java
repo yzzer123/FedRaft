@@ -13,20 +13,13 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class ManagerServiceGrpc {
 
-  public static final String SERVICE_NAME = "fedraft.ManagerService";
   private static final int METHODID_HEARTBEAT = 0;
-  private static final int METHODID_TRIGGER_ELECTION = 1;
-  private static final int METHODID_REQUEST_VOTE = 2;
+
+  public static final String SERVICE_NAME = "fedraft.ManagerService";
+
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.HeartbeatRequest,
       org.bupt.cad.fedraft.rpc.message.HeartbeatResponse> getHeartbeatMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
-      org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod;
-  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.VoteRequest,
-      org.bupt.cad.fedraft.rpc.message.VoteResponse> getRequestVoteMethod;
-  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
-
-  private ManagerServiceGrpc() {}
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Heartbeat",
@@ -55,6 +48,7 @@ public final class ManagerServiceGrpc {
     }
     return getHeartbeatMethod;
   }
+  private static final int METHODID_TRIGGER_ELECTION = 1;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "TriggerElection",
@@ -83,6 +77,7 @@ public final class ManagerServiceGrpc {
     }
     return getTriggerElectionMethod;
   }
+  private static final int METHODID_REQUEST_VOTE = 2;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "RequestVote",
@@ -154,24 +149,6 @@ public final class ManagerServiceGrpc {
         }
       };
     return ManagerServiceFutureStub.newStub(factory, channel);
-  }
-
-  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
-    io.grpc.ServiceDescriptor result = serviceDescriptor;
-    if (result == null) {
-      synchronized (ManagerServiceGrpc.class) {
-        result = serviceDescriptor;
-        if (result == null) {
-          serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new ManagerServiceFileDescriptorSupplier())
-              .addMethod(getHeartbeatMethod())
-              .addMethod(getTriggerElectionMethod())
-              .addMethod(getRequestVoteMethod())
-              .build();
-        }
-      }
-    }
-    return result;
   }
 
   /**
@@ -387,6 +364,11 @@ public final class ManagerServiceGrpc {
           getChannel().newCall(getRequestVoteMethod(), getCallOptions()), request);
     }
   }
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.TriggerElectionRequest,
+      org.bupt.cad.fedraft.rpc.message.TriggerElectionResponse> getTriggerElectionMethod;
+  private static volatile io.grpc.MethodDescriptor<org.bupt.cad.fedraft.rpc.message.VoteRequest,
+      org.bupt.cad.fedraft.rpc.message.VoteResponse> getRequestVoteMethod;
+  private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -466,5 +448,25 @@ public final class ManagerServiceGrpc {
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }
+  }
+
+  private ManagerServiceGrpc() {}
+
+  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
+    io.grpc.ServiceDescriptor result = serviceDescriptor;
+    if (result == null) {
+      synchronized (ManagerServiceGrpc.class) {
+        result = serviceDescriptor;
+        if (result == null) {
+          serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
+              .setSchemaDescriptor(new ManagerServiceFileDescriptorSupplier())
+              .addMethod(getHeartbeatMethod())
+              .addMethod(getTriggerElectionMethod())
+              .addMethod(getRequestVoteMethod())
+              .build();
+        }
+      }
+    }
+    return result;
   }
 }

@@ -10,6 +10,7 @@ import org.bupt.cad.fedraft.algorithm.FedRaftAlgorithm;
 import org.bupt.cad.fedraft.config.Configuration;
 import org.bupt.cad.fedraft.node.fedraft.Runtime;
 import org.bupt.cad.fedraft.utils.PingUtils;
+import org.bupt.cad.fedraft.utils.ServerInfoUtil;
 import org.bupt.cad.fedraft.utils.TimerUtils;
 import org.bupt.cad.fedraft.utils.ZkClient;
 import org.slf4j.Logger;
@@ -29,18 +30,21 @@ public class ManagerServer {
     private final String host;
     private final int port;
 
-    private ZkClient zkClient;
-    private Runtime runtime;
+    private final ZkClient zkClient;
+    private final Runtime runtime;
 
     public ManagerServer(String host, int port) {
         this.host = host;
         this.port = port;
+
+        runtime = new Runtime();
+        zkClient = runtime.getZkClient();
+
         this.server = ServerBuilder.forPort(port)
                 .executor(new ThreadPoolExecutor(
                         Configuration.getInt(Configuration.MANAGER_SERVER_MIN_THREAD_NUM),
                         Configuration.getInt(Configuration.MANAGER_SERVER_MAX_THREAD_NUM),
-                        3, TimeUnit.SECONDS, new LinkedBlockingDeque<>()
-                ))
+                        3, TimeUnit.SECONDS, new LinkedBlockingDeque<>() ))
                 .addService(new ManagerService(new FedRaftAlgorithm(runtime)))
                 .addService(new NodeInnerService())
                 .build();
@@ -88,8 +92,9 @@ public class ManagerServer {
      * 向zookeeper注册服务
      */
     public void initialize() {
-        runtime = new Runtime();
-        zkClient = runtime.getZkClient();
+        logger.info("server started on {}:{}[ID:{}] with PID:{}", host, port,
+                runtime.getSelfNodeInfo().getNodeId(),
+                ServerInfoUtil.getPid());
 
     }
 
@@ -108,6 +113,7 @@ public class ManagerServer {
      */
     public void blockUtilShutdown() throws InterruptedException {
         if (server != null) {
+            logger.info("server main thread blocking util server shutdown!");
             server.awaitTermination();
         }
     }
@@ -125,7 +131,6 @@ public class ManagerServer {
             logger.error("server start failed:" + e.getMessage(), e);
             System.exit(1);
         }
-        logger.info("server started on {}:{} ", host, port);
 
         // 向zk注册本节点配置 并初始化内存中的节点状态
         initialize();

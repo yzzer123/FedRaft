@@ -85,10 +85,11 @@ public class TmpLeader extends Node {
                 if (logger.isDebugEnabled())
                     logger.debug("tmp leader trigger election");
                 triggerElection();
+                return;
             }
 
             heartbeatOnce();
-        }, 10, heartbeatInterval, TimeUnit.MILLISECONDS);
+        }, 0, heartbeatInterval, TimeUnit.MILLISECONDS);
     }
 
 
@@ -101,6 +102,7 @@ public class TmpLeader extends Node {
         runtime.lockRuntime(false);
         // 如果角色变化 就不能再发心跳
         if (runtime.getNodeMode() != this) {
+            runtime.unlockRuntime(false);
             return;
         }
 
