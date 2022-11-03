@@ -1,10 +1,10 @@
 package org.bupt.cad.fedraft.server;
 
 
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.bupt.cad.fedraft.algorithm.Algorithm;
 import org.bupt.cad.fedraft.beans.NodeInfo;
-import org.bupt.cad.fedraft.exception.InvalidHeartbeatException;
 import org.bupt.cad.fedraft.rpc.message.*;
 import org.bupt.cad.fedraft.rpc.service.ManagerServiceGrpc;
 import org.slf4j.Logger;
@@ -48,7 +48,7 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
             responseObserver.onNext(response);
             responseObserver.onCompleted();
         } else {
-            responseObserver.onError(new InvalidHeartbeatException("from " + algorithm.getRuntime().getSelfNodeInfo()));
+            responseObserver.onError(Status.PERMISSION_DENIED.asRuntimeException());
         }
 
     }
@@ -75,10 +75,9 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                 .setVoteGranted(algorithm.voteFor(request));
 
         algorithm.getRuntime().unlockRuntime(true);
-
         VoteResponse voteResponse = responseBuilder.build();
 
-        logger.info("vote for {} with {}", new NodeInfo(request.getCandidateId()), voteResponse.getVoteGranted());
+        logger.info("vote for {} with granted: {}", new NodeInfo(request.getCandidateId()), voteResponse.getVoteGranted());
 
         responseObserver.onNext(voteResponse);
         responseObserver.onCompleted();

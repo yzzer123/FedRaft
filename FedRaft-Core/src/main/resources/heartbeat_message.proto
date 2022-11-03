@@ -10,6 +10,7 @@ message HeartbeatResponse{
   int32 network_delay = 1;
   uint64 timestamp = 2;
   NodeState node_state = 3;
+  uint32 term = 4;
 }
 
 message HeartbeatRequest{

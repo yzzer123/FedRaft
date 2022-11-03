@@ -4,26 +4,26 @@
 package org.bupt.cad.fedraft.rpc.message;
 
 public final class VoteMassage {
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_TriggerElectionRequest_fieldAccessorTable;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_TriggerElectionResponse_fieldAccessorTable;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_VoteRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
           internal_static_fedraft_TriggerElectionRequest_descriptor;
   static final
   com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_VoteResponse_fieldAccessorTable;
+          internal_static_fedraft_TriggerElectionRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
           internal_static_fedraft_TriggerElectionResponse_descriptor;
+  static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_fedraft_TriggerElectionResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
           internal_static_fedraft_VoteRequest_descriptor;
+  static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_fedraft_VoteRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
           internal_static_fedraft_VoteResponse_descriptor;
+  static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_fedraft_VoteResponse_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.FileDescriptor
           descriptor;
 
@@ -57,9 +57,9 @@ public final class VoteMassage {
         internal_static_fedraft_TriggerElectionResponse_descriptor,
         new java.lang.String[] { });
     internal_static_fedraft_VoteRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+            getDescriptor().getMessageTypes().get(2);
     internal_static_fedraft_VoteRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
             internal_static_fedraft_VoteRequest_descriptor,
             new java.lang.String[]{"Term", "CandidateId", "ModelIndex", "NodeIds", "NetworkDelays",});
     internal_static_fedraft_VoteResponse_descriptor =
@@ -77,15 +77,15 @@ public final class VoteMassage {
           com.google.protobuf.ExtensionRegistryLite registry) {
   }
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-  getDescriptor() {
-    return descriptor;
-  }
-
   public static void registerAllExtensions(
           com.google.protobuf.ExtensionRegistry registry) {
     registerAllExtensions(
             (com.google.protobuf.ExtensionRegistryLite) registry);
+  }
+
+  public static com.google.protobuf.Descriptors.FileDescriptor
+  getDescriptor() {
+    return descriptor;
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -35,7 +35,6 @@ public class Candidate extends Node implements TimeoutKeeper {
         super(runtime);
         this.electionState = electionState;
         this.electionState.setElectionListener(() -> {
-            logger.info("{} become leader !!!", getRuntime().getSelfNodeInfo());
             getRuntime().lockRuntime(true);
             getRuntime().setState(NodeState.LEADER);
             getRuntime().unlockRuntime(true);
@@ -150,9 +149,9 @@ public class Candidate extends Node implements TimeoutKeeper {
     @Override
     public int receiveHeartbeat(HeartbeatRequest request) {
 
-        // 对于tmp_leader的心跳，直接忽略
+        // 对于tmp_leader的心跳，直接返回
         if (request.getLeaderState() == NodeState.TMP_LEADER) {
-            return -1;
+            return getRuntime().getDelay();
         }
 
 

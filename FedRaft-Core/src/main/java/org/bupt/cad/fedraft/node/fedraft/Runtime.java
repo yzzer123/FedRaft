@@ -146,7 +146,7 @@ public class Runtime {
     }
 
     public void setLeader(Long nodeId) {
-        leaderInfo = new NodeInfo(nodeId);
+        leaderInfo = (nodeId == null ? null : new NodeInfo(nodeId));
     }
 
     public ExecutorService getThreadPool() {

@@ -475,10 +475,8 @@ private static final long serialVersionUID = 0L;
 
       return this;
     }
-
     /**
      * <code>uint32 term = 1;</code>
-     *
      * @return The term.
      */
     @java.lang.Override
@@ -503,7 +501,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint32 term = 1;</code>
-     *
      * @param value The term to set.
      * @return This builder for chaining.
      */
@@ -512,6 +509,18 @@ private static final long serialVersionUID = 0L;
       term_ = value;
       onChanged();
       return this;
+    }
+    /**
+     * <pre>
+     * 回复自己的时延
+     * </pre>
+     *
+     * <code>int32 delay = 2;</code>
+     * @return The delay.
+     */
+    @java.lang.Override
+    public int getDelay() {
+      return delay_;
     }
 
     /**
@@ -533,19 +542,6 @@ private static final long serialVersionUID = 0L;
      *
      * <code>int32 delay = 2;</code>
      *
-     * @return The delay.
-     */
-    @java.lang.Override
-    public int getDelay() {
-      return delay_;
-    }
-
-    /**
-     * <pre>
-     * 回复自己的时延
-     * </pre>
-     *
-     * <code>int32 delay = 2;</code>
      * @param value The delay to set.
      * @return This builder for chaining.
      */

@@ -19,14 +19,24 @@ public interface HeartbeatResponseOrBuilder extends
    */
   long getTimestamp();
 
-  /**
-   * <code>.fedraft.NodeState node_state = 3;</code>
-   * @return The enum numeric value on the wire for nodeState.
-   */
-  int getNodeStateValue();
-  /**
-   * <code>.fedraft.NodeState node_state = 3;</code>
-   * @return The nodeState.
-   */
-  org.bupt.cad.fedraft.rpc.message.NodeState getNodeState();
+    /**
+     * <code>.fedraft.NodeState node_state = 3;</code>
+     *
+     * @return The enum numeric value on the wire for nodeState.
+     */
+    int getNodeStateValue();
+
+    /**
+     * <code>.fedraft.NodeState node_state = 3;</code>
+     *
+     * @return The nodeState.
+     */
+    org.bupt.cad.fedraft.rpc.message.NodeState getNodeState();
+
+    /**
+     * <code>uint32 term = 4;</code>
+     *
+     * @return The term.
+     */
+    int getTerm();
 }

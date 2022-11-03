@@ -27,7 +27,7 @@ public class Leader extends Node {
     public Leader(Runtime runtime) {
         super(runtime);
         if (logger.isDebugEnabled()) {
-            logger.debug("{} became leader", getRuntime().getSelfNodeInfo().getNodeId());
+            logger.debug("{} became leader in term : {}", getRuntime().getSelfNodeInfo(), getRuntime().getTerm());
         }
         getRuntime().setLeader(getRuntime().getSelfNodeInfo().getNodeId());
         maintainHeartbeat();
@@ -36,6 +36,11 @@ public class Leader extends Node {
     @Override
     public int receiveHeartbeat(HeartbeatRequest request) {
         Runtime runtime = getRuntime();
+
+        // TMP LEADER 直接返回时延，但是不对自己做任何更新
+        if (request.getLeaderState() == NodeState.TMP_LEADER) {
+            return runtime.getDelay();
+        }
 
         // 判断任期是否比自己大
         if (request.getTerm() > runtime.getTerm()) {

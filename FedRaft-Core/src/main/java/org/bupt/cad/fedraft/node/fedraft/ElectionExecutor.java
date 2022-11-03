@@ -34,6 +34,8 @@ public class ElectionExecutor {
 
     private ElectionListener listener;
 
+    private int failedTimes = 0;
+
 
     public ElectionExecutor(Runtime runtime) {
         this.runtime = runtime;
@@ -48,7 +50,7 @@ public class ElectionExecutor {
      */
     public void reset() {
         synchronized (this) {
-            logger.info("reset election state");
+            logger.info("reset election state with term {}", runtime.getTerm());
             delayPriorityQueue.clear();
 
             runtime.lockTopology(false);
@@ -69,11 +71,13 @@ public class ElectionExecutor {
                 runtime.addTerm();
                 runtime.unlockRuntime(true);
                 voted = false;
+                failedTimes = 0;
             } else {
+                failedTimes++;
                 return;
             }
-            // 最小减少到1
-            admittedIndex = max(admittedIndex - 1, 1);
+            // 最小减少到2
+            admittedIndex = max(admittedIndex - 1, 2);
         }
     }
 
@@ -95,24 +99,35 @@ public class ElectionExecutor {
                 return false;
             }
 
+            // 如果其任期已经高于本节点很多，说明本身自己保存的拓扑时效性已经过期
+            if (runtime.getTerm() + Configuration.getInt(Configuration.ELECTION_FAIL_MAX_TERMS) <= request.getTerm()) {
+                voteForOther(request);
+            }
+
             // 如果当前任期还没投票，或者出现更高任期，就开始检查资格
             for (int i = 0; i < admittedIndex; i++) {
                 if (delayPriorityQueue.get(i).getLeft().equals(request.getCandidateId())) {
-                    voted = true;
-
-                    // 更新时延 表示支持这个candidate， 即使投票失败了，下一次也更有可能投给他
-                    runtime.getNodeMode().updateTopology(request.getNodeIdsList(),
-                            request.getNetworkDelaysList(),
-                            System.currentTimeMillis());
-
-                    // 提升任期 但不更新模型索引
-                    runtime.setTerm(request.getTerm());
-                    votesNum.set(0);
+                    voteForOther(request);
                     return true;
                 }
             }
         }
         return false;
+    }
+
+
+    private void voteForOther(VoteRequest request) {
+        voted = true;
+
+        // 更新时延 表示支持这个candidate， 即使投票失败了，下一次也更有可能投给他
+        runtime.getNodeMode().updateTopology(request.getNodeIdsList(),
+                request.getNetworkDelaysList(),
+                System.currentTimeMillis());
+
+        // 提升任期 但不更新模型索引
+        runtime.setTerm(request.getTerm());
+        votesNum.set(0);
+        failedTimes = 0;
     }
 
     /**
@@ -125,13 +140,16 @@ public class ElectionExecutor {
             if (voted) {
                 return false;
             }
+
+            // 超过一定失败次数后，直接根据原生raft选举
+            if (failedTimes > Configuration.getInt(Configuration.ELECTION_FAIL_MAX_TIMES)) {
+                voteForSelf();
+                return true;
+            }
+
             for (int i = 0; i < admittedIndex; i++) {
                 if (delayPriorityQueue.get(i).getLeft().equals(runtime.getSelfNodeInfo().getNodeId())) {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("node itself can be a candidate!");
-                    }
-                    voted = true;
-                    addVote();  // 将票投给自己
+                    voteForSelf();
                     return true;
                 }
             }
@@ -143,6 +161,16 @@ public class ElectionExecutor {
         return false;
     }
 
+    private void voteForSelf() {
+        if (logger.isDebugEnabled()) {
+            logger.debug("node itself can be a candidate!");
+        }
+        voted = true;
+        addVote();  // 将票投给自己
+
+    }
+
+
     /**
      * 增加自己的票仓
      * 增加后的票数
@@ -151,7 +179,7 @@ public class ElectionExecutor {
 
         int votes = votesNum.incrementAndGet();
 
-        synchronized (this){
+        synchronized (this) {
             if (listener != null) {
                 runtime.lockTopology(false);
 

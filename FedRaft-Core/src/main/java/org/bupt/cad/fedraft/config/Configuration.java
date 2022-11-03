@@ -38,6 +38,8 @@ public class Configuration {
     public final static String MANAGER_SYNC_TIME_INTERVAL = "manager.sync.time-interval";
     public final static String MANAGER_SYNC_TIMEOUT = "manager.sync.timeout";
     public final static String MANAGER_HEARTBEAT_TIMEOUT = "manager.heartbeat.timeout";
+    public final static String ELECTION_FAIL_MAX_TIMES = "election.fail.max-times";
+    public final static String ELECTION_FAIL_MAX_TERMS = "election.fail.max-terms";
 
     private static final Logger logger = LoggerFactory.getLogger(Configuration.class);
     private static org.apache.commons.configuration2.Configuration conf = null;

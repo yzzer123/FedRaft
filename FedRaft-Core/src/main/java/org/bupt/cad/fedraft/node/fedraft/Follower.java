@@ -79,7 +79,7 @@ public class Follower extends Node implements TimeoutKeeper {
 
         // 在选举期间收到tmp leader心跳 直接忽略
         if (electionExecutor != null && request.getLeaderState() == NodeState.TMP_LEADER) {
-            return -1;
+            return getRuntime().getDelay();
         }
 
         // follower收到的心跳信息可能来自 tmp_leader 和 leader,
@@ -88,9 +88,9 @@ public class Follower extends Node implements TimeoutKeeper {
             runtime.setTerm(request.getTerm())
                     .setLeader(request.getLeaderId());
 
-        } else if (request.getTerm() < runtime.getTerm()) {
+        } else if (request.getTerm() < runtime.getTerm() && runtime.getLeaderInfo() != null) {
             // 任期比自己小就为错误
-            return -1;
+            return request.getLeaderState() == NodeState.TMP_LEADER ? getRuntime().getDelay() : -1;
         }
 
         resetTimeoutTask();
@@ -121,28 +121,29 @@ public class Follower extends Node implements TimeoutKeeper {
         // 如果之前没有出现选举失败 就开启新的选举状态
         if (electionExecutor == null) {
             electionExecutor = new ElectionExecutor(getRuntime());
-        }else {
+        } else {
             // 有选举状态，就说明之前成为candidate失败, 即投票太过分散 需要将投票门槛设高，使得投票更加集中
             electionExecutor.reset();
         }
-
+        getRuntime().lockRuntime(true);
+        getRuntime().setLeader(null);
         if (electionExecutor.isQualifiedCandidate()) {
-            getRuntime().lockRuntime(true);
             getRuntime().setState(NodeState.CANDIDATE);
-            getRuntime().unlockRuntime(true);
-        }else{
+        } else {
             // 否则重置选举超时任务
             resetTimeoutTask();
         }
+        getRuntime().unlockRuntime(true);
     }
 
     @Override
     public boolean voteFor(VoteRequest request) {
-        if (electionExecutor == null){
+        if (electionExecutor == null && request.getTerm() > getRuntime().getTerm()) {
             electionExecutor = new ElectionExecutor(getRuntime());
         }
         this.resetTimeoutTask();
-        return electionExecutor.voteFor(request);
+
+        return electionExecutor != null && electionExecutor.voteFor(request);
     }
 
 
