@@ -102,6 +102,7 @@ public class ElectionExecutor {
             // 如果其任期已经高于本节点很多，说明本身自己保存的拓扑时效性已经过期
             if (runtime.getTerm() + Configuration.getInt(Configuration.ELECTION_FAIL_MAX_TERMS) <= request.getTerm()) {
                 voteForOther(request);
+                return true;
             }
 
             // 如果当前任期还没投票，或者出现更高任期，就开始检查资格

@@ -732,6 +732,16 @@ private static final long serialVersionUID = 0L;
     private int logType_ = 0;
     private com.google.protobuf.ByteString modelChunk_ = com.google.protobuf.ByteString.EMPTY;
 
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     *
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+      return leaderId_;
+    }
+
     // Construct using org.bupt.cad.fedraft.rpc.message.LogRequest.newBuilder()
     private Builder() {
 
@@ -745,6 +755,7 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint32 term = 1;</code>
+     *
      * @param value The term to set.
      * @return This builder for chaining.
      */
@@ -756,7 +767,22 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
+     * <pre>
+     * 之前发送模型的索引
+     * </pre>
+     *
+     * <code>uint32 pre_model_index = 3;</code>
+     *
+     * @return The preModelIndex.
+     */
+    @java.lang.Override
+    public int getPreModelIndex() {
+      return preModelIndex_;
+    }
+
+    /**
      * <code>uint32 term = 1;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearTerm() {
@@ -768,17 +794,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint64 leader_id = 2;</code>
-     *
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
-    }
-
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     *
      * @param value The leaderId to set.
      * @return This builder for chaining.
      */
@@ -802,16 +817,15 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <pre>
-     * 之前发送模型的索引
+     * 之前发送模型的任期
      * </pre>
      *
-     * <code>uint32 pre_model_index = 3;</code>
-     *
-     * @return The preModelIndex.
+     * <code>uint32 pre_model_term = 4;</code>
+     * @return The preModelTerm.
      */
     @java.lang.Override
-    public int getPreModelIndex() {
-      return preModelIndex_;
+    public int getPreModelTerm() {
+      return preModelTerm_;
     }
 
     /**
@@ -852,20 +866,6 @@ private static final long serialVersionUID = 0L;
      *
      * <code>uint32 pre_model_term = 4;</code>
      *
-     * @return The preModelTerm.
-     */
-    @java.lang.Override
-    public int getPreModelTerm() {
-      return preModelTerm_;
-    }
-
-    /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 pre_model_term = 4;</code>
-     *
      * @param value The preModelTerm to set.
      * @return This builder for chaining.
      */
@@ -874,6 +874,20 @@ private static final long serialVersionUID = 0L;
       preModelTerm_ = value;
       onChanged();
       return this;
+    }
+
+    /**
+     * <pre>
+     * 标记日志请求来源
+     * </pre>
+     *
+     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
+     *
+     * @return The enum numeric value on the wire for logType.
+     */
+    @java.lang.Override
+    public int getLogTypeValue() {
+      return logType_;
     }
 
     /**
@@ -897,10 +911,14 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-     * @return The enum numeric value on the wire for logType.
+     *
+     * @return The logType.
      */
-    @java.lang.Override public int getLogTypeValue() {
-      return logType_;
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.LogRequest.LogType getLogType() {
+      @SuppressWarnings("deprecation")
+      org.bupt.cad.fedraft.rpc.message.LogRequest.LogType result = org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.valueOf(logType_);
+      return result == null ? org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.UNRECOGNIZED : result;
     }
 
     /**
@@ -917,22 +935,6 @@ private static final long serialVersionUID = 0L;
       logType_ = value;
       onChanged();
       return this;
-    }
-
-    /**
-     * <pre>
-     * 标记日志请求来源
-     * </pre>
-     *
-     * <code>.fedraft.LogRequest.LogType log_type = 5;</code>
-     *
-     * @return The logType.
-     */
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.LogRequest.LogType getLogType() {
-      @SuppressWarnings("deprecation")
-      org.bupt.cad.fedraft.rpc.message.LogRequest.LogType result = org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.valueOf(logType_);
-      return result == null ? org.bupt.cad.fedraft.rpc.message.LogRequest.LogType.UNRECOGNIZED : result;
     }
 
     /**

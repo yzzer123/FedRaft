@@ -53,9 +53,9 @@ public final class VoteMassage {
     internal_static_fedraft_TriggerElectionResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_fedraft_TriggerElectionResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_fedraft_TriggerElectionResponse_descriptor,
-        new java.lang.String[] { });
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_fedraft_TriggerElectionResponse_descriptor,
+            new java.lang.String[]{});
     internal_static_fedraft_VoteRequest_descriptor =
             getDescriptor().getMessageTypes().get(2);
     internal_static_fedraft_VoteRequest_fieldAccessorTable = new

@@ -157,7 +157,7 @@ public class TmpLeader extends Node {
                             return oldDelay;
                         });
                         // 统计存活follower数量
-                        if (response.getNodeState() == NodeState.FOLLOWER) {
+                        if (response.getNodeState() != NodeState.SAFE_MODE) {
                             followerSet.put(clientId, System.currentTimeMillis());
                         }
                     }

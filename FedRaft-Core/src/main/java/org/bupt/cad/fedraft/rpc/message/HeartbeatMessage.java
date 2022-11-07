@@ -24,6 +24,8 @@ public final class HeartbeatMessage {
   static final
   com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internal_static_fedraft_SyncWithTrainerResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.FileDescriptor
+          descriptor;
 
   static {
     java.lang.String[] descriptorData = {
@@ -47,9 +49,9 @@ public final class HeartbeatMessage {
                     "edraft.rpc.messageP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-        });
+            .internalBuildGeneratedFileFrom(descriptorData,
+                    new com.google.protobuf.Descriptors.FileDescriptor[]{
+                    });
     internal_static_fedraft_HeartbeatResponse_descriptor =
             getDescriptor().getMessageTypes().get(0);
     internal_static_fedraft_HeartbeatResponse_fieldAccessorTable = new
@@ -59,11 +61,11 @@ public final class HeartbeatMessage {
     internal_static_fedraft_HeartbeatRequest_descriptor =
             getDescriptor().getMessageTypes().get(1);
     internal_static_fedraft_HeartbeatRequest_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_fedraft_HeartbeatRequest_descriptor,
-        new java.lang.String[] { "Term", "LeaderId", "LeaderState", "LeaderModelIndex", "Timestamp", "NodeIds", "NetworkDelays", });
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_fedraft_HeartbeatRequest_descriptor,
+            new java.lang.String[]{"Term", "LeaderId", "LeaderState", "LeaderModelIndex", "Timestamp", "NodeIds", "NetworkDelays",});
     internal_static_fedraft_SyncWithTrainerRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+            getDescriptor().getMessageTypes().get(2);
     internal_static_fedraft_SyncWithTrainerRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
             internal_static_fedraft_SyncWithTrainerRequest_descriptor,
@@ -88,9 +90,6 @@ public final class HeartbeatMessage {
     registerAllExtensions(
             (com.google.protobuf.ExtensionRegistryLite) registry);
   }
-
-  private static final com.google.protobuf.Descriptors.FileDescriptor
-          descriptor;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
   getDescriptor() {

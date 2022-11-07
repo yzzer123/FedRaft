@@ -10,19 +10,19 @@
 
     </appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} %-5level %-26.-26([%thread]) %-32.-32(%logger{32}) %msg%n</pattern>
-            <charset>utf-8</charset>
-        </encoder>
-        <file>log/output.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-            <fileNamePattern>log/output.log.%i</fileNamePattern>
-        </rollingPolicy>
-        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <MaxFileSize>1MB</MaxFileSize>
-        </triggeringPolicy>
-    </appender>
+    <!--    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--        <encoder>-->
+    <!--            <pattern>%d{HH:mm:ss.SSS} %-5level %-26.-26([%thread]) %-32.-32(%logger{32}) %msg%n</pattern>-->
+    <!--            <charset>utf-8</charset>-->
+    <!--        </encoder>-->
+    <!--        <file>log/output.log</file>-->
+    <!--        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+    <!--            <fileNamePattern>fedraft_log/%d{yyyy-MM-dd}/%d{yyyy-MM-dd_HH}-log-%i.log</fileNamePattern>-->
+    <!--        </rollingPolicy>-->
+    <!--        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+    <!--            <MaxFileSize>1MB</MaxFileSize>-->
+    <!--        </triggeringPolicy>-->
+    <!--    </appender>-->
 
     <logger name="org.apache.zookeeper" level="error"/>
     <logger name="ch.qos" level="error"/>

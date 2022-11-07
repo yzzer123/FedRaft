@@ -655,6 +655,16 @@ private static final long serialVersionUID = 0L;
     private int nodeState_ = 0;
     private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
 
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     *
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+      return leaderId_;
+    }
+
     // Construct using org.bupt.cad.fedraft.rpc.message.SyncWithTrainerRequest.newBuilder()
     private Builder() {
 
@@ -668,58 +678,13 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint32 term = 1;</code>
+     *
      * @param value The term to set.
      * @return This builder for chaining.
      */
     public Builder setTerm(int value) {
 
       term_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <code>uint32 term = 1;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearTerm() {
-
-      term_ = 0;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     *
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
-    }
-
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     *
-     * @param value The leaderId to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLeaderId(long value) {
-
-      leaderId_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearLeaderId() {
-
-      leaderId_ = 0L;
       onChanged();
       return this;
     }
@@ -736,6 +701,51 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public int getCurrentModelIndex() {
       return currentModelIndex_;
+    }
+
+    /**
+     * <code>uint32 term = 1;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearTerm() {
+
+      term_ = 0;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     * @param value The leaderId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setLeaderId(long value) {
+
+      leaderId_ = value;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearLeaderId() {
+
+      leaderId_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    /**
+     * <code>uint64 timestamp = 4;</code>
+     * @return The timestamp.
+     */
+    @java.lang.Override
+    public long getTimestamp() {
+      return timestamp_;
     }
 
     /**
@@ -771,16 +781,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint64 timestamp = 4;</code>
-     *
-     * @return The timestamp.
-     */
-    @java.lang.Override
-    public long getTimestamp() {
-      return timestamp_;
-    }
-
-    /**
-     * <code>uint64 timestamp = 4;</code>
      * @param value The timestamp to set.
      * @return This builder for chaining.
      */
@@ -804,12 +804,22 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>.fedraft.NodeState node_state = 5;</code>
-     *
      * @return The enum numeric value on the wire for nodeState.
      */
-    @java.lang.Override
-    public int getNodeStateValue() {
+    @java.lang.Override public int getNodeStateValue() {
       return nodeState_;
+    }
+
+    /**
+     * <code>.fedraft.NodeState node_state = 5;</code>
+     * @param value The enum numeric value on the wire for nodeState to set.
+     * @return This builder for chaining.
+     */
+    public Builder setNodeStateValue(int value) {
+
+      nodeState_ = value;
+      onChanged();
+      return this;
     }
 
     /**
@@ -822,19 +832,6 @@ private static final long serialVersionUID = 0L;
       @SuppressWarnings("deprecation")
       org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(nodeState_);
       return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
-    }
-
-    /**
-     * <code>.fedraft.NodeState node_state = 5;</code>
-     *
-     * @param value The enum numeric value on the wire for nodeState to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNodeStateValue(int value) {
-
-      nodeState_ = value;
-      onChanged();
-      return this;
     }
 
     /**

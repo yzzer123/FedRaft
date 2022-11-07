@@ -355,17 +355,24 @@ private static final long serialVersionUID = 0L;
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input);
+            .parseWithIOException(PARSER, input);
   }
+
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
-      java.io.InputStream input,
-      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-      throws java.io.IOException {
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+            .parseWithIOException(PARSER, input, extensionRegistry);
   }
+
+  public static com.google.protobuf.Descriptors.Descriptor
+  getDescriptor() {
+    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_HeartbeatRequest_descriptor;
+  }
+
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseDelimitedFrom(java.io.InputStream input)
-      throws java.io.IOException {
+          throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input);
   }
@@ -376,11 +383,6 @@ private static final long serialVersionUID = 0L;
           throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
             .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return org.bupt.cad.fedraft.rpc.message.HeartbeatMessage.internal_static_fedraft_HeartbeatRequest_descriptor;
   }
 
   public static org.bupt.cad.fedraft.rpc.message.HeartbeatRequest parseFrom(
@@ -762,6 +764,17 @@ private static final long serialVersionUID = 0L;
     private int leaderModelIndex_;
     private long timestamp_;
     private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
+
+    /**
+     * <code>uint64 leader_id = 2;</code>
+     *
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+      return leaderId_;
+    }
+
     private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
 
     // Construct using org.bupt.cad.fedraft.rpc.message.HeartbeatRequest.newBuilder()
@@ -773,6 +786,16 @@ private static final long serialVersionUID = 0L;
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
 
+    }
+
+    /**
+     * <code>.fedraft.NodeState leader_state = 3;</code>
+     *
+     * @return The enum numeric value on the wire for leaderState.
+     */
+    @java.lang.Override
+    public int getLeaderStateValue() {
+      return leaderState_;
     }
 
     /**
@@ -789,6 +812,18 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
+     * <code>.fedraft.NodeState leader_state = 3;</code>
+     *
+     * @return The leaderState.
+     */
+    @java.lang.Override
+    public org.bupt.cad.fedraft.rpc.message.NodeState getLeaderState() {
+      @SuppressWarnings("deprecation")
+      org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(leaderState_);
+      return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
+    }
+
+    /**
      * <code>uint32 term = 1;</code>
      *
      * @return This builder for chaining.
@@ -802,17 +837,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint64 leader_id = 2;</code>
-     *
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
-    }
-
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     *
      * @param value The leaderId to set.
      * @return This builder for chaining.
      */
@@ -835,16 +859,20 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
-     * <code>.fedraft.NodeState leader_state = 3;</code>
-     * @return The enum numeric value on the wire for leaderState.
+     * <pre>
+     * 之前发送模型的任期
+     * </pre>
+     *
+     * <code>uint32 leader_model_index = 4;</code>
+     * @return The leaderModelIndex.
      */
-    @java.lang.Override public int getLeaderStateValue() {
-      return leaderState_;
+    @java.lang.Override
+    public int getLeaderModelIndex() {
+      return leaderModelIndex_;
     }
 
     /**
      * <code>.fedraft.NodeState leader_state = 3;</code>
-     *
      * @param value The enum numeric value on the wire for leaderState to set.
      * @return This builder for chaining.
      */
@@ -857,19 +885,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>.fedraft.NodeState leader_state = 3;</code>
-     *
-     * @return The leaderState.
-     */
-    @java.lang.Override
-    public org.bupt.cad.fedraft.rpc.message.NodeState getLeaderState() {
-      @SuppressWarnings("deprecation")
-      org.bupt.cad.fedraft.rpc.message.NodeState result = org.bupt.cad.fedraft.rpc.message.NodeState.valueOf(leaderState_);
-      return result == null ? org.bupt.cad.fedraft.rpc.message.NodeState.UNRECOGNIZED : result;
-    }
-
-    /**
-     * <code>.fedraft.NodeState leader_state = 3;</code>
-     *
      * @param value The leaderState to set.
      * @return This builder for chaining.
      */
@@ -895,16 +910,12 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
-     * <pre>
-     * 之前发送模型的任期
-     * </pre>
-     *
-     * <code>uint32 leader_model_index = 4;</code>
-     * @return The leaderModelIndex.
+     * <code>uint64 timestamp = 5;</code>
+     * @return The timestamp.
      */
     @java.lang.Override
-    public int getLeaderModelIndex() {
-      return leaderModelIndex_;
+    public long getTimestamp() {
+      return timestamp_;
     }
 
     /**
@@ -929,7 +940,6 @@ private static final long serialVersionUID = 0L;
      * </pre>
      *
      * <code>uint32 leader_model_index = 4;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearLeaderModelIndex() {
@@ -937,16 +947,6 @@ private static final long serialVersionUID = 0L;
       leaderModelIndex_ = 0;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>uint64 timestamp = 5;</code>
-     *
-     * @return The timestamp.
-     */
-    @java.lang.Override
-    public long getTimestamp() {
-      return timestamp_;
     }
 
     /**

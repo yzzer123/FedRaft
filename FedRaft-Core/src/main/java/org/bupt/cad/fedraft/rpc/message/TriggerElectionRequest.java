@@ -502,7 +502,18 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
+     * <code>uint64 leader_id = 2;</code>
+     *
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+      return leaderId_;
+    }
+
+    /**
      * <code>uint32 term = 1;</code>
+     *
      * @return This builder for chaining.
      */
     public Builder clearTerm() {
@@ -514,17 +525,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint64 leader_id = 2;</code>
-     *
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
-    }
-
-    /**
-     * <code>uint64 leader_id = 2;</code>
-     *
      * @param value The leaderId to set.
      * @return This builder for chaining.
      */

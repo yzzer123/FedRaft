@@ -670,12 +670,23 @@ private static final long serialVersionUID = 0L;
     public int getTerm() {
       return term_;
     }
+
     private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
     private com.google.protobuf.Internal.IntList networkDelays_ = emptyIntList();
 
     // Construct using org.bupt.cad.fedraft.rpc.message.VoteRequest.newBuilder()
     private Builder() {
 
+    }
+
+    /**
+     * <code>uint64 candidate_id = 2;</code>
+     *
+     * @return The candidateId.
+     */
+    @java.lang.Override
+    public long getCandidateId() {
+      return candidateId_;
     }
 
     private Builder(
@@ -708,13 +719,13 @@ private static final long serialVersionUID = 0L;
     }
 
     /**
-     * <code>uint64 candidate_id = 2;</code>
+     * <code>uint32 model_index = 3;</code>
      *
-     * @return The candidateId.
+     * @return The modelIndex.
      */
     @java.lang.Override
-    public long getCandidateId() {
-      return candidateId_;
+    public int getModelIndex() {
+      return modelIndex_;
     }
 
     /**
@@ -731,7 +742,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint64 candidate_id = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearCandidateId() {
@@ -743,17 +753,6 @@ private static final long serialVersionUID = 0L;
 
     /**
      * <code>uint32 model_index = 3;</code>
-     *
-     * @return The modelIndex.
-     */
-    @java.lang.Override
-    public int getModelIndex() {
-      return modelIndex_;
-    }
-
-    /**
-     * <code>uint32 model_index = 3;</code>
-     *
      * @param value The modelIndex to set.
      * @return This builder for chaining.
      */
