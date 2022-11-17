@@ -1,6 +1,6 @@
 
 import asyncio
-from service.NodeState import NodeState
+from service import Runtime
 from service.TrainerServer import TrainerServer
 from test.ModelSerializeTest import test_model_eval
 from utils.Configuration import Properties

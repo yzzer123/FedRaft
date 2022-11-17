@@ -11,10 +11,12 @@ class Properties:
     RAFT_SERVER_HOST = "manager.server.host"
     RAFT_SERVER_PORT = "manager.server.port"
     TRAINER_SERVER_PORT = "trainer.server.port"
-    LOG_MODEL_CHUNK_SIZE = "log.model.chuck_size"
+    LOG_MODEL_CHUNK_SIZE = "log.model.chuck-size"
     TRAINER_SERVER_THREADS = "trainer.server.threads"
     TRAINER_CLIENT_THREADS = "trainer.client.threads"
-
+    
+    GRPC_CLIENT_OPTIONS = [('grpc.max_send_message_length', 512 * 1024 * 1024), ('grpc.max_receive_message_length', 512 * 1024 * 1024)]
+    
     LOGGING_LEVEL = logging.INFO
 
     @classmethod
@@ -23,7 +25,7 @@ class Properties:
         # 如果配置文件还没加载，就从文件中读取配置
         Properties.logger.info("read config from conf.properties")
         try:
-            with open("../conf.properties", "r", encoding="utf-8") as conf_file:
+            with open("../conf/conf.properties", "r", encoding="utf-8") as conf_file:
                 Properties._conf = {}
                 for line in conf_file:
                     if line.find('=') > 0:
@@ -63,10 +65,7 @@ class Properties:
         """
         value = Properties.get(key)
         if value is None:
-            Properties.logger.warning("config item doesn't exist")
+            Properties.logger.warning(f"{key} config item doesn't exist")
             return 0
         
         return int(value)
-    
-    
-    

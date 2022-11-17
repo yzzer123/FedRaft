@@ -1,9 +1,8 @@
 import grpc
 from concurrent import futures
 from rpc import fedraft_service_pb2_grpc
-from service.NodeState import NodeState
-from service.TrainerService import TrainerService
-from utils.Configuration import Properties
+from service import Runtime, TrainerService, NodeInnerContactService
+from utils import Properties
 
 logger = Properties.getLogger(__name__)
 
@@ -14,13 +13,19 @@ class TrainerServer(object):
         options = [('grpc.max_send_message_length', 512 * 1024 * 1024), ('grpc.max_receive_message_length', 512 * 1024 * 1024)]
         self.server = grpc.aio.server(futures.ThreadPoolExecutor(max_workers=Properties.getInt(Properties.TRAINER_SERVER_THREADS)),
                                       options=options)
+        
+    
+    
+        self.runtime = Runtime()
         # 注册grpc服务
-        fedraft_service_pb2_grpc.add_FedRaftServiceServicer_to_server(TrainerService(), self.server)
+        fedraft_service_pb2_grpc.add_TrainerServiceServicer_to_server(TrainerService(self.runtime), self.server)
+        fedraft_service_pb2_grpc.add_NodeInnerContactServiceServicer_to_server(NodeInnerContactService(self.runtime), self.server)
+        
         self.server.add_insecure_port("[::]:" + str(Properties.getInt(Properties.TRAINER_SERVER_PORT)))
 
     
     def init(self) -> None:
-        NodeState.node_state = NodeState()
+        pass
     
     
     async def start(self) -> None:

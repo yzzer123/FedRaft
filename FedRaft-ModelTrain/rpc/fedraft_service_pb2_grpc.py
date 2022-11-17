@@ -2,11 +2,147 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
+import rpc.heartbeat_message_pb2 as heartbeat__message__pb2
 import rpc.log_message_pb2 as log__message__pb2
+import rpc.vote_massage_pb2 as vote__massage__pb2
 
 
-class FedRaftServiceStub(object):
-    """Missing associated documentation comment in .proto file."""
+class ManagerServiceStub(object):
+    """选举模块服务
+    """
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Heartbeat = channel.unary_unary(
+                '/fedraft.ManagerService/Heartbeat',
+                request_serializer=heartbeat__message__pb2.HeartbeatRequest.SerializeToString,
+                response_deserializer=heartbeat__message__pb2.HeartbeatResponse.FromString,
+                )
+        self.TriggerElection = channel.unary_unary(
+                '/fedraft.ManagerService/TriggerElection',
+                request_serializer=vote__massage__pb2.TriggerElectionRequest.SerializeToString,
+                response_deserializer=vote__massage__pb2.TriggerElectionResponse.FromString,
+                )
+        self.RequestVote = channel.unary_unary(
+                '/fedraft.ManagerService/RequestVote',
+                request_serializer=vote__massage__pb2.VoteRequest.SerializeToString,
+                response_deserializer=vote__massage__pb2.VoteResponse.FromString,
+                )
+
+
+class ManagerServiceServicer(object):
+    """选举模块服务
+    """
+
+    def Heartbeat(self, request, context):
+        """心跳通信
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def TriggerElection(self, request, context):
+        """触发所有节点超时重新选举
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def RequestVote(self, request, context):
+        """请求投票
+        """
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_ManagerServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'Heartbeat': grpc.unary_unary_rpc_method_handler(
+                    servicer.Heartbeat,
+                    request_deserializer=heartbeat__message__pb2.HeartbeatRequest.FromString,
+                    response_serializer=heartbeat__message__pb2.HeartbeatResponse.SerializeToString,
+            ),
+            'TriggerElection': grpc.unary_unary_rpc_method_handler(
+                    servicer.TriggerElection,
+                    request_deserializer=vote__massage__pb2.TriggerElectionRequest.FromString,
+                    response_serializer=vote__massage__pb2.TriggerElectionResponse.SerializeToString,
+            ),
+            'RequestVote': grpc.unary_unary_rpc_method_handler(
+                    servicer.RequestVote,
+                    request_deserializer=vote__massage__pb2.VoteRequest.FromString,
+                    response_serializer=vote__massage__pb2.VoteResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'fedraft.ManagerService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class ManagerService(object):
+    """选举模块服务
+    """
+
+    @staticmethod
+    def Heartbeat(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/fedraft.ManagerService/Heartbeat',
+            heartbeat__message__pb2.HeartbeatRequest.SerializeToString,
+            heartbeat__message__pb2.HeartbeatResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def TriggerElection(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/fedraft.ManagerService/TriggerElection',
+            vote__massage__pb2.TriggerElectionRequest.SerializeToString,
+            vote__massage__pb2.TriggerElectionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def RequestVote(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/fedraft.ManagerService/RequestVote',
+            vote__massage__pb2.VoteRequest.SerializeToString,
+            vote__massage__pb2.VoteResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class TrainerServiceStub(object):
+    """模型训练模块服务
+    """
 
     def __init__(self, channel):
         """Constructor.
@@ -15,24 +151,25 @@ class FedRaftServiceStub(object):
             channel: A grpc.Channel.
         """
         self.AppendStreamLog = channel.stream_unary(
-                '/fedraft.FedRaftService/AppendStreamLog',
+                '/fedraft.TrainerService/AppendStreamLog',
                 request_serializer=log__message__pb2.LogRequest.SerializeToString,
                 response_deserializer=log__message__pb2.LogResponse.FromString,
                 )
         self.AppendLog = channel.unary_unary(
-                '/fedraft.FedRaftService/AppendLog',
+                '/fedraft.TrainerService/AppendLog',
                 request_serializer=log__message__pb2.LogRequest.SerializeToString,
                 response_deserializer=log__message__pb2.LogResponse.FromString,
                 )
-        self.Heartbeat = channel.unary_unary(
-                '/fedraft.FedRaftService/Heartbeat',
-                request_serializer=log__message__pb2.HeartbeatRequest.SerializeToString,
-                response_deserializer=log__message__pb2.HeartbeatResponse.FromString,
+        self.PullLog = channel.unary_stream(
+                '/fedraft.TrainerService/PullLog',
+                request_serializer=log__message__pb2.LogPullRequest.SerializeToString,
+                response_deserializer=log__message__pb2.LogPullResponse.FromString,
                 )
 
 
-class FedRaftServiceServicer(object):
-    """Missing associated documentation comment in .proto file."""
+class TrainerServiceServicer(object):
+    """模型训练模块服务
+    """
 
     def AppendStreamLog(self, request_iterator, context):
         """Raft 日志追加通信
@@ -47,14 +184,14 @@ class FedRaftServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def Heartbeat(self, request, context):
+    def PullLog(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
 
-def add_FedRaftServiceServicer_to_server(servicer, server):
+def add_TrainerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'AppendStreamLog': grpc.stream_unary_rpc_method_handler(
                     servicer.AppendStreamLog,
@@ -66,20 +203,21 @@ def add_FedRaftServiceServicer_to_server(servicer, server):
                     request_deserializer=log__message__pb2.LogRequest.FromString,
                     response_serializer=log__message__pb2.LogResponse.SerializeToString,
             ),
-            'Heartbeat': grpc.unary_unary_rpc_method_handler(
-                    servicer.Heartbeat,
-                    request_deserializer=log__message__pb2.HeartbeatRequest.FromString,
-                    response_serializer=log__message__pb2.HeartbeatResponse.SerializeToString,
+            'PullLog': grpc.unary_stream_rpc_method_handler(
+                    servicer.PullLog,
+                    request_deserializer=log__message__pb2.LogPullRequest.FromString,
+                    response_serializer=log__message__pb2.LogPullResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'fedraft.FedRaftService', rpc_method_handlers)
+            'fedraft.TrainerService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class FedRaftService(object):
-    """Missing associated documentation comment in .proto file."""
+class TrainerService(object):
+    """模型训练模块服务
+    """
 
     @staticmethod
     def AppendStreamLog(request_iterator,
@@ -92,7 +230,7 @@ class FedRaftService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.stream_unary(request_iterator, target, '/fedraft.FedRaftService/AppendStreamLog',
+        return grpc.experimental.stream_unary(request_iterator, target, '/fedraft.TrainerService/AppendStreamLog',
             log__message__pb2.LogRequest.SerializeToString,
             log__message__pb2.LogResponse.FromString,
             options, channel_credentials,
@@ -109,14 +247,14 @@ class FedRaftService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/fedraft.FedRaftService/AppendLog',
+        return grpc.experimental.unary_unary(request, target, '/fedraft.TrainerService/AppendLog',
             log__message__pb2.LogRequest.SerializeToString,
             log__message__pb2.LogResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def Heartbeat(request,
+    def PullLog(request,
             target,
             options=(),
             channel_credentials=None,
@@ -126,8 +264,72 @@ class FedRaftService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/fedraft.FedRaftService/Heartbeat',
-            log__message__pb2.HeartbeatRequest.SerializeToString,
-            log__message__pb2.HeartbeatResponse.FromString,
+        return grpc.experimental.unary_stream(request, target, '/fedraft.TrainerService/PullLog',
+            log__message__pb2.LogPullRequest.SerializeToString,
+            log__message__pb2.LogPullResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class NodeInnerContactServiceStub(object):
+    """节点内部进程通信
+    """
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.SyncWithTrainer = channel.unary_unary(
+                '/fedraft.NodeInnerContactService/SyncWithTrainer',
+                request_serializer=heartbeat__message__pb2.SyncWithTrainerRequest.SerializeToString,
+                response_deserializer=heartbeat__message__pb2.SyncWithTrainerResponse.FromString,
+                )
+
+
+class NodeInnerContactServiceServicer(object):
+    """节点内部进程通信
+    """
+
+    def SyncWithTrainer(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_NodeInnerContactServiceServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'SyncWithTrainer': grpc.unary_unary_rpc_method_handler(
+                    servicer.SyncWithTrainer,
+                    request_deserializer=heartbeat__message__pb2.SyncWithTrainerRequest.FromString,
+                    response_serializer=heartbeat__message__pb2.SyncWithTrainerResponse.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'fedraft.NodeInnerContactService', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class NodeInnerContactService(object):
+    """节点内部进程通信
+    """
+
+    @staticmethod
+    def SyncWithTrainer(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/fedraft.NodeInnerContactService/SyncWithTrainer',
+            heartbeat__message__pb2.SyncWithTrainerRequest.SerializeToString,
+            heartbeat__message__pb2.SyncWithTrainerResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

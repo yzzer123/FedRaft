@@ -12,9 +12,11 @@ _sym_db = _symbol_database.Default()
 
 
 import log_message_pb2 as log__message__pb2
+import heartbeat_message_pb2 as heartbeat__message__pb2
+import vote_massage_pb2 as vote__massage__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x66\x65\x64raft_service.proto\x12\x07\x66\x65\x64raft\x1a\x11log_message.proto2\xd2\x01\n\x0e\x46\x65\x64RaftService\x12@\n\x0f\x41ppendStreamLog\x12\x13.fedraft.LogRequest\x1a\x14.fedraft.LogResponse\"\x00(\x01\x12\x38\n\tAppendLog\x12\x13.fedraft.LogRequest\x1a\x14.fedraft.LogResponse\"\x00\x12\x44\n\tHeartbeat\x12\x19.fedraft.HeartbeatRequest\x1a\x1a.fedraft.HeartbeatResponse\"\x00\x42$\n org.bupt.cad.fedraft.rpc.serviceP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15\x66\x65\x64raft_service.proto\x12\x07\x66\x65\x64raft\x1a\x11log_message.proto\x1a\x17heartbeat_message.proto\x1a\x12vote_massage.proto2\xec\x01\n\x0eManagerService\x12\x44\n\tHeartbeat\x12\x19.fedraft.HeartbeatRequest\x1a\x1a.fedraft.HeartbeatResponse\"\x00\x12V\n\x0fTriggerElection\x12\x1f.fedraft.TriggerElectionRequest\x1a .fedraft.TriggerElectionResponse\"\x00\x12<\n\x0bRequestVote\x12\x14.fedraft.VoteRequest\x1a\x15.fedraft.VoteResponse\"\x00\x32\xce\x01\n\x0eTrainerService\x12@\n\x0f\x41ppendStreamLog\x12\x13.fedraft.LogRequest\x1a\x14.fedraft.LogResponse\"\x00(\x01\x12\x38\n\tAppendLog\x12\x13.fedraft.LogRequest\x1a\x14.fedraft.LogResponse\"\x00\x12@\n\x07PullLog\x12\x17.fedraft.LogPullRequest\x1a\x18.fedraft.LogPullResponse\"\x00\x30\x01\x32q\n\x17NodeInnerContactService\x12V\n\x0fSyncWithTrainer\x12\x1f.fedraft.SyncWithTrainerRequest\x1a .fedraft.SyncWithTrainerResponse\"\x00\x42$\n org.bupt.cad.fedraft.rpc.serviceP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'fedraft_service_pb2', globals())
@@ -22,6 +24,10 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n org.bupt.cad.fedraft.rpc.serviceP\001'
-  _FEDRAFTSERVICE._serialized_start=54
-  _FEDRAFTSERVICE._serialized_end=264
+  _MANAGERSERVICE._serialized_start=99
+  _MANAGERSERVICE._serialized_end=335
+  _TRAINERSERVICE._serialized_start=338
+  _TRAINERSERVICE._serialized_end=544
+  _NODEINNERCONTACTSERVICE._serialized_start=546
+  _NODEINNERCONTACTSERVICE._serialized_end=659
 # @@protoc_insertion_point(module_scope)

@@ -1,6 +1,6 @@
 import asyncio
 from utils import Properties
-from service.TrainerServer import TrainerServer
+from service import TrainerServer
 
 async def main():
     trainer_server = TrainerServer()

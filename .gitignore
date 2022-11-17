@@ -5,3 +5,4 @@ FedRaft-Core/target/
 *.pyc
 FedRaft-Core/log/
 ./log
+*.log

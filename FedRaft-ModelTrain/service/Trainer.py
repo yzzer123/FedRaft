@@ -1,4 +1,4 @@
-from utils.Configuration import Properties
+from utils import Properties
 
 logger = Properties.getLogger(__name__)
 

@@ -41,7 +41,8 @@ public class ManagerClient {
     }
 
     public ManagerClient(Runtime runtime, NodeInfo nodeInfo, boolean isForTrainer) {
-        this.channel = ManagedChannelBuilder.forAddress(nodeInfo.getIp(), isForTrainer ? nodeInfo.getTrainerPort() : nodeInfo.getPort())
+        this.channel = ManagedChannelBuilder.forAddress(isForTrainer ? "localhost", nodeInfo.getIp()
+                isForTrainer ? nodeInfo.getTrainerPort() : nodeInfo.getPort())
                 .usePlaintext().enableRetry().build();
 
         if (isForTrainer){
