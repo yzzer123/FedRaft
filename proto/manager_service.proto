@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.fedraft.rpc.manager.service";
+option java_multiple_files = true;
+
+import "manager_message.proto";
+import "jobmanager_message.proto";
+
+service ManagerService{
+  rpc AppendEntries(AppendEntriesRequest) returns(AppendEntriesResponse){};
+  rpc VoteFor(ManagerVoteRequest) returns(ManagerVoteResponse){};
+  rpc JobSubmit(stream JobSubmitRequest) returns(stream JobSubmitResponse){};
+  rpc JobShutdown(JobShutdownRequest) returns(JobShutdownResponse){};
+}
+
+service JobManagerService{
+  rpc AppendLog(AppendJobLogRequest) returns(AppendJobLogResponse){};
+}

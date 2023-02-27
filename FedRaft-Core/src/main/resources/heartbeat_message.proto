@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.cad.fedraft.rpc.message";
+option java_multiple_files = true;
+
+
+message HeartbeatResponse{
+  int32 network_delay = 1;
+  uint64 timestamp = 2;
+  NodeState node_state = 3;
+  uint32 term = 4;
+}
+
+message HeartbeatRequest{
+  uint32 term = 1;
+  uint64 leader_id = 2;
+  NodeState leader_state = 3;
+  uint32 leader_model_index = 4; // 之前发送模型的任期
+  uint64 timestamp = 5;
+  repeated uint64 node_ids = 6;
+  repeated int32 network_delays = 7; // 网络时延拓扑
+}
+
+enum NodeState{
+  SAFE_MODE = 0;
+  TMP_LEADER = 1;
+  LEADER = 2;
+  CANDIDATE = 3;
+  FOLLOWER = 4;
+}
+
+message SyncWithTrainerRequest{
+  uint32 term = 1;
+  uint64 leader_id = 2;
+  uint32 current_model_index = 3; // 当前节点模型的索引
+  uint64 timestamp = 4;
+  NodeState node_state = 5;
+  repeated uint64 node_ids = 6;
+}
+
+message SyncWithTrainerResponse{
+  uint32 current_model_index = 1;
+  uint64 timestamp = 2;
+}

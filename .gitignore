@@ -1,0 +1,9 @@
+FedRaft-Core/FedRaft-Core.iml
+.idea/
+FedRaft-Core/target/
+*.pyc
+FedRaft-Core/log/
+./log
+*.log
+scripts/*.jar
+Trainer/datasets/

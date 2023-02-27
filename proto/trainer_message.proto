@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.fedraft.rpc.trainer.message";
+option java_multiple_files = true;
+
+
+message InitModelRequest{
+  bytes model_chunk = 1;
+}
+
+
+message InitModelResponse{
+  bool status = 1;
+}
+
+// 请求Trainer训练的模型
+message TrainRequest{
+  bytes model_chunk = 1;
+}
+
+// Trainer训练完毕的模型
+message TrainResponse{
+  bytes model_chunk = 1;
+}
+
+// 发送待合并模型
+message PushModelRequest{
+  oneof model{
+    uint64 server_id = 1;
+    bytes model_chunk = 2;
+  }
+}
+
+//  对接受模型的回复
+message PushModelResponse{
+  bool status = 1;
+}
+
+// 请求Leader合并模型
+message MergeRequest{
+  repeated uint64 server_ids = 1; // 接受到的模型来源， 确认Trainer是否存在
+}
+
+// 合并完成的模型
+message MergeResponse{
+
+  oneof model{
+    uint64 server_id = 1; // 回复第一个缺失的模型ID
+    bytes  model_chunk = 2; // 合并成功的模型
+    string model_eval_log = 3; // 合并模型的测试结果
+  }
+}

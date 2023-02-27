@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- @formatter:off -->
+        <encoder>
+            <pattern>%green(%d{HH:mm:ss.SSS}) %highlight(%-5level) %red(%-26.-26([%thread])) %boldMagenta(%-32.-32(%logger{32})) %cyan(%msg%n)</pattern>
+        </encoder>
+        <!-- @formatter:on -->
+
+    </appender>
+
+    <!--    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--        <encoder>-->
+    <!--            <pattern>%d{HH:mm:ss.SSS} %-5level %-26.-26([%thread]) %-32.-32(%logger{32}) %msg%n</pattern>-->
+    <!--            <charset>utf-8</charset>-->
+    <!--        </encoder>-->
+    <!--        <file>log/output.log</file>-->
+    <!--        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+    <!--            <fileNamePattern>fedraft_log/%d{yyyy-MM-dd}/%d{yyyy-MM-dd_HH}-log-%i.log</fileNamePattern>-->
+    <!--        </rollingPolicy>-->
+    <!--        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+    <!--            <MaxFileSize>1MB</MaxFileSize>-->
+    <!--        </triggeringPolicy>-->
+    <!--    </appender>-->
+
+    <logger name="org.apache.zookeeper" level="error"/>
+    <logger name="ch.qos" level="error"/>
+    <logger name="org.apache.curator" level="error"/>
+    <logger name="io.grpc" level="error"/>
+    <logger name="org.bupt.fedraft.job.manager" level="info"/>
+    <logger name="org.bupt.fedraft.server.ManagerClient" level="debug"/>
+    <logger name="org.bupt.fedraft.state" level="info"/>
+
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

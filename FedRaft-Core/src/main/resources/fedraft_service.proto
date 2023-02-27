@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.cad.fedraft.rpc.service";
+option java_multiple_files = true;
+
+import "log_message.proto";
+import "heartbeat_message.proto";
+import "vote_massage.proto";
+
+// 选举模块服务
+service ManagerService{
+  // 心跳通信
+  rpc Heartbeat(HeartbeatRequest) returns(HeartbeatResponse){};
+
+  // 触发所有节点超时重新选举
+  rpc TriggerElection(TriggerElectionRequest) returns(TriggerElectionResponse){};
+
+  // 请求投票
+  rpc RequestVote(VoteRequest) returns(VoteResponse){};
+
+}
+
+// 模型训练模块服务
+service TrainerService{
+  // Raft 日志追加通信
+  rpc AppendStreamLog(stream LogRequest) returns(LogResponse){};
+  rpc AppendLog(LogRequest) returns(LogResponse){};
+  rpc PullLog(LogPullRequest) returns(stream LogPullResponse){};
+  rpc TriggerModelSubmit(TriggerSubmitRequest) returns(TriggerSubmitResponse){};
+  rpc FinishTrain(FinishTrainRequest) returns(FinishTrainResponse){};
+}
+
+// 节点内部进程通信
+service NodeInnerContactService{
+  rpc SyncWithTrainer(SyncWithTrainerRequest) returns(SyncWithTrainerResponse){};
+}

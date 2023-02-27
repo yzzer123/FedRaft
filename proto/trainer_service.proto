@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.fedraft.rpc.trainer.service";
+option java_multiple_files = true;
+
+import "trainer_message.proto";
+
+
+// Trainer服务
+service TrainerService{
+  // 训练模型
+  rpc TrainModel(stream TrainRequest) returns (stream TrainResponse){};
+
+  // 发送待合并模型
+  rpc PushModel(stream PushModelRequest) returns (PushModelResponse){};
+
+  // 请求合并模型
+  rpc MergeModel(MergeRequest) returns (stream MergeResponse){};
+
+  // 初始化模型
+  rpc InitModel(stream InitModelRequest) returns (InitModelResponse){};
+}

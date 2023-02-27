@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.fedraft.rpc.jobmanager.message";
+option java_multiple_files = true;
+
+
+
+message AppendModelsRequest{
+
+}
+
+message AppendModelsResponse{
+
+}
+
+message JobVoteRequest{
+
+}
+
+message JobVoteResponse{
+
+}
+
+message JobShutdownRequest{
+  int64 sourceId = 1;
+  int32 uuid = 2;
+}
+
+message JobShutdownResponse{
+
+}
+
+message AppendJobLogRequest{
+  int64 sourceId = 1;
+  int32 uuid = 2;
+  repeated string logs = 3;
+}
+
+message AppendJobLogResponse{
+}
+
+
+
+

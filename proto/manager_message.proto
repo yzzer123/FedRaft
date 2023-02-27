@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package fedraft;
+
+option java_package = "org.bupt.fedraft.rpc.manager.message";
+option java_multiple_files = true;
+
+enum ManagerStatus{
+  LEADER = 0;
+  CANDIDATE = 1;
+  FOLLOWER = 2;
+}
+
+
+message AppendEntriesRequest{
+  int32 term = 1;
+  int64 leaderId = 2;
+  int64 entryIndex = 3;  // 拓扑索引
+  repeated int64 nodeIds = 4;  // 拓扑信息
+  repeated int32 delay = 5;
+
+}
+
+message AppendEntriesResponse{
+  int32 term = 1;
+  int32 delay = 2;
+}
+
+message ManagerVoteRequest{
+  int32 term = 1;
+  int64 candidateId = 2;
+  int64 entryIndex = 3;  // 拓扑索引
+}
+
+message ManagerVoteResponse{
+  int32 term = 1;
+  bool voteGranted = 2; // 是否投票
+}
+
+
+message CodeFile{
+  string fileName = 1;
+  string code = 2;
+}
+
+message JobConfiguration{
+  int32 uuid = 1;
+  int64 sourceId = 2;  // 提交任务的源节点
+  repeated int64 participants = 3;  // 训练任务的参与者
+  CodeFile codeFile = 4; // 任务代码
+}
+
+
+message JobSubmitRequest{
+  oneof JobInfo{
+    JobConfiguration conf = 1;
+    bytes  modelChunk = 2;
+  }
+}
+
+message  JobSubmitResponse{
+  oneof Log{
+    bool success = 1;
+    string logs = 2;
+  }
+}
+
