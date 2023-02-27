@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import rpc.trainer_message_pb2 as trainer__message__pb2
+import rpc as trainer__message__pb2
 
 
 class TrainerServiceStub(object):

@@ -1,7 +1,7 @@
 from rpc import *
 from grpc import ServicerContext
 from models import BasicModel, LocalEnvironment
-from typing import AsyncIterable, OrderedDict
+from typing import AsyncIterable
 from utils import Properties, model_to_chunks, chunks_to_model
 import logging
 from threading import Lock

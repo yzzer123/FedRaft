@@ -48,6 +48,7 @@ message JobConfiguration{
   int64 sourceId = 2;  // 提交任务的源节点
   repeated int64 participants = 3;  // 训练任务的参与者
   CodeFile codeFile = 4; // 任务代码
+  int32 global_epoch = 5;
 }
 
 
@@ -62,6 +63,7 @@ message  JobSubmitResponse{
   oneof Log{
     bool success = 1;
     string logs = 2;
+    bytes chunk = 3;
   }
 }
 
