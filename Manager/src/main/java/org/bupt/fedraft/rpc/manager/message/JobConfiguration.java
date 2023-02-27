@@ -10,139 +10,250 @@ public final class JobConfiguration extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:fedraft.JobConfiguration)
         JobConfigurationOrBuilder {
-  public static final int UUID_FIELD_NUMBER = 1;
-  public static final int SOURCEID_FIELD_NUMBER = 2;
-  public static final int PARTICIPANTS_FIELD_NUMBER = 3;
-  public static final int CODEFILE_FIELD_NUMBER = 4;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:fedraft.JobConfiguration)
-  private static final org.bupt.fedraft.rpc.manager.message.JobConfiguration DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<JobConfiguration>
-          PARSER = new com.google.protobuf.AbstractParser<JobConfiguration>() {
+    public static final int UUID_FIELD_NUMBER = 1;
+
+    // Use JobConfiguration.newBuilder() to construct.
+    private JobConfiguration(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
+
+    private JobConfiguration() {
+        participants_ = emptyLongList();
+    }
+
+    public static final int SOURCEID_FIELD_NUMBER = 2;
+
     @java.lang.Override
-    public JobConfiguration parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
+    public static final int PARTICIPANTS_FIELD_NUMBER = 3;
+    public static final int CODEFILE_FIELD_NUMBER = 4;
+    private static final long serialVersionUID = 0L;
+    // @@protoc_insertion_point(class_scope:fedraft.JobConfiguration)
+    private static final org.bupt.fedraft.rpc.manager.message.JobConfiguration DEFAULT_INSTANCE;
+
+    /**
+     * <code>int32 uuid = 1;</code>
+     *
+     * @return The uuid.
+     */
+    @java.lang.Override
+    public int getUuid() {
+        return uuid_;
+    }
+
+    private static final com.google.protobuf.Parser<JobConfiguration>
+            PARSER = new com.google.protobuf.AbstractParser<JobConfiguration>() {
+        @java.lang.Override
+        public JobConfiguration parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            Builder builder = newBuilder();
+            try {
+                builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                        .setUnfinishedMessage(builder.buildPartial());
+            }
+            return builder.buildPartial();
+        }
+    };
+
+    static {
+        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.JobConfiguration();
+    }
+
+    /**
+     * <pre>
+     * 提交任务的源节点
+     * </pre>
+     *
+     * <code>int64 sourceId = 2;</code>
+     *
+     * @return The sourceId.
+     */
+    @java.lang.Override
+    public long getSourceId() {
+        return sourceId_;
+    }
+
+    private int uuid_;
+    private long sourceId_;
+    private com.google.protobuf.Internal.LongList participants_;
+
+    /**
+     * <pre>
+     * 训练任务的参与者
+     * </pre>
+     *
+     * <code>repeated int64 participants = 3;</code>
+     *
+     * @return The count of participants.
+     */
+    public int getParticipantsCount() {
+        return participants_.size();
+    }
+
+    /**
+     * <pre>
+     * 训练任务的参与者
+     * </pre>
+     *
+     * <code>repeated int64 participants = 3;</code>
+     *
+     * @param index The index of the element to return.
+     * @return The participants at the given index.
+     */
+    public long getParticipants(int index) {
+        return participants_.getLong(index);
+    }
+
+    private int participantsMemoizedSerializedSize = -1;
+    private org.bupt.fedraft.rpc.manager.message.CodeFile codeFile_;
+    private byte memoizedIsInitialized = -1;
+
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     *
+     * @return Whether the codeFile field is set.
+     */
+    @java.lang.Override
+    public boolean hasCodeFile() {
+        return codeFile_ != null;
+    }
+
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     *
+     * @return The codeFile.
+     */
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile() {
+        return codeFile_ == null ? org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
+    }
+
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     */
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder() {
+        return getCodeFile();
+    }
+
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+            java.nio.ByteBuffer data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
-      Builder builder = newBuilder();
-      try {
-        builder.mergeFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(builder.buildPartial());
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                .setUnfinishedMessage(builder.buildPartial());
-      }
-      return builder.buildPartial();
+        return PARSER.parseFrom(data, extensionRegistry);
     }
-  };
 
-  static {
-    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.JobConfiguration();
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-  private int uuid_;
-  private long sourceId_;
-  private com.google.protobuf.Internal.LongList participants_;
-  private int participantsMemoizedSerializedSize = -1;
-  private org.bupt.fedraft.rpc.manager.message.CodeFile codeFile_;
-  private byte memoizedIsInitialized = -1;
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  // Use JobConfiguration.newBuilder() to construct.
-  private JobConfiguration(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-  private JobConfiguration() {
-    participants_ = emptyLongList();
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  public static com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
+    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
   public static Builder newBuilder() {
@@ -154,161 +265,53 @@ public final class JobConfiguration extends
   }
 
   public static org.bupt.fedraft.rpc.manager.message.JobConfiguration getDefaultInstance() {
-    return DEFAULT_INSTANCE;
+      return DEFAULT_INSTANCE;
   }
 
-  public static com.google.protobuf.Parser<JobConfiguration> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-    return new JobConfiguration();
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    org.bupt.fedraft.rpc.manager.message.JobConfiguration.class, org.bupt.fedraft.rpc.manager.message.JobConfiguration.Builder.class);
-  }
-
-  /**
-   * <code>int32 uuid = 1;</code>
-   *
-   * @return The uuid.
-   */
-  @java.lang.Override
-  public int getUuid() {
-    return uuid_;
-  }
-
-  /**
-   * <pre>
-   * 提交任务的源节点
-   * </pre>
-   *
-   * <code>int64 sourceId = 2;</code>
-   *
-   * @return The sourceId.
-   */
-  @java.lang.Override
-  public long getSourceId() {
-    return sourceId_;
-  }
-
-  /**
-   * <pre>
-   * 训练任务的参与者
-   * </pre>
-   *
-   * <code>repeated int64 participants = 3;</code>
-   *
-   * @return A list containing the participants.
-   */
-  @java.lang.Override
-  public java.util.List<java.lang.Long>
-  getParticipantsList() {
-    return participants_;
-  }
-
-  /**
-   * <pre>
-   * 训练任务的参与者
-   * </pre>
-   *
-   * <code>repeated int64 participants = 3;</code>
-   *
-   * @return The count of participants.
-   */
-  public int getParticipantsCount() {
-    return participants_.size();
-  }
-
-  /**
-   * <pre>
-   * 训练任务的参与者
-   * </pre>
-   *
-   * <code>repeated int64 participants = 3;</code>
-   *
-   * @param index The index of the element to return.
-   * @return The participants at the given index.
-   */
-  public long getParticipants(int index) {
-    return participants_.getLong(index);
-  }
-
-  /**
-   * <pre>
-   * 任务代码
-   * </pre>
-   *
-   * <code>.fedraft.CodeFile codeFile = 4;</code>
-   *
-   * @return Whether the codeFile field is set.
-   */
-  @java.lang.Override
-  public boolean hasCodeFile() {
-    return codeFile_ != null;
-  }
-
-  /**
-   * <pre>
-   * 任务代码
-   * </pre>
-   *
-   * <code>.fedraft.CodeFile codeFile = 4;</code>
-   *
-   * @return The codeFile.
-   */
-  @java.lang.Override
-  public org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile() {
-    return codeFile_ == null ? org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
-  }
-
-  /**
-   * <pre>
-   * 任务代码
-   * </pre>
-   *
-   * <code>.fedraft.CodeFile codeFile = 4;</code>
-   */
-  @java.lang.Override
-  public org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder() {
-    return getCodeFile();
-  }
-
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
-    getSerializedSize();
-    if (uuid_ != 0) {
-      output.writeInt32(1, uuid_);
+    public static com.google.protobuf.Parser<JobConfiguration> parser() {
+        return PARSER;
     }
-    if (sourceId_ != 0L) {
-      output.writeInt64(2, sourceId_);
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+        return new JobConfiguration();
     }
-    if (getParticipantsList().size() > 0) {
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+        return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        org.bupt.fedraft.rpc.manager.message.JobConfiguration.class, org.bupt.fedraft.rpc.manager.message.JobConfiguration.Builder.class);
+    }
+
+    /**
+     * <pre>
+     * 训练任务的参与者
+     * </pre>
+     *
+     * <code>repeated int64 participants = 3;</code>
+     * @return A list containing the participants.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Long>
+    getParticipantsList() {
+        return participants_;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        getSerializedSize();
+        if (uuid_ != 0) {
+            output.writeInt32(1, uuid_);
+        }
+        if (sourceId_ != 0L) {
+            output.writeInt64(2, sourceId_);
+        }
+        if (getParticipantsList().size() > 0) {
       output.writeUInt32NoTag(26);
       output.writeUInt32NoTag(participantsMemoizedSerializedSize);
     }
@@ -323,63 +326,63 @@ public final class JobConfiguration extends
 
   @java.lang.Override
   public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
+      int size = memoizedSize;
+      if (size != -1) return size;
 
     size = 0;
     if (uuid_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-              .computeInt32Size(1, uuid_);
+        size += com.google.protobuf.CodedOutputStream
+                .computeInt32Size(1, uuid_);
     }
     if (sourceId_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
               .computeInt64Size(2, sourceId_);
     }
-    {
-      int dataSize = 0;
-      for (int i = 0; i < participants_.size(); i++) {
+      {
+          int dataSize = 0;
+          for (int i = 0; i < participants_.size(); i++) {
         dataSize += com.google.protobuf.CodedOutputStream
-                .computeInt64SizeNoTag(participants_.getLong(i));
-      }
-      size += dataSize;
-      if (!getParticipantsList().isEmpty()) {
+          .computeInt64SizeNoTag(participants_.getLong(i));
+          }
+          size += dataSize;
+          if (!getParticipantsList().isEmpty()) {
         size += 1;
         size += com.google.protobuf.CodedOutputStream
-                .computeInt32SizeNoTag(dataSize);
+            .computeInt32SizeNoTag(dataSize);
+          }
+          participantsMemoizedSerializedSize = dataSize;
       }
-      participantsMemoizedSerializedSize = dataSize;
-    }
     if (codeFile_ != null) {
       size += com.google.protobuf.CodedOutputStream
-              .computeMessageSize(4, getCodeFile());
+        .computeMessageSize(4, getCodeFile());
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
-    return size;
+      return size;
   }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.manager.message.JobConfiguration)) {
       return super.equals(obj);
     }
-    org.bupt.fedraft.rpc.manager.message.JobConfiguration other = (org.bupt.fedraft.rpc.manager.message.JobConfiguration) obj;
+      org.bupt.fedraft.rpc.manager.message.JobConfiguration other = (org.bupt.fedraft.rpc.manager.message.JobConfiguration) obj;
 
-    if (getUuid()
-            != other.getUuid()) return false;
-    if (getSourceId()
-            != other.getSourceId()) return false;
-    if (!getParticipantsList()
-            .equals(other.getParticipantsList())) return false;
-    if (hasCodeFile() != other.hasCodeFile()) return false;
-    if (hasCodeFile()) {
-      if (!getCodeFile()
-              .equals(other.getCodeFile())) return false;
+      if (getUuid()
+              != other.getUuid()) return false;
+      if (getSourceId()
+              != other.getSourceId()) return false;
+      if (!getParticipantsList()
+        .equals(other.getParticipantsList())) return false;
+      if (hasCodeFile() != other.hasCodeFile()) return false;
+      if (hasCodeFile()) {
+          if (!getCodeFile()
+          .equals(other.getCodeFile())) return false;
     }
-    return getUnknownFields().equals(other.getUnknownFields());
+      return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override
@@ -389,11 +392,11 @@ public final class JobConfiguration extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + UUID_FIELD_NUMBER;
-    hash = (53 * hash) + getUuid();
-    hash = (37 * hash) + SOURCEID_FIELD_NUMBER;
+      hash = (37 * hash) + UUID_FIELD_NUMBER;
+      hash = (53 * hash) + getUuid();
+      hash = (37 * hash) + SOURCEID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getSourceId());
+        getSourceId());
     if (getParticipantsCount() > 0) {
       hash = (37 * hash) + PARTICIPANTS_FIELD_NUMBER;
       hash = (53 * hash) + getParticipantsList().hashCode();
@@ -402,25 +405,25 @@ public final class JobConfiguration extends
       hash = (37 * hash) + CODEFILE_FIELD_NUMBER;
       hash = (53 * hash) + getCodeFile().hashCode();
     }
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
     return hash;
   }
 
   @java.lang.Override
   public Builder newBuilderForType() {
-    return newBuilder();
+      return newBuilder();
   }
 
-  @java.lang.Override
-  public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
-  }
+    @java.lang.Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
 
-  @java.lang.Override
-  protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
@@ -432,51 +435,24 @@ public final class JobConfiguration extends
 
   @java.lang.Override
   public org.bupt.fedraft.rpc.manager.message.JobConfiguration getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
+      return DEFAULT_INSTANCE;
   }
 
-  /**
-   * Protobuf type {@code fedraft.JobConfiguration}
-   */
-  public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:fedraft.JobConfiguration)
-          org.bupt.fedraft.rpc.manager.message.JobConfigurationOrBuilder {
-    private int bitField0_;
-    private int uuid_;
-    private long sourceId_;
-    private com.google.protobuf.Internal.LongList participants_ = emptyLongList();
-    private org.bupt.fedraft.rpc.manager.message.CodeFile codeFile_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-            org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder> codeFileBuilder_;
+    /**
+     * Protobuf type {@code fedraft.JobConfiguration}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:fedraft.JobConfiguration)
+            org.bupt.fedraft.rpc.manager.message.JobConfigurationOrBuilder {
+        private int bitField0_;
+        private int uuid_;
+        private long sourceId_;
+        private com.google.protobuf.Internal.LongList participants_ = emptyLongList();
 
-    // Construct using org.bupt.fedraft.rpc.manager.message.JobConfiguration.newBuilder()
-    private Builder() {
-
-    }
-
-    private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
-    }
-
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.manager.message.JobConfiguration.class, org.bupt.fedraft.rpc.manager.message.JobConfiguration.Builder.class);
-    }
-
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
       uuid_ = 0;
 
       sourceId_ = 0L;
@@ -484,19 +460,14 @@ public final class JobConfiguration extends
       participants_ = emptyLongList();
       bitField0_ = (bitField0_ & ~0x00000001);
       if (codeFileBuilder_ == null) {
-        codeFile_ = null;
+          codeFile_ = null;
       } else {
-        codeFile_ = null;
+          codeFile_ = null;
         codeFileBuilder_ = null;
       }
       return this;
     }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
-    }
+    private org.bupt.fedraft.rpc.manager.message.CodeFile codeFile_;
 
     @java.lang.Override
     public org.bupt.fedraft.rpc.manager.message.JobConfiguration getDefaultInstanceForType() {
@@ -522,105 +493,162 @@ public final class JobConfiguration extends
         participants_.makeImmutable();
         bitField0_ = (bitField0_ & ~0x00000001);
       }
-      result.participants_ = participants_;
-      if (codeFileBuilder_ == null) {
-        result.codeFile_ = codeFile_;
-      } else {
-        result.codeFile_ = codeFileBuilder_.build();
-      }
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-
-    @java.lang.Override
-    public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.manager.message.JobConfiguration) {
-        return mergeFrom((org.bupt.fedraft.rpc.manager.message.JobConfiguration) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.JobConfiguration other) {
-      if (other == org.bupt.fedraft.rpc.manager.message.JobConfiguration.getDefaultInstance()) return this;
-      if (other.getUuid() != 0) {
-        setUuid(other.getUuid());
-      }
-      if (other.getSourceId() != 0L) {
-        setSourceId(other.getSourceId());
-      }
-      if (!other.participants_.isEmpty()) {
-        if (participants_.isEmpty()) {
-          participants_ = other.participants_;
-          bitField0_ = (bitField0_ & ~0x00000001);
+        result.participants_ = participants_;
+        if (codeFileBuilder_ == null) {
+            result.codeFile_ = codeFile_;
         } else {
-          ensureParticipantsIsMutable();
-          participants_.addAll(other.participants_);
+            result.codeFile_ = codeFileBuilder_.build();
         }
-        onChanged();
-      }
-      if (other.hasCodeFile()) {
-        mergeCodeFile(other.getCodeFile());
-      }
-      this.mergeUnknownFields(other.getUnknownFields());
-      onChanged();
-      return this;
+        onBuilt();
+        return result;
     }
 
-    @java.lang.Override
-    public boolean isInitialized() {
-      return true;
-    }
+        @java.lang.Override
+        public Builder clone() {
+            return super.clone();
+        }
 
-    @java.lang.Override
-    public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      try {
-        boolean done = false;
+        private com.google.protobuf.SingleFieldBuilderV3<
+                org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder> codeFileBuilder_;
+
+        // Construct using org.bupt.fedraft.rpc.manager.message.JobConfiguration.newBuilder()
+        private Builder() {
+
+        }
+
+        private Builder(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
+
+        }
+
+        public static com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
+        }
+
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.fedraft.rpc.manager.message.JobConfiguration.class, org.bupt.fedraft.rpc.manager.message.JobConfiguration.Builder.class);
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
+        }
+
+        public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.JobConfiguration other) {
+            if (other == org.bupt.fedraft.rpc.manager.message.JobConfiguration.getDefaultInstance()) return this;
+            if (other.getUuid() != 0) {
+                setUuid(other.getUuid());
+            }
+            if (other.getSourceId() != 0L) {
+                setSourceId(other.getSourceId());
+            }
+            if (!other.participants_.isEmpty()) {
+                if (participants_.isEmpty()) {
+                    participants_ = other.participants_;
+                    bitField0_ = (bitField0_ & ~0x00000001);
+                } else {
+                    ensureParticipantsIsMutable();
+                    participants_.addAll(other.participants_);
+                }
+                onChanged();
+            }
+            if (other.hasCodeFile()) {
+                mergeCodeFile(other.getCodeFile());
+            }
+            this.mergeUnknownFields(other.getUnknownFields());
+            onChanged();
+            return this;
+        }
+
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
+        }
+
+        @java.lang.Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.setField(field, value);
+        }
+
+        @java.lang.Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @java.lang.Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        /**
+         * <code>int32 uuid = 1;</code>
+         *
+         * @return The uuid.
+         */
+        @java.lang.Override
+        public int getUuid() {
+            return uuid_;
+        }
+
+        @java.lang.Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, java.lang.Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @java.lang.Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof org.bupt.fedraft.rpc.manager.message.JobConfiguration) {
+                return mergeFrom((org.bupt.fedraft.rpc.manager.message.JobConfiguration) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        /**
+         * <pre>
+         * 提交任务的源节点
+         * </pre>
+         *
+         * <code>int64 sourceId = 2;</code>
+         *
+         * @return The sourceId.
+         */
+        @java.lang.Override
+        public long getSourceId() {
+            return sourceId_;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
+            try {
+                boolean done = false;
         while (!done) {
           int tag = input.readTag();
           switch (tag) {
@@ -648,15 +676,15 @@ public final class JobConfiguration extends
               int limit = input.pushLimit(length);
               ensureParticipantsIsMutable();
               while (input.getBytesUntilLimit() > 0) {
-                participants_.addLong(input.readInt64());
+                  participants_.addLong(input.readInt64());
               }
-              input.popLimit(limit);
+                input.popLimit(limit);
               break;
             } // case 26
             case 34: {
               input.readMessage(
-                      getCodeFileFieldBuilder().getBuilder(),
-                      extensionRegistry);
+                  getCodeFileFieldBuilder().getBuilder(),
+                  extensionRegistry);
 
               break;
             } // case 34
@@ -678,17 +706,6 @@ public final class JobConfiguration extends
 
     /**
      * <code>int32 uuid = 1;</code>
-     *
-     * @return The uuid.
-     */
-    @java.lang.Override
-    public int getUuid() {
-      return uuid_;
-    }
-
-    /**
-     * <code>int32 uuid = 1;</code>
-     *
      * @param value The uuid to set.
      * @return This builder for chaining.
      */
@@ -701,7 +718,6 @@ public final class JobConfiguration extends
 
     /**
      * <code>int32 uuid = 1;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearUuid() {
@@ -717,21 +733,6 @@ public final class JobConfiguration extends
      * </pre>
      *
      * <code>int64 sourceId = 2;</code>
-     *
-     * @return The sourceId.
-     */
-    @java.lang.Override
-    public long getSourceId() {
-      return sourceId_;
-    }
-
-    /**
-     * <pre>
-     * 提交任务的源节点
-     * </pre>
-     *
-     * <code>int64 sourceId = 2;</code>
-     *
      * @param value The sourceId to set.
      * @return This builder for chaining.
      */
@@ -748,7 +749,6 @@ public final class JobConfiguration extends
      * </pre>
      *
      * <code>int64 sourceId = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearSourceId() {
@@ -757,147 +757,139 @@ public final class JobConfiguration extends
       onChanged();
       return this;
     }
-
-    private void ensureParticipantsIsMutable() {
-      if ((bitField0_ & 0x00000001) == 0) {
-        participants_ = mutableCopy(participants_);
-        bitField0_ |= 0x00000001;
-      }
-    }
-
     /**
      * <pre>
      * 训练任务的参与者
      * </pre>
      *
      * <code>repeated int64 participants = 3;</code>
-     *
-     * @return A list containing the participants.
-     */
-    public java.util.List<java.lang.Long>
-    getParticipantsList() {
-      return ((bitField0_ & 0x00000001) != 0) ?
-              java.util.Collections.unmodifiableList(participants_) : participants_;
-    }
-
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
      * @return The count of participants.
      */
     public int getParticipantsCount() {
-      return participants_.size();
+        return participants_.size();
     }
 
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
-     * @param index The index of the element to return.
-     * @return The participants at the given index.
-     */
-    public long getParticipants(int index) {
-      return participants_.getLong(index);
-    }
+        /**
+         * <pre>
+         * 训练任务的参与者
+         * </pre>
+         *
+         * <code>repeated int64 participants = 3;</code>
+         *
+         * @param index The index of the element to return.
+         * @return The participants at the given index.
+         */
+        public long getParticipants(int index) {
+            return participants_.getLong(index);
+        }
 
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
-     * @param index The index to set the value at.
-     * @param value The participants to set.
-     * @return This builder for chaining.
-     */
-    public Builder setParticipants(
-            int index, long value) {
-      ensureParticipantsIsMutable();
-      participants_.setLong(index, value);
-      onChanged();
-      return this;
-    }
+        private void ensureParticipantsIsMutable() {
+            if ((bitField0_ & 0x00000001) == 0) {
+                participants_ = mutableCopy(participants_);
+                bitField0_ |= 0x00000001;
+            }
+        }
 
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
-     * @param value The participants to add.
-     * @return This builder for chaining.
-     */
-    public Builder addParticipants(long value) {
-      ensureParticipantsIsMutable();
-      participants_.addLong(value);
-      onChanged();
-      return this;
-    }
+        /**
+         * <pre>
+         * 训练任务的参与者
+         * </pre>
+         *
+         * <code>repeated int64 participants = 3;</code>
+         *
+         * @param value The participants to add.
+         * @return This builder for chaining.
+         */
+        public Builder addParticipants(long value) {
+            ensureParticipantsIsMutable();
+            participants_.addLong(value);
+            onChanged();
+            return this;
+        }
 
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
-     * @param values The participants to add.
-     * @return This builder for chaining.
-     */
-    public Builder addAllParticipants(
-            java.lang.Iterable<? extends java.lang.Long> values) {
-      ensureParticipantsIsMutable();
+        /**
+         * <pre>
+         * 训练任务的参与者
+         * </pre>
+         *
+         * <code>repeated int64 participants = 3;</code>
+         *
+         * @return A list containing the participants.
+         */
+        public java.util.List<java.lang.Long>
+        getParticipantsList() {
+            return ((bitField0_ & 0x00000001) != 0) ?
+                    java.util.Collections.unmodifiableList(participants_) : participants_;
+        }
+
+        /**
+         * <pre>
+         * 训练任务的参与者
+         * </pre>
+         *
+         * <code>repeated int64 participants = 3;</code>
+         * @return This builder for chaining.
+         */
+        public Builder clearParticipants() {
+            participants_ = emptyLongList();
+            bitField0_ = (bitField0_ & ~0x00000001);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 训练任务的参与者
+         * </pre>
+         *
+         * <code>repeated int64 participants = 3;</code>
+         * @param index The index to set the value at.
+         * @param value The participants to set.
+         * @return This builder for chaining.
+         */
+        public Builder setParticipants(
+                int index, long value) {
+            ensureParticipantsIsMutable();
+            participants_.setLong(index, value);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 训练任务的参与者
+         * </pre>
+         *
+         * <code>repeated int64 participants = 3;</code>
+         *
+         * @param values The participants to add.
+         * @return This builder for chaining.
+         */
+        public Builder addAllParticipants(
+                java.lang.Iterable<? extends java.lang.Long> values) {
+            ensureParticipantsIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, participants_);
+          values, participants_);
       onChanged();
       return this;
     }
-
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearParticipants() {
-      participants_ = emptyLongList();
-      bitField0_ = (bitField0_ & ~0x00000001);
-      onChanged();
-      return this;
-    }
-
     /**
      * <pre>
      * 任务代码
      * </pre>
      *
      * <code>.fedraft.CodeFile codeFile = 4;</code>
-     *
      * @return Whether the codeFile field is set.
      */
     public boolean hasCodeFile() {
       return codeFileBuilder_ != null || codeFile_ != null;
     }
-
     /**
      * <pre>
      * 任务代码
      * </pre>
      *
      * <code>.fedraft.CodeFile codeFile = 4;</code>
-     *
      * @return The codeFile.
      */
     public org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile() {
@@ -907,7 +899,6 @@ public final class JobConfiguration extends
         return codeFileBuilder_.getMessage();
       }
     }
-
     /**
      * <pre>
      * 任务代码
@@ -916,28 +907,28 @@ public final class JobConfiguration extends
      * <code>.fedraft.CodeFile codeFile = 4;</code>
      */
     public Builder setCodeFile(org.bupt.fedraft.rpc.manager.message.CodeFile value) {
-      if (codeFileBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (codeFileBuilder_ == null) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            codeFile_ = value;
+            onChanged();
+        } else {
+            codeFileBuilder_.setMessage(value);
         }
-        codeFile_ = value;
-        onChanged();
-      } else {
-        codeFileBuilder_.setMessage(value);
-      }
 
-      return this;
+        return this;
     }
 
-    /**
-     * <pre>
-     * 任务代码
-     * </pre>
-     *
-     * <code>.fedraft.CodeFile codeFile = 4;</code>
+        /**
+         * <pre>
+         * 任务代码
+         * </pre>
+         *
+         * <code>.fedraft.CodeFile codeFile = 4;</code>
      */
     public Builder setCodeFile(
-            org.bupt.fedraft.rpc.manager.message.CodeFile.Builder builderForValue) {
+        org.bupt.fedraft.rpc.manager.message.CodeFile.Builder builderForValue) {
       if (codeFileBuilder_ == null) {
         codeFile_ = builderForValue.build();
         onChanged();
@@ -945,13 +936,13 @@ public final class JobConfiguration extends
         codeFileBuilder_.setMessage(builderForValue.build());
       }
 
-      return this;
+        return this;
     }
 
-    /**
-     * <pre>
-     * 任务代码
-     * </pre>
+        /**
+         * <pre>
+         * 任务代码
+         * </pre>
      *
      * <code>.fedraft.CodeFile codeFile = 4;</code>
      */
@@ -959,7 +950,7 @@ public final class JobConfiguration extends
       if (codeFileBuilder_ == null) {
         if (codeFile_ != null) {
           codeFile_ =
-                  org.bupt.fedraft.rpc.manager.message.CodeFile.newBuilder(codeFile_).mergeFrom(value).buildPartial();
+            org.bupt.fedraft.rpc.manager.message.CodeFile.newBuilder(codeFile_).mergeFrom(value).buildPartial();
         } else {
           codeFile_ = value;
         }
@@ -970,7 +961,6 @@ public final class JobConfiguration extends
 
       return this;
     }
-
     /**
      * <pre>
      * 任务代码
@@ -989,7 +979,6 @@ public final class JobConfiguration extends
 
       return this;
     }
-
     /**
      * <pre>
      * 任务代码
@@ -1003,52 +992,51 @@ public final class JobConfiguration extends
       return getCodeFileFieldBuilder().getBuilder();
     }
 
-    /**
-     * <pre>
-     * 任务代码
-     * </pre>
-     *
-     * <code>.fedraft.CodeFile codeFile = 4;</code>
-     */
-    public org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder() {
-      if (codeFileBuilder_ != null) {
-        return codeFileBuilder_.getMessageOrBuilder();
-      } else {
-        return codeFile_ == null ?
-                org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
-      }
-    }
+        /**
+         * <pre>
+         * 任务代码
+         * </pre>
+         *
+         * <code>.fedraft.CodeFile codeFile = 4;</code>
+         */
+        public org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder() {
+            if (codeFileBuilder_ != null) {
+                return codeFileBuilder_.getMessageOrBuilder();
+            } else {
+                return codeFile_ == null ?
+                        org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
+            }
+        }
 
-    /**
-     * <pre>
-     * 任务代码
-     * </pre>
-     *
-     * <code>.fedraft.CodeFile codeFile = 4;</code>
-     */
-    private com.google.protobuf.SingleFieldBuilderV3<
-            org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder>
-    getCodeFileFieldBuilder() {
-      if (codeFileBuilder_ == null) {
-        codeFileBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder>(
-                getCodeFile(),
-                getParentForChildren(),
-                isClean());
-        codeFile_ = null;
-      }
-      return codeFileBuilder_;
+        /**
+         * <pre>
+         * 任务代码
+         * </pre>
+         *
+         * <code>.fedraft.CodeFile codeFile = 4;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilderV3<
+                org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder>
+        getCodeFileFieldBuilder() {
+            if (codeFileBuilder_ == null) {
+                codeFileBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+                        org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder>(
+                        getCodeFile(),
+                        getParentForChildren(),
+                        isClean());
+                codeFile_ = null;
+            }
+            return codeFileBuilder_;
     }
-
     @java.lang.Override
     public Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFields(unknownFields);
     }
 
     @java.lang.Override
     public Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
     }
 

@@ -7,41 +7,40 @@ public interface JobSubmitResponseOrBuilder extends
         // @@protoc_insertion_point(interface_extends:fedraft.JobSubmitResponse)
         com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>bool success = 1;</code>
-   *
-   * @return Whether the success field is set.
-   */
-  boolean hasSuccess();
+    /**
+     * <code>bool success = 1;</code>
+     *
+     * @return Whether the success field is set.
+     */
+    boolean hasSuccess();
 
-  /**
-   * <code>bool success = 1;</code>
-   *
-   * @return The success.
-   */
+    /**
+     * <code>bool success = 1;</code>
+     *
+     * @return The success.
+     */
   boolean getSuccess();
 
   /**
    * <code>string logs = 2;</code>
-   *
    * @return Whether the logs field is set.
    */
   boolean hasLogs();
 
-  /**
-   * <code>string logs = 2;</code>
-   *
-   * @return The logs.
-   */
-  java.lang.String getLogs();
+    /**
+     * <code>string logs = 2;</code>
+     *
+     * @return The logs.
+     */
+    java.lang.String getLogs();
 
-  /**
-   * <code>string logs = 2;</code>
-   *
-   * @return The bytes for logs.
-   */
-  com.google.protobuf.ByteString
-  getLogsBytes();
+    /**
+     * <code>string logs = 2;</code>
+     *
+     * @return The bytes for logs.
+     */
+    com.google.protobuf.ByteString
+      getLogsBytes();
 
   org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.LogCase getLogCase();
 }

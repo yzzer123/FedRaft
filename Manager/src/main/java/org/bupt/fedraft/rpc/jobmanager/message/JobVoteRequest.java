@@ -10,26 +10,35 @@ public final class JobVoteRequest extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:fedraft.JobVoteRequest)
         JobVoteRequestOrBuilder {
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:fedraft.JobVoteRequest)
-  private static final org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<JobVoteRequest>
-          PARSER = new com.google.protobuf.AbstractParser<JobVoteRequest>() {
-    @java.lang.Override
-    public JobVoteRequest parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      Builder builder = newBuilder();
-      try {
-        builder.mergeFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(builder.buildPartial());
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                .setUnfinishedMessage(builder.buildPartial());
+    private static final long serialVersionUID = 0L;
+
+    // Use JobVoteRequest.newBuilder() to construct.
+    private JobVoteRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
+
+    private JobVoteRequest() {
+    }
+
+    // @@protoc_insertion_point(class_scope:fedraft.JobVoteRequest)
+    private static final org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest DEFAULT_INSTANCE;
+    private static final com.google.protobuf.Parser<JobVoteRequest>
+            PARSER = new com.google.protobuf.AbstractParser<JobVoteRequest>() {
+        @java.lang.Override
+        public JobVoteRequest parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            Builder builder = newBuilder();
+            try {
+                builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                        .setUnfinishedMessage(builder.buildPartial());
       }
       return builder.buildPartial();
     }
@@ -41,107 +50,91 @@ public final class JobVoteRequest extends
 
   private byte memoizedIsInitialized = -1;
 
-  // Use JobVoteRequest.newBuilder() to construct.
-  private JobVoteRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
+    }
 
-  private JobVoteRequest() {
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-  public static com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
 
   public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
@@ -151,12 +144,12 @@ public final class JobVoteRequest extends
     return PARSER;
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-    return new JobVoteRequest();
-  }
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+        return new JobVoteRequest();
+    }
 
   @java.lang.Override
   public com.google.protobuf.UnknownFieldSet
@@ -164,33 +157,41 @@ public final class JobVoteRequest extends
     return this.unknownFields;
   }
 
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.Builder.class);
-  }
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+        return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.Builder.class);
+    }
 
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
 
-    memoizedIsInitialized = 1;
-    return true;
-  }
+        memoizedIsInitialized = 1;
+        return true;
+    }
 
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
-    getUnknownFields().writeTo(output);
-  }
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
+    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
     if (size != -1) return size;
 
     size = 0;
@@ -202,14 +203,14 @@ public final class JobVoteRequest extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+        return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest)) {
       return super.equals(obj);
     }
     org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest other = (org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest) obj;
 
-    return getUnknownFields().equals(other.getUnknownFields());
+      return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override
@@ -224,23 +225,23 @@ public final class JobVoteRequest extends
     return hash;
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
+    @java.lang.Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
 
   @java.lang.Override
   public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
+      return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
-  protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
 
   @java.lang.Override
   public com.google.protobuf.Parser<JobVoteRequest> getParserForType() {
@@ -252,48 +253,48 @@ public final class JobVoteRequest extends
     return DEFAULT_INSTANCE;
   }
 
-  /**
-   * Protobuf type {@code fedraft.JobVoteRequest}
-   */
-  public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:fedraft.JobVoteRequest)
-          org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequestOrBuilder {
-    // Construct using org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.newBuilder()
-    private Builder() {
+    /**
+     * Protobuf type {@code fedraft.JobVoteRequest}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:fedraft.JobVoteRequest)
+            org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequestOrBuilder {
+        // Construct using org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.newBuilder()
+        private Builder() {
 
-    }
+        }
 
-    private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
+        private Builder(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
 
-    }
+        }
 
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
-    }
+        public static com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
+        }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.Builder.class);
-    }
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.Builder.class);
+        }
 
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      return this;
-    }
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
+            return this;
+        }
 
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
-    }
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
+        }
 
     @java.lang.Override
     public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstanceForType() {
@@ -316,52 +317,52 @@ public final class JobVoteRequest extends
       return result;
     }
 
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
+        @java.lang.Override
+        public Builder clone() {
+            return super.clone();
+        }
 
-    @java.lang.Override
-    public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.setField(field, value);
-    }
+        @java.lang.Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.setField(field, value);
+        }
 
-    @java.lang.Override
-    public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
+        @java.lang.Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
 
-    @java.lang.Override
-    public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
+        @java.lang.Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
 
-    @java.lang.Override
-    public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
+        @java.lang.Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, java.lang.Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
 
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
+        @java.lang.Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.addRepeatedField(field, value);
+        }
 
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest) {
-        return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest) {
+                return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
     }
 
     public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest other) {
@@ -376,46 +377,46 @@ public final class JobVoteRequest extends
       return true;
     }
 
-    @java.lang.Override
-    public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          // default:
-          if (tag == 0) {
-            done = true;
-          } else {
-            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-              done = true; // was an endgroup tag
+        @java.lang.Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
             }
-          } // switch (tag)
-        } // while (!done)
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.unwrapIOException();
-      } finally {
-        onChanged();
-      } // finally
-      return this;
-    }
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    // default:
+                    if (tag == 0) {
+                        done = true;
+                    } else {
+                        if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                            done = true; // was an endgroup tag
+                        }
+                    } // switch (tag)
+                } // while (!done)
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.unwrapIOException();
+            } finally {
+                onChanged();
+            } // finally
+            return this;
+        }
 
-    @java.lang.Override
-    public Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
+        @java.lang.Override
+        public Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
 
-    @java.lang.Override
-    public Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
+        @java.lang.Override
+        public Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
 
 
     // @@protoc_insertion_point(builder_scope:fedraft.JobVoteRequest)

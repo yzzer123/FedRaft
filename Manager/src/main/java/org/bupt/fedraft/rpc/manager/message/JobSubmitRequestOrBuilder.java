@@ -7,20 +7,19 @@ public interface JobSubmitRequestOrBuilder extends
         // @@protoc_insertion_point(interface_extends:fedraft.JobSubmitRequest)
         com.google.protobuf.MessageOrBuilder {
 
-  /**
-   * <code>.fedraft.JobConfiguration conf = 1;</code>
-   *
-   * @return Whether the conf field is set.
-   */
-  boolean hasConf();
+    /**
+     * <code>.fedraft.JobConfiguration conf = 1;</code>
+     *
+     * @return Whether the conf field is set.
+     */
+    boolean hasConf();
 
-  /**
-   * <code>.fedraft.JobConfiguration conf = 1;</code>
-   *
-   * @return The conf.
-   */
+    /**
+     * <code>.fedraft.JobConfiguration conf = 1;</code>
+     *
+     * @return The conf.
+     */
   org.bupt.fedraft.rpc.manager.message.JobConfiguration getConf();
-
   /**
    * <code>.fedraft.JobConfiguration conf = 1;</code>
    */
@@ -28,14 +27,11 @@ public interface JobSubmitRequestOrBuilder extends
 
   /**
    * <code>bytes modelChunk = 2;</code>
-   *
    * @return Whether the modelChunk field is set.
    */
   boolean hasModelChunk();
-
   /**
    * <code>bytes modelChunk = 2;</code>
-   *
    * @return The modelChunk.
    */
   com.google.protobuf.ByteString getModelChunk();

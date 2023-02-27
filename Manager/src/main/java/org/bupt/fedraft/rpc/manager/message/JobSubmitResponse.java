@@ -10,133 +10,183 @@ public final class JobSubmitResponse extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:fedraft.JobSubmitResponse)
         JobSubmitResponseOrBuilder {
-  public static final int SUCCESS_FIELD_NUMBER = 1;
-  public static final int LOGS_FIELD_NUMBER = 2;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:fedraft.JobSubmitResponse)
-  private static final org.bupt.fedraft.rpc.manager.message.JobSubmitResponse DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<JobSubmitResponse>
-          PARSER = new com.google.protobuf.AbstractParser<JobSubmitResponse>() {
+    public static final int SUCCESS_FIELD_NUMBER = 1;
+
+    // Use JobSubmitResponse.newBuilder() to construct.
+    private JobSubmitResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
+
+    private JobSubmitResponse() {
+    }
+
+    public static final int LOGS_FIELD_NUMBER = 2;
+
     @java.lang.Override
-    public JobSubmitResponse parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      Builder builder = newBuilder();
-      try {
-        builder.mergeFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(builder.buildPartial());
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                .setUnfinishedMessage(builder.buildPartial());
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
+    private static final long serialVersionUID = 0L;
+    // @@protoc_insertion_point(class_scope:fedraft.JobSubmitResponse)
+    private static final org.bupt.fedraft.rpc.manager.message.JobSubmitResponse DEFAULT_INSTANCE;
+    private static final com.google.protobuf.Parser<JobSubmitResponse>
+            PARSER = new com.google.protobuf.AbstractParser<JobSubmitResponse>() {
+        @java.lang.Override
+        public JobSubmitResponse parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            Builder builder = newBuilder();
+            try {
+                builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                        .setUnfinishedMessage(builder.buildPartial());
       }
       return builder.buildPartial();
+        }
+    };
+
+    static {
+        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.JobSubmitResponse();
     }
-  };
 
-  static {
-    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.JobSubmitResponse();
-  }
+    private int logCase_ = 0;
+    private java.lang.Object log_;
+    private byte memoizedIsInitialized = -1;
 
-  private int logCase_ = 0;
-  private java.lang.Object log_;
-  private byte memoizedIsInitialized = -1;
+    /**
+     * <code>bool success = 1;</code>
+     *
+     * @return Whether the success field is set.
+     */
+    @java.lang.Override
+    public boolean hasSuccess() {
+        return logCase_ == 1;
+    }
 
-  // Use JobSubmitResponse.newBuilder() to construct.
-  private JobSubmitResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
+    /**
+     * <code>bool success = 1;</code>
+     *
+     * @return The success.
+     */
+    @java.lang.Override
+    public boolean getSuccess() {
+        if (logCase_ == 1) {
+            return (java.lang.Boolean) log_;
+        }
+        return false;
+    }
 
-  private JobSubmitResponse() {
-  }
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_descriptor;
+    }
 
-  public static com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_descriptor;
-  }
+    /**
+     * <code>string logs = 2;</code>
+     *
+     * @return Whether the logs field is set.
+     */
+    public boolean hasLogs() {
+        return logCase_ == 2;
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+        memoizedIsInitialized = 1;
+        return true;
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
   public static Builder newBuilder() {
@@ -152,71 +202,32 @@ public final class JobSubmitResponse extends
   }
 
   public static com.google.protobuf.Parser<JobSubmitResponse> parser() {
-    return PARSER;
+      return PARSER;
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-    return new JobSubmitResponse();
-  }
-
-  @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.class, org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.Builder.class);
-  }
-
-  public LogCase
-  getLogCase() {
-    return LogCase.forNumber(
-            logCase_);
-  }
-
-  /**
-   * <code>bool success = 1;</code>
-   *
-   * @return Whether the success field is set.
-   */
-  @java.lang.Override
-  public boolean hasSuccess() {
-    return logCase_ == 1;
-  }
-
-  /**
-   * <code>bool success = 1;</code>
-   *
-   * @return The success.
-   */
-  @java.lang.Override
-  public boolean getSuccess() {
-    if (logCase_ == 1) {
-      return (java.lang.Boolean) log_;
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+        return new JobSubmitResponse();
     }
-    return false;
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+        return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.class, org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.Builder.class);
+    }
+
+    public LogCase
+    getLogCase() {
+        return LogCase.forNumber(
+        logCase_);
   }
 
   /**
    * <code>string logs = 2;</code>
-   *
-   * @return Whether the logs field is set.
-   */
-  public boolean hasLogs() {
-    return logCase_ == 2;
-  }
-
-  /**
-   * <code>string logs = 2;</code>
-   *
    * @return The logs.
    */
   public java.lang.String getLogs() {
@@ -227,59 +238,49 @@ public final class JobSubmitResponse extends
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
-      com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
+        com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
       if (logCase_ == 2) {
         log_ = s;
       }
-      return s;
+        return s;
     }
   }
 
-  /**
-   * <code>string logs = 2;</code>
-   *
-   * @return The bytes for logs.
-   */
-  public com.google.protobuf.ByteString
-  getLogsBytes() {
-    java.lang.Object ref = "";
-    if (logCase_ == 2) {
-      ref = log_;
-    }
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-              com.google.protobuf.ByteString.copyFromUtf8(
-                      (java.lang.String) ref);
-      if (logCase_ == 2) {
+    /**
+     * <code>string logs = 2;</code>
+     *
+     * @return The bytes for logs.
+     */
+    public com.google.protobuf.ByteString
+    getLogsBytes() {
+        java.lang.Object ref = "";
+        if (logCase_ == 2) {
+            ref = log_;
+        }
+        if (ref instanceof java.lang.String) {
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
+            if (logCase_ == 2) {
         log_ = b;
       }
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
+        }
     }
-  }
 
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
-    if (logCase_ == 1) {
-      output.writeBool(
-              1, (Boolean) log_);
-    }
-    if (logCase_ == 2) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, log_);
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (logCase_ == 1) {
+            output.writeBool(
+                    1, (Boolean) log_);
+        }
+        if (logCase_ == 2) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 2, log_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -289,11 +290,11 @@ public final class JobSubmitResponse extends
     int size = memoizedSize;
     if (size != -1) return size;
 
-    size = 0;
-    if (logCase_ == 1) {
-      size += com.google.protobuf.CodedOutputStream
-              .computeBoolSize(
-                      1, (Boolean) log_);
+      size = 0;
+      if (logCase_ == 1) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeBoolSize(
+            1, (Boolean) log_);
     }
     if (logCase_ == 2) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, log_);
@@ -306,7 +307,7 @@ public final class JobSubmitResponse extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.manager.message.JobSubmitResponse)) {
       return super.equals(obj);
@@ -314,19 +315,19 @@ public final class JobSubmitResponse extends
     org.bupt.fedraft.rpc.manager.message.JobSubmitResponse other = (org.bupt.fedraft.rpc.manager.message.JobSubmitResponse) obj;
 
     if (!getLogCase().equals(other.getLogCase())) return false;
-    switch (logCase_) {
-      case 1:
-        if (getSuccess()
-                != other.getSuccess()) return false;
-        break;
-      case 2:
-        if (!getLogs()
-                .equals(other.getLogs())) return false;
-        break;
-      case 0:
-      default:
-    }
-    return getUnknownFields().equals(other.getUnknownFields());
+      switch (logCase_) {
+          case 1:
+              if (getSuccess()
+            != other.getSuccess()) return false;
+              break;
+          case 2:
+              if (!getLogs()
+            .equals(other.getLogs())) return false;
+              break;
+          case 0:
+          default:
+      }
+      return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override
@@ -336,11 +337,11 @@ public final class JobSubmitResponse extends
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    switch (logCase_) {
-      case 1:
-        hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-                getSuccess());
+      switch (logCase_) {
+          case 1:
+              hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
+              hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+            getSuccess());
         break;
       case 2:
         hash = (37 * hash) + LOGS_FIELD_NUMBER;
@@ -350,25 +351,23 @@ public final class JobSubmitResponse extends
       default:
     }
     hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
+      memoizedHashCode = hash;
+      return hash;
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
 
   @java.lang.Override
   public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
+      return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
-  protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
     return builder;
   }
 
@@ -382,18 +381,16 @@ public final class JobSubmitResponse extends
     return DEFAULT_INSTANCE;
   }
 
-  public enum LogCase
-          implements com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    public enum LogCase
+            implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
     SUCCESS(1),
     LOGS(2),
     LOG_NOT_SET(0);
     private final int value;
-
     LogCase(int value) {
       this.value = value;
     }
-
     /**
      * @param value The number of the enum to look for.
      * @return The enum associated with the given number.
@@ -405,78 +402,62 @@ public final class JobSubmitResponse extends
     }
 
     public static LogCase forNumber(int value) {
-      switch (value) {
-        case 1:
-          return SUCCESS;
-        case 2:
-          return LOGS;
-        case 0:
-          return LOG_NOT_SET;
-        default:
-          return null;
+        switch (value) {
+            case 1:
+                return SUCCESS;
+            case 2:
+                return LOGS;
+            case 0:
+                return LOG_NOT_SET;
+        default: return null;
       }
     }
-
     public int getNumber() {
-      return this.value;
+        return this.value;
     }
-  }
-
-  /**
-   * Protobuf type {@code fedraft.JobSubmitResponse}
-   */
-  public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:fedraft.JobSubmitResponse)
-          org.bupt.fedraft.rpc.manager.message.JobSubmitResponseOrBuilder {
-    private int logCase_ = 0;
-    private java.lang.Object log_;
-
-    // Construct using org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.newBuilder()
-    private Builder() {
-
     }
 
-    private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
+    /**
+     * Protobuf type {@code fedraft.JobSubmitResponse}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:fedraft.JobSubmitResponse)
+            org.bupt.fedraft.rpc.manager.message.JobSubmitResponseOrBuilder {
+        private int logCase_ = 0;
+        private java.lang.Object log_;
 
-    }
+        // Construct using org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.newBuilder()
+        private Builder() {
 
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_descriptor;
-    }
+        }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.class, org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.Builder.class);
-    }
+        private Builder(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
 
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      logCase_ = 0;
-      log_ = null;
-      return this;
-    }
+        }
 
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_descriptor;
-    }
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
+            logCase_ = 0;
+            log_ = null;
+            return this;
+        }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.JobSubmitResponse getDefaultInstanceForType() {
-      return org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.getDefaultInstance();
-    }
+        public static com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_descriptor;
+        }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.JobSubmitResponse build() {
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.JobSubmitResponse getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.JobSubmitResponse build() {
       org.bupt.fedraft.rpc.manager.message.JobSubmitResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
@@ -491,59 +472,56 @@ public final class JobSubmitResponse extends
         result.log_ = log_;
       }
       if (logCase_ == 2) {
-        result.log_ = log_;
+          result.log_ = log_;
       }
-      result.logCase_ = logCase_;
-      onBuilt();
-      return result;
+        result.logCase_ = logCase_;
+        onBuilt();
+        return result;
     }
 
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
+        @java.lang.Override
+        public Builder clone() {
+            return super.clone();
+        }
 
-    @java.lang.Override
-    public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.setField(field, value);
-    }
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.class, org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.Builder.class);
+        }
 
-    @java.lang.Override
-    public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_descriptor;
+        }
 
-    @java.lang.Override
-    public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
+        @java.lang.Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.setField(field, value);
+        }
 
-    @java.lang.Override
-    public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
+        @java.lang.Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
 
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
+        @java.lang.Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
 
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.manager.message.JobSubmitResponse) {
-        return mergeFrom((org.bupt.fedraft.rpc.manager.message.JobSubmitResponse) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
+        @java.lang.Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, java.lang.Object value) {
+            return super.setRepeatedField(field, index, value);
     }
 
     public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.JobSubmitResponse other) {
@@ -559,33 +537,50 @@ public final class JobSubmitResponse extends
           onChanged();
           break;
         }
-        case LOG_NOT_SET: {
-          break;
+          case LOG_NOT_SET: {
+              break;
+          }
+      }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+    }
+
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
         }
-      }
-      this.mergeUnknownFields(other.getUnknownFields());
-      onChanged();
-      return this;
-    }
 
-    @java.lang.Override
-    public boolean isInitialized() {
-      return true;
-    }
+        @java.lang.Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.addRepeatedField(field, value);
+        }
 
-    @java.lang.Override
-    public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof org.bupt.fedraft.rpc.manager.message.JobSubmitResponse) {
+                return mergeFrom((org.bupt.fedraft.rpc.manager.message.JobSubmitResponse) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
             case 0:
               done = true;
               break;
@@ -615,7 +610,6 @@ public final class JobSubmitResponse extends
       } // finally
       return this;
     }
-
     public LogCase
         getLogCase() {
       return LogCase.forNumber(
@@ -679,6 +673,7 @@ public final class JobSubmitResponse extends
     public boolean hasLogs() {
       return logCase_ == 2;
     }
+
     /**
      * <code>string logs = 2;</code>
      * @return The logs.
@@ -689,73 +684,73 @@ public final class JobSubmitResponse extends
       if (logCase_ == 2) {
         ref = log_;
       }
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+        if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                    (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (logCase_ == 2) {
           log_ = s;
         }
         return s;
       } else {
-        return (java.lang.String) ref;
-      }
+            return (java.lang.String) ref;
+        }
     }
 
-    /**
-     * <code>string logs = 2;</code>
-     *
-     * @param value The logs to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLogs(
-            java.lang.String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      logCase_ = 2;
-      log_ = value;
-      onChanged();
-      return this;
-    }
+        /**
+         * <code>string logs = 2;</code>
+         *
+         * @param value The logs to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLogs(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            logCase_ = 2;
+            log_ = value;
+            onChanged();
+            return this;
+        }
 
-    /**
-     * <code>string logs = 2;</code>
-     *
-     * @return The bytes for logs.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-    getLogsBytes() {
-      java.lang.Object ref = "";
-      if (logCase_ == 2) {
-        ref = log_;
-      }
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
+        /**
+         * <code>string logs = 2;</code>
+         *
+         * @return The bytes for logs.
+         */
+        @java.lang.Override
+        public com.google.protobuf.ByteString
+        getLogsBytes() {
+            java.lang.Object ref = "";
+            if (logCase_ == 2) {
+                ref = log_;
+            }
+            if (ref instanceof String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
         if (logCase_ == 2) {
           log_ = b;
         }
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
+        }
 
-    /**
-     * <code>string logs = 2;</code>
-     *
-     * @param value The bytes for logs to set.
-     * @return This builder for chaining.
-     */
-    public Builder setLogsBytes(
-            com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
+        /**
+         * <code>string logs = 2;</code>
+         *
+         * @param value The bytes for logs to set.
+         * @return This builder for chaining.
+         */
+        public Builder setLogsBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
       logCase_ = 2;
       log_ = value;
       onChanged();
@@ -764,28 +759,27 @@ public final class JobSubmitResponse extends
 
     /**
      * <code>string logs = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearLogs() {
-      if (logCase_ == 2) {
-        logCase_ = 0;
-        log_ = null;
-        onChanged();
-      }
-      return this;
+        if (logCase_ == 2) {
+            logCase_ = 0;
+            log_ = null;
+            onChanged();
+        }
+        return this;
     }
 
-    @java.lang.Override
-    public Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
+        @java.lang.Override
+        public Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
 
-    @java.lang.Override
-    public Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+        @java.lang.Override
+        public Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
     }
 
 
