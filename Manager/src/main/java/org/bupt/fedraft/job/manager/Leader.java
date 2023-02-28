@@ -18,6 +18,8 @@ public class Leader extends BaseJob {
     public Leader(ManagerState managerState) {
         super(managerState);
         logger.info("manager become leader!!!");
+        // 立刻进行两次同步，来保证尽快传播更新的时延拓扑
+        ManagerClient.appendEntriesOnCluster(this);
         setupTimer();
     }
 
@@ -44,7 +46,7 @@ public class Leader extends BaseJob {
     protected void setupTimer() {
         scheduledFuture = TimerUtils.getTimer().scheduleAtFixedRate(() -> {
             ManagerClient.appendEntriesOnCluster(Leader.this);
-        }, 0, BASE_HEARTBEAT_TIMEOUT, TimeUnit.MILLISECONDS);
+        }, BASE_HEARTBEAT_TIMEOUT / 3, BASE_HEARTBEAT_TIMEOUT, TimeUnit.MILLISECONDS);
     }
 
     @Override

@@ -34,7 +34,9 @@ public class Candidate extends BaseJob {
             raftState.term++;
             raftState.voteFor = selfId;
             voteCount = 1;
-//            logger.info("candidate add term and begin to elect");
+            if (logger.isDebugEnabled()) {
+                logger.debug("candidate add term and begin to elect");
+            }
             clusterSize = ManagerClient.voteForOnCluster(this);
 
             resetTimer();
@@ -52,7 +54,8 @@ public class Candidate extends BaseJob {
             }
 
             // 判断顺序不能改变
-            if (raftState.job != Candidate.this) {
+            //  如果当前角色已经发生改变，或者收到的投票不符合当前任期
+            if (term < raftState.term || raftState.job != Candidate.this) {
                 if (logger.isDebugEnabled()) {
                     logger.debug("job changed, vote response is invalid ");
                 }
@@ -93,7 +96,7 @@ public class Candidate extends BaseJob {
     @Override
     protected void setupTimer() {
 
-        long timeout = (long) ((Math.random() + 1) / 2 * BASE_HEARTBEAT_TIMEOUT);
+        long timeout = (long) ((Math.random() + 1.2) * BASE_HEARTBEAT_TIMEOUT);
 
         if (logger.isDebugEnabled()) {
             logger.debug("candidate setup timeout task with {} ms", timeout);

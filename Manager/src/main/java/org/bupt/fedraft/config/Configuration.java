@@ -53,8 +53,11 @@ public class Configuration {
             // java working space need to be set in /path/to/FedRaft and config should be put in root dictionary in FedRaft
             // 如果路径下存在配置文件，就访问路径下的，否则访问打包好的资源文件
             File confFile = new File("./conf.properties");
+            File confFile2 = new File("./conf/conf.properties");
             if (confFile.exists()) {
                 conf = new Configurations().properties(confFile);
+            } else if (confFile2.exists()) {
+                conf = new Configurations().properties(confFile2);
             } else {
                 URL resource = Configuration.class.getClassLoader().getResource("conf.properties");
                 conf = new Configurations().properties(resource);
