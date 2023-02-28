@@ -20,31 +20,31 @@ public final class TrainerServiceOuterClass {
                     ".fedraft.InitModelResponse\"\000(\001B(\n$org.bu" +
                     "pt.fedraft.rpc.trainer.serviceP\001b\006proto3"
     };
-      descriptor = com.google.protobuf.Descriptors.FileDescriptor
-              .internalBuildGeneratedFileFrom(descriptorData,
-                      new com.google.protobuf.Descriptors.FileDescriptor[]{
-                              org.bupt.fedraft.rpc.trainer.message.TrainerMessage.getDescriptor(),
-                      });
-      org.bupt.fedraft.rpc.trainer.message.TrainerMessage.getDescriptor();
+    descriptor = com.google.protobuf.Descriptors.FileDescriptor
+            .internalBuildGeneratedFileFrom(descriptorData,
+                    new com.google.protobuf.Descriptors.FileDescriptor[]{
+                            org.bupt.fedraft.rpc.trainer.message.TrainerMessage.getDescriptor(),
+                    });
+    org.bupt.fedraft.rpc.trainer.message.TrainerMessage.getDescriptor();
   }
 
-    private TrainerServiceOuterClass() {
-    }
+  private TrainerServiceOuterClass() {
+  }
 
-    public static void registerAllExtensions(
-            com.google.protobuf.ExtensionRegistryLite registry) {
-    }
+  public static void registerAllExtensions(
+          com.google.protobuf.ExtensionRegistryLite registry) {
+  }
 
-    public static void registerAllExtensions(
-            com.google.protobuf.ExtensionRegistry registry) {
-        registerAllExtensions(
-                (com.google.protobuf.ExtensionRegistryLite) registry);
-    }
+  public static void registerAllExtensions(
+          com.google.protobuf.ExtensionRegistry registry) {
+    registerAllExtensions(
+            (com.google.protobuf.ExtensionRegistryLite) registry);
+  }
 
-    public static com.google.protobuf.Descriptors.FileDescriptor
-    getDescriptor() {
-        return descriptor;
-    }
+  public static com.google.protobuf.Descriptors.FileDescriptor
+  getDescriptor() {
+    return descriptor;
+  }
 
   // @@protoc_insertion_point(outer_class_scope)
 }

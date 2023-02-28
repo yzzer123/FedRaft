@@ -3,6 +3,7 @@ package org.bupt.fedraft.server;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.bupt.fedraft.beans.Tuple;
+import org.bupt.fedraft.config.Configuration;
 import org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest;
 import org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse;
 import org.bupt.fedraft.rpc.manager.message.*;
@@ -12,6 +13,10 @@ import org.bupt.fedraft.state.JobManager;
 import org.bupt.fedraft.state.ManagerState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
     private static final Logger logger = LoggerFactory.getLogger(ManagerService.class);
@@ -91,14 +96,22 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                             JobConfiguration conf = request.getConf();
                             logger.debug("receive job submit from client:\n" +
                                     "uuid={}, " +
-                                    "list={}, " +
-                                    "file={}\n", conf.getUuid(), conf.getParticipantsList(), conf.getCodeFile().getFileName());
+                                    "file={}\n", conf.getUuid(), conf.getCodeFile().getFileName());
                         }
 
+
                         // 构造转发请求，填入源ID
-                        JobConfiguration jobConf = request.getConf().toBuilder()
-                                .setSourceId(managerState.getSelfNodeInfo()
-                                        .getNodeId()).build();
+                        JobConfiguration.Builder jobConfBuilder = request.getConf().toBuilder()
+                                .setSourceId(managerState.getSelfNodeInfo().getNodeId());
+
+                        managerState.getTopology(tuples -> {
+                            for (Tuple<Long, Integer> tuple : tuples) {
+                                jobConfBuilder.addParticipants(tuple.getLeft());
+                            }
+                        });
+
+                        JobConfiguration jobConf = jobConfBuilder.build();
+
                         request = request.toBuilder().setConf(jobConf).build();
 
                         // 初始化 observer
@@ -125,9 +138,35 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                         responseObserver.onCompleted();
                         return;
                     }
+                    // 构建本地环境
+                    try {
+                        // TODO 后续对windows做适配
+                        String modelHome = Configuration.getString(Configuration.TRAINER_MODEL_HOME);
+                        if (!modelHome.endsWith("/")) {
+                            modelHome += "/";
+                        }
+                        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(
+                                modelHome
+                                        + request.getConf().getCodeFile().getFileName()));
+                        bufferedWriter.write(request.getConf().getCodeFile().getCode());
+                        bufferedWriter.close();
+                        logger.info("write code file success!");
+                    } catch (IOException e) {
+                        JobSubmitResponse failResponse = JobSubmitResponse.newBuilder()
+                                .setLogs("code file write failed").build();
+                        JobSubmitResponse failResponse2 = JobSubmitResponse.newBuilder()
+                                .setSuccess(false).build();
+
+                        responseObserver.onNext(failResponse);
+                        responseObserver.onNext(failResponse2);
+                        responseObserver.onCompleted();
+                        return;
+                    }
+
                     // 初始化本地的job state
                     jobState = new JobManager(managerState, request.getConf().getUuid(),
                             request.getConf().getSourceId(),
+                            request.getConf().getGlobalEpoch(),
                             request.getConf().getParticipantsList(),
                             responseObserver);
 
@@ -174,7 +213,6 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                     JobSubmitResponse response = JobSubmitResponse.newBuilder()
                             .setSuccess(true).build();
                     responseObserver.onNext(response);
-                    responseObserver.onCompleted();
                 }
 
                 if (clusterObserver != null) {  // 负责提交的Manager需要关闭和集群其他节点的通信

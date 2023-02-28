@@ -11,7 +11,7 @@ class Properties:
     MANAGER_SERVER_HOST = "manager.server.host"
     MANAGER_SERVER_PORT = "manager.server.port"
     TRAINER_SERVER_PORT = "trainer.server.port.default"
-    LOG_MODEL_CHUNK_SIZE = "log.model.chuck-size"
+    LOG_MODEL_CHUNK_SIZE = "trainer.model.chuck-size"
     TRAINER_SERVER_THREADS = "trainer.server.threads"
     TRAINER_CLIENT_THREADS = "trainer.client.threads"
 

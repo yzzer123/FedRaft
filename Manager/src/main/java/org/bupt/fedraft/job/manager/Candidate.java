@@ -34,7 +34,7 @@ public class Candidate extends BaseJob {
             raftState.term++;
             raftState.voteFor = selfId;
             voteCount = 1;
-            logger.info("candidate add term and begin to elect");
+//            logger.info("candidate add term and begin to elect");
             clusterSize = ManagerClient.voteForOnCluster(this);
 
             resetTimer();

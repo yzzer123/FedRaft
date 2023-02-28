@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -31,19 +32,21 @@ public class JobManager {
     public final long sourceId;
     public final List<Long> participants;
     public StreamObserver<JobSubmitResponse> responseObserver; // 日志回复器
-    public List<ByteString> model;
+    private final int globalEpoch;
     private final ManagerState managerState;
     private ManagerClient sourceClient;
     private final AtomicInteger failCount;  // trainer失败计数
     private TrainerClient trainerClient;
     private Process trainerProcess;
+    public List<ByteString> model = new ArrayList<>(10);
 
-    public JobManager(ManagerState managerState, int uuid, long sourceId, List<Long> participants, StreamObserver<JobSubmitResponse> responseObserver) {
+    public JobManager(ManagerState managerState, int uuid, long sourceId, int globalEpoch, List<Long> participants, StreamObserver<JobSubmitResponse> responseObserver) {
         this.uuid = uuid;
         this.sourceId = sourceId;
         this.participants = participants;
         this.responseObserver = responseObserver;
         this.managerState = managerState;
+        this.globalEpoch = globalEpoch;
 //        if (responseObserver == null) {
 //            sourceClient = managerState.getManagerClientPool().getClient(sourceId);
 //        }
@@ -53,9 +56,10 @@ public class JobManager {
         setupTrainer();
     }
 
-    public JobManager(ManagerState managerState, int uuid, long sourceId, List<Long> participants) {
-        this(managerState, uuid, sourceId, participants, null);
+    public JobManager(ManagerState managerState, int uuid, long sourceId, int globalEpoch, List<Long> participants) {
+        this(managerState, uuid, sourceId, globalEpoch, participants, null);
     }
+
 
     private void setupTrainer() {
 
@@ -100,15 +104,23 @@ public class JobManager {
             setupTrainer();
         });
 
+        String successLine;
+
+        while ((successLine = in.readLine()) != null) {
+            if (successLine.contains("service.server : INFO  trainer server start on port:")) {
+                // 启动成功后建立客户端连接
+                JobManager.this.trainerClient = new TrainerClient(managerState, port);
+
+                logger.info(successLine);
+                sendLog(successLine);
+                break;
+            }
+        }
+
         new Thread(() -> {
             String line;
             try {
                 while ((line = in.readLine()) != null) {
-                    if (line.contains("service.server : INFO  trainer server start on port:")) {
-                        // 启动成功后建立客户端连接
-                        JobManager.this.trainerClient = new TrainerClient(managerState, port);
-                    }
-
                     logger.info(line);
                     sendLog(line);
                 }
@@ -126,13 +138,13 @@ public class JobManager {
     }
 
     private void sendLog(String log) {
-//        log = log +  "from ID: " + managerState.getSelfNodeInfo().getNodeId();
-//        if (sourceClient!=null){
-//            sourceClient.appendLog(this, log);
-//        }else{
-//            JobSubmitResponse response = JobSubmitResponse.newBuilder().setLogs(log).build();
-//            responseObserver.onNext(response);
-//        }
+        log = log + "from ID: " + managerState.getSelfNodeInfo().getNodeId();
+        if (sourceClient != null) {
+            sourceClient.appendLog(this, log);
+        } else {
+            JobSubmitResponse response = JobSubmitResponse.newBuilder().setLogs(log).build();
+            responseObserver.onNext(response);
+        }
     }
 
 

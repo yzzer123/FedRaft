@@ -89,4 +89,11 @@ public interface JobConfigurationOrBuilder extends
      * <code>.fedraft.CodeFile codeFile = 4;</code>
      */
     org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder();
+
+    /**
+     * <code>int32 global_epoch = 5;</code>
+     *
+     * @return The globalEpoch.
+     */
+    int getGlobalEpoch();
 }

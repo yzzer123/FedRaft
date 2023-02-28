@@ -19,16 +19,18 @@ public interface JobSubmitRequestOrBuilder extends
      *
      * @return The conf.
      */
-  org.bupt.fedraft.rpc.manager.message.JobConfiguration getConf();
-  /**
-   * <code>.fedraft.JobConfiguration conf = 1;</code>
-   */
-  org.bupt.fedraft.rpc.manager.message.JobConfigurationOrBuilder getConfOrBuilder();
+    org.bupt.fedraft.rpc.manager.message.JobConfiguration getConf();
 
-  /**
-   * <code>bytes modelChunk = 2;</code>
-   * @return Whether the modelChunk field is set.
-   */
+    /**
+     * <code>.fedraft.JobConfiguration conf = 1;</code>
+     */
+    org.bupt.fedraft.rpc.manager.message.JobConfigurationOrBuilder getConfOrBuilder();
+
+    /**
+     * <code>bytes modelChunk = 2;</code>
+     *
+     * @return Whether the modelChunk field is set.
+     */
   boolean hasModelChunk();
   /**
    * <code>bytes modelChunk = 2;</code>

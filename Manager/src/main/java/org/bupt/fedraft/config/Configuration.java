@@ -20,6 +20,7 @@ public class Configuration {
     public final static String TRAINER_SERVER_PORT_MIN = "trainer.server.port.min";
     public final static String TRAINER_SERVER_PORT_MAX = "trainer.server.port.max";
     public final static String TRAINER_SERVER_FAIL_TIMES = "trainer.server.fail-times";
+    public final static String TRAINER_MODEL_HOME = "trainer.model.home";
     public final static String TRAINER_SERVE_LOG_BATCH_SIZE = "trainer.server.log-batch-size";
     public final static String ELECTION_CANDIDATE_TIMEOUT = "election.candidate.timeout";
     public final static String ELECTION_CANDIDATE_QUALIFY_INDEX = "election.candidate.qualify-index";

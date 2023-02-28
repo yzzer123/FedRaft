@@ -17,15 +17,17 @@ public interface MergeResponseOrBuilder extends
      * @return Whether the serverId field is set.
      */
     boolean hasServerId();
-  /**
-   * <pre>
-   * 回复第一个缺失的模型ID
-   * </pre>
-   *
-   * <code>uint64 server_id = 1;</code>
-   * @return The serverId.
-   */
-  long getServerId();
+
+    /**
+     * <pre>
+     * 回复第一个缺失的模型ID
+     * </pre>
+     *
+     * <code>uint64 server_id = 1;</code>
+     *
+     * @return The serverId.
+     */
+    long getServerId();
 
   /**
    * <pre>
@@ -55,15 +57,17 @@ public interface MergeResponseOrBuilder extends
    * @return Whether the modelEvalLog field is set.
    */
   boolean hasModelEvalLog();
-  /**
-   * <pre>
-   * 合并模型的测试结果
-   * </pre>
-   *
-   * <code>string model_eval_log = 3;</code>
-   * @return The modelEvalLog.
-   */
-  java.lang.String getModelEvalLog();
+
+    /**
+     * <pre>
+     * 合并模型的测试结果
+     * </pre>
+     *
+     * <code>string model_eval_log = 3;</code>
+     *
+     * @return The modelEvalLog.
+     */
+    java.lang.String getModelEvalLog();
 
     /**
      * <pre>
@@ -77,5 +81,5 @@ public interface MergeResponseOrBuilder extends
     com.google.protobuf.ByteString
     getModelEvalLogBytes();
 
-  org.bupt.fedraft.rpc.trainer.message.MergeResponse.ModelCase getModelCase();
+    org.bupt.fedraft.rpc.trainer.message.MergeResponse.ModelCase getModelCase();
 }

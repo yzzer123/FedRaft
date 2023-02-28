@@ -166,9 +166,7 @@ public class ManagerClient extends Client {
     }
 
     public void voteFor(ManagerVoteRequest request, BaseJob job) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("sending vote request to {}", getClientInfo());
-        }
+
         asyncManagerStub.voteFor(request, new StreamObserver<>() {
             @Override
             public void onNext(ManagerVoteResponse response) {
