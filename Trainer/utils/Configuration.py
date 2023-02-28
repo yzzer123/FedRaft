@@ -8,8 +8,8 @@ class Properties:
     logger: logging.Logger = None
     _conf: dict = None
 
-    RAFT_SERVER_HOST = "manager.server.host"
-    RAFT_SERVER_PORT = "manager.server.port"
+    MANAGER_SERVER_HOST = "manager.server.host"
+    MANAGER_SERVER_PORT = "manager.server.port"
     TRAINER_SERVER_PORT = "trainer.server.port.default"
     LOG_MODEL_CHUNK_SIZE = "log.model.chuck-size"
     TRAINER_SERVER_THREADS = "trainer.server.threads"

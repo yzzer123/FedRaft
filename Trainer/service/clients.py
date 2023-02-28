@@ -12,7 +12,8 @@ class JobSubmitClient:
     
     logger: logging = Properties.getLogger(__name__)
     
-    def __init__(self, host: str="localhost", port: int=16788) -> None:
+    def __init__(self, host: str=Properties.get(Properties.MANAGER_SERVER_HOST), 
+                 port: int=Properties.getInt(Properties.MANAGER_SERVER_PORT)) -> None:
         options = [('grpc.max_send_message_length', 512 * 1024 * 1024), ('grpc.max_receive_message_length', 512 * 1024 * 1024)]
         channel = grpc.aio.insecure_channel(f"{host}:{port}", options=options)
         self.stub: ManagerServiceStub = ManagerServiceStub(channel)

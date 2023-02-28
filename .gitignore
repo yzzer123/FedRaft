@@ -7,3 +7,4 @@ FedRaft-Core/log/
 *.log
 scripts/*.jar
 Trainer/datasets/
+*.jar
