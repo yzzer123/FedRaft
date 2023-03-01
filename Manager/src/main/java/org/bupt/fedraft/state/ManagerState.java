@@ -292,6 +292,10 @@ public class ManagerState {
 
 
     public void close() {
+        for (JobManager jobState : jobStates) {
+            jobState.close();
+        }
+        jobStates.clear();
         threadPool.shutdown();
         managerClientPool.close();
     }
