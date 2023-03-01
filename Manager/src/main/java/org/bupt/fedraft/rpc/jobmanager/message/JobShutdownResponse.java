@@ -11,6 +11,15 @@ public final class JobShutdownResponse extends
         // @@protoc_insertion_point(message_implements:fedraft.JobShutdownResponse)
         JobShutdownResponseOrBuilder {
   private static final long serialVersionUID = 0L;
+
+  // Use JobShutdownResponse.newBuilder() to construct.
+  private JobShutdownResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private JobShutdownResponse() {
+  }
+
   // @@protoc_insertion_point(class_scope:fedraft.JobShutdownResponse)
   private static final org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse DEFAULT_INSTANCE;
   private static final com.google.protobuf.Parser<JobShutdownResponse>
@@ -40,14 +49,6 @@ public final class JobShutdownResponse extends
   }
 
   private byte memoizedIsInitialized = -1;
-
-  // Use JobShutdownResponse.newBuilder() to construct.
-  private JobShutdownResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
-  private JobShutdownResponse() {
-  }
 
   public static com.google.protobuf.Descriptors.Descriptor
   getDescriptor() {
@@ -135,14 +136,6 @@ public final class JobShutdownResponse extends
             .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
   public static org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
@@ -180,6 +173,14 @@ public final class JobShutdownResponse extends
 
     memoizedIsInitialized = 1;
     return true;
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
   @java.lang.Override

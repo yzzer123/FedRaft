@@ -1,5 +1,6 @@
 package org.bupt.fedraft.server;
 
+import io.grpc.Context;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import org.bupt.fedraft.beans.Tuple;
@@ -31,7 +32,6 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
     public void appendEntries(AppendEntriesRequest request, StreamObserver<AppendEntriesResponse> responseObserver) {
 
         Tuple<Integer, Integer> tuple = new Tuple<>(0, 0);
-
 
         managerState.updateRaftState(raftState -> {
             Tuple<Integer, Integer> response = raftState.job.appendEntries(raftState,
@@ -78,8 +78,11 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
     @Override
     public StreamObserver<JobSubmitRequest> jobSubmit(StreamObserver<JobSubmitResponse> responseObserver) {
 
+        final StreamObserver<JobSubmitResponse> copyObserver = responseObserver;
 
         return new StreamObserver<>() {
+
+            final private StreamObserver<JobSubmitResponse> observer = copyObserver;
 
             private StreamObserver<JobSubmitRequest> clusterObserver;
 
@@ -87,18 +90,62 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
 
             private JobManager jobState;
 
+            private void initLocalEnv(JobSubmitRequest request, boolean isSubmitter, Context context) {
+                // 构建本地环境
+                try {
+                    // TODO 后续对windows做适配
+                    String modelHome = Configuration.getString(Configuration.TRAINER_MODEL_HOME);
+                    assert modelHome != null;
+                    if (!modelHome.endsWith("/")) {
+                        modelHome += "/";
+                    }
+                    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(
+                            modelHome
+                                    + request.getConf().getCodeFile().getFileName()));
+                    bufferedWriter.write(request.getConf().getCodeFile().getCode());
+                    bufferedWriter.close();
+                    logger.info("write code file success!");
+                } catch (IOException e) {
+                    JobSubmitResponse logResponse = JobSubmitResponse.newBuilder()
+                            .setLogs("code file write failed").build();
+                    JobSubmitResponse statusResponse = JobSubmitResponse.newBuilder()
+                            .setSuccess(false).build();
+
+                    responseObserver.onNext(logResponse);
+                    responseObserver.onNext(statusResponse);
+                    responseObserver.onCompleted();
+                    return;
+                }
+
+                // 初始化本地的job state
+                Context jobContext = context.fork();
+
+                final JobSubmitRequest finalRequest = request;
+                jobContext.run(() -> jobState = new JobManager(managerState, finalRequest.getConf().getUuid(),
+                        finalRequest.getConf().getSourceId(),
+                        finalRequest.getConf().getGlobalEpoch(),
+                        finalRequest.getConf().getParticipantsList(),
+                        isSubmitter ? observer : null));
+
+
+                managerState.addJobState(jobState);
+
+                Context newContext = context.fork();
+
+                newContext.run(() -> trainerObserver = jobState.getTrainerClient().initModel());
+            }
+
             @Override
             public void onNext(JobSubmitRequest request) {
+                logger.debug("received request size: {}", request.getSerializedSize());
+
+
                 // 收到提交的任务初始化请求
                 if (request.hasConf()) {
-                    if (request.getConf().getSourceId() == 0L) { // 从client发出的提交请求需要填入sourceId
-                        if (logger.isDebugEnabled()) {
-                            JobConfiguration conf = request.getConf();
-                            logger.debug("receive job submit from client:\n" +
-                                    "uuid={}, " +
-                                    "file={}\n", conf.getUuid(), conf.getCodeFile().getFileName());
-                        }
 
+                    boolean isSubmitter = false;
+
+                    if (request.getConf().getSourceId() == 0L) { // 从client发出的提交请求需要填入sourceId
 
                         // 构造转发请求，填入源ID
                         JobConfiguration.Builder jobConfBuilder = request.getConf().toBuilder()
@@ -113,67 +160,38 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                         JobConfiguration jobConf = jobConfBuilder.build();
 
                         request = request.toBuilder().setConf(jobConf).build();
-
-                        // 初始化 observer
-                        clusterObserver = ManagerClient.submitJobOnCluster(
-                                managerState,
-                                request.getConf().getUuid(),
-                                request.getConf().getParticipantsList());
-
-                        // 在集群内创建任务
-                        clusterObserver.onNext(request);
+                        isSubmitter = true;
                     }
                     // 收到来自source的提交请求 检查配置是否合法
                     if (managerState.getJobState(request.getConf().getSourceId(),
                             request.getConf().getUuid()) != null) {  // uuid不合法 无法创建
                         logger.warn("job conf is invalid, fail to load");
 
-                        JobSubmitResponse failResponse = JobSubmitResponse.newBuilder()
+                        JobSubmitResponse logResponse = JobSubmitResponse.newBuilder()
                                 .setLogs("uuid is invalid").build();
-                        JobSubmitResponse failResponse2 = JobSubmitResponse.newBuilder()
+                        JobSubmitResponse statusResponse = JobSubmitResponse.newBuilder()
                                 .setSuccess(false).build();
 
-                        responseObserver.onNext(failResponse);
-                        responseObserver.onNext(failResponse2);
-                        responseObserver.onCompleted();
+                        observer.onNext(logResponse);
+                        observer.onNext(statusResponse);
+                        observer.onCompleted();
                         return;
                     }
-                    // 构建本地环境
-                    try {
-                        // TODO 后续对windows做适配
-                        String modelHome = Configuration.getString(Configuration.TRAINER_MODEL_HOME);
-                        if (!modelHome.endsWith("/")) {
-                            modelHome += "/";
-                        }
-                        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(
-                                modelHome
-                                        + request.getConf().getCodeFile().getFileName()));
-                        bufferedWriter.write(request.getConf().getCodeFile().getCode());
-                        bufferedWriter.close();
-                        logger.info("write code file success!");
-                    } catch (IOException e) {
-                        JobSubmitResponse failResponse = JobSubmitResponse.newBuilder()
-                                .setLogs("code file write failed").build();
-                        JobSubmitResponse failResponse2 = JobSubmitResponse.newBuilder()
-                                .setSuccess(false).build();
+                    // 先构建本地环境
+                    initLocalEnv(request, isSubmitter, Context.current());
 
-                        responseObserver.onNext(failResponse);
-                        responseObserver.onNext(failResponse2);
-                        responseObserver.onCompleted();
-                        return;
+                    // 初始化 observer
+                    if (isSubmitter) {
+                        Context newContext = Context.current().fork();
+                        final JobSubmitRequest finalRequest = request;
+                        newContext.run(() -> clusterObserver = ManagerClient.submitJobOnCluster(
+                                managerState,
+                                finalRequest.getConf().getUuid(),
+                                finalRequest.getConf().getParticipantsList()));
+
+                        // 在集群内创建任务
+                        clusterObserver.onNext(request);
                     }
-
-                    // 初始化本地的job state
-                    jobState = new JobManager(managerState, request.getConf().getUuid(),
-                            request.getConf().getSourceId(),
-                            request.getConf().getGlobalEpoch(),
-                            request.getConf().getParticipantsList(),
-                            responseObserver);
-
-                    managerState.addJobState(jobState);
-
-                    trainerObserver = jobState.getTrainerClient().initModel();
-
                 }
 
                 if (request.hasModelChunk()) {
@@ -181,9 +199,8 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                         logger.warn("model chunk arrived without job conf");
                         JobSubmitResponse failResponse = JobSubmitResponse.newBuilder()
                                 .setSuccess(false).build();
-                        responseObserver.onNext(failResponse);
-                        responseObserver.onCompleted();
-                        responseObserver.onError(Status.PERMISSION_DENIED
+                        observer.onNext(failResponse);
+                        observer.onError(Status.PERMISSION_DENIED
                                 .withDescription("model chunk arrived without job conf")
                                 .asException());
                         return;
@@ -191,18 +208,27 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                     jobState.model.add(request.getModelChunk());
 
                     // 向trainer发送模型
-                    trainerObserver.onNext(InitModelRequest.newBuilder()
-                            .setModelChunk(request.getModelChunk()).build());
-
                     if (clusterObserver != null) {
                         clusterObserver.onNext(request);
                     }
+
+                    trainerObserver.onNext(InitModelRequest.newBuilder()
+                            .setModelChunk(request.getModelChunk()).build());
+
                 }
             }
 
             @Override
             public void onError(Throwable t) {
-                responseObserver.onError(t);
+                // 传输过程发生错误
+                observer.onError(t);
+                if (clusterObserver != null) {
+                    clusterObserver.onError(t);
+                }
+                if (trainerObserver != null) {
+                    trainerObserver.onError(t);
+                    managerState.deleteJobState(jobState.sourceId, jobState.uuid);
+                }
             }
 
             @Override
@@ -212,13 +238,17 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                     // 当前manager保存了job state状态，说明启动成功
                     JobSubmitResponse response = JobSubmitResponse.newBuilder()
                             .setSuccess(true).build();
-                    responseObserver.onNext(response);
+                    observer.onNext(response);
                 }
 
                 if (clusterObserver != null) {  // 负责提交的Manager需要关闭和集群其他节点的通信
                     clusterObserver.onCompleted();
+                } else {
+                    observer.onCompleted();
                 }
+
                 trainerObserver.onCompleted();
+                logger.info("job submit completed!!!!");
             }
         };
     }

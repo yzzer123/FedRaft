@@ -15,7 +15,23 @@ public final class PushModelRequest extends
         // @@protoc_insertion_point(message_implements:fedraft.PushModelRequest)
         PushModelRequestOrBuilder {
   public static final int SERVER_ID_FIELD_NUMBER = 1;
+
+  // Use PushModelRequest.newBuilder() to construct.
+  private PushModelRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private PushModelRequest() {
+  }
+
   public static final int MODEL_CHUNK_FIELD_NUMBER = 2;
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+
   private static final long serialVersionUID = 0L;
   // @@protoc_insertion_point(class_scope:fedraft.PushModelRequest)
   private static final org.bupt.fedraft.rpc.trainer.message.PushModelRequest DEFAULT_INSTANCE;
@@ -49,12 +65,27 @@ public final class PushModelRequest extends
   private java.lang.Object model_;
   private byte memoizedIsInitialized = -1;
 
-  // Use PushModelRequest.newBuilder() to construct.
-  private PushModelRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
+  /**
+   * <code>uint64 server_id = 1;</code>
+   *
+   * @return Whether the serverId field is set.
+   */
+  @java.lang.Override
+  public boolean hasServerId() {
+    return modelCase_ == 1;
   }
 
-  private PushModelRequest() {
+  /**
+   * <code>uint64 server_id = 1;</code>
+   *
+   * @return The serverId.
+   */
+  @java.lang.Override
+  public long getServerId() {
+    if (modelCase_ == 1) {
+      return (java.lang.Long) model_;
+    }
+    return 0L;
   }
 
   public static com.google.protobuf.Descriptors.Descriptor
@@ -62,10 +93,43 @@ public final class PushModelRequest extends
     return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_descriptor;
   }
 
+  /**
+   * <code>bytes model_chunk = 2;</code>
+   *
+   * @return Whether the modelChunk field is set.
+   */
+  @java.lang.Override
+  public boolean hasModelChunk() {
+    return modelCase_ == 2;
+  }
+
+  /**
+   * <code>bytes model_chunk = 2;</code>
+   *
+   * @return The modelChunk.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getModelChunk() {
+    if (modelCase_ == 2) {
+      return (com.google.protobuf.ByteString) model_;
+    }
+    return com.google.protobuf.ByteString.EMPTY;
+  }
+
   public static org.bupt.fedraft.rpc.trainer.message.PushModelRequest parseFrom(
           java.nio.ByteBuffer data)
           throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
+  }
+
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
   }
 
   public static org.bupt.fedraft.rpc.trainer.message.PushModelRequest parseFrom(
@@ -167,12 +231,6 @@ public final class PushModelRequest extends
   }
 
   @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
   internalGetFieldAccessorTable() {
     return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_fieldAccessorTable
@@ -184,58 +242,6 @@ public final class PushModelRequest extends
   getModelCase() {
     return ModelCase.forNumber(
             modelCase_);
-  }
-
-  /**
-   * <code>uint64 server_id = 1;</code>
-   * @return Whether the serverId field is set.
-   */
-  @java.lang.Override
-  public boolean hasServerId() {
-    return modelCase_ == 1;
-  }
-
-  /**
-   * <code>uint64 server_id = 1;</code>
-   * @return The serverId.
-   */
-  @java.lang.Override
-  public long getServerId() {
-    if (modelCase_ == 1) {
-      return (java.lang.Long) model_;
-    }
-    return 0L;
-  }
-
-  /**
-   * <code>bytes model_chunk = 2;</code>
-   * @return Whether the modelChunk field is set.
-   */
-  @java.lang.Override
-  public boolean hasModelChunk() {
-    return modelCase_ == 2;
-  }
-
-  /**
-   * <code>bytes model_chunk = 2;</code>
-   * @return The modelChunk.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getModelChunk() {
-    if (modelCase_ == 2) {
-      return (com.google.protobuf.ByteString) model_;
-    }
-    return com.google.protobuf.ByteString.EMPTY;
-  }
-
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
   }
 
   @java.lang.Override
@@ -261,7 +267,7 @@ public final class PushModelRequest extends
     if (modelCase_ == 1) {
       size += com.google.protobuf.CodedOutputStream
               .computeUInt64Size(
-                      1, (Long) model_);
+            1, (Long) model_);
     }
     if (modelCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
@@ -276,7 +282,7 @@ public final class PushModelRequest extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.trainer.message.PushModelRequest)) {
       return super.equals(obj);
@@ -287,7 +293,7 @@ public final class PushModelRequest extends
     switch (modelCase_) {
       case 1:
         if (getServerId()
-                != other.getServerId()) return false;
+            != other.getServerId()) return false;
         break;
       case 2:
         if (!getModelChunk()
@@ -310,7 +316,7 @@ public final class PushModelRequest extends
       case 1:
         hash = (37 * hash) + SERVER_ID_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getServerId());
+            getServerId());
         break;
       case 2:
         hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
@@ -325,9 +331,7 @@ public final class PushModelRequest extends
   }
 
   @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
+  public Builder newBuilderForType() { return newBuilder(); }
 
   @java.lang.Override
   public Builder toBuilder() {
@@ -359,11 +363,9 @@ public final class PushModelRequest extends
     MODEL_CHUNK(2),
     MODEL_NOT_SET(0);
     private final int value;
-
     ModelCase(int value) {
       this.value = value;
     }
-
     /**
      * @param value The number of the enum to look for.
      * @return The enum associated with the given number.
@@ -382,11 +384,9 @@ public final class PushModelRequest extends
           return MODEL_CHUNK;
         case 0:
           return MODEL_NOT_SET;
-        default:
-          return null;
+        default: return null;
       }
     }
-
     public int getNumber() {
       return this.value;
     }
@@ -417,19 +417,6 @@ public final class PushModelRequest extends
 
     }
 
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.trainer.message.PushModelRequest.class, org.bupt.fedraft.rpc.trainer.message.PushModelRequest.Builder.class);
-    }
-
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -438,9 +425,8 @@ public final class PushModelRequest extends
       return this;
     }
 
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
       return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_descriptor;
     }
 
@@ -478,6 +464,20 @@ public final class PushModelRequest extends
     }
 
     @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      org.bupt.fedraft.rpc.trainer.message.PushModelRequest.class, org.bupt.fedraft.rpc.trainer.message.PushModelRequest.Builder.class);
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+    getDescriptorForType() {
+      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_descriptor;
+    }
+
+    @java.lang.Override
     public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
@@ -503,23 +503,6 @@ public final class PushModelRequest extends
       return super.setRepeatedField(field, index, value);
     }
 
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.trainer.message.PushModelRequest) {
-        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.PushModelRequest) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
     public Builder mergeFrom(org.bupt.fedraft.rpc.trainer.message.PushModelRequest other) {
       if (other == org.bupt.fedraft.rpc.trainer.message.PushModelRequest.getDefaultInstance()) return this;
       switch (other.getModelCase()) {
@@ -543,6 +526,23 @@ public final class PushModelRequest extends
     @java.lang.Override
     public boolean isInitialized() {
       return true;
+    }
+
+    @java.lang.Override
+    public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.trainer.message.PushModelRequest) {
+        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.PushModelRequest) other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
     }
 
     @java.lang.Override
@@ -590,7 +590,7 @@ public final class PushModelRequest extends
     public ModelCase
     getModelCase() {
       return ModelCase.forNumber(
-              modelCase_);
+          modelCase_);
     }
 
     public Builder clearModel() {

@@ -11,8 +11,9 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class JobManagerServiceGrpc {
 
-  public static final String SERVICE_NAME = "fedraft.JobManagerService";
   private static final int METHODID_APPEND_LOG = 0;
+
+  public static final String SERVICE_NAME = "fedraft.JobManagerService";
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest,
           org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse> getAppendLogMethod;
@@ -114,6 +115,7 @@ public final class JobManagerServiceGrpc {
   public static abstract class JobManagerServiceImplBase implements io.grpc.BindableService {
 
     /**
+     *
      */
     public void appendLog(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest request,
                           io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse> responseObserver) {
@@ -130,7 +132,7 @@ public final class JobManagerServiceGrpc {
                                       org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest,
                                       org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse>(
                                       this, METHODID_APPEND_LOG)))
-              .build();
+          .build();
     }
   }
 
@@ -149,6 +151,7 @@ public final class JobManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public void appendLog(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest request,
                           io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse> responseObserver) {
@@ -194,6 +197,7 @@ public final class JobManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public com.google.common.util.concurrent.ListenableFuture<org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse> appendLog(
             org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest request) {

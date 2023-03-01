@@ -47,9 +47,9 @@ public class JobManager {
         this.responseObserver = responseObserver;
         this.managerState = managerState;
         this.globalEpoch = globalEpoch;
-//        if (responseObserver == null) {
-//            sourceClient = managerState.getManagerClientPool().getClient(sourceId);
-//        }
+        if (responseObserver == null) {
+            sourceClient = managerState.getManagerClientPool().getClient(sourceId);
+        }
 
         failCount = new AtomicInteger(Configuration.getInt(Configuration.TRAINER_SERVER_FAIL_TIMES));
 
@@ -81,7 +81,8 @@ public class JobManager {
         // 执行trainer启动脚本，要求Trainer在当前目录下
         String[] cmdArr = {"/bin/bash", "-c", "./bin/trainerCli.sh start " + port};
         Process process = Runtime.getRuntime().exec(cmdArr);
-        BufferedReader in = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        BufferedReader logger = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+        BufferedReader stdIn = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
         process.onExit().thenRun(() -> {
             // 关闭通信
@@ -93,55 +94,62 @@ public class JobManager {
                 // 当前任务已经被关闭 或失败次数过多
                 String log = "trainer process on port:" + port
                         + " exit with value=" + process.exitValue();
-                logger.warn(log);
+                JobManager.logger.warn(log);
                 sendLog(log);
                 managerState.deleteJobState(sourceId, uuid);
                 return;
             }
             failCount.addAndGet(1);
             // 重启进程
-            logger.warn("retry to start trainer process");
+            JobManager.logger.warn("retry to start trainer process");
             setupTrainer();
         });
 
         String successLine;
 
-        while ((successLine = in.readLine()) != null) {
+        while ((successLine = logger.readLine()) != null) {
             if (successLine.contains("service.server : INFO  trainer server start on port:")) {
                 // 启动成功后建立客户端连接
-                JobManager.this.trainerClient = new TrainerClient(managerState, port);
+                JobManager.this.trainerClient = new TrainerClient(this, managerState, port);
 
-                logger.info(successLine);
+                JobManager.logger.info(successLine);
                 sendLog(successLine);
                 break;
             }
         }
 
-        new Thread(() -> {
-            String line;
-            try {
-                while ((line = in.readLine()) != null) {
-                    logger.info(line);
-                    sendLog(line);
-                }
-            } catch (IOException e) {
-                logger.error(e.getMessage());
-            } finally {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    logger.error(e.getMessage());
-                }
-            }
-        }).start();
-
+        new Thread(() -> watchTrainerLog(logger)).start();
+        new Thread(() -> watchTrainerLog(stdIn)).start();
     }
 
-    private void sendLog(String log) {
-        log = log + "from ID: " + managerState.getSelfNodeInfo().getNodeId();
+    private void watchTrainerLog(BufferedReader reader) {
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                JobManager.logger.info(line);
+                sendLog(line);
+            }
+        } catch (IOException e) {
+            JobManager.logger.error(e.getMessage());
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                JobManager.logger.error(e.getMessage());
+            }
+        }
+    }
+
+    public void sendLog(String log) {
+        sendLog(log, true);
+    }
+
+    public void sendLog(String log, boolean isBatch) {
+        log = log + "\tfrom ID: " + managerState.getSelfNodeInfo().getNodeId();
         if (sourceClient != null) {
-            sourceClient.appendLog(this, log);
-        } else {
+//            logger.error("append log: " + log);
+            sourceClient.appendLog(this, log, isBatch);
+        } else if (responseObserver != null) {
             JobSubmitResponse response = JobSubmitResponse.newBuilder().setLogs(log).build();
             responseObserver.onNext(response);
         }
@@ -182,8 +190,7 @@ public class JobManager {
             responseObserver.onCompleted();
             responseObserver = null;
         }
-
-        sourceClient = null;
+        logger.info("trainer with uuid:{} closed", uuid);
     }
 
 

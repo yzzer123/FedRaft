@@ -11,6 +11,15 @@ public final class AppendModelsResponse extends
         // @@protoc_insertion_point(message_implements:fedraft.AppendModelsResponse)
         AppendModelsResponseOrBuilder {
   private static final long serialVersionUID = 0L;
+
+  // Use AppendModelsResponse.newBuilder() to construct.
+  private AppendModelsResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private AppendModelsResponse() {
+  }
+
   // @@protoc_insertion_point(class_scope:fedraft.AppendModelsResponse)
   private static final org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse DEFAULT_INSTANCE;
   private static final com.google.protobuf.Parser<AppendModelsResponse>
@@ -40,14 +49,6 @@ public final class AppendModelsResponse extends
   }
 
   private byte memoizedIsInitialized = -1;
-
-  // Use AppendModelsResponse.newBuilder() to construct.
-  private AppendModelsResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
-  private AppendModelsResponse() {
-  }
 
   public static com.google.protobuf.Descriptors.Descriptor
   getDescriptor() {
@@ -135,14 +136,6 @@ public final class AppendModelsResponse extends
             .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
   public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
@@ -180,6 +173,14 @@ public final class AppendModelsResponse extends
 
     memoizedIsInitialized = 1;
     return true;
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
   @java.lang.Override

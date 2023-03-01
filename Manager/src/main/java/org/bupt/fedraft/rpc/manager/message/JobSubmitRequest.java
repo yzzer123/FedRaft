@@ -11,7 +11,23 @@ public final class JobSubmitRequest extends
         // @@protoc_insertion_point(message_implements:fedraft.JobSubmitRequest)
         JobSubmitRequestOrBuilder {
   public static final int CONF_FIELD_NUMBER = 1;
+
+  // Use JobSubmitRequest.newBuilder() to construct.
+  private JobSubmitRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private JobSubmitRequest() {
+  }
+
   public static final int MODELCHUNK_FIELD_NUMBER = 2;
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+
   private static final long serialVersionUID = 0L;
   // @@protoc_insertion_point(class_scope:fedraft.JobSubmitRequest)
   private static final org.bupt.fedraft.rpc.manager.message.JobSubmitRequest DEFAULT_INSTANCE;
@@ -45,12 +61,14 @@ public final class JobSubmitRequest extends
   private java.lang.Object jobInfo_;
   private byte memoizedIsInitialized = -1;
 
-  // Use JobSubmitRequest.newBuilder() to construct.
-  private JobSubmitRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
-  private JobSubmitRequest() {
+  /**
+   * <code>.fedraft.JobConfiguration conf = 1;</code>
+   *
+   * @return Whether the conf field is set.
+   */
+  @java.lang.Override
+  public boolean hasConf() {
+    return jobInfoCase_ == 1;
   }
 
   public static com.google.protobuf.Descriptors.Descriptor
@@ -71,10 +89,43 @@ public final class JobSubmitRequest extends
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
+  /**
+   * <code>bytes modelChunk = 2;</code>
+   *
+   * @return Whether the modelChunk field is set.
+   */
+  @java.lang.Override
+  public boolean hasModelChunk() {
+    return jobInfoCase_ == 2;
+  }
+
+  /**
+   * <code>bytes modelChunk = 2;</code>
+   *
+   * @return The modelChunk.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getModelChunk() {
+    if (jobInfoCase_ == 2) {
+      return (com.google.protobuf.ByteString) jobInfo_;
+    }
+    return com.google.protobuf.ByteString.EMPTY;
+  }
+
   public static org.bupt.fedraft.rpc.manager.message.JobSubmitRequest parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
+  }
+
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
   }
 
   public static org.bupt.fedraft.rpc.manager.message.JobSubmitRequest parseFrom(
@@ -94,6 +145,30 @@ public final class JobSubmitRequest extends
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    switch (jobInfoCase_) {
+      case 1:
+        hash = (37 * hash) + CONF_FIELD_NUMBER;
+        hash = (53 * hash) + getConf().hashCode();
+        break;
+      case 2:
+        hash = (37 * hash) + MODELCHUNK_FIELD_NUMBER;
+        hash = (53 * hash) + getModelChunk().hashCode();
+        break;
+      case 0:
+      default:
+    }
+    hash = (29 * hash) + getUnknownFields().hashCode();
+    memoizedHashCode = hash;
+    return hash;
   }
 
   public static org.bupt.fedraft.rpc.manager.message.JobSubmitRequest parseFrom(java.io.InputStream input)
@@ -139,6 +214,14 @@ public final class JobSubmitRequest extends
             .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.fedraft.rpc.manager.message.JobSubmitRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
   public static org.bupt.fedraft.rpc.manager.message.JobSubmitRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
@@ -155,12 +238,6 @@ public final class JobSubmitRequest extends
   }
 
   @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
   internalGetFieldAccessorTable() {
     return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitRequest_fieldAccessorTable
@@ -171,22 +248,11 @@ public final class JobSubmitRequest extends
   public JobInfoCase
   getJobInfoCase() {
     return JobInfoCase.forNumber(
-            jobInfoCase_);
+        jobInfoCase_);
   }
 
   /**
    * <code>.fedraft.JobConfiguration conf = 1;</code>
-   *
-   * @return Whether the conf field is set.
-   */
-  @java.lang.Override
-  public boolean hasConf() {
-    return jobInfoCase_ == 1;
-  }
-
-  /**
-   * <code>.fedraft.JobConfiguration conf = 1;</code>
-   *
    * @return The conf.
    */
   @java.lang.Override
@@ -208,39 +274,6 @@ public final class JobSubmitRequest extends
     return org.bupt.fedraft.rpc.manager.message.JobConfiguration.getDefaultInstance();
   }
 
-  /**
-   * <code>bytes modelChunk = 2;</code>
-   *
-   * @return Whether the modelChunk field is set.
-   */
-  @java.lang.Override
-  public boolean hasModelChunk() {
-    return jobInfoCase_ == 2;
-  }
-
-  /**
-   * <code>bytes modelChunk = 2;</code>
-   *
-   * @return The modelChunk.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getModelChunk() {
-    if (jobInfoCase_ == 2) {
-      return (com.google.protobuf.ByteString) jobInfo_;
-    }
-    return com.google.protobuf.ByteString.EMPTY;
-  }
-
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
           throws java.io.IOException {
@@ -252,14 +285,6 @@ public final class JobSubmitRequest extends
               2, (com.google.protobuf.ByteString) jobInfo_);
     }
     getUnknownFields().writeTo(output);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.manager.message.JobSubmitRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
   @java.lang.Override
@@ -285,7 +310,7 @@ public final class JobSubmitRequest extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.manager.message.JobSubmitRequest)) {
       return super.equals(obj);
@@ -309,33 +334,7 @@ public final class JobSubmitRequest extends
   }
 
   @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    switch (jobInfoCase_) {
-      case 1:
-        hash = (37 * hash) + CONF_FIELD_NUMBER;
-        hash = (53 * hash) + getConf().hashCode();
-        break;
-      case 2:
-        hash = (37 * hash) + MODELCHUNK_FIELD_NUMBER;
-        hash = (53 * hash) + getModelChunk().hashCode();
-        break;
-      case 0:
-      default:
-    }
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
+  public Builder newBuilderForType() { return newBuilder(); }
 
   @java.lang.Override
   public Builder toBuilder() {
@@ -367,11 +366,9 @@ public final class JobSubmitRequest extends
     MODELCHUNK(2),
     JOBINFO_NOT_SET(0);
     private final int value;
-
     JobInfoCase(int value) {
       this.value = value;
     }
-
     /**
      * @param value The number of the enum to look for.
      * @return The enum associated with the given number.
@@ -390,11 +387,9 @@ public final class JobSubmitRequest extends
           return MODELCHUNK;
         case 0:
           return JOBINFO_NOT_SET;
-        default:
-          return null;
+        default: return null;
       }
     }
-
     public int getNumber() {
       return this.value;
     }
@@ -417,25 +412,6 @@ public final class JobSubmitRequest extends
 
     }
 
-    private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
-    }
-
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitRequest_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.manager.message.JobSubmitRequest.class, org.bupt.fedraft.rpc.manager.message.JobSubmitRequest.Builder.class);
-    }
-
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -447,10 +423,10 @@ public final class JobSubmitRequest extends
       return this;
     }
 
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitRequest_descriptor;
+    private Builder(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
     }
 
     @java.lang.Override
@@ -490,6 +466,25 @@ public final class JobSubmitRequest extends
       return super.clone();
     }
 
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitRequest_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      org.bupt.fedraft.rpc.manager.message.JobSubmitRequest.class, org.bupt.fedraft.rpc.manager.message.JobSubmitRequest.Builder.class);
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+    getDescriptorForType() {
+      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitRequest_descriptor;
+    }
+
     @java.lang.Override
     public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
@@ -507,30 +502,6 @@ public final class JobSubmitRequest extends
     public Builder clearOneof(
             com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.manager.message.JobSubmitRequest) {
-        return mergeFrom((org.bupt.fedraft.rpc.manager.message.JobSubmitRequest) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
     }
 
     public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.JobSubmitRequest other) {
@@ -556,6 +527,30 @@ public final class JobSubmitRequest extends
     @java.lang.Override
     public boolean isInitialized() {
       return true;
+    }
+
+    @java.lang.Override
+    public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+      return super.setRepeatedField(field, index, value);
+    }
+
+    @java.lang.Override
+    public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.manager.message.JobSubmitRequest) {
+        return mergeFrom((org.bupt.fedraft.rpc.manager.message.JobSubmitRequest)other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
     }
 
     @java.lang.Override
@@ -602,17 +597,17 @@ public final class JobSubmitRequest extends
       return this;
     }
 
-    public JobInfoCase
-    getJobInfoCase() {
-      return JobInfoCase.forNumber(
-              jobInfoCase_);
-    }
-
     public Builder clearJobInfo() {
       jobInfoCase_ = 0;
       jobInfo_ = null;
       onChanged();
       return this;
+    }
+
+    public JobInfoCase
+    getJobInfoCase() {
+      return JobInfoCase.forNumber(
+              jobInfoCase_);
     }
 
     /**
@@ -627,7 +622,6 @@ public final class JobSubmitRequest extends
 
     /**
      * <code>.fedraft.JobConfiguration conf = 1;</code>
-     *
      * @return The conf.
      */
     @java.lang.Override
@@ -675,7 +669,6 @@ public final class JobSubmitRequest extends
       jobInfoCase_ = 1;
       return this;
     }
-
     /**
      * <code>.fedraft.JobConfiguration conf = 1;</code>
      */
@@ -724,7 +717,6 @@ public final class JobSubmitRequest extends
     public org.bupt.fedraft.rpc.manager.message.JobConfiguration.Builder getConfBuilder() {
       return getConfFieldBuilder().getBuilder();
     }
-
     /**
      * <code>.fedraft.JobConfiguration conf = 1;</code>
      */
@@ -786,17 +778,15 @@ public final class JobSubmitRequest extends
      */
     public Builder setModelChunk(com.google.protobuf.ByteString value) {
       if (value == null) {
-    throw new NullPointerException();
+        throw new NullPointerException();
   }
-      jobInfoCase_ = 2;
+  jobInfoCase_ = 2;
       jobInfo_ = value;
       onChanged();
       return this;
     }
-
     /**
      * <code>bytes modelChunk = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearModelChunk() {

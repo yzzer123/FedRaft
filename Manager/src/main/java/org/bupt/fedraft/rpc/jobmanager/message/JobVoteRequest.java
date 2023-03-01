@@ -11,6 +11,15 @@ public final class JobVoteRequest extends
         // @@protoc_insertion_point(message_implements:fedraft.JobVoteRequest)
         JobVoteRequestOrBuilder {
   private static final long serialVersionUID = 0L;
+
+  // Use JobVoteRequest.newBuilder() to construct.
+  private JobVoteRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private JobVoteRequest() {
+  }
+
   // @@protoc_insertion_point(class_scope:fedraft.JobVoteRequest)
   private static final org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest DEFAULT_INSTANCE;
   private static final com.google.protobuf.Parser<JobVoteRequest>
@@ -40,14 +49,6 @@ public final class JobVoteRequest extends
   }
 
   private byte memoizedIsInitialized = -1;
-
-  // Use JobVoteRequest.newBuilder() to construct.
-  private JobVoteRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
-  private JobVoteRequest() {
-  }
 
   public static com.google.protobuf.Descriptors.Descriptor
   getDescriptor() {
@@ -135,14 +136,6 @@ public final class JobVoteRequest extends
             .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
   public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
@@ -180,6 +173,14 @@ public final class JobVoteRequest extends
 
     memoizedIsInitialized = 1;
     return true;
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
   @java.lang.Override

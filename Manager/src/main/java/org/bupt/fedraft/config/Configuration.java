@@ -30,6 +30,7 @@ public class Configuration {
     public final static String MANAGER_TIMER_THREADPOOL_NUM = "manager.timer.threadpool-num";
     public final static String ELECTION_TMP_LEADER_START_TIME = "election.tmp-leader.start-time";
     public final static String MANAGER_TIMER_TICK_TIME = "manager.timer.tick-time";
+    public final static String MANAGER_JOB_SUBMIT_TIMEOUT = "manager.job-submit.timeout";
 
     public final static String ZOOKEEPER_HOSTS = "zookeeper.hosts";
     public final static String ZOOKEEPER_TIMEOUT = "zookeeper.timeout";

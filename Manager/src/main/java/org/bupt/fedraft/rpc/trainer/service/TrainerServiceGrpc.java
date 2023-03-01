@@ -13,8 +13,9 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class TrainerServiceGrpc {
 
-  public static final String SERVICE_NAME = "fedraft.TrainerService";
   private static final int METHODID_MERGE_MODEL = 0;
+
+  public static final String SERVICE_NAME = "fedraft.TrainerService";
   private static final int METHODID_TRAIN_MODEL = 1;
   private static final int METHODID_PUSH_MODEL = 2;
   private static final int METHODID_INIT_MODEL = 3;
@@ -284,8 +285,8 @@ public final class TrainerServiceGrpc {
                               new MethodHandlers<
                                       org.bupt.fedraft.rpc.trainer.message.InitModelRequest,
                                       org.bupt.fedraft.rpc.trainer.message.InitModelResponse>(
-                                      this, METHODID_INIT_MODEL)))
-              .build();
+                  this, METHODID_INIT_MODEL)))
+          .build();
     }
   }
 
@@ -347,7 +348,7 @@ public final class TrainerServiceGrpc {
     public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelRequest> initModel(
             io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelResponse> responseObserver) {
       return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
-              getChannel().newCall(getInitModelMethod(), getCallOptions()), responseObserver);
+          getChannel().newCall(getInitModelMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -376,7 +377,7 @@ public final class TrainerServiceGrpc {
     public java.util.Iterator<org.bupt.fedraft.rpc.trainer.message.MergeResponse> mergeModel(
             org.bupt.fedraft.rpc.trainer.message.MergeRequest request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
-              getChannel(), getMergeModelMethod(), getCallOptions(), request);
+          getChannel(), getMergeModelMethod(), getCallOptions(), request);
     }
   }
 
@@ -417,7 +418,7 @@ public final class TrainerServiceGrpc {
       switch (methodId) {
         case METHODID_MERGE_MODEL:
           serviceImpl.mergeModel((org.bupt.fedraft.rpc.trainer.message.MergeRequest) request,
-                  (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.MergeResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.MergeResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -437,7 +438,7 @@ public final class TrainerServiceGrpc {
                   (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.PushModelResponse>) responseObserver);
         case METHODID_INIT_MODEL:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.initModel(
-                  (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelResponse>) responseObserver);
         default:
           throw new AssertionError();
       }

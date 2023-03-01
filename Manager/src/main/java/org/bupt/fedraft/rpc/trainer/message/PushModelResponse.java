@@ -15,7 +15,23 @@ public final class PushModelResponse extends
         // @@protoc_insertion_point(message_implements:fedraft.PushModelResponse)
         PushModelResponseOrBuilder {
   public static final int STATUS_FIELD_NUMBER = 1;
+
+  // Use PushModelResponse.newBuilder() to construct.
+  private PushModelResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private PushModelResponse() {
+  }
+
   private static final long serialVersionUID = 0L;
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+
   // @@protoc_insertion_point(class_scope:fedraft.PushModelResponse)
   private static final org.bupt.fedraft.rpc.trainer.message.PushModelResponse DEFAULT_INSTANCE;
   private static final com.google.protobuf.Parser<PushModelResponse>
@@ -45,14 +61,27 @@ public final class PushModelResponse extends
   }
 
   private boolean status_;
-  private byte memoizedIsInitialized = -1;
 
-  // Use PushModelResponse.newBuilder() to construct.
-  private PushModelResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
+  /**
+   * <code>bool status = 1;</code>
+   *
+   * @return The status.
+   */
+  @java.lang.Override
+  public boolean getStatus() {
+    return status_;
   }
 
-  private PushModelResponse() {
+  private byte memoizedIsInitialized = -1;
+
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
   }
 
   public static com.google.protobuf.Descriptors.Descriptor
@@ -141,6 +170,14 @@ public final class PushModelResponse extends
             .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.fedraft.rpc.trainer.message.PushModelResponse prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
   public static org.bupt.fedraft.rpc.trainer.message.PushModelResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
@@ -157,44 +194,11 @@ public final class PushModelResponse extends
   }
 
   @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
   internalGetFieldAccessorTable() {
     return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                     org.bupt.fedraft.rpc.trainer.message.PushModelResponse.class, org.bupt.fedraft.rpc.trainer.message.PushModelResponse.Builder.class);
-  }
-
-  /**
-   * <code>bool status = 1;</code>
-   * @return The status.
-   */
-  @java.lang.Override
-  public boolean getStatus() {
-    return status_;
-  }
-
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.trainer.message.PushModelResponse prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
   @java.lang.Override
@@ -253,8 +257,7 @@ public final class PushModelResponse extends
 
   @java.lang.Override
   public Builder newBuilderForType() {
-    return newBuilder();
-  }
+    return newBuilder(); }
 
   @java.lang.Override
   public Builder toBuilder() {
@@ -309,19 +312,19 @@ public final class PushModelResponse extends
     }
 
     @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelResponse_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.trainer.message.PushModelResponse.class, org.bupt.fedraft.rpc.trainer.message.PushModelResponse.Builder.class);
-    }
-
-    @java.lang.Override
     public Builder clear() {
       super.clear();
       status_ = false;
 
       return this;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelResponse_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      org.bupt.fedraft.rpc.trainer.message.PushModelResponse.class, org.bupt.fedraft.rpc.trainer.message.PushModelResponse.Builder.class);
     }
 
     @java.lang.Override
@@ -339,12 +342,6 @@ public final class PushModelResponse extends
     }
 
     @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelResponse_descriptor;
-    }
-
-    @java.lang.Override
     public org.bupt.fedraft.rpc.trainer.message.PushModelResponse buildPartial() {
       org.bupt.fedraft.rpc.trainer.message.PushModelResponse result = new org.bupt.fedraft.rpc.trainer.message.PushModelResponse(this);
       result.status_ = status_;
@@ -355,6 +352,12 @@ public final class PushModelResponse extends
     @java.lang.Override
     public Builder clone() {
       return super.clone();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+    getDescriptorForType() {
+      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelResponse_descriptor;
     }
 
     @java.lang.Override
@@ -390,16 +393,6 @@ public final class PushModelResponse extends
       return super.addRepeatedField(field, value);
     }
 
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.trainer.message.PushModelResponse) {
-        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.PushModelResponse) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
     public Builder mergeFrom(org.bupt.fedraft.rpc.trainer.message.PushModelResponse other) {
       if (other == org.bupt.fedraft.rpc.trainer.message.PushModelResponse.getDefaultInstance()) return this;
       if (other.getStatus()) {
@@ -413,6 +406,16 @@ public final class PushModelResponse extends
     @java.lang.Override
     public boolean isInitialized() {
       return true;
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.trainer.message.PushModelResponse) {
+        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.PushModelResponse) other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
     }
 
     @java.lang.Override
@@ -471,10 +474,8 @@ public final class PushModelResponse extends
       onChanged();
       return this;
     }
-
     /**
      * <code>bool status = 1;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearStatus() {

@@ -15,7 +15,24 @@ public final class TrainResponse extends
         // @@protoc_insertion_point(message_implements:fedraft.TrainResponse)
         TrainResponseOrBuilder {
   public static final int MODEL_CHUNK_FIELD_NUMBER = 1;
+
+  // Use TrainResponse.newBuilder() to construct.
+  private TrainResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private TrainResponse() {
+    modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+  }
+
   private static final long serialVersionUID = 0L;
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+
   // @@protoc_insertion_point(class_scope:fedraft.TrainResponse)
   private static final org.bupt.fedraft.rpc.trainer.message.TrainResponse DEFAULT_INSTANCE;
   private static final com.google.protobuf.Parser<TrainResponse>
@@ -45,15 +62,27 @@ public final class TrainResponse extends
   }
 
   private com.google.protobuf.ByteString modelChunk_;
-  private byte memoizedIsInitialized = -1;
 
-  // Use TrainResponse.newBuilder() to construct.
-  private TrainResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
+  /**
+   * <code>bytes model_chunk = 1;</code>
+   *
+   * @return The modelChunk.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getModelChunk() {
+    return modelChunk_;
   }
 
-  private TrainResponse() {
-    modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+  private byte memoizedIsInitialized = -1;
+
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
   }
 
   public static com.google.protobuf.Descriptors.Descriptor
@@ -72,6 +101,20 @@ public final class TrainResponse extends
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
+    hash = (53 * hash) + getModelChunk().hashCode();
+    hash = (29 * hash) + getUnknownFields().hashCode();
+    memoizedHashCode = hash;
+    return hash;
   }
 
   public static org.bupt.fedraft.rpc.trainer.message.TrainResponse parseFrom(
@@ -166,36 +209,11 @@ public final class TrainResponse extends
   }
 
   @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
   internalGetFieldAccessorTable() {
     return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                     org.bupt.fedraft.rpc.trainer.message.TrainResponse.class, org.bupt.fedraft.rpc.trainer.message.TrainResponse.Builder.class);
-  }
-
-  /**
-   * <code>bytes model_chunk = 1;</code>
-   * @return The modelChunk.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getModelChunk() {
-    return modelChunk_;
-  }
-
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
   }
 
   @java.lang.Override
@@ -238,23 +256,8 @@ public final class TrainResponse extends
   }
 
   @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
-    hash = (53 * hash) + getModelChunk().hashCode();
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
   public Builder newBuilderForType() {
-    return newBuilder();
-  }
+    return newBuilder(); }
 
   @java.lang.Override
   public Builder toBuilder() {
@@ -283,7 +286,7 @@ public final class TrainResponse extends
    * <pre>
    * Trainer训练完毕的模型
    * </pre>
-   *
+   * <p>
    * Protobuf type {@code fedraft.TrainResponse}
    */
   public static final class Builder extends
@@ -309,14 +312,6 @@ public final class TrainResponse extends
     }
 
     @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainResponse_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.trainer.message.TrainResponse.class, org.bupt.fedraft.rpc.trainer.message.TrainResponse.Builder.class);
-    }
-
-    @java.lang.Override
     public Builder clear() {
       super.clear();
       modelChunk_ = com.google.protobuf.ByteString.EMPTY;
@@ -325,9 +320,11 @@ public final class TrainResponse extends
     }
 
     @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainResponse_descriptor;
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainResponse_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      org.bupt.fedraft.rpc.trainer.message.TrainResponse.class, org.bupt.fedraft.rpc.trainer.message.TrainResponse.Builder.class);
     }
 
     @java.lang.Override
@@ -355,6 +352,12 @@ public final class TrainResponse extends
     @java.lang.Override
     public Builder clone() {
       return super.clone();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+    getDescriptorForType() {
+      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainResponse_descriptor;
     }
 
     @java.lang.Override
@@ -390,16 +393,6 @@ public final class TrainResponse extends
       return super.addRepeatedField(field, value);
     }
 
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.trainer.message.TrainResponse) {
-        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.TrainResponse) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
     public Builder mergeFrom(org.bupt.fedraft.rpc.trainer.message.TrainResponse other) {
       if (other == org.bupt.fedraft.rpc.trainer.message.TrainResponse.getDefaultInstance()) return this;
       if (other.getModelChunk() != com.google.protobuf.ByteString.EMPTY) {
@@ -413,6 +406,16 @@ public final class TrainResponse extends
     @java.lang.Override
     public boolean isInitialized() {
       return true;
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.trainer.message.TrainResponse) {
+        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.TrainResponse) other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
     }
 
     @java.lang.Override
@@ -451,7 +454,6 @@ public final class TrainResponse extends
       } // finally
       return this;
     }
-
     /**
      * <code>bytes model_chunk = 1;</code>
      * @return The modelChunk.
@@ -469,13 +471,12 @@ public final class TrainResponse extends
     public Builder setModelChunk(com.google.protobuf.ByteString value) {
       if (value == null) {
         throw new NullPointerException();
-      }
+  }
 
       modelChunk_ = value;
       onChanged();
       return this;
     }
-
     /**
      * <code>bytes model_chunk = 1;</code>
      * @return This builder for chaining.

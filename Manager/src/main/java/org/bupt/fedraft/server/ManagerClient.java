@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -71,7 +72,7 @@ public class ManagerClient extends Client {
         AppendEntriesRequest request = builder.build();
 
         for (Long id : request.getNodeIdsList()) {
-            pool.getClient(id).appendEntries(request, job);
+            managerState.getThreadPool().submit(() -> pool.getClient(id).appendEntries(request, job));
         }
     }
 
@@ -98,7 +99,7 @@ public class ManagerClient extends Client {
 
         for (Long id : ids) {
             if (!id.equals(request.getCandidateId())) {
-                pool.getClient(id).voteFor(request, job);
+                managerState.getThreadPool().submit(() -> pool.getClient(id).voteFor(request, job));
             }
         }
 
@@ -106,7 +107,7 @@ public class ManagerClient extends Client {
     }
 
     public static StreamObserver<JobSubmitRequest> submitJobOnCluster(ManagerState managerState, int uuid, List<Long> cluster) {
-        StreamObserver<JobSubmitRequest>[] observers = new StreamObserver[cluster.size() - 1];
+        Tuple<StreamObserver<JobSubmitRequest>, Semaphore>[] observers = new Tuple[cluster.size() - 1];
         int i = 0;
         long selfId = managerState.getSelfNodeInfo().getNodeId();
         ClientPool<ManagerClient> pool = managerState.getManagerClientPool();
@@ -115,29 +116,54 @@ public class ManagerClient extends Client {
 
         for (long id : cluster) {
             if (id != selfId) {
-                observers[i++] = pool.getClient(id).submitJob(selfId, uuid, failCount, managerState);
+                observers[i++] = new Tuple<>(pool.getClient(id).submitJob(selfId, uuid, failCount, managerState)
+                        , new Semaphore(1, true));
             }
         }
 
         return new StreamObserver<>() {
+
             @Override
             public void onNext(JobSubmitRequest request) {
-                for (StreamObserver<JobSubmitRequest> observer : observers) {
-                    observer.onNext(request);
+                synchronized (this) {
+                    for (Tuple<StreamObserver<JobSubmitRequest>, Semaphore> observer : observers) {
+                        try {
+                            observer.getRight().acquire();  // 提前锁住，防止乱序发送
+                        } catch (InterruptedException e) {
+                            logger.error(e.getMessage());
+                        }
+                        managerState.getThreadPool().submit(() -> {
+                            logger.debug("send request size: {}", request.getSerializedSize());
+                            observer.getLeft().onNext(request);
+                            observer.getRight().release();
+                        });
+                    }
                 }
             }
 
             @Override
             public void onError(Throwable t) {
-                for (StreamObserver<JobSubmitRequest> observer : observers) {
-                    observer.onError(t);
+                synchronized (this) {
+                    for (Tuple<StreamObserver<JobSubmitRequest>, Semaphore> observer : observers) {
+                        managerState.getThreadPool().submit(() -> observer.getLeft().onError(t));
+                    }
                 }
             }
 
             @Override
             public void onCompleted() {
-                for (StreamObserver<JobSubmitRequest> observer : observers) {
-                    observer.onCompleted();
+                synchronized (this) {
+                    for (Tuple<StreamObserver<JobSubmitRequest>, Semaphore> observer : observers) {
+                        managerState.getThreadPool().submit(() -> {
+                            try {
+                                observer.getRight().acquire();
+                            } catch (InterruptedException e) {
+                                logger.error(e.getMessage());
+                            }
+                            observer.getLeft().onCompleted();
+                            observer.getRight().release();
+                        });
+                    }
                 }
             }
         };
@@ -170,15 +196,12 @@ public class ManagerClient extends Client {
         asyncManagerStub.voteFor(request, new StreamObserver<>() {
             @Override
             public void onNext(ManagerVoteResponse response) {
-                if (logger.isDebugEnabled()) {
-                    logger.debug("received vote response from {}", getClientInfo());
-                }
-
                 job.onVoteResponse(response.getVoteGranted(), response.getTerm());
             }
 
             @Override
             public void onError(Throwable t) {
+
             }
 
             @Override
@@ -195,7 +218,7 @@ public class ManagerClient extends Client {
                 .build();
         asyncManagerStub.jobShutdown(request, new StreamObserver<>() {
             @Override
-            public void onNext(JobShutdownResponse value) {
+            public void onNext(JobShutdownResponse response) {
 
             }
 
@@ -212,44 +235,46 @@ public class ManagerClient extends Client {
     }
 
     public StreamObserver<JobSubmitRequest> submitJob(long sourceId, int uuid, AtomicInteger falseCount, ManagerState managerState) {
-        if (logger.isDebugEnabled()) {
-            logger.debug("sending submitJob request to {}", getClientInfo());
-        }
 
-        return asyncManagerStub.jobSubmit(new StreamObserver<>() {
-            @Override
-            public void onNext(JobSubmitResponse response) {
-                JobManager jobState = managerState.getJobState(sourceId, uuid);
+        return asyncManagerStub.withDeadlineAfter(Configuration.getInt(Configuration.MANAGER_JOB_SUBMIT_TIMEOUT), TimeUnit.MILLISECONDS)
 
-                if (!response.getSuccess()) {
-                    int fails = falseCount.addAndGet(1);
-                    if (jobState != null && fails >= jobState.participants.size() / 2) {
-                        managerState.deleteJobState(sourceId, uuid);
+                .jobSubmit(new StreamObserver<>() {
+                    private void onFail() {
+                        JobManager jobState = managerState.getJobState(sourceId, uuid);
+                        int fails = falseCount.addAndGet(1);
+                        if (jobState != null && fails >= jobState.participants.size() / 2) {
 
-                        // 发送失败消息
-                        JobSubmitResponse failLog = JobSubmitResponse.newBuilder()
-                                .setLogs("fails in cluster >= 1/2, couldn't initialize job")
-                                .build();
-                        JobSubmitResponse failResponse = JobSubmitResponse.newBuilder()
-                                .setSuccess(false)
-                                .build();
-                        jobState.responseObserver.onNext(failLog);
-                        jobState.responseObserver.onNext(failResponse);
-                        jobState.responseObserver.onCompleted();
+                            // 发送失败消息
+                            logger.error("fails in cluster >= 1/2, couldn't initialize job");
+                            JobSubmitResponse failLog = JobSubmitResponse.newBuilder()
+                                    .setLogs("fails in cluster >= 1/2, couldn't initialize job")
+                                    .build();
+                            JobSubmitResponse failResponse = JobSubmitResponse.newBuilder()
+                                    .setSuccess(false)
+                                    .build();
+
+                            if (jobState.responseObserver != null) {
+                                jobState.responseObserver.onNext(failLog);
+                                jobState.responseObserver.onNext(failResponse);
+                            }
+                            managerState.deleteJobState(sourceId, uuid);
+                        }
                     }
-                } else if (jobState == null) {
-                    // 如果任务已经不存在了，就直接通知其删除
-                    shutdownJob(sourceId, uuid);
-                }
-            }
 
-            @Override
-            public void onError(Throwable t) {
+                    @Override
+                    public void onNext(JobSubmitResponse response) {
+                        if (!response.getSuccess()) {
+                            onFail();
+                        }
+                    }
 
-            }
+                    @Override
+                    public void onError(Throwable t) {
+                        onFail();
+                    }
 
-            @Override
-            public void onCompleted() {
+                    @Override
+                    public void onCompleted() {
 
             }
         });
@@ -267,7 +292,7 @@ public class ManagerClient extends Client {
     }
 
     public void appendLog(AppendJobLogRequest request) {
-        asyncJobManagerStub.appendLog(request, new StreamObserver<AppendJobLogResponse>() {
+        asyncJobManagerStub.appendLog(request, new StreamObserver<>() {
             @Override
             public void onNext(AppendJobLogResponse value) {
 
@@ -300,6 +325,8 @@ public class ManagerClient extends Client {
         if (logBuffer.size() >= BUFFER_SIZE || !isBatch) {
             // 当缓存累计或立即发送时就情况缓存并发送
             AppendJobLogRequest request = AppendJobLogRequest.newBuilder()
+                    .setSourceId(jobManager.sourceId)
+                    .setUuid(jobManager.uuid)
                     .addAllLogs(logBuffer)
                     .build();
             asyncJobManagerStub.appendLog(request, new StreamObserver<>() {
@@ -310,7 +337,7 @@ public class ManagerClient extends Client {
 
                 @Override
                 public void onError(Throwable t) {
-                    logger.error(t.getMessage());
+                    logger.error("append log error " + t.getMessage());
                 }
 
                 @Override

@@ -136,27 +136,6 @@ public final class AppendJobLogRequest extends
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + SOURCEID_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getSourceId());
-    hash = (37 * hash) + UUID_FIELD_NUMBER;
-    hash = (53 * hash) + getUuid();
-    if (getLogsCount() > 0) {
-      hash = (37 * hash) + LOGS_FIELD_NUMBER;
-      hash = (53 * hash) + getLogsList().hashCode();
-    }
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
   public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(byte[] data)
           throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
@@ -212,14 +191,6 @@ public final class AppendJobLogRequest extends
             .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
   public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
@@ -262,6 +233,14 @@ public final class AppendJobLogRequest extends
   public com.google.protobuf.ByteString
   getLogsBytes(int index) {
     return logs_.getByteString(index);
+  }
+
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
   @java.lang.Override
@@ -309,7 +288,7 @@ public final class AppendJobLogRequest extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-     return true;
+      return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest)) {
       return super.equals(obj);
@@ -326,7 +305,30 @@ public final class AppendJobLogRequest extends
   }
 
   @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + SOURCEID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getSourceId());
+    hash = (37 * hash) + UUID_FIELD_NUMBER;
+    hash = (53 * hash) + getUuid();
+    if (getLogsCount() > 0) {
+      hash = (37 * hash) + LOGS_FIELD_NUMBER;
+      hash = (53 * hash) + getLogsList().hashCode();
+    }
+    hash = (29 * hash) + getUnknownFields().hashCode();
+    memoizedHashCode = hash;
+    return hash;
+  }
+
+  @java.lang.Override
+  public Builder newBuilderForType() {
+    return newBuilder();
+  }
 
   @java.lang.Override
   public Builder toBuilder() {
@@ -452,36 +454,6 @@ public final class AppendJobLogRequest extends
       return super.clearField(field);
     }
 
-    @java.lang.Override
-    public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) {
-        return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
     public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest other) {
       if (other == org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.getDefaultInstance()) return this;
       if (other.getSourceId() != 0L) {
@@ -508,6 +480,46 @@ public final class AppendJobLogRequest extends
     @java.lang.Override
     public boolean isInitialized() {
       return true;
+    }
+
+    @java.lang.Override
+    public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+      return super.clearOneof(oneof);
+    }
+
+    @java.lang.Override
+    public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+      return super.setRepeatedField(field, index, value);
+    }
+
+    @java.lang.Override
+    public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+
+    /**
+     * <code>int64 sourceId = 1;</code>
+     *
+     * @return The sourceId.
+     */
+    @java.lang.Override
+    public long getSourceId() {
+      return sourceId_;
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) {
+        return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
     }
 
     @java.lang.Override
@@ -561,34 +573,12 @@ public final class AppendJobLogRequest extends
     /**
      * <code>int64 sourceId = 1;</code>
      *
-     * @return The sourceId.
-     */
-    @java.lang.Override
-    public long getSourceId() {
-      return sourceId_;
-    }
-
-    /**
-     * <code>int64 sourceId = 1;</code>
-     *
      * @param value The sourceId to set.
      * @return This builder for chaining.
      */
     public Builder setSourceId(long value) {
 
       sourceId_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <code>int64 sourceId = 1;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearSourceId() {
-
-      sourceId_ = 0L;
       onChanged();
       return this;
     }
@@ -601,6 +591,18 @@ public final class AppendJobLogRequest extends
     @java.lang.Override
     public int getUuid() {
       return uuid_;
+    }
+
+    /**
+     * <code>int64 sourceId = 1;</code>
+     *
+     * @return This builder for chaining.
+     */
+    public Builder clearSourceId() {
+
+      sourceId_ = 0L;
+      onChanged();
+      return this;
     }
 
     /**
@@ -721,10 +723,8 @@ public final class AppendJobLogRequest extends
       onChanged();
       return this;
     }
-
     /**
      * <code>repeated string logs = 3;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearLogs() {
@@ -733,10 +733,8 @@ public final class AppendJobLogRequest extends
       onChanged();
       return this;
     }
-
     /**
      * <code>repeated string logs = 3;</code>
-     *
      * @param value The bytes of the logs to add.
      * @return This builder for chaining.
      */

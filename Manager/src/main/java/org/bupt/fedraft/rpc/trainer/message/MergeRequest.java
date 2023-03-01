@@ -15,7 +15,24 @@ public final class MergeRequest extends
         // @@protoc_insertion_point(message_implements:fedraft.MergeRequest)
         MergeRequestOrBuilder {
   public static final int SERVER_IDS_FIELD_NUMBER = 1;
+
+  // Use MergeRequest.newBuilder() to construct.
+  private MergeRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private MergeRequest() {
+    serverIds_ = emptyLongList();
+  }
+
   private static final long serialVersionUID = 0L;
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+
   // @@protoc_insertion_point(class_scope:fedraft.MergeRequest)
   private static final org.bupt.fedraft.rpc.trainer.message.MergeRequest DEFAULT_INSTANCE;
   private static final com.google.protobuf.Parser<MergeRequest>
@@ -46,20 +63,49 @@ public final class MergeRequest extends
 
   private com.google.protobuf.Internal.LongList serverIds_;
   private int serverIdsMemoizedSerializedSize = -1;
+
+  /**
+   * <pre>
+   * 接受到的模型来源， 确认Trainer是否存在
+   * </pre>
+   *
+   * <code>repeated uint64 server_ids = 1;</code>
+   *
+   * @return The count of serverIds.
+   */
+  public int getServerIdsCount() {
+    return serverIds_.size();
+  }
+
+  /**
+   * <pre>
+   * 接受到的模型来源， 确认Trainer是否存在
+   * </pre>
+   *
+   * <code>repeated uint64 server_ids = 1;</code>
+   *
+   * @param index The index of the element to return.
+   * @return The serverIds at the given index.
+   */
+  public long getServerIds(int index) {
+    return serverIds_.getLong(index);
+  }
+
   private byte memoizedIsInitialized = -1;
-
-  // Use MergeRequest.newBuilder() to construct.
-  private MergeRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
-  private MergeRequest() {
-    serverIds_ = emptyLongList();
-  }
 
   public static com.google.protobuf.Descriptors.Descriptor
   getDescriptor() {
     return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeRequest_descriptor;
+  }
+
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
   }
 
   public static org.bupt.fedraft.rpc.trainer.message.MergeRequest parseFrom(
@@ -79,6 +125,22 @@ public final class MergeRequest extends
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    if (getServerIdsCount() > 0) {
+      hash = (37 * hash) + SERVER_IDS_FIELD_NUMBER;
+      hash = (53 * hash) + getServerIdsList().hashCode();
+    }
+    hash = (29 * hash) + getUnknownFields().hashCode();
+    memoizedHashCode = hash;
+    return hash;
   }
 
   public static org.bupt.fedraft.rpc.trainer.message.MergeRequest parseFrom(
@@ -143,6 +205,14 @@ public final class MergeRequest extends
             .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.fedraft.rpc.trainer.message.MergeRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
   public static org.bupt.fedraft.rpc.trainer.message.MergeRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
@@ -159,12 +229,6 @@ public final class MergeRequest extends
   }
 
   @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
   internalGetFieldAccessorTable() {
     return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeRequest_fieldAccessorTable
@@ -178,55 +242,13 @@ public final class MergeRequest extends
    * </pre>
    *
    * <code>repeated uint64 server_ids = 1;</code>
+   *
    * @return A list containing the serverIds.
    */
   @java.lang.Override
   public java.util.List<java.lang.Long>
   getServerIdsList() {
     return serverIds_;
-  }
-
-  /**
-   * <pre>
-   * 接受到的模型来源， 确认Trainer是否存在
-   * </pre>
-   *
-   * <code>repeated uint64 server_ids = 1;</code>
-   * @return The count of serverIds.
-   */
-  public int getServerIdsCount() {
-    return serverIds_.size();
-  }
-
-  /**
-   * <pre>
-   * 接受到的模型来源， 确认Trainer是否存在
-   * </pre>
-   *
-   * <code>repeated uint64 server_ids = 1;</code>
-   * @param index The index of the element to return.
-   * @return The serverIds at the given index.
-   */
-  public long getServerIds(int index) {
-    return serverIds_.getLong(index);
-  }
-
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.trainer.message.MergeRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
   @java.lang.Override
@@ -253,13 +275,13 @@ public final class MergeRequest extends
       int dataSize = 0;
       for (int i = 0; i < serverIds_.size(); i++) {
         dataSize += com.google.protobuf.CodedOutputStream
-                .computeUInt64SizeNoTag(serverIds_.getLong(i));
+          .computeUInt64SizeNoTag(serverIds_.getLong(i));
       }
       size += dataSize;
       if (!getServerIdsList().isEmpty()) {
         size += 1;
         size += com.google.protobuf.CodedOutputStream
-                .computeInt32SizeNoTag(dataSize);
+            .computeInt32SizeNoTag(dataSize);
       }
       serverIdsMemoizedSerializedSize = dataSize;
     }
@@ -271,7 +293,7 @@ public final class MergeRequest extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.trainer.message.MergeRequest)) {
       return super.equals(obj);
@@ -279,29 +301,12 @@ public final class MergeRequest extends
     org.bupt.fedraft.rpc.trainer.message.MergeRequest other = (org.bupt.fedraft.rpc.trainer.message.MergeRequest) obj;
 
     if (!getServerIdsList()
-            .equals(other.getServerIdsList())) return false;
+        .equals(other.getServerIdsList())) return false;
     return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    if (getServerIdsCount() > 0) {
-      hash = (37 * hash) + SERVER_IDS_FIELD_NUMBER;
-      hash = (53 * hash) + getServerIdsList().hashCode();
-    }
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
+  public Builder newBuilderForType() { return newBuilder();
   }
 
   @java.lang.Override
@@ -352,19 +357,6 @@ public final class MergeRequest extends
 
     }
 
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeRequest_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.trainer.message.MergeRequest.class, org.bupt.fedraft.rpc.trainer.message.MergeRequest.Builder.class);
-    }
-
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -373,9 +365,8 @@ public final class MergeRequest extends
       return this;
     }
 
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
       return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeRequest_descriptor;
     }
 
@@ -412,6 +403,20 @@ public final class MergeRequest extends
     }
 
     @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeRequest_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      org.bupt.fedraft.rpc.trainer.message.MergeRequest.class, org.bupt.fedraft.rpc.trainer.message.MergeRequest.Builder.class);
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+    getDescriptorForType() {
+      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeRequest_descriptor;
+    }
+
+    @java.lang.Override
     public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
@@ -437,23 +442,6 @@ public final class MergeRequest extends
       return super.setRepeatedField(field, index, value);
     }
 
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.trainer.message.MergeRequest) {
-        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.MergeRequest) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
     public Builder mergeFrom(org.bupt.fedraft.rpc.trainer.message.MergeRequest other) {
       if (other == org.bupt.fedraft.rpc.trainer.message.MergeRequest.getDefaultInstance()) return this;
       if (!other.serverIds_.isEmpty()) {
@@ -474,6 +462,23 @@ public final class MergeRequest extends
     @java.lang.Override
     public boolean isInitialized() {
       return true;
+    }
+
+    @java.lang.Override
+    public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.trainer.message.MergeRequest) {
+        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.MergeRequest) other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
     }
 
     @java.lang.Override
@@ -552,20 +557,17 @@ public final class MergeRequest extends
      * </pre>
      *
      * <code>repeated uint64 server_ids = 1;</code>
-     *
      * @return The count of serverIds.
      */
     public int getServerIdsCount() {
       return serverIds_.size();
     }
-
     /**
      * <pre>
      * 接受到的模型来源， 确认Trainer是否存在
      * </pre>
      *
      * <code>repeated uint64 server_ids = 1;</code>
-     *
      * @param index The index of the element to return.
      * @return The serverIds at the given index.
      */
@@ -591,14 +593,12 @@ public final class MergeRequest extends
       onChanged();
       return this;
     }
-
     /**
      * <pre>
      * 接受到的模型来源， 确认Trainer是否存在
      * </pre>
      *
      * <code>repeated uint64 server_ids = 1;</code>
-     *
      * @param value The serverIds to add.
      * @return This builder for chaining.
      */
@@ -652,7 +652,7 @@ public final class MergeRequest extends
 
     @java.lang.Override
     public Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
     }
 

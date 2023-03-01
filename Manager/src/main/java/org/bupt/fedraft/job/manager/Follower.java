@@ -29,7 +29,7 @@ public class Follower extends BaseJob {
 
     @Override
     protected void setupTimer() {
-        long timeout = (long) ((Math.random() + 2) * BASE_HEARTBEAT_TIMEOUT);
+        long timeout = (long) ((Math.random() * 2 + 2) * BASE_HEARTBEAT_TIMEOUT);
 
         if (logger.isDebugEnabled()) {
             logger.debug("follower setup timeout task with {} ms", timeout);

@@ -14,6 +14,8 @@ public class Client {
     private final ManagedChannel channel;
     private final NodeInfo clientInfo;
 
+    private final ManagerState managerState;
+
 
     public Client(ManagerState managerState, NodeInfo clientInfo) {
         this.channel = ManagedChannelBuilder.forAddress(clientInfo.getIp(), clientInfo.getPort())
@@ -21,6 +23,11 @@ public class Client {
                 .enableRetry()
                 .maxInboundMessageSize(536870912).build();
         this.clientInfo = clientInfo;
+        this.managerState = managerState;
+    }
+
+    public ManagerState getManagerState() {
+        return managerState;
     }
 
     protected ManagedChannel getChannel() {

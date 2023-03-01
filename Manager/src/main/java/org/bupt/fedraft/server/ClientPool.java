@@ -25,14 +25,17 @@ public class ClientPool<T extends Client> {
     }
 
     public T getClient(Long id) {
+
         T client = store.get(id);
 
         if (client == null) {  // 如果不存在该客户端就创建
-            if (logger.isDebugEnabled()) {
-                logger.debug("create client with {}", new NodeInfo(id));
+            synchronized (this) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("create client with {}", new NodeInfo(id));
+                }
+                client = creator.newInstance(managerState, id);
+                store.put(id, client);
             }
-            client = creator.newInstance(managerState, id);
-            store.put(id, client);
         }
         return client;
     }

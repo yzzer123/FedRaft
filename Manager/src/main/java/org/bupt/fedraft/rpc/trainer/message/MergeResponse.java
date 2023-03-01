@@ -15,7 +15,23 @@ public final class MergeResponse extends
         // @@protoc_insertion_point(message_implements:fedraft.MergeResponse)
         MergeResponseOrBuilder {
   public static final int SERVER_ID_FIELD_NUMBER = 1;
+
+  // Use MergeResponse.newBuilder() to construct.
+  private MergeResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private MergeResponse() {
+  }
+
   public static final int MODEL_CHUNK_FIELD_NUMBER = 2;
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+
   public static final int MODEL_EVAL_LOG_FIELD_NUMBER = 3;
   private static final long serialVersionUID = 0L;
   // @@protoc_insertion_point(class_scope:fedraft.MergeResponse)
@@ -48,19 +64,87 @@ public final class MergeResponse extends
 
   private int modelCase_ = 0;
   private java.lang.Object model_;
-  private byte memoizedIsInitialized = -1;
 
-  // Use MergeResponse.newBuilder() to construct.
-  private MergeResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
+  /**
+   * <pre>
+   * 回复第一个缺失的模型ID
+   * </pre>
+   *
+   * <code>uint64 server_id = 1;</code>
+   *
+   * @return Whether the serverId field is set.
+   */
+  @java.lang.Override
+  public boolean hasServerId() {
+    return modelCase_ == 1;
   }
 
-  private MergeResponse() {
+  /**
+   * <pre>
+   * 回复第一个缺失的模型ID
+   * </pre>
+   *
+   * <code>uint64 server_id = 1;</code>
+   *
+   * @return The serverId.
+   */
+  @java.lang.Override
+  public long getServerId() {
+    if (modelCase_ == 1) {
+      return (java.lang.Long) model_;
+    }
+    return 0L;
+  }
+
+  private byte memoizedIsInitialized = -1;
+
+  /**
+   * <pre>
+   * 合并成功的模型
+   * </pre>
+   *
+   * <code>bytes model_chunk = 2;</code>
+   *
+   * @return Whether the modelChunk field is set.
+   */
+  @java.lang.Override
+  public boolean hasModelChunk() {
+    return modelCase_ == 2;
+  }
+
+  /**
+   * <pre>
+   * 合并成功的模型
+   * </pre>
+   *
+   * <code>bytes model_chunk = 2;</code>
+   *
+   * @return The modelChunk.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getModelChunk() {
+    if (modelCase_ == 2) {
+      return (com.google.protobuf.ByteString) model_;
+    }
+    return com.google.protobuf.ByteString.EMPTY;
   }
 
   public static com.google.protobuf.Descriptors.Descriptor
   getDescriptor() {
     return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_descriptor;
+  }
+
+  /**
+   * <pre>
+   * 合并模型的测试结果
+   * </pre>
+   *
+   * <code>string model_eval_log = 3;</code>
+   *
+   * @return Whether the modelEvalLog field is set.
+   */
+  public boolean hasModelEvalLog() {
+    return modelCase_ == 3;
   }
 
   public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
@@ -80,6 +164,16 @@ public final class MergeResponse extends
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
+  }
+
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
   }
 
   public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
@@ -141,7 +235,7 @@ public final class MergeResponse extends
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+        .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
   public static Builder newBuilder() {
@@ -168,12 +262,6 @@ public final class MergeResponse extends
   }
 
   @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
   internalGetFieldAccessorTable() {
     return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_fieldAccessorTable
@@ -184,77 +272,7 @@ public final class MergeResponse extends
   public ModelCase
   getModelCase() {
     return ModelCase.forNumber(
-            modelCase_);
-  }
-
-  /**
-   * <pre>
-   * 回复第一个缺失的模型ID
-   * </pre>
-   *
-   * <code>uint64 server_id = 1;</code>
-   * @return Whether the serverId field is set.
-   */
-  @java.lang.Override
-  public boolean hasServerId() {
-    return modelCase_ == 1;
-  }
-
-  /**
-   * <pre>
-   * 回复第一个缺失的模型ID
-   * </pre>
-   *
-   * <code>uint64 server_id = 1;</code>
-   * @return The serverId.
-   */
-  @java.lang.Override
-  public long getServerId() {
-    if (modelCase_ == 1) {
-      return (java.lang.Long) model_;
-    }
-    return 0L;
-  }
-
-  /**
-   * <pre>
-   * 合并成功的模型
-   * </pre>
-   *
-   * <code>bytes model_chunk = 2;</code>
-   * @return Whether the modelChunk field is set.
-   */
-  @java.lang.Override
-  public boolean hasModelChunk() {
-    return modelCase_ == 2;
-  }
-
-  /**
-   * <pre>
-   * 合并成功的模型
-   * </pre>
-   *
-   * <code>bytes model_chunk = 2;</code>
-   * @return The modelChunk.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getModelChunk() {
-    if (modelCase_ == 2) {
-      return (com.google.protobuf.ByteString) model_;
-    }
-    return com.google.protobuf.ByteString.EMPTY;
-  }
-
-  /**
-   * <pre>
-   * 合并模型的测试结果
-   * </pre>
-   *
-   * <code>string model_eval_log = 3;</code>
-   * @return Whether the modelEvalLog field is set.
-   */
-  public boolean hasModelEvalLog() {
-    return modelCase_ == 3;
+        modelCase_);
   }
 
   /**
@@ -274,7 +292,7 @@ public final class MergeResponse extends
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
+          (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
       if (modelCase_ == 3) {
         model_ = s;
@@ -289,6 +307,7 @@ public final class MergeResponse extends
    * </pre>
    *
    * <code>string model_eval_log = 3;</code>
+   *
    * @return The bytes for modelEvalLog.
    */
   public com.google.protobuf.ByteString
@@ -300,7 +319,7 @@ public final class MergeResponse extends
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b =
               com.google.protobuf.ByteString.copyFromUtf8(
-                      (java.lang.String) ref);
+              (java.lang.String) ref);
       if (modelCase_ == 3) {
         model_ = b;
       }
@@ -308,16 +327,6 @@ public final class MergeResponse extends
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
-  }
-
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
   }
 
   @java.lang.Override
@@ -350,8 +359,8 @@ public final class MergeResponse extends
     }
     if (modelCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
-              .computeBytesSize(
-                      2, (com.google.protobuf.ByteString) model_);
+        .computeBytesSize(
+            2, (com.google.protobuf.ByteString) model_);
     }
     if (modelCase_ == 3) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, model_);
@@ -383,7 +392,7 @@ public final class MergeResponse extends
         break;
       case 3:
         if (!getModelEvalLog()
-                .equals(other.getModelEvalLog())) return false;
+            .equals(other.getModelEvalLog())) return false;
         break;
       case 0:
       default:
@@ -402,7 +411,7 @@ public final class MergeResponse extends
       case 1:
         hash = (37 * hash) + SERVER_ID_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getServerId());
+            getServerId());
         break;
       case 2:
         hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
@@ -449,18 +458,16 @@ public final class MergeResponse extends
   }
 
   public enum ModelCase
-          implements com.google.protobuf.Internal.EnumLite,
+      implements com.google.protobuf.Internal.EnumLite,
           com.google.protobuf.AbstractMessage.InternalOneOfEnum {
     SERVER_ID(1),
     MODEL_CHUNK(2),
     MODEL_EVAL_LOG(3),
     MODEL_NOT_SET(0);
     private final int value;
-
     ModelCase(int value) {
       this.value = value;
     }
-
     /**
      * @param value The number of the enum to look for.
      * @return The enum associated with the given number.
@@ -477,10 +484,8 @@ public final class MergeResponse extends
           return SERVER_ID;
         case 2:
           return MODEL_CHUNK;
-        case 3:
-          return MODEL_EVAL_LOG;
-        case 0:
-          return MODEL_NOT_SET;
+        case 3: return MODEL_EVAL_LOG;
+        case 0: return MODEL_NOT_SET;
         default:
           return null;
       }
@@ -516,19 +521,6 @@ public final class MergeResponse extends
 
     }
 
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.trainer.message.MergeResponse.class, org.bupt.fedraft.rpc.trainer.message.MergeResponse.Builder.class);
-    }
-
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -537,24 +529,22 @@ public final class MergeResponse extends
       return this;
     }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.trainer.message.MergeResponse build() {
-      org.bupt.fedraft.rpc.trainer.message.MergeResponse result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
       return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_descriptor;
     }
 
     @java.lang.Override
     public org.bupt.fedraft.rpc.trainer.message.MergeResponse getDefaultInstanceForType() {
       return org.bupt.fedraft.rpc.trainer.message.MergeResponse.getDefaultInstance();
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      org.bupt.fedraft.rpc.trainer.message.MergeResponse.class, org.bupt.fedraft.rpc.trainer.message.MergeResponse.Builder.class);
     }
 
     @java.lang.Override
@@ -580,6 +570,21 @@ public final class MergeResponse extends
     }
 
     @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+    getDescriptorForType() {
+      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_descriptor;
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.trainer.message.MergeResponse build() {
+      org.bupt.fedraft.rpc.trainer.message.MergeResponse result = buildPartial();
+      if (!result.isInitialized()) {
+        throw newUninitializedMessageException(result);
+      }
+      return result;
+    }
+
+    @java.lang.Override
     public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
@@ -601,25 +606,8 @@ public final class MergeResponse extends
     @java.lang.Override
     public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
+        int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.trainer.message.MergeResponse) {
-        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.MergeResponse) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
     }
 
     public Builder mergeFrom(org.bupt.fedraft.rpc.trainer.message.MergeResponse other) {
@@ -651,6 +639,23 @@ public final class MergeResponse extends
     @java.lang.Override
     public boolean isInitialized() {
       return true;
+    }
+
+    @java.lang.Override
+    public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.trainer.message.MergeResponse) {
+        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.MergeResponse) other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
     }
 
     @java.lang.Override
@@ -808,7 +813,7 @@ public final class MergeResponse extends
      */
     public Builder setModelChunk(com.google.protobuf.ByteString value) {
       if (value == null) {
-        throw new NullPointerException();
+    throw new NullPointerException();
   }
   modelCase_ = 2;
       model_ = value;
@@ -860,7 +865,7 @@ public final class MergeResponse extends
       }
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
+            (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         if (modelCase_ == 3) {
           model_ = s;
@@ -928,6 +933,24 @@ public final class MergeResponse extends
      *
      * <code>string model_eval_log = 3;</code>
      *
+     * @return This builder for chaining.
+     */
+    public Builder clearModelEvalLog() {
+      if (modelCase_ == 3) {
+        modelCase_ = 0;
+        model_ = null;
+        onChanged();
+      }
+      return this;
+    }
+
+    /**
+     * <pre>
+     * 合并模型的测试结果
+     * </pre>
+     *
+     * <code>string model_eval_log = 3;</code>
+     *
      * @param value The bytes for modelEvalLog to set.
      * @return This builder for chaining.
      */
@@ -943,24 +966,6 @@ public final class MergeResponse extends
       return this;
     }
 
-    /**
-     * <pre>
-     * 合并模型的测试结果
-     * </pre>
-     *
-     * <code>string model_eval_log = 3;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearModelEvalLog() {
-      if (modelCase_ == 3) {
-        modelCase_ = 0;
-        model_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
     @java.lang.Override
     public Builder setUnknownFields(
             final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -969,7 +974,7 @@ public final class MergeResponse extends
 
     @java.lang.Override
     public Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
     }
 

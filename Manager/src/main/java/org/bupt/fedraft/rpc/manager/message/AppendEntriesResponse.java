@@ -11,7 +11,23 @@ public final class AppendEntriesResponse extends
         // @@protoc_insertion_point(message_implements:fedraft.AppendEntriesResponse)
         AppendEntriesResponseOrBuilder {
   public static final int TERM_FIELD_NUMBER = 1;
+
+  // Use AppendEntriesResponse.newBuilder() to construct.
+  private AppendEntriesResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private AppendEntriesResponse() {
+  }
+
   public static final int DELAY_FIELD_NUMBER = 2;
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+
   private static final long serialVersionUID = 0L;
   // @@protoc_insertion_point(class_scope:fedraft.AppendEntriesResponse)
   private static final org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse DEFAULT_INSTANCE;
@@ -41,16 +57,39 @@ public final class AppendEntriesResponse extends
     DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse();
   }
 
-  private int term_;
-  private int delay_;
-  private byte memoizedIsInitialized = -1;
-
-  // Use AppendEntriesResponse.newBuilder() to construct.
-  private AppendEntriesResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
+  /**
+   * <code>int32 term = 1;</code>
+   *
+   * @return The term.
+   */
+  @java.lang.Override
+  public int getTerm() {
+    return term_;
   }
 
-  private AppendEntriesResponse() {
+  private int term_;
+  private int delay_;
+
+  /**
+   * <code>int32 delay = 2;</code>
+   *
+   * @return The delay.
+   */
+  @java.lang.Override
+  public int getDelay() {
+    return delay_;
+  }
+
+  private byte memoizedIsInitialized = -1;
+
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
   }
 
   public static com.google.protobuf.Descriptors.Descriptor
@@ -69,6 +108,22 @@ public final class AppendEntriesResponse extends
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + TERM_FIELD_NUMBER;
+    hash = (53 * hash) + getTerm();
+    hash = (37 * hash) + DELAY_FIELD_NUMBER;
+    hash = (53 * hash) + getDelay();
+    hash = (29 * hash) + getUnknownFields().hashCode();
+    memoizedHashCode = hash;
+    return hash;
   }
 
   public static org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse parseFrom(
@@ -139,6 +194,14 @@ public final class AppendEntriesResponse extends
             .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
   public static org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
@@ -155,55 +218,11 @@ public final class AppendEntriesResponse extends
   }
 
   @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
   internalGetFieldAccessorTable() {
     return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesResponse_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                     org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse.class, org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse.Builder.class);
-  }
-
-  /**
-   * <code>int32 term = 1;</code>
-   *
-   * @return The term.
-   */
-  @java.lang.Override
-  public int getTerm() {
-    return term_;
-  }
-
-  /**
-   * <code>int32 delay = 2;</code>
-   *
-   * @return The delay.
-   */
-  @java.lang.Override
-  public int getDelay() {
-    return delay_;
-  }
-
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
 
   @java.lang.Override
@@ -240,7 +259,7 @@ public final class AppendEntriesResponse extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse)) {
       return super.equals(obj);
@@ -255,25 +274,7 @@ public final class AppendEntriesResponse extends
   }
 
   @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TERM_FIELD_NUMBER;
-    hash = (53 * hash) + getTerm();
-    hash = (37 * hash) + DELAY_FIELD_NUMBER;
-    hash = (53 * hash) + getDelay();
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
+  public Builder newBuilderForType() { return newBuilder(); }
 
   @java.lang.Override
   public Builder toBuilder() {
@@ -319,19 +320,6 @@ public final class AppendEntriesResponse extends
 
     }
 
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesResponse_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesResponse_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse.class, org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse.Builder.class);
-    }
-
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -342,9 +330,8 @@ public final class AppendEntriesResponse extends
       return this;
     }
 
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
       return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesResponse_descriptor;
     }
 
@@ -377,6 +364,20 @@ public final class AppendEntriesResponse extends
     }
 
     @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesResponse_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse.class, org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse.Builder.class);
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+    getDescriptorForType() {
+      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesResponse_descriptor;
+    }
+
+    @java.lang.Override
     public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
@@ -402,6 +403,24 @@ public final class AppendEntriesResponse extends
       return super.setRepeatedField(field, index, value);
     }
 
+    public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse other) {
+      if (other == org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse.getDefaultInstance()) return this;
+      if (other.getTerm() != 0) {
+        setTerm(other.getTerm());
+      }
+      if (other.getDelay() != 0) {
+        setDelay(other.getDelay());
+      }
+      this.mergeUnknownFields(other.getUnknownFields());
+      onChanged();
+      return this;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+      return true;
+    }
+
     @java.lang.Override
     public Builder addRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
@@ -419,22 +438,14 @@ public final class AppendEntriesResponse extends
       }
     }
 
-    public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse other) {
-      if (other == org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse.getDefaultInstance()) return this;
-      if (other.getTerm() != 0) {
-        setTerm(other.getTerm());
-      }
-      if (other.getDelay() != 0) {
-        setDelay(other.getDelay());
-      }
-      this.mergeUnknownFields(other.getUnknownFields());
-      onChanged();
-      return this;
-    }
-
+    /**
+     * <code>int32 term = 1;</code>
+     *
+     * @return The term.
+     */
     @java.lang.Override
-    public boolean isInitialized() {
-      return true;
+    public int getTerm() {
+      return term_;
     }
 
     @java.lang.Override
@@ -481,17 +492,6 @@ public final class AppendEntriesResponse extends
 
     /**
      * <code>int32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    @java.lang.Override
-    public int getTerm() {
-      return term_;
-    }
-
-    /**
-     * <code>int32 term = 1;</code>
-     *
      * @param value The term to set.
      * @return This builder for chaining.
      */
@@ -523,7 +523,6 @@ public final class AppendEntriesResponse extends
 
     /**
      * <code>int32 delay = 2;</code>
-     *
      * @param value The delay to set.
      * @return This builder for chaining.
      */

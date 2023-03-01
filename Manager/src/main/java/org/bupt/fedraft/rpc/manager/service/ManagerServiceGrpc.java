@@ -11,8 +11,9 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class ManagerServiceGrpc {
 
-  public static final String SERVICE_NAME = "fedraft.ManagerService";
   private static final int METHODID_APPEND_ENTRIES = 0;
+
+  public static final String SERVICE_NAME = "fedraft.ManagerService";
   private static final int METHODID_VOTE_FOR = 1;
   private static final int METHODID_JOB_SHUTDOWN = 2;
   private static final int METHODID_JOB_SUBMIT = 3;
@@ -27,8 +28,7 @@ public final class ManagerServiceGrpc {
           org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse> getJobShutdownMethod;
   private static volatile io.grpc.ServiceDescriptor serviceDescriptor;
 
-  private ManagerServiceGrpc() {
-  }
+  private ManagerServiceGrpc() {}
 
   @io.grpc.stub.annotations.RpcMethod(
           fullMethodName = SERVICE_NAME + '/' + "AppendEntries",
@@ -210,6 +210,7 @@ public final class ManagerServiceGrpc {
   public static abstract class ManagerServiceImplBase implements io.grpc.BindableService {
 
     /**
+     *
      */
     public void appendEntries(org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest request,
                               io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse> responseObserver) {
@@ -217,6 +218,7 @@ public final class ManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public void voteFor(org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest request,
                         io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse> responseObserver) {
@@ -224,6 +226,7 @@ public final class ManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.manager.message.JobSubmitRequest> jobSubmit(
             io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.manager.message.JobSubmitResponse> responseObserver) {
@@ -231,6 +234,7 @@ public final class ManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public void jobShutdown(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest request,
                             io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse> responseObserver) {
@@ -267,8 +271,8 @@ public final class ManagerServiceGrpc {
                               new MethodHandlers<
                                       org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest,
                                       org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse>(
-                                      this, METHODID_JOB_SHUTDOWN)))
-              .build();
+                  this, METHODID_JOB_SHUTDOWN)))
+          .build();
     }
   }
 
@@ -287,6 +291,7 @@ public final class ManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public void appendEntries(org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest request,
                               io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse> responseObserver) {
@@ -295,6 +300,7 @@ public final class ManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public void voteFor(org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest request,
                         io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse> responseObserver) {
@@ -303,6 +309,7 @@ public final class ManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.manager.message.JobSubmitRequest> jobSubmit(
             io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.manager.message.JobSubmitResponse> responseObserver) {
@@ -311,11 +318,12 @@ public final class ManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public void jobShutdown(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest request,
                             io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
-              getChannel().newCall(getJobShutdownMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getJobShutdownMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -337,21 +345,21 @@ public final class ManagerServiceGrpc {
      */
     public org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse appendEntries(org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-              getChannel(), getAppendEntriesMethod(), getCallOptions(), request);
+          getChannel(), getAppendEntriesMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse voteFor(org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-              getChannel(), getVoteForMethod(), getCallOptions(), request);
+          getChannel(), getVoteForMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse jobShutdown(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
-              getChannel(), getJobShutdownMethod(), getCallOptions(), request);
+          getChannel(), getJobShutdownMethod(), getCallOptions(), request);
     }
   }
 
@@ -370,6 +378,7 @@ public final class ManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public com.google.common.util.concurrent.ListenableFuture<org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse> appendEntries(
             org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest request) {
@@ -378,6 +387,7 @@ public final class ManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public com.google.common.util.concurrent.ListenableFuture<org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse> voteFor(
             org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest request) {
@@ -386,6 +396,7 @@ public final class ManagerServiceGrpc {
     }
 
     /**
+     *
      */
     public com.google.common.util.concurrent.ListenableFuture<org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse> jobShutdown(
             org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest request) {
@@ -421,7 +432,7 @@ public final class ManagerServiceGrpc {
           break;
         case METHODID_JOB_SHUTDOWN:
           serviceImpl.jobShutdown((org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest) request,
-                  (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();

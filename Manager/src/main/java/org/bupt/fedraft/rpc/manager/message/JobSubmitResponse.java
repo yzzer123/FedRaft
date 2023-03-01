@@ -11,7 +11,23 @@ public final class JobSubmitResponse extends
         // @@protoc_insertion_point(message_implements:fedraft.JobSubmitResponse)
         JobSubmitResponseOrBuilder {
   public static final int SUCCESS_FIELD_NUMBER = 1;
+
+  // Use JobSubmitResponse.newBuilder() to construct.
+  private JobSubmitResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+
+  private JobSubmitResponse() {
+  }
+
   public static final int LOGS_FIELD_NUMBER = 2;
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+
   public static final int CHUNK_FIELD_NUMBER = 3;
   private static final long serialVersionUID = 0L;
   // @@protoc_insertion_point(class_scope:fedraft.JobSubmitResponse)
@@ -44,14 +60,39 @@ public final class JobSubmitResponse extends
 
   private int logCase_ = 0;
   private java.lang.Object log_;
-  private byte memoizedIsInitialized = -1;
 
-  // Use JobSubmitResponse.newBuilder() to construct.
-  private JobSubmitResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
+  /**
+   * <code>bool success = 1;</code>
+   *
+   * @return Whether the success field is set.
+   */
+  @java.lang.Override
+  public boolean hasSuccess() {
+    return logCase_ == 1;
   }
 
-  private JobSubmitResponse() {
+  /**
+   * <code>bool success = 1;</code>
+   *
+   * @return The success.
+   */
+  @java.lang.Override
+  public boolean getSuccess() {
+    if (logCase_ == 1) {
+      return (java.lang.Boolean) log_;
+    }
+    return false;
+  }
+
+  private byte memoizedIsInitialized = -1;
+
+  /**
+   * <code>string logs = 2;</code>
+   *
+   * @return Whether the logs field is set.
+   */
+  public boolean hasLogs() {
+    return logCase_ == 2;
   }
 
   public static com.google.protobuf.Descriptors.Descriptor
@@ -72,10 +113,43 @@ public final class JobSubmitResponse extends
     return PARSER.parseFrom(data, extensionRegistry);
   }
 
+  /**
+   * <code>bytes chunk = 3;</code>
+   *
+   * @return Whether the chunk field is set.
+   */
+  @java.lang.Override
+  public boolean hasChunk() {
+    return logCase_ == 3;
+  }
+
+  /**
+   * <code>bytes chunk = 3;</code>
+   *
+   * @return The chunk.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getChunk() {
+    if (logCase_ == 3) {
+      return (com.google.protobuf.ByteString) log_;
+    }
+    return com.google.protobuf.ByteString.EMPTY;
+  }
+
   public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
           com.google.protobuf.ByteString data)
           throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
+  }
+
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
   }
 
   public static org.bupt.fedraft.rpc.manager.message.JobSubmitResponse parseFrom(
@@ -164,12 +238,6 @@ public final class JobSubmitResponse extends
   }
 
   @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
   internalGetFieldAccessorTable() {
     return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_fieldAccessorTable
@@ -180,44 +248,11 @@ public final class JobSubmitResponse extends
   public LogCase
   getLogCase() {
     return LogCase.forNumber(
-            logCase_);
-  }
-
-  /**
-   * <code>bool success = 1;</code>
-   *
-   * @return Whether the success field is set.
-   */
-  @java.lang.Override
-  public boolean hasSuccess() {
-    return logCase_ == 1;
-  }
-
-  /**
-   * <code>bool success = 1;</code>
-   *
-   * @return The success.
-   */
-  @java.lang.Override
-  public boolean getSuccess() {
-    if (logCase_ == 1) {
-      return (java.lang.Boolean) log_;
-    }
-    return false;
+        logCase_);
   }
 
   /**
    * <code>string logs = 2;</code>
-   *
-   * @return Whether the logs field is set.
-   */
-  public boolean hasLogs() {
-    return logCase_ == 2;
-  }
-
-  /**
-   * <code>string logs = 2;</code>
-   *
    * @return The logs.
    */
   public java.lang.String getLogs() {
@@ -262,39 +297,6 @@ public final class JobSubmitResponse extends
     }
   }
 
-  /**
-   * <code>bytes chunk = 3;</code>
-   *
-   * @return Whether the chunk field is set.
-   */
-  @java.lang.Override
-  public boolean hasChunk() {
-    return logCase_ == 3;
-  }
-
-  /**
-   * <code>bytes chunk = 3;</code>
-   *
-   * @return The chunk.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getChunk() {
-    if (logCase_ == 3) {
-      return (com.google.protobuf.ByteString) log_;
-    }
-    return com.google.protobuf.ByteString.EMPTY;
-  }
-
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
           throws java.io.IOException {
@@ -307,7 +309,7 @@ public final class JobSubmitResponse extends
     }
     if (logCase_ == 3) {
       output.writeBytes(
-              3, (com.google.protobuf.ByteString) log_);
+          3, (com.google.protobuf.ByteString) log_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -320,8 +322,8 @@ public final class JobSubmitResponse extends
     size = 0;
     if (logCase_ == 1) {
       size += com.google.protobuf.CodedOutputStream
-              .computeBoolSize(
-                      1, (Boolean) log_);
+        .computeBoolSize(
+            1, (Boolean) log_);
     }
     if (logCase_ == 2) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, log_);
@@ -329,7 +331,7 @@ public final class JobSubmitResponse extends
     if (logCase_ == 3) {
       size += com.google.protobuf.CodedOutputStream
               .computeBytesSize(
-                      3, (com.google.protobuf.ByteString) log_);
+            3, (com.google.protobuf.ByteString) log_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -339,7 +341,7 @@ public final class JobSubmitResponse extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.manager.message.JobSubmitResponse)) {
       return super.equals(obj);
@@ -358,7 +360,7 @@ public final class JobSubmitResponse extends
         break;
       case 3:
         if (!getChunk()
-                .equals(other.getChunk())) return false;
+            .equals(other.getChunk())) return false;
         break;
       case 0:
       default:
@@ -377,7 +379,7 @@ public final class JobSubmitResponse extends
       case 1:
         hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
         hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-                getSuccess());
+            getSuccess());
         break;
       case 2:
         hash = (37 * hash) + LOGS_FIELD_NUMBER;
@@ -396,8 +398,7 @@ public final class JobSubmitResponse extends
   }
 
   @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
+  public Builder newBuilderForType() { return newBuilder();
   }
 
   @java.lang.Override
@@ -431,11 +432,9 @@ public final class JobSubmitResponse extends
     CHUNK(3),
     LOG_NOT_SET(0);
     private final int value;
-
     LogCase(int value) {
       this.value = value;
     }
-
     /**
      * @param value The number of the enum to look for.
      * @return The enum associated with the given number.
@@ -454,10 +453,8 @@ public final class JobSubmitResponse extends
           return LOGS;
         case 3:
           return CHUNK;
-        case 0:
-          return LOG_NOT_SET;
-        default:
-          return null;
+        case 0: return LOG_NOT_SET;
+        default: return null;
       }
     }
 
@@ -487,19 +484,6 @@ public final class JobSubmitResponse extends
 
     }
 
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.class, org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.Builder.class);
-    }
-
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -508,9 +492,8 @@ public final class JobSubmitResponse extends
       return this;
     }
 
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
       return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_descriptor;
     }
 
@@ -551,6 +534,20 @@ public final class JobSubmitResponse extends
     }
 
     @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                      org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.class, org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.Builder.class);
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+    getDescriptorForType() {
+      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobSubmitResponse_descriptor;
+    }
+
+    @java.lang.Override
     public Builder setField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
             java.lang.Object value) {
@@ -574,23 +571,6 @@ public final class JobSubmitResponse extends
             com.google.protobuf.Descriptors.FieldDescriptor field,
             int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.manager.message.JobSubmitResponse) {
-        return mergeFrom((org.bupt.fedraft.rpc.manager.message.JobSubmitResponse) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
     }
 
     public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.JobSubmitResponse other) {
@@ -622,6 +602,23 @@ public final class JobSubmitResponse extends
     @java.lang.Override
     public boolean isInitialized() {
       return true;
+    }
+
+    @java.lang.Override
+    public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.manager.message.JobSubmitResponse) {
+        return mergeFrom((org.bupt.fedraft.rpc.manager.message.JobSubmitResponse) other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
     }
 
     @java.lang.Override
@@ -803,6 +800,20 @@ public final class JobSubmitResponse extends
     /**
      * <code>string logs = 2;</code>
      *
+     * @return This builder for chaining.
+     */
+    public Builder clearLogs() {
+      if (logCase_ == 2) {
+        logCase_ = 0;
+        log_ = null;
+        onChanged();
+      }
+      return this;
+    }
+
+    /**
+     * <code>string logs = 2;</code>
+     *
      * @param value The bytes for logs to set.
      * @return This builder for chaining.
      */
@@ -819,31 +830,14 @@ public final class JobSubmitResponse extends
     }
 
     /**
-     * <code>string logs = 2;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearLogs() {
-      if (logCase_ == 2) {
-        logCase_ = 0;
-        log_ = null;
-        onChanged();
-      }
-      return this;
-    }
-
-    /**
      * <code>bytes chunk = 3;</code>
-     *
      * @return Whether the chunk field is set.
      */
     public boolean hasChunk() {
       return logCase_ == 3;
     }
-
     /**
      * <code>bytes chunk = 3;</code>
-     *
      * @return The chunk.
      */
     public com.google.protobuf.ByteString getChunk() {
@@ -852,16 +846,14 @@ public final class JobSubmitResponse extends
       }
       return com.google.protobuf.ByteString.EMPTY;
     }
-
     /**
      * <code>bytes chunk = 3;</code>
-     *
      * @param value The chunk to set.
      * @return This builder for chaining.
      */
     public Builder setChunk(com.google.protobuf.ByteString value) {
       if (value == null) {
-        throw new NullPointerException();
+    throw new NullPointerException();
       }
       logCase_ = 3;
       log_ = value;
@@ -891,7 +883,7 @@ public final class JobSubmitResponse extends
 
     @java.lang.Override
     public Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.mergeUnknownFields(unknownFields);
     }
 

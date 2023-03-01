@@ -96,7 +96,7 @@ public class Candidate extends BaseJob {
     @Override
     protected void setupTimer() {
 
-        long timeout = (long) ((Math.random() + 1.2) * BASE_HEARTBEAT_TIMEOUT);
+        long timeout = (long) ((Math.random() * 1.3 + 1.1) * BASE_HEARTBEAT_TIMEOUT);
 
         if (logger.isDebugEnabled()) {
             logger.debug("candidate setup timeout task with {} ms", timeout);

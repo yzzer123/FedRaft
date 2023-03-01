@@ -19,6 +19,9 @@ public class JobManagerService extends JobManagerServiceGrpc.JobManagerServiceIm
         this.managerState = managerState;
     }
 
+    /**
+     * 负责接受训练过程中产生的训练日志
+     */
     @Override
     public void appendLog(AppendJobLogRequest request, StreamObserver<AppendJobLogResponse> responseObserver) {
 
@@ -26,6 +29,9 @@ public class JobManagerService extends JobManagerServiceGrpc.JobManagerServiceIm
             // 转发日志
             ManagerClient client = managerState.getManagerClientPool().getClient(request.getSourceId());
             client.appendLog(request);
+            responseObserver.onNext(AppendJobLogResponse.getDefaultInstance());
+            responseObserver.onCompleted();
+            return;
         }
 
         JobManager jobState = managerState.getJobState(request.getSourceId(), request.getUuid());
@@ -36,5 +42,7 @@ public class JobManagerService extends JobManagerServiceGrpc.JobManagerServiceIm
                 jobState.responseObserver.onNext(response);
             }
         }
+        responseObserver.onNext(AppendJobLogResponse.getDefaultInstance());
+        responseObserver.onCompleted();
     }
 }
