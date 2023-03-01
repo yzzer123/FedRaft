@@ -142,6 +142,7 @@ public class ManagerServer {
 
             try {
                 List<NodeInfo> cluster = zkClient.getCluster();
+                logger.info("read cluster info from zk: {}", cluster.toString());
                 for (NodeInfo node : cluster) {
                     topology.add(new Tuple<>(node.getNodeId(), 2000000));
                 }

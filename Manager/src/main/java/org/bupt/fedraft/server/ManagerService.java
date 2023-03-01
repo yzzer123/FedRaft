@@ -137,9 +137,6 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
 
             @Override
             public void onNext(JobSubmitRequest request) {
-                logger.debug("received request size: {}", request.getSerializedSize());
-
-
                 // 收到提交的任务初始化请求
                 if (request.hasConf()) {
 

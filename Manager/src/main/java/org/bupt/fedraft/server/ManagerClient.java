@@ -111,7 +111,7 @@ public class ManagerClient extends Client {
         int i = 0;
         long selfId = managerState.getSelfNodeInfo().getNodeId();
         ClientPool<ManagerClient> pool = managerState.getManagerClientPool();
-        AtomicInteger failCount = new AtomicInteger(1);
+        AtomicInteger failCount = new AtomicInteger(0);
 
 
         for (long id : cluster) {
@@ -133,7 +133,6 @@ public class ManagerClient extends Client {
                             logger.error(e.getMessage());
                         }
                         managerState.getThreadPool().submit(() -> {
-                            logger.debug("send request size: {}", request.getSerializedSize());
                             observer.getLeft().onNext(request);
                             observer.getRight().release();
                         });
@@ -263,13 +262,15 @@ public class ManagerClient extends Client {
 
                     @Override
                     public void onNext(JobSubmitResponse response) {
-                        if (!response.getSuccess()) {
+                        if (response.hasSuccess() && !response.getSuccess()) {
+                            logger.error("got a job submit failure!");
                             onFail();
                         }
                     }
 
                     @Override
                     public void onError(Throwable t) {
+                        logger.error(t.getMessage());
                         onFail();
                     }
 
