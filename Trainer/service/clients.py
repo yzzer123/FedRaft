@@ -37,8 +37,10 @@ class JobSubmitClient:
         
         async for response in  self.stub.JobSubmit(JobSubmitClient._make_request(code_file_path, model)):
             response: JobSubmitResponse
-            JobSubmitClient.logger.info(response.logs if response.logs else f"job submit status: {response.success}")
-        
+            if response:
+                JobSubmitClient.logger.info(response.logs if response.logs else f"job submit status: {response.success}")
+            else:
+                JobSubmitClient.logger.info("NoneType")
         
         
         

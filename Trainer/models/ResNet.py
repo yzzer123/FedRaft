@@ -1,10 +1,15 @@
 
 from models import BasicModel, LocalEnvironment
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader
 from typing import Tuple 
 from torchvision import datasets,transforms
 import torch
 import torch.nn.functional as F
+from utils import Properties
+import logging
+
+
+logger: logging = Properties.getLogger(__name__)
 
 #模块搭建
 class ResBlock(torch.nn.Module):
@@ -32,6 +37,7 @@ class ResNetMNIST(BasicModel):
     def client_init(self, env: LocalEnvironment):
         super().client_init(env)
         env.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        logger.info("client inited")
         
         
     def forward(self, x):
@@ -74,7 +80,7 @@ class ResNetMNIST(BasicModel):
                 optimizer.step()
                 scheduler.step()
                 if batch_index%100==0:
-                    print("epoch:",epoch,"batch_index:",batch_index/100,"loss:",l)
+                    logger.info("epoch:",epoch,"batch_index:",batch_index/100,"loss:",l)
         self.data_size =data_size
     
     
@@ -94,7 +100,7 @@ class ResNetMNIST(BasicModel):
                 if batch_index%10==0:
                     eval_msg += f"测试进度: {100.0*batch_index/100} %\n"
             eval_msg += f"准确率为: {correct*100.0/total} %\n"
-        return eval_msg
+        logger.info(eval_msg)
     
     def save(self):
         
