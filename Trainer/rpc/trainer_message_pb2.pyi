@@ -41,9 +41,9 @@ class ModelClass(_message.Message):
     LOCAL_EPOCH_FIELD_NUMBER: _ClassVar[int]
     MODULE_FIELD_NUMBER: _ClassVar[int]
     class_name: str
-    local_epoch: str
+    local_epoch: int
     module: str
-    def __init__(self, module: _Optional[str] = ..., class_name: _Optional[str] = ..., local_epoch: _Optional[str] = ...) -> None: ...
+    def __init__(self, module: _Optional[str] = ..., class_name: _Optional[str] = ..., local_epoch: _Optional[int] = ...) -> None: ...
 
 class PushModelRequest(_message.Message):
     __slots__ = ["model_chunk", "server_id"]
