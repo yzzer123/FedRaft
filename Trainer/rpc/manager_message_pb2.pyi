@@ -1,3 +1,4 @@
+import trainer_message_pb2 as _trainer_message_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf.internal import enum_type_wrapper as _enum_type_wrapper
 from google.protobuf import descriptor as _descriptor
@@ -40,18 +41,22 @@ class CodeFile(_message.Message):
     def __init__(self, fileName: _Optional[str] = ..., code: _Optional[str] = ...) -> None: ...
 
 class JobConfiguration(_message.Message):
-    __slots__ = ["codeFile", "global_epoch", "participants", "sourceId", "uuid"]
+    __slots__ = ["codeFile", "datasets_name", "global_epoch", "model_class", "participants", "sourceId", "uuid"]
     CODEFILE_FIELD_NUMBER: _ClassVar[int]
+    DATASETS_NAME_FIELD_NUMBER: _ClassVar[int]
     GLOBAL_EPOCH_FIELD_NUMBER: _ClassVar[int]
+    MODEL_CLASS_FIELD_NUMBER: _ClassVar[int]
     PARTICIPANTS_FIELD_NUMBER: _ClassVar[int]
     SOURCEID_FIELD_NUMBER: _ClassVar[int]
     UUID_FIELD_NUMBER: _ClassVar[int]
     codeFile: CodeFile
+    datasets_name: str
     global_epoch: int
+    model_class: _trainer_message_pb2.ModelClass
     participants: _containers.RepeatedScalarFieldContainer[int]
     sourceId: int
     uuid: int
-    def __init__(self, uuid: _Optional[int] = ..., sourceId: _Optional[int] = ..., participants: _Optional[_Iterable[int]] = ..., codeFile: _Optional[_Union[CodeFile, _Mapping]] = ..., global_epoch: _Optional[int] = ...) -> None: ...
+    def __init__(self, uuid: _Optional[int] = ..., sourceId: _Optional[int] = ..., participants: _Optional[_Iterable[int]] = ..., codeFile: _Optional[_Union[CodeFile, _Mapping]] = ..., global_epoch: _Optional[int] = ..., datasets_name: _Optional[str] = ..., model_class: _Optional[_Union[_trainer_message_pb2.ModelClass, _Mapping]] = ...) -> None: ...
 
 class JobSubmitRequest(_message.Message):
     __slots__ = ["conf", "modelChunk"]

@@ -20,22 +20,28 @@ class BasicModel(nn.Module):
         self.local_num_epoch = local_num_epoch
         self.data_size = 0        
         
-    def merge(self, models: List[nn.Module], total_data_size: int, env: LocalEnvironment) -> nn.Module:
+    def merge(self, models: List[Tuple[OrderedDict, int]], total_data_size: int, env: LocalEnvironment) -> nn.Module:
         """
             默认FedAvg根据数据量加权平均 平均后覆盖到自己的参数中
         """  
-        params = [torch.zeros(param.shape).to(env.device) for param in self.parameters()]
-        
         with torch.no_grad():
-            for model in models:
-                weight = torch.tensor(model.data_size/total_data_size).to(env.device)
-                for i, param in enumerate(model.parameters(), 0):
-                    params[i] += (weight * param)
             
-            for i, param in enumerate(self.parameters()):
-                param[:] = params[i]
-                                   
-        return self
+            merged_params = {}
+            for name, param in models[0][0].items():
+                merged_params[name] = torch.zeros_like(param, device=env.device, dtype=param.dtype)
+        
+        
+            for model_state, data_size in models:
+                # import pdb
+                # pdb.set_trace()
+                weight = torch.tensor(data_size/total_data_size, dtype=torch.float32).to(env.device)
+                for name, param in model_state.items():
+                    weighted_param = weight * param
+                    if param.dtype != weighted_param.dtype:
+                        weighted_param = weighted_param.to(param.dtype)
+                    merged_params[name].add_(weighted_param)
+            self.load_state_dict(merged_params)
+        return merged_params
         
    
     def client_init(self, env: LocalEnvironment):

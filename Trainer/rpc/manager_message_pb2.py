@@ -11,9 +11,10 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+import rpc as trainer__message__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15manager_message.proto\x12\x07\x66\x65\x64raft\"j\n\x14\x41ppendEntriesRequest\x12\x0c\n\x04term\x18\x01 \x01(\x05\x12\x10\n\x08leaderId\x18\x02 \x01(\x03\x12\x12\n\nentryIndex\x18\x03 \x01(\x03\x12\x0f\n\x07nodeIds\x18\x04 \x03(\x03\x12\r\n\x05\x64\x65lay\x18\x05 \x03(\x05\"4\n\x15\x41ppendEntriesResponse\x12\x0c\n\x04term\x18\x01 \x01(\x05\x12\r\n\x05\x64\x65lay\x18\x02 \x01(\x05\"K\n\x12ManagerVoteRequest\x12\x0c\n\x04term\x18\x01 \x01(\x05\x12\x13\n\x0b\x63\x61ndidateId\x18\x02 \x01(\x03\x12\x12\n\nentryIndex\x18\x03 \x01(\x03\"8\n\x13ManagerVoteResponse\x12\x0c\n\x04term\x18\x01 \x01(\x05\x12\x13\n\x0bvoteGranted\x18\x02 \x01(\x08\"*\n\x08\x43odeFile\x12\x10\n\x08\x66ileName\x18\x01 \x01(\t\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\"\x83\x01\n\x10JobConfiguration\x12\x0c\n\x04uuid\x18\x01 \x01(\x05\x12\x10\n\x08sourceId\x18\x02 \x01(\x03\x12\x14\n\x0cparticipants\x18\x03 \x03(\x03\x12#\n\x08\x63odeFile\x18\x04 \x01(\x0b\x32\x11.fedraft.CodeFile\x12\x14\n\x0cglobal_epoch\x18\x05 \x01(\x05\"^\n\x10JobSubmitRequest\x12)\n\x04\x63onf\x18\x01 \x01(\x0b\x32\x19.fedraft.JobConfigurationH\x00\x12\x14\n\nmodelChunk\x18\x02 \x01(\x0cH\x00\x42\t\n\x07JobInfo\"N\n\x11JobSubmitResponse\x12\x11\n\x07success\x18\x01 \x01(\x08H\x00\x12\x0e\n\x04logs\x18\x02 \x01(\tH\x00\x12\x0f\n\x05\x63hunk\x18\x03 \x01(\x0cH\x00\x42\x05\n\x03Log*8\n\rManagerStatus\x12\n\n\x06LEADER\x10\x00\x12\r\n\tCANDIDATE\x10\x01\x12\x0c\n\x08\x46OLLOWER\x10\x02\x42(\n$org.bupt.fedraft.rpc.manager.messageP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15manager_message.proto\x12\x07\x66\x65\x64raft\x1a\x15trainer_message.proto\"j\n\x14\x41ppendEntriesRequest\x12\x0c\n\x04term\x18\x01 \x01(\x05\x12\x10\n\x08leaderId\x18\x02 \x01(\x03\x12\x12\n\nentryIndex\x18\x03 \x01(\x03\x12\x0f\n\x07nodeIds\x18\x04 \x03(\x03\x12\r\n\x05\x64\x65lay\x18\x05 \x03(\x05\"4\n\x15\x41ppendEntriesResponse\x12\x0c\n\x04term\x18\x01 \x01(\x05\x12\r\n\x05\x64\x65lay\x18\x02 \x01(\x05\"K\n\x12ManagerVoteRequest\x12\x0c\n\x04term\x18\x01 \x01(\x05\x12\x13\n\x0b\x63\x61ndidateId\x18\x02 \x01(\x03\x12\x12\n\nentryIndex\x18\x03 \x01(\x03\"8\n\x13ManagerVoteResponse\x12\x0c\n\x04term\x18\x01 \x01(\x05\x12\x13\n\x0bvoteGranted\x18\x02 \x01(\x08\"*\n\x08\x43odeFile\x12\x10\n\x08\x66ileName\x18\x01 \x01(\t\x12\x0c\n\x04\x63ode\x18\x02 \x01(\t\"\xc4\x01\n\x10JobConfiguration\x12\x0c\n\x04uuid\x18\x01 \x01(\x05\x12\x10\n\x08sourceId\x18\x02 \x01(\x03\x12\x14\n\x0cparticipants\x18\x03 \x03(\x03\x12#\n\x08\x63odeFile\x18\x04 \x01(\x0b\x32\x11.fedraft.CodeFile\x12\x14\n\x0cglobal_epoch\x18\x05 \x01(\x05\x12\x15\n\rdatasets_name\x18\x06 \x01(\t\x12(\n\x0bmodel_class\x18\x07 \x01(\x0b\x32\x13.fedraft.ModelClass\"^\n\x10JobSubmitRequest\x12)\n\x04\x63onf\x18\x01 \x01(\x0b\x32\x19.fedraft.JobConfigurationH\x00\x12\x14\n\nmodelChunk\x18\x02 \x01(\x0cH\x00\x42\t\n\x07JobInfo\"N\n\x11JobSubmitResponse\x12\x11\n\x07success\x18\x01 \x01(\x08H\x00\x12\x0e\n\x04logs\x18\x02 \x01(\tH\x00\x12\x0f\n\x05\x63hunk\x18\x03 \x01(\x0cH\x00\x42\x05\n\x03Log*8\n\rManagerStatus\x12\n\n\x06LEADER\x10\x00\x12\r\n\tCANDIDATE\x10\x01\x12\x0c\n\x08\x46OLLOWER\x10\x02\x42(\n$org.bupt.fedraft.rpc.manager.messageP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'manager_message_pb2', globals())
@@ -21,22 +22,22 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n$org.bupt.fedraft.rpc.manager.messageP\001'
-  _MANAGERSTATUS._serialized_start=685
-  _MANAGERSTATUS._serialized_end=741
-  _APPENDENTRIESREQUEST._serialized_start=34
-  _APPENDENTRIESREQUEST._serialized_end=140
-  _APPENDENTRIESRESPONSE._serialized_start=142
-  _APPENDENTRIESRESPONSE._serialized_end=194
-  _MANAGERVOTEREQUEST._serialized_start=196
-  _MANAGERVOTEREQUEST._serialized_end=271
-  _MANAGERVOTERESPONSE._serialized_start=273
-  _MANAGERVOTERESPONSE._serialized_end=329
-  _CODEFILE._serialized_start=331
-  _CODEFILE._serialized_end=373
-  _JOBCONFIGURATION._serialized_start=376
-  _JOBCONFIGURATION._serialized_end=507
-  _JOBSUBMITREQUEST._serialized_start=509
-  _JOBSUBMITREQUEST._serialized_end=603
-  _JOBSUBMITRESPONSE._serialized_start=605
-  _JOBSUBMITRESPONSE._serialized_end=683
+  _MANAGERSTATUS._serialized_start=773
+  _MANAGERSTATUS._serialized_end=829
+  _APPENDENTRIESREQUEST._serialized_start=57
+  _APPENDENTRIESREQUEST._serialized_end=163
+  _APPENDENTRIESRESPONSE._serialized_start=165
+  _APPENDENTRIESRESPONSE._serialized_end=217
+  _MANAGERVOTEREQUEST._serialized_start=219
+  _MANAGERVOTEREQUEST._serialized_end=294
+  _MANAGERVOTERESPONSE._serialized_start=296
+  _MANAGERVOTERESPONSE._serialized_end=352
+  _CODEFILE._serialized_start=354
+  _CODEFILE._serialized_end=396
+  _JOBCONFIGURATION._serialized_start=399
+  _JOBCONFIGURATION._serialized_end=595
+  _JOBSUBMITREQUEST._serialized_start=597
+  _JOBSUBMITREQUEST._serialized_end=691
+  _JOBSUBMITRESPONSE._serialized_start=693
+  _JOBSUBMITRESPONSE._serialized_end=771
 # @@protoc_insertion_point(module_scope)

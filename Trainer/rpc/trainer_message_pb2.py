@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15trainer_message.proto\x12\x07\x66\x65\x64raft\"\'\n\x10InitModelRequest\x12\x13\n\x0bmodel_chunk\x18\x01 \x01(\x0c\"#\n\x11InitModelResponse\x12\x0e\n\x06status\x18\x01 \x01(\x08\"#\n\x0cTrainRequest\x12\x13\n\x0bmodel_chunk\x18\x01 \x01(\x0c\"$\n\rTrainResponse\x12\x13\n\x0bmodel_chunk\x18\x01 \x01(\x0c\"G\n\x10PushModelRequest\x12\x13\n\tserver_id\x18\x01 \x01(\x04H\x00\x12\x15\n\x0bmodel_chunk\x18\x02 \x01(\x0cH\x00\x42\x07\n\x05model\"#\n\x11PushModelResponse\x12\x0e\n\x06status\x18\x01 \x01(\x08\"\"\n\x0cMergeRequest\x12\x12\n\nserver_ids\x18\x01 \x03(\x04\"^\n\rMergeResponse\x12\x13\n\tserver_id\x18\x01 \x01(\x04H\x00\x12\x15\n\x0bmodel_chunk\x18\x02 \x01(\x0cH\x00\x12\x18\n\x0emodel_eval_log\x18\x03 \x01(\tH\x00\x42\x07\n\x05modelB(\n$org.bupt.fedraft.rpc.trainer.messageP\x01\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15trainer_message.proto\x12\x07\x66\x65\x64raft\"E\n\nModelClass\x12\x0e\n\x06module\x18\x01 \x01(\t\x12\x12\n\nclass_name\x18\x02 \x01(\t\x12\x13\n\x0blocal_epoch\x18\x03 \x01(\t\"^\n\x10InitModelRequest\x12*\n\x0bmodel_class\x18\x01 \x01(\x0b\x32\x13.fedraft.ModelClassH\x00\x12\x15\n\x0bmodel_chunk\x18\x02 \x01(\x0cH\x00\x42\x07\n\x05model\"#\n\x11InitModelResponse\x12\x0e\n\x06status\x18\x01 \x01(\x08\"#\n\x0cTrainRequest\x12\x13\n\x0bmodel_chunk\x18\x01 \x01(\x0c\"$\n\rTrainResponse\x12\x13\n\x0bmodel_chunk\x18\x01 \x01(\x0c\"G\n\x10PushModelRequest\x12\x13\n\tserver_id\x18\x01 \x01(\x04H\x00\x12\x15\n\x0bmodel_chunk\x18\x02 \x01(\x0cH\x00\x42\x07\n\x05model\"#\n\x11PushModelResponse\x12\x0e\n\x06status\x18\x01 \x01(\x08\"\"\n\x0cMergeRequest\x12\x12\n\nserver_ids\x18\x01 \x03(\x04\"^\n\rMergeResponse\x12\x13\n\tserver_id\x18\x01 \x01(\x04H\x00\x12\x15\n\x0bmodel_chunk\x18\x02 \x01(\x0cH\x00\x12\x18\n\x0emodel_eval_log\x18\x03 \x01(\tH\x00\x42\x07\n\x05modelB(\n$org.bupt.fedraft.rpc.trainer.messageP\x01\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'trainer_message_pb2', globals())
@@ -21,20 +21,22 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n$org.bupt.fedraft.rpc.trainer.messageP\001'
-  _INITMODELREQUEST._serialized_start=34
-  _INITMODELREQUEST._serialized_end=73
-  _INITMODELRESPONSE._serialized_start=75
-  _INITMODELRESPONSE._serialized_end=110
-  _TRAINREQUEST._serialized_start=112
-  _TRAINREQUEST._serialized_end=147
-  _TRAINRESPONSE._serialized_start=149
-  _TRAINRESPONSE._serialized_end=185
-  _PUSHMODELREQUEST._serialized_start=187
-  _PUSHMODELREQUEST._serialized_end=258
-  _PUSHMODELRESPONSE._serialized_start=260
-  _PUSHMODELRESPONSE._serialized_end=295
-  _MERGEREQUEST._serialized_start=297
-  _MERGEREQUEST._serialized_end=331
-  _MERGERESPONSE._serialized_start=333
-  _MERGERESPONSE._serialized_end=427
+  _MODELCLASS._serialized_start=34
+  _MODELCLASS._serialized_end=103
+  _INITMODELREQUEST._serialized_start=105
+  _INITMODELREQUEST._serialized_end=199
+  _INITMODELRESPONSE._serialized_start=201
+  _INITMODELRESPONSE._serialized_end=236
+  _TRAINREQUEST._serialized_start=238
+  _TRAINREQUEST._serialized_end=273
+  _TRAINRESPONSE._serialized_start=275
+  _TRAINRESPONSE._serialized_end=311
+  _PUSHMODELREQUEST._serialized_start=313
+  _PUSHMODELREQUEST._serialized_end=384
+  _PUSHMODELRESPONSE._serialized_start=386
+  _PUSHMODELRESPONSE._serialized_end=421
+  _MERGEREQUEST._serialized_start=423
+  _MERGEREQUEST._serialized_end=457
+  _MERGERESPONSE._serialized_start=459
+  _MERGERESPONSE._serialized_end=553
 # @@protoc_insertion_point(module_scope)

@@ -2,8 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import rpc.jobmanager_message_pb2 as jobmanager__message__pb2
-import rpc.manager_message_pb2 as manager__message__pb2
+import rpc as jobmanager__message__pb2
+import rpc as manager__message__pb2
 
 
 class ManagerServiceStub(object):
