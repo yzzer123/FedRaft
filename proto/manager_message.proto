@@ -5,6 +5,8 @@ package fedraft;
 option java_package = "org.bupt.fedraft.rpc.manager.message";
 option java_multiple_files = true;
 
+import "trainer_message.proto";
+
 enum ManagerStatus{
   LEADER = 0;
   CANDIDATE = 1;
@@ -49,6 +51,8 @@ message JobConfiguration{
   repeated int64 participants = 3;  // 训练任务的参与者
   CodeFile codeFile = 4; // 任务代码
   int32 global_epoch = 5;
+  string datasets_name = 6;
+  ModelClass model_class = 7;
 }
 
 

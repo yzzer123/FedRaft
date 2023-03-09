@@ -20,7 +20,7 @@ then
  echo "port argument is needed"
  exit
 fi
- $PYTHON_HOME/bin/python3 $SHELL_FOLDER/../Trainer/main.py -p $2
+ $PYTHON_HOME/bin/python3 -m service -p $2
 ;;
 "stop")
 ;;

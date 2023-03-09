@@ -6,10 +6,19 @@ option java_package = "org.bupt.fedraft.rpc.trainer.message";
 option java_multiple_files = true;
 
 
-message InitModelRequest{
-  bytes model_chunk = 1;
+message ModelClass{
+  string module = 1;
+  string class_name = 2;
+  string local_epoch = 3;
 }
 
+
+message InitModelRequest{
+  oneof model{
+    ModelClass model_class = 1;
+    bytes model_chunk = 2;
+  }
+}
 
 message InitModelResponse{
   bool status = 1;

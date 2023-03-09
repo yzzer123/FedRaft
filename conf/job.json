@@ -1,0 +1,12 @@
+{   
+    "code":{
+        "code_path": "./models/ResNet.py",
+        "model_class": "ResNetCIFAR10",
+        "model_module": "models.ResNet"
+    },
+    "train":{
+        "global_epoch": 50,
+        "local_epoch": 5,
+        "dataset": "CIFAR10"
+    }
+}
