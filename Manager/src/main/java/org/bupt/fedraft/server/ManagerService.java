@@ -10,6 +10,7 @@ import org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse;
 import org.bupt.fedraft.rpc.manager.message.*;
 import org.bupt.fedraft.rpc.manager.service.ManagerServiceGrpc;
 import org.bupt.fedraft.rpc.trainer.message.InitModelRequest;
+import org.bupt.fedraft.state.DataSetsState;
 import org.bupt.fedraft.state.JobManager;
 import org.bupt.fedraft.state.ManagerState;
 import org.slf4j.Logger;
@@ -93,9 +94,11 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
             private void initLocalEnv(JobSubmitRequest request, boolean isSubmitter, Context context) {
                 // 构建本地环境
                 try {
+
                     // TODO 后续对windows做适配
                     String modelHome = Configuration.getString(Configuration.TRAINER_MODEL_HOME);
                     assert modelHome != null;
+                    // 判断配置目录有没有/结尾， TODO 路径后续适配Windows
                     if (!modelHome.endsWith("/")) {
                         modelHome += "/";
                     }
@@ -103,7 +106,6 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                             modelHome
                                     + request.getConf().getCodeFile().getFileName()));
                     bufferedWriter.write(request.getConf().getCodeFile().getCode());
-                    bufferedWriter.close();
                     logger.info("write code file success!");
                 } catch (IOException e) {
                     JobSubmitResponse logResponse = JobSubmitResponse.newBuilder()
@@ -125,14 +127,21 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                         finalRequest.getConf().getSourceId(),
                         finalRequest.getConf().getGlobalEpoch(),
                         finalRequest.getConf().getParticipantsList(),
+                        finalRequest.getConf().getDatasetsName(),
+                        finalRequest.getConf().getModelClass(),
                         isSubmitter ? observer : null));
-
 
                 managerState.addJobState(jobState);
 
                 Context newContext = context.fork();
 
-                newContext.run(() -> trainerObserver = jobState.getTrainerClient().initModel());
+                newContext.run(() -> {
+                    trainerObserver = jobState.getTrainerClient().initModel();
+                    InitModelRequest modelClassRequest = InitModelRequest.newBuilder()
+                            .setModelClass(jobState.modelClass)
+                            .build();
+                    trainerObserver.onNext(modelClassRequest);
+                });
             }
 
             @Override
@@ -155,12 +164,13 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                         });
 
                         JobConfiguration jobConf = jobConfBuilder.build();
-
                         request = request.toBuilder().setConf(jobConf).build();
                         isSubmitter = true;
                     }
                     // 收到来自source的提交请求 检查配置是否合法
-                    if (managerState.getJobState(request.getConf().getSourceId(),
+                    // 判断本节点是否存在该数据集
+                    if (DataSetsState.contains(request.getConf().getDatasetsName())
+                            || managerState.getJobState(request.getConf().getSourceId(),
                             request.getConf().getUuid()) != null) {  // uuid不合法 无法创建
                         logger.warn("job conf is invalid, fail to load");
 

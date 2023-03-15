@@ -106,16 +106,6 @@ public final class AppendJobLogRequest extends
     return PARSER.parseFrom(data);
   }
 
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
-  }
-
   public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
           java.nio.ByteBuffer data,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -191,6 +181,14 @@ public final class AppendJobLogRequest extends
             .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+
+  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+
   public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
@@ -235,12 +233,14 @@ public final class AppendJobLogRequest extends
     return logs_.getByteString(index);
   }
 
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
 
-  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    memoizedIsInitialized = 1;
+    return true;
   }
 
   @java.lang.Override
@@ -288,7 +288,7 @@ public final class AppendJobLogRequest extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest)) {
       return super.equals(obj);
@@ -326,9 +326,7 @@ public final class AppendJobLogRequest extends
   }
 
   @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
+  public Builder newBuilderForType() { return newBuilder(); }
 
   @java.lang.Override
   public Builder toBuilder() {
@@ -454,6 +452,36 @@ public final class AppendJobLogRequest extends
       return super.clearField(field);
     }
 
+    @java.lang.Override
+    public Builder clearOneof(
+            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+      return super.clearOneof(oneof);
+    }
+
+    @java.lang.Override
+    public Builder setRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            int index, java.lang.Object value) {
+      return super.setRepeatedField(field, index, value);
+    }
+
+    @java.lang.Override
+    public Builder addRepeatedField(
+            com.google.protobuf.Descriptors.FieldDescriptor field,
+            java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) {
+        return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
+    }
+
     public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest other) {
       if (other == org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.getDefaultInstance()) return this;
       if (other.getSourceId() != 0L) {
@@ -480,46 +508,6 @@ public final class AppendJobLogRequest extends
     @java.lang.Override
     public boolean isInitialized() {
       return true;
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    /**
-     * <code>int64 sourceId = 1;</code>
-     *
-     * @return The sourceId.
-     */
-    @java.lang.Override
-    public long getSourceId() {
-      return sourceId_;
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) {
-        return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
     }
 
     @java.lang.Override
@@ -573,6 +561,16 @@ public final class AppendJobLogRequest extends
     /**
      * <code>int64 sourceId = 1;</code>
      *
+     * @return The sourceId.
+     */
+    @java.lang.Override
+    public long getSourceId() {
+      return sourceId_;
+    }
+
+    /**
+     * <code>int64 sourceId = 1;</code>
+     *
      * @param value The sourceId to set.
      * @return This builder for chaining.
      */
@@ -581,16 +579,6 @@ public final class AppendJobLogRequest extends
       sourceId_ = value;
       onChanged();
       return this;
-    }
-
-    /**
-     * <code>int32 uuid = 2;</code>
-     *
-     * @return The uuid.
-     */
-    @java.lang.Override
-    public int getUuid() {
-      return uuid_;
     }
 
     /**
@@ -603,6 +591,16 @@ public final class AppendJobLogRequest extends
       sourceId_ = 0L;
       onChanged();
       return this;
+    }
+
+    /**
+     * <code>int32 uuid = 2;</code>
+     *
+     * @return The uuid.
+     */
+    @java.lang.Override
+    public int getUuid() {
+      return uuid_;
     }
 
     /**

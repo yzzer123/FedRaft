@@ -14,18 +14,18 @@ public final class TrainRequest extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:fedraft.TrainRequest)
         TrainRequestOrBuilder {
-  public static final int MODEL_CHUNK_FIELD_NUMBER = 1;
+    public static final int MODEL_CHUNK_FIELD_NUMBER = 1;
 
-  // Use TrainRequest.newBuilder() to construct.
-  private TrainRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
+    // Use TrainRequest.newBuilder() to construct.
+    private TrainRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
 
-  private TrainRequest() {
-    modelChunk_ = com.google.protobuf.ByteString.EMPTY;
-  }
+    private TrainRequest() {
+        modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+    }
 
-  private static final long serialVersionUID = 0L;
+    private static final long serialVersionUID = 0L;
 
   @java.lang.Override
   public com.google.protobuf.UnknownFieldSet
@@ -33,25 +33,25 @@ public final class TrainRequest extends
     return this.unknownFields;
   }
 
-  // @@protoc_insertion_point(class_scope:fedraft.TrainRequest)
-  private static final org.bupt.fedraft.rpc.trainer.message.TrainRequest DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<TrainRequest>
-          PARSER = new com.google.protobuf.AbstractParser<TrainRequest>() {
-    @java.lang.Override
-    public TrainRequest parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      Builder builder = newBuilder();
-      try {
-        builder.mergeFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(builder.buildPartial());
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                .setUnfinishedMessage(builder.buildPartial());
+    // @@protoc_insertion_point(class_scope:fedraft.TrainRequest)
+    private static final org.bupt.fedraft.rpc.trainer.message.TrainRequest DEFAULT_INSTANCE;
+    private static final com.google.protobuf.Parser<TrainRequest>
+            PARSER = new com.google.protobuf.AbstractParser<TrainRequest>() {
+        @java.lang.Override
+        public TrainRequest parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            Builder builder = newBuilder();
+            try {
+                builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                        .setUnfinishedMessage(builder.buildPartial());
       }
       return builder.buildPartial();
     }
@@ -60,12 +60,9 @@ public final class TrainRequest extends
   static {
     DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.trainer.message.TrainRequest();
   }
-
   private com.google.protobuf.ByteString modelChunk_;
-
   /**
    * <code>bytes model_chunk = 1;</code>
-   *
    * @return The modelChunk.
    */
   @java.lang.Override
@@ -74,7 +71,6 @@ public final class TrainRequest extends
   }
 
   private byte memoizedIsInitialized = -1;
-
   @java.lang.Override
   public boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -85,22 +81,22 @@ public final class TrainRequest extends
     return true;
   }
 
-  public static com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainRequest_descriptor;
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainRequest_descriptor;
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
   }
 
   @java.lang.Override
@@ -117,112 +113,112 @@ public final class TrainRequest extends
     return hash;
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.trainer.message.TrainRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    public static org.bupt.fedraft.rpc.trainer.message.TrainRequest parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
   public static org.bupt.fedraft.rpc.trainer.message.TrainRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  public static com.google.protobuf.Parser<TrainRequest> parser() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-    return new TrainRequest();
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    org.bupt.fedraft.rpc.trainer.message.TrainRequest.class, org.bupt.fedraft.rpc.trainer.message.TrainRequest.Builder.class);
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
-    if (!modelChunk_.isEmpty()) {
-      output.writeBytes(1, modelChunk_);
+    public static com.google.protobuf.Parser<TrainRequest> parser() {
+        return PARSER;
     }
-    getUnknownFields().writeTo(output);
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+        return new TrainRequest();
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(org.bupt.fedraft.rpc.trainer.message.TrainRequest prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+        return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainRequest_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        org.bupt.fedraft.rpc.trainer.message.TrainRequest.class, org.bupt.fedraft.rpc.trainer.message.TrainRequest.Builder.class);
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (!modelChunk_.isEmpty()) {
+            output.writeBytes(1, modelChunk_);
+        }
+        getUnknownFields().writeTo(output);
   }
 
   @java.lang.Override
@@ -232,8 +228,8 @@ public final class TrainRequest extends
 
     size = 0;
     if (!modelChunk_.isEmpty()) {
-      size += com.google.protobuf.CodedOutputStream
-              .computeBytesSize(1, modelChunk_);
+        size += com.google.protobuf.CodedOutputStream
+                .computeBytesSize(1, modelChunk_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -242,34 +238,34 @@ public final class TrainRequest extends
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-      return true;
-    }
-    if (!(obj instanceof org.bupt.fedraft.rpc.trainer.message.TrainRequest)) {
-      return super.equals(obj);
-    }
-    org.bupt.fedraft.rpc.trainer.message.TrainRequest other = (org.bupt.fedraft.rpc.trainer.message.TrainRequest) obj;
+      if (obj == this) {
+          return true;
+      }
+      if (!(obj instanceof org.bupt.fedraft.rpc.trainer.message.TrainRequest)) {
+          return super.equals(obj);
+      }
+      org.bupt.fedraft.rpc.trainer.message.TrainRequest other = (org.bupt.fedraft.rpc.trainer.message.TrainRequest) obj;
 
-    if (!getModelChunk()
-            .equals(other.getModelChunk())) return false;
-    return getUnknownFields().equals(other.getUnknownFields());
+      if (!getModelChunk()
+              .equals(other.getModelChunk())) return false;
+      return getUnknownFields().equals(other.getUnknownFields());
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder(); }
+    @java.lang.Override
+    public Builder newBuilderForType() {
+        return newBuilder(); }
 
   @java.lang.Override
   public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
+      return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
-  protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
   }
 
   @java.lang.Override
@@ -282,49 +278,49 @@ public final class TrainRequest extends
     return DEFAULT_INSTANCE;
   }
 
-  /**
-   * <pre>
-   * 请求Trainer训练的模型
-   * </pre>
-   * <p>
-   * Protobuf type {@code fedraft.TrainRequest}
-   */
-  public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:fedraft.TrainRequest)
-          org.bupt.fedraft.rpc.trainer.message.TrainRequestOrBuilder {
-    private com.google.protobuf.ByteString modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <pre>
+     * 请求Trainer训练的模型
+     * </pre>
+     * <p>
+     * Protobuf type {@code fedraft.TrainRequest}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:fedraft.TrainRequest)
+            org.bupt.fedraft.rpc.trainer.message.TrainRequestOrBuilder {
+        private com.google.protobuf.ByteString modelChunk_ = com.google.protobuf.ByteString.EMPTY;
 
-    // Construct using org.bupt.fedraft.rpc.trainer.message.TrainRequest.newBuilder()
-    private Builder() {
+        private Builder(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
 
-    }
+        }
 
-    private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
+        // Construct using org.bupt.fedraft.rpc.trainer.message.TrainRequest.newBuilder()
+        private Builder() {
 
-    }
+        }
 
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainRequest_descriptor;
-    }
+        public static com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainRequest_descriptor;
+        }
 
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
+            modelChunk_ = com.google.protobuf.ByteString.EMPTY;
 
-      return this;
-    }
+            return this;
+        }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainRequest_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.trainer.message.TrainRequest.class, org.bupt.fedraft.rpc.trainer.message.TrainRequest.Builder.class);
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainRequest_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.fedraft.rpc.trainer.message.TrainRequest.class, org.bupt.fedraft.rpc.trainer.message.TrainRequest.Builder.class);
     }
 
     @java.lang.Override
@@ -354,43 +350,43 @@ public final class TrainRequest extends
       return super.clone();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainRequest_descriptor;
-    }
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_TrainRequest_descriptor;
+        }
 
-    @java.lang.Override
-    public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.setField(field, value);
-    }
+        @java.lang.Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.setField(field, value);
+        }
 
-    @java.lang.Override
-    public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
+        @java.lang.Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
 
-    @java.lang.Override
-    public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
+        @java.lang.Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
 
-    @java.lang.Override
-    public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
+        @java.lang.Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, java.lang.Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
 
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
+        @java.lang.Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.addRepeatedField(field, value);
     }
 
     public Builder mergeFrom(org.bupt.fedraft.rpc.trainer.message.TrainRequest other) {
@@ -411,28 +407,28 @@ public final class TrainRequest extends
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof org.bupt.fedraft.rpc.trainer.message.TrainRequest) {
-        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.TrainRequest) other);
+          return mergeFrom((org.bupt.fedraft.rpc.trainer.message.TrainRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    @java.lang.Override
-    public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
+        @java.lang.Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
               break;
             case 10: {
               modelChunk_ = input.readBytes();
@@ -470,7 +466,7 @@ public final class TrainRequest extends
      */
     public Builder setModelChunk(com.google.protobuf.ByteString value) {
       if (value == null) {
-        throw new NullPointerException();
+          throw new NullPointerException();
   }
 
       modelChunk_ = value;
@@ -483,21 +479,21 @@ public final class TrainRequest extends
      */
     public Builder clearModelChunk() {
 
-      modelChunk_ = getDefaultInstance().getModelChunk();
-      onChanged();
-      return this;
+        modelChunk_ = getDefaultInstance().getModelChunk();
+        onChanged();
+        return this;
     }
 
-    @java.lang.Override
-    public Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
+        @java.lang.Override
+        public Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
 
-    @java.lang.Override
-    public Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+        @java.lang.Override
+        public Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
     }
 
 

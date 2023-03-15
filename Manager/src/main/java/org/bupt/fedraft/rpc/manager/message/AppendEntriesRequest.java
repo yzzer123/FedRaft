@@ -10,19 +10,19 @@ public final class AppendEntriesRequest extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:fedraft.AppendEntriesRequest)
         AppendEntriesRequestOrBuilder {
-  public static final int TERM_FIELD_NUMBER = 1;
+    public static final int TERM_FIELD_NUMBER = 1;
 
-  // Use AppendEntriesRequest.newBuilder() to construct.
-  private AppendEntriesRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
+    // Use AppendEntriesRequest.newBuilder() to construct.
+    private AppendEntriesRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
 
-  private AppendEntriesRequest() {
-    nodeIds_ = emptyLongList();
-    delay_ = emptyIntList();
-  }
+    private AppendEntriesRequest() {
+        nodeIds_ = emptyLongList();
+        delay_ = emptyIntList();
+    }
 
-  public static final int LEADERID_FIELD_NUMBER = 2;
+    public static final int LEADERID_FIELD_NUMBER = 2;
 
   @java.lang.Override
   public com.google.protobuf.UnknownFieldSet
@@ -31,8 +31,8 @@ public final class AppendEntriesRequest extends
   }
   public static final int ENTRYINDEX_FIELD_NUMBER = 3;
   public static final int NODEIDS_FIELD_NUMBER = 4;
-  public static final int DELAY_FIELD_NUMBER = 5;
-  private static final long serialVersionUID = 0L;
+    public static final int DELAY_FIELD_NUMBER = 5;
+    private static final long serialVersionUID = 0L;
   /**
    * <code>int32 term = 1;</code>
    * @return The term.
@@ -42,25 +42,25 @@ public final class AppendEntriesRequest extends
     return term_;
   }
 
-  // @@protoc_insertion_point(class_scope:fedraft.AppendEntriesRequest)
-  private static final org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<AppendEntriesRequest>
-          PARSER = new com.google.protobuf.AbstractParser<AppendEntriesRequest>() {
-    @java.lang.Override
-    public AppendEntriesRequest parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      Builder builder = newBuilder();
-      try {
-        builder.mergeFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(builder.buildPartial());
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                .setUnfinishedMessage(builder.buildPartial());
+    // @@protoc_insertion_point(class_scope:fedraft.AppendEntriesRequest)
+    private static final org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest DEFAULT_INSTANCE;
+    private static final com.google.protobuf.Parser<AppendEntriesRequest>
+            PARSER = new com.google.protobuf.AbstractParser<AppendEntriesRequest>() {
+        @java.lang.Override
+        public AppendEntriesRequest parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            Builder builder = newBuilder();
+            try {
+                builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                        .setUnfinishedMessage(builder.buildPartial());
       }
       return builder.buildPartial();
     }
@@ -137,101 +137,101 @@ public final class AppendEntriesRequest extends
     return delay_.getInt(index);
   }
 
-  public static com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_descriptor;
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_descriptor;
+    }
+
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
   }
 
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-    memoizedIsInitialized = 1;
-    return true;
-  }
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
+    public static org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
 
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
@@ -246,62 +246,67 @@ public final class AppendEntriesRequest extends
   }
 
   public static com.google.protobuf.Parser<AppendEntriesRequest> parser() {
-    return PARSER;
+      return PARSER;
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-    return new AppendEntriesRequest();
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.class, org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.Builder.class);
-  }
-
-  /**
-   * <pre>
-   * 拓扑信息
-   * </pre>
-   *
-   * <code>repeated int64 nodeIds = 4;</code>
-   *
-   * @return A list containing the nodeIds.
-   */
-  @java.lang.Override
-  public java.util.List<java.lang.Long>
-  getNodeIdsList() {
-    return nodeIds_;
-  }
-
-  /**
-   * <code>repeated int32 delay = 5;</code>
-   *
-   * @return A list containing the delay.
-   */
-  @java.lang.Override
-  public java.util.List<java.lang.Integer>
-  getDelayList() {
-    return delay_;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
-    getSerializedSize();
-    if (term_ != 0) {
-      output.writeInt32(1, term_);
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+        return new AppendEntriesRequest();
     }
-    if (leaderId_ != 0L) {
-      output.writeInt64(2, leaderId_);
+
+    @java.lang.Override
+    public Builder newBuilderForType() {
+        return newBuilder();
     }
-    if (entryIndex_ != 0L) {
-      output.writeInt64(3, entryIndex_);
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+        return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.class, org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.Builder.class);
+    }
+
+    /**
+     * <pre>
+     * 拓扑信息
+     * </pre>
+     *
+     * <code>repeated int64 nodeIds = 4;</code>
+     *
+     * @return A list containing the nodeIds.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Long>
+    getNodeIdsList() {
+        return nodeIds_;
+    }
+
+    /**
+     * <code>repeated int32 delay = 5;</code>
+     *
+     * @return A list containing the delay.
+     */
+    @java.lang.Override
+    public java.util.List<java.lang.Integer>
+    getDelayList() {
+        return delay_;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        getSerializedSize();
+        if (term_ != 0) {
+            output.writeInt32(1, term_);
+        }
+        if (leaderId_ != 0L) {
+            output.writeInt64(2, leaderId_);
+        }
+        if (entryIndex_ != 0L) {
+            output.writeInt64(3, entryIndex_);
     }
     if (getNodeIdsList().size() > 0) {
       output.writeUInt32NoTag(34);
@@ -326,13 +331,13 @@ public final class AppendEntriesRequest extends
     if (size != -1) return size;
 
     size = 0;
-    if (term_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-              .computeInt32Size(1, term_);
+      if (term_ != 0) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeInt32Size(1, term_);
     }
-    if (leaderId_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-              .computeInt64Size(2, leaderId_);
+      if (leaderId_ != 0L) {
+          size += com.google.protobuf.CodedOutputStream
+                  .computeInt64Size(2, leaderId_);
     }
     if (entryIndex_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
@@ -381,17 +386,17 @@ public final class AppendEntriesRequest extends
     }
     org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest other = (org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest) obj;
 
-    if (getTerm()
-            != other.getTerm()) return false;
-    if (getLeaderId()
-            != other.getLeaderId()) return false;
-    if (getEntryIndex()
-            != other.getEntryIndex()) return false;
-    if (!getNodeIdsList()
-            .equals(other.getNodeIdsList())) return false;
-    if (!getDelayList()
-            .equals(other.getDelayList())) return false;
-    return getUnknownFields().equals(other.getUnknownFields());
+      if (getTerm()
+              != other.getTerm()) return false;
+      if (getLeaderId()
+              != other.getLeaderId()) return false;
+      if (getEntryIndex()
+              != other.getEntryIndex()) return false;
+      if (!getNodeIdsList()
+              .equals(other.getNodeIdsList())) return false;
+      if (!getDelayList()
+              .equals(other.getDelayList())) return false;
+      return getUnknownFields().equals(other.getUnknownFields());
   }
 
   @java.lang.Override
@@ -403,10 +408,10 @@ public final class AppendEntriesRequest extends
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + TERM_FIELD_NUMBER;
     hash = (53 * hash) + getTerm();
-    hash = (37 * hash) + LEADERID_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getLeaderId());
-    hash = (37 * hash) + ENTRYINDEX_FIELD_NUMBER;
+      hash = (37 * hash) + LEADERID_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+              getLeaderId());
+      hash = (37 * hash) + ENTRYINDEX_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getEntryIndex());
     if (getNodeIdsCount() > 0) {
@@ -423,18 +428,15 @@ public final class AppendEntriesRequest extends
   }
 
   @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
-
-  @java.lang.Override
   public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
+      return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
-  protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
     return builder;
   }
 
@@ -445,31 +447,31 @@ public final class AppendEntriesRequest extends
 
   @java.lang.Override
   public org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
+      return DEFAULT_INSTANCE;
   }
 
-  /**
-   * Protobuf type {@code fedraft.AppendEntriesRequest}
-   */
-  public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:fedraft.AppendEntriesRequest)
-          org.bupt.fedraft.rpc.manager.message.AppendEntriesRequestOrBuilder {
-    private int bitField0_;
-    private int term_;
-    private long leaderId_;
-    private long entryIndex_;
+    /**
+     * Protobuf type {@code fedraft.AppendEntriesRequest}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:fedraft.AppendEntriesRequest)
+            org.bupt.fedraft.rpc.manager.message.AppendEntriesRequestOrBuilder {
+        private int bitField0_;
+        private int term_;
+        private long leaderId_;
+        private long entryIndex_;
 
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      term_ = 0;
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
+            term_ = 0;
 
-      leaderId_ = 0L;
+            leaderId_ = 0L;
 
-      entryIndex_ = 0L;
+            entryIndex_ = 0L;
 
-      nodeIds_ = emptyLongList();
+            nodeIds_ = emptyLongList();
       bitField0_ = (bitField0_ & ~0x00000001);
       delay_ = emptyIntList();
       bitField0_ = (bitField0_ & ~0x00000002);
@@ -518,133 +520,153 @@ public final class AppendEntriesRequest extends
     }
     private com.google.protobuf.Internal.IntList delay_ = emptyIntList();
 
-    // Construct using org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.newBuilder()
-    private Builder() {
+        // Construct using org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.newBuilder()
+        private Builder() {
 
-    }
-
-    private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
-
-    }
-
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.class, org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.Builder.class);
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_descriptor;
-    }
-
-    @java.lang.Override
-    public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.setField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-
-    @java.lang.Override
-    public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-
-    @java.lang.Override
-    public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-      return super.setRepeatedField(field, index, value);
-    }
-
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
-    }
-
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest) {
-        return mergeFrom((org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest) other);
-      } else {
-        super.mergeFrom(other);
-        return this;
-      }
-    }
-
-    public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest other) {
-      if (other == org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.getDefaultInstance()) return this;
-      if (other.getTerm() != 0) {
-        setTerm(other.getTerm());
-      }
-      if (other.getLeaderId() != 0L) {
-        setLeaderId(other.getLeaderId());
-      }
-      if (other.getEntryIndex() != 0L) {
-        setEntryIndex(other.getEntryIndex());
-      }
-      if (!other.nodeIds_.isEmpty()) {
-        if (nodeIds_.isEmpty()) {
-          nodeIds_ = other.nodeIds_;
-          bitField0_ = (bitField0_ & ~0x00000001);
-        } else {
-          ensureNodeIdsIsMutable();
-          nodeIds_.addAll(other.nodeIds_);
         }
-        onChanged();
-      }
-      if (!other.delay_.isEmpty()) {
-        if (delay_.isEmpty()) {
-          delay_ = other.delay_;
-          bitField0_ = (bitField0_ & ~0x00000002);
-        } else {
-          ensureDelayIsMutable();
-          delay_.addAll(other.delay_);
+
+        private Builder(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
+
         }
-        onChanged();
-      }
-      this.mergeUnknownFields(other.getUnknownFields());
-      onChanged();
-      return this;
-    }
 
-    @java.lang.Override
-    public boolean isInitialized() {
-      return true;
-    }
+        public static com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_descriptor;
+        }
 
-    @java.lang.Override
-    public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.class, org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.Builder.class);
+        }
+
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_descriptor;
+        }
+
+        public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest other) {
+            if (other == org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.getDefaultInstance()) return this;
+            if (other.getTerm() != 0) {
+                setTerm(other.getTerm());
+            }
+            if (other.getLeaderId() != 0L) {
+                setLeaderId(other.getLeaderId());
+            }
+            if (other.getEntryIndex() != 0L) {
+                setEntryIndex(other.getEntryIndex());
+            }
+            if (!other.nodeIds_.isEmpty()) {
+                if (nodeIds_.isEmpty()) {
+                    nodeIds_ = other.nodeIds_;
+                    bitField0_ = (bitField0_ & ~0x00000001);
+                } else {
+                    ensureNodeIdsIsMutable();
+                    nodeIds_.addAll(other.nodeIds_);
+                }
+                onChanged();
+            }
+            if (!other.delay_.isEmpty()) {
+                if (delay_.isEmpty()) {
+                    delay_ = other.delay_;
+                    bitField0_ = (bitField0_ & ~0x00000002);
+                } else {
+                    ensureDelayIsMutable();
+                    delay_.addAll(other.delay_);
+                }
+                onChanged();
+            }
+            this.mergeUnknownFields(other.getUnknownFields());
+            onChanged();
+            return this;
+        }
+
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
+        }
+
+        @java.lang.Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.setField(field, value);
+        }
+
+        @java.lang.Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @java.lang.Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
+        }
+
+        /**
+         * <code>int32 term = 1;</code>
+         *
+         * @return The term.
+         */
+        @java.lang.Override
+        public int getTerm() {
+            return term_;
+        }
+
+        @java.lang.Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, java.lang.Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @java.lang.Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.addRepeatedField(field, value);
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest) {
+                return mergeFrom((org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        /**
+         * <code>int64 leaderId = 2;</code>
+         *
+         * @return The leaderId.
+         */
+        @java.lang.Override
+        public long getLeaderId() {
+            return leaderId_;
+        }
+
+        @java.lang.Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
             case 0:
               done = true;
               break;
@@ -713,17 +735,6 @@ public final class AppendEntriesRequest extends
 
     /**
      * <code>int32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    @java.lang.Override
-    public int getTerm() {
-      return term_;
-    }
-
-    /**
-     * <code>int32 term = 1;</code>
-     *
      * @param value The term to set.
      * @return This builder for chaining.
      */
@@ -740,18 +751,23 @@ public final class AppendEntriesRequest extends
      */
     public Builder clearTerm() {
 
-      term_ = 0;
-      onChanged();
-      return this;
+        term_ = 0;
+        onChanged();
+        return this;
     }
 
-    /**
-     * <code>int64 leaderId = 2;</code>
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-      return leaderId_;
+        /**
+         * <pre>
+         * 拓扑索引
+         * </pre>
+         *
+         * <code>int64 entryIndex = 3;</code>
+         *
+         * @return The entryIndex.
+         */
+        @java.lang.Override
+    public long getEntryIndex() {
+      return entryIndex_;
     }
 
     /**
@@ -768,7 +784,6 @@ public final class AppendEntriesRequest extends
 
     /**
      * <code>int64 leaderId = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearLeaderId() {
@@ -784,74 +799,92 @@ public final class AppendEntriesRequest extends
      * </pre>
      *
      * <code>int64 entryIndex = 3;</code>
-     *
-     * @return The entryIndex.
-     */
-    @java.lang.Override
-    public long getEntryIndex() {
-      return entryIndex_;
-    }
-
-    /**
-     * <pre>
-     * 拓扑索引
-     * </pre>
-     *
-     * <code>int64 entryIndex = 3;</code>
-     *
      * @param value The entryIndex to set.
      * @return This builder for chaining.
      */
     public Builder setEntryIndex(long value) {
 
-      entryIndex_ = value;
-      onChanged();
-      return this;
+        entryIndex_ = value;
+        onChanged();
+        return this;
     }
 
-    private void ensureNodeIdsIsMutable() {
-      if ((bitField0_ & 0x00000001) == 0) {
-        nodeIds_ = mutableCopy(nodeIds_);
-        bitField0_ |= 0x00000001;
-      }
-    }
+        /**
+         * <pre>
+         * 拓扑索引
+         * </pre>
+         *
+         * <code>int64 entryIndex = 3;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearEntryIndex() {
 
-    /**
-     * <pre>
-     * 拓扑索引
-     * </pre>
-     *
-     * <code>int64 entryIndex = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearEntryIndex() {
+            entryIndex_ = 0L;
+            onChanged();
+            return this;
+        }
 
-      entryIndex_ = 0L;
-      onChanged();
-      return this;
-    }
+        private void ensureNodeIdsIsMutable() {
+            if ((bitField0_ & 0x00000001) == 0) {
+                nodeIds_ = mutableCopy(nodeIds_);
+                bitField0_ |= 0x00000001;
+            }
+        }
 
-    /**
-     * <pre>
-     * 拓扑信息
-     * </pre>
-     *
-     * <code>repeated int64 nodeIds = 4;</code>
-     *
-     * @return A list containing the nodeIds.
-     */
-    public java.util.List<java.lang.Long>
-    getNodeIdsList() {
-      return ((bitField0_ & 0x00000001) != 0) ?
-              java.util.Collections.unmodifiableList(nodeIds_) : nodeIds_;
-    }
+        /**
+         * <pre>
+         * 拓扑信息
+         * </pre>
+         *
+         * <code>repeated int64 nodeIds = 4;</code>
+         *
+         * @return The count of nodeIds.
+         */
+        public int getNodeIdsCount() {
+            return nodeIds_.size();
+        }
 
-    /**
-     * <pre>
-     * 拓扑信息
-     * </pre>
-     *
-     * <code>repeated int64 nodeIds = 4;</code>
+        /**
+         * <pre>
+         * 拓扑信息
+         * </pre>
+         *
+         * <code>repeated int64 nodeIds = 4;</code>
+         *
+         * @return A list containing the nodeIds.
+         */
+        public java.util.List<java.lang.Long>
+        getNodeIdsList() {
+            return ((bitField0_ & 0x00000001) != 0) ?
+                    java.util.Collections.unmodifiableList(nodeIds_) : nodeIds_;
+        }
+
+        /**
+         * <pre>
+         * 拓扑信息
+         * </pre>
+         *
+         * <code>repeated int64 nodeIds = 4;</code>
+         *
+         * @param index The index to set the value at.
+         * @param value The nodeIds to set.
+         * @return This builder for chaining.
+         */
+        public Builder setNodeIds(
+                int index, long value) {
+            ensureNodeIdsIsMutable();
+            nodeIds_.setLong(index, value);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 拓扑信息
+         * </pre>
+         *
+         * <code>repeated int64 nodeIds = 4;</code>
      * @param index The index of the element to return.
      * @return The nodeIds at the given index.
      */
@@ -865,45 +898,34 @@ public final class AppendEntriesRequest extends
      * </pre>
      *
      * <code>repeated int64 nodeIds = 4;</code>
-     *
-     * @return The count of nodeIds.
-     */
-    public int getNodeIdsCount() {
-      return nodeIds_.size();
-    }
-    /**
-     * <pre>
-     * 拓扑信息
-     * </pre>
-     *
-     * <code>repeated int64 nodeIds = 4;</code>
      * @param value The nodeIds to add.
      * @return This builder for chaining.
      */
     public Builder addNodeIds(long value) {
+        ensureNodeIdsIsMutable();
+        nodeIds_.addLong(value);
+        onChanged();
+        return this;
+    }
+
+        /**
+         * <pre>
+         * 拓扑信息
+         * </pre>
+         *
+         * <code>repeated int64 nodeIds = 4;</code>
+         * @param values The nodeIds to add.
+         * @return This builder for chaining.
+     */
+    public Builder addAllNodeIds(
+        java.lang.Iterable<? extends java.lang.Long> values) {
       ensureNodeIdsIsMutable();
-      nodeIds_.addLong(value);
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, nodeIds_);
       onChanged();
       return this;
     }
 
-    /**
-     * <pre>
-     * 拓扑信息
-     * </pre>
-     *
-     * <code>repeated int64 nodeIds = 4;</code>
-     * @param index The index to set the value at.
-     * @param value The nodeIds to set.
-     * @return This builder for chaining.
-     */
-    public Builder setNodeIds(
-        int index, long value) {
-      ensureNodeIdsIsMutable();
-      nodeIds_.setLong(index, value);
-      onChanged();
-      return this;
-    }
     /**
      * <pre>
      * 拓扑信息
@@ -913,45 +935,27 @@ public final class AppendEntriesRequest extends
      * @return This builder for chaining.
      */
     public Builder clearNodeIds() {
-      nodeIds_ = emptyLongList();
-      bitField0_ = (bitField0_ & ~0x00000001);
-      onChanged();
-      return this;
+        nodeIds_ = emptyLongList();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
     }
 
-    /**
-     * <pre>
-     * 拓扑信息
-     * </pre>
-     *
-     * <code>repeated int64 nodeIds = 4;</code>
-     * @param values The nodeIds to add.
-     * @return This builder for chaining.
-     */
-    public Builder addAllNodeIds(
-            java.lang.Iterable<? extends java.lang.Long> values) {
-      ensureNodeIdsIsMutable();
-      com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, nodeIds_);
-      onChanged();
-      return this;
-    }
+        private void ensureDelayIsMutable() {
+            if ((bitField0_ & 0x00000002) == 0) {
+                delay_ = mutableCopy(delay_);
+                bitField0_ |= 0x00000002;
+            }
+        }
 
-    private void ensureDelayIsMutable() {
-      if ((bitField0_ & 0x00000002) == 0) {
-        delay_ = mutableCopy(delay_);
-        bitField0_ |= 0x00000002;
-      }
-    }
-
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     *
-     * @return A list containing the delay.
-     */
-    public java.util.List<java.lang.Integer>
-    getDelayList() {
-      return ((bitField0_ & 0x00000002) != 0) ?
+        /**
+         * <code>repeated int32 delay = 5;</code>
+         *
+         * @return A list containing the delay.
+         */
+        public java.util.List<java.lang.Integer>
+        getDelayList() {
+            return ((bitField0_ & 0x00000002) != 0) ?
                java.util.Collections.unmodifiableList(delay_) : delay_;
     }
     /**
@@ -959,39 +963,38 @@ public final class AppendEntriesRequest extends
      * @return The count of delay.
      */
     public int getDelayCount() {
-      return delay_.size();
+        return delay_.size();
     }
 
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     *
-     * @param index The index of the element to return.
-     * @return The delay at the given index.
-     */
-    public int getDelay(int index) {
-      return delay_.getInt(index);
-    }
+        /**
+         * <code>repeated int32 delay = 5;</code>
+         *
+         * @param index The index of the element to return.
+         * @return The delay at the given index.
+         */
+        public int getDelay(int index) {
+            return delay_.getInt(index);
+        }
 
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     *
-     * @param index The index to set the value at.
-     * @param value The delay to set.
-     * @return This builder for chaining.
-     */
-    public Builder setDelay(
-            int index, int value) {
-      ensureDelayIsMutable();
-      delay_.setInt(index, value);
-      onChanged();
-      return this;
-    }
+        /**
+         * <code>repeated int32 delay = 5;</code>
+         *
+         * @param index The index to set the value at.
+         * @param value The delay to set.
+         * @return This builder for chaining.
+         */
+        public Builder setDelay(
+                int index, int value) {
+            ensureDelayIsMutable();
+            delay_.setInt(index, value);
+            onChanged();
+            return this;
+        }
 
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     *
-     * @param value The delay to add.
-     * @return This builder for chaining.
+        /**
+         * <code>repeated int32 delay = 5;</code>
+         * @param value The delay to add.
+         * @return This builder for chaining.
      */
     public Builder addDelay(int value) {
       ensureDelayIsMutable();
@@ -999,10 +1002,8 @@ public final class AppendEntriesRequest extends
       onChanged();
       return this;
     }
-
     /**
      * <code>repeated int32 delay = 5;</code>
-     *
      * @param values The delay to add.
      * @return This builder for chaining.
      */

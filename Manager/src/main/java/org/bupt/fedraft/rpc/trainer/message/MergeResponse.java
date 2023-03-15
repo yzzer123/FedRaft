@@ -14,45 +14,48 @@ public final class MergeResponse extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:fedraft.MergeResponse)
         MergeResponseOrBuilder {
-  public static final int SERVER_ID_FIELD_NUMBER = 1;
+    public static final int SERVER_ID_FIELD_NUMBER = 1;
 
-  // Use MergeResponse.newBuilder() to construct.
-  private MergeResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
+    // Use MergeResponse.newBuilder() to construct.
+    private MergeResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
 
-  private MergeResponse() {
-  }
+    private MergeResponse() {
+    }
 
-  public static final int MODEL_CHUNK_FIELD_NUMBER = 2;
+    public static final int MODEL_CHUNK_FIELD_NUMBER = 2;
 
-  @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
-  public static final int MODEL_EVAL_LOG_FIELD_NUMBER = 3;
-  private static final long serialVersionUID = 0L;
-  // @@protoc_insertion_point(class_scope:fedraft.MergeResponse)
-  private static final org.bupt.fedraft.rpc.trainer.message.MergeResponse DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<MergeResponse>
-          PARSER = new com.google.protobuf.AbstractParser<MergeResponse>() {
     @java.lang.Override
-    public MergeResponse parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      Builder builder = newBuilder();
-      try {
-        builder.mergeFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(builder.buildPartial());
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                .setUnfinishedMessage(builder.buildPartial());
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
+    public static final int MODEL_EVAL_LOG_FIELD_NUMBER = 3;
+    private static final long serialVersionUID = 0L;
+
+    private int modelCase_ = 0;
+    private java.lang.Object model_;
+    // @@protoc_insertion_point(class_scope:fedraft.MergeResponse)
+    private static final org.bupt.fedraft.rpc.trainer.message.MergeResponse DEFAULT_INSTANCE;
+    private static final com.google.protobuf.Parser<MergeResponse>
+            PARSER = new com.google.protobuf.AbstractParser<MergeResponse>() {
+        @java.lang.Override
+        public MergeResponse parsePartialFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            Builder builder = newBuilder();
+            try {
+                builder.mergeFrom(input, extensionRegistry);
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.setUnfinishedMessage(builder.buildPartial());
+            } catch (com.google.protobuf.UninitializedMessageException e) {
+                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                        .setUnfinishedMessage(builder.buildPartial());
       }
       return builder.buildPartial();
     }
@@ -61,31 +64,24 @@ public final class MergeResponse extends
   static {
     DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.trainer.message.MergeResponse();
   }
-
-  private int modelCase_ = 0;
-  private java.lang.Object model_;
-
   /**
    * <pre>
    * 回复第一个缺失的模型ID
    * </pre>
    *
    * <code>uint64 server_id = 1;</code>
-   *
    * @return Whether the serverId field is set.
    */
   @java.lang.Override
   public boolean hasServerId() {
     return modelCase_ == 1;
   }
-
   /**
    * <pre>
    * 回复第一个缺失的模型ID
    * </pre>
    *
    * <code>uint64 server_id = 1;</code>
-   *
    * @return The serverId.
    */
   @java.lang.Override
@@ -97,28 +93,24 @@ public final class MergeResponse extends
   }
 
   private byte memoizedIsInitialized = -1;
-
   /**
    * <pre>
    * 合并成功的模型
    * </pre>
    *
    * <code>bytes model_chunk = 2;</code>
-   *
    * @return Whether the modelChunk field is set.
    */
   @java.lang.Override
   public boolean hasModelChunk() {
     return modelCase_ == 2;
   }
-
   /**
    * <pre>
    * 合并成功的模型
    * </pre>
    *
    * <code>bytes model_chunk = 2;</code>
-   *
    * @return The modelChunk.
    */
   @java.lang.Override
@@ -129,113 +121,131 @@ public final class MergeResponse extends
     return com.google.protobuf.ByteString.EMPTY;
   }
 
-  public static com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
-    return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_descriptor;
-  }
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_descriptor;
+    }
 
-  /**
-   * <pre>
-   * 合并模型的测试结果
-   * </pre>
-   *
-   * <code>string model_eval_log = 3;</code>
-   *
-   * @return Whether the modelEvalLog field is set.
-   */
+    /**
+     * <pre>
+     * 合并模型的测试结果
+     * </pre>
+     *
+     * <code>string model_eval_log = 3;</code>
+     * @return Whether the modelEvalLog field is set.
+     */
   public boolean hasModelEvalLog() {
     return modelCase_ == 3;
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
   }
 
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
-
-    memoizedIsInitialized = 1;
-    return true;
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(byte[] data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        switch (modelCase_) {
+            case 1:
+                hash = (37 * hash) + SERVER_ID_FIELD_NUMBER;
+                hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                        getServerId());
+                break;
+            case 2:
+                hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
+                hash = (53 * hash) + getModelChunk().hashCode();
+                break;
+            case 3:
+                hash = (37 * hash) + MODEL_EVAL_LOG_FIELD_NUMBER;
+                hash = (53 * hash) + getModelEvalLog().hashCode();
+                break;
+            case 0:
+            default:
+        }
+        hash = (29 * hash) + getUnknownFields().hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
+
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseDelimitedFrom(java.io.InputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseDelimitedFrom(
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input);
   }
 
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-        .parseWithIOException(PARSER, input, extensionRegistry);
+    public static org.bupt.fedraft.rpc.trainer.message.MergeResponse parseFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+        return com.google.protobuf.GeneratedMessageV3
+                .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
   public static Builder newBuilder() {
@@ -254,25 +264,25 @@ public final class MergeResponse extends
     return PARSER;
   }
 
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-    return new MergeResponse();
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+            UnusedPrivateParameter unused) {
+        return new MergeResponse();
   }
 
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    org.bupt.fedraft.rpc.trainer.message.MergeResponse.class, org.bupt.fedraft.rpc.trainer.message.MergeResponse.Builder.class);
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+    internalGetFieldAccessorTable() {
+        return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_fieldAccessorTable
+                .ensureFieldAccessorsInitialized(
+                        org.bupt.fedraft.rpc.trainer.message.MergeResponse.class, org.bupt.fedraft.rpc.trainer.message.MergeResponse.Builder.class);
   }
 
-  public ModelCase
-  getModelCase() {
-    return ModelCase.forNumber(
-        modelCase_);
+    public ModelCase
+    getModelCase() {
+        return ModelCase.forNumber(
+                modelCase_);
   }
 
   /**
@@ -301,47 +311,57 @@ public final class MergeResponse extends
     }
   }
 
-  /**
-   * <pre>
-   * 合并模型的测试结果
-   * </pre>
-   *
-   * <code>string model_eval_log = 3;</code>
-   *
-   * @return The bytes for modelEvalLog.
-   */
-  public com.google.protobuf.ByteString
-  getModelEvalLogBytes() {
-    java.lang.Object ref = "";
-    if (modelCase_ == 3) {
-      ref = model_;
+    /**
+     * <pre>
+     * 合并模型的测试结果
+     * </pre>
+     *
+     * <code>string model_eval_log = 3;</code>
+     *
+     * @return The bytes for modelEvalLog.
+     */
+    public com.google.protobuf.ByteString
+    getModelEvalLogBytes() {
+        java.lang.Object ref = "";
+        if (modelCase_ == 3) {
+            ref = model_;
+        }
+        if (ref instanceof java.lang.String) {
+            com.google.protobuf.ByteString b =
+                    com.google.protobuf.ByteString.copyFromUtf8(
+                            (java.lang.String) ref);
+            if (modelCase_ == 3) {
+                model_ = b;
+            }
+            return b;
+        } else {
+            return (com.google.protobuf.ByteString) ref;
+        }
     }
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b =
-              com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      if (modelCase_ == 3) {
-        model_ = b;
-      }
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
 
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
-    if (modelCase_ == 1) {
-      output.writeUInt64(
-              1, (Long) model_);
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
     }
-    if (modelCase_ == 2) {
-      output.writeBytes(
-              2, (com.google.protobuf.ByteString) model_);
-    }
-    if (modelCase_ == 3) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, model_);
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (modelCase_ == 1) {
+            output.writeUInt64(
+                    1, (Long) model_);
+        }
+        if (modelCase_ == 2) {
+            output.writeBytes(
+                    2, (com.google.protobuf.ByteString) model_);
+        }
+        if (modelCase_ == 3) {
+            com.google.protobuf.GeneratedMessageV3.writeString(output, 3, model_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -353,9 +373,9 @@ public final class MergeResponse extends
 
     size = 0;
     if (modelCase_ == 1) {
-      size += com.google.protobuf.CodedOutputStream
-              .computeUInt64Size(
-                      1, (Long) model_);
+        size += com.google.protobuf.CodedOutputStream
+                .computeUInt64Size(
+                        1, (Long) model_);
     }
     if (modelCase_ == 2) {
       size += com.google.protobuf.CodedOutputStream
@@ -382,68 +402,37 @@ public final class MergeResponse extends
 
     if (!getModelCase().equals(other.getModelCase())) return false;
     switch (modelCase_) {
-      case 1:
-        if (getServerId()
-                != other.getServerId()) return false;
+        case 1:
+            if (getServerId()
+                    != other.getServerId()) return false;
         break;
-      case 2:
-        if (!getModelChunk()
-                .equals(other.getModelChunk())) return false;
+        case 2:
+            if (!getModelChunk()
+                    .equals(other.getModelChunk())) return false;
         break;
       case 3:
         if (!getModelEvalLog()
             .equals(other.getModelEvalLog())) return false;
         break;
       case 0:
-      default:
+        default:
     }
-    return getUnknownFields().equals(other.getUnknownFields());
+      return getUnknownFields().equals(other.getUnknownFields());
   }
 
-  @java.lang.Override
-  public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    switch (modelCase_) {
-      case 1:
-        hash = (37 * hash) + SERVER_ID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getServerId());
-        break;
-      case 2:
-        hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
-        hash = (53 * hash) + getModelChunk().hashCode();
-        break;
-      case 3:
-        hash = (37 * hash) + MODEL_EVAL_LOG_FIELD_NUMBER;
-        hash = (53 * hash) + getModelEvalLog().hashCode();
-        break;
-      case 0:
-      default:
-    }
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
-  }
-
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
-  }
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
 
   @java.lang.Override
   public Builder toBuilder() {
-    return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
+      return this == DEFAULT_INSTANCE
+              ? new Builder() : new Builder().mergeFrom(this);
   }
 
-  @java.lang.Override
-  protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
     return builder;
   }
 
@@ -479,59 +468,59 @@ public final class MergeResponse extends
     }
 
     public static ModelCase forNumber(int value) {
-      switch (value) {
-        case 1:
-          return SERVER_ID;
-        case 2:
-          return MODEL_CHUNK;
-        case 3: return MODEL_EVAL_LOG;
-        case 0: return MODEL_NOT_SET;
-        default:
-          return null;
+        switch (value) {
+            case 1:
+                return SERVER_ID;
+            case 2:
+                return MODEL_CHUNK;
+            case 3:
+                return MODEL_EVAL_LOG;
+            case 0:
+                return MODEL_NOT_SET;
+            default: return null;
       }
     }
-
     public int getNumber() {
       return this.value;
     }
   }
 
-  /**
-   * <pre>
-   * 合并完成的模型
-   * </pre>
-   * <p>
-   * Protobuf type {@code fedraft.MergeResponse}
-   */
-  public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:fedraft.MergeResponse)
-          org.bupt.fedraft.rpc.trainer.message.MergeResponseOrBuilder {
-    private int modelCase_ = 0;
-    private java.lang.Object model_;
+    /**
+     * <pre>
+     * 合并完成的模型
+     * </pre>
+     * <p>
+     * Protobuf type {@code fedraft.MergeResponse}
+     */
+    public static final class Builder extends
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:fedraft.MergeResponse)
+            org.bupt.fedraft.rpc.trainer.message.MergeResponseOrBuilder {
+        private int modelCase_ = 0;
+        private java.lang.Object model_;
 
-    // Construct using org.bupt.fedraft.rpc.trainer.message.MergeResponse.newBuilder()
-    private Builder() {
+        // Construct using org.bupt.fedraft.rpc.trainer.message.MergeResponse.newBuilder()
+        private Builder() {
 
-    }
+        }
 
-    private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      super(parent);
+        private Builder(
+                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            super(parent);
 
-    }
+        }
 
-    @java.lang.Override
-    public Builder clear() {
-      super.clear();
-      modelCase_ = 0;
-      model_ = null;
-      return this;
-    }
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
+            modelCase_ = 0;
+            model_ = null;
+            return this;
+        }
 
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_descriptor;
+        public static com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+            return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_descriptor;
     }
 
     @java.lang.Override
@@ -539,12 +528,12 @@ public final class MergeResponse extends
       return org.bupt.fedraft.rpc.trainer.message.MergeResponse.getDefaultInstance();
     }
 
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.trainer.message.MergeResponse.class, org.bupt.fedraft.rpc.trainer.message.MergeResponse.Builder.class);
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.fedraft.rpc.trainer.message.MergeResponse.class, org.bupt.fedraft.rpc.trainer.message.MergeResponse.Builder.class);
     }
 
     @java.lang.Override
@@ -566,13 +555,13 @@ public final class MergeResponse extends
 
     @java.lang.Override
     public Builder clone() {
-      return super.clone();
+        return super.clone();
     }
 
-    @java.lang.Override
-    public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
-      return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_descriptor;
+        @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_MergeResponse_descriptor;
     }
 
     @java.lang.Override
@@ -581,32 +570,32 @@ public final class MergeResponse extends
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
-      return result;
+        return result;
     }
 
-    @java.lang.Override
-    public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.setField(field, value);
-    }
+        @java.lang.Override
+        public Builder setField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.setField(field, value);
+        }
 
-    @java.lang.Override
-    public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
+        @java.lang.Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
 
-    @java.lang.Override
-    public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
+        @java.lang.Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
     }
 
     @java.lang.Override
     public Builder setRepeatedField(
             com.google.protobuf.Descriptors.FieldDescriptor field,
-        int index, java.lang.Object value) {
+            int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
 
@@ -638,40 +627,40 @@ public final class MergeResponse extends
 
     @java.lang.Override
     public boolean isInitialized() {
-      return true;
+        return true;
     }
 
-    @java.lang.Override
-    public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
-      return super.addRepeatedField(field, value);
+        @java.lang.Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.addRepeatedField(field, value);
     }
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof org.bupt.fedraft.rpc.trainer.message.MergeResponse) {
-        return mergeFrom((org.bupt.fedraft.rpc.trainer.message.MergeResponse) other);
+          return mergeFrom((org.bupt.fedraft.rpc.trainer.message.MergeResponse)other);
       } else {
         super.mergeFrom(other);
-        return this;
+          return this;
       }
     }
 
-    @java.lang.Override
-    public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
+        @java.lang.Override
+        public Builder mergeFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            if (extensionRegistry == null) {
+                throw new java.lang.NullPointerException();
+            }
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
               done = true;
               break;
             case 8: {
@@ -801,7 +790,6 @@ public final class MergeResponse extends
       }
       return com.google.protobuf.ByteString.EMPTY;
     }
-
     /**
      * <pre>
      * 合并成功的模型
@@ -876,99 +864,99 @@ public final class MergeResponse extends
       }
     }
 
-    /**
-     * <pre>
-     * 合并模型的测试结果
-     * </pre>
-     *
-     * <code>string model_eval_log = 3;</code>
-     *
-     * @param value The modelEvalLog to set.
-     * @return This builder for chaining.
-     */
-    public Builder setModelEvalLog(
-            java.lang.String value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      modelCase_ = 3;
-      model_ = value;
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <pre>
-     * 合并模型的测试结果
-     * </pre>
-     *
-     * <code>string model_eval_log = 3;</code>
-     *
-     * @return The bytes for modelEvalLog.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-    getModelEvalLogBytes() {
-      java.lang.Object ref = "";
-      if (modelCase_ == 3) {
-        ref = model_;
-      }
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
-                com.google.protobuf.ByteString.copyFromUtf8(
-                        (java.lang.String) ref);
-        if (modelCase_ == 3) {
-          model_ = b;
+        /**
+         * <pre>
+         * 合并模型的测试结果
+         * </pre>
+         *
+         * <code>string model_eval_log = 3;</code>
+         *
+         * @return The bytes for modelEvalLog.
+         */
+        @java.lang.Override
+        public com.google.protobuf.ByteString
+        getModelEvalLogBytes() {
+            java.lang.Object ref = "";
+            if (modelCase_ == 3) {
+                ref = model_;
+            }
+            if (ref instanceof String) {
+                com.google.protobuf.ByteString b =
+                        com.google.protobuf.ByteString.copyFromUtf8(
+                                (java.lang.String) ref);
+                if (modelCase_ == 3) {
+                    model_ = b;
+                }
+                return b;
+            } else {
+                return (com.google.protobuf.ByteString) ref;
+            }
         }
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
 
-    /**
-     * <pre>
-     * 合并模型的测试结果
-     * </pre>
-     *
-     * <code>string model_eval_log = 3;</code>
-     *
-     * @return This builder for chaining.
-     */
-    public Builder clearModelEvalLog() {
-      if (modelCase_ == 3) {
-        modelCase_ = 0;
-        model_ = null;
-        onChanged();
-      }
-      return this;
-    }
+        /**
+         * <pre>
+         * 合并模型的测试结果
+         * </pre>
+         *
+         * <code>string model_eval_log = 3;</code>
+         *
+         * @param value The bytes for modelEvalLog to set.
+         * @return This builder for chaining.
+         */
+        public Builder setModelEvalLogBytes(
+                com.google.protobuf.ByteString value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            checkByteStringIsUtf8(value);
+            modelCase_ = 3;
+            model_ = value;
+            onChanged();
+            return this;
+        }
 
-    /**
-     * <pre>
-     * 合并模型的测试结果
-     * </pre>
-     *
-     * <code>string model_eval_log = 3;</code>
-     *
-     * @param value The bytes for modelEvalLog to set.
-     * @return This builder for chaining.
-     */
-    public Builder setModelEvalLogBytes(
-            com.google.protobuf.ByteString value) {
-      if (value == null) {
-        throw new NullPointerException();
-      }
-      checkByteStringIsUtf8(value);
-      modelCase_ = 3;
-      model_ = value;
-      onChanged();
-      return this;
+        /**
+         * <pre>
+         * 合并模型的测试结果
+         * </pre>
+         *
+         * <code>string model_eval_log = 3;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearModelEvalLog() {
+            if (modelCase_ == 3) {
+                modelCase_ = 0;
+                model_ = null;
+                onChanged();
+            }
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 合并模型的测试结果
+         * </pre>
+         *
+         * <code>string model_eval_log = 3;</code>
+         *
+         * @param value The modelEvalLog to set.
+         * @return This builder for chaining.
+         */
+        public Builder setModelEvalLog(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+            modelCase_ = 3;
+            model_ = value;
+            onChanged();
+            return this;
     }
 
     @java.lang.Override
     public Builder setUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
       return super.setUnknownFields(unknownFields);
     }
 

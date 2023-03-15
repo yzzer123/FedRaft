@@ -24,33 +24,33 @@ public final class ManagerServiceOuterClass {
                     "ppendJobLogResponse\"\000B(\n$org.bupt.fedraf" +
                     "t.rpc.manager.serviceP\001b\006proto3"
     };
-    descriptor = com.google.protobuf.Descriptors.FileDescriptor
-            .internalBuildGeneratedFileFrom(descriptorData,
-                    new com.google.protobuf.Descriptors.FileDescriptor[]{
-                            org.bupt.fedraft.rpc.manager.message.ManagerMessage.getDescriptor(),
-                            org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.getDescriptor(),
-                    });
-    org.bupt.fedraft.rpc.manager.message.ManagerMessage.getDescriptor();
+      descriptor = com.google.protobuf.Descriptors.FileDescriptor
+              .internalBuildGeneratedFileFrom(descriptorData,
+                      new com.google.protobuf.Descriptors.FileDescriptor[]{
+                              org.bupt.fedraft.rpc.manager.message.ManagerMessage.getDescriptor(),
+                              org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.getDescriptor(),
+                      });
+      org.bupt.fedraft.rpc.manager.message.ManagerMessage.getDescriptor();
     org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.getDescriptor();
   }
 
-  private ManagerServiceOuterClass() {
-  }
+    private ManagerServiceOuterClass() {
+    }
 
-  public static void registerAllExtensions(
-          com.google.protobuf.ExtensionRegistryLite registry) {
-  }
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
+    }
 
-  public static void registerAllExtensions(
-          com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-            (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
+    }
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-  getDescriptor() {
-    return descriptor;
-  }
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
 
   // @@protoc_insertion_point(outer_class_scope)
 }

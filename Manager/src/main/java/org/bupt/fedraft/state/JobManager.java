@@ -5,6 +5,7 @@ import com.google.protobuf.ByteString;
 import io.grpc.stub.StreamObserver;
 import org.bupt.fedraft.config.Configuration;
 import org.bupt.fedraft.rpc.manager.message.JobSubmitResponse;
+import org.bupt.fedraft.rpc.trainer.message.ModelClass;
 import org.bupt.fedraft.server.ManagerClient;
 import org.bupt.fedraft.server.TrainerClient;
 import org.bupt.fedraft.utils.NetworkUtils;
@@ -32,21 +33,31 @@ public class JobManager {
     public final long sourceId;
     public final List<Long> participants;
     public StreamObserver<JobSubmitResponse> responseObserver; // 日志回复器
-    private final int globalEpoch;
+    public final int globalEpoch;
     private final ManagerState managerState;
     private ManagerClient sourceClient;
     private final AtomicInteger failCount;  // trainer失败计数
     private TrainerClient trainerClient;
+    public final String datasetName;
+    public final ModelClass modelClass;
+
     private Process trainerProcess;
     public List<ByteString> model = new ArrayList<>(10);
 
-    public JobManager(ManagerState managerState, int uuid, long sourceId, int globalEpoch, List<Long> participants, StreamObserver<JobSubmitResponse> responseObserver) {
+    public JobManager(ManagerState managerState, int uuid, long sourceId, int globalEpoch,
+                      List<Long> participants,
+                      String datasetName,
+                      ModelClass modelClass,
+                      StreamObserver<JobSubmitResponse> responseObserver) {
         this.uuid = uuid;
         this.sourceId = sourceId;
         this.participants = participants;
         this.responseObserver = responseObserver;
         this.managerState = managerState;
         this.globalEpoch = globalEpoch;
+        this.datasetName = datasetName;
+        this.modelClass = modelClass;
+
         if (responseObserver == null) {
             sourceClient = managerState.getManagerClientPool().getClient(sourceId);
         }
@@ -56,8 +67,11 @@ public class JobManager {
         setupTrainer();
     }
 
-    public JobManager(ManagerState managerState, int uuid, long sourceId, int globalEpoch, List<Long> participants) {
-        this(managerState, uuid, sourceId, globalEpoch, participants, null);
+    public JobManager(ManagerState managerState, int uuid, long sourceId, int globalEpoch,
+                      String datasetName,
+                      ModelClass modelClass,
+                      List<Long> participants) {
+        this(managerState, uuid, sourceId, globalEpoch, participants, datasetName, modelClass, null);
     }
 
 
@@ -84,6 +98,7 @@ public class JobManager {
         BufferedReader logger = new BufferedReader(new InputStreamReader(process.getErrorStream()));
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
+        // 进程意外终止
         process.onExit().thenRun(() -> {
             // 关闭通信
             trainerClient.close();

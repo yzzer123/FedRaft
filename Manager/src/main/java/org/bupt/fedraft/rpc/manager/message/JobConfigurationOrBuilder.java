@@ -96,4 +96,38 @@ public interface JobConfigurationOrBuilder extends
      * @return The globalEpoch.
      */
     int getGlobalEpoch();
+
+    /**
+     * <code>string datasets_name = 6;</code>
+     *
+     * @return The datasetsName.
+     */
+    java.lang.String getDatasetsName();
+
+    /**
+     * <code>string datasets_name = 6;</code>
+     *
+     * @return The bytes for datasetsName.
+     */
+    com.google.protobuf.ByteString
+    getDatasetsNameBytes();
+
+    /**
+     * <code>.fedraft.ModelClass model_class = 7;</code>
+     *
+     * @return Whether the modelClass field is set.
+     */
+    boolean hasModelClass();
+
+    /**
+     * <code>.fedraft.ModelClass model_class = 7;</code>
+     *
+     * @return The modelClass.
+     */
+    org.bupt.fedraft.rpc.trainer.message.ModelClass getModelClass();
+
+    /**
+     * <code>.fedraft.ModelClass model_class = 7;</code>
+     */
+    org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder getModelClassOrBuilder();
 }

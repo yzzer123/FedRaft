@@ -6,46 +6,46 @@ package org.bupt.fedraft.rpc.jobmanager.message;
 public final class JobmanagerMessage {
   static final com.google.protobuf.Descriptors.Descriptor
           internal_static_fedraft_AppendModelsRequest_descriptor;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_AppendModelsRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_fedraft_AppendModelsResponse_descriptor;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_AppendModelsResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_fedraft_JobVoteRequest_descriptor;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_JobVoteRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_fedraft_JobVoteResponse_descriptor;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_JobVoteResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_fedraft_JobShutdownRequest_descriptor;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_JobShutdownRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_fedraft_JobShutdownResponse_descriptor;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_JobShutdownResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_fedraft_AppendJobLogRequest_descriptor;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_AppendJobLogRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_fedraft_AppendJobLogResponse_descriptor;
-  static final
-  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internal_static_fedraft_AppendJobLogResponse_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.FileDescriptor
-          descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_AppendModelsRequest_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_AppendModelsResponse_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_AppendModelsResponse_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_JobVoteRequest_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_JobVoteRequest_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_JobVoteResponse_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_JobVoteResponse_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_JobShutdownRequest_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_JobShutdownRequest_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_JobShutdownResponse_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_JobShutdownResponse_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_AppendJobLogRequest_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_AppendJobLogRequest_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_AppendJobLogResponse_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_AppendJobLogResponse_fieldAccessorTable;
+    private static final com.google.protobuf.Descriptors.FileDescriptor
+            descriptor;
 
   static {
     java.lang.String[] descriptorData = {
@@ -59,77 +59,77 @@ public final class JobmanagerMessage {
                     "gResponseB+\n'org.bupt.fedraft.rpc.jobman" +
                     "ager.messageP\001b\006proto3"
     };
-    descriptor = com.google.protobuf.Descriptors.FileDescriptor
-            .internalBuildGeneratedFileFrom(descriptorData,
-                    new com.google.protobuf.Descriptors.FileDescriptor[]{
-                    });
-    internal_static_fedraft_AppendModelsRequest_descriptor =
-            getDescriptor().getMessageTypes().get(0);
-    internal_static_fedraft_AppendModelsRequest_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_fedraft_AppendModelsRequest_descriptor,
-            new java.lang.String[]{});
-    internal_static_fedraft_AppendModelsResponse_descriptor =
-            getDescriptor().getMessageTypes().get(1);
-    internal_static_fedraft_AppendModelsResponse_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_fedraft_AppendModelsResponse_descriptor,
-            new java.lang.String[]{});
-    internal_static_fedraft_JobVoteRequest_descriptor =
-            getDescriptor().getMessageTypes().get(2);
-    internal_static_fedraft_JobVoteRequest_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_fedraft_JobVoteRequest_descriptor,
-            new java.lang.String[]{});
-    internal_static_fedraft_JobVoteResponse_descriptor =
-            getDescriptor().getMessageTypes().get(3);
-    internal_static_fedraft_JobVoteResponse_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_fedraft_JobVoteResponse_descriptor,
-            new java.lang.String[]{});
-    internal_static_fedraft_JobShutdownRequest_descriptor =
-            getDescriptor().getMessageTypes().get(4);
-    internal_static_fedraft_JobShutdownRequest_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_fedraft_JobShutdownRequest_descriptor,
-            new java.lang.String[]{"SourceId", "Uuid",});
-    internal_static_fedraft_JobShutdownResponse_descriptor =
-            getDescriptor().getMessageTypes().get(5);
-    internal_static_fedraft_JobShutdownResponse_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_fedraft_JobShutdownResponse_descriptor,
-            new java.lang.String[]{});
-    internal_static_fedraft_AppendJobLogRequest_descriptor =
-            getDescriptor().getMessageTypes().get(6);
-    internal_static_fedraft_AppendJobLogRequest_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_fedraft_AppendJobLogRequest_descriptor,
-            new java.lang.String[]{"SourceId", "Uuid", "Logs",});
-    internal_static_fedraft_AppendJobLogResponse_descriptor =
-            getDescriptor().getMessageTypes().get(7);
-    internal_static_fedraft_AppendJobLogResponse_fieldAccessorTable = new
-            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-            internal_static_fedraft_AppendJobLogResponse_descriptor,
-            new java.lang.String[]{});
+      descriptor = com.google.protobuf.Descriptors.FileDescriptor
+              .internalBuildGeneratedFileFrom(descriptorData,
+                      new com.google.protobuf.Descriptors.FileDescriptor[]{
+                      });
+      internal_static_fedraft_AppendModelsRequest_descriptor =
+              getDescriptor().getMessageTypes().get(0);
+      internal_static_fedraft_AppendModelsRequest_fieldAccessorTable = new
+              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+              internal_static_fedraft_AppendModelsRequest_descriptor,
+              new java.lang.String[]{});
+      internal_static_fedraft_AppendModelsResponse_descriptor =
+              getDescriptor().getMessageTypes().get(1);
+      internal_static_fedraft_AppendModelsResponse_fieldAccessorTable = new
+              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+              internal_static_fedraft_AppendModelsResponse_descriptor,
+              new java.lang.String[]{});
+      internal_static_fedraft_JobVoteRequest_descriptor =
+              getDescriptor().getMessageTypes().get(2);
+      internal_static_fedraft_JobVoteRequest_fieldAccessorTable = new
+              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+              internal_static_fedraft_JobVoteRequest_descriptor,
+              new java.lang.String[]{});
+      internal_static_fedraft_JobVoteResponse_descriptor =
+              getDescriptor().getMessageTypes().get(3);
+      internal_static_fedraft_JobVoteResponse_fieldAccessorTable = new
+              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+              internal_static_fedraft_JobVoteResponse_descriptor,
+              new java.lang.String[]{});
+      internal_static_fedraft_JobShutdownRequest_descriptor =
+              getDescriptor().getMessageTypes().get(4);
+      internal_static_fedraft_JobShutdownRequest_fieldAccessorTable = new
+              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+              internal_static_fedraft_JobShutdownRequest_descriptor,
+              new java.lang.String[]{"SourceId", "Uuid",});
+      internal_static_fedraft_JobShutdownResponse_descriptor =
+              getDescriptor().getMessageTypes().get(5);
+      internal_static_fedraft_JobShutdownResponse_fieldAccessorTable = new
+              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+              internal_static_fedraft_JobShutdownResponse_descriptor,
+              new java.lang.String[]{});
+      internal_static_fedraft_AppendJobLogRequest_descriptor =
+              getDescriptor().getMessageTypes().get(6);
+      internal_static_fedraft_AppendJobLogRequest_fieldAccessorTable = new
+              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+              internal_static_fedraft_AppendJobLogRequest_descriptor,
+              new java.lang.String[]{"SourceId", "Uuid", "Logs",});
+      internal_static_fedraft_AppendJobLogResponse_descriptor =
+              getDescriptor().getMessageTypes().get(7);
+      internal_static_fedraft_AppendJobLogResponse_fieldAccessorTable = new
+              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+              internal_static_fedraft_AppendJobLogResponse_descriptor,
+              new java.lang.String[]{});
   }
 
-  private JobmanagerMessage() {
-  }
+    private JobmanagerMessage() {
+    }
 
-  public static void registerAllExtensions(
-          com.google.protobuf.ExtensionRegistryLite registry) {
-  }
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistryLite registry) {
+    }
 
-  public static void registerAllExtensions(
-          com.google.protobuf.ExtensionRegistry registry) {
-    registerAllExtensions(
-            (com.google.protobuf.ExtensionRegistryLite) registry);
-  }
+    public static void registerAllExtensions(
+            com.google.protobuf.ExtensionRegistry registry) {
+        registerAllExtensions(
+                (com.google.protobuf.ExtensionRegistryLite) registry);
+    }
 
-  public static com.google.protobuf.Descriptors.FileDescriptor
-  getDescriptor() {
-    return descriptor;
-  }
+    public static com.google.protobuf.Descriptors.FileDescriptor
+    getDescriptor() {
+        return descriptor;
+    }
 
   // @@protoc_insertion_point(outer_class_scope)
 }
