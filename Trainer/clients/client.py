@@ -1,5 +1,5 @@
 
-from rpc import ManagerServiceStub, JobSubmitRequest, JobSubmitResponse, JobConfiguration, CodeFile
+from rpc import ManagerServiceStub, JobSubmitRequest, JobSubmitResponse, JobConfiguration, CodeFile, ModelClass
 import grpc
 from models import BasicModel
 import os
@@ -7,9 +7,6 @@ import random
 from typing import AsyncIterator
 import logging
 from utils import model_to_chunks, Properties
-import asyncio
-from models.ResNet import ResNetMNIST
-import sys, getopt
 
 class JobSubmitClient:
     
@@ -27,13 +24,16 @@ class JobSubmitClient:
         with open(code_file_path, "r") as file:
             code = file.read()
         
+        
         code_file = CodeFile(fileName=file_name, code=code)
+        model_class = ModelClass(module=model.__class__.__module__, class_name=model.__class__.__name__)
         job_conf = JobConfiguration(uuid=random.randint(999, 0x7fffffff),
-                         codeFile=code_file)
+                         codeFile=code_file, global_epoch=50, datasets_name="CIFAR10", model_class=model_class)
         meta_request = JobSubmitRequest(conf=job_conf)
         yield meta_request
-        for chunk in model_to_chunks(model):
+        for chunk in model_to_chunks(model.state_dict()):
             yield JobSubmitRequest(modelChunk=chunk)
+
     
     async def submit(self, code_file_path: str, model: BasicModel):
         
@@ -47,19 +47,5 @@ class JobSubmitClient:
         
     
 
-if __name__ == "__main__":
-    # get port from command line
-    port = 12333
-    try:
-        opts, args = getopt.getopt(sys.argv[1:], "p:", ["port="])
-        for opt, arg in opts:
-            if opt in ("-p", "--port"):
-                port = arg
-    except getopt.GetoptError:
-        print('python3 service.client -p <port>| --port <port>')
-        sys.exit(2)
-
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(JobSubmitClient(port=port).submit("./models/ResNet.py", ResNetMNIST()))
     
     

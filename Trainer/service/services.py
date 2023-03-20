@@ -40,12 +40,12 @@ class TrainerService(TrainerServiceServicer):
         if len(models) != 0:
             tick = time.time()
             with self.merge_lock:
-                self.merged_model.merge(models, self.total_size, self.local_env)
+                state = self.merged_model.merge(models, self.total_size, self.local_env)
                 self.collected_models = []
                 self.total_size = 0
             logger.info(f"Merging models costs {time.time() - tick} s")
             self.merged_model.eval()
-            for chunk in model_to_chunks(self.merged_model):
+            for chunk in model_to_chunks(state):
                 yield MergeResponse(model_chunk=chunk)
             self.merged_model.test(self.local_env)
         
@@ -106,7 +106,7 @@ class TrainerService(TrainerServiceServicer):
         async for request in request_iterator:
             if request.model_chunk:
                 model_chunks.append(request.model_chunk)
-            if request.model_class:
+            else:
                 model_name = request.model_class.class_name
                 module_name = request.model_class.module
                 local_epoch = request.model_class.local_epoch
@@ -123,7 +123,8 @@ class TrainerService(TrainerServiceServicer):
             model.to(self.local_env.device)
             self.model = model
             self.ModelClass = TargetModelClass
-        except:
+        except Exception as e:
+            logger.error(f"init error with {e}")
             return InitModelResponse(status=False)
         logger.info("trainer init model successfully")
         return InitModelResponse(status=True)

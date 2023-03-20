@@ -51,6 +51,6 @@ fi
     esac
 ;;
 *)
- echo "arguments:[start|stop|status｜install]"
+ echo "arguments:[start|stop|status|install]"
 ;;
 esac
