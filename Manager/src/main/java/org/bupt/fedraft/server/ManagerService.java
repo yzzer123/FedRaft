@@ -138,7 +138,7 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                 newContext.run(() -> {
                     trainerObserver = jobState.getTrainerClient().initModel();
                     InitModelRequest modelClassRequest = InitModelRequest.newBuilder()
-                            .setModelClass(jobState.modelClass)
+                            .setModelClass(finalRequest.getConf().getModelClass())
                             .build();
                     trainerObserver.onNext(modelClassRequest);
                 });
@@ -169,7 +169,7 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                     }
                     // 收到来自source的提交请求 检查配置是否合法
                     // 判断本节点是否存在该数据集
-                    if (DataSetsState.contains(request.getConf().getDatasetsName())
+                    if (!DataSetsState.contains(request.getConf().getDatasetsName())
                             || managerState.getJobState(request.getConf().getSourceId(),
                             request.getConf().getUuid()) != null) {  // uuid不合法 无法创建
                         logger.warn("job conf is invalid, fail to load");
@@ -251,6 +251,7 @@ public class ManagerService extends ManagerServiceGrpc.ManagerServiceImplBase {
                 if (clusterObserver != null) {  // 负责提交的Manager需要关闭和集群其他节点的通信
                     clusterObserver.onCompleted();
                 } else {
+
                     observer.onCompleted();
                 }
 

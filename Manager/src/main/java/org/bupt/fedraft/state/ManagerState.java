@@ -125,7 +125,7 @@ public class ManagerState {
      * @param sourceId 提交任务的源ID
      * @param uuid     唯一任务ID
      */
-    public JobManager deleteJobState(long sourceId, int uuid) {
+    public void deleteJobState(long sourceId, int uuid) {
         jobStatesLock.writeLock().lock();
         int index = getJobIndex(sourceId, uuid);
         JobManager jobState = getJobState(sourceId, uuid);
@@ -134,7 +134,6 @@ public class ManagerState {
             jobState.close();
         }
         jobStatesLock.writeLock().unlock();
-        return jobState;
     }
 
     public ExecutorService getThreadPool() {

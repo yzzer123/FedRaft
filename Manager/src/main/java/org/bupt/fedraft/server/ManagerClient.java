@@ -63,7 +63,8 @@ public class ManagerClient extends Client {
             });
         });
 
-        if (isBroken[0]) {  // 如果当前job已经变更 就放弃发送
+        if (isBroken[0]) {
+            // 如果当前job已经变更 就放弃发送
             return;
         }
 
@@ -241,7 +242,7 @@ public class ManagerClient extends Client {
                     private void onFail() {
                         JobManager jobState = managerState.getJobState(sourceId, uuid);
                         int fails = falseCount.addAndGet(1);
-                        if (jobState != null && fails >= jobState.participants.size() / 2) {
+                        if (jobState != null && fails >= ((jobState.participants.size() + 1) / 2)) {
 
                             // 发送失败消息
                             logger.error("fails in cluster >= 1/2, couldn't initialize job");

@@ -16,6 +16,7 @@ public class DataSetsState {
     static final private ConcurrentMap<String, String> map;
 
     static {
+
         map = new ConcurrentHashMap<>();
         BufferedReader bufferedReader = null;
         try {
