@@ -58,10 +58,13 @@ class TrainerService(TrainerServiceServicer):
             if chunk.model_chunk is not None:  # 如果传输的是空请求， 就直接开始训练
                 model_chunks.append(chunk.model_chunk)
                 
+        # 当接受到参数时，就用更新的参数进行训练，否则直接用旧的参数进行训练
         if len(model_chunks) != 0:
-            self.model.load_state_dict(chunks_to_model(model_chunks))
-        else:
-            raise Exception("invalid model chunks")
+            try:
+                self.model.load_state_dict(chunks_to_model(model_chunks))
+            except Exception as e:
+                raise Exception("invalid model chunks" + str(e))
+        
         self.model.train()
         tick = time.time()
         self.model.local_train(self.local_env)  # 本地训练
