@@ -49,7 +49,7 @@ public class JobManagerTest {
 
     @Test
     public void testSetup() {
-        JobManager jobManager = new JobManager(null, 11000, 1000L, 0, null);
+        JobManager jobManager = new JobManager(null, 0, 0L, 0, null, null, null);
         try {
             Thread.sleep(15000);
         } catch (InterruptedException e) {

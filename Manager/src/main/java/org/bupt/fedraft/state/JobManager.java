@@ -21,6 +21,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 保存训练任务运行时状态，包括JobManager的角色，拓扑信息等
+ *
+ * @author yzzer
  */
 public class JobManager {
 
@@ -80,7 +82,8 @@ public class JobManager {
         int port = 0;
         do {
             port = MIN_PORT + (int) ((MAX_PORT - MIN_PORT) * Math.random());
-        } while (!NetworkUtils.isPortAvailable(port));  // 测试出一个可用的端口
+        } while (!NetworkUtils.isPortAvailable(port));
+        // 测试出一个可用的端口
 
         try {
             startTrainerProcess(port);
@@ -93,7 +96,7 @@ public class JobManager {
 
     private void startTrainerProcess(int port) throws IOException {
         // 执行trainer启动脚本，要求Trainer在当前目录下
-        String[] cmdArr = {"/bin/bash", "-c", "./bin/trainerCli.sh start " + port};
+        String[] cmdArr = {"/bin/bash", "-c", "./bin/server.sh start " + port};
         Process process = Runtime.getRuntime().exec(cmdArr);
         BufferedReader logger = new BufferedReader(new InputStreamReader(process.getErrorStream()));
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -162,7 +165,6 @@ public class JobManager {
     public void sendLog(String log, boolean isBatch) {
         log = log + "\tfrom ID: " + managerState.getSelfNodeInfo().getNodeId();
         if (sourceClient != null) {
-//            logger.error("append log: " + log);
             sourceClient.appendLog(this, log, isBatch);
         } else if (responseObserver != null) {
             JobSubmitResponse response = JobSubmitResponse.newBuilder().setLogs(log).build();

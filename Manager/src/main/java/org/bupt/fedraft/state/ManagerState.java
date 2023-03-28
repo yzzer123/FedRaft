@@ -125,7 +125,7 @@ public class ManagerState {
      * @param sourceId 提交任务的源ID
      * @param uuid     唯一任务ID
      */
-    public JobManager deleteJobState(long sourceId, int uuid) {
+    public void deleteJobState(long sourceId, int uuid) {
         jobStatesLock.writeLock().lock();
         int index = getJobIndex(sourceId, uuid);
         JobManager jobState = getJobState(sourceId, uuid);
@@ -134,7 +134,6 @@ public class ManagerState {
             jobState.close();
         }
         jobStatesLock.writeLock().unlock();
-        return jobState;
     }
 
     public ExecutorService getThreadPool() {
@@ -226,7 +225,8 @@ public class ManagerState {
         int index = getTopologyIndex(id);
         if (index != -1) {
             Tuple<Long, Integer> node = topology.get(index);
-            node.setRight(node.getRight() == 2000000 || newDelay == 2000000 ? newDelay : (node.getRight() * 3 + newDelay * 7) / 10);  // 平滑处理，避免时延摆动过大
+            // 平滑处理，避免时延摆动过大
+            node.setRight(node.getRight() == 2000000 || newDelay == 2000000 ? newDelay : (node.getRight() * 3 + newDelay * 7) / 10);
             if (logger.isDebugEnabled()) {
                 logger.debug("set node:{} delay with {}", new NodeInfo(id), node.getRight());
             }

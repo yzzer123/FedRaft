@@ -4,6 +4,7 @@ import org.junit.Test;
 
 public class JobSubmitResponseTest {
 
+
     @Test
     public void testInstance() {
         JobSubmitResponse defaultInstance = JobSubmitResponse.getDefaultInstance();
