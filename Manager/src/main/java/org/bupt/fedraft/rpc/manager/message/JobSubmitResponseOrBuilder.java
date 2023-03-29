@@ -19,13 +19,14 @@ public interface JobSubmitResponseOrBuilder extends
      *
      * @return The success.
      */
-  boolean getSuccess();
+    boolean getSuccess();
 
-  /**
-   * <code>string logs = 2;</code>
-   * @return Whether the logs field is set.
-   */
-  boolean hasLogs();
+    /**
+     * <code>string logs = 2;</code>
+     *
+     * @return Whether the logs field is set.
+     */
+    boolean hasLogs();
 
     /**
      * <code>string logs = 2;</code>
@@ -40,16 +41,18 @@ public interface JobSubmitResponseOrBuilder extends
      * @return The bytes for logs.
      */
     com.google.protobuf.ByteString
-      getLogsBytes();
+    getLogsBytes();
 
-  /**
-   * <code>bytes chunk = 3;</code>
-   * @return Whether the chunk field is set.
-   */
-  boolean hasChunk();
-  /**
-   * <code>bytes chunk = 3;</code>
-   * @return The chunk.
+    /**
+     * <code>bytes chunk = 3;</code>
+     *
+     * @return Whether the chunk field is set.
+     */
+    boolean hasChunk();
+
+    /**
+     * <code>bytes chunk = 3;</code>
+     * @return The chunk.
    */
   com.google.protobuf.ByteString getChunk();
 

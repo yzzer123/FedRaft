@@ -11,23 +11,7 @@ public final class JobShutdownRequest extends
         // @@protoc_insertion_point(message_implements:fedraft.JobShutdownRequest)
         JobShutdownRequestOrBuilder {
     public static final int SOURCEID_FIELD_NUMBER = 1;
-
-    // Use JobShutdownRequest.newBuilder() to construct.
-    private JobShutdownRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-    }
-
-    private JobShutdownRequest() {
-    }
-
     public static final int UUID_FIELD_NUMBER = 2;
-
-    @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.JobShutdownRequest)
     private static final org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest DEFAULT_INSTANCE;
@@ -48,48 +32,62 @@ public final class JobShutdownRequest extends
             } catch (java.io.IOException e) {
                 throw new com.google.protobuf.InvalidProtocolBufferException(e)
                         .setUnfinishedMessage(builder.buildPartial());
-      }
-      return builder.buildPartial();
+            }
+            return builder.buildPartial();
+        }
+    };
+
+    static {
+        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest();
     }
-  };
 
-  static {
-    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest();
-  }
-  /**
-   * <code>int64 sourceId = 1;</code>
-   * @return The sourceId.
-   */
-  @java.lang.Override
-  public long getSourceId() {
-    return sourceId_;
-  }
+    private long sourceId_;
 
-  private long sourceId_;
-  private int uuid_;
-  /**
-   * <code>int32 uuid = 2;</code>
-   * @return The uuid.
-   */
-  @java.lang.Override
-  public int getUuid() {
-    return uuid_;
-  }
+    // Use JobShutdownRequest.newBuilder() to construct.
+    private JobShutdownRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
 
-  private byte memoizedIsInitialized = -1;
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    private JobShutdownRequest() {
+    }
 
-    memoizedIsInitialized = 1;
-    return true;
-  }
+    /**
+     * <code>int64 sourceId = 1;</code>
+     *
+     * @return The sourceId.
+     */
+    @java.lang.Override
+    public long getSourceId() {
+        return sourceId_;
+    }
 
     public static com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
         return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobShutdownRequest_descriptor;
+    }
+
+    private int uuid_;
+
+    /**
+     * <code>int32 uuid = 2;</code>
+     *
+     * @return The uuid.
+     */
+    @java.lang.Override
+    public int getUuid() {
+        return uuid_;
+    }
+
+  private byte memoizedIsInitialized = -1;
+
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
     }
 
     public static org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest parseFrom(
@@ -173,13 +171,21 @@ public final class JobShutdownRequest extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
 
-  public static com.google.protobuf.Parser<JobShutdownRequest> parser() {
-    return PARSER;
-  }
+    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    public static org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static com.google.protobuf.Parser<JobShutdownRequest> parser() {
+        return PARSER;
+    }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
@@ -189,19 +195,17 @@ public final class JobShutdownRequest extends
     }
 
     @java.lang.Override
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
     internalGetFieldAccessorTable() {
         return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobShutdownRequest_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
                         org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.Builder.class);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     @java.lang.Override
@@ -216,19 +220,19 @@ public final class JobShutdownRequest extends
         getUnknownFields().writeTo(output);
     }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
+    @java.lang.Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
 
-    size = 0;
-    if (sourceId_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-                .computeInt64Size(1, sourceId_);
-    }
-    if (uuid_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-                .computeInt32Size(2, uuid_);
+        size = 0;
+        if (sourceId_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeInt64Size(1, sourceId_);
+        }
+        if (uuid_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeInt32Size(2, uuid_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -237,9 +241,9 @@ public final class JobShutdownRequest extends
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-        return true;
-    }
+      if (obj == this) {
+          return true;
+      }
       if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest)) {
           return super.equals(obj);
       }
@@ -254,29 +258,31 @@ public final class JobShutdownRequest extends
 
   @java.lang.Override
   public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
+      if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + SOURCEID_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
               getSourceId());
       hash = (37 * hash) + UUID_FIELD_NUMBER;
-    hash = (53 * hash) + getUuid();
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
+      hash = (53 * hash) + getUuid();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
+    @java.lang.Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
 
-  @java.lang.Override
-  public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
-  }
+    @java.lang.Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -285,15 +291,15 @@ public final class JobShutdownRequest extends
         return builder;
     }
 
-  @java.lang.Override
-  public com.google.protobuf.Parser<JobShutdownRequest> getParserForType() {
-    return PARSER;
-  }
+    @java.lang.Override
+    public com.google.protobuf.Parser<JobShutdownRequest> getParserForType() {
+        return PARSER;
+    }
 
-  @java.lang.Override
-  public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+    }
 
     /**
      * Protobuf type {@code fedraft.JobShutdownRequest}
@@ -316,30 +322,28 @@ public final class JobShutdownRequest extends
 
         }
 
-        @java.lang.Override
-        public Builder clear() {
-            super.clear();
-            sourceId_ = 0L;
-
-            uuid_ = 0;
-
-      return this;
-    }
-
         public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
             return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobShutdownRequest_descriptor;
         }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest getDefaultInstanceForType() {
-      return org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.getDefaultInstance();
-    }
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobShutdownRequest_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.Builder.class);
+        }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest build() {
-      org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest result = buildPartial();
-      if (!result.isInitialized()) {
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest build() {
+            org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest result = buildPartial();
+            if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
@@ -348,23 +352,25 @@ public final class JobShutdownRequest extends
     @java.lang.Override
     public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest buildPartial() {
       org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest result = new org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest(this);
-      result.sourceId_ = sourceId_;
-      result.uuid_ = uuid_;
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
+        result.sourceId_ = sourceId_;
+        result.uuid_ = uuid_;
+        onBuilt();
+        return result;
     }
 
         @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobShutdownRequest_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.Builder.class);
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
+            sourceId_ = 0L;
+
+            uuid_ = 0;
+
+            return this;
         }
 
         @java.lang.Override
@@ -449,23 +455,23 @@ public final class JobShutdownRequest extends
                     switch (tag) {
                         case 0:
                             done = true;
-              break;
-            case 8: {
-              sourceId_ = input.readInt64();
+                            break;
+                        case 8: {
+                            sourceId_ = input.readInt64();
 
-              break;
-            } // case 8
-            case 16: {
-              uuid_ = input.readInt32();
+                            break;
+                        } // case 8
+                        case 16: {
+                            uuid_ = input.readInt32();
 
-              break;
-            } // case 16
-            default: {
-              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                done = true; // was an endgroup tag
-              }
-              break;
-            } // default:
+                            break;
+                        } // case 16
+                        default: {
+                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                                done = true; // was an endgroup tag
+                            }
+                            break;
+                        } // default:
                     } // switch (tag)
                 } // while (!done)
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -496,12 +502,12 @@ public final class JobShutdownRequest extends
 
             sourceId_ = value;
             onChanged();
-      return this;
-    }
+            return this;
+        }
 
-    /**
-     * <code>int64 sourceId = 1;</code>
-     * @return This builder for chaining.
+        /**
+         * <code>int64 sourceId = 1;</code>
+         * @return This builder for chaining.
      */
     public Builder clearSourceId() {
 
@@ -515,20 +521,21 @@ public final class JobShutdownRequest extends
      */
     @java.lang.Override
     public int getUuid() {
-      return uuid_;
+        return uuid_;
     }
 
-    /**
-     * <code>int32 uuid = 2;</code>
-     * @param value The uuid to set.
-     * @return This builder for chaining.
-     */
-    public Builder setUuid(int value) {
+        /**
+         * <code>int32 uuid = 2;</code>
+         *
+         * @param value The uuid to set.
+         * @return This builder for chaining.
+         */
+        public Builder setUuid(int value) {
 
-      uuid_ = value;
-      onChanged();
-      return this;
-    }
+            uuid_ = value;
+            onChanged();
+            return this;
+        }
 
         /**
          * <code>int32 uuid = 2;</code>
@@ -551,8 +558,8 @@ public final class JobShutdownRequest extends
         @java.lang.Override
         public Builder mergeUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
+            return super.mergeUnknownFields(unknownFields);
+        }
 
 
     // @@protoc_insertion_point(builder_scope:fedraft.JobShutdownRequest)

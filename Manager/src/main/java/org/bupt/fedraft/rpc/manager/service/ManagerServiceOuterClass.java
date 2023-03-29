@@ -19,10 +19,18 @@ public final class ManagerServiceOuterClass {
                     "bSubmitRequest\032\032.fedraft.JobSubmitRespon" +
                     "se\"\000(\0010\001\022J\n\013JobShutdown\022\033.fedraft.JobShu" +
                     "tdownRequest\032\034.fedraft.JobShutdownRespon" +
-                    "se\"\0002_\n\021JobManagerService\022J\n\tAppendLog\022\034" +
+                    "se\"\0002\212\003\n\021JobManagerService\022J\n\tAppendLog\022" +
+                    "\034.fedraft.AppendJobLogRequest\032\035.fedraft." +
+                    "AppendJobLogResponse\"\000\022M\n\014AppendModels\022\034" +
                     ".fedraft.AppendJobLogRequest\032\035.fedraft.A" +
-                    "ppendJobLogResponse\"\000B(\n$org.bupt.fedraf" +
-                    "t.rpc.manager.serviceP\001b\006proto3"
+                    "ppendJobLogResponse\"\000\022>\n\007JobVote\022\027.fedra" +
+                    "ft.JobVoteRequest\032\030.fedraft.JobVoteRespo" +
+                    "nse\"\000\022L\n\tPullModel\022\034.fedraft.JobPullMode" +
+                    "lRequest\032\035.fedraft.JobPullModelResponse\"" +
+                    "\0000\001\022L\n\tPushModel\022\034.fedraft.JobPushModelR" +
+                    "equest\032\035.fedraft.JobPushModelResponse\"\000(" +
+                    "\001B(\n$org.bupt.fedraft.rpc.manager.servic" +
+                    "eP\001b\006proto3"
     };
       descriptor = com.google.protobuf.Descriptors.FileDescriptor
               .internalBuildGeneratedFileFrom(descriptorData,
@@ -31,7 +39,7 @@ public final class ManagerServiceOuterClass {
                               org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.getDescriptor(),
                       });
       org.bupt.fedraft.rpc.manager.message.ManagerMessage.getDescriptor();
-    org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.getDescriptor();
+      org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.getDescriptor();
   }
 
     private ManagerServiceOuterClass() {
@@ -52,5 +60,5 @@ public final class ManagerServiceOuterClass {
         return descriptor;
     }
 
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

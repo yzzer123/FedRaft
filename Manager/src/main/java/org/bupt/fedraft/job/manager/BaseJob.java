@@ -49,10 +49,12 @@ public abstract class BaseJob {
         }
 
         // 任期检查
-        if (term > raftState.term) {  // 任期较小时，leader和candidate都需要转换为follower
+        if (term > raftState.term) {
+            // 任期较小时，leader和candidate都需要转换为follower
             raftState.term = term;
             raftState.voteFor = leaderId;
-            raftState.entryIndex = entryIndex - 1;  // 当任期发生改变时，需要直接进行日志同步，消除错误拓扑
+            raftState.entryIndex = entryIndex - 1;
+            // 当任期发生改变时，需要直接进行日志同步，消除错误拓扑
 
             if (logger.isDebugEnabled()) {
                 logger.debug("term is out, following new leader with term = {}", term);
@@ -64,7 +66,8 @@ public abstract class BaseJob {
             } else {// 当状态没有发生改变时，重置计时器即可
                 raftState.job.resetTimer();
             }
-        } else if (term < raftState.term || entryIndex <= raftState.entryIndex) {        // 任期大于接收到的任期或日志索引不合法就直接返回自己的任期
+        } else if (term < raftState.term || entryIndex <= raftState.entryIndex) {
+            // 任期大于接收到的任期或日志索引不合法就直接返回自己的任期
 
             if (logger.isDebugEnabled()) {
                 logger.debug("request is invalid with term = {} - local term = {}, entryIndex = {} - localEntryIndex = {}", term, raftState.term, entryIndex, raftState.entryIndex);
@@ -110,7 +113,8 @@ public abstract class BaseJob {
 
 
         // 任期检查
-        if (term < raftState.term) {        // 任期较大时直接拒绝投票
+        if (term < raftState.term) {
+            // 任期较大时直接拒绝投票
             if (logger.isDebugEnabled()) {
                 logger.debug("candidate's term is out， refuse to vote");
             }
@@ -118,7 +122,8 @@ public abstract class BaseJob {
             return new Tuple<>(false, raftState.term);
         }
 
-        if (term > raftState.term && entryIndex >= raftState.entryIndex) { // 本地任期较小，就提升任期，重置投票状态
+        if (term > raftState.term && entryIndex >= raftState.entryIndex) {
+            // 本地任期较小，就提升任期，重置投票状态
             raftState.term = term;
             raftState.voteFor = -1;
 
@@ -138,7 +143,8 @@ public abstract class BaseJob {
             return new Tuple<>(false, raftState.term);
         }
 
-        if (raftState.voteFor == -1 || raftState.voteFor == candidateId) {  // 如果自己还没投票，就投票给候选人
+        if (raftState.voteFor == -1 || raftState.voteFor == candidateId) {
+            // 如果自己还没投票，就投票给候选人
             raftState.voteFor = candidateId;
             raftState.job.resetTimer();
             if (logger.isDebugEnabled()) {

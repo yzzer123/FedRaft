@@ -4,8 +4,8 @@
 package org.bupt.fedraft.rpc.jobmanager.message;
 
 public final class JobmanagerMessage {
-  static final com.google.protobuf.Descriptors.Descriptor
-          internal_static_fedraft_AppendModelsRequest_descriptor;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_AppendModelsRequest_descriptor;
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_fedraft_AppendModelsRequest_fieldAccessorTable;
@@ -24,6 +24,26 @@ public final class JobmanagerMessage {
     static final
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
             internal_static_fedraft_JobVoteResponse_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_JobPullModelRequest_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_JobPullModelRequest_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_JobPullModelResponse_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_JobPullModelResponse_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_JobPushModelRequest_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_JobPushModelRequest_fieldAccessorTable;
+    static final com.google.protobuf.Descriptors.Descriptor
+            internal_static_fedraft_JobPushModelResponse_descriptor;
+    static final
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+            internal_static_fedraft_JobPushModelResponse_fieldAccessorTable;
     static final com.google.protobuf.Descriptors.Descriptor
             internal_static_fedraft_JobShutdownRequest_descriptor;
     static final
@@ -47,71 +67,106 @@ public final class JobmanagerMessage {
     private static final com.google.protobuf.Descriptors.FileDescriptor
             descriptor;
 
-  static {
-    java.lang.String[] descriptorData = {
-            "\n\030jobmanager_message.proto\022\007fedraft\"\025\n\023A" +
-                    "ppendModelsRequest\"\026\n\024AppendModelsRespon" +
-                    "se\"\020\n\016JobVoteRequest\"\021\n\017JobVoteResponse\"" +
-                    "4\n\022JobShutdownRequest\022\020\n\010sourceId\030\001 \001(\003\022" +
-                    "\014\n\004uuid\030\002 \001(\005\"\025\n\023JobShutdownResponse\"C\n\023" +
-                    "AppendJobLogRequest\022\020\n\010sourceId\030\001 \001(\003\022\014\n" +
-                    "\004uuid\030\002 \001(\005\022\014\n\004logs\030\003 \003(\t\"\026\n\024AppendJobLo" +
-                    "gResponseB+\n'org.bupt.fedraft.rpc.jobman" +
-                    "ager.messageP\001b\006proto3"
-    };
-      descriptor = com.google.protobuf.Descriptors.FileDescriptor
-              .internalBuildGeneratedFileFrom(descriptorData,
-                      new com.google.protobuf.Descriptors.FileDescriptor[]{
-                      });
-      internal_static_fedraft_AppendModelsRequest_descriptor =
-              getDescriptor().getMessageTypes().get(0);
-      internal_static_fedraft_AppendModelsRequest_fieldAccessorTable = new
-              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-              internal_static_fedraft_AppendModelsRequest_descriptor,
-              new java.lang.String[]{});
-      internal_static_fedraft_AppendModelsResponse_descriptor =
-              getDescriptor().getMessageTypes().get(1);
-      internal_static_fedraft_AppendModelsResponse_fieldAccessorTable = new
-              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-              internal_static_fedraft_AppendModelsResponse_descriptor,
-              new java.lang.String[]{});
-      internal_static_fedraft_JobVoteRequest_descriptor =
-              getDescriptor().getMessageTypes().get(2);
-      internal_static_fedraft_JobVoteRequest_fieldAccessorTable = new
-              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-              internal_static_fedraft_JobVoteRequest_descriptor,
-              new java.lang.String[]{});
-      internal_static_fedraft_JobVoteResponse_descriptor =
-              getDescriptor().getMessageTypes().get(3);
-      internal_static_fedraft_JobVoteResponse_fieldAccessorTable = new
-              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-              internal_static_fedraft_JobVoteResponse_descriptor,
-              new java.lang.String[]{});
-      internal_static_fedraft_JobShutdownRequest_descriptor =
-              getDescriptor().getMessageTypes().get(4);
-      internal_static_fedraft_JobShutdownRequest_fieldAccessorTable = new
-              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-              internal_static_fedraft_JobShutdownRequest_descriptor,
-              new java.lang.String[]{"SourceId", "Uuid",});
-      internal_static_fedraft_JobShutdownResponse_descriptor =
-              getDescriptor().getMessageTypes().get(5);
-      internal_static_fedraft_JobShutdownResponse_fieldAccessorTable = new
-              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-              internal_static_fedraft_JobShutdownResponse_descriptor,
-              new java.lang.String[]{});
-      internal_static_fedraft_AppendJobLogRequest_descriptor =
-              getDescriptor().getMessageTypes().get(6);
-      internal_static_fedraft_AppendJobLogRequest_fieldAccessorTable = new
-              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-              internal_static_fedraft_AppendJobLogRequest_descriptor,
-              new java.lang.String[]{"SourceId", "Uuid", "Logs",});
-      internal_static_fedraft_AppendJobLogResponse_descriptor =
-              getDescriptor().getMessageTypes().get(7);
-      internal_static_fedraft_AppendJobLogResponse_fieldAccessorTable = new
-              com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-              internal_static_fedraft_AppendJobLogResponse_descriptor,
-              new java.lang.String[]{});
-  }
+    static {
+        java.lang.String[] descriptorData = {
+                "\n\030jobmanager_message.proto\022\007fedraft\"_\n\023A" +
+                        "ppendModelsRequest\022\014\n\004term\030\001 \001(\005\022\020\n\010lead" +
+                        "erId\030\002 \001(\003\022\022\n\nmodelIndex\030\003 \001(\003\022\024\n\014canSen" +
+                        "dModel\030\004 \001(\010\"$\n\024AppendModelsResponse\022\014\n\004" +
+                        "term\030\001 \001(\005\"Z\n\016JobVoteRequest\022\014\n\004term\030\001 \001" +
+                        "(\005\022\023\n\013candidateId\030\002 \001(\003\022\022\n\nmodelIndex\030\003 " +
+                        "\001(\003\022\021\n\tmodelTerm\030\004 \001(\005\"4\n\017JobVoteRespons" +
+                        "e\022\014\n\004term\030\001 \001(\005\022\023\n\013voteGranted\030\002 \001(\010\"7\n\023" +
+                        "JobPullModelRequest\022\014\n\004term\030\001 \001(\005\022\022\n\nmod" +
+                        "elIndex\030\002 \001(\003\"*\n\024JobPullModelResponse\022\022\n" +
+                        "\nmodelChunk\030\001 \001(\014\"g\n\023JobPushModelRequest" +
+                        "\0221\n\tmodelInfo\030\001 \001(\0132\034.fedraft.JobPullMod" +
+                        "elRequestH\000\022\024\n\nmodelChunk\030\002 \001(\014H\000B\007\n\005mod" +
+                        "el\"'\n\024JobPushModelResponse\022\017\n\007success\030\001 " +
+                        "\001(\010\"4\n\022JobShutdownRequest\022\020\n\010sourceId\030\001 " +
+                        "\001(\003\022\014\n\004uuid\030\002 \001(\005\"\025\n\023JobShutdownResponse" +
+                        "\"C\n\023AppendJobLogRequest\022\020\n\010sourceId\030\001 \001(" +
+                        "\003\022\014\n\004uuid\030\002 \001(\005\022\014\n\004logs\030\003 \003(\t\"\026\n\024AppendJ" +
+                        "obLogResponseB+\n'org.bupt.fedraft.rpc.jo" +
+                        "bmanager.messageP\001b\006proto3"
+        };
+        descriptor = com.google.protobuf.Descriptors.FileDescriptor
+                .internalBuildGeneratedFileFrom(descriptorData,
+                        new com.google.protobuf.Descriptors.FileDescriptor[]{
+                        });
+        internal_static_fedraft_AppendModelsRequest_descriptor =
+                getDescriptor().getMessageTypes().get(0);
+        internal_static_fedraft_AppendModelsRequest_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_AppendModelsRequest_descriptor,
+                new java.lang.String[]{"Term", "LeaderId", "ModelIndex", "CanSendModel",});
+        internal_static_fedraft_AppendModelsResponse_descriptor =
+                getDescriptor().getMessageTypes().get(1);
+        internal_static_fedraft_AppendModelsResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_AppendModelsResponse_descriptor,
+                new java.lang.String[]{"Term",});
+        internal_static_fedraft_JobVoteRequest_descriptor =
+                getDescriptor().getMessageTypes().get(2);
+        internal_static_fedraft_JobVoteRequest_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_JobVoteRequest_descriptor,
+                new java.lang.String[]{"Term", "CandidateId", "ModelIndex", "ModelTerm",});
+        internal_static_fedraft_JobVoteResponse_descriptor =
+                getDescriptor().getMessageTypes().get(3);
+        internal_static_fedraft_JobVoteResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_JobVoteResponse_descriptor,
+                new java.lang.String[]{"Term", "VoteGranted",});
+        internal_static_fedraft_JobPullModelRequest_descriptor =
+                getDescriptor().getMessageTypes().get(4);
+        internal_static_fedraft_JobPullModelRequest_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_JobPullModelRequest_descriptor,
+                new java.lang.String[]{"Term", "ModelIndex",});
+        internal_static_fedraft_JobPullModelResponse_descriptor =
+                getDescriptor().getMessageTypes().get(5);
+        internal_static_fedraft_JobPullModelResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_JobPullModelResponse_descriptor,
+                new java.lang.String[]{"ModelChunk",});
+        internal_static_fedraft_JobPushModelRequest_descriptor =
+                getDescriptor().getMessageTypes().get(6);
+        internal_static_fedraft_JobPushModelRequest_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_JobPushModelRequest_descriptor,
+                new java.lang.String[]{"ModelInfo", "ModelChunk", "Model",});
+        internal_static_fedraft_JobPushModelResponse_descriptor =
+                getDescriptor().getMessageTypes().get(7);
+        internal_static_fedraft_JobPushModelResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_JobPushModelResponse_descriptor,
+                new java.lang.String[]{"Success",});
+        internal_static_fedraft_JobShutdownRequest_descriptor =
+                getDescriptor().getMessageTypes().get(8);
+        internal_static_fedraft_JobShutdownRequest_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_JobShutdownRequest_descriptor,
+                new java.lang.String[]{"SourceId", "Uuid",});
+        internal_static_fedraft_JobShutdownResponse_descriptor =
+                getDescriptor().getMessageTypes().get(9);
+        internal_static_fedraft_JobShutdownResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_JobShutdownResponse_descriptor,
+                new java.lang.String[]{});
+        internal_static_fedraft_AppendJobLogRequest_descriptor =
+                getDescriptor().getMessageTypes().get(10);
+        internal_static_fedraft_AppendJobLogRequest_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_AppendJobLogRequest_descriptor,
+                new java.lang.String[]{"SourceId", "Uuid", "Logs",});
+        internal_static_fedraft_AppendJobLogResponse_descriptor =
+                getDescriptor().getMessageTypes().get(11);
+        internal_static_fedraft_AppendJobLogResponse_fieldAccessorTable = new
+                com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+                internal_static_fedraft_AppendJobLogResponse_descriptor,
+                new java.lang.String[]{});
+    }
 
     private JobmanagerMessage() {
     }
@@ -131,5 +186,5 @@ public final class JobmanagerMessage {
         return descriptor;
     }
 
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }

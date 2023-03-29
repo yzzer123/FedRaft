@@ -18,23 +18,23 @@ public enum ManagerStatus
     CANDIDATE(1),
     /**
      * <code>FOLLOWER = 2;</code>
-   */
-  FOLLOWER(2),
-  UNRECOGNIZED(-1),
-  ;
+     */
+    FOLLOWER(2),
+    UNRECOGNIZED(-1),
+    ;
 
-  /**
-   * <code>LEADER = 0;</code>
-   */
-  public static final int LEADER_VALUE = 0;
-  /**
-   * <code>CANDIDATE = 1;</code>
-   */
-  public static final int CANDIDATE_VALUE = 1;
-  /**
-   * <code>FOLLOWER = 2;</code>
-   */
-  public static final int FOLLOWER_VALUE = 2;
+    /**
+     * <code>LEADER = 0;</code>
+     */
+    public static final int LEADER_VALUE = 0;
+    /**
+     * <code>CANDIDATE = 1;</code>
+     */
+    public static final int CANDIDATE_VALUE = 1;
+    /**
+     * <code>FOLLOWER = 2;</code>
+     */
+    public static final int FOLLOWER_VALUE = 2;
 
 
     private static final com.google.protobuf.Internal.EnumLiteMap<
@@ -44,6 +44,12 @@ public enum ManagerStatus
                     return ManagerStatus.forNumber(number);
                 }
             };
+    private static final ManagerStatus[] VALUES = values();
+    private final int value;
+
+    ManagerStatus(int value) {
+        this.value = value;
+    }
 
     /**
      * @param value The numeric wire value of the corresponding enum entry.
@@ -53,13 +59,6 @@ public enum ManagerStatus
     @java.lang.Deprecated
     public static ManagerStatus valueOf(int value) {
         return forNumber(value);
-    }
-
-    private static final ManagerStatus[] VALUES = values();
-    private final int value;
-
-    ManagerStatus(int value) {
-        this.value = value;
     }
 
     /**
@@ -99,15 +98,15 @@ public enum ManagerStatus
             return UNRECOGNIZED;
         }
         return VALUES[desc.getIndex()];
-  }
-
-  public final int getNumber() {
-    if (this == UNRECOGNIZED) {
-        throw new java.lang.IllegalArgumentException(
-                "Can't get the number of an unknown enum value.");
     }
-      return value;
-  }
+
+    public final int getNumber() {
+        if (this == UNRECOGNIZED) {
+            throw new java.lang.IllegalArgumentException(
+                    "Can't get the number of an unknown enum value.");
+        }
+        return value;
+    }
 
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
     getValueDescriptor() {
@@ -121,8 +120,8 @@ public enum ManagerStatus
     public final com.google.protobuf.Descriptors.EnumDescriptor
     getDescriptorForType() {
         return getDescriptor();
-  }
+    }
 
-  // @@protoc_insertion_point(enum_scope:fedraft.ManagerStatus)
+    // @@protoc_insertion_point(enum_scope:fedraft.ManagerStatus)
 }
 

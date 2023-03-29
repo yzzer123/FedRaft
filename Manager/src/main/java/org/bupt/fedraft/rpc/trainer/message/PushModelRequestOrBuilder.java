@@ -19,16 +19,18 @@ public interface PushModelRequestOrBuilder extends
      *
      * @return The serverId.
      */
-  long getServerId();
+    long getServerId();
 
-  /**
-   * <code>bytes model_chunk = 2;</code>
-   * @return Whether the modelChunk field is set.
-   */
-  boolean hasModelChunk();
-  /**
-   * <code>bytes model_chunk = 2;</code>
-   * @return The modelChunk.
+    /**
+     * <code>bytes model_chunk = 2;</code>
+     *
+     * @return Whether the modelChunk field is set.
+     */
+    boolean hasModelChunk();
+
+    /**
+     * <code>bytes model_chunk = 2;</code>
+     * @return The modelChunk.
    */
   com.google.protobuf.ByteString getModelChunk();
 

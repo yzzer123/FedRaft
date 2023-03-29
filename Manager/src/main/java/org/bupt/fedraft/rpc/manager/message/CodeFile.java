@@ -11,28 +11,17 @@ public final class CodeFile extends
         // @@protoc_insertion_point(message_implements:fedraft.CodeFile)
         CodeFileOrBuilder {
     public static final int FILENAME_FIELD_NUMBER = 1;
-
-    // Use CodeFile.newBuilder() to construct.
-    private CodeFile(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-    }
-
-    private CodeFile() {
-        fileName_ = "";
-        code_ = "";
-    }
-
     public static final int CODE_FIELD_NUMBER = 2;
-
-  @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.CodeFile)
     private static final org.bupt.fedraft.rpc.manager.message.CodeFile DEFAULT_INSTANCE;
+
+    @java.lang.Override
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
     private static final com.google.protobuf.Parser<CodeFile>
             PARSER = new com.google.protobuf.AbstractParser<CodeFile>() {
         @java.lang.Override
@@ -50,18 +39,28 @@ public final class CodeFile extends
             } catch (java.io.IOException e) {
                 throw new com.google.protobuf.InvalidProtocolBufferException(e)
                         .setUnfinishedMessage(builder.buildPartial());
-      }
-      return builder.buildPartial();
+            }
+            return builder.buildPartial();
+        }
+    };
+
+    static {
+        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.CodeFile();
     }
-  };
 
-  static {
-    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.CodeFile();
-  }
+    private volatile java.lang.Object fileName_;
+    private volatile java.lang.Object code_;
+    private byte memoizedIsInitialized = -1;
 
-  private volatile java.lang.Object fileName_;
-  private volatile java.lang.Object code_;
-  private byte memoizedIsInitialized = -1;
+    // Use CodeFile.newBuilder() to construct.
+    private CodeFile(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
+
+    private CodeFile() {
+        fileName_ = "";
+        code_ = "";
+    }
 
     public static com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
@@ -149,21 +148,21 @@ public final class CodeFile extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
 
-  public static Builder newBuilder(org.bupt.fedraft.rpc.manager.message.CodeFile prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
+    public static Builder newBuilder(org.bupt.fedraft.rpc.manager.message.CodeFile prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
 
-  public static org.bupt.fedraft.rpc.manager.message.CodeFile getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
+    public static org.bupt.fedraft.rpc.manager.message.CodeFile getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
 
-  public static com.google.protobuf.Parser<CodeFile> parser() {
-    return PARSER;
-  }
+    public static com.google.protobuf.Parser<CodeFile> parser() {
+        return PARSER;
+    }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
@@ -180,23 +179,24 @@ public final class CodeFile extends
                         org.bupt.fedraft.rpc.manager.message.CodeFile.class, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder.class);
     }
 
-  /**
-   * <code>string fileName = 1;</code>
-   * @return The fileName.
-   */
-  @java.lang.Override
-  public java.lang.String getFileName() {
-    java.lang.Object ref = fileName_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-        com.google.protobuf.ByteString bs =
-                (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-      fileName_ = s;
-      return s;
+    /**
+     * <code>string fileName = 1;</code>
+     *
+     * @return The fileName.
+     */
+    @java.lang.Override
+    public java.lang.String getFileName() {
+        java.lang.Object ref = fileName_;
+        if (ref instanceof java.lang.String) {
+            return (java.lang.String) ref;
+        } else {
+            com.google.protobuf.ByteString bs =
+                    (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            fileName_ = s;
+            return s;
+        }
     }
-  }
 
     /**
      * <code>string fileName = 1;</code>
@@ -218,11 +218,6 @@ public final class CodeFile extends
         }
     }
 
-    @java.lang.Override
-    public Builder newBuilderForType() {
-        return newBuilder();
-    }
-
     /**
      * <code>string code = 2;</code>
      *
@@ -237,7 +232,7 @@ public final class CodeFile extends
             com.google.protobuf.ByteString bs =
                     (com.google.protobuf.ByteString) ref;
             java.lang.String s = bs.toStringUtf8();
-      code_ = s;
+            code_ = s;
             return s;
         }
     }
@@ -331,31 +326,36 @@ public final class CodeFile extends
         hash = (53 * hash) + getCode().hashCode();
         hash = (29 * hash) + getUnknownFields().hashCode();
         memoizedHashCode = hash;
-    return hash;
-  }
+        return hash;
+    }
 
-  @java.lang.Override
-  public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
-  }
+    @java.lang.Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    @java.lang.Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         Builder builder = new Builder(parent);
-    return builder;
-  }
+        return builder;
+    }
 
-  @java.lang.Override
-  public com.google.protobuf.Parser<CodeFile> getParserForType() {
-    return PARSER;
-  }
+    @java.lang.Override
+    public com.google.protobuf.Parser<CodeFile> getParserForType() {
+        return PARSER;
+    }
 
-  @java.lang.Override
-  public org.bupt.fedraft.rpc.manager.message.CodeFile getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-  }
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.manager.message.CodeFile getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+    }
 
     /**
      * Protobuf type {@code fedraft.CodeFile}
@@ -378,48 +378,10 @@ public final class CodeFile extends
 
         }
 
-        @java.lang.Override
-        public Builder clear() {
-            super.clear();
-            fileName_ = "";
-
-            code_ = "";
-
-            return this;
-        }
-
         public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
             return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_CodeFile_descriptor;
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.CodeFile getDefaultInstanceForType() {
-      return org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.CodeFile build() {
-      org.bupt.fedraft.rpc.manager.message.CodeFile result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.CodeFile buildPartial() {
-      org.bupt.fedraft.rpc.manager.message.CodeFile result = new org.bupt.fedraft.rpc.manager.message.CodeFile(this);
-      result.fileName_ = fileName_;
-      result.code_ = code_;
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-        return super.clone();
-    }
+        }
 
         @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -430,9 +392,47 @@ public final class CodeFile extends
         }
 
         @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.CodeFile getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.CodeFile build() {
+            org.bupt.fedraft.rpc.manager.message.CodeFile result = buildPartial();
+            if (!result.isInitialized()) {
+        throw newUninitializedMessageException(result);
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.manager.message.CodeFile buildPartial() {
+      org.bupt.fedraft.rpc.manager.message.CodeFile result = new org.bupt.fedraft.rpc.manager.message.CodeFile(this);
+      result.fileName_ = fileName_;
+      result.code_ = code_;
+        onBuilt();
+        return result;
+    }
+
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
+            fileName_ = "";
+
+            code_ = "";
+
+            return this;
+        }
+
+        @java.lang.Override
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_CodeFile_descriptor;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+            return super.clone();
         }
 
         @java.lang.Override
@@ -459,44 +459,44 @@ public final class CodeFile extends
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 int index, java.lang.Object value) {
             return super.setRepeatedField(field, index, value);
-    }
+        }
 
-    public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.CodeFile other) {
-      if (other == org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance()) return this;
-      if (!other.getFileName().isEmpty()) {
-        fileName_ = other.fileName_;
-        onChanged();
-      }
-      if (!other.getCode().isEmpty()) {
+        public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.CodeFile other) {
+            if (other == org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance()) return this;
+            if (!other.getFileName().isEmpty()) {
+                fileName_ = other.fileName_;
+                onChanged();
+            }
+            if (!other.getCode().isEmpty()) {
         code_ = other.code_;
         onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public boolean isInitialized() {
-        return true;
-    }
+            onChanged();
+            return this;
+        }
 
         @java.lang.Override
         public Builder addRepeatedField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 java.lang.Object value) {
             return super.addRepeatedField(field, value);
-    }
+        }
 
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.manager.message.CodeFile) {
-          return mergeFrom((org.bupt.fedraft.rpc.manager.message.CodeFile)other);
-      } else {
-        super.mergeFrom(other);
-          return this;
-      }
-    }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof org.bupt.fedraft.rpc.manager.message.CodeFile) {
+                return mergeFrom((org.bupt.fedraft.rpc.manager.message.CodeFile) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
+        }
 
         @java.lang.Override
         public Builder mergeFrom(
@@ -512,14 +512,14 @@ public final class CodeFile extends
                     int tag = input.readTag();
                     switch (tag) {
                         case 0:
-              done = true;
-              break;
-            case 10: {
-              fileName_ = input.readStringRequireUtf8();
+                            done = true;
+                            break;
+                        case 10: {
+                            fileName_ = input.readStringRequireUtf8();
 
-              break;
-            } // case 10
-            case 18: {
+                            break;
+                        } // case 10
+                        case 18: {
               code_ = input.readStringRequireUtf8();
 
               break;
@@ -546,15 +546,15 @@ public final class CodeFile extends
      */
     public java.lang.String getFileName() {
       java.lang.Object ref = fileName_;
-      if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-                  (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-        fileName_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+        if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                    (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            fileName_ = s;
+            return s;
+        } else {
+            return (java.lang.String) ref;
+        }
     }
 
         /**
@@ -606,13 +606,13 @@ public final class CodeFile extends
             }
             checkByteStringIsUtf8(value);
 
-      fileName_ = value;
-      onChanged();
-      return this;
-    }
+            fileName_ = value;
+            onChanged();
+            return this;
+        }
 
-    /**
-     * <code>string fileName = 1;</code>
+        /**
+         * <code>string fileName = 1;</code>
      * @return This builder for chaining.
      */
     public Builder clearFileName() {
@@ -621,22 +621,40 @@ public final class CodeFile extends
       onChanged();
       return this;
     }
+
     /**
      * <code>string code = 2;</code>
      * @return The code.
      */
     public java.lang.String getCode() {
-      java.lang.Object ref = code_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-          code_ = s;
-          return s;
-      } else {
-          return (java.lang.String) ref;
-      }
+        java.lang.Object ref = code_;
+        if (!(ref instanceof java.lang.String)) {
+            com.google.protobuf.ByteString bs =
+                    (com.google.protobuf.ByteString) ref;
+            java.lang.String s = bs.toStringUtf8();
+            code_ = s;
+            return s;
+        } else {
+            return (java.lang.String) ref;
+        }
     }
+
+        /**
+         * <code>string code = 2;</code>
+         *
+         * @param value The code to set.
+         * @return This builder for chaining.
+         */
+        public Builder setCode(
+                java.lang.String value) {
+            if (value == null) {
+                throw new NullPointerException();
+            }
+
+            code_ = value;
+            onChanged();
+            return this;
+        }
 
         /**
          * <code>string code = 2;</code>
@@ -677,26 +695,9 @@ public final class CodeFile extends
 
         /**
          * <code>string code = 2;</code>
-         *
-         * @param value The code to set.
          * @return This builder for chaining.
          */
-        public Builder setCode(
-                java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-
-            code_ = value;
-            onChanged();
-            return this;
-        }
-
-    /**
-     * <code>string code = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearCode() {
+        public Builder clearCode() {
 
       code_ = getDefaultInstance().getCode();
       onChanged();

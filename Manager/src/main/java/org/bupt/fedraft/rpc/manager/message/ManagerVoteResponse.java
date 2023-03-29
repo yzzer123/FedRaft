@@ -11,23 +11,7 @@ public final class ManagerVoteResponse extends
         // @@protoc_insertion_point(message_implements:fedraft.ManagerVoteResponse)
         ManagerVoteResponseOrBuilder {
     public static final int TERM_FIELD_NUMBER = 1;
-
-    // Use ManagerVoteResponse.newBuilder() to construct.
-    private ManagerVoteResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-    }
-
-    private ManagerVoteResponse() {
-    }
-
     public static final int VOTEGRANTED_FIELD_NUMBER = 2;
-
-    @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
-
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.ManagerVoteResponse)
     private static final org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse DEFAULT_INSTANCE;
@@ -48,52 +32,66 @@ public final class ManagerVoteResponse extends
             } catch (java.io.IOException e) {
                 throw new com.google.protobuf.InvalidProtocolBufferException(e)
                         .setUnfinishedMessage(builder.buildPartial());
-      }
-      return builder.buildPartial();
+            }
+            return builder.buildPartial();
+        }
+    };
+
+    static {
+        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse();
     }
-  };
 
-  static {
-    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse();
-  }
-  /**
-   * <code>int32 term = 1;</code>
-   * @return The term.
-   */
-  @java.lang.Override
-  public int getTerm() {
-    return term_;
-  }
+    private int term_;
 
-  private int term_;
-  private boolean voteGranted_;
-  /**
-   * <pre>
-   * 是否投票
-   * </pre>
-   *
-   * <code>bool voteGranted = 2;</code>
-   * @return The voteGranted.
-   */
-  @java.lang.Override
+    // Use ManagerVoteResponse.newBuilder() to construct.
+    private ManagerVoteResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
+
+    private ManagerVoteResponse() {
+    }
+
+    /**
+     * <code>int32 term = 1;</code>
+     *
+     * @return The term.
+     */
+    @java.lang.Override
+    public int getTerm() {
+        return term_;
+    }
+
+    public static com.google.protobuf.Descriptors.Descriptor
+    getDescriptor() {
+        return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_ManagerVoteResponse_descriptor;
+    }
+
+    private boolean voteGranted_;
+
+    /**
+     * <pre>
+     * 是否投票
+     * </pre>
+     *
+     * <code>bool voteGranted = 2;</code>
+     *
+     * @return The voteGranted.
+     */
+    @java.lang.Override
   public boolean getVoteGranted() {
     return voteGranted_;
   }
 
   private byte memoizedIsInitialized = -1;
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
 
-    memoizedIsInitialized = 1;
-    return true;
-  }
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
 
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-        return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_ManagerVoteResponse_descriptor;
+        memoizedIsInitialized = 1;
+        return true;
     }
 
     public static org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse parseFrom(
@@ -177,13 +175,21 @@ public final class ManagerVoteResponse extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-  public static org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
 
-  public static com.google.protobuf.Parser<ManagerVoteResponse> parser() {
-    return PARSER;
-  }
+    public static Builder newBuilder(org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    public static org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
+
+    public static com.google.protobuf.Parser<ManagerVoteResponse> parser() {
+        return PARSER;
+    }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
@@ -193,19 +199,17 @@ public final class ManagerVoteResponse extends
     }
 
     @java.lang.Override
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
     internalGetFieldAccessorTable() {
         return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_ManagerVoteResponse_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
                         org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse.class, org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse.Builder.class);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     @java.lang.Override
@@ -220,19 +224,19 @@ public final class ManagerVoteResponse extends
         getUnknownFields().writeTo(output);
     }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
+    @java.lang.Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
 
-    size = 0;
-    if (term_ != 0) {
-        size += com.google.protobuf.CodedOutputStream
-                .computeInt32Size(1, term_);
-    }
-    if (voteGranted_) {
-        size += com.google.protobuf.CodedOutputStream
-                .computeBoolSize(2, voteGranted_);
+        size = 0;
+        if (term_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeInt32Size(1, term_);
+        }
+        if (voteGranted_) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeBoolSize(2, voteGranted_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -241,9 +245,9 @@ public final class ManagerVoteResponse extends
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-        return true;
-    }
+      if (obj == this) {
+          return true;
+      }
       if (!(obj instanceof org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse)) {
           return super.equals(obj);
       }
@@ -258,29 +262,31 @@ public final class ManagerVoteResponse extends
 
   @java.lang.Override
   public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TERM_FIELD_NUMBER;
-    hash = (53 * hash) + getTerm();
+      if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TERM_FIELD_NUMBER;
+      hash = (53 * hash) + getTerm();
       hash = (37 * hash) + VOTEGRANTED_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
               getVoteGranted());
       hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
+      memoizedHashCode = hash;
+      return hash;
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() { return newBuilder(); }
+    @java.lang.Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
 
-  @java.lang.Override
-  public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
-  }
+    @java.lang.Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -289,15 +295,15 @@ public final class ManagerVoteResponse extends
         return builder;
     }
 
-  @java.lang.Override
-  public com.google.protobuf.Parser<ManagerVoteResponse> getParserForType() {
-    return PARSER;
-  }
+    @java.lang.Override
+    public com.google.protobuf.Parser<ManagerVoteResponse> getParserForType() {
+        return PARSER;
+    }
 
-  @java.lang.Override
-  public org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+    }
 
     /**
      * Protobuf type {@code fedraft.ManagerVoteResponse}
@@ -320,30 +326,28 @@ public final class ManagerVoteResponse extends
 
         }
 
-        @java.lang.Override
-        public Builder clear() {
-            super.clear();
-            term_ = 0;
-
-            voteGranted_ = false;
-
-      return this;
-    }
-
         public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
             return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_ManagerVoteResponse_descriptor;
         }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse getDefaultInstanceForType() {
-      return org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse.getDefaultInstance();
-    }
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_ManagerVoteResponse_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse.class, org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse.Builder.class);
+        }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse build() {
-      org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse result = buildPartial();
-      if (!result.isInitialized()) {
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse build() {
+            org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse result = buildPartial();
+            if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
@@ -352,23 +356,25 @@ public final class ManagerVoteResponse extends
     @java.lang.Override
     public org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse buildPartial() {
       org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse result = new org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse(this);
-      result.term_ = term_;
-      result.voteGranted_ = voteGranted_;
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
+        result.term_ = term_;
+        result.voteGranted_ = voteGranted_;
+        onBuilt();
+        return result;
     }
 
         @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_ManagerVoteResponse_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse.class, org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse.Builder.class);
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @java.lang.Override
+        public Builder clear() {
+            super.clear();
+            term_ = 0;
+
+            voteGranted_ = false;
+
+            return this;
         }
 
         @java.lang.Override
@@ -453,23 +459,23 @@ public final class ManagerVoteResponse extends
                     switch (tag) {
                         case 0:
                             done = true;
-              break;
-            case 8: {
-              term_ = input.readInt32();
+                            break;
+                        case 8: {
+                            term_ = input.readInt32();
 
-              break;
-            } // case 8
-            case 16: {
-              voteGranted_ = input.readBool();
+                            break;
+                        } // case 8
+                        case 16: {
+                            voteGranted_ = input.readBool();
 
-              break;
-            } // case 16
-            default: {
-              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                done = true; // was an endgroup tag
-              }
-              break;
-            } // default:
+                            break;
+                        } // case 16
+                        default: {
+                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                                done = true; // was an endgroup tag
+                            }
+                            break;
+                        } // default:
                     } // switch (tag)
                 } // while (!done)
             } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -500,12 +506,12 @@ public final class ManagerVoteResponse extends
 
             term_ = value;
             onChanged();
-      return this;
-    }
+            return this;
+        }
 
-    /**
-     * <code>int32 term = 1;</code>
-     * @return This builder for chaining.
+        /**
+         * <code>int32 term = 1;</code>
+         * @return This builder for chaining.
      */
     public Builder clearTerm() {
 
@@ -538,23 +544,25 @@ public final class ManagerVoteResponse extends
     public Builder setVoteGranted(boolean value) {
 
       voteGranted_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 是否投票
-     * </pre>
-     *
-     * <code>bool voteGranted = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearVoteGranted() {
-
-        voteGranted_ = false;
         onChanged();
         return this;
     }
+
+        /**
+         * <pre>
+         * 是否投票
+         * </pre>
+         *
+         * <code>bool voteGranted = 2;</code>
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearVoteGranted() {
+
+            voteGranted_ = false;
+            onChanged();
+            return this;
+        }
 
         @java.lang.Override
         public Builder setUnknownFields(

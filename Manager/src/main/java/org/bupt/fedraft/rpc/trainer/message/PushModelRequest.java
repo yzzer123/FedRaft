@@ -15,29 +15,10 @@ public final class PushModelRequest extends
         // @@protoc_insertion_point(message_implements:fedraft.PushModelRequest)
         PushModelRequestOrBuilder {
     public static final int SERVER_ID_FIELD_NUMBER = 1;
-
-    // Use PushModelRequest.newBuilder() to construct.
-    private PushModelRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-    }
-
-    private PushModelRequest() {
-    }
-
     public static final int MODEL_CHUNK_FIELD_NUMBER = 2;
-
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-        return this.unknownFields;
-    }
-
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.PushModelRequest)
     private static final org.bupt.fedraft.rpc.trainer.message.PushModelRequest DEFAULT_INSTANCE;
-
-    private int modelCase_ = 0;
-    private java.lang.Object model_;
     private static final com.google.protobuf.Parser<PushModelRequest>
             PARSER = new com.google.protobuf.AbstractParser<PushModelRequest>() {
         @java.lang.Override
@@ -55,35 +36,26 @@ public final class PushModelRequest extends
             } catch (java.io.IOException e) {
                 throw new com.google.protobuf.InvalidProtocolBufferException(e)
                         .setUnfinishedMessage(builder.buildPartial());
-      }
-      return builder.buildPartial();
-    }
-  };
+            }
+            return builder.buildPartial();
+        }
+    };
 
-  static {
-    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.trainer.message.PushModelRequest();
-  }
-
-  private byte memoizedIsInitialized = -1;
-  /**
-   * <code>uint64 server_id = 1;</code>
-   * @return Whether the serverId field is set.
-   */
-  @java.lang.Override
-  public boolean hasServerId() {
-    return modelCase_ == 1;
-  }
-  /**
-   * <code>uint64 server_id = 1;</code>
-   * @return The serverId.
-   */
-  @java.lang.Override
-  public long getServerId() {
-    if (modelCase_ == 1) {
-      return (java.lang.Long) model_;
+    static {
+        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.trainer.message.PushModelRequest();
     }
-    return 0L;
-  }
+
+    private int modelCase_ = 0;
+    private java.lang.Object model_;
+    private byte memoizedIsInitialized = -1;
+
+    // Use PushModelRequest.newBuilder() to construct.
+    private PushModelRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
+
+    private PushModelRequest() {
+    }
 
     public static com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
@@ -91,25 +63,25 @@ public final class PushModelRequest extends
     }
 
     /**
-     * <code>bytes model_chunk = 2;</code>
-     *
-     * @return Whether the modelChunk field is set.
+     * <code>uint64 server_id = 1;</code>
+     * @return Whether the serverId field is set.
      */
     @java.lang.Override
-    public boolean hasModelChunk() {
-        return modelCase_ == 2;
-  }
-  /**
-   * <code>bytes model_chunk = 2;</code>
-   * @return The modelChunk.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString getModelChunk() {
-    if (modelCase_ == 2) {
-      return (com.google.protobuf.ByteString) model_;
+    public boolean hasServerId() {
+        return modelCase_ == 1;
     }
-    return com.google.protobuf.ByteString.EMPTY;
-  }
+
+    /**
+     * <code>uint64 server_id = 1;</code>
+     * @return The serverId.
+     */
+    @java.lang.Override
+    public long getServerId() {
+        if (modelCase_ == 1) {
+            return (java.lang.Long) model_;
+        }
+        return 0L;
+    }
 
     public static org.bupt.fedraft.rpc.trainer.message.PushModelRequest parseFrom(
             java.nio.ByteBuffer data)
@@ -117,21 +89,24 @@ public final class PushModelRequest extends
         return PARSER.parseFrom(data);
     }
 
-    @java.lang.Override
-    public boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-    return true;
-    }
-
     public static org.bupt.fedraft.rpc.trainer.message.PushModelRequest parseFrom(
             java.nio.ByteBuffer data,
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
+    }
+
+    /**
+     * <code>bytes model_chunk = 2;</code>
+     *
+     * @return The modelChunk.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getModelChunk() {
+        if (modelCase_ == 2) {
+            return (com.google.protobuf.ByteString) model_;
+        }
+        return com.google.protobuf.ByteString.EMPTY;
     }
 
     public static org.bupt.fedraft.rpc.trainer.message.PushModelRequest parseFrom(
@@ -145,31 +120,6 @@ public final class PushModelRequest extends
             com.google.protobuf.ExtensionRegistryLite extensionRegistry)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-        if (memoizedHashCode != 0) {
-            return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
-        switch (modelCase_) {
-            case 1:
-                hash = (37 * hash) + SERVER_ID_FIELD_NUMBER;
-                hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                        getServerId());
-                break;
-            case 2:
-                hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
-                hash = (53 * hash) + getModelChunk().hashCode();
-                break;
-            case 0:
-            default:
-        }
-        hash = (29 * hash) + getUnknownFields().hashCode();
-        memoizedHashCode = hash;
-        return hash;
     }
 
     public static org.bupt.fedraft.rpc.trainer.message.PushModelRequest parseFrom(byte[] data)
@@ -225,15 +175,7 @@ public final class PushModelRequest extends
             throws java.io.IOException {
         return com.google.protobuf.GeneratedMessageV3
                 .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.trainer.message.PushModelRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
+    }
 
     public static org.bupt.fedraft.rpc.trainer.message.PushModelRequest getDefaultInstance() {
         return DEFAULT_INSTANCE;
@@ -244,15 +186,16 @@ public final class PushModelRequest extends
     }
 
     @java.lang.Override
-    public Builder newBuilderForType() {
-        return newBuilder();
-    }
-
-    @java.lang.Override
     @SuppressWarnings({"unused"})
     protected java.lang.Object newInstance(
             UnusedPrivateParameter unused) {
         return new PushModelRequest();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
     }
 
     @java.lang.Override
@@ -269,6 +212,26 @@ public final class PushModelRequest extends
                 modelCase_);
     }
 
+    /**
+     * <code>bytes model_chunk = 2;</code>
+     *
+     * @return Whether the modelChunk field is set.
+     */
+    @java.lang.Override
+    public boolean hasModelChunk() {
+        return modelCase_ == 2;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
@@ -281,23 +244,31 @@ public final class PushModelRequest extends
                     2, (com.google.protobuf.ByteString) model_);
         }
         getUnknownFields().writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-    size = 0;
-    if (modelCase_ == 1) {
-        size += com.google.protobuf.CodedOutputStream
-                .computeUInt64Size(
-                        1, (Long) model_);
     }
-    if (modelCase_ == 2) {
-        size += com.google.protobuf.CodedOutputStream
-                .computeBytesSize(
-                        2, (com.google.protobuf.ByteString) model_);
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(org.bupt.fedraft.rpc.trainer.message.PushModelRequest prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (modelCase_ == 1) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeUInt64Size(
+                            1, (Long) model_);
+        }
+        if (modelCase_ == 2) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeBytesSize(
+                            2, (com.google.protobuf.ByteString) model_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -306,56 +277,86 @@ public final class PushModelRequest extends
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-     return true;
-    }
-    if (!(obj instanceof org.bupt.fedraft.rpc.trainer.message.PushModelRequest)) {
-      return super.equals(obj);
-    }
-    org.bupt.fedraft.rpc.trainer.message.PushModelRequest other = (org.bupt.fedraft.rpc.trainer.message.PushModelRequest) obj;
+      if (obj == this) {
+          return true;
+      }
+      if (!(obj instanceof org.bupt.fedraft.rpc.trainer.message.PushModelRequest)) {
+          return super.equals(obj);
+      }
+      org.bupt.fedraft.rpc.trainer.message.PushModelRequest other = (org.bupt.fedraft.rpc.trainer.message.PushModelRequest) obj;
 
-    if (!getModelCase().equals(other.getModelCase())) return false;
-    switch (modelCase_) {
-      case 1:
-        if (getServerId()
-            != other.getServerId()) return false;
-        break;
-        case 2:
-            if (!getModelChunk()
-                    .equals(other.getModelChunk())) return false;
-        break;
-      case 0:
-      default:
-    }
+      if (!getModelCase().equals(other.getModelCase())) return false;
+      switch (modelCase_) {
+          case 1:
+              if (getServerId()
+                      != other.getServerId()) return false;
+              break;
+          case 2:
+              if (!getModelChunk()
+                      .equals(other.getModelChunk())) return false;
+              break;
+          case 0:
+          default:
+      }
       return getUnknownFields().equals(other.getUnknownFields());
   }
 
-  @java.lang.Override
-  public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
-  }
+    @java.lang.Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        switch (modelCase_) {
+            case 1:
+                hash = (37 * hash) + SERVER_ID_FIELD_NUMBER;
+                hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+                        getServerId());
+                break;
+            case 2:
+                hash = (37 * hash) + MODEL_CHUNK_FIELD_NUMBER;
+                hash = (53 * hash) + getModelChunk().hashCode();
+                break;
+            case 0:
+            default:
+        }
+        hash = (29 * hash) + getUnknownFields().hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    @java.lang.Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
             com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         Builder builder = new Builder(parent);
         return builder;
-  }
+    }
 
-  @java.lang.Override
-  public com.google.protobuf.Parser<PushModelRequest> getParserForType() {
-    return PARSER;
-  }
+    @java.lang.Override
+    public com.google.protobuf.Parser<PushModelRequest> getParserForType() {
+        return PARSER;
+    }
 
-  @java.lang.Override
-  public org.bupt.fedraft.rpc.trainer.message.PushModelRequest getDefaultInstanceForType() {
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.trainer.message.PushModelRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
-  public enum ModelCase
-          implements com.google.protobuf.Internal.EnumLite,
-          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    public enum ModelCase
+            implements com.google.protobuf.Internal.EnumLite,
+            com.google.protobuf.AbstractMessage.InternalOneOfEnum {
     SERVER_ID(1),
     MODEL_CHUNK(2),
     MODEL_NOT_SET(0);
@@ -383,12 +384,13 @@ public final class PushModelRequest extends
                 return MODEL_NOT_SET;
             default:
                 return null;
-      }
+        }
     }
-    public int getNumber() {
-      return this.value;
+
+        public int getNumber() {
+            return this.value;
+        }
     }
-  }
 
     /**
      * <pre>
@@ -415,28 +417,28 @@ public final class PushModelRequest extends
 
         }
 
-        @java.lang.Override
-        public Builder clear() {
-            super.clear();
-            modelCase_ = 0;
-            model_ = null;
-            return this;
-        }
-
         public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
             return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_descriptor;
-    }
+        }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.trainer.message.PushModelRequest getDefaultInstanceForType() {
-      return org.bupt.fedraft.rpc.trainer.message.PushModelRequest.getDefaultInstance();
-    }
+        @java.lang.Override
+        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+            return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_fieldAccessorTable
+                    .ensureFieldAccessorsInitialized(
+                            org.bupt.fedraft.rpc.trainer.message.PushModelRequest.class, org.bupt.fedraft.rpc.trainer.message.PushModelRequest.Builder.class);
+        }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.trainer.message.PushModelRequest build() {
-      org.bupt.fedraft.rpc.trainer.message.PushModelRequest result = buildPartial();
-      if (!result.isInitialized()) {
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.trainer.message.PushModelRequest getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.trainer.message.PushModelRequest.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.trainer.message.PushModelRequest build() {
+            org.bupt.fedraft.rpc.trainer.message.PushModelRequest result = buildPartial();
+            if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
       return result;
@@ -452,27 +454,27 @@ public final class PushModelRequest extends
         result.model_ = model_;
       }
       result.modelCase_ = modelCase_;
-      onBuilt();
-      return result;
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-        return super.clone();
+        onBuilt();
+        return result;
     }
 
         @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-            return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            org.bupt.fedraft.rpc.trainer.message.PushModelRequest.class, org.bupt.fedraft.rpc.trainer.message.PushModelRequest.Builder.class);
+        public Builder clear() {
+            super.clear();
+            modelCase_ = 0;
+            model_ = null;
+            return this;
         }
 
         @java.lang.Override
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelRequest_descriptor;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+            return super.clone();
         }
 
         @java.lang.Override
@@ -499,14 +501,14 @@ public final class PushModelRequest extends
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 int index, java.lang.Object value) {
             return super.setRepeatedField(field, index, value);
-    }
+        }
 
-    public Builder mergeFrom(org.bupt.fedraft.rpc.trainer.message.PushModelRequest other) {
-      if (other == org.bupt.fedraft.rpc.trainer.message.PushModelRequest.getDefaultInstance()) return this;
-      switch (other.getModelCase()) {
-        case SERVER_ID: {
-          setServerId(other.getServerId());
-          break;
+        public Builder mergeFrom(org.bupt.fedraft.rpc.trainer.message.PushModelRequest other) {
+            if (other == org.bupt.fedraft.rpc.trainer.message.PushModelRequest.getDefaultInstance()) return this;
+            switch (other.getModelCase()) {
+                case SERVER_ID: {
+                    setServerId(other.getServerId());
+                    break;
         }
         case MODEL_CHUNK: {
           setModelChunk(other.getModelChunk());
@@ -517,31 +519,31 @@ public final class PushModelRequest extends
         }
       }
       this.mergeUnknownFields(other.getUnknownFields());
-      onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public boolean isInitialized() {
-        return true;
-    }
+            onChanged();
+            return this;
+        }
 
         @java.lang.Override
         public Builder addRepeatedField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 java.lang.Object value) {
             return super.addRepeatedField(field, value);
-    }
+        }
 
-    @java.lang.Override
-    public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof org.bupt.fedraft.rpc.trainer.message.PushModelRequest) {
-          return mergeFrom((org.bupt.fedraft.rpc.trainer.message.PushModelRequest)other);
-      } else {
-        super.mergeFrom(other);
-          return this;
-      }
-    }
+        @java.lang.Override
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+            if (other instanceof org.bupt.fedraft.rpc.trainer.message.PushModelRequest) {
+                return mergeFrom((org.bupt.fedraft.rpc.trainer.message.PushModelRequest) other);
+            } else {
+                super.mergeFrom(other);
+                return this;
+            }
+        }
+
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
+        }
 
         @java.lang.Override
         public Builder mergeFrom(
@@ -557,31 +559,31 @@ public final class PushModelRequest extends
                     int tag = input.readTag();
                     switch (tag) {
                         case 0:
-              done = true;
-              break;
-            case 8: {
-              model_ = input.readUInt64();
-              modelCase_ = 1;
-              break;
-            } // case 8
-            case 18: {
-              model_ = input.readBytes();
+                            done = true;
+                            break;
+                        case 8: {
+                            model_ = input.readUInt64();
+                            modelCase_ = 1;
+                            break;
+                        } // case 8
+                        case 18: {
+                            model_ = input.readBytes();
               modelCase_ = 2;
               break;
             } // case 18
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                done = true; // was an endgroup tag
+                  done = true; // was an endgroup tag
               }
-              break;
+                break;
             } // default:
-          } // switch (tag)
-        } // while (!done)
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.unwrapIOException();
-      } finally {
-        onChanged();
-      } // finally
+                    } // switch (tag)
+                } // while (!done)
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.unwrapIOException();
+            } finally {
+                onChanged();
+            } // finally
             return this;
         }
 
@@ -668,7 +670,7 @@ public final class PushModelRequest extends
         }
         modelCase_ = 2;
         model_ = value;
-        onChanged();
+      onChanged();
       return this;
     }
     /**
@@ -694,10 +696,10 @@ public final class PushModelRequest extends
         public Builder mergeUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
-    }
+        }
 
 
-    // @@protoc_insertion_point(builder_scope:fedraft.PushModelRequest)
+        // @@protoc_insertion_point(builder_scope:fedraft.PushModelRequest)
   }
 
 }

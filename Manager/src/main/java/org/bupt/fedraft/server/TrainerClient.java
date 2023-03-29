@@ -18,6 +18,8 @@ import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 /**
+ * 负责与Trainer通信的类
+ *
  * @author yzzer
  */
 public class TrainerClient extends Client {
@@ -132,6 +134,7 @@ public class TrainerClient extends Client {
      * @return 返回一个异步发送器
      */
     public StreamObserver<PushModelRequest> pushModel() {
+
         return asyncStub.pushModel(new StreamObserver<>() {
             @Override
             public void onNext(PushModelResponse response) {
@@ -148,6 +151,7 @@ public class TrainerClient extends Client {
             }
         });
     }
+
 
     /**
      * 同步发送模型

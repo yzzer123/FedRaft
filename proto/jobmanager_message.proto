@@ -6,22 +6,51 @@ option java_package = "org.bupt.fedraft.rpc.jobmanager.message";
 option java_multiple_files = true;
 
 
-
+// 心跳消息
 message AppendModelsRequest{
-
+  int32 term = 1;
+  int64 leaderId = 2;
+  int64 modelIndex = 3;
+  bool  canSendModel = 4;
 }
 
 message AppendModelsResponse{
-
+  int32 term = 1;
 }
 
 message JobVoteRequest{
-
+  int32 term = 1;
+  int64 candidateId = 2;
+  int64 modelIndex = 3;  // 拓扑索引
+  int32 modelTerm = 4;
 }
 
 message JobVoteResponse{
-
+  int32 term = 1;
+  bool voteGranted = 2; // 是否投票
 }
+
+message JobPullModelRequest{
+  int32 term = 1;
+  int64 modelIndex = 2;
+}
+
+message JobPullModelResponse{
+  bytes modelChunk = 1;
+}
+
+message JobPushModelRequest{
+  oneof model{
+    JobPullModelRequest modelInfo = 1;
+    bytes modelChunk = 2;
+  }
+}
+
+message JobPushModelResponse{
+  bool success = 1;
+}
+
+
 
 message JobShutdownRequest{
   int64 sourceId = 1;

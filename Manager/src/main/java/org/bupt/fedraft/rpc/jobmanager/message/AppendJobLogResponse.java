@@ -11,15 +11,6 @@ public final class AppendJobLogResponse extends
         // @@protoc_insertion_point(message_implements:fedraft.AppendJobLogResponse)
         AppendJobLogResponseOrBuilder {
     private static final long serialVersionUID = 0L;
-
-    // Use AppendJobLogResponse.newBuilder() to construct.
-    private AppendJobLogResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-    }
-
-    private AppendJobLogResponse() {
-    }
-
     // @@protoc_insertion_point(class_scope:fedraft.AppendJobLogResponse)
     private static final org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse DEFAULT_INSTANCE;
     private static final com.google.protobuf.Parser<AppendJobLogResponse>
@@ -39,16 +30,24 @@ public final class AppendJobLogResponse extends
             } catch (java.io.IOException e) {
                 throw new com.google.protobuf.InvalidProtocolBufferException(e)
                         .setUnfinishedMessage(builder.buildPartial());
-      }
-      return builder.buildPartial();
+            }
+            return builder.buildPartial();
+        }
+    };
+
+    static {
+        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse();
     }
-  };
 
-  static {
-    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse();
-  }
+    private byte memoizedIsInitialized = -1;
 
-  private byte memoizedIsInitialized = -1;
+    // Use AppendJobLogResponse.newBuilder() to construct.
+    private AppendJobLogResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
+    }
+
+    private AppendJobLogResponse() {
+    }
 
     public static com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
@@ -136,13 +135,13 @@ public final class AppendJobLogResponse extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
+    public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse getDefaultInstance() {
+        return DEFAULT_INSTANCE;
+    }
 
-  public static com.google.protobuf.Parser<AppendJobLogResponse> parser() {
-    return PARSER;
-  }
+    public static com.google.protobuf.Parser<AppendJobLogResponse> parser() {
+        return PARSER;
+    }
 
     @java.lang.Override
     @SuppressWarnings({"unused"})
@@ -151,11 +150,11 @@ public final class AppendJobLogResponse extends
         return new AppendJobLogResponse();
     }
 
-  @java.lang.Override
-  public com.google.protobuf.UnknownFieldSet
-  getUnknownFields() {
-    return this.unknownFields;
-  }
+    @java.lang.Override
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -165,21 +164,23 @@ public final class AppendJobLogResponse extends
                         org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse.class, org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse.Builder.class);
     }
 
-  @java.lang.Override
-  public boolean isInitialized() {
-    byte isInitialized = memoizedIsInitialized;
-    if (isInitialized == 1) return true;
-    if (isInitialized == 0) return false;
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
 
-    memoizedIsInitialized = 1;
-    return true;
-  }
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -187,15 +188,15 @@ public final class AppendJobLogResponse extends
         getUnknownFields().writeTo(output);
     }
 
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
+    @java.lang.Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
 
-    size = 0;
-    size += getUnknownFields().getSerializedSize();
-    memoizedSize = size;
-    return size;
+        size = 0;
+        size += getUnknownFields().getSerializedSize();
+        memoizedSize = size;
+        return size;
   }
 
   @java.lang.Override
@@ -213,14 +214,14 @@ public final class AppendJobLogResponse extends
 
   @java.lang.Override
   public int hashCode() {
-    if (memoizedHashCode != 0) {
-      return memoizedHashCode;
-    }
-    int hash = 41;
-    hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (29 * hash) + getUnknownFields().hashCode();
-    memoizedHashCode = hash;
-    return hash;
+      if (memoizedHashCode != 0) {
+          return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
   }
 
     @java.lang.Override
@@ -228,11 +229,11 @@ public final class AppendJobLogResponse extends
         return newBuilder();
     }
 
-  @java.lang.Override
-  public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-              ? new Builder() : new Builder().mergeFrom(this);
-  }
+    @java.lang.Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
 
     @java.lang.Override
     protected Builder newBuilderForType(
@@ -241,15 +242,15 @@ public final class AppendJobLogResponse extends
         return builder;
     }
 
-  @java.lang.Override
-  public com.google.protobuf.Parser<AppendJobLogResponse> getParserForType() {
-    return PARSER;
-  }
+    @java.lang.Override
+    public com.google.protobuf.Parser<AppendJobLogResponse> getParserForType() {
+        return PARSER;
+    }
 
-  @java.lang.Override
-  public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse getDefaultInstanceForType() {
+        return DEFAULT_INSTANCE;
+    }
 
     /**
      * Protobuf type {@code fedraft.AppendJobLogResponse}
@@ -294,26 +295,26 @@ public final class AppendJobLogResponse extends
             return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendJobLogResponse_descriptor;
         }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse getDefaultInstanceForType() {
-      return org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse.getDefaultInstance();
-    }
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse.getDefaultInstance();
+        }
 
-    @java.lang.Override
+        @java.lang.Override
     public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse build() {
       org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
-      return result;
-    }
+            return result;
+        }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse buildPartial() {
-      org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse result = new org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse(this);
-      onBuilt();
-      return result;
-    }
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse buildPartial() {
+            org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse result = new org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse(this);
+            onBuilt();
+            return result;
+        }
 
         @java.lang.Override
         public Builder clone() {
@@ -361,19 +362,19 @@ public final class AppendJobLogResponse extends
                 super.mergeFrom(other);
                 return this;
             }
-    }
+        }
 
-    public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse other) {
-      if (other == org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse.getDefaultInstance()) return this;
-      this.mergeUnknownFields(other.getUnknownFields());
-      onChanged();
-      return this;
-    }
+        public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse other) {
+            if (other == org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse.getDefaultInstance()) return this;
+            this.mergeUnknownFields(other.getUnknownFields());
+            onChanged();
+            return this;
+        }
 
-    @java.lang.Override
-    public boolean isInitialized() {
-      return true;
-    }
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
+        }
 
         @java.lang.Override
         public Builder mergeFrom(
@@ -417,7 +418,7 @@ public final class AppendJobLogResponse extends
         }
 
 
-    // @@protoc_insertion_point(builder_scope:fedraft.AppendJobLogResponse)
+        // @@protoc_insertion_point(builder_scope:fedraft.AppendJobLogResponse)
   }
 
 }

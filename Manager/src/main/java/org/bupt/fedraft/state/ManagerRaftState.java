@@ -2,6 +2,9 @@ package org.bupt.fedraft.state;
 
 import org.bupt.fedraft.job.manager.BaseJob;
 
+/**
+ * @author yzzer
+ */
 public class ManagerRaftState {
 
     // 任期

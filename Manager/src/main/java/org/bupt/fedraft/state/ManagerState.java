@@ -20,10 +20,15 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 统一保存Ping值等全局状态，保存维护的Job信息，能够维护若干个Job同时运行
+ *
+ * @author yzzer
  */
 public class ManagerState {
 
     private static final Logger logger = LoggerFactory.getLogger(ManagerState.class);
+
+    private final double JOB_CANDIDATE_RATE = Configuration.getDouble(Configuration.ELECTION_CANDIDATE_QUALIFY_RATE);
+
     private final AtomicInteger delay;
 
     private final ManagerRaftState raftState;
@@ -260,6 +265,56 @@ public class ManagerState {
     }
 
     /**
+     * 判断节点是否符合候选人要求（时延满足要求）
+     *
+     * @param id 节点ID
+     * @return 判断结果
+     */
+    public boolean isQualifiedCandidate(Long id) {
+        boolean result = false;
+        topologyLock.readLock().lock();
+        int qualifiedLine = (int) Math.ceil(JOB_CANDIDATE_RATE * topology.size());
+        int delay = Integer.MIN_VALUE;
+
+        // 统计小于节点时延的节点个数
+        int count = 0;
+
+        // 确定ID对应的时延
+        for (Tuple<Long, Integer> delayTuple : topology) {
+            if (delayTuple.getLeft().equals(id)) {
+                delay = delayTuple.getRight();
+                break;
+            }
+        }
+
+        for (Tuple<Long, Integer> delayTuple : topology) {
+            if (delay > delayTuple.getRight()) {
+                count++;
+
+                // 当超过qualifiedLine的数量的时延比该节点低的话，就认为该节点不能成为候选人
+                if (count > qualifiedLine) {
+                    break;
+                }
+            }
+        }
+
+        result = count <= qualifiedLine;
+
+        topologyLock.readLock().unlock();
+        return result;
+    }
+
+    /**
+     * 判断自己能否成为Candidate
+     *
+     * @return 判断结果
+     */
+    public boolean isQualifiedCandidate() {
+        return isQualifiedCandidate(selfNodeInfo.getNodeId());
+    }
+
+
+    /**
      * 拓扑进行批量读操作
      *
      * @param watcher 读处理器
@@ -299,15 +354,4 @@ public class ManagerState {
         threadPool.shutdown();
         managerClientPool.close();
     }
-
-
-    /**
-     * Manager的状态处理器
-     *
-     * @param <T> 要处理的数据类型
-     */
-    public interface ManagerStateWatcher<T> {
-        void work(T t);
-    }
-
 }

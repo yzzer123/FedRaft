@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
@@ -24,12 +23,14 @@ import java.util.regex.Pattern;
 
 /**
  * 获取时延指标工具
+ *
+ * @author yzzer
  */
 public class NetworkUtils {
 
     public static final int INVALID_DELAY = 2000000;
     private static final Logger logger = LoggerFactory.getLogger(NetworkUtils.class);
-    private static final Pattern delayPattern = Pattern.compile("time=([-+]?[0-9]*\\.?[0-9]+)");
+    private static final Pattern DELAY_PATTERN = Pattern.compile("time=([-+]?[0-9]*\\.?[0-9]+)");
 
     private static ManagerState managerState;
 
@@ -40,7 +41,7 @@ public class NetworkUtils {
     /**
      * 负责定时测试点到点延时 并计算出节点的平均时延
      */
-    public static ScheduledFuture<?> startScheduledPingTask(ManagerState managerState) {
+    public static void startScheduledPingTask(ManagerState managerState) {
 
         if (NetworkUtils.managerState == null) {
             NetworkUtils.managerState = managerState;
@@ -48,7 +49,7 @@ public class NetworkUtils {
             NetworkUtils.selfId = managerState.getSelfNodeInfo().getNodeId();
         }
         int heartbeatInterval = Configuration.getInt(Configuration.MANAGER_HEARTBEAT_TIME_INTERVAL);
-        return TimerUtils.getTimer().scheduleAtFixedRate(NetworkUtils::pingTopology,
+        TimerUtils.getTimer().scheduleAtFixedRate(NetworkUtils::pingTopology,
                 0, heartbeatInterval / 2, TimeUnit.MILLISECONDS);
     }
 
@@ -56,18 +57,14 @@ public class NetworkUtils {
 
         List<Long> hosts = new ArrayList<>();
 
-        managerState.getTopology(list -> {
-            list.forEach(tuple -> {
-                hosts.add(tuple.getLeft());
-            });
-        });
+        managerState.getTopology(list -> list.forEach(tuple -> hosts.add(tuple.getLeft())));
 
-        int avgDelay = pingTopologyByCMD(hosts);
+        int avgDelay = pingTopologyByShell(hosts);
         managerState.setDelay(avgDelay);
     }
 
 
-    private static int pingTopologyByCMD(List<Long> hosts) {
+    private static int pingTopologyByShell(List<Long> hosts) {
 
         AtomicInteger sumOfDelay = new AtomicInteger(0);
         final CountDownLatch countDownLatch;
@@ -91,7 +88,6 @@ public class NetworkUtils {
                 try {
                     delay = ping(NodeInfo.idToIp(clientId));
                 } catch (IOException e) {
-                    delay = INVALID_DELAY;
                     logger.warn(e.getMessage());
                 } finally {
                     sumOfDelay.addAndGet(delay);
@@ -155,7 +151,6 @@ public class NetworkUtils {
     public static boolean isPortAvailable(int port) {
         try {
             bindPort("0.0.0.0", port);
-//            bindPort(InetAddress.getLocalHost().getHostAddress(), port);
             return true;
         } catch (Exception e) {
             logger.warn(port + " 端口被占用或无权限\t" + e.getMessage());
@@ -173,12 +168,14 @@ public class NetworkUtils {
      */
     public static int getDelayFromPing(String line) {
         int delay = -1;
-        Matcher matcher = delayPattern.matcher(line);
+        Matcher matcher = DELAY_PATTERN.matcher(line);
         if (matcher.find()) {
             delay = (int) (Double.parseDouble(matcher.group().substring(5)) * 1000);
 
             // 延迟为负数就认为不可达
-            if (delay < 0) delay = -1;
+            if (delay < 0) {
+                delay = -1;
+            }
         }
         return delay;
     }

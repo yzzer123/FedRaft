@@ -4,6 +4,7 @@ package org.bupt.fedraft.state;
 import com.google.protobuf.ByteString;
 import io.grpc.stub.StreamObserver;
 import org.bupt.fedraft.config.Configuration;
+import org.bupt.fedraft.job.jobmanager.Follower;
 import org.bupt.fedraft.rpc.manager.message.JobSubmitResponse;
 import org.bupt.fedraft.rpc.trainer.message.ModelClass;
 import org.bupt.fedraft.server.ManagerClient;
@@ -18,10 +19,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 保存训练任务运行时状态，包括JobManager的角色，拓扑信息等
- *
  * @author yzzer
  */
 public class JobManager {
@@ -34,17 +37,23 @@ public class JobManager {
     public final int uuid;
     public final long sourceId;
     public final List<Long> participants;
-    public StreamObserver<JobSubmitResponse> responseObserver; // 日志回复器
+
+    // trainer失败计数
+    private final AtomicInteger failCount;
     public final int globalEpoch;
     private final ManagerState managerState;
     private ManagerClient sourceClient;
-    private final AtomicInteger failCount;  // trainer失败计数
+    private final JobManagerRaftSate raftSate;
     private TrainerClient trainerClient;
     public final String datasetName;
     public final ModelClass modelClass;
 
     private Process trainerProcess;
-    public List<ByteString> model = new ArrayList<>(10);
+    private final ReadWriteLock stateLock = new ReentrantReadWriteLock(true);
+    private final List<ByteString> model = new ArrayList<>(10);
+    private final ReadWriteLock modelLock = new ReentrantReadWriteLock(true);
+    // 日志回复器
+    public StreamObserver<JobSubmitResponse> responseObserver;
 
     public JobManager(ManagerState managerState, int uuid, long sourceId, int globalEpoch,
                       List<Long> participants,
@@ -67,6 +76,9 @@ public class JobManager {
         failCount = new AtomicInteger(Configuration.getInt(Configuration.TRAINER_SERVER_FAIL_TIMES));
 
         setupTrainer();
+
+        raftSate = new JobManagerRaftSate();
+        raftSate.setJob(new Follower(this, managerState));
     }
 
     public JobManager(ManagerState managerState, int uuid, long sourceId, int globalEpoch,
@@ -76,6 +88,48 @@ public class JobManager {
         this(managerState, uuid, sourceId, globalEpoch, participants, datasetName, modelClass, null);
     }
 
+    /**
+     * 访问raft状态参数
+     *
+     * @param watcher 监听器
+     * @param type    读写状态
+     */
+    public void visitRaftState(ManagerStateWatcher<JobManagerRaftSate> watcher, VisitType type) {
+        Lock lock = (type == VisitType.READ ? stateLock.readLock() : stateLock.writeLock());
+        lock.lock();
+        watcher.work(raftSate);
+        lock.unlock();
+    }
+
+    /**
+     * 访问模型
+     *
+     * @param watcher 监听器
+     * @param type    读写状态
+     */
+    public void visitModel(ManagerStateWatcher<List<ByteString>> watcher, VisitType type) {
+        Lock lock = (type == VisitType.READ ? modelLock.readLock() : modelLock.writeLock());
+        lock.lock();
+        watcher.work(model);
+        lock.unlock();
+    }
+
+
+    public void clearModel() {
+        modelLock.writeLock().lock();
+        model.clear();
+        modelLock.writeLock().unlock();
+    }
+
+    public void addModelChunk(ByteString chunk) {
+        modelLock.writeLock().lock();
+        model.add(chunk);
+        modelLock.writeLock().unlock();
+    }
+
+    public List<ByteString> getModel() {
+        return model;
+    }
 
     private void setupTrainer() {
 
@@ -93,7 +147,12 @@ public class JobManager {
         }
     }
 
-
+    /**
+     * 启动Trainer进程
+     *
+     * @param port Trainer进程的端口号
+     * @throws IOException 执行启动脚本时发生的异常
+     */
     private void startTrainerProcess(int port) throws IOException {
         // 执行trainer启动脚本，要求Trainer在当前目录下
         String[] cmdArr = {"/bin/bash", "-c", "./bin/server.sh start " + port};
@@ -136,10 +195,16 @@ public class JobManager {
             }
         }
 
+        // 监听进程输出
         new Thread(() -> watchTrainerLog(logger)).start();
         new Thread(() -> watchTrainerLog(stdIn)).start();
     }
 
+    /**
+     * 监听Trainer日志输出
+     *
+     * @param reader 日志输入流
+     */
     private void watchTrainerLog(BufferedReader reader) {
         String line;
         try {

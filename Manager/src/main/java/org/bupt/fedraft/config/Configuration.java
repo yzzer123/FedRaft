@@ -23,7 +23,7 @@ public class Configuration {
     public final static String TRAINER_MODEL_HOME = "trainer.model.home";
     public final static String TRAINER_SERVE_LOG_BATCH_SIZE = "trainer.server.log-batch-size";
     public final static String ELECTION_CANDIDATE_TIMEOUT = "election.candidate.timeout";
-    public final static String ELECTION_CANDIDATE_QUALIFY_INDEX = "election.candidate.qualify-index";
+    public final static String ELECTION_CANDIDATE_QUALIFY_RATE = "election.candidate.qualify-rate";
 
 //    public final static String LOG_MODEL_CHUCK_SIZE = "log.model.chuck-size";
 
@@ -103,6 +103,13 @@ public class Configuration {
             return 0;
         }
         return conf.getInt(key);
+    }
+
+    public static double getDouble(String key) {
+        if (conf == null) {
+            return 0;
+        }
+        return conf.getDouble(key);
     }
 
     public static long getLong(String key) {

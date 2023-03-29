@@ -3,8 +3,8 @@
 
 package org.bupt.fedraft.rpc.jobmanager.message;
 
-public interface JobVoteResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.JobVoteResponse)
+public interface JobPullModelRequestOrBuilder extends
+        // @@protoc_insertion_point(interface_extends:fedraft.JobPullModelRequest)
         com.google.protobuf.MessageOrBuilder {
 
     /**
@@ -15,13 +15,9 @@ public interface JobVoteResponseOrBuilder extends
     int getTerm();
 
     /**
-     * <pre>
-     * 是否投票
-     * </pre>
+     * <code>int64 modelIndex = 2;</code>
      *
-     * <code>bool voteGranted = 2;</code>
-     *
-     * @return The voteGranted.
+     * @return The modelIndex.
      */
-    boolean getVoteGranted();
+    long getModelIndex();
 }

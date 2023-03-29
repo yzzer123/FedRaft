@@ -40,7 +40,9 @@ public class Follower extends BaseJob {
             // 超时后就将自己设置为候选人
             getManagerState().updateRaftState(raftState -> {
                 // 检查是否当前状态已经发生改变
-                if (raftState.job != Follower.this) return;
+                if (raftState.job != Follower.this) {
+                    return;
+                }
                 Follower.this.closeTimer();
                 raftState.job = new Candidate(getManagerState());
             });

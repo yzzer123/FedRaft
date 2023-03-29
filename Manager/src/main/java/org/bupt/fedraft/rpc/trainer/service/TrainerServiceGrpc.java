@@ -13,11 +13,11 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class TrainerServiceGrpc {
 
-  private static final int METHODID_MERGE_MODEL = 0;
+    private static final int METHODID_MERGE_MODEL = 0;
 
-  public static final String SERVICE_NAME = "fedraft.TrainerService";
-  private static final int METHODID_TRAIN_MODEL = 1;
-  private static final int METHODID_PUSH_MODEL = 2;
+    public static final String SERVICE_NAME = "fedraft.TrainerService";
+    private static final int METHODID_TRAIN_MODEL = 1;
+    private static final int METHODID_PUSH_MODEL = 2;
     private static final int METHODID_INIT_MODEL = 3;
     // Static method descriptors that strictly reflect the proto.
     private static volatile io.grpc.MethodDescriptor<org.bupt.fedraft.rpc.trainer.message.TrainRequest,
@@ -55,11 +55,11 @@ public final class TrainerServiceGrpc {
                                             org.bupt.fedraft.rpc.trainer.message.TrainResponse.getDefaultInstance()))
                                     .setSchemaDescriptor(new TrainerServiceMethodDescriptorSupplier("TrainModel"))
                                     .build();
+                }
+            }
         }
-      }
+        return getTrainModelMethod;
     }
-    return getTrainModelMethod;
-  }
 
     @io.grpc.stub.annotations.RpcMethod(
             fullMethodName = SERVICE_NAME + '/' + "PushModel",
@@ -83,11 +83,11 @@ public final class TrainerServiceGrpc {
                                             org.bupt.fedraft.rpc.trainer.message.PushModelResponse.getDefaultInstance()))
                                     .setSchemaDescriptor(new TrainerServiceMethodDescriptorSupplier("PushModel"))
                                     .build();
+                }
+            }
         }
-      }
+        return getPushModelMethod;
     }
-    return getPushModelMethod;
-  }
 
     @io.grpc.stub.annotations.RpcMethod(
             fullMethodName = SERVICE_NAME + '/' + "MergeModel",
@@ -111,11 +111,11 @@ public final class TrainerServiceGrpc {
                                             org.bupt.fedraft.rpc.trainer.message.MergeResponse.getDefaultInstance()))
                                     .setSchemaDescriptor(new TrainerServiceMethodDescriptorSupplier("MergeModel"))
                                     .build();
+                }
+            }
         }
-      }
+        return getMergeModelMethod;
     }
-    return getMergeModelMethod;
-  }
 
     @io.grpc.stub.annotations.RpcMethod(
             fullMethodName = SERVICE_NAME + '/' + "InitModel",
@@ -139,25 +139,25 @@ public final class TrainerServiceGrpc {
                                             org.bupt.fedraft.rpc.trainer.message.InitModelResponse.getDefaultInstance()))
                                     .setSchemaDescriptor(new TrainerServiceMethodDescriptorSupplier("InitModel"))
                                     .build();
+                }
+            }
         }
-      }
+        return getInitModelMethod;
     }
-    return getInitModelMethod;
-  }
 
-  /**
-   * Creates a new async stub that supports all call types for the service
-   */
-  public static TrainerServiceStub newStub(io.grpc.Channel channel) {
-      io.grpc.stub.AbstractStub.StubFactory<TrainerServiceStub> factory =
-              new io.grpc.stub.AbstractStub.StubFactory<TrainerServiceStub>() {
-                  @java.lang.Override
-                  public TrainerServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-                      return new TrainerServiceStub(channel, callOptions);
-                  }
-              };
-    return TrainerServiceStub.newStub(factory, channel);
-  }
+    /**
+     * Creates a new async stub that supports all call types for the service
+     */
+    public static TrainerServiceStub newStub(io.grpc.Channel channel) {
+        io.grpc.stub.AbstractStub.StubFactory<TrainerServiceStub> factory =
+                new io.grpc.stub.AbstractStub.StubFactory<TrainerServiceStub>() {
+                    @java.lang.Override
+                    public TrainerServiceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+                        return new TrainerServiceStub(channel, callOptions);
+                    }
+                };
+        return TrainerServiceStub.newStub(factory, channel);
+    }
 
     /**
      * Creates a new blocking-style stub that supports unary and streaming output calls on the service
@@ -187,217 +187,217 @@ public final class TrainerServiceGrpc {
                     }
                 };
         return TrainerServiceFutureStub.newStub(factory, channel);
-  }
+    }
 
-  public static io.grpc.ServiceDescriptor getServiceDescriptor() {
-    io.grpc.ServiceDescriptor result = serviceDescriptor;
-    if (result == null) {
-      synchronized (TrainerServiceGrpc.class) {
-        result = serviceDescriptor;
+    public static io.grpc.ServiceDescriptor getServiceDescriptor() {
+        io.grpc.ServiceDescriptor result = serviceDescriptor;
         if (result == null) {
-            serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-                    .setSchemaDescriptor(new TrainerServiceFileDescriptorSupplier())
-                    .addMethod(getTrainModelMethod())
-                    .addMethod(getPushModelMethod())
-                    .addMethod(getMergeModelMethod())
-                    .addMethod(getInitModelMethod())
-                    .build();
-        }
+            synchronized (TrainerServiceGrpc.class) {
+                result = serviceDescriptor;
+                if (result == null) {
+                    serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
+                            .setSchemaDescriptor(new TrainerServiceFileDescriptorSupplier())
+                            .addMethod(getTrainModelMethod())
+                            .addMethod(getPushModelMethod())
+                            .addMethod(getMergeModelMethod())
+                            .addMethod(getInitModelMethod())
+                            .build();
+                }
       }
     }
     return result;
-  }
-
-  /**
-   * <pre>
-   * Trainer服务
-   * </pre>
-   */
-  public static abstract class TrainerServiceImplBase implements io.grpc.BindableService {
-
-      /**
-       * <pre>
-       * 训练模型
-       * </pre>
-       */
-      public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.TrainRequest> trainModel(
-              io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.TrainResponse> responseObserver) {
-          return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getTrainModelMethod(), responseObserver);
-      }
-
-      /**
-       * <pre>
-       * 发送待合并模型
-       * </pre>
-       */
-      public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.PushModelRequest> pushModel(
-              io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.PushModelResponse> responseObserver) {
-          return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getPushModelMethod(), responseObserver);
-      }
-
-      /**
-       * <pre>
-       * 请求合并模型
-       * </pre>
-       */
-      public void mergeModel(org.bupt.fedraft.rpc.trainer.message.MergeRequest request,
-                             io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.MergeResponse> responseObserver) {
-          io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getMergeModelMethod(), responseObserver);
-      }
-
-      /**
-       * <pre>
-       * 初始化模型
-       * </pre>
-       */
-      public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelRequest> initModel(
-              io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelResponse> responseObserver) {
-          return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getInitModelMethod(), responseObserver);
-      }
-
-      @java.lang.Override
-      public final io.grpc.ServerServiceDefinition bindService() {
-          return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-                  .addMethod(
-                          getTrainModelMethod(),
-                          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
-                                  new MethodHandlers<
-                                          org.bupt.fedraft.rpc.trainer.message.TrainRequest,
-                                          org.bupt.fedraft.rpc.trainer.message.TrainResponse>(
-                                          this, METHODID_TRAIN_MODEL)))
-                  .addMethod(
-                          getPushModelMethod(),
-                          io.grpc.stub.ServerCalls.asyncClientStreamingCall(
-                                  new MethodHandlers<
-                                          org.bupt.fedraft.rpc.trainer.message.PushModelRequest,
-                                          org.bupt.fedraft.rpc.trainer.message.PushModelResponse>(
-                                          this, METHODID_PUSH_MODEL)))
-                  .addMethod(
-                          getMergeModelMethod(),
-                          io.grpc.stub.ServerCalls.asyncServerStreamingCall(
-                                  new MethodHandlers<
-                                          org.bupt.fedraft.rpc.trainer.message.MergeRequest,
-                                          org.bupt.fedraft.rpc.trainer.message.MergeResponse>(
-                                          this, METHODID_MERGE_MODEL)))
-                  .addMethod(
-                          getInitModelMethod(),
-                          io.grpc.stub.ServerCalls.asyncClientStreamingCall(
-                                  new MethodHandlers<
-                                          org.bupt.fedraft.rpc.trainer.message.InitModelRequest,
-                                          org.bupt.fedraft.rpc.trainer.message.InitModelResponse>(
-                  this, METHODID_INIT_MODEL)))
-          .build();
     }
-  }
 
-  /**
-   * <pre>
-   * Trainer服务
-   * </pre>
-   */
-  public static final class TrainerServiceStub extends io.grpc.stub.AbstractAsyncStub<TrainerServiceStub> {
-      private TrainerServiceStub(
-              io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          super(channel, callOptions);
-      }
+    /**
+     * <pre>
+     * Trainer服务
+     * </pre>
+     */
+    public static abstract class TrainerServiceImplBase implements io.grpc.BindableService {
 
-      @java.lang.Override
-      protected TrainerServiceStub build(
-              io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new TrainerServiceStub(channel, callOptions);
-      }
+        /**
+         * <pre>
+         * 训练模型
+         * </pre>
+         */
+        public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.TrainRequest> trainModel(
+                io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.TrainResponse> responseObserver) {
+            return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getTrainModelMethod(), responseObserver);
+        }
 
-      /**
-       * <pre>
-       * 训练模型
-       * </pre>
-       */
-      public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.TrainRequest> trainModel(
-              io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.TrainResponse> responseObserver) {
-          return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
-                  getChannel().newCall(getTrainModelMethod(), getCallOptions()), responseObserver);
-      }
+        /**
+         * <pre>
+         * 发送待合并模型
+         * </pre>
+         */
+        public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.PushModelRequest> pushModel(
+                io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.PushModelResponse> responseObserver) {
+            return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getPushModelMethod(), responseObserver);
+        }
 
-      /**
-       * <pre>
-       * 发送待合并模型
-       * </pre>
-       */
-      public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.PushModelRequest> pushModel(
-              io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.PushModelResponse> responseObserver) {
-          return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
-                  getChannel().newCall(getPushModelMethod(), getCallOptions()), responseObserver);
-      }
+        /**
+         * <pre>
+         * 请求合并模型
+         * </pre>
+         */
+        public void mergeModel(org.bupt.fedraft.rpc.trainer.message.MergeRequest request,
+                               io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.MergeResponse> responseObserver) {
+            io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getMergeModelMethod(), responseObserver);
+        }
 
-      /**
-       * <pre>
-       * 请求合并模型
-       * </pre>
-       */
-      public void mergeModel(org.bupt.fedraft.rpc.trainer.message.MergeRequest request,
-                             io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.MergeResponse> responseObserver) {
-          io.grpc.stub.ClientCalls.asyncServerStreamingCall(
-                  getChannel().newCall(getMergeModelMethod(), getCallOptions()), request, responseObserver);
-      }
+        /**
+         * <pre>
+         * 初始化模型
+         * </pre>
+         */
+        public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelRequest> initModel(
+                io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelResponse> responseObserver) {
+            return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getInitModelMethod(), responseObserver);
+        }
 
-      /**
-       * <pre>
-       * 初始化模型
-       * </pre>
-       */
-      public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelRequest> initModel(
-              io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelResponse> responseObserver) {
-          return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
-          getChannel().newCall(getInitModelMethod(), getCallOptions()), responseObserver);
+        @java.lang.Override
+        public final io.grpc.ServerServiceDefinition bindService() {
+            return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+                    .addMethod(
+                            getTrainModelMethod(),
+                            io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+                                    new MethodHandlers<
+                                            org.bupt.fedraft.rpc.trainer.message.TrainRequest,
+                                            org.bupt.fedraft.rpc.trainer.message.TrainResponse>(
+                                            this, METHODID_TRAIN_MODEL)))
+                    .addMethod(
+                            getPushModelMethod(),
+                            io.grpc.stub.ServerCalls.asyncClientStreamingCall(
+                                    new MethodHandlers<
+                                            org.bupt.fedraft.rpc.trainer.message.PushModelRequest,
+                                            org.bupt.fedraft.rpc.trainer.message.PushModelResponse>(
+                                            this, METHODID_PUSH_MODEL)))
+                    .addMethod(
+                            getMergeModelMethod(),
+                            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+                                    new MethodHandlers<
+                                            org.bupt.fedraft.rpc.trainer.message.MergeRequest,
+                                            org.bupt.fedraft.rpc.trainer.message.MergeResponse>(
+                                            this, METHODID_MERGE_MODEL)))
+                    .addMethod(
+                            getInitModelMethod(),
+                            io.grpc.stub.ServerCalls.asyncClientStreamingCall(
+                                    new MethodHandlers<
+                                            org.bupt.fedraft.rpc.trainer.message.InitModelRequest,
+                                            org.bupt.fedraft.rpc.trainer.message.InitModelResponse>(
+                                            this, METHODID_INIT_MODEL)))
+                    .build();
+        }
     }
-  }
 
-  /**
-   * <pre>
-   * Trainer服务
-   * </pre>
-   */
-  public static final class TrainerServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<TrainerServiceBlockingStub> {
-      private TrainerServiceBlockingStub(
-              io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          super(channel, callOptions);
-      }
+    /**
+     * <pre>
+     * Trainer服务
+     * </pre>
+     */
+    public static final class TrainerServiceStub extends io.grpc.stub.AbstractAsyncStub<TrainerServiceStub> {
+        private TrainerServiceStub(
+                io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+            super(channel, callOptions);
+        }
 
-      @java.lang.Override
-      protected TrainerServiceBlockingStub build(
-              io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new TrainerServiceBlockingStub(channel, callOptions);
-      }
+        @java.lang.Override
+        protected TrainerServiceStub build(
+                io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+            return new TrainerServiceStub(channel, callOptions);
+        }
 
-      /**
-       * <pre>
-       * 请求合并模型
-       * </pre>
-       */
-      public java.util.Iterator<org.bupt.fedraft.rpc.trainer.message.MergeResponse> mergeModel(
-              org.bupt.fedraft.rpc.trainer.message.MergeRequest request) {
-          return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
-          getChannel(), getMergeModelMethod(), getCallOptions(), request);
+        /**
+         * <pre>
+         * 训练模型
+         * </pre>
+         */
+        public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.TrainRequest> trainModel(
+                io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.TrainResponse> responseObserver) {
+            return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
+                    getChannel().newCall(getTrainModelMethod(), getCallOptions()), responseObserver);
+        }
+
+        /**
+         * <pre>
+         * 发送待合并模型
+         * </pre>
+         */
+        public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.PushModelRequest> pushModel(
+                io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.PushModelResponse> responseObserver) {
+            return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
+                    getChannel().newCall(getPushModelMethod(), getCallOptions()), responseObserver);
+        }
+
+        /**
+         * <pre>
+         * 请求合并模型
+         * </pre>
+         */
+        public void mergeModel(org.bupt.fedraft.rpc.trainer.message.MergeRequest request,
+                               io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.MergeResponse> responseObserver) {
+            io.grpc.stub.ClientCalls.asyncServerStreamingCall(
+                    getChannel().newCall(getMergeModelMethod(), getCallOptions()), request, responseObserver);
+        }
+
+        /**
+         * <pre>
+         * 初始化模型
+         * </pre>
+         */
+        public io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelRequest> initModel(
+                io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelResponse> responseObserver) {
+            return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
+                    getChannel().newCall(getInitModelMethod(), getCallOptions()), responseObserver);
+        }
     }
-  }
 
-  /**
-   * <pre>
-   * Trainer服务
-   * </pre>
-   */
-  public static final class TrainerServiceFutureStub extends io.grpc.stub.AbstractFutureStub<TrainerServiceFutureStub> {
-      private TrainerServiceFutureStub(
-              io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          super(channel, callOptions);
-      }
+    /**
+     * <pre>
+     * Trainer服务
+     * </pre>
+     */
+    public static final class TrainerServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<TrainerServiceBlockingStub> {
+        private TrainerServiceBlockingStub(
+                io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+            super(channel, callOptions);
+        }
 
-      @java.lang.Override
-      protected TrainerServiceFutureStub build(
-              io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
-          return new TrainerServiceFutureStub(channel, callOptions);
-      }
-  }
+        @java.lang.Override
+        protected TrainerServiceBlockingStub build(
+                io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+            return new TrainerServiceBlockingStub(channel, callOptions);
+        }
+
+        /**
+         * <pre>
+         * 请求合并模型
+         * </pre>
+         */
+        public java.util.Iterator<org.bupt.fedraft.rpc.trainer.message.MergeResponse> mergeModel(
+                org.bupt.fedraft.rpc.trainer.message.MergeRequest request) {
+            return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
+                    getChannel(), getMergeModelMethod(), getCallOptions(), request);
+        }
+    }
+
+    /**
+     * <pre>
+     * Trainer服务
+     * </pre>
+     */
+    public static final class TrainerServiceFutureStub extends io.grpc.stub.AbstractFutureStub<TrainerServiceFutureStub> {
+        private TrainerServiceFutureStub(
+                io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+            super(channel, callOptions);
+        }
+
+        @java.lang.Override
+        protected TrainerServiceFutureStub build(
+                io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+            return new TrainerServiceFutureStub(channel, callOptions);
+        }
+    }
 
     private static final class MethodHandlers<Req, Resp> implements
             io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -408,22 +408,22 @@ public final class TrainerServiceGrpc {
         private final int methodId;
 
         MethodHandlers(TrainerServiceImplBase serviceImpl, int methodId) {
-      this.serviceImpl = serviceImpl;
-      this.methodId = methodId;
-    }
+            this.serviceImpl = serviceImpl;
+            this.methodId = methodId;
+        }
 
-    @java.lang.Override
-    @java.lang.SuppressWarnings("unchecked")
-    public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
-      switch (methodId) {
-        case METHODID_MERGE_MODEL:
-          serviceImpl.mergeModel((org.bupt.fedraft.rpc.trainer.message.MergeRequest) request,
-              (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.MergeResponse>) responseObserver);
-            break;
-          default:
-              throw new AssertionError();
-      }
-    }
+        @java.lang.Override
+        @java.lang.SuppressWarnings("unchecked")
+        public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
+            switch (methodId) {
+                case METHODID_MERGE_MODEL:
+                    serviceImpl.mergeModel((org.bupt.fedraft.rpc.trainer.message.MergeRequest) request,
+                            (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.MergeResponse>) responseObserver);
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }
 
         @java.lang.Override
         @java.lang.SuppressWarnings("unchecked")
@@ -438,7 +438,7 @@ public final class TrainerServiceGrpc {
                             (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.PushModelResponse>) responseObserver);
                 case METHODID_INIT_MODEL:
                     return (io.grpc.stub.StreamObserver<Req>) serviceImpl.initModel(
-              (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelResponse>) responseObserver);
+                            (io.grpc.stub.StreamObserver<org.bupt.fedraft.rpc.trainer.message.InitModelResponse>) responseObserver);
                 default:
                     throw new AssertionError();
             }
@@ -478,7 +478,7 @@ public final class TrainerServiceGrpc {
 
         @java.lang.Override
         public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
-      return getServiceDescriptor().findMethodByName(methodName);
+            return getServiceDescriptor().findMethodByName(methodName);
     }
   }
 }

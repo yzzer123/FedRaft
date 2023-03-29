@@ -46,5 +46,5 @@ public final class TrainerServiceOuterClass {
         return descriptor;
     }
 
-  // @@protoc_insertion_point(outer_class_scope)
+    // @@protoc_insertion_point(outer_class_scope)
 }
