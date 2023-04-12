@@ -3,6 +3,7 @@ package org.bupt.fedraft.rpc.manager.service;
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
 /**
+ *
  */
 @javax.annotation.Generated(
         value = "by gRPC proto compiler (version 1.50.1)",
@@ -10,9 +11,8 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class ManagerServiceGrpc {
 
-    private static final int METHODID_APPEND_ENTRIES = 0;
-
     public static final String SERVICE_NAME = "fedraft.ManagerService";
+    private static final int METHODID_APPEND_ENTRIES = 0;
     private static final int METHODID_VOTE_FOR = 1;
     private static final int METHODID_JOB_SHUTDOWN = 2;
     private static final int METHODID_JOB_SUBMIT = 3;
@@ -200,13 +200,12 @@ public final class ManagerServiceGrpc {
                             .addMethod(getJobShutdownMethod())
                             .build();
                 }
-      }
-    }
-    return result;
+            }
+        }
+        return result;
     }
 
     /**
-     *
      */
     public static abstract class ManagerServiceImplBase implements io.grpc.BindableService {
 
@@ -274,7 +273,6 @@ public final class ManagerServiceGrpc {
     }
 
     /**
-     *
      */
     public static final class ManagerServiceStub extends io.grpc.stub.AbstractAsyncStub<ManagerServiceStub> {
         private ManagerServiceStub(
@@ -322,7 +320,6 @@ public final class ManagerServiceGrpc {
     }
 
     /**
-     *
      */
     public static final class ManagerServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<ManagerServiceBlockingStub> {
         private ManagerServiceBlockingStub(
@@ -337,29 +334,31 @@ public final class ManagerServiceGrpc {
         }
 
         /**
+         *
          */
         public org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse appendEntries(org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest request) {
             return io.grpc.stub.ClientCalls.blockingUnaryCall(
                     getChannel(), getAppendEntriesMethod(), getCallOptions(), request);
+        }
+
+        /**
+         *
+         */
+        public org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse voteFor(org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest request) {
+            return io.grpc.stub.ClientCalls.blockingUnaryCall(
+                    getChannel(), getVoteForMethod(), getCallOptions(), request);
+        }
+
+        /**
+         *
+         */
+        public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse jobShutdown(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest request) {
+            return io.grpc.stub.ClientCalls.blockingUnaryCall(
+                    getChannel(), getJobShutdownMethod(), getCallOptions(), request);
+        }
     }
 
     /**
-     */
-    public org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse voteFor(org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getVoteForMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse jobShutdown(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getJobShutdownMethod(), getCallOptions(), request);
-    }
-    }
-
-    /**
-     *
      */
     public static final class ManagerServiceFutureStub extends io.grpc.stub.AbstractFutureStub<ManagerServiceFutureStub> {
         private ManagerServiceFutureStub(
@@ -374,7 +373,6 @@ public final class ManagerServiceGrpc {
         }
 
         /**
-         *
          */
         public com.google.common.util.concurrent.ListenableFuture<org.bupt.fedraft.rpc.manager.message.AppendEntriesResponse> appendEntries(
                 org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest request) {
@@ -383,7 +381,6 @@ public final class ManagerServiceGrpc {
         }
 
         /**
-         *
          */
         public com.google.common.util.concurrent.ListenableFuture<org.bupt.fedraft.rpc.manager.message.ManagerVoteResponse> voteFor(
                 org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest request) {
@@ -392,7 +389,6 @@ public final class ManagerServiceGrpc {
         }
 
         /**
-         *
          */
         public com.google.common.util.concurrent.ListenableFuture<org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse> jobShutdown(
                 org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest request) {
@@ -483,6 +479,6 @@ public final class ManagerServiceGrpc {
         @java.lang.Override
         public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
             return getServiceDescriptor().findMethodByName(methodName);
+        }
     }
-  }
 }

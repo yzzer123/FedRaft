@@ -14,13 +14,6 @@ public final class AppendEntriesRequest extends
     public static final int LEADERID_FIELD_NUMBER = 2;
     public static final int ENTRYINDEX_FIELD_NUMBER = 3;
     public static final int NODEIDS_FIELD_NUMBER = 4;
-
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-        return this.unknownFields;
-    }
-
     public static final int DELAY_FIELD_NUMBER = 5;
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.AppendEntriesRequest)
@@ -47,63 +40,28 @@ public final class AppendEntriesRequest extends
         }
     };
 
-    /**
-     * <code>int32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    @java.lang.Override
-    public int getTerm() {
-        return term_;
-    }
-
     static {
         DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest();
     }
 
     private int term_;
-
-    /**
-     * <code>int64 leaderId = 2;</code>
-     *
-     * @return The leaderId.
-     */
-    @java.lang.Override
-    public long getLeaderId() {
-        return leaderId_;
-    }
-
     private long leaderId_;
     private long entryIndex_;
+    private com.google.protobuf.Internal.LongList nodeIds_;
+    private int nodeIdsMemoizedSerializedSize = -1;
+    private com.google.protobuf.Internal.IntList delay_;
+    private int delayMemoizedSerializedSize = -1;
+    private byte memoizedIsInitialized = -1;
 
-    /**
-     * <pre>
-     * 拓扑索引
-     * </pre>
-     *
-     * <code>int64 entryIndex = 3;</code>
-     *
-     * @return The entryIndex.
-     */
-    @java.lang.Override
-    public long getEntryIndex() {
-        return entryIndex_;
+    // Use AppendEntriesRequest.newBuilder() to construct.
+    private AppendEntriesRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+        super(builder);
     }
 
-    private int delayMemoizedSerializedSize = -1;
-    private com.google.protobuf.Internal.LongList nodeIds_;
-  private byte memoizedIsInitialized = -1;
-  /**
-   * <pre>
-   * 拓扑信息
-   * </pre>
-   *
-   * <code>repeated int64 nodeIds = 4;</code>
-   * @return The count of nodeIds.
-   */
-  public int getNodeIdsCount() {
-    return nodeIds_.size();
-  }
+    private AppendEntriesRequest() {
+        nodeIds_ = emptyLongList();
+        delay_ = emptyIntList();
+    }
 
     /**
      * <pre>
@@ -112,44 +70,10 @@ public final class AppendEntriesRequest extends
      *
      * <code>repeated int64 nodeIds = 4;</code>
      *
-     * @param index The index of the element to return.
-     * @return The nodeIds at the given index.
+     * @return The count of nodeIds.
      */
-    public long getNodeIds(int index) {
-        return nodeIds_.getLong(index);
-    }
-
-    private int nodeIdsMemoizedSerializedSize = -1;
-
-    // Use AppendEntriesRequest.newBuilder() to construct.
-    private AppendEntriesRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
-    }
-
-    private com.google.protobuf.Internal.IntList delay_;
-
-    private AppendEntriesRequest() {
-        nodeIds_ = emptyLongList();
-        delay_ = emptyIntList();
-    }
-
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     *
-     * @return The count of delay.
-     */
-    public int getDelayCount() {
-        return delay_.size();
-    }
-
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     *
-     * @param index The index of the element to return.
-     * @return The delay at the given index.
-     */
-    public int getDelay(int index) {
-        return delay_.getInt(index);
+    public int getNodeIdsCount() {
+        return nodeIds_.size();
     }
 
     public static com.google.protobuf.Descriptors.Descriptor
@@ -262,11 +186,51 @@ public final class AppendEntriesRequest extends
     }
 
     @java.lang.Override
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
     internalGetFieldAccessorTable() {
         return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_fieldAccessorTable
                 .ensureFieldAccessorsInitialized(
                         org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.class, org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.Builder.class);
+    }
+
+    /**
+     * <code>int32 term = 1;</code>
+     *
+     * @return The term.
+     */
+    @java.lang.Override
+    public int getTerm() {
+        return term_;
+    }
+
+    /**
+     * <code>int64 leaderId = 2;</code>
+     *
+     * @return The leaderId.
+     */
+    @java.lang.Override
+    public long getLeaderId() {
+        return leaderId_;
+    }
+
+    /**
+     * <pre>
+     * 拓扑索引
+     * </pre>
+     *
+     * <code>int64 entryIndex = 3;</code>
+     *
+     * @return The entryIndex.
+     */
+    @java.lang.Override
+    public long getEntryIndex() {
+        return entryIndex_;
     }
 
     /**
@@ -285,6 +249,20 @@ public final class AppendEntriesRequest extends
     }
 
     /**
+     * <pre>
+     * 拓扑信息
+     * </pre>
+     *
+     * <code>repeated int64 nodeIds = 4;</code>
+     *
+     * @param index The index of the element to return.
+     * @return The nodeIds at the given index.
+     */
+    public long getNodeIds(int index) {
+        return nodeIds_.getLong(index);
+    }
+
+    /**
      * <code>repeated int32 delay = 5;</code>
      *
      * @return A list containing the delay.
@@ -293,6 +271,25 @@ public final class AppendEntriesRequest extends
     public java.util.List<java.lang.Integer>
     getDelayList() {
         return delay_;
+    }
+
+    /**
+     * <code>repeated int32 delay = 5;</code>
+     *
+     * @return The count of delay.
+     */
+    public int getDelayCount() {
+        return delay_.size();
+    }
+
+    /**
+     * <code>repeated int32 delay = 5;</code>
+     *
+     * @param index The index of the element to return.
+     * @return The delay at the given index.
+     */
+    public int getDelay(int index) {
+        return delay_.getInt(index);
     }
 
     @java.lang.Override
@@ -326,12 +323,12 @@ public final class AppendEntriesRequest extends
             output.writeInt64NoTag(nodeIds_.getLong(i));
         }
         if (getDelayList().size() > 0) {
-      output.writeUInt32NoTag(42);
-      output.writeUInt32NoTag(delayMemoizedSerializedSize);
-    }
-    for (int i = 0; i < delay_.size(); i++) {
-      output.writeInt32NoTag(delay_.getInt(i));
-    }
+            output.writeUInt32NoTag(42);
+            output.writeUInt32NoTag(delayMemoizedSerializedSize);
+        }
+        for (int i = 0; i < delay_.size(); i++) {
+            output.writeInt32NoTag(delay_.getInt(i));
+        }
         getUnknownFields().writeTo(output);
     }
 
@@ -356,32 +353,32 @@ public final class AppendEntriesRequest extends
         {
             int dataSize = 0;
             for (int i = 0; i < nodeIds_.size(); i++) {
-        dataSize += com.google.protobuf.CodedOutputStream
-          .computeInt64SizeNoTag(nodeIds_.getLong(i));
-      }
-      size += dataSize;
-      if (!getNodeIdsList().isEmpty()) {
-        size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
-      }
-      nodeIdsMemoizedSerializedSize = dataSize;
-    }
-    {
-      int dataSize = 0;
-      for (int i = 0; i < delay_.size(); i++) {
-        dataSize += com.google.protobuf.CodedOutputStream
-          .computeInt32SizeNoTag(delay_.getInt(i));
-      }
-      size += dataSize;
-      if (!getDelayList().isEmpty()) {
-        size += 1;
-        size += com.google.protobuf.CodedOutputStream
-            .computeInt32SizeNoTag(dataSize);
-      }
-      delayMemoizedSerializedSize = dataSize;
-    }
-    size += getUnknownFields().getSerializedSize();
+                dataSize += com.google.protobuf.CodedOutputStream
+                        .computeInt64SizeNoTag(nodeIds_.getLong(i));
+            }
+            size += dataSize;
+            if (!getNodeIdsList().isEmpty()) {
+                size += 1;
+                size += com.google.protobuf.CodedOutputStream
+                        .computeInt32SizeNoTag(dataSize);
+            }
+            nodeIdsMemoizedSerializedSize = dataSize;
+        }
+        {
+            int dataSize = 0;
+            for (int i = 0; i < delay_.size(); i++) {
+                dataSize += com.google.protobuf.CodedOutputStream
+                        .computeInt32SizeNoTag(delay_.getInt(i));
+            }
+            size += dataSize;
+            if (!getDelayList().isEmpty()) {
+                size += 1;
+                size += com.google.protobuf.CodedOutputStream
+                        .computeInt32SizeNoTag(dataSize);
+            }
+            delayMemoizedSerializedSize = dataSize;
+        }
+        size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
     }
@@ -405,7 +402,7 @@ public final class AppendEntriesRequest extends
         if (!getNodeIdsList()
                 .equals(other.getNodeIdsList())) return false;
         if (!getDelayList()
-        .equals(other.getDelayList())) return false;
+                .equals(other.getDelayList())) return false;
         return getUnknownFields().equals(other.getUnknownFields());
     }
 
@@ -479,49 +476,18 @@ public final class AppendEntriesRequest extends
         private com.google.protobuf.Internal.LongList nodeIds_ = emptyLongList();
         private com.google.protobuf.Internal.IntList delay_ = emptyIntList();
 
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest build() {
-      org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest buildPartial() {
-      org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest result = new org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest(this);
-      int from_bitField0_ = bitField0_;
-      result.term_ = term_;
-      result.leaderId_ = leaderId_;
-      result.entryIndex_ = entryIndex_;
-      if (((bitField0_ & 0x00000001) != 0)) {
-        nodeIds_.makeImmutable();
-        bitField0_ = (bitField0_ & ~0x00000001);
-      }
-      result.nodeIds_ = nodeIds_;
-        if (((bitField0_ & 0x00000002) != 0)) {
-            delay_.makeImmutable();
-            bitField0_ = (bitField0_ & ~0x00000002);
-        }
-        result.delay_ = delay_;
-        onBuilt();
-        return result;
-    }
-
-        @java.lang.Override
-        public Builder clone() {
-            return super.clone();
-        }
-
         // Construct using org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.newBuilder()
         private Builder() {
 
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest build() {
+            org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
         }
 
         private Builder(
@@ -563,6 +529,37 @@ public final class AppendEntriesRequest extends
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_AppendEntriesRequest_descriptor;
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest buildPartial() {
+            org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest result = new org.bupt.fedraft.rpc.manager.message.AppendEntriesRequest(this);
+            int from_bitField0_ = bitField0_;
+            result.term_ = term_;
+            result.leaderId_ = leaderId_;
+            result.entryIndex_ = entryIndex_;
+            if (((bitField0_ & 0x00000001) != 0)) {
+                nodeIds_.makeImmutable();
+                bitField0_ = (bitField0_ & ~0x00000001);
+            }
+            result.nodeIds_ = nodeIds_;
+            if (((bitField0_ & 0x00000002) != 0)) {
+                delay_.makeImmutable();
+                bitField0_ = (bitField0_ & ~0x00000002);
+            }
+            result.delay_ = delay_;
+            onBuilt();
+            return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+            return super.clone();
         }
 
         @java.lang.Override
@@ -730,7 +727,6 @@ public final class AppendEntriesRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return The term.
          */
         @java.lang.Override
@@ -740,8 +736,9 @@ public final class AppendEntriesRequest extends
 
         /**
          * <code>int32 term = 1;</code>
+         *
          * @param value The term to set.
-     * @return This builder for chaining.
+         * @return This builder for chaining.
          */
         public Builder setTerm(int value) {
 
@@ -752,7 +749,6 @@ public final class AppendEntriesRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearTerm() {
@@ -764,7 +760,6 @@ public final class AppendEntriesRequest extends
 
         /**
          * <code>int64 leaderId = 2;</code>
-         *
          * @return The leaderId.
          */
         @java.lang.Override
@@ -786,7 +781,6 @@ public final class AppendEntriesRequest extends
 
         /**
          * <code>int64 leaderId = 2;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearLeaderId() {
@@ -802,7 +796,6 @@ public final class AppendEntriesRequest extends
          * </pre>
          *
          * <code>int64 entryIndex = 3;</code>
-         *
          * @return The entryIndex.
          */
         @java.lang.Override
@@ -816,7 +809,6 @@ public final class AppendEntriesRequest extends
          * </pre>
          *
          * <code>int64 entryIndex = 3;</code>
-         *
          * @param value The entryIndex to set.
          * @return This builder for chaining.
          */
@@ -833,7 +825,6 @@ public final class AppendEntriesRequest extends
          * </pre>
          *
          * <code>int64 entryIndex = 3;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearEntryIndex() {
@@ -856,7 +847,6 @@ public final class AppendEntriesRequest extends
          * </pre>
          *
          * <code>repeated int64 nodeIds = 4;</code>
-         *
          * @return A list containing the nodeIds.
          */
         public java.util.List<java.lang.Long>
@@ -871,7 +861,6 @@ public final class AppendEntriesRequest extends
          * </pre>
          *
          * <code>repeated int64 nodeIds = 4;</code>
-         *
          * @return The count of nodeIds.
          */
         public int getNodeIdsCount() {
@@ -884,7 +873,6 @@ public final class AppendEntriesRequest extends
          * </pre>
          *
          * <code>repeated int64 nodeIds = 4;</code>
-         *
          * @param index The index of the element to return.
          * @return The nodeIds at the given index.
          */
@@ -898,7 +886,6 @@ public final class AppendEntriesRequest extends
          * </pre>
          *
          * <code>repeated int64 nodeIds = 4;</code>
-         *
          * @param index The index to set the value at.
          * @param value The nodeIds to set.
          * @return This builder for chaining.
@@ -917,7 +904,6 @@ public final class AppendEntriesRequest extends
          * </pre>
          *
          * <code>repeated int64 nodeIds = 4;</code>
-         *
          * @param value The nodeIds to add.
          * @return This builder for chaining.
          */
@@ -934,7 +920,6 @@ public final class AppendEntriesRequest extends
          * </pre>
          *
          * <code>repeated int64 nodeIds = 4;</code>
-         *
          * @param values The nodeIds to add.
          * @return This builder for chaining.
          */
@@ -953,7 +938,6 @@ public final class AppendEntriesRequest extends
          * </pre>
          *
          * <code>repeated int64 nodeIds = 4;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearNodeIds() {
@@ -972,7 +956,6 @@ public final class AppendEntriesRequest extends
 
         /**
          * <code>repeated int32 delay = 5;</code>
-         *
          * @return A list containing the delay.
          */
         public java.util.List<java.lang.Integer>
@@ -983,7 +966,6 @@ public final class AppendEntriesRequest extends
 
         /**
          * <code>repeated int32 delay = 5;</code>
-         *
          * @return The count of delay.
          */
         public int getDelayCount() {
@@ -992,7 +974,6 @@ public final class AppendEntriesRequest extends
 
         /**
          * <code>repeated int32 delay = 5;</code>
-         *
          * @param index The index of the element to return.
          * @return The delay at the given index.
          */
@@ -1002,41 +983,46 @@ public final class AppendEntriesRequest extends
 
         /**
          * <code>repeated int32 delay = 5;</code>
+         *
          * @param index The index to set the value at.
          * @param value The delay to set.
-     * @return This builder for chaining.
-     */
-    public Builder setDelay(
-        int index, int value) {
-      ensureDelayIsMutable();
-      delay_.setInt(index, value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     * @param value The delay to add.
-     * @return This builder for chaining.
-     */
-    public Builder addDelay(int value) {
-      ensureDelayIsMutable();
-      delay_.addInt(value);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     * @param values The delay to add.
-     * @return This builder for chaining.
-     */
-    public Builder addAllDelay(
-        java.lang.Iterable<? extends java.lang.Integer> values) {
-      ensureDelayIsMutable();
-      com.google.protobuf.AbstractMessageLite.Builder.addAll(
-          values, delay_);
-      onChanged();
-      return this;
-    }
+         * @return This builder for chaining.
+         */
+        public Builder setDelay(
+                int index, int value) {
+            ensureDelayIsMutable();
+            delay_.setInt(index, value);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated int32 delay = 5;</code>
+         *
+         * @param value The delay to add.
+         * @return This builder for chaining.
+         */
+        public Builder addDelay(int value) {
+            ensureDelayIsMutable();
+            delay_.addInt(value);
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>repeated int32 delay = 5;</code>
+         *
+         * @param values The delay to add.
+         * @return This builder for chaining.
+         */
+        public Builder addAllDelay(
+                java.lang.Iterable<? extends java.lang.Integer> values) {
+            ensureDelayIsMutable();
+            com.google.protobuf.AbstractMessageLite.Builder.addAll(
+                    values, delay_);
+            onChanged();
+            return this;
+        }
     /**
      * <code>repeated int32 delay = 5;</code>
      * @return This builder for chaining.

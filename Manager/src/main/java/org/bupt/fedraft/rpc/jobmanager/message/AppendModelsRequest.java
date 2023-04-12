@@ -147,6 +147,14 @@ public final class AppendModelsRequest extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
     public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest getDefaultInstance() {
         return DEFAULT_INSTANCE;
     }
@@ -220,14 +228,6 @@ public final class AppendModelsRequest extends
 
         memoizedIsInitialized = 1;
         return true;
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     @java.lang.Override
@@ -374,20 +374,6 @@ public final class AppendModelsRequest extends
 
         }
 
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest build() {
-            org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest result = buildPartial();
-            if (!result.isInitialized()) {
-                throw newUninitializedMessageException(result);
-            }
-            return result;
-        }
-
         public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
             return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_descriptor;
@@ -419,6 +405,20 @@ public final class AppendModelsRequest extends
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_descriptor;
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest build() {
+            org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
         }
 
         @java.lang.Override
@@ -454,11 +454,6 @@ public final class AppendModelsRequest extends
         public Builder clearOneof(
                 com.google.protobuf.Descriptors.OneofDescriptor oneof) {
             return super.clearOneof(oneof);
-        }
-
-        @java.lang.Override
-        public boolean isInitialized() {
-            return true;
         }
 
         @java.lang.Override
@@ -502,6 +497,11 @@ public final class AppendModelsRequest extends
             this.mergeUnknownFields(other.getUnknownFields());
             onChanged();
             return this;
+        }
+
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
         }
 
         @java.lang.Override
@@ -558,7 +558,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return The term.
          */
         @java.lang.Override
@@ -568,7 +567,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @param value The term to set.
          * @return This builder for chaining.
          */
@@ -581,7 +579,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearTerm() {
@@ -593,7 +590,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>int64 leaderId = 2;</code>
-         *
          * @return The leaderId.
          */
         @java.lang.Override
@@ -603,7 +599,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>int64 leaderId = 2;</code>
-         *
          * @param value The leaderId to set.
          * @return This builder for chaining.
          */
@@ -616,7 +611,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>int64 leaderId = 2;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearLeaderId() {
@@ -628,7 +622,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>int64 modelIndex = 3;</code>
-         *
          * @return The modelIndex.
          */
         @java.lang.Override
@@ -638,7 +631,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>int64 modelIndex = 3;</code>
-         *
          * @param value The modelIndex to set.
          * @return This builder for chaining.
          */
@@ -651,7 +643,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>int64 modelIndex = 3;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearModelIndex() {
@@ -663,7 +654,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>bool canSendModel = 4;</code>
-         *
          * @return The canSendModel.
          */
         @java.lang.Override
@@ -673,7 +663,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>bool canSendModel = 4;</code>
-         *
          * @param value The canSendModel to set.
          * @return This builder for chaining.
          */
@@ -686,7 +675,6 @@ public final class AppendModelsRequest extends
 
         /**
          * <code>bool canSendModel = 4;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearCanSendModel() {

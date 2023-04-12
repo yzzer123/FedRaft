@@ -820,10 +820,10 @@ public final class InitModelRequest extends
         public Builder mergeUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
             return super.mergeUnknownFields(unknownFields);
-    }
+        }
 
 
-    // @@protoc_insertion_point(builder_scope:fedraft.InitModelRequest)
+        // @@protoc_insertion_point(builder_scope:fedraft.InitModelRequest)
   }
 
 }

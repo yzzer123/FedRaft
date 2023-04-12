@@ -44,6 +44,8 @@ public final class PushModelResponse extends
         DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.trainer.message.PushModelResponse();
     }
 
+    private boolean status_;
+
     // Use PushModelResponse.newBuilder() to construct.
     private PushModelResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
         super(builder);
@@ -57,34 +59,13 @@ public final class PushModelResponse extends
         return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelResponse_descriptor;
     }
 
-    private boolean status_;
-
-    /**
-     * <code>bool status = 1;</code>
-     * @return The status.
-     */
-    @java.lang.Override
-    public boolean getStatus() {
-        return status_;
-    }
-
-  private byte memoizedIsInitialized = -1;
-
-    @java.lang.Override
-    public boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-    }
-
     public static org.bupt.fedraft.rpc.trainer.message.PushModelResponse parseFrom(
             java.nio.ByteBuffer data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
     }
+
+    private byte memoizedIsInitialized = -1;
 
     public static org.bupt.fedraft.rpc.trainer.message.PushModelResponse parseFrom(
             java.nio.ByteBuffer data,
@@ -198,6 +179,26 @@ public final class PushModelResponse extends
                         org.bupt.fedraft.rpc.trainer.message.PushModelResponse.class, org.bupt.fedraft.rpc.trainer.message.PushModelResponse.Builder.class);
     }
 
+    /**
+     * <code>bool status = 1;</code>
+     *
+     * @return The status.
+     */
+    @java.lang.Override
+    public boolean getStatus() {
+        return status_;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
@@ -217,10 +218,10 @@ public final class PushModelResponse extends
             size += com.google.protobuf.CodedOutputStream
                     .computeBoolSize(1, status_);
         }
-    size += getUnknownFields().getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
@@ -326,6 +327,12 @@ public final class PushModelResponse extends
         }
 
         @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelResponse_descriptor;
+        }
+
+        @java.lang.Override
         public org.bupt.fedraft.rpc.trainer.message.PushModelResponse getDefaultInstanceForType() {
             return org.bupt.fedraft.rpc.trainer.message.PushModelResponse.getDefaultInstance();
         }
@@ -334,28 +341,22 @@ public final class PushModelResponse extends
         public org.bupt.fedraft.rpc.trainer.message.PushModelResponse build() {
             org.bupt.fedraft.rpc.trainer.message.PushModelResponse result = buildPartial();
             if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
 
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.trainer.message.PushModelResponse buildPartial() {
-      org.bupt.fedraft.rpc.trainer.message.PushModelResponse result = new org.bupt.fedraft.rpc.trainer.message.PushModelResponse(this);
-        result.status_ = status_;
-        onBuilt();
-        return result;
-    }
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.trainer.message.PushModelResponse buildPartial() {
+            org.bupt.fedraft.rpc.trainer.message.PushModelResponse result = new org.bupt.fedraft.rpc.trainer.message.PushModelResponse(this);
+            result.status_ = status_;
+            onBuilt();
+            return result;
+        }
 
         @java.lang.Override
         public Builder clone() {
             return super.clone();
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-            return org.bupt.fedraft.rpc.trainer.message.TrainerMessage.internal_static_fedraft_PushModelResponse_descriptor;
         }
 
         @java.lang.Override
@@ -391,21 +392,6 @@ public final class PushModelResponse extends
             return super.addRepeatedField(field, value);
         }
 
-        public Builder mergeFrom(org.bupt.fedraft.rpc.trainer.message.PushModelResponse other) {
-            if (other == org.bupt.fedraft.rpc.trainer.message.PushModelResponse.getDefaultInstance()) return this;
-            if (other.getStatus()) {
-                setStatus(other.getStatus());
-            }
-            this.mergeUnknownFields(other.getUnknownFields());
-            onChanged();
-      return this;
-    }
-
-    @java.lang.Override
-    public boolean isInitialized() {
-        return true;
-    }
-
         @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
             if (other instanceof org.bupt.fedraft.rpc.trainer.message.PushModelResponse) {
@@ -414,6 +400,21 @@ public final class PushModelResponse extends
                 super.mergeFrom(other);
                 return this;
             }
+        }
+
+        public Builder mergeFrom(org.bupt.fedraft.rpc.trainer.message.PushModelResponse other) {
+            if (other == org.bupt.fedraft.rpc.trainer.message.PushModelResponse.getDefaultInstance()) return this;
+            if (other.getStatus()) {
+                setStatus(other.getStatus());
+            }
+            this.mergeUnknownFields(other.getUnknownFields());
+            onChanged();
+            return this;
+        }
+
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
         }
 
         @java.lang.Override
@@ -440,38 +441,41 @@ public final class PushModelResponse extends
                         default: {
                             if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                                 done = true; // was an endgroup tag
-              }
-              break;
-            } // default:
-          } // switch (tag)
-        } // while (!done)
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.unwrapIOException();
-      } finally {
-        onChanged();
-      } // finally
-      return this;
-    }
-    /**
-     * <code>bool status = 1;</code>
-     * @return The status.
-     */
-    @java.lang.Override
-    public boolean getStatus() {
-      return status_;
-    }
+                            }
+                            break;
+                        } // default:
+                    } // switch (tag)
+                } // while (!done)
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.unwrapIOException();
+            } finally {
+                onChanged();
+            } // finally
+            return this;
+        }
 
-    /**
-     * <code>bool status = 1;</code>
-     * @param value The status to set.
-     * @return This builder for chaining.
-     */
-    public Builder setStatus(boolean value) {
+        /**
+         * <code>bool status = 1;</code>
+         *
+         * @return The status.
+         */
+        @java.lang.Override
+        public boolean getStatus() {
+            return status_;
+        }
 
-      status_ = value;
-      onChanged();
-        return this;
-    }
+        /**
+         * <code>bool status = 1;</code>
+         *
+         * @param value The status to set.
+         * @return This builder for chaining.
+         */
+        public Builder setStatus(boolean value) {
+
+            status_ = value;
+            onChanged();
+            return this;
+        }
 
         /**
          * <code>bool status = 1;</code>

@@ -29,34 +29,38 @@ public interface MergeResponseOrBuilder extends
      */
     long getServerId();
 
-  /**
-   * <pre>
-   * 合并成功的模型
-   * </pre>
-   *
-   * <code>bytes model_chunk = 2;</code>
-   * @return Whether the modelChunk field is set.
-   */
-  boolean hasModelChunk();
-  /**
-   * <pre>
-   * 合并成功的模型
-   * </pre>
-   *
-   * <code>bytes model_chunk = 2;</code>
-   * @return The modelChunk.
-   */
-  com.google.protobuf.ByteString getModelChunk();
+    /**
+     * <pre>
+     * 合并成功的模型
+     * </pre>
+     *
+     * <code>bytes model_chunk = 2;</code>
+     *
+     * @return Whether the modelChunk field is set.
+     */
+    boolean hasModelChunk();
 
-  /**
-   * <pre>
-   * 合并模型的测试结果
-   * </pre>
-   *
-   * <code>string model_eval_log = 3;</code>
-   * @return Whether the modelEvalLog field is set.
-   */
-  boolean hasModelEvalLog();
+    /**
+     * <pre>
+     * 合并成功的模型
+     * </pre>
+     *
+     * <code>bytes model_chunk = 2;</code>
+     *
+     * @return The modelChunk.
+     */
+    com.google.protobuf.ByteString getModelChunk();
+
+    /**
+     * <pre>
+     * 合并模型的测试结果
+     * </pre>
+     *
+     * <code>string model_eval_log = 3;</code>
+     *
+     * @return Whether the modelEvalLog field is set.
+     */
+    boolean hasModelEvalLog();
 
     /**
      * <pre>

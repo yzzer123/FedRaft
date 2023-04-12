@@ -44,16 +44,8 @@ public final class ManagerVoteRequest extends
 
     private int term_;
     private long candidateId_;
-
-    /**
-     * <code>int32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    @java.lang.Override
-    public int getTerm() {
-        return term_;
-    }
+    private long entryIndex_;
+    private byte memoizedIsInitialized = -1;
 
     // Use ManagerVoteRequest.newBuilder() to construct.
     private ManagerVoteRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
@@ -63,47 +55,9 @@ public final class ManagerVoteRequest extends
     private ManagerVoteRequest() {
     }
 
-    /**
-     * <code>int64 candidateId = 2;</code>
-     *
-     * @return The candidateId.
-     */
-    @java.lang.Override
-    public long getCandidateId() {
-        return candidateId_;
-    }
-
     public static com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
         return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_ManagerVoteRequest_descriptor;
-    }
-
-    private long entryIndex_;
-
-    /**
-     * <pre>
-     * 拓扑索引
-     * </pre>
-     *
-     * <code>int64 entryIndex = 3;</code>
-     *
-     * @return The entryIndex.
-     */
-    @java.lang.Override
-  public long getEntryIndex() {
-    return entryIndex_;
-    }
-
-    private byte memoizedIsInitialized = -1;
-
-    @java.lang.Override
-    public boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
     }
 
     public static org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest parseFrom(
@@ -224,6 +178,50 @@ public final class ManagerVoteRequest extends
                         org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest.class, org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest.Builder.class);
     }
 
+    /**
+     * <code>int32 term = 1;</code>
+     *
+     * @return The term.
+     */
+    @java.lang.Override
+    public int getTerm() {
+        return term_;
+    }
+
+    /**
+     * <code>int64 candidateId = 2;</code>
+     *
+     * @return The candidateId.
+     */
+    @java.lang.Override
+    public long getCandidateId() {
+        return candidateId_;
+    }
+
+    /**
+     * <pre>
+     * 拓扑索引
+     * </pre>
+     *
+     * <code>int64 entryIndex = 3;</code>
+     *
+     * @return The entryIndex.
+     */
+    @java.lang.Override
+    public long getEntryIndex() {
+        return entryIndex_;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
@@ -247,20 +245,20 @@ public final class ManagerVoteRequest extends
         size = 0;
         if (term_ != 0) {
             size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, term_);
+                    .computeInt32Size(1, term_);
+        }
+        if (candidateId_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeInt64Size(2, candidateId_);
+        }
+        if (entryIndex_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeInt64Size(3, entryIndex_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSize = size;
+        return size;
     }
-    if (candidateId_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(2, candidateId_);
-    }
-    if (entryIndex_ != 0L) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(3, entryIndex_);
-    }
-    size += getUnknownFields().getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
@@ -357,35 +355,6 @@ public final class ManagerVoteRequest extends
         }
 
         @java.lang.Override
-        public org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest build() {
-            org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest buildPartial() {
-      org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest result = new org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest(this);
-      result.term_ = term_;
-        result.candidateId_ = candidateId_;
-        result.entryIndex_ = entryIndex_;
-        onBuilt();
-        return result;
-    }
-
-        @java.lang.Override
-        public Builder clone() {
-            return super.clone();
-        }
-
-        @java.lang.Override
         protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
             return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_ManagerVoteRequest_fieldAccessorTable
@@ -409,6 +378,35 @@ public final class ManagerVoteRequest extends
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_ManagerVoteRequest_descriptor;
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest build() {
+            org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest buildPartial() {
+            org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest result = new org.bupt.fedraft.rpc.manager.message.ManagerVoteRequest(this);
+            result.term_ = term_;
+            result.candidateId_ = candidateId_;
+            result.entryIndex_ = entryIndex_;
+            onBuilt();
+            return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+            return super.clone();
         }
 
         @java.lang.Override
@@ -499,13 +497,13 @@ public final class ManagerVoteRequest extends
                         case 16: {
                             candidateId_ = input.readInt64();
 
-              break;
-            } // case 16
-            case 24: {
-                entryIndex_ = input.readInt64();
+                            break;
+                        } // case 16
+                        case 24: {
+                            entryIndex_ = input.readInt64();
 
-                break;
-            } // case 24
+                            break;
+                        } // case 24
                         default: {
                             if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                                 done = true; // was an endgroup tag
@@ -524,7 +522,6 @@ public final class ManagerVoteRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return The term.
          */
         @java.lang.Override
@@ -534,7 +531,6 @@ public final class ManagerVoteRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @param value The term to set.
          * @return This builder for chaining.
          */
@@ -547,7 +543,6 @@ public final class ManagerVoteRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearTerm() {
@@ -559,7 +554,6 @@ public final class ManagerVoteRequest extends
 
         /**
          * <code>int64 candidateId = 2;</code>
-         *
          * @return The candidateId.
          */
         @java.lang.Override
@@ -569,7 +563,6 @@ public final class ManagerVoteRequest extends
 
         /**
          * <code>int64 candidateId = 2;</code>
-         *
          * @param value The candidateId to set.
          * @return This builder for chaining.
          */
@@ -582,26 +575,29 @@ public final class ManagerVoteRequest extends
 
         /**
          * <code>int64 candidateId = 2;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearCandidateId() {
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearCandidateId() {
 
-      candidateId_ = 0L;
-      onChanged();
-      return this;
-    }
-    /**
-     * <pre>
-     * 拓扑索引
-     * </pre>
-     *
-     * <code>int64 entryIndex = 3;</code>
-     * @return The entryIndex.
-     */
-    @java.lang.Override
-    public long getEntryIndex() {
-        return entryIndex_;
-    }
+            candidateId_ = 0L;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <pre>
+         * 拓扑索引
+         * </pre>
+         *
+         * <code>int64 entryIndex = 3;</code>
+         *
+         * @return The entryIndex.
+         */
+        @java.lang.Override
+        public long getEntryIndex() {
+            return entryIndex_;
+        }
 
         /**
          * <pre>
@@ -643,13 +639,13 @@ public final class ManagerVoteRequest extends
         }
 
         @java.lang.Override
-    public Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
+        public Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
 
 
-    // @@protoc_insertion_point(builder_scope:fedraft.ManagerVoteRequest)
+        // @@protoc_insertion_point(builder_scope:fedraft.ManagerVoteRequest)
   }
 
 }

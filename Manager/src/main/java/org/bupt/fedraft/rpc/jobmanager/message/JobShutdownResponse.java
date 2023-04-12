@@ -135,6 +135,14 @@ public final class JobShutdownResponse extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
     public static org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse getDefaultInstance() {
         return DEFAULT_INSTANCE;
     }
@@ -174,14 +182,6 @@ public final class JobShutdownResponse extends
         return true;
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
@@ -197,32 +197,32 @@ public final class JobShutdownResponse extends
         size += getUnknownFields().getSerializedSize();
         memoizedSize = size;
         return size;
-  }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-    if (obj == this) {
-        return true;
     }
-    if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse)) {
-      return super.equals(obj);
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse)) {
+            return super.equals(obj);
+        }
+        org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse other = (org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse) obj;
+
+        return getUnknownFields().equals(other.getUnknownFields());
     }
-    org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse other = (org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse) obj;
 
-      return getUnknownFields().equals(other.getUnknownFields());
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-      if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-  }
+    @java.lang.Override
+    public int hashCode() {
+        if (memoizedHashCode != 0) {
+            return memoizedHashCode;
+        }
+        int hash = 41;
+        hash = (19 * hash) + getDescriptor().hashCode();
+        hash = (29 * hash) + getUnknownFields().hashCode();
+        memoizedHashCode = hash;
+        return hash;
+    }
 
     @java.lang.Override
     public Builder newBuilderForType() {
@@ -301,11 +301,11 @@ public final class JobShutdownResponse extends
         }
 
         @java.lang.Override
-    public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse build() {
-      org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
+        public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse build() {
+            org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
             return result;
         }
 
@@ -419,7 +419,7 @@ public final class JobShutdownResponse extends
 
 
         // @@protoc_insertion_point(builder_scope:fedraft.JobShutdownResponse)
-  }
+    }
 
 }
 

@@ -31,12 +31,14 @@ public interface JobSubmitRequestOrBuilder extends
      *
      * @return Whether the modelChunk field is set.
      */
-  boolean hasModelChunk();
-  /**
-   * <code>bytes modelChunk = 2;</code>
-   * @return The modelChunk.
-   */
-  com.google.protobuf.ByteString getModelChunk();
+    boolean hasModelChunk();
 
-  org.bupt.fedraft.rpc.manager.message.JobSubmitRequest.JobInfoCase getJobInfoCase();
+    /**
+     * <code>bytes modelChunk = 2;</code>
+     *
+     * @return The modelChunk.
+     */
+    com.google.protobuf.ByteString getModelChunk();
+
+    org.bupt.fedraft.rpc.manager.message.JobSubmitRequest.JobInfoCase getJobInfoCase();
 }

@@ -6,7 +6,7 @@ package org.bupt.fedraft.utils;
  * @param <T> 要处理的数据类型
  * @author yzzer
  */
-public interface ReadWriteObjWatcher<T> {
+public interface ReadWriteLockVisitor<T> {
     /**
      * 对线程安全参数的访问接口
      *

@@ -137,6 +137,14 @@ public final class AppendModelsResponse extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
     public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse getDefaultInstance() {
         return DEFAULT_INSTANCE;
     }
@@ -184,14 +192,6 @@ public final class AppendModelsResponse extends
 
         memoizedIsInitialized = 1;
         return true;
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     @java.lang.Override
@@ -317,6 +317,12 @@ public final class AppendModelsResponse extends
         }
 
         @java.lang.Override
+        public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsResponse_descriptor;
+        }
+
+        @java.lang.Override
         public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse getDefaultInstanceForType() {
             return org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse.getDefaultInstance();
         }
@@ -328,12 +334,6 @@ public final class AppendModelsResponse extends
                 throw newUninitializedMessageException(result);
             }
             return result;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsResponse_descriptor;
         }
 
         @java.lang.Override
@@ -392,11 +392,6 @@ public final class AppendModelsResponse extends
             }
         }
 
-        @java.lang.Override
-        public boolean isInitialized() {
-            return true;
-        }
-
         public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse other) {
             if (other == org.bupt.fedraft.rpc.jobmanager.message.AppendModelsResponse.getDefaultInstance()) return this;
             if (other.getTerm() != 0) {
@@ -405,6 +400,11 @@ public final class AppendModelsResponse extends
             this.mergeUnknownFields(other.getUnknownFields());
             onChanged();
             return this;
+        }
+
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
         }
 
         @java.lang.Override
@@ -446,7 +446,6 @@ public final class AppendModelsResponse extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return The term.
          */
         @java.lang.Override
@@ -456,7 +455,6 @@ public final class AppendModelsResponse extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @param value The term to set.
          * @return This builder for chaining.
          */
@@ -469,7 +467,6 @@ public final class AppendModelsResponse extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearTerm() {

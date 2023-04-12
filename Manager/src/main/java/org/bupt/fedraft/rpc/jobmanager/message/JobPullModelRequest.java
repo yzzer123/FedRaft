@@ -10,18 +10,11 @@ public final class JobPullModelRequest extends
         com.google.protobuf.GeneratedMessageV3 implements
         // @@protoc_insertion_point(message_implements:fedraft.JobPullModelRequest)
         JobPullModelRequestOrBuilder {
-    private static final long serialVersionUID = 0L;
     public static final int TERM_FIELD_NUMBER = 1;
     public static final int MODELINDEX_FIELD_NUMBER = 2;
+    private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.JobPullModelRequest)
     private static final org.bupt.fedraft.rpc.jobmanager.message.JobPullModelRequest DEFAULT_INSTANCE;
-
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-        return this.unknownFields;
-    }
-
     private static final com.google.protobuf.Parser<JobPullModelRequest>
             PARSER = new com.google.protobuf.AbstractParser<JobPullModelRequest>() {
         @java.lang.Override
@@ -36,9 +29,9 @@ public final class JobPullModelRequest extends
                 throw e.setUnfinishedMessage(builder.buildPartial());
             } catch (com.google.protobuf.UninitializedMessageException e) {
                 throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e)
-            .setUnfinishedMessage(builder.buildPartial());
+            } catch (java.io.IOException e) {
+                throw new com.google.protobuf.InvalidProtocolBufferException(e)
+                        .setUnfinishedMessage(builder.buildPartial());
             }
             return builder.buildPartial();
         }
@@ -50,6 +43,7 @@ public final class JobPullModelRequest extends
 
     private int term_;
     private long modelIndex_;
+    private byte memoizedIsInitialized = -1;
 
     // Use JobPullModelRequest.newBuilder() to construct.
     private JobPullModelRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
@@ -68,18 +62,6 @@ public final class JobPullModelRequest extends
             java.nio.ByteBuffer data)
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data);
-    }
-
-    private byte memoizedIsInitialized = -1;
-
-    @java.lang.Override
-    public boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
     }
 
     public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelRequest parseFrom(
@@ -157,6 +139,10 @@ public final class JobPullModelRequest extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
     public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobPullModelRequest prototype) {
         return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
@@ -177,6 +163,12 @@ public final class JobPullModelRequest extends
     }
 
     @java.lang.Override
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
+    }
+
+    @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
     internalGetFieldAccessorTable() {
         return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelRequest_fieldAccessorTable
@@ -194,10 +186,6 @@ public final class JobPullModelRequest extends
         return term_;
     }
 
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
     /**
      * <code>int64 modelIndex = 2;</code>
      *
@@ -209,48 +197,45 @@ public final class JobPullModelRequest extends
     }
 
     @java.lang.Override
-    public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
     }
 
     @java.lang.Override
-    protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-    Builder builder = new Builder(parent);
-    return builder;
-  }
-
-  @java.lang.Override
-  public void writeTo(com.google.protobuf.CodedOutputStream output)
-                      throws java.io.IOException {
-      if (term_ != 0) {
-          output.writeInt32(1, term_);
-      }
-      if (modelIndex_ != 0L) {
-          output.writeInt64(2, modelIndex_);
-      }
-      getUnknownFields().writeTo(output);
-  }
-
-  @java.lang.Override
-  public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-
-      size = 0;
-      if (term_ != 0) {
-          size += com.google.protobuf.CodedOutputStream
-                  .computeInt32Size(1, term_);
-      }
-      if (modelIndex_ != 0L) {
-          size += com.google.protobuf.CodedOutputStream
-                  .computeInt64Size(2, modelIndex_);
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+            throws java.io.IOException {
+        if (term_ != 0) {
+            output.writeInt32(1, term_);
+        }
+        if (modelIndex_ != 0L) {
+            output.writeInt64(2, modelIndex_);
+        }
+        getUnknownFields().writeTo(output);
     }
-    size += getUnknownFields().getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+        int size = memoizedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (term_ != 0) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeInt32Size(1, term_);
+        }
+        if (modelIndex_ != 0L) {
+            size += com.google.protobuf.CodedOutputStream
+                    .computeInt64Size(2, modelIndex_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSize = size;
+        return size;
+    }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
@@ -283,13 +268,26 @@ public final class JobPullModelRequest extends
               getModelIndex());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
-    return hash;
+      return hash;
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() {
-      return newBuilder();
-  }
+    @java.lang.Override
+    public Builder newBuilderForType() {
+        return newBuilder();
+    }
+
+    @java.lang.Override
+    public Builder toBuilder() {
+        return this == DEFAULT_INSTANCE
+                ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+    }
 
     @java.lang.Override
     public com.google.protobuf.Parser<JobPullModelRequest> getParserForType() {
@@ -354,40 +352,30 @@ public final class JobPullModelRequest extends
         @java.lang.Override
         public org.bupt.fedraft.rpc.jobmanager.message.JobPullModelRequest getDefaultInstanceForType() {
             return org.bupt.fedraft.rpc.jobmanager.message.JobPullModelRequest.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public Builder clone() {
-      return super.clone();
-    }
-    @java.lang.Override
-    public Builder setField(
-        com.google.protobuf.Descriptors.FieldDescriptor field,
-        java.lang.Object value) {
-      return super.setField(field, value);
-    }
-    @java.lang.Override
-    public Builder clearField(
-        com.google.protobuf.Descriptors.FieldDescriptor field) {
-      return super.clearField(field);
-    }
-    @java.lang.Override
-    public Builder clearOneof(
-        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-      return super.clearOneof(oneof);
-    }
-    @java.lang.Override
-    public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
-        return super.setRepeatedField(field, index, value);
-    }
+        }
 
         @java.lang.Override
-        public Builder addRepeatedField(
+        public Builder clone() {
+            return super.clone();
+        }
+
+        @java.lang.Override
+        public Builder setField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
                 java.lang.Object value) {
-            return super.addRepeatedField(field, value);
+            return super.setField(field, value);
+        }
+
+        @java.lang.Override
+        public Builder clearField(
+                com.google.protobuf.Descriptors.FieldDescriptor field) {
+            return super.clearField(field);
+        }
+
+        @java.lang.Override
+        public Builder clearOneof(
+                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+            return super.clearOneof(oneof);
         }
 
         @java.lang.Override
@@ -406,6 +394,20 @@ public final class JobPullModelRequest extends
             result.modelIndex_ = modelIndex_;
             onBuilt();
             return result;
+        }
+
+        @java.lang.Override
+        public Builder setRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                int index, java.lang.Object value) {
+            return super.setRepeatedField(field, index, value);
+        }
+
+        @java.lang.Override
+        public Builder addRepeatedField(
+                com.google.protobuf.Descriptors.FieldDescriptor field,
+                java.lang.Object value) {
+            return super.addRepeatedField(field, value);
         }
 
         @java.lang.Override
@@ -443,49 +445,50 @@ public final class JobPullModelRequest extends
                 throws java.io.IOException {
             if (extensionRegistry == null) {
                 throw new java.lang.NullPointerException();
-      }
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-              case 8: {
-                  term_ = input.readInt32();
+            }
+            try {
+                boolean done = false;
+                while (!done) {
+                    int tag = input.readTag();
+                    switch (tag) {
+                        case 0:
+                            done = true;
+                            break;
+                        case 8: {
+                            term_ = input.readInt32();
 
-              break;
-            } // case 8
-              case 16: {
-                  modelIndex_ = input.readInt64();
+                            break;
+                        } // case 8
+                        case 16: {
+                            modelIndex_ = input.readInt64();
 
-              break;
-            } // case 16
-            default: {
-              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                done = true; // was an endgroup tag
-              }
-              break;
-            } // default:
-          } // switch (tag)
-        } // while (!done)
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.unwrapIOException();
-      } finally {
-        onChanged();
-      } // finally
+                            break;
+                        } // case 16
+                        default: {
+                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                                done = true; // was an endgroup tag
+                            }
+                            break;
+                        } // default:
+                    } // switch (tag)
+                } // while (!done)
+            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+                throw e.unwrapIOException();
+            } finally {
+                onChanged();
+            } // finally
             return this;
         }
 
         /**
          * <code>int32 term = 1;</code>
+         *
          * @return The term.
-     */
-    @java.lang.Override
-    public int getTerm() {
-        return term_;
-    }
+         */
+        @java.lang.Override
+        public int getTerm() {
+            return term_;
+        }
 
         /**
          * <code>int32 term = 1;</code>
@@ -551,17 +554,17 @@ public final class JobPullModelRequest extends
         public Builder setUnknownFields(
                 final com.google.protobuf.UnknownFieldSet unknownFields) {
             return super.setUnknownFields(unknownFields);
+        }
+
+        @java.lang.Override
+        public Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:fedraft.JobPullModelRequest)
     }
-
-    @java.lang.Override
-    public Builder mergeUnknownFields(
-            final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
-    }
-
-
-    // @@protoc_insertion_point(builder_scope:fedraft.JobPullModelRequest)
-  }
 
 }
 

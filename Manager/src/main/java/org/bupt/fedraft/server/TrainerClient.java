@@ -1,6 +1,7 @@
 package org.bupt.fedraft.server;
 
 import com.google.protobuf.ByteString;
+import io.grpc.Context;
 import io.grpc.stub.StreamObserver;
 import org.bupt.fedraft.beans.NodeInfo;
 import org.bupt.fedraft.exception.LocalTrainException;
@@ -8,6 +9,7 @@ import org.bupt.fedraft.rpc.trainer.message.*;
 import org.bupt.fedraft.rpc.trainer.service.TrainerServiceGrpc;
 import org.bupt.fedraft.state.JobManager;
 import org.bupt.fedraft.state.ManagerState;
+import org.bupt.fedraft.utils.VisitType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,10 +72,9 @@ public class TrainerClient extends Client {
      * 同步训练模型
      *
      * @param modelChunks 待训练模型, 可以发送null直接触发训练
-     * @return 正常训练结束后，返回训练后的模型
      * @throws LocalTrainException 训练过程发生异常或被打断
      */
-    public List<ByteString> trainModel(@Nonnull List<ByteString> modelChunks, final List<ByteString> trainedModel) throws LocalTrainException {
+    public void trainModel(List<ByteString> modelChunks, @Nonnull final List<ByteString> trainedModel) throws LocalTrainException {
 
         final CountDownLatch isFinished = new CountDownLatch(1);
 
@@ -96,7 +97,7 @@ public class TrainerClient extends Client {
             }
         });
 
-        if (modelChunks.size() != 0) {
+        if (modelChunks != null) {
             for (ByteString modelChunk : modelChunks) {
                 // 发送模型给Trainer，触发训练
                 requestObserver.onNext(TrainRequest.newBuilder().setModelChunk(modelChunk).build());
@@ -114,22 +115,72 @@ public class TrainerClient extends Client {
         if (trainedModel.size() == 0) {
             throw new LocalTrainException("model from trainer with size:0");
         }
-
-        return trainedModel;
     }
 
-    public List<ByteString> trainModel(final List<ByteString> modelCache) throws LocalTrainException {
-        return trainModel(new ArrayList<>(), modelCache);
+    /**
+     * 初始化完成后的本地训练/使用之前的参数进行本地训练
+     */
+    public void trainModel() {
+        // 关闭计时器防止训练过程中触发重新选举
+        jobManager.getRaftState().visit(raftSate -> raftSate.getJob().closeTimer(), VisitType.READ);
+        jobManager.getLocalModel().visit(modelChunkCache -> {
+            modelChunkCache.clear();
+            try {
+                trainModel(null, modelChunkCache);
+            } catch (LocalTrainException e) {
+                logger.error(e.getMessage());
+            }
+        }, VisitType.WRITE);
+
+        triggerModelCollect();
+
+    }
+
+
+    /**
+     * TODO 完成本地训练后触发模型回收或leader选举
+     */
+    private void triggerModelCollect() {
+
     }
 
     /**
      * 异步训练模型
-     *
-     * @param responseObserver 模型回复监听器
-     * @return 返回发送监听器
      */
-    public StreamObserver<TrainRequest> trainModel(@Nonnull StreamObserver<TrainResponse> responseObserver) {
-        return asyncStub.trainModel(responseObserver);
+    public void trainModel(@Nonnull Context context) {
+        // 关闭计时器防止训练过程中触发重新选举
+        jobManager.getRaftState().visit(raftSate -> raftSate.getJob().closeTimer(), VisitType.READ);
+
+        Context newContext = context.fork();
+
+        newContext.run(() -> {
+            StreamObserver<TrainRequest> modelSender = asyncStub.trainModel(new StreamObserver<>() {
+                private final List<ByteString> trainedModel = new ArrayList<>();
+
+                @Override
+                public void onNext(TrainResponse response) {
+                    trainedModel.add(response.getModelChunk());
+                }
+
+                @Override
+                public void onError(Throwable t) {
+                    logger.error(t.getMessage());
+                }
+
+                @Override
+                public void onCompleted() {
+                    // 将本地模型写入状态缓存
+                    jobManager.getLocalModel().visit(modelChunks -> {
+                        modelChunks.clear();
+                        modelChunks.addAll(trainedModel);
+                    }, VisitType.WRITE);
+                    triggerModelCollect();
+                }
+            });
+
+            // 清空全局模型缓存，初始化发送器，等待接受模型
+            jobManager.clearGlobalModelChunk(modelSender);
+        });
     }
 
     /**

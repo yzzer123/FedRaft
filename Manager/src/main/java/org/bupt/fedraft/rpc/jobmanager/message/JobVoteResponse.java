@@ -139,6 +139,14 @@ public final class JobVoteResponse extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
     public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse getDefaultInstance() {
         return DEFAULT_INSTANCE;
     }
@@ -200,14 +208,6 @@ public final class JobVoteResponse extends
 
         memoizedIsInitialized = 1;
         return true;
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     @java.lang.Override
@@ -338,20 +338,6 @@ public final class JobVoteResponse extends
         }
 
         @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse build() {
-            org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse result = buildPartial();
-            if (!result.isInitialized()) {
-                throw newUninitializedMessageException(result);
-            }
-            return result;
-        }
-
-        @java.lang.Override
         public Builder clear() {
             super.clear();
             term_ = 0;
@@ -365,6 +351,20 @@ public final class JobVoteResponse extends
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteResponse_descriptor;
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse build() {
+            org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
         }
 
         @java.lang.Override
@@ -415,11 +415,6 @@ public final class JobVoteResponse extends
         }
 
         @java.lang.Override
-        public boolean isInitialized() {
-            return true;
-        }
-
-        @java.lang.Override
         public Builder mergeFrom(com.google.protobuf.Message other) {
             if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse) {
                 return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse) other);
@@ -440,6 +435,11 @@ public final class JobVoteResponse extends
             this.mergeUnknownFields(other.getUnknownFields());
             onChanged();
             return this;
+        }
+
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
         }
 
         @java.lang.Override
@@ -486,7 +486,6 @@ public final class JobVoteResponse extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return The term.
          */
         @java.lang.Override
@@ -496,7 +495,6 @@ public final class JobVoteResponse extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @param value The term to set.
          * @return This builder for chaining.
          */
@@ -509,7 +507,6 @@ public final class JobVoteResponse extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearTerm() {
@@ -525,7 +522,6 @@ public final class JobVoteResponse extends
          * </pre>
          *
          * <code>bool voteGranted = 2;</code>
-         *
          * @return The voteGranted.
          */
         @java.lang.Override
@@ -539,7 +535,6 @@ public final class JobVoteResponse extends
          * </pre>
          *
          * <code>bool voteGranted = 2;</code>
-         *
          * @param value The voteGranted to set.
          * @return This builder for chaining.
          */
@@ -556,7 +551,6 @@ public final class JobVoteResponse extends
          * </pre>
          *
          * <code>bool voteGranted = 2;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearVoteGranted() {

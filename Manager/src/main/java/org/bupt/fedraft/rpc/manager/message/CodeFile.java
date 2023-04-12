@@ -15,13 +15,6 @@ public final class CodeFile extends
     private static final long serialVersionUID = 0L;
     // @@protoc_insertion_point(class_scope:fedraft.CodeFile)
     private static final org.bupt.fedraft.rpc.manager.message.CodeFile DEFAULT_INSTANCE;
-
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-        return this.unknownFields;
-    }
-
     private static final com.google.protobuf.Parser<CodeFile>
             PARSER = new com.google.protobuf.AbstractParser<CodeFile>() {
         @java.lang.Override
@@ -169,6 +162,12 @@ public final class CodeFile extends
     protected java.lang.Object newInstance(
             UnusedPrivateParameter unused) {
         return new CodeFile();
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+        return this.unknownFields;
     }
 
     @java.lang.Override
@@ -392,29 +391,6 @@ public final class CodeFile extends
         }
 
         @java.lang.Override
-        public org.bupt.fedraft.rpc.manager.message.CodeFile getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.manager.message.CodeFile build() {
-            org.bupt.fedraft.rpc.manager.message.CodeFile result = buildPartial();
-            if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.CodeFile buildPartial() {
-      org.bupt.fedraft.rpc.manager.message.CodeFile result = new org.bupt.fedraft.rpc.manager.message.CodeFile(this);
-      result.fileName_ = fileName_;
-      result.code_ = code_;
-        onBuilt();
-        return result;
-    }
-
-        @java.lang.Override
         public Builder clear() {
             super.clear();
             fileName_ = "";
@@ -428,6 +404,29 @@ public final class CodeFile extends
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_CodeFile_descriptor;
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.CodeFile getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.CodeFile build() {
+            org.bupt.fedraft.rpc.manager.message.CodeFile result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.manager.message.CodeFile buildPartial() {
+            org.bupt.fedraft.rpc.manager.message.CodeFile result = new org.bupt.fedraft.rpc.manager.message.CodeFile(this);
+            result.fileName_ = fileName_;
+            result.code_ = code_;
+            onBuilt();
+            return result;
         }
 
         @java.lang.Override
@@ -461,21 +460,6 @@ public final class CodeFile extends
             return super.setRepeatedField(field, index, value);
         }
 
-        public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.CodeFile other) {
-            if (other == org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance()) return this;
-            if (!other.getFileName().isEmpty()) {
-                fileName_ = other.fileName_;
-                onChanged();
-            }
-            if (!other.getCode().isEmpty()) {
-        code_ = other.code_;
-        onChanged();
-      }
-      this.mergeUnknownFields(other.getUnknownFields());
-            onChanged();
-            return this;
-        }
-
         @java.lang.Override
         public Builder addRepeatedField(
                 com.google.protobuf.Descriptors.FieldDescriptor field,
@@ -491,6 +475,21 @@ public final class CodeFile extends
                 super.mergeFrom(other);
                 return this;
             }
+        }
+
+        public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.CodeFile other) {
+            if (other == org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance()) return this;
+            if (!other.getFileName().isEmpty()) {
+                fileName_ = other.fileName_;
+                onChanged();
+            }
+            if (!other.getCode().isEmpty()) {
+                code_ = other.code_;
+                onChanged();
+            }
+            this.mergeUnknownFields(other.getUnknownFields());
+            onChanged();
+            return this;
         }
 
         @java.lang.Override
@@ -520,17 +519,17 @@ public final class CodeFile extends
                             break;
                         } // case 10
                         case 18: {
-              code_ = input.readStringRequireUtf8();
+                            code_ = input.readStringRequireUtf8();
 
-              break;
-            } // case 18
-            default: {
-              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                done = true; // was an endgroup tag
-              }
-              break;
-            } // default:
-          } // switch (tag)
+                            break;
+                        } // case 18
+                        default: {
+                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                                done = true; // was an endgroup tag
+                            }
+                            break;
+                        } // default:
+                    } // switch (tag)
         } // while (!done)
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
         throw e.unwrapIOException();
@@ -545,7 +544,7 @@ public final class CodeFile extends
      * @return The fileName.
      */
     public java.lang.String getFileName() {
-      java.lang.Object ref = fileName_;
+        java.lang.Object ref = fileName_;
         if (!(ref instanceof java.lang.String)) {
             com.google.protobuf.ByteString bs =
                     (com.google.protobuf.ByteString) ref;
@@ -613,31 +612,33 @@ public final class CodeFile extends
 
         /**
          * <code>string fileName = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearFileName() {
+         *
+         * @return This builder for chaining.
+         */
+        public Builder clearFileName() {
 
-      fileName_ = getDefaultInstance().getFileName();
-      onChanged();
-      return this;
-    }
-
-    /**
-     * <code>string code = 2;</code>
-     * @return The code.
-     */
-    public java.lang.String getCode() {
-        java.lang.Object ref = code_;
-        if (!(ref instanceof java.lang.String)) {
-            com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            java.lang.String s = bs.toStringUtf8();
-            code_ = s;
-            return s;
-        } else {
-            return (java.lang.String) ref;
+            fileName_ = getDefaultInstance().getFileName();
+            onChanged();
+            return this;
         }
-    }
+
+        /**
+         * <code>string code = 2;</code>
+         *
+         * @return The code.
+         */
+        public java.lang.String getCode() {
+            java.lang.Object ref = code_;
+            if (!(ref instanceof java.lang.String)) {
+                com.google.protobuf.ByteString bs =
+                        (com.google.protobuf.ByteString) ref;
+                java.lang.String s = bs.toStringUtf8();
+                code_ = s;
+                return s;
+            } else {
+                return (java.lang.String) ref;
+            }
+        }
 
         /**
          * <code>string code = 2;</code>
@@ -695,29 +696,31 @@ public final class CodeFile extends
 
         /**
          * <code>string code = 2;</code>
+         *
          * @return This builder for chaining.
          */
         public Builder clearCode() {
 
-      code_ = getDefaultInstance().getCode();
-      onChanged();
-      return this;
-    }
-    @java.lang.Override
-    public Builder setUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.setUnknownFields(unknownFields);
-    }
+            code_ = getDefaultInstance().getCode();
+            onChanged();
+            return this;
+        }
 
-    @java.lang.Override
-    public Builder mergeUnknownFields(
-        final com.google.protobuf.UnknownFieldSet unknownFields) {
-      return super.mergeUnknownFields(unknownFields);
+        @java.lang.Override
+        public Builder setUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.setUnknownFields(unknownFields);
+        }
+
+        @java.lang.Override
+        public Builder mergeUnknownFields(
+                final com.google.protobuf.UnknownFieldSet unknownFields) {
+            return super.mergeUnknownFields(unknownFields);
+        }
+
+
+        // @@protoc_insertion_point(builder_scope:fedraft.CodeFile)
     }
-
-
-    // @@protoc_insertion_point(builder_scope:fedraft.CodeFile)
-  }
 
 }
 

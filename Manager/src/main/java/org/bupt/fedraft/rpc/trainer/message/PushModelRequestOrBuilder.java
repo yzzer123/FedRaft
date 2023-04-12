@@ -30,9 +30,10 @@ public interface PushModelRequestOrBuilder extends
 
     /**
      * <code>bytes model_chunk = 2;</code>
+     *
      * @return The modelChunk.
-   */
-  com.google.protobuf.ByteString getModelChunk();
+     */
+    com.google.protobuf.ByteString getModelChunk();
 
-  org.bupt.fedraft.rpc.trainer.message.PushModelRequest.ModelCase getModelCase();
+    org.bupt.fedraft.rpc.trainer.message.PushModelRequest.ModelCase getModelCase();
 }

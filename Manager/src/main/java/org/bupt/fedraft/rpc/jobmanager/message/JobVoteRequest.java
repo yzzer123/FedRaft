@@ -143,6 +143,14 @@ public final class JobVoteRequest extends
                 .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
+    public static Builder newBuilder() {
+        return DEFAULT_INSTANCE.toBuilder();
+    }
+
+    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest prototype) {
+        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+
     public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstance() {
         return DEFAULT_INSTANCE;
     }
@@ -224,14 +232,6 @@ public final class JobVoteRequest extends
 
         memoizedIsInitialized = 1;
         return true;
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
 
     @java.lang.Override
@@ -373,20 +373,6 @@ public final class JobVoteRequest extends
 
         }
 
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest build() {
-            org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest result = buildPartial();
-            if (!result.isInitialized()) {
-                throw newUninitializedMessageException(result);
-            }
-            return result;
-        }
-
         public static com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
             return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
@@ -418,6 +404,20 @@ public final class JobVoteRequest extends
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest build() {
+            org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
         }
 
         @java.lang.Override
@@ -453,11 +453,6 @@ public final class JobVoteRequest extends
         public Builder clearOneof(
                 com.google.protobuf.Descriptors.OneofDescriptor oneof) {
             return super.clearOneof(oneof);
-        }
-
-        @java.lang.Override
-        public boolean isInitialized() {
-            return true;
         }
 
         @java.lang.Override
@@ -501,6 +496,11 @@ public final class JobVoteRequest extends
             this.mergeUnknownFields(other.getUnknownFields());
             onChanged();
             return this;
+        }
+
+        @java.lang.Override
+        public boolean isInitialized() {
+            return true;
         }
 
         @java.lang.Override
@@ -557,7 +557,6 @@ public final class JobVoteRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return The term.
          */
         @java.lang.Override
@@ -567,7 +566,6 @@ public final class JobVoteRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @param value The term to set.
          * @return This builder for chaining.
          */
@@ -580,7 +578,6 @@ public final class JobVoteRequest extends
 
         /**
          * <code>int32 term = 1;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearTerm() {
@@ -592,7 +589,6 @@ public final class JobVoteRequest extends
 
         /**
          * <code>int64 candidateId = 2;</code>
-         *
          * @return The candidateId.
          */
         @java.lang.Override
@@ -602,7 +598,6 @@ public final class JobVoteRequest extends
 
         /**
          * <code>int64 candidateId = 2;</code>
-         *
          * @param value The candidateId to set.
          * @return This builder for chaining.
          */
@@ -615,7 +610,6 @@ public final class JobVoteRequest extends
 
         /**
          * <code>int64 candidateId = 2;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearCandidateId() {
@@ -631,7 +625,6 @@ public final class JobVoteRequest extends
          * </pre>
          *
          * <code>int64 modelIndex = 3;</code>
-         *
          * @return The modelIndex.
          */
         @java.lang.Override
@@ -645,7 +638,6 @@ public final class JobVoteRequest extends
          * </pre>
          *
          * <code>int64 modelIndex = 3;</code>
-         *
          * @param value The modelIndex to set.
          * @return This builder for chaining.
          */
@@ -662,7 +654,6 @@ public final class JobVoteRequest extends
          * </pre>
          *
          * <code>int64 modelIndex = 3;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearModelIndex() {
@@ -674,7 +665,6 @@ public final class JobVoteRequest extends
 
         /**
          * <code>int32 modelTerm = 4;</code>
-         *
          * @return The modelTerm.
          */
         @java.lang.Override
@@ -684,7 +674,6 @@ public final class JobVoteRequest extends
 
         /**
          * <code>int32 modelTerm = 4;</code>
-         *
          * @param value The modelTerm to set.
          * @return This builder for chaining.
          */
@@ -697,7 +686,6 @@ public final class JobVoteRequest extends
 
         /**
          * <code>int32 modelTerm = 4;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearModelTerm() {

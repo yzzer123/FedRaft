@@ -6,7 +6,7 @@ import org.bupt.fedraft.config.Configuration;
 import org.bupt.fedraft.job.manager.Follower;
 import org.bupt.fedraft.server.ClientPool;
 import org.bupt.fedraft.server.ManagerClient;
-import org.bupt.fedraft.utils.ReadWriteObjWatcher;
+import org.bupt.fedraft.utils.ReadWriteLockVisitor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -160,7 +160,7 @@ public class ManagerState {
      *
      * @param watcher 状态处理器
      */
-    public void readRaftState(ReadWriteObjWatcher<ManagerRaftState> watcher) {
+    public void readRaftState(ReadWriteLockVisitor<ManagerRaftState> watcher) {
         managerStateLock.readLock().lock();
         watcher.work(raftState);
         managerStateLock.readLock().unlock();
@@ -172,7 +172,7 @@ public class ManagerState {
      *
      * @param watcher 状态处理器
      */
-    public void updateRaftState(ReadWriteObjWatcher<ManagerRaftState> watcher) {
+    public void updateRaftState(ReadWriteLockVisitor<ManagerRaftState> watcher) {
         managerStateLock.writeLock().lock();
         watcher.work(raftState);
         managerStateLock.writeLock().unlock();
@@ -320,7 +320,7 @@ public class ManagerState {
      *
      * @param watcher 读处理器
      */
-    public void getTopology(ReadWriteObjWatcher<List<Tuple<Long, Integer>>> watcher) {
+    public void getTopology(ReadWriteLockVisitor<List<Tuple<Long, Integer>>> watcher) {
         topologyLock.readLock().lock();
         watcher.work(topology);
         topologyLock.readLock().unlock();
@@ -331,7 +331,7 @@ public class ManagerState {
      *
      * @param watcher 写处理器
      */
-    public void updateTopology(ReadWriteObjWatcher<List<Tuple<Long, Integer>>> watcher) {
+    public void updateTopology(ReadWriteLockVisitor<List<Tuple<Long, Integer>>> watcher) {
         topologyLock.writeLock().lock();
         watcher.work(topology);
         topologyLock.writeLock().unlock();

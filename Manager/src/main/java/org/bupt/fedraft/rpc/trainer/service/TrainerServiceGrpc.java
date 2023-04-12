@@ -13,9 +13,8 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @io.grpc.stub.annotations.GrpcGenerated
 public final class TrainerServiceGrpc {
 
-    private static final int METHODID_MERGE_MODEL = 0;
-
     public static final String SERVICE_NAME = "fedraft.TrainerService";
+    private static final int METHODID_MERGE_MODEL = 0;
     private static final int METHODID_TRAIN_MODEL = 1;
     private static final int METHODID_PUSH_MODEL = 2;
     private static final int METHODID_INIT_MODEL = 3;
@@ -203,9 +202,9 @@ public final class TrainerServiceGrpc {
                             .addMethod(getInitModelMethod())
                             .build();
                 }
-      }
-    }
-    return result;
+            }
+        }
+        return result;
     }
 
     /**
@@ -479,6 +478,6 @@ public final class TrainerServiceGrpc {
         @java.lang.Override
         public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
             return getServiceDescriptor().findMethodByName(methodName);
+        }
     }
-  }
 }

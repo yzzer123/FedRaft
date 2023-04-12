@@ -51,66 +51,9 @@ public final class JobConfiguration extends
     private com.google.protobuf.Internal.LongList participants_;
     private int participantsMemoizedSerializedSize = -1;
     private org.bupt.fedraft.rpc.manager.message.CodeFile codeFile_;
-
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
-     * @return The count of participants.
-     */
-    public int getParticipantsCount() {
-        return participants_.size();
-    }
-
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
-     * @param index The index of the element to return.
-     * @return The participants at the given index.
-     */
-    public long getParticipants(int index) {
-        return participants_.getLong(index);
-    }
-
     private int globalEpoch_;
     private volatile java.lang.Object datasetsName_;
     private org.bupt.fedraft.rpc.trainer.message.ModelClass modelClass_;
-
-    /**
-     * <pre>
-     * 任务代码
-     * </pre>
-     *
-     * <code>.fedraft.CodeFile codeFile = 4;</code>
-     *
-     * @return Whether the codeFile field is set.
-     */
-    @java.lang.Override
-    public boolean hasCodeFile() {
-    return codeFile_ != null;
-    }
-
-    /**
-     * <pre>
-     * 任务代码
-     * </pre>
-     *
-     * <code>.fedraft.CodeFile codeFile = 4;</code>
-     *
-     * @return The codeFile.
-     */
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile() {
-        return codeFile_ == null ? org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
-    }
-
     private byte memoizedIsInitialized = -1;
 
     // Use JobConfiguration.newBuilder() to construct.
@@ -283,6 +226,61 @@ public final class JobConfiguration extends
     public java.util.List<java.lang.Long>
     getParticipantsList() {
         return participants_;
+    }
+
+    /**
+     * <pre>
+     * 训练任务的参与者
+     * </pre>
+     *
+     * <code>repeated int64 participants = 3;</code>
+     *
+     * @return The count of participants.
+     */
+    public int getParticipantsCount() {
+        return participants_.size();
+    }
+
+    /**
+     * <pre>
+     * 训练任务的参与者
+     * </pre>
+     *
+     * <code>repeated int64 participants = 3;</code>
+     *
+     * @param index The index of the element to return.
+     * @return The participants at the given index.
+     */
+    public long getParticipants(int index) {
+        return participants_.getLong(index);
+    }
+
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     *
+     * @return Whether the codeFile field is set.
+     */
+    @java.lang.Override
+    public boolean hasCodeFile() {
+        return codeFile_ != null;
+    }
+
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     *
+     * @return The codeFile.
+     */
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile() {
+        return codeFile_ == null ? org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
     }
 
     /**
@@ -490,10 +488,10 @@ public final class JobConfiguration extends
         if (!getDatasetsName()
                 .equals(other.getDatasetsName())) return false;
         if (hasModelClass() != other.hasModelClass()) return false;
-    if (hasModelClass()) {
-        if (!getModelClass()
-                .equals(other.getModelClass())) return false;
-    }
+        if (hasModelClass()) {
+            if (!getModelClass()
+                    .equals(other.getModelClass())) return false;
+        }
         return getUnknownFields().equals(other.getUnknownFields());
     }
 
@@ -915,7 +913,6 @@ public final class JobConfiguration extends
          * </pre>
          *
          * <code>int64 sourceId = 2;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearSourceId() {
@@ -938,7 +935,6 @@ public final class JobConfiguration extends
          * </pre>
          *
          * <code>repeated int64 participants = 3;</code>
-         *
          * @return A list containing the participants.
          */
         public java.util.List<java.lang.Long>
@@ -953,7 +949,6 @@ public final class JobConfiguration extends
          * </pre>
          *
          * <code>repeated int64 participants = 3;</code>
-         *
          * @return The count of participants.
          */
         public int getParticipantsCount() {
@@ -966,7 +961,6 @@ public final class JobConfiguration extends
          * </pre>
          *
          * <code>repeated int64 participants = 3;</code>
-         *
          * @param index The index of the element to return.
          * @return The participants at the given index.
          */
@@ -980,7 +974,6 @@ public final class JobConfiguration extends
          * </pre>
          *
          * <code>repeated int64 participants = 3;</code>
-         *
          * @param index The index to set the value at.
          * @param value The participants to set.
          * @return This builder for chaining.
@@ -999,7 +992,6 @@ public final class JobConfiguration extends
          * </pre>
          *
          * <code>repeated int64 participants = 3;</code>
-         *
          * @param value The participants to add.
          * @return This builder for chaining.
          */
@@ -1016,7 +1008,6 @@ public final class JobConfiguration extends
          * </pre>
          *
          * <code>repeated int64 participants = 3;</code>
-         *
          * @param values The participants to add.
          * @return This builder for chaining.
          */
@@ -1035,7 +1026,6 @@ public final class JobConfiguration extends
          * </pre>
          *
          * <code>repeated int64 participants = 3;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearParticipants() {
@@ -1051,7 +1041,6 @@ public final class JobConfiguration extends
          * </pre>
          *
          * <code>.fedraft.CodeFile codeFile = 4;</code>
-         *
          * @return Whether the codeFile field is set.
          */
         public boolean hasCodeFile() {
@@ -1064,7 +1053,6 @@ public final class JobConfiguration extends
          * </pre>
          *
          * <code>.fedraft.CodeFile codeFile = 4;</code>
-         *
          * @return The codeFile.
          */
         public org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile() {
@@ -1158,33 +1146,33 @@ public final class JobConfiguration extends
         }
 
         /**
-     * <pre>
-     * 任务代码
-     * </pre>
-     *
-     * <code>.fedraft.CodeFile codeFile = 4;</code>
-     */
-    public org.bupt.fedraft.rpc.manager.message.CodeFile.Builder getCodeFileBuilder() {
+         * <pre>
+         * 任务代码
+         * </pre>
+         *
+         * <code>.fedraft.CodeFile codeFile = 4;</code>
+         */
+        public org.bupt.fedraft.rpc.manager.message.CodeFile.Builder getCodeFileBuilder() {
 
-      onChanged();
-      return getCodeFileFieldBuilder().getBuilder();
-    }
-
-    /**
-     * <pre>
-     * 任务代码
-     * </pre>
-     *
-     * <code>.fedraft.CodeFile codeFile = 4;</code>
-     */
-    public org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder() {
-        if (codeFileBuilder_ != null) {
-            return codeFileBuilder_.getMessageOrBuilder();
-        } else {
-            return codeFile_ == null ?
-                    org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
+            onChanged();
+            return getCodeFileFieldBuilder().getBuilder();
         }
-    }
+
+        /**
+         * <pre>
+         * 任务代码
+         * </pre>
+         *
+         * <code>.fedraft.CodeFile codeFile = 4;</code>
+         */
+        public org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder() {
+            if (codeFileBuilder_ != null) {
+                return codeFileBuilder_.getMessageOrBuilder();
+            } else {
+                return codeFile_ == null ?
+                        org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
+            }
+        }
 
         /**
          * <pre>

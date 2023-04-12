@@ -4,15 +4,14 @@ package org.bupt.fedraft.state;
 import com.google.protobuf.ByteString;
 import io.grpc.stub.StreamObserver;
 import org.bupt.fedraft.config.Configuration;
-import org.bupt.fedraft.exception.LocalTrainException;
 import org.bupt.fedraft.job.jobmanager.Follower;
 import org.bupt.fedraft.rpc.manager.message.JobSubmitResponse;
 import org.bupt.fedraft.rpc.trainer.message.ModelClass;
+import org.bupt.fedraft.rpc.trainer.message.TrainRequest;
 import org.bupt.fedraft.server.ManagerClient;
 import org.bupt.fedraft.server.TrainerClient;
 import org.bupt.fedraft.utils.NetworkUtils;
-import org.bupt.fedraft.utils.VisitType;
-import org.bupt.fedraft.utils.WriteReadObject;
+import org.bupt.fedraft.utils.WriteReadLockObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +38,9 @@ public class JobManager {
     public final long sourceId;
     public final List<Long> participants;
 
-    // trainer失败计数
+    /**
+     * trainer进程启动失败计数
+     */
     private final AtomicInteger failCount;
     public final int globalEpoch;
     private final ManagerState managerState;
@@ -50,10 +51,15 @@ public class JobManager {
 
     private Process trainerProcess;
 
-    private final WriteReadObject<ArrayList<ByteString>> localModel = new WriteReadObject<>(new ArrayList<>());
+    private final WriteReadLockObject<ArrayList<ByteString>> localModel = new WriteReadLockObject<>(new ArrayList<>());
 
-    private final WriteReadObject<ArrayList<ByteString>> globalModel = new WriteReadObject<>(new ArrayList<>());
-    private final WriteReadObject<JobManagerRaftSate> raftState;
+    private final CopyOnWriteArrayList<ByteString> globalModel = new CopyOnWriteArrayList<>();
+    private final WriteReadLockObject<JobManagerRaftSate> raftState;
+
+    /**
+     * 向trainer发送模型的流发送器
+     */
+    private StreamObserver<TrainRequest> modelSender;
 
     /**
      * 日志回复器
@@ -84,7 +90,7 @@ public class JobManager {
 
         JobManagerRaftSate jobRaftSate = new JobManagerRaftSate();
         jobRaftSate.setJob(new Follower(this, managerState));
-        raftState = new WriteReadObject<>(jobRaftSate);
+        raftState = new WriteReadLockObject<>(jobRaftSate);
     }
 
     public JobManager(ManagerState managerState, int uuid, long sourceId, int globalEpoch,
@@ -95,29 +101,45 @@ public class JobManager {
     }
 
 
-    public WriteReadObject<ArrayList<ByteString>> getLocalModel() {
+    public WriteReadLockObject<ArrayList<ByteString>> getLocalModel() {
         return localModel;
     }
 
-    public WriteReadObject<ArrayList<ByteString>> getGlobalModel() {
+    public CopyOnWriteArrayList<ByteString> getGlobalModel() {
         return globalModel;
     }
 
-    public WriteReadObject<JobManagerRaftSate> getRaftState() {
+    public WriteReadLockObject<JobManagerRaftSate> getRaftState() {
         return raftState;
     }
 
 
+    /**
+     * 追加缓存的全局模型块
+     *
+     * @param chunk 序列化为字节数组的模型块
+     */
     public void addGlobalModelChunk(ByteString chunk) {
-        getGlobalModel().visit(chunks -> {
-            chunks.add(chunk);
-        }, VisitType.WRITE);
+        if (modelSender != null) {
+            modelSender.onNext(TrainRequest.newBuilder().setModelChunk(chunk).build());
+        }
+
+        globalModel.add(chunk);
     }
 
+    /**
+     * 清空缓存的全局模型块
+     */
+    public void clearGlobalModelChunk(StreamObserver<TrainRequest> sender) {
+        modelSender = sender;
+        globalModel.clear();
+    }
+
+    /**
+     * 清空缓存的全局模型块
+     */
     public void clearGlobalModelChunk() {
-        getGlobalModel().visit(chunks -> {
-            chunks.clear();
-        }, VisitType.WRITE);
+        clearGlobalModelChunk(null);
     }
 
     private void setupTrainer() {
@@ -138,7 +160,6 @@ public class JobManager {
 
     /**
      * 启动Trainer进程
-     *
      * @param port Trainer进程的端口号
      * @throws IOException 执行启动脚本时发生的异常
      */
@@ -191,7 +212,6 @@ public class JobManager {
 
     /**
      * 监听Trainer日志输出
-     *
      * @param reader 日志输入流
      */
     private void watchTrainerLog(BufferedReader reader) {
@@ -233,35 +253,6 @@ public class JobManager {
 
     public ManagerClient getSourceClient() {
         return sourceClient;
-    }
-
-    /**
-     * 初始化完成后的本地训练/使用之前的参数进行本地训练
-     */
-    public void localTrain() {
-        // 关闭计时器防止训练过程中触发重新选举
-        getRaftState().visit(raftSate -> raftSate.getJob().closeTimer(), VisitType.READ);
-
-        getLocalModel().visit(modelChunkCache -> {
-            modelChunkCache.clear();
-            try {
-                trainerClient.trainModel(modelChunkCache);
-            } catch (LocalTrainException e) {
-                logger.error(e.getMessage());
-            }
-        }, VisitType.WRITE);
-
-
-        CopyOnWriteArrayList<ByteString> list = new CopyOnWriteArrayList<>();
-        triggerModelCollect();
-    }
-
-
-    /**
-     * TODO 完成本地训练后触发模型回收或leader选举
-     */
-    private void triggerModelCollect() {
-
     }
 
 

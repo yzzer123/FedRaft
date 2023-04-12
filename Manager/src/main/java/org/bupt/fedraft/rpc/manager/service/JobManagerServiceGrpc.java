@@ -232,13 +232,12 @@ public final class JobManagerServiceGrpc {
                             .addMethod(getPushModelMethod())
                             .build();
                 }
-      }
+            }
+        }
+        return result;
     }
-    return result;
-  }
 
     /**
-     *
      */
     public static abstract class JobManagerServiceImplBase implements io.grpc.BindableService {
 
@@ -320,7 +319,6 @@ public final class JobManagerServiceGrpc {
     }
 
     /**
-     *
      */
     public static final class JobManagerServiceStub extends io.grpc.stub.AbstractAsyncStub<JobManagerServiceStub> {
         private JobManagerServiceStub(
@@ -376,7 +374,6 @@ public final class JobManagerServiceGrpc {
     }
 
     /**
-     *
      */
     public static final class JobManagerServiceBlockingStub extends io.grpc.stub.AbstractBlockingStub<JobManagerServiceBlockingStub> {
         private JobManagerServiceBlockingStub(
@@ -421,7 +418,6 @@ public final class JobManagerServiceGrpc {
     }
 
     /**
-     *
      */
     public static final class JobManagerServiceFutureStub extends io.grpc.stub.AbstractFutureStub<JobManagerServiceFutureStub> {
         private JobManagerServiceFutureStub(
@@ -436,7 +432,6 @@ public final class JobManagerServiceGrpc {
         }
 
         /**
-         *
          */
         public com.google.common.util.concurrent.ListenableFuture<org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse> appendLog(
                 org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest request) {
@@ -445,7 +440,6 @@ public final class JobManagerServiceGrpc {
         }
 
         /**
-         *
          */
         public com.google.common.util.concurrent.ListenableFuture<org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse> appendModels(
                 org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest request) {
@@ -454,7 +448,6 @@ public final class JobManagerServiceGrpc {
         }
 
         /**
-         *
          */
         public com.google.common.util.concurrent.ListenableFuture<org.bupt.fedraft.rpc.jobmanager.message.JobVoteResponse> jobVote(
                 org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest request) {
@@ -549,6 +542,6 @@ public final class JobManagerServiceGrpc {
         @java.lang.Override
         public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
             return getServiceDescriptor().findMethodByName(methodName);
+        }
     }
-  }
 }

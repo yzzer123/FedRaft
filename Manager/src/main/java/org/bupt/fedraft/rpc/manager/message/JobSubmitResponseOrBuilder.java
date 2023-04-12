@@ -52,9 +52,10 @@ public interface JobSubmitResponseOrBuilder extends
 
     /**
      * <code>bytes chunk = 3;</code>
+     *
      * @return The chunk.
-   */
-  com.google.protobuf.ByteString getChunk();
+     */
+    com.google.protobuf.ByteString getChunk();
 
-  org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.LogCase getLogCase();
+    org.bupt.fedraft.rpc.manager.message.JobSubmitResponse.LogCase getLogCase();
 }

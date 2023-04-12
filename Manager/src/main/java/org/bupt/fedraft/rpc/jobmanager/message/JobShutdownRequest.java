@@ -42,6 +42,7 @@ public final class JobShutdownRequest extends
     }
 
     private long sourceId_;
+    private int uuid_;
 
     // Use JobShutdownRequest.newBuilder() to construct.
     private JobShutdownRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
@@ -51,43 +52,9 @@ public final class JobShutdownRequest extends
     private JobShutdownRequest() {
     }
 
-    /**
-     * <code>int64 sourceId = 1;</code>
-     *
-     * @return The sourceId.
-     */
-    @java.lang.Override
-    public long getSourceId() {
-        return sourceId_;
-    }
-
     public static com.google.protobuf.Descriptors.Descriptor
     getDescriptor() {
         return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobShutdownRequest_descriptor;
-    }
-
-    private int uuid_;
-
-    /**
-     * <code>int32 uuid = 2;</code>
-     *
-     * @return The uuid.
-     */
-    @java.lang.Override
-    public int getUuid() {
-        return uuid_;
-    }
-
-  private byte memoizedIsInitialized = -1;
-
-    @java.lang.Override
-    public boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
     }
 
     public static org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest parseFrom(
@@ -102,6 +69,8 @@ public final class JobShutdownRequest extends
             throws com.google.protobuf.InvalidProtocolBufferException {
         return PARSER.parseFrom(data, extensionRegistry);
     }
+
+    private byte memoizedIsInitialized = -1;
 
     public static org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest parseFrom(
             com.google.protobuf.ByteString data)
@@ -208,6 +177,36 @@ public final class JobShutdownRequest extends
                         org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.Builder.class);
     }
 
+    /**
+     * <code>int64 sourceId = 1;</code>
+     *
+     * @return The sourceId.
+     */
+    @java.lang.Override
+    public long getSourceId() {
+        return sourceId_;
+    }
+
+    /**
+     * <code>int32 uuid = 2;</code>
+     *
+     * @return The uuid.
+     */
+    @java.lang.Override
+    public int getUuid() {
+        return uuid_;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized == 1) return true;
+        if (isInitialized == 0) return false;
+
+        memoizedIsInitialized = 1;
+        return true;
+    }
+
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
             throws java.io.IOException {
@@ -233,11 +232,11 @@ public final class JobShutdownRequest extends
         if (uuid_ != 0) {
             size += com.google.protobuf.CodedOutputStream
                     .computeInt32Size(2, uuid_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSize = size;
+        return size;
     }
-    size += getUnknownFields().getSerializedSize();
-    memoizedSize = size;
-    return size;
-  }
 
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
@@ -336,34 +335,6 @@ public final class JobShutdownRequest extends
         }
 
         @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest build() {
-            org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest result = buildPartial();
-            if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest buildPartial() {
-      org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest result = new org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest(this);
-        result.sourceId_ = sourceId_;
-        result.uuid_ = uuid_;
-        onBuilt();
-        return result;
-    }
-
-        @java.lang.Override
-        public Builder clone() {
-            return super.clone();
-        }
-
-        @java.lang.Override
         public Builder clear() {
             super.clear();
             sourceId_ = 0L;
@@ -377,6 +348,34 @@ public final class JobShutdownRequest extends
         public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
             return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobShutdownRequest_descriptor;
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest getDefaultInstanceForType() {
+            return org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest.getDefaultInstance();
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest build() {
+            org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest result = buildPartial();
+            if (!result.isInitialized()) {
+                throw newUninitializedMessageException(result);
+            }
+            return result;
+        }
+
+        @java.lang.Override
+        public org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest buildPartial() {
+            org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest result = new org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest(this);
+            result.sourceId_ = sourceId_;
+            result.uuid_ = uuid_;
+            onBuilt();
+            return result;
+        }
+
+        @java.lang.Override
+        public Builder clone() {
+            return super.clone();
         }
 
         @java.lang.Override
@@ -484,7 +483,6 @@ public final class JobShutdownRequest extends
 
         /**
          * <code>int64 sourceId = 1;</code>
-         *
          * @return The sourceId.
          */
         @java.lang.Override
@@ -494,7 +492,6 @@ public final class JobShutdownRequest extends
 
         /**
          * <code>int64 sourceId = 1;</code>
-         *
          * @param value The sourceId to set.
          * @return This builder for chaining.
          */
@@ -507,22 +504,25 @@ public final class JobShutdownRequest extends
 
         /**
          * <code>int64 sourceId = 1;</code>
+         *
          * @return This builder for chaining.
-     */
-    public Builder clearSourceId() {
+         */
+        public Builder clearSourceId() {
 
-      sourceId_ = 0L;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 uuid = 2;</code>
-     * @return The uuid.
-     */
-    @java.lang.Override
-    public int getUuid() {
-        return uuid_;
-    }
+            sourceId_ = 0L;
+            onChanged();
+            return this;
+        }
+
+        /**
+         * <code>int32 uuid = 2;</code>
+         *
+         * @return The uuid.
+         */
+        @java.lang.Override
+        public int getUuid() {
+            return uuid_;
+        }
 
         /**
          * <code>int32 uuid = 2;</code>
@@ -539,7 +539,6 @@ public final class JobShutdownRequest extends
 
         /**
          * <code>int32 uuid = 2;</code>
-         *
          * @return This builder for chaining.
          */
         public Builder clearUuid() {
@@ -562,7 +561,7 @@ public final class JobShutdownRequest extends
         }
 
 
-    // @@protoc_insertion_point(builder_scope:fedraft.JobShutdownRequest)
+        // @@protoc_insertion_point(builder_scope:fedraft.JobShutdownRequest)
   }
 
 }

@@ -35,8 +35,6 @@ public enum ManagerStatus
      * <code>FOLLOWER = 2;</code>
      */
     public static final int FOLLOWER_VALUE = 2;
-
-
     private static final com.google.protobuf.Internal.EnumLiteMap<
             ManagerStatus> internalValueMap =
             new com.google.protobuf.Internal.EnumLiteMap<ManagerStatus>() {
