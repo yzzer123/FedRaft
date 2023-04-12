@@ -3,6 +3,7 @@ package org.bupt.fedraft.server;
 import com.google.protobuf.ByteString;
 import io.grpc.stub.StreamObserver;
 import org.bupt.fedraft.beans.NodeInfo;
+import org.bupt.fedraft.exception.LocalTrainException;
 import org.bupt.fedraft.rpc.trainer.message.*;
 import org.bupt.fedraft.rpc.trainer.service.TrainerServiceGrpc;
 import org.bupt.fedraft.state.JobManager;
@@ -69,11 +70,11 @@ public class TrainerClient extends Client {
      * 同步训练模型
      *
      * @param modelChunks 待训练模型, 可以发送null直接触发训练
-     * @return 正常训练结束后，返回训练后的模型，发生异常则返回null
+     * @return 正常训练结束后，返回训练后的模型
+     * @throws LocalTrainException 训练过程发生异常或被打断
      */
-    public List<ByteString> trainModel(@Nonnull List<ByteString> modelChunks) {
+    public List<ByteString> trainModel(@Nonnull List<ByteString> modelChunks, final List<ByteString> trainedModel) throws LocalTrainException {
 
-        final List<ByteString> trainedModel = new ArrayList<>(modelChunks.size());
         final CountDownLatch isFinished = new CountDownLatch(1);
 
         StreamObserver<TrainRequest> requestObserver = asyncStub.trainModel(new StreamObserver<>() {
@@ -107,15 +108,18 @@ public class TrainerClient extends Client {
         try {
             isFinished.await();
         } catch (InterruptedException e) {
-            logger.error("model training failed :" + e.getMessage());
-            return null;
+            throw new LocalTrainException("model training interrupted :" + e.getMessage());
         }
 
-        return trainedModel.size() == 0 ? null : trainedModel;
+        if (trainedModel.size() == 0) {
+            throw new LocalTrainException("model from trainer with size:0");
+        }
+
+        return trainedModel;
     }
 
-    public List<ByteString> trainModel() {
-        return trainModel(new ArrayList<>());
+    public List<ByteString> trainModel(final List<ByteString> modelCache) throws LocalTrainException {
+        return trainModel(new ArrayList<>(), modelCache);
     }
 
     /**

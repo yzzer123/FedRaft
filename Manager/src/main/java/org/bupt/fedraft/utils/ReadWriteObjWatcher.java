@@ -1,4 +1,4 @@
-package org.bupt.fedraft.state;
+package org.bupt.fedraft.utils;
 
 /**
  * Manager的状态处理器
@@ -6,7 +6,7 @@ package org.bupt.fedraft.state;
  * @param <T> 要处理的数据类型
  * @author yzzer
  */
-public interface ManagerStateWatcher<T> {
+public interface ReadWriteObjWatcher<T> {
     /**
      * 对线程安全参数的访问接口
      *

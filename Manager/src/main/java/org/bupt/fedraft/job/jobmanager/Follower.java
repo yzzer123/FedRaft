@@ -2,8 +2,8 @@ package org.bupt.fedraft.job.jobmanager;
 
 import org.bupt.fedraft.state.JobManager;
 import org.bupt.fedraft.state.ManagerState;
-import org.bupt.fedraft.state.VisitType;
 import org.bupt.fedraft.utils.TimerUtils;
+import org.bupt.fedraft.utils.VisitType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,7 +36,7 @@ public class Follower extends BaseJob {
 
         // 提交定时器
         scheduledFuture = TimerUtils.getTimer().schedule(() -> {
-            getJobManager().visitRaftState(raftState -> {
+            getJobManager().getRaftState().visit(raftState -> {
                 if (raftState.getJob() != Follower.this) {
                     return;
                 }

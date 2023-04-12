@@ -243,7 +243,7 @@ class JobSubmitResponseStreamObserver implements StreamObserver<JobSubmitRequest
             }
 
             // 存放
-            jobState.addModelChunk(request.getModelChunk());
+            jobState.addGlobalModelChunk(request.getModelChunk());
 
             // 向trainer发送模型
             if (clusterObserver != null) {
@@ -289,6 +289,7 @@ class JobSubmitResponseStreamObserver implements StreamObserver<JobSubmitRequest
         trainerObserver.onCompleted();
 
         // TODO 触发本地训练
+
 
         logger.info("job submit completed!!!!");
     }

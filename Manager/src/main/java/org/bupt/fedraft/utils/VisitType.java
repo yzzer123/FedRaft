@@ -1,4 +1,4 @@
-package org.bupt.fedraft.state;
+package org.bupt.fedraft.utils;
 
 /**
  * @author yzzer
