@@ -36,7 +36,10 @@ message JobPullModelRequest{
 }
 
 message JobPullModelResponse{
-  bytes modelChunk = 1;
+  oneof modelInfo{
+    bytes modelChunk = 1;
+    int64 modelIndex = 2;
+  }
 }
 
 message JobPushModelRequest{

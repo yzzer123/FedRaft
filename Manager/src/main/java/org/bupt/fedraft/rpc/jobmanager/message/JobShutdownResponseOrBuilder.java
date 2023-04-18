@@ -4,6 +4,6 @@
 package org.bupt.fedraft.rpc.jobmanager.message;
 
 public interface JobShutdownResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.JobShutdownResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.JobShutdownResponse)
+    com.google.protobuf.MessageOrBuilder {
 }

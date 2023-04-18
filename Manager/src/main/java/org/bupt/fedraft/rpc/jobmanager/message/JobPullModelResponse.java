@@ -7,497 +7,653 @@ package org.bupt.fedraft.rpc.jobmanager.message;
  * Protobuf type {@code fedraft.JobPullModelResponse}
  */
 public final class JobPullModelResponse extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:fedraft.JobPullModelResponse)
-        JobPullModelResponseOrBuilder {
-    public static final int MODELCHUNK_FIELD_NUMBER = 1;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:fedraft.JobPullModelResponse)
-    private static final org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<JobPullModelResponse>
-            PARSER = new com.google.protobuf.AbstractParser<JobPullModelResponse>() {
-        @java.lang.Override
-        public JobPullModelResponse parsePartialFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            Builder builder = newBuilder();
-            try {
-                builder.mergeFrom(input, extensionRegistry);
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                throw e.setUnfinishedMessage(builder.buildPartial());
-            } catch (com.google.protobuf.UninitializedMessageException e) {
-                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-            } catch (java.io.IOException e) {
-                throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                        .setUnfinishedMessage(builder.buildPartial());
-            }
-            return builder.buildPartial();
-        }
-    };
+    com.google.protobuf.GeneratedMessageV3 implements
+    // @@protoc_insertion_point(message_implements:fedraft.JobPullModelResponse)
+    JobPullModelResponseOrBuilder {
+private static final long serialVersionUID = 0L;
+  // Use JobPullModelResponse.newBuilder() to construct.
+  private JobPullModelResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+  private JobPullModelResponse() {
+  }
 
-    static {
-        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse();
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new JobPullModelResponse();
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelResponse_descriptor;
+  }
+
+  @java.lang.Override
+  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+    return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelResponse_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(
+            org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.class, org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.Builder.class);
+  }
+
+  private int modelInfoCase_ = 0;
+  private java.lang.Object modelInfo_;
+  public enum ModelInfoCase
+      implements com.google.protobuf.Internal.EnumLite,
+          com.google.protobuf.AbstractMessage.InternalOneOfEnum {
+    MODELCHUNK(1),
+    MODELINDEX(2),
+    MODELINFO_NOT_SET(0);
+    private final int value;
+    ModelInfoCase(int value) {
+      this.value = value;
+    }
+    /**
+     * @param value The number of the enum to look for.
+     * @return The enum associated with the given number.
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static ModelInfoCase valueOf(int value) {
+      return forNumber(value);
     }
 
-    private com.google.protobuf.ByteString modelChunk_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use JobPullModelResponse.newBuilder() to construct.
-    private JobPullModelResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
+    public static ModelInfoCase forNumber(int value) {
+      switch (value) {
+        case 1: return MODELCHUNK;
+        case 2: return MODELINDEX;
+        case 0: return MODELINFO_NOT_SET;
+        default: return null;
+      }
     }
-
-    private JobPullModelResponse() {
-        modelChunk_ = com.google.protobuf.ByteString.EMPTY;
+    public int getNumber() {
+      return this.value;
     }
+  }
 
+  public ModelInfoCase
+  getModelInfoCase() {
+    return ModelInfoCase.forNumber(
+        modelInfoCase_);
+  }
+
+  public static final int MODELCHUNK_FIELD_NUMBER = 1;
+  /**
+   * <code>bytes modelChunk = 1;</code>
+   * @return Whether the modelChunk field is set.
+   */
+  @java.lang.Override
+  public boolean hasModelChunk() {
+    return modelInfoCase_ == 1;
+  }
+  /**
+   * <code>bytes modelChunk = 1;</code>
+   * @return The modelChunk.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString getModelChunk() {
+    if (modelInfoCase_ == 1) {
+      return (com.google.protobuf.ByteString) modelInfo_;
+    }
+    return com.google.protobuf.ByteString.EMPTY;
+  }
+
+  public static final int MODELINDEX_FIELD_NUMBER = 2;
+  /**
+   * <code>int64 modelIndex = 2;</code>
+   * @return Whether the modelIndex field is set.
+   */
+  @java.lang.Override
+  public boolean hasModelIndex() {
+    return modelInfoCase_ == 2;
+  }
+  /**
+   * <code>int64 modelIndex = 2;</code>
+   * @return The modelIndex.
+   */
+  @java.lang.Override
+  public long getModelIndex() {
+    if (modelInfoCase_ == 2) {
+      return (java.lang.Long) modelInfo_;
+    }
+    return 0L;
+  }
+
+  private byte memoizedIsInitialized = -1;
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
+  }
+
+  @java.lang.Override
+  public void writeTo(com.google.protobuf.CodedOutputStream output)
+                      throws java.io.IOException {
+    if (modelInfoCase_ == 1) {
+      output.writeBytes(
+          1, (com.google.protobuf.ByteString) modelInfo_);
+    }
+    if (modelInfoCase_ == 2) {
+      output.writeInt64(
+          2, (Long) modelInfo_);
+    }
+    getUnknownFields().writeTo(output);
+  }
+
+  @java.lang.Override
+  public int getSerializedSize() {
+    int size = memoizedSize;
+    if (size != -1) return size;
+
+    size = 0;
+    if (modelInfoCase_ == 1) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBytesSize(
+            1, (com.google.protobuf.ByteString) modelInfo_);
+    }
+    if (modelInfoCase_ == 2) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(
+            2, (Long) modelInfo_);
+    }
+    size += getUnknownFields().getSerializedSize();
+    memoizedSize = size;
+    return size;
+  }
+
+  @java.lang.Override
+  public boolean equals(final java.lang.Object obj) {
+    if (obj == this) {
+     return true;
+    }
+    if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse)) {
+      return super.equals(obj);
+    }
+    org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse other = (org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse) obj;
+
+    if (!getModelInfoCase().equals(other.getModelInfoCase())) return false;
+    switch (modelInfoCase_) {
+      case 1:
+        if (!getModelChunk()
+            .equals(other.getModelChunk())) return false;
+        break;
+      case 2:
+        if (getModelIndex()
+            != other.getModelIndex()) return false;
+        break;
+      case 0:
+      default:
+    }
+    return getUnknownFields().equals(other.getUnknownFields());
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    switch (modelInfoCase_) {
+      case 1:
+        hash = (37 * hash) + MODELCHUNK_FIELD_NUMBER;
+        hash = (53 * hash) + getModelChunk().hashCode();
+        break;
+      case 2:
+        hash = (37 * hash) + MODELINDEX_FIELD_NUMBER;
+        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+            getModelIndex());
+        break;
+      case 0:
+      default:
+    }
+    hash = (29 * hash) + getUnknownFields().hashCode();
+    memoizedHashCode = hash;
+    return hash;
+  }
+
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  @java.lang.Override
+  public Builder newBuilderForType() { return newBuilder(); }
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
+  }
+
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
+  }
+  /**
+   * Protobuf type {@code fedraft.JobPullModelResponse}
+   */
+  public static final class Builder extends
+      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      // @@protoc_insertion_point(builder_implements:fedraft.JobPullModelResponse)
+      org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponseOrBuilder {
     public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-        return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelResponse_descriptor;
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
-            java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
-            java.nio.ByteBuffer data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
-            com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseDelimitedFrom(java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseDelimitedFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
-            com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<JobPullModelResponse> parser() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-            UnusedPrivateParameter unused) {
-        return new JobPullModelResponse();
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-        return this.unknownFields;
+        getDescriptor() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-        return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelResponse_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.class, org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.Builder.class);
+        internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.class, org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.Builder.class);
     }
 
-    /**
-     * <code>bytes modelChunk = 1;</code>
-     *
-     * @return The modelChunk.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString getModelChunk() {
-        return modelChunk_;
+    // Construct using org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.newBuilder()
+    private Builder() {
+
     }
 
-    @java.lang.Override
-    public boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
 
-        memoizedIsInitialized = 1;
-        return true;
     }
-
     @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        if (!modelChunk_.isEmpty()) {
-            output.writeBytes(1, modelChunk_);
-        }
-        getUnknownFields().writeTo(output);
+    public Builder clear() {
+      super.clear();
+      modelInfoCase_ = 0;
+      modelInfo_ = null;
+      return this;
     }
 
     @java.lang.Override
-    public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (!modelChunk_.isEmpty()) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeBytesSize(1, modelChunk_);
-        }
-        size += getUnknownFields().getSerializedSize();
-        memoizedSize = size;
-        return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse)) {
-            return super.equals(obj);
-        }
-        org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse other = (org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse) obj;
-
-        if (!getModelChunk()
-                .equals(other.getModelChunk())) return false;
-        return getUnknownFields().equals(other.getUnknownFields());
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-        if (memoizedHashCode != 0) {
-            return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + MODELCHUNK_FIELD_NUMBER;
-        hash = (53 * hash) + getModelChunk().hashCode();
-        hash = (29 * hash) + getUnknownFields().hashCode();
-        memoizedHashCode = hash;
-        return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-        return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<JobPullModelResponse> getParserForType() {
-        return PARSER;
+    public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelResponse_descriptor;
     }
 
     @java.lang.Override
     public org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
+      return org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.getDefaultInstance();
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse build() {
+      org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse result = buildPartial();
+      if (!result.isInitialized()) {
+        throw newUninitializedMessageException(result);
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse buildPartial() {
+      org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse result = new org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse(this);
+      if (modelInfoCase_ == 1) {
+        result.modelInfo_ = modelInfo_;
+      }
+      if (modelInfoCase_ == 2) {
+        result.modelInfo_ = modelInfo_;
+      }
+      result.modelInfoCase_ = modelInfoCase_;
+      onBuilt();
+      return result;
+    }
+
+    @java.lang.Override
+    public Builder clone() {
+      return super.clone();
+    }
+    @java.lang.Override
+    public Builder setField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
+      return super.setField(field, value);
+    }
+    @java.lang.Override
+    public Builder clearField(
+        com.google.protobuf.Descriptors.FieldDescriptor field) {
+      return super.clearField(field);
+    }
+    @java.lang.Override
+    public Builder clearOneof(
+        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+      return super.clearOneof(oneof);
+    }
+    @java.lang.Override
+    public Builder setRepeatedField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        int index, java.lang.Object value) {
+      return super.setRepeatedField(field, index, value);
+    }
+    @java.lang.Override
+    public Builder addRepeatedField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse) {
+        return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse)other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
+    }
+
+    public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse other) {
+      if (other == org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.getDefaultInstance()) return this;
+      switch (other.getModelInfoCase()) {
+        case MODELCHUNK: {
+          setModelChunk(other.getModelChunk());
+          break;
+        }
+        case MODELINDEX: {
+          setModelIndex(other.getModelIndex());
+          break;
+        }
+        case MODELINFO_NOT_SET: {
+          break;
+        }
+      }
+      this.mergeUnknownFields(other.getUnknownFields());
+      onChanged();
+      return this;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+      return true;
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              modelInfo_ = input.readBytes();
+              modelInfoCase_ = 1;
+              break;
+            } // case 10
+            case 16: {
+              modelInfo_ = input.readInt64();
+              modelInfoCase_ = 2;
+              break;
+            } // case 16
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.unwrapIOException();
+      } finally {
+        onChanged();
+      } // finally
+      return this;
+    }
+    private int modelInfoCase_ = 0;
+    private java.lang.Object modelInfo_;
+    public ModelInfoCase
+        getModelInfoCase() {
+      return ModelInfoCase.forNumber(
+          modelInfoCase_);
+    }
+
+    public Builder clearModelInfo() {
+      modelInfoCase_ = 0;
+      modelInfo_ = null;
+      onChanged();
+      return this;
+    }
+
+
+    /**
+     * <code>bytes modelChunk = 1;</code>
+     * @return Whether the modelChunk field is set.
+     */
+    public boolean hasModelChunk() {
+      return modelInfoCase_ == 1;
+    }
+    /**
+     * <code>bytes modelChunk = 1;</code>
+     * @return The modelChunk.
+     */
+    public com.google.protobuf.ByteString getModelChunk() {
+      if (modelInfoCase_ == 1) {
+        return (com.google.protobuf.ByteString) modelInfo_;
+      }
+      return com.google.protobuf.ByteString.EMPTY;
+    }
+    /**
+     * <code>bytes modelChunk = 1;</code>
+     * @param value The modelChunk to set.
+     * @return This builder for chaining.
+     */
+    public Builder setModelChunk(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  modelInfoCase_ = 1;
+      modelInfo_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bytes modelChunk = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearModelChunk() {
+      if (modelInfoCase_ == 1) {
+        modelInfoCase_ = 0;
+        modelInfo_ = null;
+        onChanged();
+      }
+      return this;
     }
 
     /**
-     * Protobuf type {@code fedraft.JobPullModelResponse}
+     * <code>int64 modelIndex = 2;</code>
+     * @return Whether the modelIndex field is set.
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:fedraft.JobPullModelResponse)
-            org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponseOrBuilder {
-        private com.google.protobuf.ByteString modelChunk_ = com.google.protobuf.ByteString.EMPTY;
-
-        // Construct using org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.newBuilder()
-        private Builder() {
-
-        }
-
-        private Builder(
-                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-            super(parent);
-
-        }
-
-        public static com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelResponse_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelResponse_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.class, org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.Builder.class);
-        }
-
-        @java.lang.Override
-        public Builder clear() {
-            super.clear();
-            modelChunk_ = com.google.protobuf.ByteString.EMPTY;
-
-            return this;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobPullModelResponse_descriptor;
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse build() {
-            org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse result = buildPartial();
-            if (!result.isInitialized()) {
-                throw newUninitializedMessageException(result);
-            }
-            return result;
-        }
-
-        @java.lang.Override
-        public Builder clone() {
-            return super.clone();
-        }
-
-        @java.lang.Override
-        public Builder setField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                java.lang.Object value) {
-            return super.setField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder clearField(
-                com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return super.clearField(field);
-        }
-
-        @java.lang.Override
-        public Builder clearOneof(
-                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return super.clearOneof(oneof);
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse buildPartial() {
-            org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse result = new org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse(this);
-            result.modelChunk_ = modelChunk_;
-            onBuilt();
-            return result;
-        }
-
-        @java.lang.Override
-        public Builder setRepeatedField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                int index, java.lang.Object value) {
-            return super.setRepeatedField(field, index, value);
-        }
-
-        @java.lang.Override
-        public Builder addRepeatedField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                java.lang.Object value) {
-            return super.addRepeatedField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-            if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse) {
-                return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse) other);
-            } else {
-                super.mergeFrom(other);
-                return this;
-            }
-        }
-
-        public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse other) {
-            if (other == org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.getDefaultInstance()) return this;
-            if (other.getModelChunk() != com.google.protobuf.ByteString.EMPTY) {
-                setModelChunk(other.getModelChunk());
-            }
-            this.mergeUnknownFields(other.getUnknownFields());
-            onChanged();
-            return this;
-        }
-
-        @java.lang.Override
-        public boolean isInitialized() {
-            return true;
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            if (extensionRegistry == null) {
-                throw new java.lang.NullPointerException();
-            }
-            try {
-                boolean done = false;
-                while (!done) {
-                    int tag = input.readTag();
-                    switch (tag) {
-                        case 0:
-                            done = true;
-                            break;
-                        case 10: {
-                            modelChunk_ = input.readBytes();
-
-                            break;
-                        } // case 10
-                        default: {
-                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                                done = true; // was an endgroup tag
-                            }
-                            break;
-                        } // default:
-                    } // switch (tag)
-                } // while (!done)
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                throw e.unwrapIOException();
-            } finally {
-                onChanged();
-            } // finally
-            return this;
-        }
-
-        /**
-         * <code>bytes modelChunk = 1;</code>
-         *
-         * @return The modelChunk.
-         */
-        @java.lang.Override
-        public com.google.protobuf.ByteString getModelChunk() {
-            return modelChunk_;
-        }
-
-        /**
-         * <code>bytes modelChunk = 1;</code>
-         *
-         * @param value The modelChunk to set.
-         * @return This builder for chaining.
-         */
-        public Builder setModelChunk(com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-
-            modelChunk_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>bytes modelChunk = 1;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearModelChunk() {
-
-            modelChunk_ = getDefaultInstance().getModelChunk();
-            onChanged();
-            return this;
-        }
-
-        @java.lang.Override
-        public Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return super.setUnknownFields(unknownFields);
-        }
-
-        @java.lang.Override
-        public Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return super.mergeUnknownFields(unknownFields);
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:fedraft.JobPullModelResponse)
+    public boolean hasModelIndex() {
+      return modelInfoCase_ == 2;
     }
+    /**
+     * <code>int64 modelIndex = 2;</code>
+     * @return The modelIndex.
+     */
+    public long getModelIndex() {
+      if (modelInfoCase_ == 2) {
+        return (java.lang.Long) modelInfo_;
+      }
+      return 0L;
+    }
+    /**
+     * <code>int64 modelIndex = 2;</code>
+     * @param value The modelIndex to set.
+     * @return This builder for chaining.
+     */
+    public Builder setModelIndex(long value) {
+      modelInfoCase_ = 2;
+      modelInfo_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 modelIndex = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearModelIndex() {
+      if (modelInfoCase_ == 2) {
+        modelInfoCase_ = 0;
+        modelInfo_ = null;
+        onChanged();
+      }
+      return this;
+    }
+    @java.lang.Override
+    public Builder setUnknownFields(
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
+      return super.setUnknownFields(unknownFields);
+    }
+
+    @java.lang.Override
+    public Builder mergeUnknownFields(
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
+      return super.mergeUnknownFields(unknownFields);
+    }
+
+
+    // @@protoc_insertion_point(builder_scope:fedraft.JobPullModelResponse)
+  }
+
+  // @@protoc_insertion_point(class_scope:fedraft.JobPullModelResponse)
+  private static final org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse DEFAULT_INSTANCE;
+  static {
+    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse();
+  }
+
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static final com.google.protobuf.Parser<JobPullModelResponse>
+      PARSER = new com.google.protobuf.AbstractParser<JobPullModelResponse>() {
+    @java.lang.Override
+    public JobPullModelResponse parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
+    }
+  };
+
+  public static com.google.protobuf.Parser<JobPullModelResponse> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<JobPullModelResponse> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
+  }
 
 }
 

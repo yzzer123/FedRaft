@@ -4,13 +4,12 @@
 package org.bupt.fedraft.rpc.trainer.message;
 
 public interface TrainResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.TrainResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.TrainResponse)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>bytes model_chunk = 1;</code>
-     *
-     * @return The modelChunk.
-     */
-    com.google.protobuf.ByteString getModelChunk();
+  /**
+   * <code>bytes model_chunk = 1;</code>
+   * @return The modelChunk.
+   */
+  com.google.protobuf.ByteString getModelChunk();
 }

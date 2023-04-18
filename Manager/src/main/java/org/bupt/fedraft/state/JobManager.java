@@ -20,7 +20,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -53,7 +52,7 @@ public class JobManager {
 
     private final WriteReadLockObject<ArrayList<ByteString>> localModel = new WriteReadLockObject<>(new ArrayList<>());
 
-    private final CopyOnWriteArrayList<ByteString> globalModel = new CopyOnWriteArrayList<>();
+    private final List<ByteString> globalModel = new ArrayList<>();
     private final WriteReadLockObject<JobManagerRaftSate> raftState;
 
     /**
@@ -105,7 +104,11 @@ public class JobManager {
         return localModel;
     }
 
-    public CopyOnWriteArrayList<ByteString> getGlobalModel() {
+    /**
+     * 访问时必须提前对Raft加读锁
+     * @return 返回全局模型
+     */
+    public List<ByteString> getGlobalModel() {
         return globalModel;
     }
 
@@ -123,7 +126,6 @@ public class JobManager {
         if (modelSender != null) {
             modelSender.onNext(TrainRequest.newBuilder().setModelChunk(chunk).build());
         }
-
         globalModel.add(chunk);
     }
 

@@ -1,8 +1,7 @@
 package org.bupt.fedraft.server;
 
 import io.grpc.stub.StreamObserver;
-import org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest;
-import org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse;
+import org.bupt.fedraft.rpc.jobmanager.message.*;
 import org.bupt.fedraft.rpc.manager.message.JobSubmitResponse;
 import org.bupt.fedraft.rpc.manager.service.JobManagerServiceGrpc;
 import org.bupt.fedraft.state.JobManager;
@@ -45,4 +44,38 @@ public class JobManagerService extends JobManagerServiceGrpc.JobManagerServiceIm
         responseObserver.onNext(AppendJobLogResponse.getDefaultInstance());
         responseObserver.onCompleted();
     }
+
+    /**
+     * TODO 发送心跳
+     */
+    @Override
+    public void appendModels(AppendModelsRequest request, StreamObserver<AppendModelsResponse> responseObserver) {
+        super.appendModels(request, responseObserver);
+    }
+
+    /**
+     * TODO 请求投票
+     */
+    @Override
+    public void jobVote(JobVoteRequest request, StreamObserver<JobVoteResponse> responseObserver) {
+        super.jobVote(request, responseObserver);
+    }
+
+    /**
+     * TODO 从Leader拉取模型 接收方为Leader/Client
+     */
+    @Override
+    public void pullModel(JobPullModelRequest request, StreamObserver<JobPullModelResponse> responseObserver) {
+        super.pullModel(request, responseObserver);
+    }
+
+    /**
+     * TODO 向Leader方发送模型 接收方为Leader
+     * */
+    @Override
+    public StreamObserver<JobPushModelRequest> pushModel(StreamObserver<JobPushModelResponse> responseObserver) {
+        return super.pushModel(responseObserver);
+    }
+
+
 }

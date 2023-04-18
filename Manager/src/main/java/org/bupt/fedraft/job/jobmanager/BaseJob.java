@@ -1,10 +1,13 @@
 package org.bupt.fedraft.job.jobmanager;
 
+import com.google.protobuf.ByteString;
 import org.bupt.fedraft.config.Configuration;
 import org.bupt.fedraft.state.JobManager;
 import org.bupt.fedraft.state.ManagerState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * JobManager所有Raft状态的抽象父类
@@ -39,6 +42,20 @@ public abstract class BaseJob {
      * 关闭倒计时任务
      */
     abstract public void closeTimer();
+
+
+    /**
+     * 向Leader发送模型
+     * @param model
+     */
+    public void collectModel(List<ByteString> model){
+
+
+
+        // TODO 未实现处于无法发送状态时的缓存以及触发选举
+    }
+
+
 
     /**
      * 重置倒计时任务

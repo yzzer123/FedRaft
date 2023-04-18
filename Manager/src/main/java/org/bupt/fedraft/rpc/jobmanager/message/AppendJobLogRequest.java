@@ -7,155 +7,47 @@ package org.bupt.fedraft.rpc.jobmanager.message;
  * Protobuf type {@code fedraft.AppendJobLogRequest}
  */
 public final class AppendJobLogRequest extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:fedraft.AppendJobLogRequest)
-        AppendJobLogRequestOrBuilder {
-  public static final int SOURCEID_FIELD_NUMBER = 1;
-  public static final int UUID_FIELD_NUMBER = 2;
-  public static final int LOGS_FIELD_NUMBER = 3;
-  private static final long serialVersionUID = 0L;
+    com.google.protobuf.GeneratedMessageV3 implements
+    // @@protoc_insertion_point(message_implements:fedraft.AppendJobLogRequest)
+    AppendJobLogRequestOrBuilder {
+private static final long serialVersionUID = 0L;
+  // Use AppendJobLogRequest.newBuilder() to construct.
+  private AppendJobLogRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+  private AppendJobLogRequest() {
+    logs_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+  }
+
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new AppendJobLogRequest();
+  }
 
   @java.lang.Override
   public com.google.protobuf.UnknownFieldSet
   getUnknownFields() {
     return this.unknownFields;
   }
-
-  // @@protoc_insertion_point(class_scope:fedraft.AppendJobLogRequest)
-  private static final org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest DEFAULT_INSTANCE;
-  private static final com.google.protobuf.Parser<AppendJobLogRequest>
-          PARSER = new com.google.protobuf.AbstractParser<AppendJobLogRequest>() {
-    @java.lang.Override
-    public AppendJobLogRequest parsePartialFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-      Builder builder = newBuilder();
-      try {
-        builder.mergeFrom(input, extensionRegistry);
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(builder.buildPartial());
-      } catch (com.google.protobuf.UninitializedMessageException e) {
-        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                .setUnfinishedMessage(builder.buildPartial());
-      }
-      return builder.buildPartial();
-    }
-  };
-
-  static {
-    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest();
-  }
-
-  private long sourceId_;
-  private int uuid_;
-  private byte memoizedIsInitialized = -1;
-  private com.google.protobuf.LazyStringList logs_;
-
-  // Use AppendJobLogRequest.newBuilder() to construct.
-  private AppendJobLogRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-    super(builder);
-  }
-
-  private AppendJobLogRequest() {
-    logs_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-  }
-
   public static com.google.protobuf.Descriptors.Descriptor
-  getDescriptor() {
+      getDescriptor() {
     return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendJobLogRequest_descriptor;
   }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
-          java.nio.ByteBuffer data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
+  @java.lang.Override
+  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+    return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendJobLogRequest_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(
+            org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.class, org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.Builder.class);
   }
 
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
-          java.nio.ByteBuffer data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
-          com.google.protobuf.ByteString data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
-          com.google.protobuf.ByteString data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(byte[] data)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
-          byte[] data,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-    return PARSER.parseFrom(data, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseDelimitedFrom(java.io.InputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseDelimitedFrom(
-          java.io.InputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
-          com.google.protobuf.CodedInputStream input)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-    return com.google.protobuf.GeneratedMessageV3
-            .parseWithIOException(PARSER, input, extensionRegistry);
-  }
-
-  public static com.google.protobuf.Parser<AppendJobLogRequest> parser() {
-    return PARSER;
-  }
-
+  public static final int SOURCEID_FIELD_NUMBER = 1;
+  private long sourceId_;
   /**
    * <code>int64 sourceId = 1;</code>
-   *
    * @return The sourceId.
    */
   @java.lang.Override
@@ -163,9 +55,10 @@ public final class AppendJobLogRequest extends
     return sourceId_;
   }
 
+  public static final int UUID_FIELD_NUMBER = 2;
+  private int uuid_;
   /**
    * <code>int32 uuid = 2;</code>
-   *
    * @return The uuid.
    */
   @java.lang.Override
@@ -173,73 +66,42 @@ public final class AppendJobLogRequest extends
     return uuid_;
   }
 
+  public static final int LOGS_FIELD_NUMBER = 3;
+  private com.google.protobuf.LazyStringList logs_;
   /**
    * <code>repeated string logs = 3;</code>
-   *
+   * @return A list containing the logs.
+   */
+  public com.google.protobuf.ProtocolStringList
+      getLogsList() {
+    return logs_;
+  }
+  /**
+   * <code>repeated string logs = 3;</code>
    * @return The count of logs.
    */
   public int getLogsCount() {
     return logs_.size();
   }
-
-  public static Builder newBuilder() {
-    return DEFAULT_INSTANCE.toBuilder();
-  }
-
-  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest prototype) {
-    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-  }
-
-  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest getDefaultInstance() {
-    return DEFAULT_INSTANCE;
-  }
-
   /**
    * <code>repeated string logs = 3;</code>
-   *
    * @param index The index of the element to return.
    * @return The logs at the given index.
    */
   public java.lang.String getLogs(int index) {
     return logs_.get(index);
   }
-
-  @java.lang.Override
-  @SuppressWarnings({"unused"})
-  protected java.lang.Object newInstance(
-          UnusedPrivateParameter unused) {
-    return new AppendJobLogRequest();
-  }
-
-  @java.lang.Override
-  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-  internalGetFieldAccessorTable() {
-    return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendJobLogRequest_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                    org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.class, org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.Builder.class);
-  }
-
   /**
    * <code>repeated string logs = 3;</code>
-   *
-   * @return A list containing the logs.
-   */
-  public com.google.protobuf.ProtocolStringList
-  getLogsList() {
-    return logs_;
-  }
-
-  /**
-   * <code>repeated string logs = 3;</code>
-   *
    * @param index The index of the value to return.
    * @return The bytes of the logs at the given index.
    */
   public com.google.protobuf.ByteString
-  getLogsBytes(int index) {
+      getLogsBytes(int index) {
     return logs_.getByteString(index);
   }
 
+  private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public boolean isInitialized() {
     byte isInitialized = memoizedIsInitialized;
@@ -252,7 +114,7 @@ public final class AppendJobLogRequest extends
 
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
-          throws java.io.IOException {
+                      throws java.io.IOException {
     if (sourceId_ != 0L) {
       output.writeInt64(1, sourceId_);
     }
@@ -273,7 +135,7 @@ public final class AppendJobLogRequest extends
     size = 0;
     if (sourceId_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-              .computeInt64Size(1, sourceId_);
+        .computeInt64Size(1, sourceId_);
     }
     if (uuid_ != 0) {
       size += com.google.protobuf.CodedOutputStream
@@ -295,7 +157,7 @@ public final class AppendJobLogRequest extends
   @java.lang.Override
   public boolean equals(final java.lang.Object obj) {
     if (obj == this) {
-      return true;
+     return true;
     }
     if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest)) {
       return super.equals(obj);
@@ -303,11 +165,11 @@ public final class AppendJobLogRequest extends
     org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest other = (org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) obj;
 
     if (getSourceId()
-            != other.getSourceId()) return false;
+        != other.getSourceId()) return false;
     if (getUuid()
-            != other.getUuid()) return false;
+        != other.getUuid()) return false;
     if (!getLogsList()
-            .equals(other.getLogsList())) return false;
+        .equals(other.getLogsList())) return false;
     return getUnknownFields().equals(other.getUnknownFields());
   }
 
@@ -320,7 +182,7 @@ public final class AppendJobLogRequest extends
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + SOURCEID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-            getSourceId());
+        getSourceId());
     hash = (37 * hash) + UUID_FIELD_NUMBER;
     hash = (53 * hash) + getUuid();
     if (getLogsCount() > 0) {
@@ -332,45 +194,115 @@ public final class AppendJobLogRequest extends
     return hash;
   }
 
-  @java.lang.Override
-  public Builder newBuilderForType() {
-    return newBuilder();
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
   @java.lang.Override
+  public Builder newBuilderForType() { return newBuilder(); }
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+  @java.lang.Override
   public Builder toBuilder() {
     return this == DEFAULT_INSTANCE
-            ? new Builder() : new Builder().mergeFrom(this);
+        ? new Builder() : new Builder().mergeFrom(this);
   }
 
   @java.lang.Override
   protected Builder newBuilderForType(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
     Builder builder = new Builder(parent);
     return builder;
   }
-
-  @java.lang.Override
-  public com.google.protobuf.Parser<AppendJobLogRequest> getParserForType() {
-    return PARSER;
-  }
-
-  @java.lang.Override
-  public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest getDefaultInstanceForType() {
-    return DEFAULT_INSTANCE;
-  }
-
   /**
    * Protobuf type {@code fedraft.AppendJobLogRequest}
    */
   public static final class Builder extends
-          com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-          // @@protoc_insertion_point(builder_implements:fedraft.AppendJobLogRequest)
-          org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequestOrBuilder {
-    private int bitField0_;
-    private long sourceId_;
-    private int uuid_;
-    private com.google.protobuf.LazyStringList logs_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      // @@protoc_insertion_point(builder_implements:fedraft.AppendJobLogRequest)
+      org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequestOrBuilder {
+    public static com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendJobLogRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendJobLogRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.class, org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.Builder.class);
+    }
 
     // Construct using org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.newBuilder()
     private Builder() {
@@ -378,38 +310,10 @@ public final class AppendJobLogRequest extends
     }
 
     private Builder(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       super(parent);
 
     }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest getDefaultInstanceForType() {
-      return org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.getDefaultInstance();
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest build() {
-      org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest result = buildPartial();
-      if (!result.isInitialized()) {
-        throw newUninitializedMessageException(result);
-      }
-      return result;
-    }
-
-    public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendJobLogRequest_descriptor;
-    }
-
-    @java.lang.Override
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendJobLogRequest_fieldAccessorTable
-              .ensureFieldAccessorsInitialized(
-                      org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.class, org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.Builder.class);
-    }
-
     @java.lang.Override
     public Builder clear() {
       super.clear();
@@ -424,8 +328,22 @@ public final class AppendJobLogRequest extends
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
-    getDescriptorForType() {
+        getDescriptorForType() {
       return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendJobLogRequest_descriptor;
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest getDefaultInstanceForType() {
+      return org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest.getDefaultInstance();
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest build() {
+      org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest result = buildPartial();
+      if (!result.isInitialized()) {
+        throw newUninitializedMessageException(result);
+      }
+      return result;
     }
 
     @java.lang.Override
@@ -447,44 +365,38 @@ public final class AppendJobLogRequest extends
     public Builder clone() {
       return super.clone();
     }
-
     @java.lang.Override
     public Builder setField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
       return super.setField(field, value);
     }
-
     @java.lang.Override
     public Builder clearField(
-            com.google.protobuf.Descriptors.FieldDescriptor field) {
+        com.google.protobuf.Descriptors.FieldDescriptor field) {
       return super.clearField(field);
     }
-
     @java.lang.Override
     public Builder clearOneof(
-            com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
       return super.clearOneof(oneof);
     }
-
     @java.lang.Override
     public Builder setRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            int index, java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        int index, java.lang.Object value) {
       return super.setRepeatedField(field, index, value);
     }
-
     @java.lang.Override
     public Builder addRepeatedField(
-            com.google.protobuf.Descriptors.FieldDescriptor field,
-            java.lang.Object value) {
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
       return super.addRepeatedField(field, value);
     }
-
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
       if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) {
-        return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest) other);
+        return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
@@ -521,9 +433,9 @@ public final class AppendJobLogRequest extends
 
     @java.lang.Override
     public Builder mergeFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
@@ -566,174 +478,153 @@ public final class AppendJobLogRequest extends
       } // finally
       return this;
     }
+    private int bitField0_;
 
+    private long sourceId_ ;
     /**
      * <code>int64 sourceId = 1;</code>
-     *
      * @return The sourceId.
      */
     @java.lang.Override
     public long getSourceId() {
       return sourceId_;
     }
-
     /**
      * <code>int64 sourceId = 1;</code>
-     *
      * @param value The sourceId to set.
      * @return This builder for chaining.
      */
     public Builder setSourceId(long value) {
-
+      
       sourceId_ = value;
       onChanged();
       return this;
     }
-
     /**
      * <code>int64 sourceId = 1;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearSourceId() {
-
+      
       sourceId_ = 0L;
       onChanged();
       return this;
     }
 
+    private int uuid_ ;
     /**
      * <code>int32 uuid = 2;</code>
-     *
      * @return The uuid.
      */
     @java.lang.Override
     public int getUuid() {
       return uuid_;
     }
-
     /**
      * <code>int32 uuid = 2;</code>
-     *
      * @param value The uuid to set.
      * @return This builder for chaining.
      */
     public Builder setUuid(int value) {
-
+      
       uuid_ = value;
       onChanged();
       return this;
     }
-
     /**
      * <code>int32 uuid = 2;</code>
-     *
      * @return This builder for chaining.
      */
     public Builder clearUuid() {
-
+      
       uuid_ = 0;
       onChanged();
       return this;
     }
 
+    private com.google.protobuf.LazyStringList logs_ = com.google.protobuf.LazyStringArrayList.EMPTY;
     private void ensureLogsIsMutable() {
       if ((bitField0_ & 0x00000001) == 0) {
         logs_ = new com.google.protobuf.LazyStringArrayList(logs_);
         bitField0_ |= 0x00000001;
-      }
+       }
     }
-
     /**
      * <code>repeated string logs = 3;</code>
-     *
      * @return A list containing the logs.
      */
     public com.google.protobuf.ProtocolStringList
-    getLogsList() {
+        getLogsList() {
       return logs_.getUnmodifiableView();
     }
-
     /**
      * <code>repeated string logs = 3;</code>
-     *
      * @return The count of logs.
      */
     public int getLogsCount() {
       return logs_.size();
     }
-
     /**
      * <code>repeated string logs = 3;</code>
-     *
      * @param index The index of the element to return.
      * @return The logs at the given index.
      */
     public java.lang.String getLogs(int index) {
       return logs_.get(index);
     }
-
     /**
      * <code>repeated string logs = 3;</code>
-     *
      * @param index The index of the value to return.
      * @return The bytes of the logs at the given index.
      */
     public com.google.protobuf.ByteString
-    getLogsBytes(int index) {
+        getLogsBytes(int index) {
       return logs_.getByteString(index);
     }
-
     /**
      * <code>repeated string logs = 3;</code>
-     *
      * @param index The index to set the value at.
      * @param value The logs to set.
      * @return This builder for chaining.
      */
     public Builder setLogs(
-            int index, java.lang.String value) {
+        int index, java.lang.String value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureLogsIsMutable();
+    throw new NullPointerException();
+  }
+  ensureLogsIsMutable();
       logs_.set(index, value);
       onChanged();
       return this;
     }
-
     /**
      * <code>repeated string logs = 3;</code>
-     *
      * @param value The logs to add.
      * @return This builder for chaining.
      */
     public Builder addLogs(
-            java.lang.String value) {
+        java.lang.String value) {
       if (value == null) {
-        throw new NullPointerException();
-      }
-      ensureLogsIsMutable();
+    throw new NullPointerException();
+  }
+  ensureLogsIsMutable();
       logs_.add(value);
       onChanged();
       return this;
     }
-
     /**
      * <code>repeated string logs = 3;</code>
-     *
      * @param values The logs to add.
      * @return This builder for chaining.
      */
     public Builder addAllLogs(
-            java.lang.Iterable<java.lang.String> values) {
+        java.lang.Iterable<java.lang.String> values) {
       ensureLogsIsMutable();
       com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, logs_);
+          values, logs_);
       onChanged();
       return this;
     }
-
     /**
      * <code>repeated string logs = 3;</code>
      * @return This builder for chaining.
@@ -774,6 +665,52 @@ public final class AppendJobLogRequest extends
 
 
     // @@protoc_insertion_point(builder_scope:fedraft.AppendJobLogRequest)
+  }
+
+  // @@protoc_insertion_point(class_scope:fedraft.AppendJobLogRequest)
+  private static final org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest DEFAULT_INSTANCE;
+  static {
+    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest();
+  }
+
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static final com.google.protobuf.Parser<AppendJobLogRequest>
+      PARSER = new com.google.protobuf.AbstractParser<AppendJobLogRequest>() {
+    @java.lang.Override
+    public AppendJobLogRequest parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
+    }
+  };
+
+  public static com.google.protobuf.Parser<AppendJobLogRequest> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<AppendJobLogRequest> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
   }
 
 }

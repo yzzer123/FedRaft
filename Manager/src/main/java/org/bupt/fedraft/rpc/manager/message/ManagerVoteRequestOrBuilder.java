@@ -4,31 +4,28 @@
 package org.bupt.fedraft.rpc.manager.message;
 
 public interface ManagerVoteRequestOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.ManagerVoteRequest)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.ManagerVoteRequest)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    int getTerm();
+  /**
+   * <code>int32 term = 1;</code>
+   * @return The term.
+   */
+  int getTerm();
 
-    /**
-     * <code>int64 candidateId = 2;</code>
-     *
-     * @return The candidateId.
-     */
-    long getCandidateId();
+  /**
+   * <code>int64 candidateId = 2;</code>
+   * @return The candidateId.
+   */
+  long getCandidateId();
 
-    /**
-     * <pre>
-     * 拓扑索引
-     * </pre>
-     *
-     * <code>int64 entryIndex = 3;</code>
-     *
-     * @return The entryIndex.
-     */
-    long getEntryIndex();
+  /**
+   * <pre>
+   * 拓扑索引
+   * </pre>
+   *
+   * <code>int64 entryIndex = 3;</code>
+   * @return The entryIndex.
+   */
+  long getEntryIndex();
 }

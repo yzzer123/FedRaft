@@ -4,87 +4,74 @@
 package org.bupt.fedraft.rpc.manager.message;
 
 public interface AppendEntriesRequestOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.AppendEntriesRequest)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.AppendEntriesRequest)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    int getTerm();
+  /**
+   * <code>int32 term = 1;</code>
+   * @return The term.
+   */
+  int getTerm();
 
-    /**
-     * <code>int64 leaderId = 2;</code>
-     *
-     * @return The leaderId.
-     */
-    long getLeaderId();
+  /**
+   * <code>int64 leaderId = 2;</code>
+   * @return The leaderId.
+   */
+  long getLeaderId();
 
-    /**
-     * <pre>
-     * 拓扑索引
-     * </pre>
-     *
-     * <code>int64 entryIndex = 3;</code>
-     *
-     * @return The entryIndex.
-     */
-    long getEntryIndex();
+  /**
+   * <pre>
+   * 拓扑索引
+   * </pre>
+   *
+   * <code>int64 entryIndex = 3;</code>
+   * @return The entryIndex.
+   */
+  long getEntryIndex();
 
-    /**
-     * <pre>
-     * 拓扑信息
-     * </pre>
-     *
-     * <code>repeated int64 nodeIds = 4;</code>
-     *
-     * @return A list containing the nodeIds.
-     */
-    java.util.List<java.lang.Long> getNodeIdsList();
+  /**
+   * <pre>
+   * 拓扑信息
+   * </pre>
+   *
+   * <code>repeated int64 nodeIds = 4;</code>
+   * @return A list containing the nodeIds.
+   */
+  java.util.List<java.lang.Long> getNodeIdsList();
+  /**
+   * <pre>
+   * 拓扑信息
+   * </pre>
+   *
+   * <code>repeated int64 nodeIds = 4;</code>
+   * @return The count of nodeIds.
+   */
+  int getNodeIdsCount();
+  /**
+   * <pre>
+   * 拓扑信息
+   * </pre>
+   *
+   * <code>repeated int64 nodeIds = 4;</code>
+   * @param index The index of the element to return.
+   * @return The nodeIds at the given index.
+   */
+  long getNodeIds(int index);
 
-    /**
-     * <pre>
-     * 拓扑信息
-     * </pre>
-     *
-     * <code>repeated int64 nodeIds = 4;</code>
-     *
-     * @return The count of nodeIds.
-     */
-    int getNodeIdsCount();
-
-    /**
-     * <pre>
-     * 拓扑信息
-     * </pre>
-     *
-     * <code>repeated int64 nodeIds = 4;</code>
-     *
-     * @param index The index of the element to return.
-     * @return The nodeIds at the given index.
-     */
-    long getNodeIds(int index);
-
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     *
-     * @return A list containing the delay.
-     */
-    java.util.List<java.lang.Integer> getDelayList();
-
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     *
-     * @return The count of delay.
-     */
-    int getDelayCount();
-
-    /**
-     * <code>repeated int32 delay = 5;</code>
-     *
-     * @param index The index of the element to return.
-     * @return The delay at the given index.
-     */
-    int getDelay(int index);
+  /**
+   * <code>repeated int32 delay = 5;</code>
+   * @return A list containing the delay.
+   */
+  java.util.List<java.lang.Integer> getDelayList();
+  /**
+   * <code>repeated int32 delay = 5;</code>
+   * @return The count of delay.
+   */
+  int getDelayCount();
+  /**
+   * <code>repeated int32 delay = 5;</code>
+   * @param index The index of the element to return.
+   * @return The delay at the given index.
+   */
+  int getDelay(int index);
 }

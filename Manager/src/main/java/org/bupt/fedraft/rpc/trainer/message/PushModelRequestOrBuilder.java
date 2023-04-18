@@ -4,36 +4,30 @@
 package org.bupt.fedraft.rpc.trainer.message;
 
 public interface PushModelRequestOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.PushModelRequest)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.PushModelRequest)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>uint64 server_id = 1;</code>
-     *
-     * @return Whether the serverId field is set.
-     */
-    boolean hasServerId();
+  /**
+   * <code>uint64 server_id = 1;</code>
+   * @return Whether the serverId field is set.
+   */
+  boolean hasServerId();
+  /**
+   * <code>uint64 server_id = 1;</code>
+   * @return The serverId.
+   */
+  long getServerId();
 
-    /**
-     * <code>uint64 server_id = 1;</code>
-     *
-     * @return The serverId.
-     */
-    long getServerId();
+  /**
+   * <code>bytes model_chunk = 2;</code>
+   * @return Whether the modelChunk field is set.
+   */
+  boolean hasModelChunk();
+  /**
+   * <code>bytes model_chunk = 2;</code>
+   * @return The modelChunk.
+   */
+  com.google.protobuf.ByteString getModelChunk();
 
-    /**
-     * <code>bytes model_chunk = 2;</code>
-     *
-     * @return Whether the modelChunk field is set.
-     */
-    boolean hasModelChunk();
-
-    /**
-     * <code>bytes model_chunk = 2;</code>
-     *
-     * @return The modelChunk.
-     */
-    com.google.protobuf.ByteString getModelChunk();
-
-    org.bupt.fedraft.rpc.trainer.message.PushModelRequest.ModelCase getModelCase();
+  org.bupt.fedraft.rpc.trainer.message.PushModelRequest.ModelCase getModelCase();
 }

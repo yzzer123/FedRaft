@@ -1,28 +1,35 @@
 package org.bupt.fedraft.server;
 
+import com.google.protobuf.ByteString;
+import io.grpc.Context;
 import io.grpc.stub.StreamObserver;
 import org.bupt.fedraft.beans.NodeInfo;
 import org.bupt.fedraft.beans.Tuple;
 import org.bupt.fedraft.config.Configuration;
+import org.bupt.fedraft.exception.LogAppendException;
 import org.bupt.fedraft.job.manager.BaseJob;
-import org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogRequest;
-import org.bupt.fedraft.rpc.jobmanager.message.AppendJobLogResponse;
-import org.bupt.fedraft.rpc.jobmanager.message.JobShutdownRequest;
-import org.bupt.fedraft.rpc.jobmanager.message.JobShutdownResponse;
+import org.bupt.fedraft.rpc.jobmanager.message.*;
 import org.bupt.fedraft.rpc.manager.message.*;
 import org.bupt.fedraft.rpc.manager.service.JobManagerServiceGrpc;
 import org.bupt.fedraft.rpc.manager.service.ManagerServiceGrpc;
+import org.bupt.fedraft.rpc.trainer.message.TrainRequest;
 import org.bupt.fedraft.state.JobManager;
 import org.bupt.fedraft.state.ManagerState;
+import org.bupt.fedraft.utils.DataWrapper;
+import org.bupt.fedraft.utils.VisitType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author yzzer
+ */
 public class ManagerClient extends Client {
 
     private static final Logger logger = LoggerFactory.getLogger(ManagerClient.class);
@@ -350,5 +357,137 @@ public class ManagerClient extends Client {
 
             logBuffer.clear();
         }
+    }
+
+
+    /**
+     * 发送模型给Leader
+     * TODO 测试
+     */
+    public void pushModel(JobManager jobManager, List<ByteString> model){
+
+        StreamObserver<JobPushModelRequest> sender =
+                asyncJobManagerStub.pushModel(new StreamObserver<>() {
+                    @Override
+                    public void onNext(JobPushModelResponse response) {
+                        logger.info("model pushing result: {}", response.getSuccess());
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        logger.error("error happened in model pushing" + t.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                    }
+                });
+
+        jobManager.getRaftState().visit(raftSate -> {
+
+            // 发送本地模型索引
+            sender.onNext(JobPushModelRequest.newBuilder()
+                    .setModelInfo(JobPullModelRequest.newBuilder()
+                                .setTerm(raftSate.term)
+                                .setModelIndex(raftSate.localModelIndex)
+                                .build())
+                    .build());
+
+            // 发送模型块
+            for (ByteString chunk : model) {
+                sender.onNext(JobPushModelRequest.newBuilder()
+                            .setModelChunk(chunk)
+                            .build());
+            }
+        }, VisitType.READ);
+
+    }
+
+    /**
+     * 从Leader拉取模型
+     * TODO 测试
+     * @param  modelIndexForSync 用于向多个节点同时拉取模型时比较模型的索引
+     */
+    public void pullModel(@Nonnull JobManager jobManager, DataWrapper<Long> modelIndexForSync){
+        JobPullModelRequest.Builder requestBuilder = JobPullModelRequest.newBuilder();
+
+        jobManager.getRaftState().visit(raftSate -> {
+
+            // 构造请求， 当receiver发现自己的全局模型索引比sender的大，就会返回自己更新的模型
+            requestBuilder.setTerm(raftSate.term)
+                    .setModelIndex(raftSate.globalModelIndex);
+        }, VisitType.READ);
+
+        Context.CancellableContext cancellableContext = Context.current().fork().withCancellation();
+
+        // 避免cancel时影响其他的调用
+
+        cancellableContext.run(() -> {
+            asyncJobManagerStub.pullModel(requestBuilder.build(), new StreamObserver<>() {
+
+                private final List<ByteString> modelCache = new ArrayList<>();
+                private long receivedModelIndex = 0L;
+
+                @Override
+                public void onNext(JobPullModelResponse response) {
+                    if (response.hasModelChunk()){
+                        modelCache.add(response.getModelChunk());
+                    }else {
+                        receivedModelIndex = response.getModelIndex();
+
+                        // 检查收到的模型索引是否是最大的
+                        if (modelIndexForSync != null){
+                            synchronized (modelIndexForSync){
+                                if (modelIndexForSync.get() < receivedModelIndex){
+                                    modelIndexForSync.set(receivedModelIndex);
+                                }else{
+                                    cancellableContext.cancel(new LogAppendException("invalid model index"));
+                                    return;
+                                }
+                            } // end synchronized
+                        } // end if
+                    }
+
+                    // 后续继续检查是否存在更大索引的模型被接受
+                    if (modelIndexForSync != null && modelIndexForSync.get() > receivedModelIndex){
+                        cancellableContext.cancel(new LogAppendException("invalid model index"));
+                    }
+
+
+                }
+
+                @Override
+                public void onError(Throwable t) {
+                    logger.error("pull model error" + t.getMessage());
+                }
+
+                @Override
+                public void onCompleted() {
+                    // 判断接收到的模型的索引是否合法， 将模型追加到本地模型中
+                    jobManager.getRaftState().visit(raftSate -> {
+                        if (receivedModelIndex > raftSate.globalModelIndex){
+
+                            // 启动训练
+                            StreamObserver<TrainRequest> sender;
+                            sender = jobManager.getTrainerClient().trainModel(cancellableContext);
+
+                            // 添加模型
+                            jobManager.clearGlobalModelChunk(sender);
+                            for (ByteString chunk : modelCache) {
+                                jobManager.addGlobalModelChunk(chunk);
+                            }
+
+                            raftSate.globalModelIndex = receivedModelIndex;
+
+                            sender.onCompleted();
+                        }
+                    }, VisitType.WRITE);
+
+
+                }
+            });// end rpc call
+
+        });
+
     }
 }

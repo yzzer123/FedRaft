@@ -4,130 +4,111 @@
 package org.bupt.fedraft.rpc.manager.message;
 
 public interface JobConfigurationOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.JobConfiguration)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.JobConfiguration)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int32 uuid = 1;</code>
-     *
-     * @return The uuid.
-     */
-    int getUuid();
+  /**
+   * <code>int32 uuid = 1;</code>
+   * @return The uuid.
+   */
+  int getUuid();
 
-    /**
-     * <pre>
-     * 提交任务的源节点
-     * </pre>
-     *
-     * <code>int64 sourceId = 2;</code>
-     *
-     * @return The sourceId.
-     */
-    long getSourceId();
+  /**
+   * <pre>
+   * 提交任务的源节点
+   * </pre>
+   *
+   * <code>int64 sourceId = 2;</code>
+   * @return The sourceId.
+   */
+  long getSourceId();
 
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
-     * @return A list containing the participants.
-     */
-    java.util.List<java.lang.Long> getParticipantsList();
+  /**
+   * <pre>
+   * 训练任务的参与者
+   * </pre>
+   *
+   * <code>repeated int64 participants = 3;</code>
+   * @return A list containing the participants.
+   */
+  java.util.List<java.lang.Long> getParticipantsList();
+  /**
+   * <pre>
+   * 训练任务的参与者
+   * </pre>
+   *
+   * <code>repeated int64 participants = 3;</code>
+   * @return The count of participants.
+   */
+  int getParticipantsCount();
+  /**
+   * <pre>
+   * 训练任务的参与者
+   * </pre>
+   *
+   * <code>repeated int64 participants = 3;</code>
+   * @param index The index of the element to return.
+   * @return The participants at the given index.
+   */
+  long getParticipants(int index);
 
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
-     * @return The count of participants.
-     */
-    int getParticipantsCount();
+  /**
+   * <pre>
+   * 任务代码
+   * </pre>
+   *
+   * <code>.fedraft.CodeFile codeFile = 4;</code>
+   * @return Whether the codeFile field is set.
+   */
+  boolean hasCodeFile();
+  /**
+   * <pre>
+   * 任务代码
+   * </pre>
+   *
+   * <code>.fedraft.CodeFile codeFile = 4;</code>
+   * @return The codeFile.
+   */
+  org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile();
+  /**
+   * <pre>
+   * 任务代码
+   * </pre>
+   *
+   * <code>.fedraft.CodeFile codeFile = 4;</code>
+   */
+  org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder();
 
-    /**
-     * <pre>
-     * 训练任务的参与者
-     * </pre>
-     *
-     * <code>repeated int64 participants = 3;</code>
-     *
-     * @param index The index of the element to return.
-     * @return The participants at the given index.
-     */
-    long getParticipants(int index);
+  /**
+   * <code>int32 global_epoch = 5;</code>
+   * @return The globalEpoch.
+   */
+  int getGlobalEpoch();
 
-    /**
-     * <pre>
-     * 任务代码
-     * </pre>
-     *
-     * <code>.fedraft.CodeFile codeFile = 4;</code>
-     *
-     * @return Whether the codeFile field is set.
-     */
-    boolean hasCodeFile();
+  /**
+   * <code>string datasets_name = 6;</code>
+   * @return The datasetsName.
+   */
+  java.lang.String getDatasetsName();
+  /**
+   * <code>string datasets_name = 6;</code>
+   * @return The bytes for datasetsName.
+   */
+  com.google.protobuf.ByteString
+      getDatasetsNameBytes();
 
-    /**
-     * <pre>
-     * 任务代码
-     * </pre>
-     *
-     * <code>.fedraft.CodeFile codeFile = 4;</code>
-     *
-     * @return The codeFile.
-     */
-    org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile();
-
-    /**
-     * <pre>
-     * 任务代码
-     * </pre>
-     *
-     * <code>.fedraft.CodeFile codeFile = 4;</code>
-     */
-    org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder();
-
-    /**
-     * <code>int32 global_epoch = 5;</code>
-     *
-     * @return The globalEpoch.
-     */
-    int getGlobalEpoch();
-
-    /**
-     * <code>string datasets_name = 6;</code>
-     *
-     * @return The datasetsName.
-     */
-    java.lang.String getDatasetsName();
-
-    /**
-     * <code>string datasets_name = 6;</code>
-     *
-     * @return The bytes for datasetsName.
-     */
-    com.google.protobuf.ByteString
-    getDatasetsNameBytes();
-
-    /**
-     * <code>.fedraft.ModelClass model_class = 7;</code>
-     *
-     * @return Whether the modelClass field is set.
-     */
-    boolean hasModelClass();
-
-    /**
-     * <code>.fedraft.ModelClass model_class = 7;</code>
-     *
-     * @return The modelClass.
-     */
-    org.bupt.fedraft.rpc.trainer.message.ModelClass getModelClass();
-
-    /**
-     * <code>.fedraft.ModelClass model_class = 7;</code>
-     */
-    org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder getModelClassOrBuilder();
+  /**
+   * <code>.fedraft.ModelClass model_class = 7;</code>
+   * @return Whether the modelClass field is set.
+   */
+  boolean hasModelClass();
+  /**
+   * <code>.fedraft.ModelClass model_class = 7;</code>
+   * @return The modelClass.
+   */
+  org.bupt.fedraft.rpc.trainer.message.ModelClass getModelClass();
+  /**
+   * <code>.fedraft.ModelClass model_class = 7;</code>
+   */
+  org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder getModelClassOrBuilder();
 }

@@ -7,697 +7,660 @@ package org.bupt.fedraft.rpc.jobmanager.message;
  * <pre>
  * 心跳消息
  * </pre>
- * <p>
+ *
  * Protobuf type {@code fedraft.AppendModelsRequest}
  */
 public final class AppendModelsRequest extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:fedraft.AppendModelsRequest)
-        AppendModelsRequestOrBuilder {
-    public static final int TERM_FIELD_NUMBER = 1;
-    public static final int LEADERID_FIELD_NUMBER = 2;
-    public static final int MODELINDEX_FIELD_NUMBER = 3;
-    public static final int CANSENDMODEL_FIELD_NUMBER = 4;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:fedraft.AppendModelsRequest)
-    private static final org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<AppendModelsRequest>
-            PARSER = new com.google.protobuf.AbstractParser<AppendModelsRequest>() {
-        @java.lang.Override
-        public AppendModelsRequest parsePartialFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            Builder builder = newBuilder();
-            try {
-                builder.mergeFrom(input, extensionRegistry);
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                throw e.setUnfinishedMessage(builder.buildPartial());
-            } catch (com.google.protobuf.UninitializedMessageException e) {
-                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-            } catch (java.io.IOException e) {
-                throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                        .setUnfinishedMessage(builder.buildPartial());
-            }
-            return builder.buildPartial();
-        }
-    };
+    com.google.protobuf.GeneratedMessageV3 implements
+    // @@protoc_insertion_point(message_implements:fedraft.AppendModelsRequest)
+    AppendModelsRequestOrBuilder {
+private static final long serialVersionUID = 0L;
+  // Use AppendModelsRequest.newBuilder() to construct.
+  private AppendModelsRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+  private AppendModelsRequest() {
+  }
 
-    static {
-        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest();
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new AppendModelsRequest();
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_descriptor;
+  }
+
+  @java.lang.Override
+  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+    return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(
+            org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.class, org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.Builder.class);
+  }
+
+  public static final int TERM_FIELD_NUMBER = 1;
+  private int term_;
+  /**
+   * <code>int32 term = 1;</code>
+   * @return The term.
+   */
+  @java.lang.Override
+  public int getTerm() {
+    return term_;
+  }
+
+  public static final int LEADERID_FIELD_NUMBER = 2;
+  private long leaderId_;
+  /**
+   * <code>int64 leaderId = 2;</code>
+   * @return The leaderId.
+   */
+  @java.lang.Override
+  public long getLeaderId() {
+    return leaderId_;
+  }
+
+  public static final int MODELINDEX_FIELD_NUMBER = 3;
+  private long modelIndex_;
+  /**
+   * <code>int64 modelIndex = 3;</code>
+   * @return The modelIndex.
+   */
+  @java.lang.Override
+  public long getModelIndex() {
+    return modelIndex_;
+  }
+
+  public static final int CANSENDMODEL_FIELD_NUMBER = 4;
+  private boolean canSendModel_;
+  /**
+   * <code>bool canSendModel = 4;</code>
+   * @return The canSendModel.
+   */
+  @java.lang.Override
+  public boolean getCanSendModel() {
+    return canSendModel_;
+  }
+
+  private byte memoizedIsInitialized = -1;
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
+  }
+
+  @java.lang.Override
+  public void writeTo(com.google.protobuf.CodedOutputStream output)
+                      throws java.io.IOException {
+    if (term_ != 0) {
+      output.writeInt32(1, term_);
     }
-
-    private int term_;
-    private long leaderId_;
-    private long modelIndex_;
-    private boolean canSendModel_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use AppendModelsRequest.newBuilder() to construct.
-    private AppendModelsRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
+    if (leaderId_ != 0L) {
+      output.writeInt64(2, leaderId_);
     }
-
-    private AppendModelsRequest() {
+    if (modelIndex_ != 0L) {
+      output.writeInt64(3, modelIndex_);
     }
+    if (canSendModel_) {
+      output.writeBool(4, canSendModel_);
+    }
+    getUnknownFields().writeTo(output);
+  }
 
+  @java.lang.Override
+  public int getSerializedSize() {
+    int size = memoizedSize;
+    if (size != -1) return size;
+
+    size = 0;
+    if (term_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, term_);
+    }
+    if (leaderId_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(2, leaderId_);
+    }
+    if (modelIndex_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(3, modelIndex_);
+    }
+    if (canSendModel_) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeBoolSize(4, canSendModel_);
+    }
+    size += getUnknownFields().getSerializedSize();
+    memoizedSize = size;
+    return size;
+  }
+
+  @java.lang.Override
+  public boolean equals(final java.lang.Object obj) {
+    if (obj == this) {
+     return true;
+    }
+    if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest)) {
+      return super.equals(obj);
+    }
+    org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest other = (org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest) obj;
+
+    if (getTerm()
+        != other.getTerm()) return false;
+    if (getLeaderId()
+        != other.getLeaderId()) return false;
+    if (getModelIndex()
+        != other.getModelIndex()) return false;
+    if (getCanSendModel()
+        != other.getCanSendModel()) return false;
+    return getUnknownFields().equals(other.getUnknownFields());
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + TERM_FIELD_NUMBER;
+    hash = (53 * hash) + getTerm();
+    hash = (37 * hash) + LEADERID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getLeaderId());
+    hash = (37 * hash) + MODELINDEX_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getModelIndex());
+    hash = (37 * hash) + CANSENDMODEL_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+        getCanSendModel());
+    hash = (29 * hash) + getUnknownFields().hashCode();
+    memoizedHashCode = hash;
+    return hash;
+  }
+
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  @java.lang.Override
+  public Builder newBuilderForType() { return newBuilder(); }
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
+  }
+
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
+  }
+  /**
+   * <pre>
+   * 心跳消息
+   * </pre>
+   *
+   * Protobuf type {@code fedraft.AppendModelsRequest}
+   */
+  public static final class Builder extends
+      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      // @@protoc_insertion_point(builder_implements:fedraft.AppendModelsRequest)
+      org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequestOrBuilder {
     public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-        return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_descriptor;
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
-            java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
-            java.nio.ByteBuffer data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
-            com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseDelimitedFrom(java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseDelimitedFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
-            com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<AppendModelsRequest> parser() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-            UnusedPrivateParameter unused) {
-        return new AppendModelsRequest();
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-        return this.unknownFields;
+        getDescriptor() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-        return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.class, org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.Builder.class);
+        internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.class, org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.Builder.class);
     }
 
+    // Construct using org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.newBuilder()
+    private Builder() {
+
+    }
+
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
+    }
+    @java.lang.Override
+    public Builder clear() {
+      super.clear();
+      term_ = 0;
+
+      leaderId_ = 0L;
+
+      modelIndex_ = 0L;
+
+      canSendModel_ = false;
+
+      return this;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_descriptor;
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest getDefaultInstanceForType() {
+      return org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.getDefaultInstance();
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest build() {
+      org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest result = buildPartial();
+      if (!result.isInitialized()) {
+        throw newUninitializedMessageException(result);
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest buildPartial() {
+      org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest result = new org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest(this);
+      result.term_ = term_;
+      result.leaderId_ = leaderId_;
+      result.modelIndex_ = modelIndex_;
+      result.canSendModel_ = canSendModel_;
+      onBuilt();
+      return result;
+    }
+
+    @java.lang.Override
+    public Builder clone() {
+      return super.clone();
+    }
+    @java.lang.Override
+    public Builder setField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
+      return super.setField(field, value);
+    }
+    @java.lang.Override
+    public Builder clearField(
+        com.google.protobuf.Descriptors.FieldDescriptor field) {
+      return super.clearField(field);
+    }
+    @java.lang.Override
+    public Builder clearOneof(
+        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+      return super.clearOneof(oneof);
+    }
+    @java.lang.Override
+    public Builder setRepeatedField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        int index, java.lang.Object value) {
+      return super.setRepeatedField(field, index, value);
+    }
+    @java.lang.Override
+    public Builder addRepeatedField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest) {
+        return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest)other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
+    }
+
+    public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest other) {
+      if (other == org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.getDefaultInstance()) return this;
+      if (other.getTerm() != 0) {
+        setTerm(other.getTerm());
+      }
+      if (other.getLeaderId() != 0L) {
+        setLeaderId(other.getLeaderId());
+      }
+      if (other.getModelIndex() != 0L) {
+        setModelIndex(other.getModelIndex());
+      }
+      if (other.getCanSendModel()) {
+        setCanSendModel(other.getCanSendModel());
+      }
+      this.mergeUnknownFields(other.getUnknownFields());
+      onChanged();
+      return this;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+      return true;
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              term_ = input.readInt32();
+
+              break;
+            } // case 8
+            case 16: {
+              leaderId_ = input.readInt64();
+
+              break;
+            } // case 16
+            case 24: {
+              modelIndex_ = input.readInt64();
+
+              break;
+            } // case 24
+            case 32: {
+              canSendModel_ = input.readBool();
+
+              break;
+            } // case 32
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.unwrapIOException();
+      } finally {
+        onChanged();
+      } // finally
+      return this;
+    }
+
+    private int term_ ;
     /**
      * <code>int32 term = 1;</code>
      * @return The term.
      */
     @java.lang.Override
     public int getTerm() {
-        return term_;
+      return term_;
+    }
+    /**
+     * <code>int32 term = 1;</code>
+     * @param value The term to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTerm(int value) {
+      
+      term_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 term = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearTerm() {
+      
+      term_ = 0;
+      onChanged();
+      return this;
     }
 
+    private long leaderId_ ;
     /**
      * <code>int64 leaderId = 2;</code>
      * @return The leaderId.
      */
     @java.lang.Override
     public long getLeaderId() {
-        return leaderId_;
+      return leaderId_;
+    }
+    /**
+     * <code>int64 leaderId = 2;</code>
+     * @param value The leaderId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setLeaderId(long value) {
+      
+      leaderId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 leaderId = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearLeaderId() {
+      
+      leaderId_ = 0L;
+      onChanged();
+      return this;
     }
 
+    private long modelIndex_ ;
     /**
      * <code>int64 modelIndex = 3;</code>
      * @return The modelIndex.
      */
     @java.lang.Override
     public long getModelIndex() {
-        return modelIndex_;
+      return modelIndex_;
+    }
+    /**
+     * <code>int64 modelIndex = 3;</code>
+     * @param value The modelIndex to set.
+     * @return This builder for chaining.
+     */
+    public Builder setModelIndex(long value) {
+      
+      modelIndex_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 modelIndex = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearModelIndex() {
+      
+      modelIndex_ = 0L;
+      onChanged();
+      return this;
     }
 
+    private boolean canSendModel_ ;
     /**
      * <code>bool canSendModel = 4;</code>
      * @return The canSendModel.
      */
     @java.lang.Override
     public boolean getCanSendModel() {
-        return canSendModel_;
+      return canSendModel_;
     }
-
-    @java.lang.Override
-    public boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        if (term_ != 0) {
-            output.writeInt32(1, term_);
-        }
-        if (leaderId_ != 0L) {
-            output.writeInt64(2, leaderId_);
-        }
-        if (modelIndex_ != 0L) {
-            output.writeInt64(3, modelIndex_);
-        }
-        if (canSendModel_) {
-            output.writeBool(4, canSendModel_);
-        }
-        getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (term_ != 0) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt32Size(1, term_);
-        }
-        if (leaderId_ != 0L) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt64Size(2, leaderId_);
-        }
-        if (modelIndex_ != 0L) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt64Size(3, modelIndex_);
-        }
-        if (canSendModel_) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeBoolSize(4, canSendModel_);
-        }
-        size += getUnknownFields().getSerializedSize();
-        memoizedSize = size;
-        return size;
-    }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-          return true;
-      }
-      if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest)) {
-          return super.equals(obj);
-      }
-      org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest other = (org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest) obj;
-
-      if (getTerm()
-              != other.getTerm()) return false;
-      if (getLeaderId()
-              != other.getLeaderId()) return false;
-      if (getModelIndex()
-              != other.getModelIndex()) return false;
-      if (getCanSendModel()
-              != other.getCanSendModel()) return false;
-      return getUnknownFields().equals(other.getUnknownFields());
-  }
-
-  @java.lang.Override
-  public int hashCode() {
-      if (memoizedHashCode != 0) {
-          return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + TERM_FIELD_NUMBER;
-      hash = (53 * hash) + getTerm();
-      hash = (37 * hash) + LEADERID_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getLeaderId());
-      hash = (37 * hash) + MODELINDEX_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-              getModelIndex());
-      hash = (37 * hash) + CANSENDMODEL_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-              getCanSendModel());
-      hash = (29 * hash) + getUnknownFields().hashCode();
-      memoizedHashCode = hash;
-      return hash;
-  }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-        return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<AppendModelsRequest> getParserForType() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-    }
-
     /**
-     * <pre>
-     * 心跳消息
-     * </pre>
-     * <p>
-     * Protobuf type {@code fedraft.AppendModelsRequest}
+     * <code>bool canSendModel = 4;</code>
+     * @param value The canSendModel to set.
+     * @return This builder for chaining.
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:fedraft.AppendModelsRequest)
-            org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequestOrBuilder {
-        private int term_;
-        private long leaderId_;
-        private long modelIndex_;
-        private boolean canSendModel_;
+    public Builder setCanSendModel(boolean value) {
+      
+      canSendModel_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>bool canSendModel = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCanSendModel() {
+      
+      canSendModel_ = false;
+      onChanged();
+      return this;
+    }
+    @java.lang.Override
+    public Builder setUnknownFields(
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
+      return super.setUnknownFields(unknownFields);
+    }
 
-        // Construct using org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.newBuilder()
-        private Builder() {
-
-        }
-
-        private Builder(
-                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-            super(parent);
-
-        }
-
-        public static com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.class, org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.Builder.class);
-        }
-
-        @java.lang.Override
-        public Builder clear() {
-            super.clear();
-            term_ = 0;
-
-            leaderId_ = 0L;
-
-            modelIndex_ = 0L;
-
-            canSendModel_ = false;
-
-            return this;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_AppendModelsRequest_descriptor;
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest build() {
-            org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest result = buildPartial();
-            if (!result.isInitialized()) {
-                throw newUninitializedMessageException(result);
-            }
-            return result;
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest buildPartial() {
-            org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest result = new org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest(this);
-            result.term_ = term_;
-            result.leaderId_ = leaderId_;
-            result.modelIndex_ = modelIndex_;
-            result.canSendModel_ = canSendModel_;
-            onBuilt();
-            return result;
-        }
-
-        @java.lang.Override
-        public Builder clone() {
-            return super.clone();
-        }
-
-        @java.lang.Override
-        public Builder setField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                java.lang.Object value) {
-            return super.setField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder clearField(
-                com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return super.clearField(field);
-        }
-
-        @java.lang.Override
-        public Builder clearOneof(
-                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return super.clearOneof(oneof);
-        }
-
-        @java.lang.Override
-        public Builder setRepeatedField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                int index, java.lang.Object value) {
-            return super.setRepeatedField(field, index, value);
-        }
-
-        @java.lang.Override
-        public Builder addRepeatedField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                java.lang.Object value) {
-            return super.addRepeatedField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-            if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest) {
-                return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest) other);
-            } else {
-                super.mergeFrom(other);
-                return this;
-            }
-        }
-
-        public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest other) {
-            if (other == org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest.getDefaultInstance()) return this;
-            if (other.getTerm() != 0) {
-                setTerm(other.getTerm());
-            }
-            if (other.getLeaderId() != 0L) {
-                setLeaderId(other.getLeaderId());
-            }
-            if (other.getModelIndex() != 0L) {
-                setModelIndex(other.getModelIndex());
-            }
-            if (other.getCanSendModel()) {
-                setCanSendModel(other.getCanSendModel());
-            }
-            this.mergeUnknownFields(other.getUnknownFields());
-            onChanged();
-            return this;
-        }
-
-        @java.lang.Override
-        public boolean isInitialized() {
-            return true;
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            if (extensionRegistry == null) {
-                throw new java.lang.NullPointerException();
-            }
-            try {
-                boolean done = false;
-                while (!done) {
-                    int tag = input.readTag();
-                    switch (tag) {
-                        case 0:
-                            done = true;
-                            break;
-                        case 8: {
-                            term_ = input.readInt32();
-
-                            break;
-                        } // case 8
-                        case 16: {
-                            leaderId_ = input.readInt64();
-
-                            break;
-                        } // case 16
-                        case 24: {
-                            modelIndex_ = input.readInt64();
-
-                            break;
-                        } // case 24
-                        case 32: {
-                            canSendModel_ = input.readBool();
-
-                            break;
-                        } // case 32
-                        default: {
-                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                                done = true; // was an endgroup tag
-                            }
-                            break;
-                        } // default:
-                    } // switch (tag)
-                } // while (!done)
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                throw e.unwrapIOException();
-            } finally {
-                onChanged();
-            } // finally
-            return this;
-        }
-
-        /**
-         * <code>int32 term = 1;</code>
-         * @return The term.
-         */
-        @java.lang.Override
-        public int getTerm() {
-            return term_;
-        }
-
-        /**
-         * <code>int32 term = 1;</code>
-         * @param value The term to set.
-         * @return This builder for chaining.
-         */
-        public Builder setTerm(int value) {
-
-            term_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int32 term = 1;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearTerm() {
-
-            term_ = 0;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 leaderId = 2;</code>
-         * @return The leaderId.
-         */
-        @java.lang.Override
-        public long getLeaderId() {
-            return leaderId_;
-        }
-
-        /**
-         * <code>int64 leaderId = 2;</code>
-         * @param value The leaderId to set.
-         * @return This builder for chaining.
-         */
-        public Builder setLeaderId(long value) {
-
-            leaderId_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 leaderId = 2;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearLeaderId() {
-
-            leaderId_ = 0L;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 modelIndex = 3;</code>
-         * @return The modelIndex.
-         */
-        @java.lang.Override
-        public long getModelIndex() {
-            return modelIndex_;
-        }
-
-        /**
-         * <code>int64 modelIndex = 3;</code>
-         * @param value The modelIndex to set.
-         * @return This builder for chaining.
-         */
-        public Builder setModelIndex(long value) {
-
-            modelIndex_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 modelIndex = 3;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearModelIndex() {
-
-            modelIndex_ = 0L;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>bool canSendModel = 4;</code>
-         * @return The canSendModel.
-         */
-        @java.lang.Override
-        public boolean getCanSendModel() {
-            return canSendModel_;
-        }
-
-        /**
-         * <code>bool canSendModel = 4;</code>
-         * @param value The canSendModel to set.
-         * @return This builder for chaining.
-         */
-        public Builder setCanSendModel(boolean value) {
-
-            canSendModel_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>bool canSendModel = 4;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearCanSendModel() {
-
-            canSendModel_ = false;
-            onChanged();
-            return this;
-        }
-
-        @java.lang.Override
-        public Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return super.setUnknownFields(unknownFields);
-        }
-
-        @java.lang.Override
-        public Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return super.mergeUnknownFields(unknownFields);
-        }
+    @java.lang.Override
+    public Builder mergeUnknownFields(
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
+      return super.mergeUnknownFields(unknownFields);
+    }
 
 
-        // @@protoc_insertion_point(builder_scope:fedraft.AppendModelsRequest)
+    // @@protoc_insertion_point(builder_scope:fedraft.AppendModelsRequest)
+  }
+
+  // @@protoc_insertion_point(class_scope:fedraft.AppendModelsRequest)
+  private static final org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest DEFAULT_INSTANCE;
+  static {
+    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest();
+  }
+
+  public static org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static final com.google.protobuf.Parser<AppendModelsRequest>
+      PARSER = new com.google.protobuf.AbstractParser<AppendModelsRequest>() {
+    @java.lang.Override
+    public AppendModelsRequest parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
+    }
+  };
+
+  public static com.google.protobuf.Parser<AppendModelsRequest> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<AppendModelsRequest> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public org.bupt.fedraft.rpc.jobmanager.message.AppendModelsRequest getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
   }
 
 }

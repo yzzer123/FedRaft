@@ -4,13 +4,12 @@
 package org.bupt.fedraft.rpc.jobmanager.message;
 
 public interface JobPushModelResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.JobPushModelResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.JobPushModelResponse)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>bool success = 1;</code>
-     *
-     * @return The success.
-     */
-    boolean getSuccess();
+  /**
+   * <code>bool success = 1;</code>
+   * @return The success.
+   */
+  boolean getSuccess();
 }

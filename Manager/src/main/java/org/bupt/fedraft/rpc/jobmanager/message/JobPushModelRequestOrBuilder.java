@@ -4,41 +4,34 @@
 package org.bupt.fedraft.rpc.jobmanager.message;
 
 public interface JobPushModelRequestOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.JobPushModelRequest)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.JobPushModelRequest)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>.fedraft.JobPullModelRequest modelInfo = 1;</code>
-     *
-     * @return Whether the modelInfo field is set.
-     */
-    boolean hasModelInfo();
+  /**
+   * <code>.fedraft.JobPullModelRequest modelInfo = 1;</code>
+   * @return Whether the modelInfo field is set.
+   */
+  boolean hasModelInfo();
+  /**
+   * <code>.fedraft.JobPullModelRequest modelInfo = 1;</code>
+   * @return The modelInfo.
+   */
+  org.bupt.fedraft.rpc.jobmanager.message.JobPullModelRequest getModelInfo();
+  /**
+   * <code>.fedraft.JobPullModelRequest modelInfo = 1;</code>
+   */
+  org.bupt.fedraft.rpc.jobmanager.message.JobPullModelRequestOrBuilder getModelInfoOrBuilder();
 
-    /**
-     * <code>.fedraft.JobPullModelRequest modelInfo = 1;</code>
-     *
-     * @return The modelInfo.
-     */
-    org.bupt.fedraft.rpc.jobmanager.message.JobPullModelRequest getModelInfo();
+  /**
+   * <code>bytes modelChunk = 2;</code>
+   * @return Whether the modelChunk field is set.
+   */
+  boolean hasModelChunk();
+  /**
+   * <code>bytes modelChunk = 2;</code>
+   * @return The modelChunk.
+   */
+  com.google.protobuf.ByteString getModelChunk();
 
-    /**
-     * <code>.fedraft.JobPullModelRequest modelInfo = 1;</code>
-     */
-    org.bupt.fedraft.rpc.jobmanager.message.JobPullModelRequestOrBuilder getModelInfoOrBuilder();
-
-    /**
-     * <code>bytes modelChunk = 2;</code>
-     *
-     * @return Whether the modelChunk field is set.
-     */
-    boolean hasModelChunk();
-
-    /**
-     * <code>bytes modelChunk = 2;</code>
-     *
-     * @return The modelChunk.
-     */
-    com.google.protobuf.ByteString getModelChunk();
-
-    org.bupt.fedraft.rpc.jobmanager.message.JobPushModelRequest.ModelCase getModelCase();
+  org.bupt.fedraft.rpc.jobmanager.message.JobPushModelRequest.ModelCase getModelCase();
 }

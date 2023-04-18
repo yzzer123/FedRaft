@@ -288,7 +288,11 @@ class JobSubmitResponseStreamObserver implements StreamObserver<JobSubmitRequest
 
         trainerObserver.onCompleted();
 
-        // TODO 触发本地训练
+        // 触发本地训练
+        Context.current().fork().run(() -> {
+            assert jobManager != null;
+            jobManager.getTrainerClient().trainModel();
+        });
 
 
         logger.info("job submit completed!!!!");

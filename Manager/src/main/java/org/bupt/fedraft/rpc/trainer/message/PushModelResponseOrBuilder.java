@@ -4,13 +4,12 @@
 package org.bupt.fedraft.rpc.trainer.message;
 
 public interface PushModelResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.PushModelResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.PushModelResponse)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>bool status = 1;</code>
-     *
-     * @return The status.
-     */
-    boolean getStatus();
+  /**
+   * <code>bool status = 1;</code>
+   * @return The status.
+   */
+  boolean getStatus();
 }

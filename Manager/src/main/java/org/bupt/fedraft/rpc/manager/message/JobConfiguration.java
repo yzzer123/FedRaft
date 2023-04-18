@@ -7,282 +7,951 @@ package org.bupt.fedraft.rpc.manager.message;
  * Protobuf type {@code fedraft.JobConfiguration}
  */
 public final class JobConfiguration extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:fedraft.JobConfiguration)
-        JobConfigurationOrBuilder {
-    public static final int UUID_FIELD_NUMBER = 1;
-    public static final int SOURCEID_FIELD_NUMBER = 2;
-    public static final int PARTICIPANTS_FIELD_NUMBER = 3;
-    public static final int CODEFILE_FIELD_NUMBER = 4;
-    public static final int GLOBAL_EPOCH_FIELD_NUMBER = 5;
-    public static final int DATASETS_NAME_FIELD_NUMBER = 6;
-    public static final int MODEL_CLASS_FIELD_NUMBER = 7;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:fedraft.JobConfiguration)
-    private static final org.bupt.fedraft.rpc.manager.message.JobConfiguration DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<JobConfiguration>
-            PARSER = new com.google.protobuf.AbstractParser<JobConfiguration>() {
-        @java.lang.Override
-        public JobConfiguration parsePartialFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            Builder builder = newBuilder();
-            try {
-                builder.mergeFrom(input, extensionRegistry);
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                throw e.setUnfinishedMessage(builder.buildPartial());
-            } catch (com.google.protobuf.UninitializedMessageException e) {
-                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-            } catch (java.io.IOException e) {
-                throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                        .setUnfinishedMessage(builder.buildPartial());
-            }
-            return builder.buildPartial();
-        }
-    };
+    com.google.protobuf.GeneratedMessageV3 implements
+    // @@protoc_insertion_point(message_implements:fedraft.JobConfiguration)
+    JobConfigurationOrBuilder {
+private static final long serialVersionUID = 0L;
+  // Use JobConfiguration.newBuilder() to construct.
+  private JobConfiguration(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+  private JobConfiguration() {
+    participants_ = emptyLongList();
+    datasetsName_ = "";
+  }
 
-    static {
-        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.JobConfiguration();
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new JobConfiguration();
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
+  }
+
+  @java.lang.Override
+  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+    return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(
+            org.bupt.fedraft.rpc.manager.message.JobConfiguration.class, org.bupt.fedraft.rpc.manager.message.JobConfiguration.Builder.class);
+  }
+
+  public static final int UUID_FIELD_NUMBER = 1;
+  private int uuid_;
+  /**
+   * <code>int32 uuid = 1;</code>
+   * @return The uuid.
+   */
+  @java.lang.Override
+  public int getUuid() {
+    return uuid_;
+  }
+
+  public static final int SOURCEID_FIELD_NUMBER = 2;
+  private long sourceId_;
+  /**
+   * <pre>
+   * 提交任务的源节点
+   * </pre>
+   *
+   * <code>int64 sourceId = 2;</code>
+   * @return The sourceId.
+   */
+  @java.lang.Override
+  public long getSourceId() {
+    return sourceId_;
+  }
+
+  public static final int PARTICIPANTS_FIELD_NUMBER = 3;
+  private com.google.protobuf.Internal.LongList participants_;
+  /**
+   * <pre>
+   * 训练任务的参与者
+   * </pre>
+   *
+   * <code>repeated int64 participants = 3;</code>
+   * @return A list containing the participants.
+   */
+  @java.lang.Override
+  public java.util.List<java.lang.Long>
+      getParticipantsList() {
+    return participants_;
+  }
+  /**
+   * <pre>
+   * 训练任务的参与者
+   * </pre>
+   *
+   * <code>repeated int64 participants = 3;</code>
+   * @return The count of participants.
+   */
+  public int getParticipantsCount() {
+    return participants_.size();
+  }
+  /**
+   * <pre>
+   * 训练任务的参与者
+   * </pre>
+   *
+   * <code>repeated int64 participants = 3;</code>
+   * @param index The index of the element to return.
+   * @return The participants at the given index.
+   */
+  public long getParticipants(int index) {
+    return participants_.getLong(index);
+  }
+  private int participantsMemoizedSerializedSize = -1;
+
+  public static final int CODEFILE_FIELD_NUMBER = 4;
+  private org.bupt.fedraft.rpc.manager.message.CodeFile codeFile_;
+  /**
+   * <pre>
+   * 任务代码
+   * </pre>
+   *
+   * <code>.fedraft.CodeFile codeFile = 4;</code>
+   * @return Whether the codeFile field is set.
+   */
+  @java.lang.Override
+  public boolean hasCodeFile() {
+    return codeFile_ != null;
+  }
+  /**
+   * <pre>
+   * 任务代码
+   * </pre>
+   *
+   * <code>.fedraft.CodeFile codeFile = 4;</code>
+   * @return The codeFile.
+   */
+  @java.lang.Override
+  public org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile() {
+    return codeFile_ == null ? org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
+  }
+  /**
+   * <pre>
+   * 任务代码
+   * </pre>
+   *
+   * <code>.fedraft.CodeFile codeFile = 4;</code>
+   */
+  @java.lang.Override
+  public org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder() {
+    return getCodeFile();
+  }
+
+  public static final int GLOBAL_EPOCH_FIELD_NUMBER = 5;
+  private int globalEpoch_;
+  /**
+   * <code>int32 global_epoch = 5;</code>
+   * @return The globalEpoch.
+   */
+  @java.lang.Override
+  public int getGlobalEpoch() {
+    return globalEpoch_;
+  }
+
+  public static final int DATASETS_NAME_FIELD_NUMBER = 6;
+  private volatile java.lang.Object datasetsName_;
+  /**
+   * <code>string datasets_name = 6;</code>
+   * @return The datasetsName.
+   */
+  @java.lang.Override
+  public java.lang.String getDatasetsName() {
+    java.lang.Object ref = datasetsName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      datasetsName_ = s;
+      return s;
     }
-
-    private int uuid_;
-    private long sourceId_;
-    private com.google.protobuf.Internal.LongList participants_;
-    private int participantsMemoizedSerializedSize = -1;
-    private org.bupt.fedraft.rpc.manager.message.CodeFile codeFile_;
-    private int globalEpoch_;
-    private volatile java.lang.Object datasetsName_;
-    private org.bupt.fedraft.rpc.trainer.message.ModelClass modelClass_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use JobConfiguration.newBuilder() to construct.
-    private JobConfiguration(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
+  }
+  /**
+   * <code>string datasets_name = 6;</code>
+   * @return The bytes for datasetsName.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getDatasetsNameBytes() {
+    java.lang.Object ref = datasetsName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      datasetsName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
     }
+  }
 
-    private JobConfiguration() {
-        participants_ = emptyLongList();
-        datasetsName_ = "";
+  public static final int MODEL_CLASS_FIELD_NUMBER = 7;
+  private org.bupt.fedraft.rpc.trainer.message.ModelClass modelClass_;
+  /**
+   * <code>.fedraft.ModelClass model_class = 7;</code>
+   * @return Whether the modelClass field is set.
+   */
+  @java.lang.Override
+  public boolean hasModelClass() {
+    return modelClass_ != null;
+  }
+  /**
+   * <code>.fedraft.ModelClass model_class = 7;</code>
+   * @return The modelClass.
+   */
+  @java.lang.Override
+  public org.bupt.fedraft.rpc.trainer.message.ModelClass getModelClass() {
+    return modelClass_ == null ? org.bupt.fedraft.rpc.trainer.message.ModelClass.getDefaultInstance() : modelClass_;
+  }
+  /**
+   * <code>.fedraft.ModelClass model_class = 7;</code>
+   */
+  @java.lang.Override
+  public org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder getModelClassOrBuilder() {
+    return getModelClass();
+  }
+
+  private byte memoizedIsInitialized = -1;
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
+  }
+
+  @java.lang.Override
+  public void writeTo(com.google.protobuf.CodedOutputStream output)
+                      throws java.io.IOException {
+    getSerializedSize();
+    if (uuid_ != 0) {
+      output.writeInt32(1, uuid_);
     }
+    if (sourceId_ != 0L) {
+      output.writeInt64(2, sourceId_);
+    }
+    if (getParticipantsList().size() > 0) {
+      output.writeUInt32NoTag(26);
+      output.writeUInt32NoTag(participantsMemoizedSerializedSize);
+    }
+    for (int i = 0; i < participants_.size(); i++) {
+      output.writeInt64NoTag(participants_.getLong(i));
+    }
+    if (codeFile_ != null) {
+      output.writeMessage(4, getCodeFile());
+    }
+    if (globalEpoch_ != 0) {
+      output.writeInt32(5, globalEpoch_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datasetsName_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, datasetsName_);
+    }
+    if (modelClass_ != null) {
+      output.writeMessage(7, getModelClass());
+    }
+    getUnknownFields().writeTo(output);
+  }
 
+  @java.lang.Override
+  public int getSerializedSize() {
+    int size = memoizedSize;
+    if (size != -1) return size;
+
+    size = 0;
+    if (uuid_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, uuid_);
+    }
+    if (sourceId_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(2, sourceId_);
+    }
+    {
+      int dataSize = 0;
+      for (int i = 0; i < participants_.size(); i++) {
+        dataSize += com.google.protobuf.CodedOutputStream
+          .computeInt64SizeNoTag(participants_.getLong(i));
+      }
+      size += dataSize;
+      if (!getParticipantsList().isEmpty()) {
+        size += 1;
+        size += com.google.protobuf.CodedOutputStream
+            .computeInt32SizeNoTag(dataSize);
+      }
+      participantsMemoizedSerializedSize = dataSize;
+    }
+    if (codeFile_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getCodeFile());
+    }
+    if (globalEpoch_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(5, globalEpoch_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datasetsName_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, datasetsName_);
+    }
+    if (modelClass_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(7, getModelClass());
+    }
+    size += getUnknownFields().getSerializedSize();
+    memoizedSize = size;
+    return size;
+  }
+
+  @java.lang.Override
+  public boolean equals(final java.lang.Object obj) {
+    if (obj == this) {
+     return true;
+    }
+    if (!(obj instanceof org.bupt.fedraft.rpc.manager.message.JobConfiguration)) {
+      return super.equals(obj);
+    }
+    org.bupt.fedraft.rpc.manager.message.JobConfiguration other = (org.bupt.fedraft.rpc.manager.message.JobConfiguration) obj;
+
+    if (getUuid()
+        != other.getUuid()) return false;
+    if (getSourceId()
+        != other.getSourceId()) return false;
+    if (!getParticipantsList()
+        .equals(other.getParticipantsList())) return false;
+    if (hasCodeFile() != other.hasCodeFile()) return false;
+    if (hasCodeFile()) {
+      if (!getCodeFile()
+          .equals(other.getCodeFile())) return false;
+    }
+    if (getGlobalEpoch()
+        != other.getGlobalEpoch()) return false;
+    if (!getDatasetsName()
+        .equals(other.getDatasetsName())) return false;
+    if (hasModelClass() != other.hasModelClass()) return false;
+    if (hasModelClass()) {
+      if (!getModelClass()
+          .equals(other.getModelClass())) return false;
+    }
+    return getUnknownFields().equals(other.getUnknownFields());
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + UUID_FIELD_NUMBER;
+    hash = (53 * hash) + getUuid();
+    hash = (37 * hash) + SOURCEID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getSourceId());
+    if (getParticipantsCount() > 0) {
+      hash = (37 * hash) + PARTICIPANTS_FIELD_NUMBER;
+      hash = (53 * hash) + getParticipantsList().hashCode();
+    }
+    if (hasCodeFile()) {
+      hash = (37 * hash) + CODEFILE_FIELD_NUMBER;
+      hash = (53 * hash) + getCodeFile().hashCode();
+    }
+    hash = (37 * hash) + GLOBAL_EPOCH_FIELD_NUMBER;
+    hash = (53 * hash) + getGlobalEpoch();
+    hash = (37 * hash) + DATASETS_NAME_FIELD_NUMBER;
+    hash = (53 * hash) + getDatasetsName().hashCode();
+    if (hasModelClass()) {
+      hash = (37 * hash) + MODEL_CLASS_FIELD_NUMBER;
+      hash = (53 * hash) + getModelClass().hashCode();
+    }
+    hash = (29 * hash) + getUnknownFields().hashCode();
+    memoizedHashCode = hash;
+    return hash;
+  }
+
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  @java.lang.Override
+  public Builder newBuilderForType() { return newBuilder(); }
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(org.bupt.fedraft.rpc.manager.message.JobConfiguration prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
+  }
+
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
+  }
+  /**
+   * Protobuf type {@code fedraft.JobConfiguration}
+   */
+  public static final class Builder extends
+      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      // @@protoc_insertion_point(builder_implements:fedraft.JobConfiguration)
+      org.bupt.fedraft.rpc.manager.message.JobConfigurationOrBuilder {
     public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-        return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-            java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-            java.nio.ByteBuffer data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-            com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseDelimitedFrom(java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseDelimitedFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-            com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.manager.message.JobConfiguration prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static org.bupt.fedraft.rpc.manager.message.JobConfiguration getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<JobConfiguration> parser() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-            UnusedPrivateParameter unused) {
-        return new JobConfiguration();
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-        return this.unknownFields;
+        getDescriptor() {
+      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-        return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        org.bupt.fedraft.rpc.manager.message.JobConfiguration.class, org.bupt.fedraft.rpc.manager.message.JobConfiguration.Builder.class);
+        internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bupt.fedraft.rpc.manager.message.JobConfiguration.class, org.bupt.fedraft.rpc.manager.message.JobConfiguration.Builder.class);
     }
 
+    // Construct using org.bupt.fedraft.rpc.manager.message.JobConfiguration.newBuilder()
+    private Builder() {
+
+    }
+
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
+    }
+    @java.lang.Override
+    public Builder clear() {
+      super.clear();
+      uuid_ = 0;
+
+      sourceId_ = 0L;
+
+      participants_ = emptyLongList();
+      bitField0_ = (bitField0_ & ~0x00000001);
+      if (codeFileBuilder_ == null) {
+        codeFile_ = null;
+      } else {
+        codeFile_ = null;
+        codeFileBuilder_ = null;
+      }
+      globalEpoch_ = 0;
+
+      datasetsName_ = "";
+
+      if (modelClassBuilder_ == null) {
+        modelClass_ = null;
+      } else {
+        modelClass_ = null;
+        modelClassBuilder_ = null;
+      }
+      return this;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+      return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.manager.message.JobConfiguration getDefaultInstanceForType() {
+      return org.bupt.fedraft.rpc.manager.message.JobConfiguration.getDefaultInstance();
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.manager.message.JobConfiguration build() {
+      org.bupt.fedraft.rpc.manager.message.JobConfiguration result = buildPartial();
+      if (!result.isInitialized()) {
+        throw newUninitializedMessageException(result);
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.manager.message.JobConfiguration buildPartial() {
+      org.bupt.fedraft.rpc.manager.message.JobConfiguration result = new org.bupt.fedraft.rpc.manager.message.JobConfiguration(this);
+      int from_bitField0_ = bitField0_;
+      result.uuid_ = uuid_;
+      result.sourceId_ = sourceId_;
+      if (((bitField0_ & 0x00000001) != 0)) {
+        participants_.makeImmutable();
+        bitField0_ = (bitField0_ & ~0x00000001);
+      }
+      result.participants_ = participants_;
+      if (codeFileBuilder_ == null) {
+        result.codeFile_ = codeFile_;
+      } else {
+        result.codeFile_ = codeFileBuilder_.build();
+      }
+      result.globalEpoch_ = globalEpoch_;
+      result.datasetsName_ = datasetsName_;
+      if (modelClassBuilder_ == null) {
+        result.modelClass_ = modelClass_;
+      } else {
+        result.modelClass_ = modelClassBuilder_.build();
+      }
+      onBuilt();
+      return result;
+    }
+
+    @java.lang.Override
+    public Builder clone() {
+      return super.clone();
+    }
+    @java.lang.Override
+    public Builder setField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
+      return super.setField(field, value);
+    }
+    @java.lang.Override
+    public Builder clearField(
+        com.google.protobuf.Descriptors.FieldDescriptor field) {
+      return super.clearField(field);
+    }
+    @java.lang.Override
+    public Builder clearOneof(
+        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+      return super.clearOneof(oneof);
+    }
+    @java.lang.Override
+    public Builder setRepeatedField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        int index, java.lang.Object value) {
+      return super.setRepeatedField(field, index, value);
+    }
+    @java.lang.Override
+    public Builder addRepeatedField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.manager.message.JobConfiguration) {
+        return mergeFrom((org.bupt.fedraft.rpc.manager.message.JobConfiguration)other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
+    }
+
+    public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.JobConfiguration other) {
+      if (other == org.bupt.fedraft.rpc.manager.message.JobConfiguration.getDefaultInstance()) return this;
+      if (other.getUuid() != 0) {
+        setUuid(other.getUuid());
+      }
+      if (other.getSourceId() != 0L) {
+        setSourceId(other.getSourceId());
+      }
+      if (!other.participants_.isEmpty()) {
+        if (participants_.isEmpty()) {
+          participants_ = other.participants_;
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          ensureParticipantsIsMutable();
+          participants_.addAll(other.participants_);
+        }
+        onChanged();
+      }
+      if (other.hasCodeFile()) {
+        mergeCodeFile(other.getCodeFile());
+      }
+      if (other.getGlobalEpoch() != 0) {
+        setGlobalEpoch(other.getGlobalEpoch());
+      }
+      if (!other.getDatasetsName().isEmpty()) {
+        datasetsName_ = other.datasetsName_;
+        onChanged();
+      }
+      if (other.hasModelClass()) {
+        mergeModelClass(other.getModelClass());
+      }
+      this.mergeUnknownFields(other.getUnknownFields());
+      onChanged();
+      return this;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+      return true;
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              uuid_ = input.readInt32();
+
+              break;
+            } // case 8
+            case 16: {
+              sourceId_ = input.readInt64();
+
+              break;
+            } // case 16
+            case 24: {
+              long v = input.readInt64();
+              ensureParticipantsIsMutable();
+              participants_.addLong(v);
+              break;
+            } // case 24
+            case 26: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              ensureParticipantsIsMutable();
+              while (input.getBytesUntilLimit() > 0) {
+                participants_.addLong(input.readInt64());
+              }
+              input.popLimit(limit);
+              break;
+            } // case 26
+            case 34: {
+              input.readMessage(
+                  getCodeFileFieldBuilder().getBuilder(),
+                  extensionRegistry);
+
+              break;
+            } // case 34
+            case 40: {
+              globalEpoch_ = input.readInt32();
+
+              break;
+            } // case 40
+            case 50: {
+              datasetsName_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 50
+            case 58: {
+              input.readMessage(
+                  getModelClassFieldBuilder().getBuilder(),
+                  extensionRegistry);
+
+              break;
+            } // case 58
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.unwrapIOException();
+      } finally {
+        onChanged();
+      } // finally
+      return this;
+    }
+    private int bitField0_;
+
+    private int uuid_ ;
     /**
      * <code>int32 uuid = 1;</code>
-     *
      * @return The uuid.
      */
     @java.lang.Override
     public int getUuid() {
-        return uuid_;
+      return uuid_;
+    }
+    /**
+     * <code>int32 uuid = 1;</code>
+     * @param value The uuid to set.
+     * @return This builder for chaining.
+     */
+    public Builder setUuid(int value) {
+      
+      uuid_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 uuid = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearUuid() {
+      
+      uuid_ = 0;
+      onChanged();
+      return this;
     }
 
+    private long sourceId_ ;
     /**
      * <pre>
      * 提交任务的源节点
      * </pre>
      *
      * <code>int64 sourceId = 2;</code>
-     *
      * @return The sourceId.
      */
     @java.lang.Override
     public long getSourceId() {
-        return sourceId_;
+      return sourceId_;
+    }
+    /**
+     * <pre>
+     * 提交任务的源节点
+     * </pre>
+     *
+     * <code>int64 sourceId = 2;</code>
+     * @param value The sourceId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSourceId(long value) {
+      
+      sourceId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 提交任务的源节点
+     * </pre>
+     *
+     * <code>int64 sourceId = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearSourceId() {
+      
+      sourceId_ = 0L;
+      onChanged();
+      return this;
     }
 
+    private com.google.protobuf.Internal.LongList participants_ = emptyLongList();
+    private void ensureParticipantsIsMutable() {
+      if ((bitField0_ & 0x00000001) == 0) {
+        participants_ = mutableCopy(participants_);
+        bitField0_ |= 0x00000001;
+       }
+    }
     /**
      * <pre>
      * 训练任务的参与者
      * </pre>
      *
      * <code>repeated int64 participants = 3;</code>
-     *
      * @return A list containing the participants.
      */
-    @java.lang.Override
     public java.util.List<java.lang.Long>
-    getParticipantsList() {
-        return participants_;
+        getParticipantsList() {
+      return ((bitField0_ & 0x00000001) != 0) ?
+               java.util.Collections.unmodifiableList(participants_) : participants_;
     }
-
     /**
      * <pre>
      * 训练任务的参与者
      * </pre>
      *
      * <code>repeated int64 participants = 3;</code>
-     *
      * @return The count of participants.
      */
     public int getParticipantsCount() {
-        return participants_.size();
+      return participants_.size();
     }
-
     /**
      * <pre>
      * 训练任务的参与者
      * </pre>
      *
      * <code>repeated int64 participants = 3;</code>
-     *
      * @param index The index of the element to return.
      * @return The participants at the given index.
      */
     public long getParticipants(int index) {
-        return participants_.getLong(index);
+      return participants_.getLong(index);
+    }
+    /**
+     * <pre>
+     * 训练任务的参与者
+     * </pre>
+     *
+     * <code>repeated int64 participants = 3;</code>
+     * @param index The index to set the value at.
+     * @param value The participants to set.
+     * @return This builder for chaining.
+     */
+    public Builder setParticipants(
+        int index, long value) {
+      ensureParticipantsIsMutable();
+      participants_.setLong(index, value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 训练任务的参与者
+     * </pre>
+     *
+     * <code>repeated int64 participants = 3;</code>
+     * @param value The participants to add.
+     * @return This builder for chaining.
+     */
+    public Builder addParticipants(long value) {
+      ensureParticipantsIsMutable();
+      participants_.addLong(value);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 训练任务的参与者
+     * </pre>
+     *
+     * <code>repeated int64 participants = 3;</code>
+     * @param values The participants to add.
+     * @return This builder for chaining.
+     */
+    public Builder addAllParticipants(
+        java.lang.Iterable<? extends java.lang.Long> values) {
+      ensureParticipantsIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, participants_);
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 训练任务的参与者
+     * </pre>
+     *
+     * <code>repeated int64 participants = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearParticipants() {
+      participants_ = emptyLongList();
+      bitField0_ = (bitField0_ & ~0x00000001);
+      onChanged();
+      return this;
     }
 
+    private org.bupt.fedraft.rpc.manager.message.CodeFile codeFile_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder> codeFileBuilder_;
     /**
      * <pre>
      * 任务代码
      * </pre>
      *
      * <code>.fedraft.CodeFile codeFile = 4;</code>
-     *
      * @return Whether the codeFile field is set.
      */
-    @java.lang.Override
     public boolean hasCodeFile() {
-        return codeFile_ != null;
+      return codeFileBuilder_ != null || codeFile_ != null;
     }
-
     /**
      * <pre>
      * 任务代码
      * </pre>
      *
      * <code>.fedraft.CodeFile codeFile = 4;</code>
-     *
      * @return The codeFile.
      */
-    @java.lang.Override
     public org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile() {
+      if (codeFileBuilder_ == null) {
         return codeFile_ == null ? org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
+      } else {
+        return codeFileBuilder_.getMessage();
+      }
     }
-
     /**
      * <pre>
      * 任务代码
@@ -290,1148 +959,343 @@ public final class JobConfiguration extends
      *
      * <code>.fedraft.CodeFile codeFile = 4;</code>
      */
-    @java.lang.Override
+    public Builder setCodeFile(org.bupt.fedraft.rpc.manager.message.CodeFile value) {
+      if (codeFileBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        codeFile_ = value;
+        onChanged();
+      } else {
+        codeFileBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     */
+    public Builder setCodeFile(
+        org.bupt.fedraft.rpc.manager.message.CodeFile.Builder builderForValue) {
+      if (codeFileBuilder_ == null) {
+        codeFile_ = builderForValue.build();
+        onChanged();
+      } else {
+        codeFileBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     */
+    public Builder mergeCodeFile(org.bupt.fedraft.rpc.manager.message.CodeFile value) {
+      if (codeFileBuilder_ == null) {
+        if (codeFile_ != null) {
+          codeFile_ =
+            org.bupt.fedraft.rpc.manager.message.CodeFile.newBuilder(codeFile_).mergeFrom(value).buildPartial();
+        } else {
+          codeFile_ = value;
+        }
+        onChanged();
+      } else {
+        codeFileBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     */
+    public Builder clearCodeFile() {
+      if (codeFileBuilder_ == null) {
+        codeFile_ = null;
+        onChanged();
+      } else {
+        codeFile_ = null;
+        codeFileBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     */
+    public org.bupt.fedraft.rpc.manager.message.CodeFile.Builder getCodeFileBuilder() {
+      
+      onChanged();
+      return getCodeFileFieldBuilder().getBuilder();
+    }
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     */
     public org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder() {
-        return getCodeFile();
+      if (codeFileBuilder_ != null) {
+        return codeFileBuilder_.getMessageOrBuilder();
+      } else {
+        return codeFile_ == null ?
+            org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
+      }
+    }
+    /**
+     * <pre>
+     * 任务代码
+     * </pre>
+     *
+     * <code>.fedraft.CodeFile codeFile = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder> 
+        getCodeFileFieldBuilder() {
+      if (codeFileBuilder_ == null) {
+        codeFileBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder>(
+                getCodeFile(),
+                getParentForChildren(),
+                isClean());
+        codeFile_ = null;
+      }
+      return codeFileBuilder_;
     }
 
+    private int globalEpoch_ ;
     /**
      * <code>int32 global_epoch = 5;</code>
-     *
      * @return The globalEpoch.
      */
     @java.lang.Override
     public int getGlobalEpoch() {
-        return globalEpoch_;
+      return globalEpoch_;
+    }
+    /**
+     * <code>int32 global_epoch = 5;</code>
+     * @param value The globalEpoch to set.
+     * @return This builder for chaining.
+     */
+    public Builder setGlobalEpoch(int value) {
+      
+      globalEpoch_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 global_epoch = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearGlobalEpoch() {
+      
+      globalEpoch_ = 0;
+      onChanged();
+      return this;
     }
 
+    private java.lang.Object datasetsName_ = "";
     /**
      * <code>string datasets_name = 6;</code>
-     *
      * @return The datasetsName.
      */
-    @java.lang.Override
     public java.lang.String getDatasetsName() {
-        java.lang.Object ref = datasetsName_;
-        if (ref instanceof java.lang.String) {
-            return (java.lang.String) ref;
-        } else {
-            com.google.protobuf.ByteString bs =
-                    (com.google.protobuf.ByteString) ref;
-            java.lang.String s = bs.toStringUtf8();
-            datasetsName_ = s;
-            return s;
-        }
+      java.lang.Object ref = datasetsName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        datasetsName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
-
     /**
      * <code>string datasets_name = 6;</code>
-     *
      * @return The bytes for datasetsName.
      */
-    @java.lang.Override
     public com.google.protobuf.ByteString
-    getDatasetsNameBytes() {
-        java.lang.Object ref = datasetsName_;
-        if (ref instanceof java.lang.String) {
-            com.google.protobuf.ByteString b =
-                    com.google.protobuf.ByteString.copyFromUtf8(
-                            (java.lang.String) ref);
-            datasetsName_ = b;
-            return b;
-        } else {
-            return (com.google.protobuf.ByteString) ref;
-        }
+        getDatasetsNameBytes() {
+      java.lang.Object ref = datasetsName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        datasetsName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string datasets_name = 6;</code>
+     * @param value The datasetsName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDatasetsName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      datasetsName_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string datasets_name = 6;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDatasetsName() {
+      
+      datasetsName_ = getDefaultInstance().getDatasetsName();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string datasets_name = 6;</code>
+     * @param value The bytes for datasetsName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDatasetsNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      datasetsName_ = value;
+      onChanged();
+      return this;
     }
 
+    private org.bupt.fedraft.rpc.trainer.message.ModelClass modelClass_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.bupt.fedraft.rpc.trainer.message.ModelClass, org.bupt.fedraft.rpc.trainer.message.ModelClass.Builder, org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder> modelClassBuilder_;
     /**
      * <code>.fedraft.ModelClass model_class = 7;</code>
-     *
      * @return Whether the modelClass field is set.
      */
-    @java.lang.Override
     public boolean hasModelClass() {
-        return modelClass_ != null;
+      return modelClassBuilder_ != null || modelClass_ != null;
     }
-
     /**
      * <code>.fedraft.ModelClass model_class = 7;</code>
-     *
      * @return The modelClass.
      */
-    @java.lang.Override
     public org.bupt.fedraft.rpc.trainer.message.ModelClass getModelClass() {
+      if (modelClassBuilder_ == null) {
         return modelClass_ == null ? org.bupt.fedraft.rpc.trainer.message.ModelClass.getDefaultInstance() : modelClass_;
+      } else {
+        return modelClassBuilder_.getMessage();
+      }
     }
-
     /**
      * <code>.fedraft.ModelClass model_class = 7;</code>
      */
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder getModelClassOrBuilder() {
-        return getModelClass();
+    public Builder setModelClass(org.bupt.fedraft.rpc.trainer.message.ModelClass value) {
+      if (modelClassBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        modelClass_ = value;
+        onChanged();
+      } else {
+        modelClassBuilder_.setMessage(value);
+      }
+
+      return this;
     }
-
-    @java.lang.Override
-    public boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
-    }
-
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        getSerializedSize();
-        if (uuid_ != 0) {
-            output.writeInt32(1, uuid_);
-        }
-        if (sourceId_ != 0L) {
-            output.writeInt64(2, sourceId_);
-        }
-        if (getParticipantsList().size() > 0) {
-            output.writeUInt32NoTag(26);
-            output.writeUInt32NoTag(participantsMemoizedSerializedSize);
-        }
-        for (int i = 0; i < participants_.size(); i++) {
-            output.writeInt64NoTag(participants_.getLong(i));
-        }
-        if (codeFile_ != null) {
-            output.writeMessage(4, getCodeFile());
-        }
-        if (globalEpoch_ != 0) {
-            output.writeInt32(5, globalEpoch_);
-        }
-        if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datasetsName_)) {
-            com.google.protobuf.GeneratedMessageV3.writeString(output, 6, datasetsName_);
-        }
-        if (modelClass_ != null) {
-            output.writeMessage(7, getModelClass());
-        }
-        getUnknownFields().writeTo(output);
-    }
-
-    @java.lang.Override
-    public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (uuid_ != 0) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt32Size(1, uuid_);
-        }
-        if (sourceId_ != 0L) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt64Size(2, sourceId_);
-        }
-        {
-            int dataSize = 0;
-            for (int i = 0; i < participants_.size(); i++) {
-                dataSize += com.google.protobuf.CodedOutputStream
-                        .computeInt64SizeNoTag(participants_.getLong(i));
-            }
-            size += dataSize;
-            if (!getParticipantsList().isEmpty()) {
-                size += 1;
-                size += com.google.protobuf.CodedOutputStream
-                        .computeInt32SizeNoTag(dataSize);
-            }
-            participantsMemoizedSerializedSize = dataSize;
-        }
-        if (codeFile_ != null) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(4, getCodeFile());
-        }
-        if (globalEpoch_ != 0) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt32Size(5, globalEpoch_);
-        }
-        if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datasetsName_)) {
-            size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, datasetsName_);
-        }
-        if (modelClass_ != null) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeMessageSize(7, getModelClass());
-        }
-        size += getUnknownFields().getSerializedSize();
-        memoizedSize = size;
-        return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof org.bupt.fedraft.rpc.manager.message.JobConfiguration)) {
-            return super.equals(obj);
-        }
-        org.bupt.fedraft.rpc.manager.message.JobConfiguration other = (org.bupt.fedraft.rpc.manager.message.JobConfiguration) obj;
-
-        if (getUuid()
-                != other.getUuid()) return false;
-        if (getSourceId()
-                != other.getSourceId()) return false;
-        if (!getParticipantsList()
-                .equals(other.getParticipantsList())) return false;
-        if (hasCodeFile() != other.hasCodeFile()) return false;
-        if (hasCodeFile()) {
-            if (!getCodeFile()
-                    .equals(other.getCodeFile())) return false;
-        }
-        if (getGlobalEpoch()
-                != other.getGlobalEpoch()) return false;
-        if (!getDatasetsName()
-                .equals(other.getDatasetsName())) return false;
-        if (hasModelClass() != other.hasModelClass()) return false;
-        if (hasModelClass()) {
-            if (!getModelClass()
-                    .equals(other.getModelClass())) return false;
-        }
-        return getUnknownFields().equals(other.getUnknownFields());
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-        if (memoizedHashCode != 0) {
-            return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + UUID_FIELD_NUMBER;
-        hash = (53 * hash) + getUuid();
-        hash = (37 * hash) + SOURCEID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getSourceId());
-        if (getParticipantsCount() > 0) {
-            hash = (37 * hash) + PARTICIPANTS_FIELD_NUMBER;
-            hash = (53 * hash) + getParticipantsList().hashCode();
-        }
-        if (hasCodeFile()) {
-            hash = (37 * hash) + CODEFILE_FIELD_NUMBER;
-            hash = (53 * hash) + getCodeFile().hashCode();
-        }
-        hash = (37 * hash) + GLOBAL_EPOCH_FIELD_NUMBER;
-        hash = (53 * hash) + getGlobalEpoch();
-        hash = (37 * hash) + DATASETS_NAME_FIELD_NUMBER;
-        hash = (53 * hash) + getDatasetsName().hashCode();
-        if (hasModelClass()) {
-            hash = (37 * hash) + MODEL_CLASS_FIELD_NUMBER;
-            hash = (53 * hash) + getModelClass().hashCode();
-        }
-        hash = (29 * hash) + getUnknownFields().hashCode();
-        memoizedHashCode = hash;
-        return hash;
-    }
-
-    @java.lang.Override
-    public Builder newBuilderForType() {
-        return newBuilder();
-    }
-
-    @java.lang.Override
-    public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<JobConfiguration> getParserForType() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.manager.message.JobConfiguration getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-    }
-
     /**
-     * Protobuf type {@code fedraft.JobConfiguration}
+     * <code>.fedraft.ModelClass model_class = 7;</code>
      */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:fedraft.JobConfiguration)
-            org.bupt.fedraft.rpc.manager.message.JobConfigurationOrBuilder {
-        private int bitField0_;
-        private int uuid_;
-        private long sourceId_;
-        private com.google.protobuf.Internal.LongList participants_ = emptyLongList();
-        private org.bupt.fedraft.rpc.manager.message.CodeFile codeFile_;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder> codeFileBuilder_;
-        private int globalEpoch_;
-        private java.lang.Object datasetsName_ = "";
-        private org.bupt.fedraft.rpc.trainer.message.ModelClass modelClass_;
-        private com.google.protobuf.SingleFieldBuilderV3<
-                org.bupt.fedraft.rpc.trainer.message.ModelClass, org.bupt.fedraft.rpc.trainer.message.ModelClass.Builder, org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder> modelClassBuilder_;
+    public Builder setModelClass(
+        org.bupt.fedraft.rpc.trainer.message.ModelClass.Builder builderForValue) {
+      if (modelClassBuilder_ == null) {
+        modelClass_ = builderForValue.build();
+        onChanged();
+      } else {
+        modelClassBuilder_.setMessage(builderForValue.build());
+      }
 
-        // Construct using org.bupt.fedraft.rpc.manager.message.JobConfiguration.newBuilder()
-        private Builder() {
-
+      return this;
+    }
+    /**
+     * <code>.fedraft.ModelClass model_class = 7;</code>
+     */
+    public Builder mergeModelClass(org.bupt.fedraft.rpc.trainer.message.ModelClass value) {
+      if (modelClassBuilder_ == null) {
+        if (modelClass_ != null) {
+          modelClass_ =
+            org.bupt.fedraft.rpc.trainer.message.ModelClass.newBuilder(modelClass_).mergeFrom(value).buildPartial();
+        } else {
+          modelClass_ = value;
         }
-
-        private Builder(
-                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-            super(parent);
-
-        }
-
-        public static com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            org.bupt.fedraft.rpc.manager.message.JobConfiguration.class, org.bupt.fedraft.rpc.manager.message.JobConfiguration.Builder.class);
-        }
-
-        @java.lang.Override
-        public Builder clear() {
-            super.clear();
-            uuid_ = 0;
-
-            sourceId_ = 0L;
-
-            participants_ = emptyLongList();
-            bitField0_ = (bitField0_ & ~0x00000001);
-            if (codeFileBuilder_ == null) {
-                codeFile_ = null;
-            } else {
-                codeFile_ = null;
-                codeFileBuilder_ = null;
-            }
-            globalEpoch_ = 0;
-
-            datasetsName_ = "";
-
-            if (modelClassBuilder_ == null) {
-                modelClass_ = null;
-            } else {
-                modelClass_ = null;
-                modelClassBuilder_ = null;
-            }
-            return this;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-            return org.bupt.fedraft.rpc.manager.message.ManagerMessage.internal_static_fedraft_JobConfiguration_descriptor;
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.manager.message.JobConfiguration getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.manager.message.JobConfiguration.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.manager.message.JobConfiguration build() {
-            org.bupt.fedraft.rpc.manager.message.JobConfiguration result = buildPartial();
-            if (!result.isInitialized()) {
-                throw newUninitializedMessageException(result);
-            }
-            return result;
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.manager.message.JobConfiguration buildPartial() {
-            org.bupt.fedraft.rpc.manager.message.JobConfiguration result = new org.bupt.fedraft.rpc.manager.message.JobConfiguration(this);
-            int from_bitField0_ = bitField0_;
-            result.uuid_ = uuid_;
-            result.sourceId_ = sourceId_;
-            if (((bitField0_ & 0x00000001) != 0)) {
-                participants_.makeImmutable();
-                bitField0_ = (bitField0_ & ~0x00000001);
-            }
-            result.participants_ = participants_;
-            if (codeFileBuilder_ == null) {
-                result.codeFile_ = codeFile_;
-            } else {
-                result.codeFile_ = codeFileBuilder_.build();
-            }
-            result.globalEpoch_ = globalEpoch_;
-            result.datasetsName_ = datasetsName_;
-            if (modelClassBuilder_ == null) {
-                result.modelClass_ = modelClass_;
-            } else {
-                result.modelClass_ = modelClassBuilder_.build();
-            }
-            onBuilt();
-            return result;
-        }
-
-        @java.lang.Override
-        public Builder clone() {
-            return super.clone();
-        }
-
-        @java.lang.Override
-        public Builder setField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                java.lang.Object value) {
-            return super.setField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder clearField(
-                com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return super.clearField(field);
-        }
-
-        @java.lang.Override
-        public Builder clearOneof(
-                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return super.clearOneof(oneof);
-        }
-
-        @java.lang.Override
-        public Builder setRepeatedField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                int index, java.lang.Object value) {
-            return super.setRepeatedField(field, index, value);
-        }
-
-        @java.lang.Override
-        public Builder addRepeatedField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                java.lang.Object value) {
-            return super.addRepeatedField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-            if (other instanceof org.bupt.fedraft.rpc.manager.message.JobConfiguration) {
-                return mergeFrom((org.bupt.fedraft.rpc.manager.message.JobConfiguration) other);
-            } else {
-                super.mergeFrom(other);
-                return this;
-            }
-        }
-
-        public Builder mergeFrom(org.bupt.fedraft.rpc.manager.message.JobConfiguration other) {
-            if (other == org.bupt.fedraft.rpc.manager.message.JobConfiguration.getDefaultInstance()) return this;
-            if (other.getUuid() != 0) {
-                setUuid(other.getUuid());
-            }
-            if (other.getSourceId() != 0L) {
-                setSourceId(other.getSourceId());
-            }
-            if (!other.participants_.isEmpty()) {
-                if (participants_.isEmpty()) {
-                    participants_ = other.participants_;
-                    bitField0_ = (bitField0_ & ~0x00000001);
-                } else {
-                    ensureParticipantsIsMutable();
-                    participants_.addAll(other.participants_);
-                }
-                onChanged();
-            }
-            if (other.hasCodeFile()) {
-                mergeCodeFile(other.getCodeFile());
-            }
-            if (other.getGlobalEpoch() != 0) {
-                setGlobalEpoch(other.getGlobalEpoch());
-            }
-            if (!other.getDatasetsName().isEmpty()) {
-                datasetsName_ = other.datasetsName_;
-                onChanged();
-            }
-            if (other.hasModelClass()) {
-                mergeModelClass(other.getModelClass());
-            }
-            this.mergeUnknownFields(other.getUnknownFields());
-            onChanged();
-            return this;
-        }
-
-        @java.lang.Override
-        public boolean isInitialized() {
-            return true;
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            if (extensionRegistry == null) {
-                throw new java.lang.NullPointerException();
-            }
-            try {
-                boolean done = false;
-                while (!done) {
-                    int tag = input.readTag();
-                    switch (tag) {
-                        case 0:
-                            done = true;
-                            break;
-                        case 8: {
-                            uuid_ = input.readInt32();
-
-                            break;
-                        } // case 8
-                        case 16: {
-                            sourceId_ = input.readInt64();
-
-                            break;
-                        } // case 16
-                        case 24: {
-                            long v = input.readInt64();
-                            ensureParticipantsIsMutable();
-                            participants_.addLong(v);
-                            break;
-                        } // case 24
-                        case 26: {
-                            int length = input.readRawVarint32();
-                            int limit = input.pushLimit(length);
-                            ensureParticipantsIsMutable();
-                            while (input.getBytesUntilLimit() > 0) {
-                                participants_.addLong(input.readInt64());
-                            }
-                            input.popLimit(limit);
-                            break;
-                        } // case 26
-                        case 34: {
-                            input.readMessage(
-                                    getCodeFileFieldBuilder().getBuilder(),
-                                    extensionRegistry);
-
-                            break;
-                        } // case 34
-                        case 40: {
-                            globalEpoch_ = input.readInt32();
-
-                            break;
-                        } // case 40
-                        case 50: {
-                            datasetsName_ = input.readStringRequireUtf8();
-
-                            break;
-                        } // case 50
-                        case 58: {
-                            input.readMessage(
-                                    getModelClassFieldBuilder().getBuilder(),
-                                    extensionRegistry);
-
-                            break;
-                        } // case 58
-                        default: {
-                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                                done = true; // was an endgroup tag
-                            }
-                            break;
-                        } // default:
-                    } // switch (tag)
-                } // while (!done)
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                throw e.unwrapIOException();
-            } finally {
-                onChanged();
-            } // finally
-            return this;
-        }
-
-        /**
-         * <code>int32 uuid = 1;</code>
-         * @return The uuid.
-         */
-        @java.lang.Override
-        public int getUuid() {
-            return uuid_;
-        }
-
-        /**
-         * <code>int32 uuid = 1;</code>
-         * @param value The uuid to set.
-         * @return This builder for chaining.
-         */
-        public Builder setUuid(int value) {
-
-            uuid_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int32 uuid = 1;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearUuid() {
-
-            uuid_ = 0;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 提交任务的源节点
-         * </pre>
-         *
-         * <code>int64 sourceId = 2;</code>
-         * @return The sourceId.
-         */
-        @java.lang.Override
-        public long getSourceId() {
-            return sourceId_;
-        }
-
-        /**
-         * <pre>
-         * 提交任务的源节点
-         * </pre>
-         *
-         * <code>int64 sourceId = 2;</code>
-         * @param value The sourceId to set.
-         * @return This builder for chaining.
-         */
-        public Builder setSourceId(long value) {
-
-            sourceId_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 提交任务的源节点
-         * </pre>
-         *
-         * <code>int64 sourceId = 2;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearSourceId() {
-
-            sourceId_ = 0L;
-            onChanged();
-            return this;
-        }
-
-        private void ensureParticipantsIsMutable() {
-            if ((bitField0_ & 0x00000001) == 0) {
-                participants_ = mutableCopy(participants_);
-                bitField0_ |= 0x00000001;
-            }
-        }
-
-        /**
-         * <pre>
-         * 训练任务的参与者
-         * </pre>
-         *
-         * <code>repeated int64 participants = 3;</code>
-         * @return A list containing the participants.
-         */
-        public java.util.List<java.lang.Long>
-        getParticipantsList() {
-            return ((bitField0_ & 0x00000001) != 0) ?
-                    java.util.Collections.unmodifiableList(participants_) : participants_;
-        }
-
-        /**
-         * <pre>
-         * 训练任务的参与者
-         * </pre>
-         *
-         * <code>repeated int64 participants = 3;</code>
-         * @return The count of participants.
-         */
-        public int getParticipantsCount() {
-            return participants_.size();
-        }
-
-        /**
-         * <pre>
-         * 训练任务的参与者
-         * </pre>
-         *
-         * <code>repeated int64 participants = 3;</code>
-         * @param index The index of the element to return.
-         * @return The participants at the given index.
-         */
-        public long getParticipants(int index) {
-            return participants_.getLong(index);
-        }
-
-        /**
-         * <pre>
-         * 训练任务的参与者
-         * </pre>
-         *
-         * <code>repeated int64 participants = 3;</code>
-         * @param index The index to set the value at.
-         * @param value The participants to set.
-         * @return This builder for chaining.
-         */
-        public Builder setParticipants(
-                int index, long value) {
-            ensureParticipantsIsMutable();
-            participants_.setLong(index, value);
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 训练任务的参与者
-         * </pre>
-         *
-         * <code>repeated int64 participants = 3;</code>
-         * @param value The participants to add.
-         * @return This builder for chaining.
-         */
-        public Builder addParticipants(long value) {
-            ensureParticipantsIsMutable();
-            participants_.addLong(value);
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 训练任务的参与者
-         * </pre>
-         *
-         * <code>repeated int64 participants = 3;</code>
-         * @param values The participants to add.
-         * @return This builder for chaining.
-         */
-        public Builder addAllParticipants(
-                java.lang.Iterable<? extends java.lang.Long> values) {
-            ensureParticipantsIsMutable();
-            com.google.protobuf.AbstractMessageLite.Builder.addAll(
-                    values, participants_);
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 训练任务的参与者
-         * </pre>
-         *
-         * <code>repeated int64 participants = 3;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearParticipants() {
-            participants_ = emptyLongList();
-            bitField0_ = (bitField0_ & ~0x00000001);
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 任务代码
-         * </pre>
-         *
-         * <code>.fedraft.CodeFile codeFile = 4;</code>
-         * @return Whether the codeFile field is set.
-         */
-        public boolean hasCodeFile() {
-            return codeFileBuilder_ != null || codeFile_ != null;
-        }
-
-        /**
-         * <pre>
-         * 任务代码
-         * </pre>
-         *
-         * <code>.fedraft.CodeFile codeFile = 4;</code>
-         * @return The codeFile.
-         */
-        public org.bupt.fedraft.rpc.manager.message.CodeFile getCodeFile() {
-            if (codeFileBuilder_ == null) {
-                return codeFile_ == null ? org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
-            } else {
-                return codeFileBuilder_.getMessage();
-            }
-        }
-
-        /**
-         * <pre>
-         * 任务代码
-         * </pre>
-         *
-         * <code>.fedraft.CodeFile codeFile = 4;</code>
-         */
-        public Builder setCodeFile(org.bupt.fedraft.rpc.manager.message.CodeFile value) {
-            if (codeFileBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
-                codeFile_ = value;
-                onChanged();
-            } else {
-                codeFileBuilder_.setMessage(value);
-            }
-
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 任务代码
-         * </pre>
-         *
-         * <code>.fedraft.CodeFile codeFile = 4;</code>
-         */
-        public Builder setCodeFile(
-                org.bupt.fedraft.rpc.manager.message.CodeFile.Builder builderForValue) {
-            if (codeFileBuilder_ == null) {
-                codeFile_ = builderForValue.build();
-                onChanged();
-            } else {
-                codeFileBuilder_.setMessage(builderForValue.build());
-            }
-
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 任务代码
-         * </pre>
-         *
-         * <code>.fedraft.CodeFile codeFile = 4;</code>
-         */
-        public Builder mergeCodeFile(org.bupt.fedraft.rpc.manager.message.CodeFile value) {
-            if (codeFileBuilder_ == null) {
-                if (codeFile_ != null) {
-                    codeFile_ =
-                            org.bupt.fedraft.rpc.manager.message.CodeFile.newBuilder(codeFile_).mergeFrom(value).buildPartial();
-                } else {
-                    codeFile_ = value;
-                }
-                onChanged();
-            } else {
-                codeFileBuilder_.mergeFrom(value);
-            }
-
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 任务代码
-         * </pre>
-         *
-         * <code>.fedraft.CodeFile codeFile = 4;</code>
-         */
-        public Builder clearCodeFile() {
-            if (codeFileBuilder_ == null) {
-                codeFile_ = null;
-                onChanged();
-            } else {
-                codeFile_ = null;
-                codeFileBuilder_ = null;
-            }
-
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 任务代码
-         * </pre>
-         *
-         * <code>.fedraft.CodeFile codeFile = 4;</code>
-         */
-        public org.bupt.fedraft.rpc.manager.message.CodeFile.Builder getCodeFileBuilder() {
-
-            onChanged();
-            return getCodeFileFieldBuilder().getBuilder();
-        }
-
-        /**
-         * <pre>
-         * 任务代码
-         * </pre>
-         *
-         * <code>.fedraft.CodeFile codeFile = 4;</code>
-         */
-        public org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder getCodeFileOrBuilder() {
-            if (codeFileBuilder_ != null) {
-                return codeFileBuilder_.getMessageOrBuilder();
-            } else {
-                return codeFile_ == null ?
-                        org.bupt.fedraft.rpc.manager.message.CodeFile.getDefaultInstance() : codeFile_;
-            }
-        }
-
-        /**
-         * <pre>
-         * 任务代码
-         * </pre>
-         *
-         * <code>.fedraft.CodeFile codeFile = 4;</code>
-         */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder>
-        getCodeFileFieldBuilder() {
-            if (codeFileBuilder_ == null) {
-                codeFileBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                        org.bupt.fedraft.rpc.manager.message.CodeFile, org.bupt.fedraft.rpc.manager.message.CodeFile.Builder, org.bupt.fedraft.rpc.manager.message.CodeFileOrBuilder>(
-                        getCodeFile(),
-                        getParentForChildren(),
-                        isClean());
-                codeFile_ = null;
-            }
-            return codeFileBuilder_;
-        }
-
-        /**
-         * <code>int32 global_epoch = 5;</code>
-         *
-         * @return The globalEpoch.
-         */
-        @java.lang.Override
-        public int getGlobalEpoch() {
-            return globalEpoch_;
-        }
-
-        /**
-         * <code>int32 global_epoch = 5;</code>
-         *
-         * @param value The globalEpoch to set.
-         * @return This builder for chaining.
-         */
-        public Builder setGlobalEpoch(int value) {
-
-            globalEpoch_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int32 global_epoch = 5;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearGlobalEpoch() {
-
-            globalEpoch_ = 0;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>string datasets_name = 6;</code>
-         *
-         * @return The datasetsName.
-         */
-        public java.lang.String getDatasetsName() {
-            java.lang.Object ref = datasetsName_;
-            if (!(ref instanceof java.lang.String)) {
-                com.google.protobuf.ByteString bs =
-                        (com.google.protobuf.ByteString) ref;
-                java.lang.String s = bs.toStringUtf8();
-                datasetsName_ = s;
-                return s;
-            } else {
-                return (java.lang.String) ref;
-            }
-        }
-
-        /**
-         * <code>string datasets_name = 6;</code>
-         *
-         * @param value The datasetsName to set.
-         * @return This builder for chaining.
-         */
-        public Builder setDatasetsName(
-                java.lang.String value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-
-            datasetsName_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>string datasets_name = 6;</code>
-         *
-         * @return The bytes for datasetsName.
-         */
-        public com.google.protobuf.ByteString
-        getDatasetsNameBytes() {
-            java.lang.Object ref = datasetsName_;
-            if (ref instanceof String) {
-                com.google.protobuf.ByteString b =
-                        com.google.protobuf.ByteString.copyFromUtf8(
-                                (java.lang.String) ref);
-                datasetsName_ = b;
-                return b;
-            } else {
-                return (com.google.protobuf.ByteString) ref;
-            }
-        }
-
-        /**
-         * <code>string datasets_name = 6;</code>
-         *
-         * @param value The bytes for datasetsName to set.
-         * @return This builder for chaining.
-         */
-        public Builder setDatasetsNameBytes(
-                com.google.protobuf.ByteString value) {
-            if (value == null) {
-                throw new NullPointerException();
-            }
-            checkByteStringIsUtf8(value);
-
-            datasetsName_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>string datasets_name = 6;</code>
-         *
-         * @return This builder for chaining.
-         */
-        public Builder clearDatasetsName() {
-
-            datasetsName_ = getDefaultInstance().getDatasetsName();
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>.fedraft.ModelClass model_class = 7;</code>
-         *
-         * @return Whether the modelClass field is set.
-         */
-        public boolean hasModelClass() {
-            return modelClassBuilder_ != null || modelClass_ != null;
-        }
-
-        /**
-         * <code>.fedraft.ModelClass model_class = 7;</code>
-         *
-         * @return The modelClass.
-         */
-        public org.bupt.fedraft.rpc.trainer.message.ModelClass getModelClass() {
-            if (modelClassBuilder_ == null) {
-                return modelClass_ == null ? org.bupt.fedraft.rpc.trainer.message.ModelClass.getDefaultInstance() : modelClass_;
-            } else {
-                return modelClassBuilder_.getMessage();
-            }
-        }
-
-        /**
-         * <code>.fedraft.ModelClass model_class = 7;</code>
-         */
-        public Builder setModelClass(org.bupt.fedraft.rpc.trainer.message.ModelClass value) {
-            if (modelClassBuilder_ == null) {
-                if (value == null) {
-                    throw new NullPointerException();
-                }
-                modelClass_ = value;
-                onChanged();
-            } else {
-                modelClassBuilder_.setMessage(value);
-            }
-
-            return this;
-        }
-
-        /**
-         * <code>.fedraft.ModelClass model_class = 7;</code>
-         */
-        public Builder setModelClass(
-                org.bupt.fedraft.rpc.trainer.message.ModelClass.Builder builderForValue) {
-            if (modelClassBuilder_ == null) {
-                modelClass_ = builderForValue.build();
-                onChanged();
-            } else {
-                modelClassBuilder_.setMessage(builderForValue.build());
-            }
-
-            return this;
-        }
-
-        /**
-         * <code>.fedraft.ModelClass model_class = 7;</code>
-         */
-        public Builder mergeModelClass(org.bupt.fedraft.rpc.trainer.message.ModelClass value) {
-            if (modelClassBuilder_ == null) {
-                if (modelClass_ != null) {
-                    modelClass_ =
-                            org.bupt.fedraft.rpc.trainer.message.ModelClass.newBuilder(modelClass_).mergeFrom(value).buildPartial();
-                } else {
-                    modelClass_ = value;
-                }
-                onChanged();
-            } else {
-                modelClassBuilder_.mergeFrom(value);
-            }
-
-            return this;
-        }
-
-        /**
-         * <code>.fedraft.ModelClass model_class = 7;</code>
-         */
-        public Builder clearModelClass() {
-            if (modelClassBuilder_ == null) {
-                modelClass_ = null;
-                onChanged();
-            } else {
-                modelClass_ = null;
-                modelClassBuilder_ = null;
-            }
-
-            return this;
-        }
-
-        /**
-         * <code>.fedraft.ModelClass model_class = 7;</code>
-         */
-        public org.bupt.fedraft.rpc.trainer.message.ModelClass.Builder getModelClassBuilder() {
-
-            onChanged();
-            return getModelClassFieldBuilder().getBuilder();
-        }
-
-        /**
-         * <code>.fedraft.ModelClass model_class = 7;</code>
-         */
-        public org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder getModelClassOrBuilder() {
-            if (modelClassBuilder_ != null) {
-                return modelClassBuilder_.getMessageOrBuilder();
-            } else {
-                return modelClass_ == null ?
-                        org.bupt.fedraft.rpc.trainer.message.ModelClass.getDefaultInstance() : modelClass_;
-            }
-        }
-
-        /**
-         * <code>.fedraft.ModelClass model_class = 7;</code>
-         */
-        private com.google.protobuf.SingleFieldBuilderV3<
-                org.bupt.fedraft.rpc.trainer.message.ModelClass, org.bupt.fedraft.rpc.trainer.message.ModelClass.Builder, org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder>
+        onChanged();
+      } else {
+        modelClassBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.fedraft.ModelClass model_class = 7;</code>
+     */
+    public Builder clearModelClass() {
+      if (modelClassBuilder_ == null) {
+        modelClass_ = null;
+        onChanged();
+      } else {
+        modelClass_ = null;
+        modelClassBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.fedraft.ModelClass model_class = 7;</code>
+     */
+    public org.bupt.fedraft.rpc.trainer.message.ModelClass.Builder getModelClassBuilder() {
+      
+      onChanged();
+      return getModelClassFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.fedraft.ModelClass model_class = 7;</code>
+     */
+    public org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder getModelClassOrBuilder() {
+      if (modelClassBuilder_ != null) {
+        return modelClassBuilder_.getMessageOrBuilder();
+      } else {
+        return modelClass_ == null ?
+            org.bupt.fedraft.rpc.trainer.message.ModelClass.getDefaultInstance() : modelClass_;
+      }
+    }
+    /**
+     * <code>.fedraft.ModelClass model_class = 7;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        org.bupt.fedraft.rpc.trainer.message.ModelClass, org.bupt.fedraft.rpc.trainer.message.ModelClass.Builder, org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder> 
         getModelClassFieldBuilder() {
-            if (modelClassBuilder_ == null) {
-                modelClassBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-                        org.bupt.fedraft.rpc.trainer.message.ModelClass, org.bupt.fedraft.rpc.trainer.message.ModelClass.Builder, org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder>(
+      if (modelClassBuilder_ == null) {
+        modelClassBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            org.bupt.fedraft.rpc.trainer.message.ModelClass, org.bupt.fedraft.rpc.trainer.message.ModelClass.Builder, org.bupt.fedraft.rpc.trainer.message.ModelClassOrBuilder>(
                 getModelClass(),
                 getParentForChildren(),
                 isClean());
@@ -1453,6 +1317,52 @@ public final class JobConfiguration extends
 
 
     // @@protoc_insertion_point(builder_scope:fedraft.JobConfiguration)
+  }
+
+  // @@protoc_insertion_point(class_scope:fedraft.JobConfiguration)
+  private static final org.bupt.fedraft.rpc.manager.message.JobConfiguration DEFAULT_INSTANCE;
+  static {
+    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.manager.message.JobConfiguration();
+  }
+
+  public static org.bupt.fedraft.rpc.manager.message.JobConfiguration getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static final com.google.protobuf.Parser<JobConfiguration>
+      PARSER = new com.google.protobuf.AbstractParser<JobConfiguration>() {
+    @java.lang.Override
+    public JobConfiguration parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
+    }
+  };
+
+  public static com.google.protobuf.Parser<JobConfiguration> parser() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.Parser<JobConfiguration> getParserForType() {
+    return PARSER;
+  }
+
+  @java.lang.Override
+  public org.bupt.fedraft.rpc.manager.message.JobConfiguration getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
   }
 
 }

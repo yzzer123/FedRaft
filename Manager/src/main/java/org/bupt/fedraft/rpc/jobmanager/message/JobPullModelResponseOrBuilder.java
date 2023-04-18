@@ -4,13 +4,30 @@
 package org.bupt.fedraft.rpc.jobmanager.message;
 
 public interface JobPullModelResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.JobPullModelResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.JobPullModelResponse)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>bytes modelChunk = 1;</code>
-     *
-     * @return The modelChunk.
-     */
-    com.google.protobuf.ByteString getModelChunk();
+  /**
+   * <code>bytes modelChunk = 1;</code>
+   * @return Whether the modelChunk field is set.
+   */
+  boolean hasModelChunk();
+  /**
+   * <code>bytes modelChunk = 1;</code>
+   * @return The modelChunk.
+   */
+  com.google.protobuf.ByteString getModelChunk();
+
+  /**
+   * <code>int64 modelIndex = 2;</code>
+   * @return Whether the modelIndex field is set.
+   */
+  boolean hasModelIndex();
+  /**
+   * <code>int64 modelIndex = 2;</code>
+   * @return The modelIndex.
+   */
+  long getModelIndex();
+
+  org.bupt.fedraft.rpc.jobmanager.message.JobPullModelResponse.ModelInfoCase getModelInfoCase();
 }

@@ -4,13 +4,12 @@
 package org.bupt.fedraft.rpc.jobmanager.message;
 
 public interface AppendModelsResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.AppendModelsResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.AppendModelsResponse)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    int getTerm();
+  /**
+   * <code>int32 term = 1;</code>
+   * @return The term.
+   */
+  int getTerm();
 }

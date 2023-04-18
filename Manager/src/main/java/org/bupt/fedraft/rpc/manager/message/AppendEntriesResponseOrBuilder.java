@@ -4,20 +4,18 @@
 package org.bupt.fedraft.rpc.manager.message;
 
 public interface AppendEntriesResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.AppendEntriesResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.AppendEntriesResponse)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    int getTerm();
+  /**
+   * <code>int32 term = 1;</code>
+   * @return The term.
+   */
+  int getTerm();
 
-    /**
-     * <code>int32 delay = 2;</code>
-     *
-     * @return The delay.
-     */
-    int getDelay();
+  /**
+   * <code>int32 delay = 2;</code>
+   * @return The delay.
+   */
+  int getDelay();
 }

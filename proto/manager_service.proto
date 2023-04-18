@@ -17,7 +17,7 @@ service ManagerService{
 
 service JobManagerService{
   rpc AppendLog(AppendJobLogRequest) returns(AppendJobLogResponse){};
-  rpc AppendModels(AppendJobLogRequest) returns(AppendJobLogResponse){};
+  rpc AppendModels(AppendModelsRequest) returns(AppendModelsResponse){};
   rpc JobVote(JobVoteRequest) returns(JobVoteResponse){};
   rpc PullModel(JobPullModelRequest) returns(stream JobPullModelResponse){};
   rpc PushModel(stream JobPushModelRequest) returns(JobPushModelResponse){};

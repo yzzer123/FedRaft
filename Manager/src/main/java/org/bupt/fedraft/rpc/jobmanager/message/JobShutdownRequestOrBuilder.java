@@ -4,20 +4,18 @@
 package org.bupt.fedraft.rpc.jobmanager.message;
 
 public interface JobShutdownRequestOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.JobShutdownRequest)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.JobShutdownRequest)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int64 sourceId = 1;</code>
-     *
-     * @return The sourceId.
-     */
-    long getSourceId();
+  /**
+   * <code>int64 sourceId = 1;</code>
+   * @return The sourceId.
+   */
+  long getSourceId();
 
-    /**
-     * <code>int32 uuid = 2;</code>
-     *
-     * @return The uuid.
-     */
-    int getUuid();
+  /**
+   * <code>int32 uuid = 2;</code>
+   * @return The uuid.
+   */
+  int getUuid();
 }

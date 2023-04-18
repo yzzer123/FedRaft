@@ -8,6 +8,9 @@ import org.bupt.fedraft.state.ManagerState;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author yzzer
+ */
 public class Client {
 
 

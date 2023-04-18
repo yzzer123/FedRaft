@@ -4,24 +4,22 @@
 package org.bupt.fedraft.rpc.jobmanager.message;
 
 public interface JobVoteResponseOrBuilder extends
-        // @@protoc_insertion_point(interface_extends:fedraft.JobVoteResponse)
-        com.google.protobuf.MessageOrBuilder {
+    // @@protoc_insertion_point(interface_extends:fedraft.JobVoteResponse)
+    com.google.protobuf.MessageOrBuilder {
 
-    /**
-     * <code>int32 term = 1;</code>
-     *
-     * @return The term.
-     */
-    int getTerm();
+  /**
+   * <code>int32 term = 1;</code>
+   * @return The term.
+   */
+  int getTerm();
 
-    /**
-     * <pre>
-     * 是否投票
-     * </pre>
-     *
-     * <code>bool voteGranted = 2;</code>
-     *
-     * @return The voteGranted.
-     */
-    boolean getVoteGranted();
+  /**
+   * <pre>
+   * 是否投票
+   * </pre>
+   *
+   * <code>bool voteGranted = 2;</code>
+   * @return The voteGranted.
+   */
+  boolean getVoteGranted();
 }

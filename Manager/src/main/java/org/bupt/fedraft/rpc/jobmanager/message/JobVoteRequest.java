@@ -7,708 +7,667 @@ package org.bupt.fedraft.rpc.jobmanager.message;
  * Protobuf type {@code fedraft.JobVoteRequest}
  */
 public final class JobVoteRequest extends
-        com.google.protobuf.GeneratedMessageV3 implements
-        // @@protoc_insertion_point(message_implements:fedraft.JobVoteRequest)
-        JobVoteRequestOrBuilder {
-    public static final int TERM_FIELD_NUMBER = 1;
-    public static final int CANDIDATEID_FIELD_NUMBER = 2;
-    public static final int MODELINDEX_FIELD_NUMBER = 3;
-    public static final int MODELTERM_FIELD_NUMBER = 4;
-    private static final long serialVersionUID = 0L;
-    // @@protoc_insertion_point(class_scope:fedraft.JobVoteRequest)
-    private static final org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest DEFAULT_INSTANCE;
-    private static final com.google.protobuf.Parser<JobVoteRequest>
-            PARSER = new com.google.protobuf.AbstractParser<JobVoteRequest>() {
-        @java.lang.Override
-        public JobVoteRequest parsePartialFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            Builder builder = newBuilder();
-            try {
-                builder.mergeFrom(input, extensionRegistry);
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                throw e.setUnfinishedMessage(builder.buildPartial());
-            } catch (com.google.protobuf.UninitializedMessageException e) {
-                throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
-            } catch (java.io.IOException e) {
-                throw new com.google.protobuf.InvalidProtocolBufferException(e)
-                        .setUnfinishedMessage(builder.buildPartial());
-            }
-            return builder.buildPartial();
-        }
-    };
+    com.google.protobuf.GeneratedMessageV3 implements
+    // @@protoc_insertion_point(message_implements:fedraft.JobVoteRequest)
+    JobVoteRequestOrBuilder {
+private static final long serialVersionUID = 0L;
+  // Use JobVoteRequest.newBuilder() to construct.
+  private JobVoteRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+    super(builder);
+  }
+  private JobVoteRequest() {
+  }
 
-    static {
-        DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest();
+  @java.lang.Override
+  @SuppressWarnings({"unused"})
+  protected java.lang.Object newInstance(
+      UnusedPrivateParameter unused) {
+    return new JobVoteRequest();
+  }
+
+  @java.lang.Override
+  public com.google.protobuf.UnknownFieldSet
+  getUnknownFields() {
+    return this.unknownFields;
+  }
+  public static com.google.protobuf.Descriptors.Descriptor
+      getDescriptor() {
+    return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
+  }
+
+  @java.lang.Override
+  protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internalGetFieldAccessorTable() {
+    return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_fieldAccessorTable
+        .ensureFieldAccessorsInitialized(
+            org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.Builder.class);
+  }
+
+  public static final int TERM_FIELD_NUMBER = 1;
+  private int term_;
+  /**
+   * <code>int32 term = 1;</code>
+   * @return The term.
+   */
+  @java.lang.Override
+  public int getTerm() {
+    return term_;
+  }
+
+  public static final int CANDIDATEID_FIELD_NUMBER = 2;
+  private long candidateId_;
+  /**
+   * <code>int64 candidateId = 2;</code>
+   * @return The candidateId.
+   */
+  @java.lang.Override
+  public long getCandidateId() {
+    return candidateId_;
+  }
+
+  public static final int MODELINDEX_FIELD_NUMBER = 3;
+  private long modelIndex_;
+  /**
+   * <pre>
+   * 拓扑索引
+   * </pre>
+   *
+   * <code>int64 modelIndex = 3;</code>
+   * @return The modelIndex.
+   */
+  @java.lang.Override
+  public long getModelIndex() {
+    return modelIndex_;
+  }
+
+  public static final int MODELTERM_FIELD_NUMBER = 4;
+  private int modelTerm_;
+  /**
+   * <code>int32 modelTerm = 4;</code>
+   * @return The modelTerm.
+   */
+  @java.lang.Override
+  public int getModelTerm() {
+    return modelTerm_;
+  }
+
+  private byte memoizedIsInitialized = -1;
+  @java.lang.Override
+  public boolean isInitialized() {
+    byte isInitialized = memoizedIsInitialized;
+    if (isInitialized == 1) return true;
+    if (isInitialized == 0) return false;
+
+    memoizedIsInitialized = 1;
+    return true;
+  }
+
+  @java.lang.Override
+  public void writeTo(com.google.protobuf.CodedOutputStream output)
+                      throws java.io.IOException {
+    if (term_ != 0) {
+      output.writeInt32(1, term_);
     }
-
-    private int term_;
-    private long candidateId_;
-    private long modelIndex_;
-    private int modelTerm_;
-    private byte memoizedIsInitialized = -1;
-
-    // Use JobVoteRequest.newBuilder() to construct.
-    private JobVoteRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-        super(builder);
+    if (candidateId_ != 0L) {
+      output.writeInt64(2, candidateId_);
     }
-
-    private JobVoteRequest() {
+    if (modelIndex_ != 0L) {
+      output.writeInt64(3, modelIndex_);
     }
+    if (modelTerm_ != 0) {
+      output.writeInt32(4, modelTerm_);
+    }
+    getUnknownFields().writeTo(output);
+  }
 
+  @java.lang.Override
+  public int getSerializedSize() {
+    int size = memoizedSize;
+    if (size != -1) return size;
+
+    size = 0;
+    if (term_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(1, term_);
+    }
+    if (candidateId_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(2, candidateId_);
+    }
+    if (modelIndex_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(3, modelIndex_);
+    }
+    if (modelTerm_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(4, modelTerm_);
+    }
+    size += getUnknownFields().getSerializedSize();
+    memoizedSize = size;
+    return size;
+  }
+
+  @java.lang.Override
+  public boolean equals(final java.lang.Object obj) {
+    if (obj == this) {
+     return true;
+    }
+    if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest)) {
+      return super.equals(obj);
+    }
+    org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest other = (org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest) obj;
+
+    if (getTerm()
+        != other.getTerm()) return false;
+    if (getCandidateId()
+        != other.getCandidateId()) return false;
+    if (getModelIndex()
+        != other.getModelIndex()) return false;
+    if (getModelTerm()
+        != other.getModelTerm()) return false;
+    return getUnknownFields().equals(other.getUnknownFields());
+  }
+
+  @java.lang.Override
+  public int hashCode() {
+    if (memoizedHashCode != 0) {
+      return memoizedHashCode;
+    }
+    int hash = 41;
+    hash = (19 * hash) + getDescriptor().hashCode();
+    hash = (37 * hash) + TERM_FIELD_NUMBER;
+    hash = (53 * hash) + getTerm();
+    hash = (37 * hash) + CANDIDATEID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getCandidateId());
+    hash = (37 * hash) + MODELINDEX_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getModelIndex());
+    hash = (37 * hash) + MODELTERM_FIELD_NUMBER;
+    hash = (53 * hash) + getModelTerm();
+    hash = (29 * hash) + getUnknownFields().hashCode();
+    memoizedHashCode = hash;
+    return hash;
+  }
+
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+      java.nio.ByteBuffer data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+      java.nio.ByteBuffer data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+      com.google.protobuf.ByteString data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+      com.google.protobuf.ByteString data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(byte[] data)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+      byte[] data,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws com.google.protobuf.InvalidProtocolBufferException {
+    return PARSER.parseFrom(data, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseDelimitedFrom(java.io.InputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseDelimitedFrom(
+      java.io.InputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+      com.google.protobuf.CodedInputStream input)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input);
+  }
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
+      com.google.protobuf.CodedInputStream input,
+      com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+      throws java.io.IOException {
+    return com.google.protobuf.GeneratedMessageV3
+        .parseWithIOException(PARSER, input, extensionRegistry);
+  }
+
+  @java.lang.Override
+  public Builder newBuilderForType() { return newBuilder(); }
+  public static Builder newBuilder() {
+    return DEFAULT_INSTANCE.toBuilder();
+  }
+  public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest prototype) {
+    return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+  }
+  @java.lang.Override
+  public Builder toBuilder() {
+    return this == DEFAULT_INSTANCE
+        ? new Builder() : new Builder().mergeFrom(this);
+  }
+
+  @java.lang.Override
+  protected Builder newBuilderForType(
+      com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+    Builder builder = new Builder(parent);
+    return builder;
+  }
+  /**
+   * Protobuf type {@code fedraft.JobVoteRequest}
+   */
+  public static final class Builder extends
+      com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+      // @@protoc_insertion_point(builder_implements:fedraft.JobVoteRequest)
+      org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequestOrBuilder {
     public static com.google.protobuf.Descriptors.Descriptor
-    getDescriptor() {
-        return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-            java.nio.ByteBuffer data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-            java.nio.ByteBuffer data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-            com.google.protobuf.ByteString data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-            com.google.protobuf.ByteString data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(byte[] data)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-            byte[] data,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws com.google.protobuf.InvalidProtocolBufferException {
-        return PARSER.parseFrom(data, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseDelimitedFrom(java.io.InputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseDelimitedFrom(
-            java.io.InputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-            com.google.protobuf.CodedInputStream input)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest parseFrom(
-            com.google.protobuf.CodedInputStream input,
-            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-            throws java.io.IOException {
-        return com.google.protobuf.GeneratedMessageV3
-                .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() {
-        return DEFAULT_INSTANCE.toBuilder();
-    }
-
-    public static Builder newBuilder(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest prototype) {
-        return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-
-    public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstance() {
-        return DEFAULT_INSTANCE;
-    }
-
-    public static com.google.protobuf.Parser<JobVoteRequest> parser() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    @SuppressWarnings({"unused"})
-    protected java.lang.Object newInstance(
-            UnusedPrivateParameter unused) {
-        return new JobVoteRequest();
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-        return this.unknownFields;
+        getDescriptor() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-    internalGetFieldAccessorTable() {
-        return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_fieldAccessorTable
-                .ensureFieldAccessorsInitialized(
-                        org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.Builder.class);
+        internalGetFieldAccessorTable() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.Builder.class);
     }
 
+    // Construct using org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.newBuilder()
+    private Builder() {
+
+    }
+
+    private Builder(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      super(parent);
+
+    }
+    @java.lang.Override
+    public Builder clear() {
+      super.clear();
+      term_ = 0;
+
+      candidateId_ = 0L;
+
+      modelIndex_ = 0L;
+
+      modelTerm_ = 0;
+
+      return this;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Descriptors.Descriptor
+        getDescriptorForType() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstanceForType() {
+      return org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.getDefaultInstance();
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest build() {
+      org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest result = buildPartial();
+      if (!result.isInitialized()) {
+        throw newUninitializedMessageException(result);
+      }
+      return result;
+    }
+
+    @java.lang.Override
+    public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest buildPartial() {
+      org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest result = new org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest(this);
+      result.term_ = term_;
+      result.candidateId_ = candidateId_;
+      result.modelIndex_ = modelIndex_;
+      result.modelTerm_ = modelTerm_;
+      onBuilt();
+      return result;
+    }
+
+    @java.lang.Override
+    public Builder clone() {
+      return super.clone();
+    }
+    @java.lang.Override
+    public Builder setField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
+      return super.setField(field, value);
+    }
+    @java.lang.Override
+    public Builder clearField(
+        com.google.protobuf.Descriptors.FieldDescriptor field) {
+      return super.clearField(field);
+    }
+    @java.lang.Override
+    public Builder clearOneof(
+        com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+      return super.clearOneof(oneof);
+    }
+    @java.lang.Override
+    public Builder setRepeatedField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        int index, java.lang.Object value) {
+      return super.setRepeatedField(field, index, value);
+    }
+    @java.lang.Override
+    public Builder addRepeatedField(
+        com.google.protobuf.Descriptors.FieldDescriptor field,
+        java.lang.Object value) {
+      return super.addRepeatedField(field, value);
+    }
+    @java.lang.Override
+    public Builder mergeFrom(com.google.protobuf.Message other) {
+      if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest) {
+        return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest)other);
+      } else {
+        super.mergeFrom(other);
+        return this;
+      }
+    }
+
+    public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest other) {
+      if (other == org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.getDefaultInstance()) return this;
+      if (other.getTerm() != 0) {
+        setTerm(other.getTerm());
+      }
+      if (other.getCandidateId() != 0L) {
+        setCandidateId(other.getCandidateId());
+      }
+      if (other.getModelIndex() != 0L) {
+        setModelIndex(other.getModelIndex());
+      }
+      if (other.getModelTerm() != 0) {
+        setModelTerm(other.getModelTerm());
+      }
+      this.mergeUnknownFields(other.getUnknownFields());
+      onChanged();
+      return this;
+    }
+
+    @java.lang.Override
+    public boolean isInitialized() {
+      return true;
+    }
+
+    @java.lang.Override
+    public Builder mergeFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 8: {
+              term_ = input.readInt32();
+
+              break;
+            } // case 8
+            case 16: {
+              candidateId_ = input.readInt64();
+
+              break;
+            } // case 16
+            case 24: {
+              modelIndex_ = input.readInt64();
+
+              break;
+            } // case 24
+            case 32: {
+              modelTerm_ = input.readInt32();
+
+              break;
+            } // case 32
+            default: {
+              if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                done = true; // was an endgroup tag
+              }
+              break;
+            } // default:
+          } // switch (tag)
+        } // while (!done)
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.unwrapIOException();
+      } finally {
+        onChanged();
+      } // finally
+      return this;
+    }
+
+    private int term_ ;
     /**
      * <code>int32 term = 1;</code>
-     *
      * @return The term.
      */
     @java.lang.Override
     public int getTerm() {
-        return term_;
+      return term_;
+    }
+    /**
+     * <code>int32 term = 1;</code>
+     * @param value The term to set.
+     * @return This builder for chaining.
+     */
+    public Builder setTerm(int value) {
+      
+      term_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 term = 1;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearTerm() {
+      
+      term_ = 0;
+      onChanged();
+      return this;
     }
 
+    private long candidateId_ ;
     /**
      * <code>int64 candidateId = 2;</code>
-     *
      * @return The candidateId.
      */
     @java.lang.Override
     public long getCandidateId() {
-        return candidateId_;
+      return candidateId_;
+    }
+    /**
+     * <code>int64 candidateId = 2;</code>
+     * @param value The candidateId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setCandidateId(long value) {
+      
+      candidateId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int64 candidateId = 2;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearCandidateId() {
+      
+      candidateId_ = 0L;
+      onChanged();
+      return this;
     }
 
+    private long modelIndex_ ;
     /**
      * <pre>
      * 拓扑索引
      * </pre>
      *
      * <code>int64 modelIndex = 3;</code>
-     *
      * @return The modelIndex.
      */
     @java.lang.Override
     public long getModelIndex() {
-        return modelIndex_;
+      return modelIndex_;
+    }
+    /**
+     * <pre>
+     * 拓扑索引
+     * </pre>
+     *
+     * <code>int64 modelIndex = 3;</code>
+     * @param value The modelIndex to set.
+     * @return This builder for chaining.
+     */
+    public Builder setModelIndex(long value) {
+      
+      modelIndex_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * 拓扑索引
+     * </pre>
+     *
+     * <code>int64 modelIndex = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearModelIndex() {
+      
+      modelIndex_ = 0L;
+      onChanged();
+      return this;
     }
 
+    private int modelTerm_ ;
     /**
      * <code>int32 modelTerm = 4;</code>
-     *
      * @return The modelTerm.
      */
     @java.lang.Override
     public int getModelTerm() {
-        return modelTerm_;
+      return modelTerm_;
+    }
+    /**
+     * <code>int32 modelTerm = 4;</code>
+     * @param value The modelTerm to set.
+     * @return This builder for chaining.
+     */
+    public Builder setModelTerm(int value) {
+      
+      modelTerm_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 modelTerm = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearModelTerm() {
+      
+      modelTerm_ = 0;
+      onChanged();
+      return this;
+    }
+    @java.lang.Override
+    public Builder setUnknownFields(
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
+      return super.setUnknownFields(unknownFields);
     }
 
     @java.lang.Override
-    public boolean isInitialized() {
-        byte isInitialized = memoizedIsInitialized;
-        if (isInitialized == 1) return true;
-        if (isInitialized == 0) return false;
-
-        memoizedIsInitialized = 1;
-        return true;
+    public Builder mergeUnknownFields(
+        final com.google.protobuf.UnknownFieldSet unknownFields) {
+      return super.mergeUnknownFields(unknownFields);
     }
 
-    @java.lang.Override
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-            throws java.io.IOException {
-        if (term_ != 0) {
-            output.writeInt32(1, term_);
-        }
-        if (candidateId_ != 0L) {
-            output.writeInt64(2, candidateId_);
-        }
-        if (modelIndex_ != 0L) {
-            output.writeInt64(3, modelIndex_);
-        }
-        if (modelTerm_ != 0) {
-            output.writeInt32(4, modelTerm_);
-        }
-        getUnknownFields().writeTo(output);
-    }
 
-    @java.lang.Override
-    public int getSerializedSize() {
-        int size = memoizedSize;
-        if (size != -1) return size;
-
-        size = 0;
-        if (term_ != 0) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt32Size(1, term_);
-        }
-        if (candidateId_ != 0L) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt64Size(2, candidateId_);
-        }
-        if (modelIndex_ != 0L) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt64Size(3, modelIndex_);
-        }
-        if (modelTerm_ != 0) {
-            size += com.google.protobuf.CodedOutputStream
-                    .computeInt32Size(4, modelTerm_);
-        }
-        size += getUnknownFields().getSerializedSize();
-        memoizedSize = size;
-        return size;
-    }
-
-  @java.lang.Override
-  public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-          return true;
-      }
-      if (!(obj instanceof org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest)) {
-          return super.equals(obj);
-      }
-      org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest other = (org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest) obj;
-
-      if (getTerm()
-              != other.getTerm()) return false;
-      if (getCandidateId()
-              != other.getCandidateId()) return false;
-      if (getModelIndex()
-              != other.getModelIndex()) return false;
-      if (getModelTerm()
-              != other.getModelTerm()) return false;
-      return getUnknownFields().equals(other.getUnknownFields());
+    // @@protoc_insertion_point(builder_scope:fedraft.JobVoteRequest)
   }
 
+  // @@protoc_insertion_point(class_scope:fedraft.JobVoteRequest)
+  private static final org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest DEFAULT_INSTANCE;
+  static {
+    DEFAULT_INSTANCE = new org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest();
+  }
+
+  public static org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstance() {
+    return DEFAULT_INSTANCE;
+  }
+
+  private static final com.google.protobuf.Parser<JobVoteRequest>
+      PARSER = new com.google.protobuf.AbstractParser<JobVoteRequest>() {
     @java.lang.Override
-    public int hashCode() {
-        if (memoizedHashCode != 0) {
-            return memoizedHashCode;
-        }
-        int hash = 41;
-        hash = (19 * hash) + getDescriptor().hashCode();
-        hash = (37 * hash) + TERM_FIELD_NUMBER;
-        hash = (53 * hash) + getTerm();
-        hash = (37 * hash) + CANDIDATEID_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getCandidateId());
-        hash = (37 * hash) + MODELINDEX_FIELD_NUMBER;
-        hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-                getModelIndex());
-        hash = (37 * hash) + MODELTERM_FIELD_NUMBER;
-        hash = (53 * hash) + getModelTerm();
-        hash = (29 * hash) + getUnknownFields().hashCode();
-        memoizedHashCode = hash;
-        return hash;
+    public JobVoteRequest parsePartialFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      Builder builder = newBuilder();
+      try {
+        builder.mergeFrom(input, extensionRegistry);
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(builder.buildPartial());
+      } catch (com.google.protobuf.UninitializedMessageException e) {
+        throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(e)
+            .setUnfinishedMessage(builder.buildPartial());
+      }
+      return builder.buildPartial();
     }
+  };
 
-    @java.lang.Override
-    public Builder newBuilderForType() {
-        return newBuilder();
-    }
+  public static com.google.protobuf.Parser<JobVoteRequest> parser() {
+    return PARSER;
+  }
 
-    @java.lang.Override
-    public Builder toBuilder() {
-        return this == DEFAULT_INSTANCE
-                ? new Builder() : new Builder().mergeFrom(this);
-    }
+  @java.lang.Override
+  public com.google.protobuf.Parser<JobVoteRequest> getParserForType() {
+    return PARSER;
+  }
 
-    @java.lang.Override
-    protected Builder newBuilderForType(
-            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        Builder builder = new Builder(parent);
-        return builder;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<JobVoteRequest> getParserForType() {
-        return PARSER;
-    }
-
-    @java.lang.Override
-    public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstanceForType() {
-        return DEFAULT_INSTANCE;
-    }
-
-    /**
-     * Protobuf type {@code fedraft.JobVoteRequest}
-     */
-    public static final class Builder extends
-            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-            // @@protoc_insertion_point(builder_implements:fedraft.JobVoteRequest)
-            org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequestOrBuilder {
-        private int term_;
-        private long candidateId_;
-        private long modelIndex_;
-        private int modelTerm_;
-
-        // Construct using org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.newBuilder()
-        private Builder() {
-
-        }
-
-        private Builder(
-                com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-            super(parent);
-
-        }
-
-        public static com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
-        }
-
-        @java.lang.Override
-        protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_fieldAccessorTable
-                    .ensureFieldAccessorsInitialized(
-                            org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.class, org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.Builder.class);
-        }
-
-        @java.lang.Override
-        public Builder clear() {
-            super.clear();
-            term_ = 0;
-
-            candidateId_ = 0L;
-
-            modelIndex_ = 0L;
-
-            modelTerm_ = 0;
-
-            return this;
-        }
-
-        @java.lang.Override
-        public com.google.protobuf.Descriptors.Descriptor
-        getDescriptorForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobmanagerMessage.internal_static_fedraft_JobVoteRequest_descriptor;
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstanceForType() {
-            return org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.getDefaultInstance();
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest build() {
-            org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest result = buildPartial();
-            if (!result.isInitialized()) {
-                throw newUninitializedMessageException(result);
-            }
-            return result;
-        }
-
-        @java.lang.Override
-        public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest buildPartial() {
-            org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest result = new org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest(this);
-            result.term_ = term_;
-            result.candidateId_ = candidateId_;
-            result.modelIndex_ = modelIndex_;
-            result.modelTerm_ = modelTerm_;
-            onBuilt();
-            return result;
-        }
-
-        @java.lang.Override
-        public Builder clone() {
-            return super.clone();
-        }
-
-        @java.lang.Override
-        public Builder setField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                java.lang.Object value) {
-            return super.setField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder clearField(
-                com.google.protobuf.Descriptors.FieldDescriptor field) {
-            return super.clearField(field);
-        }
-
-        @java.lang.Override
-        public Builder clearOneof(
-                com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-            return super.clearOneof(oneof);
-        }
-
-        @java.lang.Override
-        public Builder setRepeatedField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                int index, java.lang.Object value) {
-            return super.setRepeatedField(field, index, value);
-        }
-
-        @java.lang.Override
-        public Builder addRepeatedField(
-                com.google.protobuf.Descriptors.FieldDescriptor field,
-                java.lang.Object value) {
-            return super.addRepeatedField(field, value);
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(com.google.protobuf.Message other) {
-            if (other instanceof org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest) {
-                return mergeFrom((org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest) other);
-            } else {
-                super.mergeFrom(other);
-                return this;
-            }
-        }
-
-        public Builder mergeFrom(org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest other) {
-            if (other == org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest.getDefaultInstance()) return this;
-            if (other.getTerm() != 0) {
-                setTerm(other.getTerm());
-            }
-            if (other.getCandidateId() != 0L) {
-                setCandidateId(other.getCandidateId());
-            }
-            if (other.getModelIndex() != 0L) {
-                setModelIndex(other.getModelIndex());
-            }
-            if (other.getModelTerm() != 0) {
-                setModelTerm(other.getModelTerm());
-            }
-            this.mergeUnknownFields(other.getUnknownFields());
-            onChanged();
-            return this;
-        }
-
-        @java.lang.Override
-        public boolean isInitialized() {
-            return true;
-        }
-
-        @java.lang.Override
-        public Builder mergeFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            if (extensionRegistry == null) {
-                throw new java.lang.NullPointerException();
-            }
-            try {
-                boolean done = false;
-                while (!done) {
-                    int tag = input.readTag();
-                    switch (tag) {
-                        case 0:
-                            done = true;
-                            break;
-                        case 8: {
-                            term_ = input.readInt32();
-
-                            break;
-                        } // case 8
-                        case 16: {
-                            candidateId_ = input.readInt64();
-
-                            break;
-                        } // case 16
-                        case 24: {
-                            modelIndex_ = input.readInt64();
-
-                            break;
-                        } // case 24
-                        case 32: {
-                            modelTerm_ = input.readInt32();
-
-                            break;
-                        } // case 32
-                        default: {
-                            if (!super.parseUnknownField(input, extensionRegistry, tag)) {
-                                done = true; // was an endgroup tag
-                            }
-                            break;
-                        } // default:
-                    } // switch (tag)
-                } // while (!done)
-            } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-                throw e.unwrapIOException();
-            } finally {
-                onChanged();
-            } // finally
-            return this;
-        }
-
-        /**
-         * <code>int32 term = 1;</code>
-         * @return The term.
-         */
-        @java.lang.Override
-        public int getTerm() {
-            return term_;
-        }
-
-        /**
-         * <code>int32 term = 1;</code>
-         * @param value The term to set.
-         * @return This builder for chaining.
-         */
-        public Builder setTerm(int value) {
-
-            term_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int32 term = 1;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearTerm() {
-
-            term_ = 0;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 candidateId = 2;</code>
-         * @return The candidateId.
-         */
-        @java.lang.Override
-        public long getCandidateId() {
-            return candidateId_;
-        }
-
-        /**
-         * <code>int64 candidateId = 2;</code>
-         * @param value The candidateId to set.
-         * @return This builder for chaining.
-         */
-        public Builder setCandidateId(long value) {
-
-            candidateId_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int64 candidateId = 2;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearCandidateId() {
-
-            candidateId_ = 0L;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 拓扑索引
-         * </pre>
-         *
-         * <code>int64 modelIndex = 3;</code>
-         * @return The modelIndex.
-         */
-        @java.lang.Override
-        public long getModelIndex() {
-            return modelIndex_;
-        }
-
-        /**
-         * <pre>
-         * 拓扑索引
-         * </pre>
-         *
-         * <code>int64 modelIndex = 3;</code>
-         * @param value The modelIndex to set.
-         * @return This builder for chaining.
-         */
-        public Builder setModelIndex(long value) {
-
-            modelIndex_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <pre>
-         * 拓扑索引
-         * </pre>
-         *
-         * <code>int64 modelIndex = 3;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearModelIndex() {
-
-            modelIndex_ = 0L;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int32 modelTerm = 4;</code>
-         * @return The modelTerm.
-         */
-        @java.lang.Override
-        public int getModelTerm() {
-            return modelTerm_;
-        }
-
-        /**
-         * <code>int32 modelTerm = 4;</code>
-         * @param value The modelTerm to set.
-         * @return This builder for chaining.
-         */
-        public Builder setModelTerm(int value) {
-
-            modelTerm_ = value;
-            onChanged();
-            return this;
-        }
-
-        /**
-         * <code>int32 modelTerm = 4;</code>
-         * @return This builder for chaining.
-         */
-        public Builder clearModelTerm() {
-
-            modelTerm_ = 0;
-            onChanged();
-            return this;
-        }
-
-        @java.lang.Override
-        public Builder setUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return super.setUnknownFields(unknownFields);
-        }
-
-        @java.lang.Override
-        public Builder mergeUnknownFields(
-                final com.google.protobuf.UnknownFieldSet unknownFields) {
-            return super.mergeUnknownFields(unknownFields);
-        }
-
-
-        // @@protoc_insertion_point(builder_scope:fedraft.JobVoteRequest)
+  @java.lang.Override
+  public org.bupt.fedraft.rpc.jobmanager.message.JobVoteRequest getDefaultInstanceForType() {
+    return DEFAULT_INSTANCE;
   }
 
 }

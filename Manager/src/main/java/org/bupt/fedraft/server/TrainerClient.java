@@ -9,6 +9,7 @@ import org.bupt.fedraft.rpc.trainer.message.*;
 import org.bupt.fedraft.rpc.trainer.service.TrainerServiceGrpc;
 import org.bupt.fedraft.state.JobManager;
 import org.bupt.fedraft.state.ManagerState;
+import org.bupt.fedraft.utils.DataWrapper;
 import org.bupt.fedraft.utils.VisitType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,89 +123,98 @@ public class TrainerClient extends Client {
      */
     public void trainModel() {
         // 关闭计时器防止训练过程中触发重新选举
-        jobManager.getRaftState().visit(raftSate -> raftSate.getJob().closeTimer(), VisitType.READ);
-        jobManager.getLocalModel().visit(modelChunkCache -> {
-            modelChunkCache.clear();
-            try {
-                trainModel(null, modelChunkCache);
-            } catch (LocalTrainException e) {
-                logger.error(e.getMessage());
-            }
+        jobManager.getRaftState().visit(raftSate -> {
+            raftSate.getJob().closeTimer();
+            jobManager.getLocalModel().visit(modelChunkCache -> {
+                modelChunkCache.clear();
+                try {
+                    trainModel(null, modelChunkCache);
+                } catch (LocalTrainException e) {
+                    logger.error(e.getMessage());
+                }
+                raftSate.localModelIndex = raftSate.globalModelIndex;
+                raftSate.getJob().collectModel(modelChunkCache);
+            }, VisitType.WRITE);
         }, VisitType.WRITE);
-
-        triggerModelCollect();
-
-    }
-
-
-    /**
-     * TODO 完成本地训练后触发模型回收或leader选举
-     */
-    private void triggerModelCollect() {
 
     }
 
     /**
      * 异步训练模型
      */
-    public void trainModel(@Nonnull Context context) {
+    public StreamObserver<TrainRequest> trainModel(@Nonnull Context context) {
+
+        DataWrapper<StreamObserver<TrainRequest>> senderWrapper = new DataWrapper<>();
+
         // 关闭计时器防止训练过程中触发重新选举
-        jobManager.getRaftState().visit(raftSate -> raftSate.getJob().closeTimer(), VisitType.READ);
+        jobManager.getRaftState().visit(raftSate -> {
+            raftSate.getJob().closeTimer();
+            context.fork().run(() -> {
+                StreamObserver<TrainRequest> modelSender = asyncStub.trainModel(new StreamObserver<>() {
+                    private final List<ByteString> trainedModel = new ArrayList<>();
 
-        Context newContext = context.fork();
+                    @Override
+                    public void onNext(TrainResponse response) {
+                        trainedModel.add(response.getModelChunk());
+                    }
 
-        newContext.run(() -> {
-            StreamObserver<TrainRequest> modelSender = asyncStub.trainModel(new StreamObserver<>() {
-                private final List<ByteString> trainedModel = new ArrayList<>();
+                    @Override
+                    public void onError(Throwable t) {
+                        logger.error(t.getMessage());
+                    }
 
-                @Override
-                public void onNext(TrainResponse response) {
-                    trainedModel.add(response.getModelChunk());
-                }
+                    @Override
+                    public void onCompleted() {
+                        // 将本地模型写入状态缓存
+                        jobManager.getLocalModel().visit(modelChunks -> {
+                            modelChunks.clear();
+                            modelChunks.addAll(trainedModel);
+                            raftSate.localModelIndex = raftSate.globalModelIndex;
+                        }, VisitType.WRITE);
+                        raftSate.getJob().collectModel(trainedModel);
+                    }
+                });
 
-                @Override
-                public void onError(Throwable t) {
-                    logger.error(t.getMessage());
-                }
-
-                @Override
-                public void onCompleted() {
-                    // 将本地模型写入状态缓存
-                    jobManager.getLocalModel().visit(modelChunks -> {
-                        modelChunks.clear();
-                        modelChunks.addAll(trainedModel);
-                    }, VisitType.WRITE);
-                    triggerModelCollect();
-                }
+                senderWrapper.set(modelSender);
             });
+        }, VisitType.WRITE);
 
-            // 清空全局模型缓存，初始化发送器，等待接受模型
-            jobManager.clearGlobalModelChunk(modelSender);
-        });
+        return senderWrapper.get();
     }
 
     /**
      * 作为Leader向trainer推送模型
-     *
      * @return 返回一个异步发送器
      */
-    public StreamObserver<PushModelRequest> pushModel() {
+    public StreamObserver<PushModelRequest> pushModel(Long id) {
+        StreamObserver<PushModelRequest>[] sendObserver = new StreamObserver[1];
 
-        return asyncStub.pushModel(new StreamObserver<>() {
-            @Override
-            public void onNext(PushModelResponse response) {
-            }
+        // 在新的Contex中构建请求
+        Context.current().run(() -> {
+            sendObserver[0] = asyncStub.pushModel(new StreamObserver<>() {
+                @Override
+                public void onNext(PushModelResponse response) {
+                }
 
-            @Override
-            public void onError(Throwable t) {
-                logger.error("push model failed:" + t.getMessage());
-            }
+                @Override
+                public void onError(Throwable t) {
+                    logger.error("push model failed:" + t.getMessage());
+                }
 
-            @Override
-            public void onCompleted() {
+                @Override
+                public void onCompleted() {
 
-            }
+                }
+            });
+
+            // 先发送ID块
+            sendObserver[0].onNext(PushModelRequest
+                    .newBuilder()
+                    .setServerId(id)
+                    .build());
         });
+
+        return sendObserver[0];
     }
 
 
